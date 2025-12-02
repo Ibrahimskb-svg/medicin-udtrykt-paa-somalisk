@@ -6,38 +6,62 @@
 <title>Lamotrigin – suuxdin & laba-cirifood</title>
 
 <style>
-/* --- DESIGNET SOM AMLODIPIN & MELATONIN --- */
+/* -------------- UNIVERSALT DESIGN (SAMME SOM ANDRE) -------------- */
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:26px 16px 32px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-header h1 { margin:0; font-size:1.8rem; }
-header p { margin:6px 0 0; }
-main { max-width:820px; margin:20px auto 40px; padding:0 14px; }
-
-a.back { display:inline-flex; gap:6px; margin-bottom:14px; color:#00509e; text-decoration:none; }
+header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+header h1 { margin:0 0 4px; font-size:1.8rem; }
+header p { margin:0; font-size:0.95rem; }
+main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; 
+         text-decoration:none; color:#00509e; font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
-.card { background:#fff; border-radius:14px; padding:16px; margin-bottom:14px; box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676; }
+.card {
+  background:#ffffff;
+  border-radius:14px;
+  padding:16px 16px 10px;
+  margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12);
+  border-top:4px solid #00a676;
+}
 
+/* META INFO */
+.drug-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
+.drug-info { display:flex; align-items:center; gap:10px; }
+.drug-icon { width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
+.drug-icon svg { width:30px; height:30px; }
+.drug-name { font-weight:600; font-size:0.95rem; }
+.drug-form { font-size:0.82rem; color:#29516e; }
+.badge { background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+
+/* SECTIONS */
 .section { margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-
-.section-icon { width:24px; height:24px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:0.9rem; color:#123047; }
-
-.use { background:#e3f2fd; }
-.dose { background:#e2f5ea; }
-.side { background:#fff3e0; }
-.interact { background:#ede7f6; }
-.warn { background:#ffebee; }
-.ramadan { background:#e0f7fa; }
-.store { background:#edeff9; }
-
-.section-title { font-weight:700; font-size:0.96rem; }
+.section-header { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-title { font-weight:700; font-size:0.96rem; color:#123047; }
 .section-title small { font-weight:400; color:#607089; }
 
-.section ul { margin:0 0 4px 18px; padding:0; font-size:0.92rem; }
-.section ul li { margin-bottom:4px; }
+.section-icon { width:24px; height:24px; border-radius:999px; display:inline-flex;
+                align-items:center; justify-content:center; font-size:0.9rem; color:#123047;}
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.store { background:#edeff9; }
 
-.footer-note { text-align:center; font-size:0.8rem; color:#607089; margin:30px 0 20px; line-height:1.5; }
+.section ul { margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
+.section li { margin-bottom:4px; }
+
+.highlight { font-weight:600; }
+
+.footer-note {
+  font-size:0.8rem;
+  color:#607089;
+  text-align:center;
+  margin:18px 0 10px;
+}
+@media(max-width:600px){ header h1{font-size:1.5rem;} }
 </style>
 </head>
 
@@ -45,7 +69,7 @@ a.back span { font-size:1.1rem; }
 
 <header>
   <h1>Lamotrigin – suuxdin & laba-cirifood</h1>
-  <p>Waa warbixin kooban oo loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <p>Waa warbixin kooban oo ku saabsan daawada – loogu talagalay waalidiinta & bukaannada Soomaaliyeed</p>
 </header>
 
 <main>
@@ -54,48 +78,71 @@ a.back span { font-size:1.1rem; }
 
 <div class="card">
 
-  <!-- Waa maxay Lamotrigin -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon use">1</div>
-      <div class="section-title">Waa maxay Lamotrigin? <small>(Hvad er det?)</small></div>
+  <!-- IKONKA KINIINKA -->
+  <div class="drug-meta">
+    <div class="drug-info">
+      <div class="drug-icon">
+        <svg viewBox="0 0 64 64">
+          <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+          <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+        </svg>
+      </div>
+      <div class="drug-labels">
+        <div class="drug-name">Lamotrigin</div>
+        <div class="drug-form">Kiniin afka ah</div>
+      </div>
     </div>
-    <ul>
-      <li>Lamotrigin waa daawo ka hortagta suuxdinta (epilepsi). Waxay yaraysaa ama ka hortagtaa suuxdin soo noqnoqda iyadoo saameyn ku yeelaysa gudbinta korontada ee maskaxda.</li>
-    </ul>
+    <div class="badge">Akhris kooban</div>
   </div>
 
-  <!-- Maxaa loo isticmaalaa -->
+
+  <!-- WAA MAXAY -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon use">2</div>
-      <div class="section-title">Maxaa loo isticmaalaa? <small>(Anvendelse)</small></div>
+      <div class="section-icon use">💊</div>
+      <div class="section-title">Waa maxay Lamotrigin?</div>
+    </div>
+    <p>
+      Lamotrigin waa daawo ka hortagta suuxdinta (epilepsi).  
+      Waxay yaraysaa ama ka hortagtaa suuxdin soo noqnoqda iyadoo saameyn ku yeelaysa gudbinta korontada ee maskaxda.
+    </p>
+  </div>
+
+
+  <!-- ISTICMAALKA -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon use">✔</div>
+      <div class="section-title">Maxaa loo isticmaalaa?</div>
     </div>
     <ul>
       <li>Suuxdinta (epilepsi).</li>
-      <li>Xanuunka laba-cirifoodka (bipolar) – haddii dhakhtarku kuu qoro.</li>
+      <li>Xanuunka laba-cirifoodka (bipolar) – haddii dhakhtarka sidaas kuu qoro.</li>
     </ul>
   </div>
 
-  <!-- Sida loo qaato -->
+
+  <!-- QIYAASTA -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon dose">3</div>
-      <div class="section-title">Sida loo qaato <small>(Dosering)</small></div>
+      <div class="section-icon dose">⏰</div>
+      <div class="section-title">Sida loo qaato</div>
     </div>
+
+    <p>Qaado sida uu dhakhtarka kuu faray. Ha beddelin waqtiga ama qiyaasta adiga oo aan la tashan dhakhtar.</p>
+
     <ul>
-      <li>Qaado sida uu dhakhtarka kuu faray.</li>
-      <li>Ha beddelin waqtiga ama qiyaasta adiga oo aan la tashan dhakhtar.</li>
       <li>Kaniiniga biyo ku liq – hal ama laba jeer maalintii.</li>
       <li>Si joogto ah u qaado, oo ha ka tagin qiyaaso isdaba joog ah.</li>
     </ul>
   </div>
 
-  <!-- Digniino -->
+
+  <!-- DIGNIINO -->
   <div class="section">
     <div class="section-header">
       <div class="section-icon warn">!</div>
-      <div class="section-title">Digniino <small>(Advarsler)</small></div>
+      <div class="section-title">Digniino</div>
     </div>
     <ul>
       <li>Finan cusub oo jirka ka soo baxa → u sheeg dhakhtarka (waxay noqon kartaa xasaasiyad halis ah).</li>
@@ -104,11 +151,12 @@ a.back span { font-size:1.1rem; }
     </ul>
   </div>
 
-  <!-- Bivirkninger -->
+
+  <!-- BIVIRKNINGER -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon side">4</div>
-      <div class="section-title">Dhibaatooyinka <small>(Bivirkninger)</small></div>
+      <div class="section-icon side">⚠️</div>
+      <div class="section-title">Dhibaatooyinka (Bivirkninger)</div>
     </div>
     <ul>
       <li>Madax-xanuun, wareer ama daal.</li>
@@ -118,57 +166,62 @@ a.back span { font-size:1.1rem; }
     </ul>
   </div>
 
-  <!-- Interaktioner -->
+
+  <!-- INTERAKTIONER -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon interact">5</div>
-      <div class="section-title">Is-dhexgalka daawooyinka <small>(Interaktioner)</small></div>
+      <div class="section-icon interact">⇆</div>
+      <div class="section-title">Is-dhexgalka daawooyinka</div>
     </div>
     <ul>
-      <li>Daawooyinka ka hortagga suuxdinta qaarkood (tusaale: valproat) waxay kordhin karaan saamaynta Lamotrigin – qiyaasta waxaa haga dhakhtarka.</li>
-      <li>Warfarin ama daawooyinka dhiig-khafiifinta qaarkood waxay u baahan yihiin la socod dheeri ah.</li>
-      <li>Antibiotiko iyo daawooyinka fangaska (antifungal) qaarkood waxay saameyn karaan Lamotrigin.</li>
-      <li>Had iyo jeer dhakhtarka u sheeg daawo kasta oo kale oo aad qaadanayso.</li>
+      <li>Daawooyinka ka hortagga suuxdinta qaarkood (valproat) waxay kordhin karaan saamaynta Lamotrigin.</li>
+      <li>Warfarin iyo daawooyinka dhiig-khafiifinta qaarkood waxay u baahan yihiin la socod.</li>
+      <li>Antibiotiko iyo daawooyinka fangaska qaarkood waxay saameyn karaan Lamotrigin.</li>
+      <<li>Had iyo jeer dhakhtarka u sheeg daawo kasta oo kale oo aad qaadanayso.</li>
     </ul>
   </div>
 
-  <!-- Uurka & Nuujinta -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon warn">👶</div>
-      <div class="section-title">Uurka & Nuujinta</div>
-    </div>
-    <ul>
-      <li>La hadal dhakhtarka ka hor inta aanad qaadan Lamotrigin haddii aad uur leedahay, uur rabto ama nuujinayso.</li>
-    </ul>
-  </div>
 
-  <!-- Ramadan -->
+  <!-- RAMADAN -->
   <div class="section">
     <div class="section-header">
       <div class="section-icon ramadan">☾</div>
-      <div class="section-title">Ramadaanka & daawada</div>
+      <div class="section-title">Ramadaanka iyo daawada</div>
     </div>
-    <ul>
-      <li>Ka hor Ramadaanka, la hadal dhakhtarkaaga si loo hubiyo in qiyaasta ama waqtiga loo baahan yahay in la habeeyo.</li>
-      <li>Qiyaasta waxaa lagu qaataa <strong>fiidkii (aftari)</strong> ama <strong>suxuurta</strong>.</li>
-      <li>Ha beddelin waqtiga ama qiyaasta adiga oo aan dhakhtar la tashan.</li>
-      <li>Ha ka tagin qiyaaso isdaba joog ah.</li>
-    </ul>
+
+    <p>
+      Ka hor Ramadaanka, la hadal dhakhtarkaaga si loo hubiyo in daawadaadu ku habboon tahay inta lagu jiro soonka.
+    </p>
+
+    <p>
+      Haddii laguu sheego, qiyaasta waxaa lagu qaataa <strong>fiidkii (afurka kadib)</strong> ama <strong>suxuurta</strong>.  
+      Ha beddelin waqtiga ama qiyaasta adiga oo aan dhakhtar la tashan.
+    </p>
+
+    <p>Ha ka tagin qiyaaso isdaba joog ah, hana joojin daawada adiga oo aan dhakhtar la tashan.</p>
   </div>
 
-  <!-- Opbevaring -->
+
+  <!-- OPBEVARING -->
   <div class="section">
     <div class="section-header">
       <div class="section-icon store">⧉</div>
-      <div class="section-title">Kaydinta <small>(Opbevaring)</small></div>
+      <div class="section-title">Kaydinta (Opbevaring)</div>
     </div>
     <ul>
       <li>Ku hay meel ka fog carruurta yar yar, kana hooseysa 25 °C.</li>
       <li>Ku hay baakadka asalka ah si looga ilaaliyo iftiin iyo huur.</li>
-      <li>Ha qaadan daawada marka ay dhaafto "EXP" ama haddii midabka isbedalay.</li>
-      <li>Wixii soo haray → weydii farmashiyaha sida loogu tuuro si habboon.</li>
+      <li>Ha qaadan daawada marka ay dhaafto taariikhda “EXP” ama haddii midabku isbeddelo.</li>
+      <li>Wixii soo haray → ku celi farmashiyaha.</li>
     </ul>
+  </div>
+
+</div>
+
+
+<div class="footer-note">
+  Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.
+</div>
   </div>
 
 </div>
