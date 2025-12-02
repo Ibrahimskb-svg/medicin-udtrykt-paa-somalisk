@@ -6,38 +6,55 @@
 <title>Sertralin – niyad-jab & welwel</title>
 
 <style>
-/* --- SAMME DESIGN SOM AMLODIPIN & MELATONIN --- */
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:26px 16px 32px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-header h1 { margin:0; font-size:1.8rem; }
-header p { margin:6px 0 0; }
-main { max-width:820px; margin:20px auto 40px; padding:0 14px; }
+/* --- UNIVERSALT DESIGN (samme som Amlodipin) --- */
 
-a.back { display:inline-flex; gap:6px; margin-bottom:14px; color:#00509e; text-decoration:none; }
+body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+header h1 { margin:0 0 4px; font-size:1.8rem; }
+header p { margin:0; font-size:0.95rem; }
+
+main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
-.card { background:#fff; border-radius:14px; padding:16px; margin-bottom:14px; box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676; }
+.card { background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+        box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676; }
+
+.drug-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
+.drug-info { display:flex; align-items:center; gap:10px; }
+
+.drug-icon { width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
+.drug-icon svg { width:30px; height:30px; }
+
+.drug-name { font-weight:600; font-size:0.95rem; }
+.drug-form { font-size:0.82rem; color:#29516e; }
+
+.badge { background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; display:inline-flex; align-items:center; }
 
 .section { margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
-
-.section-icon { width:24px; height:24px; border-radius:50%; display:flex; justify-content:center; align-items:center; font-size:0.9rem; color:#123047; }
-
-.use { background:#e3f2fd; }
-.dose { background:#e2f5ea; }
-.side { background:#fff3e0; }
-.interact { background:#ede7f6; }
-.warn { background:#ffebee; }
-.ramadan { background:#e0f7fa; }
-.store { background:#edeff9; }
-
-.section-title { font-weight:700; font-size:0.96rem; }
+.section-header { display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-title { font-weight:700; font-size:0.96rem; color:#123047; }
 .section-title small { font-weight:400; color:#607089; }
 
-.section ul { margin:0 0 4px 18px; padding:0; font-size:0.92rem; }
-.section ul li { margin-bottom:4px; }
+.section-icon { width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; font-size:0.9rem; color:#123047; }
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
-.footer-note { text-align:center; font-size:0.8rem; color:#607089; margin:30px 0 20px; line-height:1.5; }
+.section ul { margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
+.section li { margin-bottom:4px; }
+.highlight { font-weight:600; }
+
+.footer-note { font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
+
+@media (max-width:600px){ header h1{font-size:1.5rem;} }
+
 </style>
 </head>
 
@@ -45,32 +62,50 @@ a.back span { font-size:1.1rem; }
 
 <header>
   <h1>Sertralin – niyad-jab & welwel</h1>
-  <p>Waa warbixin kooban oo ku saabsan daawada – loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <p>Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed</p>
 </header>
 
 <main>
 
-<a href="index.html" class="back"><span>←</span><span>Ku laabo liiska daawooyinka</span></a>
+<a href="index.html" class="back"><span>←</span>Ku laabo liiska daawooyinka</a>
 
 <div class="card">
 
-  <!-- Waa maxay Sertralin -->
+  <!-- META + IKON -->
+  <div class="drug-meta">
+    <div class="drug-info">
+      <div class="drug-icon">
+        <!-- TABLET IKON -->
+        <svg viewBox="0 0 64 64">
+          <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+          <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+        </svg>
+      </div>
+      <div class="drug-labels">
+        <div class="drug-name">Sertralin</div>
+        <div class="drug-form">Kiniin afka ah</div>
+      </div>
+    </div>
+    <div class="badge">Akhris kooban</div>
+  </div>
+
+  <!-- WAA MAXAY -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon use">1</div>
+      <div class="section-icon use">💊</div>
       <div class="section-title">Waa maxay Sertralin? <small>(Hvad er det?)</small></div>
     </div>
     <ul>
-      <li>Sertralin waa daawo lidka-niyad-jabka (antidepressiv) oo ka tirsan kooxda SSRI-yada.  
-      Waxay hagaajisaa niyadda, yareysaa walbahaarka iyo welwelka, isla markaana hoos u dhigta astaamaha niyad-jabka.</li>
+      <li>Sertralin waa daawo lidka-niyad-jabka oo ka tirsan SSRI-yada.</li>
+      <li>Waxay hagaajisaa niyadda, yareysaa walbahaarka iyo welwelka.</li>
     </ul>
   </div>
 
-  <!-- Maxaa loo isticmaalaa -->
+  <!-- ISTICMAALKA -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon use">2</div>
-      <div class="section-title">Maxaa loo isticmaalaa? <small>(Anvendelse)</small></div>
+      <div class="section-icon use">✔</div>
+      <div class="section-title">Maxaa loo isticmaalaa?</div>
     </div>
     <ul>
       <li>Niyad-jabka (depression).</li>
@@ -78,86 +113,85 @@ a.back span { font-size:1.1rem; }
     </ul>
   </div>
 
-  <!-- Sida loo qaato -->
+  <!-- QIYAASTA -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon dose">3</div>
+      <div class="section-icon dose">⏰</div>
       <div class="section-title">Sida loo qaato <small>(Dosering)</small></div>
     </div>
     <ul>
-      <li>Dadka waaweyn: Qiyaasta bilowga ah waa 50 mg hal mar maalintii.</li>
-      <li>Hal toddobaad kadib waxaa la kordhin karaa 50 mg mar kasta, iyadoo lagu kordhinayo ugu yaraan toddobaad kasta.</li>
-      <li>Qiyaasta ugu badan maalintii waa 200 mg.</li>
-      <li>Waxay bilaabataa inay shaqeyso 2–4 toddobaad gudahood; mararka qaar 6–8 toddobaad.</li>
-      <li>Sertralin waxaa lagu liqaa koob biyo ah.</li>
-      <li>Waxaa lagu qaadan karaa cunto la’aan ama cuntada kadib, laakiin cuntada kadib waxay yareysaa calool-xanuunka iyo dhibaatada dheefshiidka.</li>
+      <li>Dadka waaweyn: 50 mg maalintii marka hore.</li>
+      <li>Waxaa la kordhin karaa 50 mg toddobaad kasta.</li>
+      <li>Qiyaasta ugu badan waa 200 mg maalintii.</li>
+      <li>Badanaa waxay shaqeysaa 2–4 toddobaad gudahood; saameyn buuxda 6–8 toddobaad.</li>
+      <li>Sertralin waxaa lagu liqaa biyo.</li>
+      <li>Waxaa fiican in lagu qaato cuntada kadib si calool-xanuun loo yareeyo.</li>
     </ul>
   </div>
 
-  <!-- Digniino -->
+  <!-- DIGNIINO -->
   <div class="section">
     <div class="section-header">
       <div class="section-icon warn">!</div>
-      <div class="section-title">Digniino <small>(Advarsler)</small></div>
+      <div class="section-title">Digniino</div>
     </div>
     <ul>
-      <li>Isbeddel niyadeed ama fikirro isdil → isla markiiba la xiriir dhakhtar.</li>
-      <li>Ha joojin daawada si kedis ah.</li>
+      <li>Isbeddel niyadeed ama fikirro isdil → la xiriir dhakhtar.</li>
+      <li>Ha joojin si kedis ah.</li>
     </ul>
   </div>
 
-  <!-- Bivirkninger -->
+  <!-- BIVIRKNINGER -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon side">4</div>
-      <div class="section-title">Dhibaatooyinka <small>(Bivirkninger)</small></div>
+      <div class="section-icon side">⚠️</div>
+      <div class="section-title">Dhibaatooyinka (Bivirkninger)</div>
     </div>
     <ul>
-      <li>Lallabbo ama calool-xanuun khafiif ah.</li>
+      <li>Lallabbo ama calool-xanuun.</li>
       <li>Madax-xanuun ama wareer.</li>
       <li>Hurdo badan ama hurdo la’aan.</li>
-      <li>Miisaanka oo kordha ama rabitaanka cuntada oo badata.</li>
+      <li>Miisaanka oo kordha ama rabitaanka cuntada oo badan.</li>
     </ul>
   </div>
 
-  <!-- Interaktioner -->
+  <!-- INTERAKTIONER -->
   <div class="section">
     <div class="section-header">
-      <div class="section-icon interact">5</div>
-      <div class="section-title">Is-dhexgalka daawooyinka <small>(Interaktioner)</small></div>
+      <div class="section-icon interact">⇆</div>
+      <div class="section-title">Is-dhexgalka daawooyinka</div>
     </div>
     <ul>
-      <li>Ha isku darin Sertralin iyo daawooyin hurdo-dejiya ama dejinaya — waxay kordhiyaan hurdo badan & wareer.</li>
-      <li>Aalkoladu waxay xumeeyaan hurdada waxayna kordhisaa daalka.</li>
-      <li>Daawooyinka wadnaha qaarkood iyo kuwa dhiig-khafiifiya waxay u baahan karaan la socod dheeri ah.</li>
-      <li>Antibiotiko iyo daawooyinka fangaska (antifungal) qaarkood waxay kordhin karaan saamaynta Sertralin — dhakhtarkaaga u sheeg daawo kasta oo aad qaadato.</li>
+      <li>Ha isku darin daawooyin hurdo-dejiya kale.</li>
+      <li>Aalkoladu waxay xumeeysaa hurdada – ka fogow.</li>
+      <li>Daawooyinka wadnaha iyo dhiig-khafiifinta waxay u baahan karaan la socod.</li>
+      <li>Antibiotiko & antifungal qaarkood waxay kordhiyaan saamaynta Sertralin.</li>
     </ul>
   </div>
 
-  <!-- Ramadan -->
+  <!-- RAMADAN -->
   <div class="section">
     <div class="section-header">
       <div class="section-icon ramadan">☾</div>
-      <div class="section-title">Ramadaanka & daawada <small>(Ramadan)</small></div>
+      <div class="section-title">Ramadaanka</div>
     </div>
     <ul>
-      <li>La hadal dhakhtarka ka hor Ramadaanka si loo hubiyo waqtiga ugu habboon ee qaadashada.</li>
-      <li>Badanaa waxaa lagu qaataa <strong>fiidkii (aftari)</strong>.</li>
-      <li>Ha beddelin waqtiga ama qiyaasta adigoo aan la tashan dhakhtar.</li>
+      <li>La hadal dhakhtar ka hor Ramadaan.</li>
+      <li>Waxaa lagu qaadan karaa fiidkii (aftari) haddii laguu qoro.</li>
     </ul>
   </div>
 
-  <!-- Opbevaring -->
+  <!-- OPBEVARING -->
   <div class="section">
     <div class="section-header">
       <div class="section-icon store">⧉</div>
-      <div class="section-title">Kaydinta <small>(Opbevaring)</small></div>
+      <div class="section-title">Kaydinta</div>
     </div>
     <ul>
-      <li>Ku hay meel ka fog carruurta yar yar, kana hooseysa 25 °C.</li>
-      <li>Ku hay baakadka asalka ah si looga ilaaliyo iftiin iyo huur.</li>
-      <li>Ha qaadan daawada marka ay dhaafto "EXP" ama haddii midabka isbedalay.</li>
-      <li>Wixii soo haray → weydii farmashiyaha sida loogu tuuro meesha ku habboon.</li>
+      <li>Ku hay meel ka fog carruurta, kana hooseeya 25°C.</li>
+      <li>Ku hay baakadka asalka ah si looga ilaaliyo iftiin & huur.</li>
+      <li>Ha qaadan haddii ay dhaafto “EXP” ama midabka isbeddelo.</li>
+      <li>Wixii soo haray → ku celi farmashiyaha.</li>
     </ul>
   </div>
 
