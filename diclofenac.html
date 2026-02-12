@@ -155,168 +155,637 @@ a.back span {
   text-align: center;
   margin: 18px 0 10px;
 }
-.index-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.index-list li {
-  margin-bottom: 8px;
-}
-.index-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 10px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
-  color: #123047;
-}
-.index-link:hover {
-  background: #f1f8ff;
-}
-.index-left {
-  display: flex;
-  flex-direction: column;
-}
-.index-title {
-  font-weight: 600;
-  font-size: 0.96rem;
-}
-.index-sub {
-  font-size: 0.8rem;
-  color: #607089;
-}
-.index-icon {
-  font-size: 1.2rem;
-}
 @media (max-width: 600px) {
   header h1 { font-size: 1.5rem; }
+}
+
+/* Dropdown bar */
+.langbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid #00a676;
+}
+.langbar label{
+  font-size:0.9rem;
+  color:#123047;
+  font-weight:600;
+}
+.langbar select{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  background: #fff;
+  color:#123047;
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 </style>
 </head>
 <body>
+
 <header>
-  <h1>Diclofenac – xanuun &amp; barar</h1>
-  <p>Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <h1 id="hdrTitle">Diclofenac – xanuun &amp; barar</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
+
 <main>
-  <a href="index.html" class="back"><span>←</span><span>Ku laabo liiska daawooyinka</span></a>
+
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect">Vælg sprog:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
+  </div>
+
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
+
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
-          
 
-
-<svg viewBox="0 0 64 64">
-  <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-  <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
-</svg>
-
-
+          <svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          </svg>
 
         </div>
         <div class="drug-labels">
-          <div class="drug-name">Diclofenac – xanuun &amp; barar</div>
-          <div class="drug-form">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Diclofenac – xanuun &amp; barar</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
         </div>
       </div>
-      <div class="badge">Akhris fudud oo kooban</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
-    
+
+    <!-- 1 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
       </div>
-      <ul>
-        <li>Diclofenac waa daawo loo isticmaalo xanuun iyo barar xooggan.</li><li>Waxaa loo isticmaalaa xanuunka kala-goysyada, dhabarka iyo xanuunka qallinka ka dib.</li>
-      </ul>
+      <ul id="useList"></ul>
     </div>
-    
+
+    <!-- 2 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
       </div>
-      <ul>
-        <li>2–3 jeer maalinkii 50-200 mg.</li><li>Qiyaasta saxda ah waxaa go'aamiya dhakhtarka.</li>
-      </ul>
+      <ul id="doseList"></ul>
     </div>
-    
+
+    <!-- 3 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
       </div>
-      <ul>
-        <li>Calool xanuun, lalabo, madax-xanuun.</li><li>boogo caloosha khatar ah, dhiig-bax iyo wadne-xanuun marka muddo dheer la qaato.</li>
-      </ul>
+      <ul id="sideList"></ul>
     </div>
-    
+
+    <!-- 4 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
       </div>
-      <ul>
-        <li>Ha isku darin NSAID iyo daawooyinka kale sida dhiig-khafiifinta.</li><li>Daawooyinka dhiig-karka iyo kelyaha, qaarkood waxay kordhiyaan saameynta kelyaha.</li>
-      </ul>
+      <ul id="interactList"></ul>
     </div>
-    
+
+    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
       </div>
-      <ul>
-        <li>Haddii aad leedahay wadne-xanuun, boogo caloosha ama dhiig-bax hore, waxa aad u baahan tahay kormeer gaar ah.</li><li>Daawadan ha isticmaalin mudda dheer adiga oo aan la tashan dhakhtar.</li>
-      </ul>
+      <ul id="warnList"></ul>
     </div>
-    
+
+    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
       </div>
-      <ul>
-        <li>Kaniiniga diclofenac wuxuu jebiyaa soonka.</li><li>Gel-ka maqaarka la mariyo badanaa looma tixgeliyo jebin soon, laakiin la hadal wadaad haddii aad shaki ka qabto.</li>
-      </ul>
+      <ul id="ramadanList"></ul>
     </div>
-    
+
+    <!-- 7 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
       </div>
-      <ul>
-        <li>Ku qaado cunno si loo ilaaliyo caloosha.</li><li>Ha cuniin adiga oo gajoonaya.</li>
-      </ul>
+      <ul id="foodList"></ul>
     </div>
-    
+
+    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title">Kaydinta daawada <small>(Opbevaring)</small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
       </div>
-      <ul>
-        <li>Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda "EXP" (daawada goorta ee dhacday), ama haddii oo midabka isbadalay. Wixii soo haray, weydii farmashiyaha - si loogu tuuro meesha ku habboon.</li>
-      </ul>
+      <ul id="storeList"></ul>
     </div>
-    
+
   </div>
 
-  <div class="footer-note">
-    Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class="highlight">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)</div>
+  <div class="footer-note" id="footerNote"></div>
 </main>
-<div class="footer-note">
-  Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf
-<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
-</div>
+
+<div class="footer-note" id="credit"></div>
+
+<script>
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+const T = {
+  so: {
+    title: "Diclofenac – xanuun &amp; barar",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Diclofenac – xanuun &amp; barar",
+    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    sections: {
+      use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
+        "Diclofenac waa daawo loo isticmaalo xanuun iyo barar xooggan.",
+        "Waxaa loo isticmaalaa xanuunka kala-goysyada, dhabarka iyo xanuunka qallinka ka dib."
+      ]},
+      dose: { title:"Qiyaasta", small:"(Dosering)", items:[
+        "2–3 jeer maalinkii 50–200 mg.",
+        "Qiyaasta saxda ah waxaa go'aamiya dhakhtarka."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
+        "Calool xanuun, lalabo, madax-xanuun.",
+        "Boogo caloosha khatar ah, dhiig-bax iyo wadne-xanuun marka muddo dheer la qaato."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
+        "Ha isku darin NSAID iyo daawooyinka kale sida dhiig-khafiifinta.",
+        "Daawooyinka dhiig-karka iyo kelyaha, qaarkood waxay kordhiyaan saameynta kelyaha."
+      ]},
+      warn: { title:"Digniino", small:"(Advarsler)", items:[
+        "Haddii aad leedahay wadne-xanuun, boogo caloosha ama dhiig-bax hore, waxa aad u baahan tahay kormeer gaar ah.",
+        "Daawadan ha isticmaalin mudda dheer adiga oo aan la tashan dhakhtar."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
+        "Kaniiniga diclofenac wuxuu jebiyaa soonka.",
+        "Gel-ka maqaarka la mariyo badanaa looma tixgeliyo jebin soon, laakiin la hadal wadaad haddii aad shaki ka qabto."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
+        "Ku qaado cunno si loo ilaaliyo caloosha.",
+        "Ha cuniin adiga oo gajoonaya."
+      ]},
+      store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
+        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" (daawada goorta ee dhacday), ama haddii midabka isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  da: {
+    title: "Diclofenac – smerter og betændelse",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    badge: "Kort og let at læse",
+    drugName: "Diclofenac – smerter og betændelse",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Diclofenac bruges mod smerter og betændelse (inflammation).",
+        "Det kan bruges ved led- og rygsmerter samt smerter efter operation."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Typisk 2–3 gange dagligt (samlet ca. 50–200 mg).",
+        "Den præcise dosis fastsættes af lægen."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Mavesmerter, kvalme og hovedpine kan forekomme.",
+        "Ved længere tids brug kan der opstå mavesår, blødning og øget risiko for hjerte-kar-problemer."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Undgå at kombinere flere NSAID’er. Vær forsigtig sammen med blodfortyndende medicin.",
+        "Visse blodtryks- og nyremediciner kan øge risikoen for nyrepåvirkning."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Hvis du har hjertesygdom, mavesår eller tidligere blødning, kan du have behov for særlig kontrol.",
+        "Brug ikke diclofenac i længere tid uden at tale med en læge."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Diclofenac som tablet bryder fasten.",
+        "Diclofenac-gel på huden regnes ofte ikke som at bryde fasten, men tal med en imam, hvis du er i tvivl."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Tag gerne medicinen sammen med mad for at beskytte maven.",
+        "Undgå at tage den på tom mave."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C. Opbevar i original emballage for at beskytte mod lys og fugt. Brug ikke efter udløbsdatoen (EXP) eller hvis farven har ændret sig. Spørg apoteket om korrekt bortskaffelse af rester."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Diclofenac – pain and inflammation",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    badge: "Short and easy to read",
+    drugName: "Diclofenac – pain and inflammation",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Diclofenac is used for pain and inflammation.",
+        "It can be used for joint pain, back pain, and pain after surgery."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Usually taken 2–3 times a day (total about 50–200 mg).",
+        "The exact dose is decided by the doctor."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Stomach pain, nausea, and headache may occur.",
+        "With long-term use, stomach ulcers, bleeding, and increased cardiovascular risk can occur."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Avoid combining multiple NSAIDs. Use caution with blood thinners.",
+        "Some blood pressure and kidney medicines may increase the risk of kidney problems."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "If you have heart disease, stomach ulcers, or previous bleeding, you may need closer monitoring.",
+        "Do not use diclofenac long-term without medical advice."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Diclofenac tablets break the fast.",
+        "Diclofenac gel applied to the skin is often not considered to break the fast, but ask an imam if you are unsure."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "Take with food to help protect your stomach.",
+        "Avoid taking it on an empty stomach."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date (EXP) or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "ديكلوفيناك – ألم والتهاب",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "ديكلوفيناك – ألم والتهاب",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "يُستخدم ديكلوفيناك لتخفيف الألم والالتهاب.",
+        "يمكن استخدامه لآلام المفاصل والظهر وللألم بعد العمليات."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "عادةً 2–3 مرات يومياً (بمجموع حوالي 50–200 ملغ).",
+        "الجرعة الدقيقة يحددها الطبيب."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "ألم في المعدة، غثيان، وصداع.",
+        "مع الاستخدام الطويل قد يحدث قرحة أو نزيف بالمعدة وزيادة خطر مشاكل القلب والأوعية."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "تجنب الجمع بين أكثر من دواء من فئة NSAIDs، واحذر مع مميعات الدم.",
+        "بعض أدوية الضغط والكلى قد تزيد خطر تأثيرات على الكلى."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "إذا كان لديك مرض قلبي أو قرحة معدة أو نزيف سابق فقد تحتاج إلى متابعة خاصة.",
+        "لا تستخدم ديكلوفيناك لفترة طويلة دون استشارة طبية."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "أقراص ديكلوفيناك تُفطر.",
+        "جل ديكلوفيناك على الجلد غالباً لا يُعتبر مُفطراً، لكن اسأل إماماً إذا كنت غير متأكد."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يفضل تناوله مع الطعام لحماية المعدة.",
+        "تجنب تناوله على معدة فارغة."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء (EXP) أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  },
+
+  tr: {
+    title: "Diklofenak – ağrı ve iltihap",
+    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
+    back: "İlaç listesine geri dön",
+    badge: "Kısa ve anlaşılır",
+    drugName: "Diklofenak – ağrı ve iltihap",
+    drugForm: "Ağızdan alınan tablet",
+    sections: {
+      use: { title:"Kullanım", small:"", items:[
+        "Diklofenak ağrı ve iltihap için kullanılır.",
+        "Eklem ağrısı, bel ağrısı ve ameliyat sonrası ağrıda kullanılabilir."
+      ]},
+      dose: { title:"Doz", small:"", items:[
+        "Genellikle günde 2–3 kez (toplam yaklaşık 50–200 mg).",
+        "Kesin dozu doktor belirler."
+      ]},
+      side: { title:"Yan etkiler", small:"", items:[
+        "Mide ağrısı, bulantı ve baş ağrısı olabilir.",
+        "Uzun süreli kullanımda mide ülseri, kanama ve kalp-damar riskinde artış olabilir."
+      ]},
+      interact: { title:"Etkileşimler", small:"", items:[
+        "Birden fazla NSAİİ’yi birlikte kullanmayın. Kan sulandırıcılarla dikkatli olun.",
+        "Bazı tansiyon ve böbrek ilaçları böbrek yan etki riskini artırabilir."
+      ]},
+      warn: { title:"Uyarılar", small:"", items:[
+        "Kalp hastalığınız, mide ülseriniz veya daha önce kanamanız olduysa yakın takip gerekebilir.",
+        "Doktora danışmadan uzun süre kullanmayın."
+      ]},
+      ramadan: { title:"Ramazan ve oruç", small:"", items:[
+        "Diklofenak tablet orucu bozar.",
+        "Cilde sürülen diklofenak jel çoğu zaman orucu bozmaz kabul edilir; emin değilseniz bir imama danışın."
+      ]},
+      food: { title:"Yiyecek ve içecek", small:"", items:[
+        "Mideyi korumak için yemekle birlikte alın.",
+        "Aç karnına almaktan kaçının."
+      ]},
+      store: { title:"Saklama", small:"", items:[
+        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden (EXP) sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
+      ]}
+    },
+    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
+    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur: {
+    title: "ڈائکلوفیناک – درد اور سوزش",
+    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
+    back: "ادویات کی فہرست پر واپس جائیں",
+    badge: "مختصر اور آسان",
+    drugName: "ڈائکلوفیناک – درد اور سوزش",
+    drugForm: "منہ کے ذریعے لینے والی گولی",
+    sections: {
+      use: { title:"استعمال", small:"", items:[
+        "ڈائکلوفیناک درد اور سوزش کے لیے استعمال ہوتی ہے۔",
+        "جوڑوں کے درد، کمر درد اور آپریشن کے بعد کے درد میں استعمال ہو سکتی ہے۔"
+      ]},
+      dose: { title:"خوراک", small:"", items:[
+        "عام طور پر دن میں 2–3 بار (کل تقریباً 50–200 mg).",
+        "صحیح خوراک ڈاکٹر طے کرتا ہے۔"
+      ]},
+      side: { title:"مضر اثرات", small:"", items:[
+        "پیٹ درد، متلی اور سر درد ہو سکتا ہے۔",
+        "لمبے عرصے میں معدے کا السر، خون بہنا اور دل کے مسائل کا خطرہ بڑھ سکتا ہے۔"
+      ]},
+      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
+        "ایک سے زیادہ NSAIDs اکٹھے استعمال نہ کریں۔ خون پتلا کرنے والی دواؤں کے ساتھ احتیاط کریں۔",
+        "کچھ بلڈ پریشر اور گردوں کی دوائیں گردوں پر اثر کا خطرہ بڑھا سکتی ہیں۔"
+      ]},
+      warn: { title:"احتیاطیں", small:"", items:[
+        "اگر دل کی بیماری، معدے کا السر یا پہلے خون بہنے کی تاریخ ہو تو خصوصی نگرانی کی ضرورت ہو سکتی ہے۔",
+        "ڈاکٹر سے مشورہ کیے بغیر طویل مدت تک استعمال نہ کریں۔"
+      ]},
+      ramadan: { title:"رمضان اور روزہ", small:"", items:[
+        "ڈائکلوفیناک کی گولی روزہ توڑ دیتی ہے۔",
+        "جلد پر لگانے والا ڈائکلوفیناک جیل اکثر روزہ توڑنے میں شمار نہیں ہوتا، مگر شک ہو تو کسی امام سے پوچھیں۔"
+      ]},
+      food: { title:"کھانا پینا", small:"", items:[
+        "معدے کی حفاظت کے لیے کھانے کے ساتھ لیں۔",
+        "خالی پیٹ لینے سے پرہیز کریں۔"
+      ]},
+      store: { title:"محفوظ رکھنا", small:"", items:[
+        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے (EXP) کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
+      ]}
+    },
+    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
+    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa: {
+    title: "دیکلوفناک – درد و التهاب",
+    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
+    back: "بازگشت به فهرست داروها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "دیکلوفناک – درد و التهاب",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد مصرف", small:"", items:[
+        "دیکلوفناک برای درد و التهاب استفاده می‌شود.",
+        "برای درد مفاصل، کمردرد و درد پس از عمل جراحی به‌کار می‌رود."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "معمولاً 2–3 بار در روز (مجموع حدود 50–200 mg).",
+        "دوز دقیق را پزشک تعیین می‌کند."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "درد معده، تهوع و سردرد ممکن است رخ دهد.",
+        "در مصرف طولانی‌مدت ممکن است زخم معده، خونریزی و افزایش خطر مشکلات قلبی-عروقی ایجاد شود."
+      ]},
+      interact: { title:"تداخل‌های دارویی", small:"", items:[
+        "چند NSAID را همزمان مصرف نکنید. با رقیق‌کننده‌های خون احتیاط کنید.",
+        "برخی داروهای فشار خون و کلیه می‌توانند خطر مشکلات کلیوی را افزایش دهند."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "اگر بیماری قلبی، زخم معده یا سابقه خونریزی دارید، ممکن است به پایش ویژه نیاز باشد.",
+        "بدون مشورت پزشک برای مدت طولانی مصرف نکنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "قرص دیکلوفناک روزه را باطل می‌کند.",
+        "ژل دیکلوفناک روی پوست معمولاً باطل‌کننده روزه محسوب نمی‌شود؛ اگر تردید دارید از یک عالم دینی بپرسید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "برای محافظت از معده همراه غذا مصرف کنید.",
+        "از مصرف با معده خالی خودداری کنید."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا (EXP) یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs: {
+    title: "دیکلوفناک – درد و التهاب",
+    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
+    back: "بازگشت به فهرست دواها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "دیکلوفناک – درد و التهاب",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد استعمال", small:"", items:[
+        "دیکلوفناک برای درد و التهاب استفاده می‌شود.",
+        "برای درد مفاصل، کمردرد و درد بعد از عملیات به‌کار می‌رود."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "معمولاً 2–3 بار در روز (مجموع حدود 50–200 mg).",
+        "دوز دقیق را داکتر تعیین می‌کند."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "درد معده، تهوع و سردرد ممکن است رخ دهد.",
+        "در مصرف طولانی‌مدت ممکن است زخم معده، خون‌ریزی و افزایش خطر مشکلات قلبی-عروقی ایجاد شود."
+      ]},
+      interact: { title:"تداخلات دوایی", small:"", items:[
+        "چند NSAID را همزمان استفاده نکنید. با دواهای رقیق‌کنندهٔ خون احتیاط کنید.",
+        "برخی دواهای فشار خون و کلیه می‌تواند خطر مشکلات کلیوی را بیشتر کند."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "اگر بیماری قلبی، زخم معده یا سابقهٔ خون‌ریزی دارید، ممکن به نظارت ویژه نیاز باشد.",
+        "بدون مشورهٔ داکتر برای مدت طولانی استفاده نکنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "قرص دیکلوفناک روزه را باطل می‌کند.",
+        "ژل دیکلوفناک روی پوست معمولاً باطل‌کننده حساب نمی‌شود؛ اگر شک دارید از یک عالم دینی بپرسید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "برای حفاظت معده با غذا بگیرید.",
+        "از گرفتن با معده خالی خودداری کنید."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا (EXP) یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps: {
+    title: "ډيکلوفېناک – درد او التهاب",
+    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
+    back: "د درملو لېست ته بېرته",
+    badge: "لنډ او اسانه",
+    drugName: "ډيکلوفېناک – درد او التهاب",
+    drugForm: "د خولې ګولۍ",
+    sections: {
+      use: { title:"کارونه", small:"", items:[
+        "ډيکلوفېناک د درد او التهاب لپاره کارېږي.",
+        "د بندونو درد، د ملا درد او د عملیاتو وروسته درد کې کارېدای شي."
+      ]},
+      dose: { title:"دوز", small:"", items:[
+        "معمولاً په ورځ کې 2–3 ځله (ټول شاوخوا 50–200 mg).",
+        "دقیق دوز ډاکټر ټاکي."
+      ]},
+      side: { title:"اړخیزې اغېزې", small:"", items:[
+        "د معدې درد، زړه بدوالی او سر درد کېدای شي.",
+        "د اوږدې مودې کارولو سره د معدې زخم، وینه‌بهېدل او د زړه-رګونو د خطر زیاتوالی رامنځته کېدای شي."
+      ]},
+      interact: { title:"د درملو تعامل", small:"", items:[
+        "له څو NSAID درملو سره یوځای مه کاروئ. له وینې نری کوونکو سره احتیاط وکړئ.",
+        "ځینې د فشار او پښتورګو درمل کولی شي د پښتورګو د ستونزو خطر زیات کړي."
+      ]},
+      warn: { title:"احتیاط", small:"", items:[
+        "که د زړه ناروغي، د معدې زخم یا د وینې بهېدلو پخوانۍ سابقه لرئ، ځانګړې څارنه اړینه کېدای شي.",
+        "له ډاکټر سره له مشورې پرته اوږده موده مه کاروئ."
+      ]},
+      ramadan: { title:"رمضان او روژه", small:"", items:[
+        "د ډيکلوفېناک ګولۍ روژه ماتوي.",
+        "د پوستکي لپاره ډيکلوفېناک جېل اکثره روژه نه ماتوي، خو که شک لرئ له عالم/امام سره مشوره وکړئ."
+      ]},
+      food: { title:"خواړه او څښاک", small:"", items:[
+        "د معدې د ساتنې لپاره له خوړو سره واخلئ.",
+        "په تشه معده یې مه اخلئ."
+      ]},
+      store: { title:"ساتنه", small:"", items:[
+        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې (EXP) وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
+      ]}
+    },
+    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
+    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
+  ul.innerHTML = "";
+  items.forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html;
+    ul.appendChild(li);
+  });
+}
+
+function render(lang){
+  const d = T[lang] || T.so;
+
+  setDirLang(lang);
+  document.title = d.title;
+
+  document.getElementById("hdrTitle").innerHTML = d.title;
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+
+  document.getElementById("drugName").innerHTML = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  document.getElementById("useSmall").textContent = d.sections.use.small || "";
+
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
+
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
+
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
+
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
+
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
+
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
+
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
+
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
+}
+
+render("so");
+document.getElementById("langSelect").addEventListener("change", function(){
+  render(this.value);
+});
+</script>
+
 </body>
 </html>
