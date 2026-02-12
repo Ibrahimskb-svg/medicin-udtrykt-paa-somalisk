@@ -179,6 +179,38 @@ a.back span { font-size: 1.1rem; }
   max-width: 100%;
 }
 
+/* Professional notes (all languages) */
+.pro-note{
+  margin: 6px 0 0;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: #f6f9ff;
+  border: 1px solid #d7e3f7;
+  color: #29516e;
+  font-size: 0.86rem;
+}
+.pro-note b{ color:#123047; }
+
+.pro-box{
+  background:#ffffff;
+  border-radius: 14px;
+  padding: 14px 14px 10px;
+  margin: 14px 0 0;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid #0066cc;
+}
+.pro-box h2{
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  color:#123047;
+}
+.pro-box ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
+}
+.pro-box li{ margin-bottom: 4px; }
+
 </style>
 </head>
 <body>
@@ -231,6 +263,7 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
       </div>
       <ul id="useList"></ul>
+      <div class="pro-note" id="useNote" style="display:none;"></div>
     </div>
 
     <!-- 2 -->
@@ -240,6 +273,7 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
       </div>
       <ul id="doseList"></ul>
+      <div class="pro-note" id="doseNote" style="display:none;"></div>
     </div>
 
     <!-- 3 -->
@@ -249,6 +283,7 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
       </div>
       <ul id="sideList"></ul>
+      <div class="pro-note" id="sideNote" style="display:none;"></div>
     </div>
 
     <!-- 4 -->
@@ -258,6 +293,7 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
       </div>
       <ul id="interactList"></ul>
+      <div class="pro-note" id="interactNote" style="display:none;"></div>
     </div>
 
     <!-- 5 -->
@@ -267,6 +303,7 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
       </div>
       <ul id="warnList"></ul>
+      <div class="pro-note" id="warnNote" style="display:none;"></div>
     </div>
 
     <!-- 6 -->
@@ -276,6 +313,7 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
       </div>
       <ul id="ramadanList"></ul>
+      <div class="pro-note" id="ramadanNote" style="display:none;"></div>
     </div>
 
     <!-- 7 -->
@@ -285,6 +323,7 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
       </div>
       <ul id="foodList"></ul>
+      <div class="pro-note" id="foodNote" style="display:none;"></div>
     </div>
 
     <!-- 8 -->
@@ -294,18 +333,20 @@ a.back span { font-size: 1.1rem; }
         <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
       </div>
       <ul id="storeList"></ul>
+      <div class="pro-note" id="storeNote" style="display:none;"></div>
     </div>
 
   </div>
 
-  <div class="footer-note" id="footerNote">
-    Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class="highlight">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)
+  <div class="pro-box" id="proBox" style="display:none;">
+    <h2 id="proBoxTitle"></h2>
+    <ul id="proBoxList"></ul>
   </div>
+
+  <div class="footer-note" id="footerNote"></div>
 </main>
 
-<div class="footer-note" id="credit">
-  Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
-</div>
+<div class="footer-note" id="credit"></div>
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
@@ -322,34 +363,44 @@ const T = {
       use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
         "Atorvastatin waa daawo <span class='highlight'>hoos u dhigta kolestaroolka</span> (kolesterol).",
         "Waxay yareysaa halista wadne-istaag iyo faalig, gaar ahaan dadka leh kolestarool sare ama cudur wadne."
-      ]},
+      ], note:"<b>Fiiro farsamo:</b> Atorvastatin waa “statin” (HMG-CoA reductase inhibitor). Waxaa loo isticmaalaa LDL-hoos u dhigid iyo ka-hortagga khatarta wadne/faalig." },
       dose: { title:"Qiyaasta", small:"(Dosering)", items:[
-        "Atorvastatin waxaa la qaadan karaa <span class='highlight'>subax ama fiid</span> — waqtigu muhiim ma aha haddii aad si joogto ah u qaadato.",
-        "Waxay leedahay waqti-dheer oo jirka ku sii jiri karto (halveringstid dheer iyo metabolaytyo firfircoon), sidaas darteed saameyntu waa isku mid subax iyo fiid. Qaado waqti kuu fudud oo joogto ah."
-      ]},
+        "Qaado hal mar maalintii. <span class='highlight'>Waxaad qaadan kartaa subax ama fiid</span> — dooro waqti kuu fudud oo joogto ah.",
+        "Qiyaasta (tusaale 10–80 mg) waxaa go’aamiya dhakhtarka iyadoo lagu saleynayo natiijooyinka dhiigga."
+      ], note:"<b>Fiiro farsamo:</b> Daawadani waxay leedahay waqti dheer oo ay jirka ku sii joogto, sidaas darteed saameyntu guud ahaan way la mid tahay subax ama fiid. Muhiimku waa joogteynta (adherence)." },
       side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
         "Madax-xanuun ama calool-xanuun khafiif ah ayaa dhici kara.",
-        "Marar dhif ah ayaa murqo-xanuun adag ama daciifnimo (muskelsmerter - rabdomyolyse) u baahan dhakhtar degdeg ah – gaar ahaan haddii aad sidoo kale qandho leedahay."
-      ]},
+        "Marar dhif ah: murqo-xanuun adag ama daciifnimo u baahan dhakhtar degdeg ah — gaar ahaan haddii aad sidoo kale qandho leedahay."
+      ], note:"<b>Fiiro farsamo:</b> Ka taxaddar murqo-xanuun daran/CK korodh; qiimeyn degdeg ah haddii calaamado culus ama kaadi madow." },
       interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
         "Daawooyinka qaar ee fangaska (azole), qaar antibiyootiko ah iyo daawooyinka HIV waxay kordhin karaan heerka atorvastatin.",
-        "Cabitaanka badan ee liin baanbeelmada (grapefrugt), waxeey kordhin kartaa saameynta daawada — sidaas darteed waa in la xaddido."
-      ]},
+        "Cabitaanka badan ee liin baanbeelmada (grapefrugt) waxay kordhin kartaa saameynta daawada — sidaas darteed waa in la xaddido."
+      ], note:"<b>Fiiro farsamo:</b> CYP3A4-substrat. Isku-darka CYP3A4 inhibitors waxay kordhin karaan khatarta waxyeellooyinka, gaar ahaan murqo-dhibaato." },
       warn: { title:"Digniino", small:"(Advarsler)", items:[
         "Ha isticmaalin haddii aad uur leedahay ama nuujinayso; daawadu waxay dhaawici kartaa ilmaha.",
-        "Baaritaanka dhiigga ee beerka (lever) ayaa mararka qaarkood loo baahan yahay – marka saas owgeed raac jadwalka ballamada ee dhakhtarku kuu dejiyey."
-      ]},
+        "Baaritaanka dhiigga ee beerka (lever) ayaa mararka qaarkood loo baahan yahay – raac jadwalka ballamada ee dhakhtarka."
+      ], note:"<b>Fiiro farsamo:</b> Ka fiirso LFT (ALT/AST) haddii calaamado beerka ah; qiimee isdhexgalka iyo khatarta murqaha." },
       ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
         "Atorvastatin hal mar maalintii ayaa la qaataa, waxaana lagu qaadan karaa fiidkii ama <span class='highlight'>cuntada ka hor waaberiga (suhoor)</span>.",
-        "Go'aan kaligaa ha qaadan, maadaama kolestaroolku uu korodho muddo dheer - ee la tasho dhakhtarka."
-      ]},
+        "Ha joojin adiga oo keliya; la tasho dhakhtarka, maadaama kolestaroolku uu is beddelo muddo dheer."
+      ], note:"<b>Fiiro farsamo:</b> Hal mar maalintii ayaa fududeynaysa raacidda daawada inta lagu jiro soonka. Suhoor = cuntada ka hor waaberiga." },
       food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
-        "Daawadan waxaa lagu qaadan karaa adigoon, cunto cunin ama adigoo, cunno la qaadanaya.",
+        "Daawadan waxaa lagu qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya.",
         "Ka fagoow liin baanbeelmada badan iyo khamriga, gaar ahaan haddii beerkaaga daciif yahay."
-      ]},
+      ], note:"<b>Fiiro farsamo:</b> Grapefrugt waxay kordhin kartaa heerka atorvastatin; xaddid. Alkohol badan waxay kordhin kartaa culayska beerka." },
       store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
-        "Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" (daawada goorta ee dhacday), ama haddii oo midabka isbadalay. Wixii soo haray, weydii farmashiyaha - si loogu tuuro meesha ku habboon."
-      ]}
+        "Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" ama haddii midabku isbadalay. Wixii soo haray, weydii farmashiyaha."
+      ], note:"<b>Fiiro farsamo:</b> Kaydi meel qalalan oo aan iftiin badan lahayn; raac EXP iyo talada farmashiyaha ee tuurista." }
+    },
+    proBox: {
+      title: "Fiiro farsamo (kooban)",
+      items: [
+        "Fasalka: Statin (HMG-CoA reductase inhibitor).",
+        "Ujeeddo: LDL-hoos u dhigid; ka-hortag wadne/faalig ee khatarta leh.",
+        "Waqtiga qaadashada: subax ama fiid (saameyn la mid ah); muhiimku waa joogteyn.",
+        "Isdhexgal: CYP3A4; xaddid grapefrugt; ka taxaddar inhibitors.",
+        "La soco: murqo-calaamado iyo calaamadaha beerka; raac dhakhtar/farmashiiste."
+      ]
     },
     footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
     creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
@@ -366,34 +417,44 @@ const T = {
       use: { title:"Anvendelse", small:"", items:[
         "Atorvastatin er et lægemiddel, der sænker kolesterol.",
         "Det kan reducere risikoen for blodprop i hjertet og slagtilfælde, især ved forhøjet kolesterol eller hjertesygdom."
-      ]},
+      ], note:"<b>Faglig note:</b> Statin (HMG-CoA-reduktasehæmmer). Anvendes til LDL-reduktion og kardiovaskulær risikoreduktion." },
       dose: { title:"Dosering", small:"", items:[
-        "Tages én gang dagligt – <span class='highlight'>morgen eller aften</span>. Vælg det tidspunkt, der passer dig bedst.",
-        "Atorvastatin har lang virkningsvarighed (lang halveringstid og aktive metabolitter), så effekten er tilsvarende uanset tidspunkt. Tag helst på samme tidspunkt hver dag."
-      ]},
+        "Tages én gang dagligt – <span class='highlight'>morgen eller aften</span>. Vælg et fast tidspunkt, der passer dig.",
+        "Dosis (fx 10–80 mg) bestemmes af lægen ud fra blodprøver og behandlingsmål."
+      ], note:"<b>Faglig note:</b> Atorvastatin virker længe i kroppen (lang halveringstid), derfor er effekten generelt ens ved indtag morgen vs. aften. Fokus på adherence." },
       side: { title:"Bivirkninger", small:"", items:[
         "Hovedpine eller let mavebesvær kan forekomme.",
-        "Sjældent kan der opstå kraftige muskelsmerter eller muskelsvaghed (rhabdomyolyse), som kræver akut lægehjælp – især hvis du også har feber."
-      ]},
+        "Sjældent kan der opstå kraftige muskelsmerter eller muskelsvaghed, som kræver akut lægehjælp – især hvis du også har feber."
+      ], note:"<b>Faglig note:</b> Vær opmærksom på udtalte muskelsymptomer (evt. CK) og leverpåvirkning ved relevante symptomer." },
       interact: { title:"Interaktioner", small:"", items:[
         "Visse svampemidler (azoler), nogle antibiotika og HIV-medicin kan øge niveauet af atorvastatin i kroppen.",
         "Stort indtag af grapefrugt kan øge virkningen – begræns derfor grapefrugt."
-      ]},
+      ], note:"<b>Faglig note:</b> CYP3A4-substrat. Stærke hæmmere kan øge eksponering og risiko for muskelsymptomer." },
       warn: { title:"Advarsler", small:"", items:[
         "Må ikke anvendes under graviditet eller amning, da medicinen kan skade barnet.",
-        "Blodprøver for leverfunktion kan nogle gange være nødvendige – følg derfor lægens aftaler."
-      ]},
+        "Leverblodprøver kan nogle gange være nødvendige – følg derfor lægens aftaler."
+      ], note:"<b>Faglig note:</b> Kontraindiceret i graviditet/amning. Overvej LFT ved klinisk indikation." },
       ramadan: { title:"Ramadan og faste", small:"", items:[
         "Atorvastatin tages én gang dagligt og kan tages om aftenen eller ved måltidet før daggry (suhoor).",
         "Stop ikke på egen hånd – tal med lægen, da kolesterol påvirkes over længere tid."
-      ]},
+      ], note:"<b>Faglig note:</b> Én daglig dosering gør behandlingen let at tilpasse faste; prioriter stabilt dagligt indtag." },
       food: { title:"Mad og drikke", small:"", items:[
         "Kan tages med eller uden mad.",
         "Undgå store mængder grapefrugt og begræns alkohol, især hvis du har leverproblemer."
-      ]},
+      ], note:"<b>Faglig note:</b> Grapefrugt kan øge atorvastatin-eksponering; alkohol kan belaste leveren." },
       store: { title:"Opbevaring", small:"", items:[
         "Opbevar utilgængeligt for børn og under 25 °C. Opbevar i original emballage for at beskytte mod lys og fugt. Brug ikke efter udløbsdatoen (EXP) eller hvis farven har ændret sig. Spørg apoteket om korrekt bortskaffelse af rester."
-      ]}
+      ], note:"<b>Faglig note:</b> Standard opbevaring tørt/lysbeskyttet; følg EXP og korrekt bortskaffelse." }
+    },
+    proBox: {
+      title: "Faglig note (kort)",
+      items: [
+        "Lægemiddelklasse: Statin (HMG-CoA-reduktasehæmmer).",
+        "Formål: LDL-reduktion og forebyggelse af hjerte-kar-hændelser.",
+        "Doserings-timing: morgen eller aften; vigtigst er fast daglig rutine.",
+        "Interaktion: CYP3A4; begræns grapefrugt; vurder hæmmere/induktorer.",
+        "Monitorér: muskelsymptomer og leverpåvirkning ved kliniske tegn."
+      ]
     },
     footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
     creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
@@ -410,34 +471,44 @@ const T = {
       use: { title:"Use", small:"", items:[
         "Atorvastatin is a medicine that lowers cholesterol.",
         "It can reduce the risk of heart attack and stroke, especially in people with high cholesterol or heart disease."
-      ]},
+      ], note:"<b>Professional note:</b> Statin (HMG-CoA reductase inhibitor). Used for LDL lowering and cardiovascular risk reduction." },
       dose: { title:"Dosage", small:"", items:[
-        "Take once daily – <span class='highlight'>in the morning or in the evening</span>. Choose the time that suits you best.",
-        "Atorvastatin has a prolonged effect (long half-life and active metabolites), so the LDL-lowering effect is similar regardless of dosing time. Try to take it at the same time each day."
-      ]},
+        "Take once daily – <span class='highlight'>in the morning or in the evening</span>. Choose a consistent time that suits you.",
+        "The dose (e.g., 10–80 mg) is decided by the doctor based on blood tests and treatment goals."
+      ], note:"<b>Professional note:</b> Atorvastatin has a prolonged effect (long half-life), so LDL-lowering is generally similar whether taken in the morning or evening. Focus on adherence." },
       side: { title:"Side effects", small:"", items:[
         "Headache or mild stomach upset may occur.",
-        "Rarely, severe muscle pain or weakness (rhabdomyolysis) needs urgent medical attention – especially if you also have fever."
-      ]},
+        "Rarely, severe muscle pain or weakness needs urgent medical attention – especially if you also have fever."
+      ], note:"<b>Professional note:</b> Consider evaluation for significant muscle symptoms (e.g., CK) or liver-related symptoms when clinically indicated." },
       interact: { title:"Interactions", small:"", items:[
         "Some antifungals (azoles), certain antibiotics, and HIV medicines can increase atorvastatin levels.",
         "Large amounts of grapefruit can increase the effect – therefore limit grapefruit."
-      ]},
+      ], note:"<b>Professional note:</b> CYP3A4 substrate. Strong inhibitors may increase exposure and the risk of muscle adverse effects." },
       warn: { title:"Warnings", small:"", items:[
         "Do not use during pregnancy or breastfeeding; the medicine may harm the baby.",
         "Liver blood tests may sometimes be needed – follow your doctor’s appointment schedule."
-      ]},
+      ], note:"<b>Professional note:</b> Contraindicated in pregnancy/breastfeeding. Consider LFTs based on clinical context." },
       ramadan: { title:"Ramadan and fasting", small:"", items:[
         "Atorvastatin is taken once daily and can be taken in the evening or with the pre-dawn meal (suhoor).",
-        "Do not decide on your own to stop; discuss with your doctor, as cholesterol changes over the long term."
-      ]},
+        "Do not stop on your own; discuss with your doctor, as cholesterol changes over the long term."
+      ], note:"<b>Professional note:</b> Once-daily dosing is easy to align with fasting; keep a stable daily routine." },
       food: { title:"Food and drink", small:"", items:[
         "Can be taken with or without food.",
         "Avoid large amounts of grapefruit and limit alcohol, especially if you have liver problems."
-      ]},
+      ], note:"<b>Professional note:</b> Grapefruit may increase exposure; alcohol may increase liver burden." },
       store: { title:"Storage", small:"", items:[
         "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date (EXP) or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
-      ]}
+      ], note:"<b>Professional note:</b> Standard dry/light-protected storage; follow expiry and disposal guidance." }
+    },
+    proBox: {
+      title: "Professional note (brief)",
+      items: [
+        "Class: Statin (HMG-CoA reductase inhibitor).",
+        "Goal: LDL lowering and prevention of cardiovascular events.",
+        "Timing: morning or evening; the key is consistent daily intake.",
+        "Interactions: CYP3A4; limit grapefruit; review strong inhibitors/inducers.",
+        "Monitor: significant muscle symptoms and liver-related signs when relevant."
+      ]
     },
     footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
     creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
@@ -454,34 +525,44 @@ const T = {
       use: { title:"الاستعمال", small:"", items:[
         "أتورفاستاتين دواء يُخفض الكوليسترول.",
         "يساعد على تقليل خطر النوبة القلبية والسكتة الدماغية، خصوصاً عند ارتفاع الكوليسترول أو وجود مرض قلبي."
-      ]},
+      ], note:"<b>ملاحظة مهنية:</b> ستاتين (مثبط HMG-CoA). يُستخدم لخفض LDL وتقليل خطر أمراض القلب والأوعية." },
       dose: { title:"الجرعة", small:"", items:[
-        "يُؤخذ مرة واحدة يومياً — <span class='highlight'>صباحاً أو مساءً</span>. اختر الوقت الأنسب لك.",
-        "للأتورفاستاتين تأثير ممتد (عمر نصف طويل ومستقلبات فعّالة)، لذلك تكون الفعالية متشابهة بغض النظر عن وقت الجرعة. حاول تناوله في نفس الوقت يومياً."
-      ]},
+        "يُؤخذ مرة واحدة يومياً — <span class='highlight'>صباحاً أو مساءً</span>. اختر وقتاً ثابتاً يناسبك.",
+        "الجرعة (مثل 10–80 ملغ) يحددها الطبيب حسب التحاليل وأهداف العلاج."
+      ], note:"<b>ملاحظة مهنية:</b> للدواء تأثير ممتد (عمر نصف طويل)، لذلك تكون الفعالية متقاربة سواء أُخذ صباحاً أو مساءً. الأهم الالتزام اليومي." },
       side: { title:"الآثار الجانبية", small:"", items:[
         "قد يحدث صداع أو اضطراب خفيف في المعدة.",
-        "نادراً قد يحدث ألم شديد في العضلات أو ضعف (انحلال الربيدات) ويحتاج إلى رعاية طبية عاجلة – خصوصاً إذا كان هناك حمى."
-      ]},
+        "نادراً قد يحدث ألم شديد في العضلات أو ضعف ويحتاج إلى رعاية طبية عاجلة – خصوصاً إذا كان هناك حمى."
+      ], note:"<b>ملاحظة مهنية:</b> انتبه لأعراض عضلية شديدة أو أعراض كبدية عند الحاجة السريرية للتقييم." },
       interact: { title:"التداخلات الدوائية", small:"", items:[
-        "بعض مضادات الفطريات (الأزولات) وبعض المضادات الحيوية وأدوية فيروس HIV قد ترفع مستوى الأتورفاستاتين.",
+        "بعض مضادات الفطريات (الأزولات) وبعض المضادات الحيوية وأدوية HIV قد ترفع مستوى الأتورفاستاتين.",
         "الإكثار من الجريب فروت قد يزيد التأثير – لذا يُنصح بتقليل الجريب فروت."
-      ]},
+      ], note:"<b>ملاحظة مهنية:</b> سوبسترای CYP3A4؛ مثبطات قوية قد تزيد التعرض وخطر الأعراض العضلية." },
       warn: { title:"تحذيرات", small:"", items:[
         "لا يُستخدم أثناء الحمل أو الرضاعة؛ فقد يضر بالطفل.",
         "قد يلزم أحياناً إجراء فحوصات لوظائف الكبد – اتبع مواعيد الطبيب."
-      ]},
+      ], note:"<b>ملاحظة مهنية:</b> ممنوع في الحمل/الرضاعة. تقييم وظائف الكبد حسب السياق السريري." },
       ramadan: { title:"رمضان والصيام", small:"", items:[
         "يؤخذ أتورفاستاتين مرة واحدة يومياً ويمكن تناوله مساءً أو مع وجبة ما قبل الفجر (السحور).",
         "لا توقف الدواء من تلقاء نفسك؛ استشر الطبيب لأن تأثير الكوليسترول يكون على المدى الطويل."
-      ]},
+      ], note:"<b>ملاحظة مهنية:</b> الجرعة مرة يومياً تسهّل الالتزام أثناء الصيام؛ حافظ على روتين يومي ثابت." },
       food: { title:"الطعام والشراب", small:"", items:[
         "يمكن تناوله مع الطعام أو بدونه.",
         "تجنب كميات كبيرة من الجريب فروت وقلل الكحول، خصوصاً إذا كانت لديك مشكلة في الكبد."
-      ]},
+      ], note:"<b>ملاحظة مهنية:</b> الجريب فروت قد يزيد التعرض؛ الكحول قد يزيد العبء على الكبد." },
       store: { title:"الحفظ", small:"", items:[
         "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء (EXP) أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
-      ]}
+      ], note:"<b>ملاحظة مهنية:</b> حفظ جاف وبعيداً عن الضوء/الرطوبة؛ الالتزام بتاريخ الانتهاء والتخلص الصحيح." }
+    },
+    proBox: {
+      title: "ملاحظة مهنية (مختصرة)",
+      items: [
+        "الفئة: ستاتين (مثبط HMG-CoA).",
+        "الهدف: خفض LDL وتقليل خطر أحداث قلبية وعائية.",
+        "التوقيت: صباحاً أو مساءً؛ الأهم الانتظام اليومي.",
+        "التداخلات: CYP3A4؛ تقليل الجريب فروت ومراجعة المثبطات القوية.",
+        "المراقبة: أعراض عضلية شديدة وأعراض كبدية عند اللزوم."
+      ]
     },
     footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
     creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
@@ -498,34 +579,44 @@ const T = {
       use: { title:"Kullanım", small:"", items:[
         "Atorvastatin, kolesterolü düşüren bir ilaçtır.",
         "Özellikle kolesterol yüksekliği veya kalp hastalığı olan kişilerde kalp krizi ve inme riskini azaltmaya yardımcı olur."
-      ]},
+      ], note:"<b>Profesyonel not:</b> Statin (HMG-CoA redüktaz inhibitörü). LDL düşürme ve kardiyovasküler risk azaltımı için kullanılır." },
       dose: { title:"Doz", small:"", items:[
-        "Günde bir kez alınır — <span class='highlight'>sabah veya akşam</span>. Size en uygun zamanı seçin.",
-        "Atorvastatin uzun etkili olduğu için (uzun yarı ömür ve aktif metabolitler) etki sabah ya da akşam alınsa da benzerdir. Mümkünse her gün aynı saatte alın."
-      ]},
+        "Günde bir kez alınır — <span class='highlight'>sabah veya akşam</span>. Size en uygun sabit zamanı seçin.",
+        "Doz (ör. 10–80 mg) doktor tarafından kan tahlillerine ve hedeflere göre belirlenir."
+      ], note:"<b>Profesyonel not:</b> Uzun etkili olduğu için (uzun yarı ömür), sabah veya akşam alınsa da etki genelde benzerdir. Önemli olan düzenli kullanımdır." },
       side: { title:"Yan etkiler", small:"", items:[
         "Baş ağrısı veya hafif mide rahatsızlığı olabilir.",
-        "Nadiren şiddetli kas ağrısı veya kas güçsüzlüğü (rabdomiyoliz) acil tıbbi değerlendirme gerektirir – özellikle ateş de varsa."
-      ]},
+        "Nadiren şiddetli kas ağrısı veya kas güçsüzlüğü acil tıbbi değerlendirme gerektirir – özellikle ateş de varsa."
+      ], note:"<b>Profesyonel not:</b> Belirgin kas yakınmaları veya karaciğerle ilişkili belirtilerde klinik değerlendirme düşünülmelidir." },
       interact: { title:"Etkileşimler", small:"", items:[
         "Bazı mantar ilaçları (azoller), bazı antibiyotikler ve HIV ilaçları atorvastatin düzeyini artırabilir.",
         "Fazla miktarda greyfurt tüketimi etkiyi artırabilir – bu nedenle greyfurtu sınırlayın."
-      ]},
+      ], note:"<b>Profesyonel not:</b> CYP3A4 ile metabolize olur. Güçlü inhibitörler maruziyeti artırıp kas yan etki riskini yükseltebilir." },
       warn: { title:"Uyarılar", small:"", items:[
         "Hamilelikte veya emzirme döneminde kullanılmaz; bebeğe zarar verebilir.",
         "Bazen karaciğer kan testleri gerekebilir – doktorunuzun kontrol planına uyun."
-      ]},
+      ], note:"<b>Profesyonel not:</b> Gebelik/emzirmede kontrendikedir. Karaciğer testleri klinik duruma göre değerlendirilebilir." },
       ramadan: { title:"Ramazan ve oruç", small:"", items:[
         "Atorvastatin günde bir kez alınır ve akşam veya gün doğumundan önceki öğünle (sahur) alınabilir.",
-        "Kendi başınıza bırakmayın; doktorunuza danışın, çünkü etki uzun vadede değerlendirilir."
-      ]},
+        "Kendi başınıza bırakmayın; doktorunuza danışın, çünkü kolesterol etkisi uzun vadede değerlendirilir."
+      ], note:"<b>Profesyonel not:</b> Tek doz kullanımı oruç döneminde uyumu kolaylaştırır; düzenli günlük rutini koruyun." },
       food: { title:"Yiyecek ve içecek", small:"", items:[
         "Yemekle birlikte veya yemeksiz alınabilir.",
         "Çok greyfurt tüketmeyin ve alkolü sınırlayın, özellikle karaciğer sorununuz varsa."
-      ]},
+      ], note:"<b>Profesyonel not:</b> Greyfurt maruziyeti artırabilir; alkol karaciğer yükünü artırabilir." },
       store: { title:"Saklama", small:"", items:[
         "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden (EXP) sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
-      ]}
+      ], note:"<b>Profesyonel not:</b> Kuru/ışıktan korunmuş saklama; SKT ve uygun imha kurallarına uyun." }
+    },
+    proBox: {
+      title: "Profesyonel not (kısa)",
+      items: [
+        "Sınıf: Statin (HMG-CoA redüktaz inhibitörü).",
+        "Amaç: LDL düşürme ve KV olayları azaltma.",
+        "Zamanlama: sabah veya akşam; en önemlisi düzenli kullanım.",
+        "Etkileşim: CYP3A4; greyfurtu sınırlayın; güçlü inhibitörleri gözden geçirin.",
+        "Takip: belirgin kas yakınmaları ve karaciğer belirtileri."
+      ]
     },
     footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
     creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
@@ -542,34 +633,44 @@ const T = {
       use: { title:"استعمال", small:"", items:[
         "ایٹوروواسٹاٹن کولیسٹرول کم کرنے والی دوا ہے۔",
         "یہ دل کے دورے اور فالج کے خطرے کو کم کرنے میں مدد دیتی ہے، خاص طور پر اگر کولیسٹرول زیادہ ہو یا دل کی بیماری ہو۔"
-      ]},
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> اسٹیٹن (HMG-CoA inhibitor)۔ LDL کم کرنے اور قلبی خطرہ کم کرنے کے لیے استعمال ہوتی ہے۔" },
       dose: { title:"خوراک", small:"", items:[
-        "روزانہ ایک بار لیں — <span class='highlight'>صبح یا شام</span>. جو وقت آپ کے لیے آسان ہو وہ منتخب کریں۔",
-        "یہ دوا دیر تک اثر کرتی ہے (طویل نیم حیات اور فعال میٹابولائٹس)، اس لیے صبح یا شام لینے سے اثر تقریباً ایک جیسا رہتا ہے۔ بہتر ہے روزانہ ایک ہی وقت پر لیں۔"
-      ]},
+        "روزانہ ایک بار لیں — <span class='highlight'>صبح یا شام</span>. ایک ایسا وقت منتخب کریں جس پر آپ روزانہ پابندی کر سکیں۔",
+        "خوراک (مثلاً 10–80 mg) ڈاکٹر خون کے ٹیسٹ اور ہدف کے مطابق طے کرتا ہے۔"
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> یہ دوا دیر تک اثر کرتی ہے (طویل نیم حیات)، اس لیے صبح یا شام لینے سے اثر عموماً ایک جیسا رہتا ہے۔ اہم بات باقاعدگی ہے۔" },
       side: { title:"مضر اثرات", small:"", items:[
         "سر درد یا ہلکا پیٹ خراب ہو سکتا ہے۔",
-        "کبھی کبھار شدید پٹھوں کا درد یا کمزوری (rabdomyolysis) فوری طبی مدد کی ضرورت ہوتی ہے — خاص طور پر اگر بخار بھی ہو۔"
-      ]},
+        "کبھی کبھار شدید پٹھوں کا درد یا کمزوری فوری طبی مدد کی ضرورت ہوتی ہے — خاص طور پر اگر بخار بھی ہو۔"
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> نمایاں پٹھوں کی علامات یا جگر سے متعلق علامات میں کلینیکل جائزہ ضروری ہو سکتا ہے۔" },
       interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
         "کچھ فنگس کی دوائیں (azoles)، بعض اینٹی بایوٹکس اور HIV کی دوائیں ایٹوروواسٹاٹن کی سطح بڑھا سکتی ہیں۔",
         "گریپ فروٹ کا زیادہ استعمال اثر بڑھا سکتا ہے — اس لیے اسے محدود رکھیں۔"
-      ]},
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> CYP3A4 کے ذریعے میٹابولائز ہوتی ہے؛ مضبوط inhibitors سطح اور پٹھوں کے مضر اثرات کا خطرہ بڑھا سکتے ہیں۔" },
       warn: { title:"احتیاطیں", small:"", items:[
         "حمل یا دودھ پلانے کے دوران استعمال نہ کریں؛ یہ بچے کو نقصان پہنچا سکتی ہے۔",
         "کبھی کبھی جگر کے خون کے ٹیسٹ ضروری ہوتے ہیں — ڈاکٹر کے طے کردہ شیڈول پر عمل کریں۔"
-      ]},
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> حمل/دودھ پلانے میں ممنوع۔ جگر کے ٹیسٹ کلینیکل ضرورت کے مطابق۔" },
       ramadan: { title:"رمضان اور روزہ", small:"", items:[
         "ایٹوروواسٹاٹن روزانہ ایک بار لیا جاتا ہے اور شام میں یا سحر سے پہلے کے کھانے کے ساتھ (سحری) لیا جا سکتا ہے۔",
-        "اپنے طور پر دوا نہ روکیں؛ ڈاکٹر سے مشورہ کریں، کیونکہ اثر طویل مدت میں دیکھا جاتا ہے۔"
-      ]},
+        "اپنے طور پر دوا نہ روکیں؛ ڈاکٹر سے مشورہ کریں کیونکہ اثر طویل مدت میں دیکھا جاتا ہے۔"
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> روزانہ ایک بار خوراک ہونے کی وجہ سے روزے میں پابندی آسان رہتی ہے؛ روزانہ کی روٹین برقرار رکھیں۔" },
       food: { title:"کھانا پینا", small:"", items:[
         "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
         "زیادہ گریپ فروٹ اور الکحل سے پرہیز کریں، خاص طور پر اگر جگر کمزور ہو۔"
-      ]},
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> گریپ فروٹ سطح بڑھا سکتا ہے؛ الکحل جگر پر بوجھ بڑھا سکتی ہے۔" },
       store: { title:"محفوظ رکھنا", small:"", items:[
         "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے (EXP) کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
-      ]}
+      ], note:"<b>پیشہ ورانہ نوٹ:</b> خشک/روشنی سے محفوظ رکھیں؛ میعاد اور مناسب تلفی کے اصول اپنائیں۔" }
+    },
+    proBox: {
+      title: "پیشہ ورانہ نوٹ (مختصر)",
+      items: [
+        "کلاس: اسٹیٹن (HMG-CoA inhibitor).",
+        "مقصد: LDL کم کرنا اور قلبی واقعات کا خطرہ کم کرنا.",
+        "وقت: صبح یا شام؛ سب سے اہم باقاعدہ روزانہ استعمال ہے.",
+        "تعامل: CYP3A4؛ گریپ فروٹ محدود کریں؛ مضبوط inhibitors پر نظر رکھیں.",
+        "نگرانی: شدید پٹھوں کی علامات اور جگر سے متعلق علامات."
+      ]
     },
     footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
     creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
@@ -586,34 +687,44 @@ const T = {
       use: { title:"موارد مصرف", small:"", items:[
         "آتورواستاتین دارویی است که کلسترول را کاهش می‌دهد.",
         "این دارو می‌تواند خطر سکتهٔ قلبی و سکتهٔ مغزی را کاهش دهد، به‌ویژه در افراد با کلسترول بالا یا بیماری قلبی."
-      ]},
+      ], note:"<b>یادداشت حرفه‌ای:</b> استاتین (مهارکنندهٔ HMG-CoA). برای کاهش LDL و کاهش خطر قلبی-عروقی استفاده می‌شود." },
       dose: { title:"مقدار مصرف", small:"", items:[
-        "روزی یک‌بار مصرف می‌شود — <span class='highlight'>صبح یا شب</span>. زمانی را انتخاب کنید که برای شما راحت‌تر است.",
-        "آتورواستاتین اثر طولانی دارد (نیمه‌عمر طولانی و متابولیت‌های فعال)، بنابراین اثر آن صبح یا شب مشابه است. بهتر است هر روز در یک زمان ثابت مصرف شود."
-      ]},
+        "روزی یک‌بار مصرف می‌شود — <span class='highlight'>صبح یا شب</span>. زمانی ثابت را انتخاب کنید که برایتان راحت است.",
+        "دوز (مثلاً 10–80 mg) توسط پزشک بر اساس آزمایش خون و اهداف درمان تعیین می‌شود."
+      ], note:"<b>یادداشت حرفه‌ای:</b> اثر دارو طولانی است (نیمه‌عمر نسبتاً طولانی)، بنابراین مصرف صبح یا شب معمولاً اثر مشابهی دارد. نکته اصلی مصرف منظم است." },
       side: { title:"عوارض جانبی", small:"", items:[
         "سردرد یا ناراحتی خفیف معده ممکن است رخ دهد.",
-        "به‌ندرت درد شدید عضلانی یا ضعف (رابدومیولیز) نیاز به ارزیابی فوری پزشکی دارد — به‌خصوص اگر تب هم دارید."
-      ]},
+        "به‌ندرت درد شدید عضلانی یا ضعف نیاز به ارزیابی فوری پزشکی دارد — به‌خصوص اگر تب هم دارید."
+      ], note:"<b>یادداشت حرفه‌ای:</b> در صورت علائم واضح عضلانی یا علائم مرتبط با کبد، ارزیابی بالینی مدنظر باشد." },
       interact: { title:"تداخل‌های دارویی", small:"", items:[
         "برخی داروهای ضدقارچ (آزول‌ها)، بعضی آنتی‌بیوتیک‌ها و داروهای HIV می‌توانند سطح آتورواستاتین را افزایش دهند.",
         "مصرف زیاد گریپ‌فروت می‌تواند اثر را بیشتر کند — بنابراین گریپ‌فروت را محدود کنید."
-      ]},
+      ], note:"<b>یادداشت حرفه‌ای:</b> سوبسترای CYP3A4؛ مهارکننده‌های قوی می‌توانند سطح و خطر عوارض عضلانی را افزایش دهند." },
       warn: { title:"هشدارها", small:"", items:[
         "در بارداری یا شیردهی استفاده نشود؛ ممکن است به کودک آسیب برساند.",
         "گاهی آزمایش‌های عملکرد کبد لازم است — برنامهٔ ویزیت‌های پزشک را دنبال کنید."
-      ]},
+      ], note:"<b>یادداشت حرفه‌ای:</b> در بارداری/شیردهی ممنوع. بررسی‌های کبدی بر اساس نیاز بالینی." },
       ramadan: { title:"رمضان و روزه", small:"", items:[
         "آتورواستاتین روزی یک‌بار مصرف می‌شود و می‌تواند شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) مصرف شود.",
         "خودسرانه دارو را قطع نکنید؛ با پزشک مشورت کنید چون اثر در بلندمدت ارزیابی می‌شود."
-      ]},
+      ], note:"<b>یادداشت حرفه‌ای:</b> مصرف یک‌بار در روز، رعایت درمان در دورهٔ روزه را آسان‌تر می‌کند؛ روال روزانه ثابت نگه دارید." },
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "با غذا یا بدون غذا قابل مصرف است.",
         "از مصرف زیاد گریپ‌فروت و الکل پرهیز کنید، به‌ویژه اگر مشکل کبدی دارید."
-      ]},
+      ], note:"<b>یادداشت حرفه‌ای:</b> گریپ‌فروت می‌تواند سطح را بالا ببرد؛ الکل می‌تواند فشار روی کبد را افزایش دهد." },
       store: { title:"نگهداری", small:"", items:[
         "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا (EXP) یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
-      ]}
+      ], note:"<b>یادداشت حرفه‌ای:</b> در جای خشک و دور از نور/رطوبت نگهداری شود؛ تاریخ انقضا و دستور دورریز رعایت شود." }
+    },
+    proBox: {
+      title: "یادداشت حرفه‌ای (کوتاه)",
+      items: [
+        "کلاس: استاتین (مهارکنندهٔ HMG-CoA).",
+        "هدف: کاهش LDL و کاهش خطر رویدادهای قلبی-عروقی.",
+        "زمان مصرف: صبح یا شب؛ مهم‌ترین نکته مصرف منظم روزانه است.",
+        "تداخلات: CYP3A4؛ گریپ‌فروت را محدود کنید؛ مهارکننده‌های قوی را بررسی کنید.",
+        "پایش: علائم شدید عضلانی و علائم کبدی در صورت نیاز."
+      ]
     },
     footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
     creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
@@ -630,34 +741,44 @@ const T = {
       use: { title:"موارد استعمال", small:"", items:[
         "آتورواستاتین دوایی است که کلسترول را پایین می‌آورد.",
         "این دوا می‌تواند خطر حملهٔ قلبی و سکتۀ مغزی را کم کند، به‌خصوص در کسانی که کلسترول بلند یا بیماری قلبی دارند."
-      ]},
+      ], note:"<b>یادداشت مسلکی:</b> استاتین (مهارکنندۀ HMG-CoA). برای پایین آوردن LDL و کاهش خطر قلبی-عروقی استفاده می‌شود." },
       dose: { title:"مقدار مصرف", small:"", items:[
-        "روزی یک‌بار گرفته می‌شود — <span class='highlight'>صبح یا شام/شب</span>. زمانی را انتخاب کنید که برایتان آسان‌تر باشد.",
-        "آتورواستاتین اثر طولانی دارد (نیمه‌عمر طولانی و متابولیت‌های فعال)، بنابراین اثر آن صبح یا شب مشابه است. بهتر است هر روز در یک وقت ثابت گرفته شود."
-      ]},
+        "روزی یک‌بار گرفته می‌شود — <span class='highlight'>صبح یا شام/شب</span>. یک وقت ثابت را انتخاب کنید.",
+        "دوز (مثل 10–80 mg) توسط داکتر بر اساس آزمایش خون و هدف درمان تعیین می‌شود."
+      ], note:"<b>یادداشت مسلکی:</b> اثر دوا طولانی است (نیمه‌عمر نسبتاً طولانی)، بنابراین گرفتن صبح یا شب معمولاً اثر مشابه دارد. مهم پابندی منظم است." },
       side: { title:"عوارض جانبی", small:"", items:[
         "سردرد یا ناراحتی خفیف معده ممکن است رخ دهد.",
-        "به‌ندرت درد شدید عضلات یا ضعف (رابدومیولیز) نیاز به کمک فوری طبی دارد — مخصوصاً اگر تب هم داشته باشید."
-      ]},
+        "به‌ندرت درد شدید عضلات یا ضعف نیاز به کمک فوری طبی دارد — مخصوصاً اگر تب هم داشته باشید."
+      ], note:"<b>یادداشت مسلکی:</b> در علایم شدید عضلانی یا علایم مربوط به کبد، ارزیابی بالینی مدنظر باشد." },
       interact: { title:"تداخلات دوایی", small:"", items:[
         "برخی دواهای ضدقارچ (آزول‌ها)، بعضی انتی‌بیوتیک‌ها و دواهای HIV می‌تواند سطح آتورواستاتین را بالا ببرد.",
         "مصرف زیاد گریپ‌فروت می‌تواند اثر را بیشتر کند — پس گریپ‌فروت را محدود کنید."
-      ]},
+      ], note:"<b>یادداشت مسلکی:</b> سوبسترای CYP3A4؛ مهارکننده‌های قوی می‌تواند سطح و خطر عوارض عضلانی را بالا ببرد." },
       warn: { title:"هشدارها", small:"", items:[
         "در زمان حمل یا شیردهی استفاده نشود؛ ممکن است به طفل آسیب برساند.",
         "گاهی آزمایش‌های کبد لازم می‌شود — برنامهٔ ویزیت‌های داکتر را دنبال کنید."
-      ]},
+      ], note:"<b>یادداشت مسلکی:</b> در حمل/شیردهی ممنوع. بررسی کبد بر اساس نیاز بالینی." },
       ramadan: { title:"رمضان و روزه", small:"", items:[
         "آتورواستاتین روزانه یک بار گرفته می‌شود و می‌تواند شام یا همراه وعدهٔ پیش از سپیده‌دم (سحری) گرفته شود.",
         "خودسرانه قطع نکنید؛ با داکتر مشوره کنید، چون اثر در درازمدت ارزیابی می‌شود."
-      ]},
+      ], note:"<b>یادداشت مسلکی:</b> یک بار در روز بودن دوا، پابندی در روزه را آسان‌تر می‌کند؛ روال روزانه ثابت حفظ شود." },
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "با غذا یا بدون غذا گرفته می‌شود.",
         "از گریپ‌فروت زیاد و الکول دوری کنید، به‌خصوص اگر مشکل کبدی دارید."
-      ]},
+      ], note:"<b>یادداشت مسلکی:</b> گریپ‌فروت می‌تواند سطح را بالا ببرد؛ الکول فشار بر کبد را زیاد می‌کند." },
       store: { title:"نگهداری", small:"", items:[
         "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا (EXP) یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
-      ]}
+      ], note:"<b>یادداشت مسلکی:</b> خشک و دور از نور/رطوبت نگه‌داری شود؛ تاریخ انقضا و دستور دورریز رعایت گردد." }
+    },
+    proBox: {
+      title: "یادداشت مسلکی (کوتاه)",
+      items: [
+        "کلاس: استاتین (مهارکنندۀ HMG-CoA).",
+        "هدف: کاهش LDL و کاهش خطر رویدادهای قلبی-عروقی.",
+        "وقت مصرف: صبح یا شب؛ مهم پابندی منظم روزانه است.",
+        "تداخلات: CYP3A4؛ گریپ‌فروت محدود؛ مهارکننده‌های قوی را بررسی کنید.",
+        "پایش: علایم شدید عضلانی و علایم کبدی در صورت نیاز."
+      ]
     },
     footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
     creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
@@ -674,34 +795,44 @@ const T = {
       use: { title:"کارونه", small:"", items:[
         "اټوروواسټاټین د کولېسټرول د کمولو درمل دی.",
         "دا د زړه حملې او سکتې خطر کمولو کې مرسته کوي، په ځانګړي ډول د لوړې کولېسټرول یا د زړه د ناروغۍ په صورت کې."
-      ]},
+      ], note:"<b>مسلکي یادونه:</b> سټېټن (HMG-CoA inhibitor). د LDL کمولو او د زړه-رګونو خطر کمولو لپاره کارېږي." },
       dose: { title:"دوز", small:"", items:[
-        "په ورځ کې یو ځل واخلئ — <span class='highlight'>سهار یا ماښام</span>. کوم وخت چې درته اسانه وي هماغه وټاکئ.",
-        "اټوروواسټاټین اوږد اثر لري (اوږده نیمه‌عمر او فعال مېتابولایټونه)، نو سهار یا ماښام اخیستل یې اغېزه نږدې یو شان ده. غوره ده هره ورځ په یو ثابت وخت واخیستل شي."
-      ]},
+        "په ورځ کې یو ځل واخلئ — <span class='highlight'>سهار یا ماښام</span>. یو ثابت وخت وټاکئ.",
+        "دوز (لکه 10–80 mg) ډاکټر د وینې ازموینو او هدفونو له مخې ټاکي."
+      ], note:"<b>مسلکي یادونه:</b> درمل اوږد اثر لري (نسبتاً اوږده نیمه‌عمر)، نو سهار یا ماښام اخیستل عموماً ورته اغېزه لري. مهمه خبره منظم ورځنی استعمال دی." },
       side: { title:"اړخیزې اغېزې", small:"", items:[
         "سر درد یا د معدې لږ ناراحتي کېدای شي رامنځته شي.",
-        "په ندرت سره شدید د عضلو درد یا کمزوري (رابدومایولایسس) بېړنۍ طبي ارزونه غواړي — په ځانګړي ډول که تبه هم وي."
-      ]},
+        "په ندرت سره شدید د عضلو درد یا کمزوري بېړنۍ طبي ارزونه غواړي — په ځانګړي ډول که تبه هم وي."
+      ], note:"<b>مسلکي یادونه:</b> د شدید عضلاتي نښو یا د ځیګر اړوند نښو په صورت کې کلینیکي ارزونه په پام کې ونیسئ." },
       interact: { title:"د درملو تعامل", small:"", items:[
         "ځینې د فنګس ضد درمل (ازول)، ځینې انټي‌بیوټیکونه او د HIV درمل د اټوروواسټاټین کچه لوړه کولای شي.",
         "د ګریپ فروټ ډېر استعمال اغېزه زیاتولای شي — نو یې محدود کړئ."
-      ]},
+      ], note:"<b>مسلکي یادونه:</b> CYP3A4-substrate. قوي inhibitors کچه او د عضلاتو د عوارضو خطر زیاتولای شي." },
       warn: { title:"احتیاط", small:"", items:[
         "د امیندوارۍ یا شیدو ورکولو پر مهال مه کاروئ؛ ماشوم ته زیان رسولای شي.",
         "کله ناکله د ځیګر د وینې ازموینې اړینې وي — د ډاکټر د ملاقاتونو پلان تعقیب کړئ."
-      ]},
+      ], note:"<b>مسلکي یادونه:</b> په امیندوارۍ/شیدو ورکولو کې منع دی. د ځیګر څارنه د کلینیکي اړتیا له مخې." },
       ramadan: { title:"رمضان او روژه", small:"", items:[
         "اټوروواسټاټین په ورځ کې یو ځل اخیستل کېږي او ماښام یا د سهار له لمرختو مخکې له خوراک سره (سحري) اخیستل کېدای شي.",
         "خپله پرېکړه مه کوئ؛ له ډاکټر سره مشوره وکړئ، ځکه اغېزه په اوږدمهال کې ارزول کېږي."
-      ]},
+      ], note:"<b>مسلکي یادونه:</b> یو ځل په ورځ کې اخیستل د روژې پر مهال پابندي اسانه کوي؛ ورځنی ثابت روټین وساتئ." },
       food: { title:"خواړه او څښاک", small:"", items:[
         "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
         "د ګریپ فروټ ډېر استعمال او الکول محدود کړئ، په ځانګړي ډول که د ځیګر ستونزه لرئ."
-      ]},
+      ], note:"<b>مسلکي یادونه:</b> ګریپ فروټ کچه لوړه کولای شي؛ الکول د ځیګر بار زیاتوي." },
       store: { title:"ساتنه", small:"", items:[
         "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې (EXP) وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
-      ]}
+      ], note:"<b>مسلکي یادونه:</b> وچ، له رڼا/رطوبت خوندي ځای کې وساتئ؛ د ختمېدو نېټه او د ضایع کولو لارښوونې تعقیب کړئ." }
+    },
+    proBox: {
+      title: "مسلکي یادونه (لنډه)",
+      items: [
+        "ډله: سټېټن (HMG-CoA inhibitor).",
+        "موخه: LDL کمول او د زړه-رګونو پېښو خطر کمول.",
+        "وخت: سهار یا ماښام؛ تر ټولو مهم منظم ورځنی استعمال دی.",
+        "تعامل: CYP3A4؛ ګریپ فروټ محدود کړئ؛ قوي inhibitors وڅېړئ.",
+        "څارنه: شدید عضلاتي نښې او د ځیګر اړوند نښې د اړتیا پر مهال."
+      ]
     },
     footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
     creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
@@ -720,6 +851,41 @@ function fillList(listId, items){
     const li = document.createElement("li");
     li.innerHTML = html;
     ul.appendChild(li);
+  });
+}
+
+function setNote(noteId, html){
+  const el = document.getElementById(noteId);
+  if (!el) return;
+  if (typeof html === "string" && html.trim().length > 0) {
+    el.innerHTML = html;
+    el.style.display = "";
+  } else {
+    el.innerHTML = "";
+    el.style.display = "none";
+  }
+}
+
+function fillProBox(proBox){
+  const box = document.getElementById("proBox");
+  const title = document.getElementById("proBoxTitle");
+  const list = document.getElementById("proBoxList");
+  if (!box || !title || !list) return;
+
+  if (!proBox || !Array.isArray(proBox.items) || proBox.items.length === 0) {
+    box.style.display = "none";
+    title.textContent = "";
+    list.innerHTML = "";
+    return;
+  }
+
+  box.style.display = "";
+  title.textContent = proBox.title || "";
+  list.innerHTML = "";
+  proBox.items.forEach(t => {
+    const li = document.createElement("li");
+    li.textContent = t;
+    list.appendChild(li);
   });
 }
 
@@ -770,6 +936,17 @@ function render(lang){
   fillList("ramadanList", d.sections.ramadan.items);
   fillList("foodList", d.sections.food.items);
   fillList("storeList", d.sections.store.items);
+
+  setNote("useNote", d.sections.use.note);
+  setNote("doseNote", d.sections.dose.note);
+  setNote("sideNote", d.sections.side.note);
+  setNote("interactNote", d.sections.interact.note);
+  setNote("warnNote", d.sections.warn.note);
+  setNote("ramadanNote", d.sections.ramadan.note);
+  setNote("foodNote", d.sections.food.note);
+  setNote("storeNote", d.sections.store.note);
+
+  fillProBox(d.proBox);
 
   document.getElementById("footerNote").innerHTML = d.footerHTML;
   document.getElementById("credit").innerHTML = d.creditHTML;
