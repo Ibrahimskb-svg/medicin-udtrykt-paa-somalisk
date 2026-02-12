@@ -6,7 +6,6 @@
 <title>Hjertemagnyl – dhiig khafiifin (blodfortyndende)</title>
 <style>
 
-
 body {
   font-family: Arial, sans-serif;
   background: #e6f2f8;
@@ -42,9 +41,8 @@ a.back {
   color: #00509e;
   font-size: 0.9rem;
 }
-a.back span {
-  font-size: 1.1rem;
-}
+a.back span { font-size: 1.1rem; }
+
 .card {
   background: #ffffff;
   border-radius: 14px;
@@ -79,18 +77,10 @@ a.back span {
   width: 30px;
   height: 30px;
 }
-.drug-labels {
-  display: flex;
-  flex-direction: column;
-}
-.drug-name {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-.drug-form {
-  font-size: 0.82rem;
-  color: #29516e;
-}
+.drug-labels { display: flex; flex-direction: column; }
+.drug-name { font-weight: 600; font-size: 0.95rem; }
+.drug-form { font-size: 0.82rem; color: #29516e; }
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -101,6 +91,7 @@ a.back span {
   border-radius: 999px;
   font-size: 0.8rem;
 }
+
 .section {
   margin-top: 8px;
   padding-top: 8px;
@@ -130,6 +121,7 @@ a.back span {
 .section-icon.ramadan { background:#e0f7fa; }
 .section-icon.food { background:#f1f8e9; }
 .section-icon.store { background:#edeff9; }
+
 .section-title {
   font-weight: 700;
   color: #123047;
@@ -144,174 +136,650 @@ a.back span {
   padding-left: 0;
   font-size: 0.92rem;
 }
-.section ul li {
-  margin-bottom: 4px;
-}
-.highlight {
-  font-weight: 600;
-}
+.section ul li { margin-bottom: 4px; }
+
+.highlight { font-weight: 600; }
+
 .footer-note {
   font-size: 0.8rem;
   color: #607089;
   text-align: center;
   margin: 18px 0 10px;
 }
-.index-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.index-list li {
-  margin-bottom: 8px;
-}
-.index-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 10px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
-  color: #123047;
-}
-.index-link:hover {
-  background: #f1f8ff;
-}
-.index-left {
-  display: flex;
-  flex-direction: column;
-}
-.index-title {
-  font-weight: 600;
-  font-size: 0.96rem;
-}
-.index-sub {
-  font-size: 0.8rem;
-  color: #607089;
-}
-.index-icon {
-  font-size: 1.2rem;
-}
+
 @media (max-width: 600px) {
   header h1 { font-size: 1.5rem; }
 }
 
+/* Dropdown bar */
+.langbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid #00a676;
+}
+.langbar label{
+  font-size:0.9rem;
+  color:#123047;
+  font-weight:600;
+}
+.langbar select{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  background: #fff;
+  color:#123047;
+  font-size: 0.9rem;
+  max-width: 100%;
+}
 
 </style>
 </head>
 <body>
+
 <header>
-  <h1>Hjertemagnyl – dhiig khafiifin (blodfortyndende)</h1>
-  <p>Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <h1 id="hdrTitle">Hjertemagnyl – dhiig khafiifin (blodfortyndende)</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
+
 <main>
-  <a href="index.html" class="back"><span>←</span><span>Ku laabo liiska daawooyinka</span></a>
+
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect">Vælg sprog:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
+  </div>
+
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
+
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
+
           <svg viewBox="0 0 64 64">
-  <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-  <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
-</svg>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          </svg>
+
         </div>
         <div class="drug-labels">
-          <div class="drug-name">Hjertemagnyl – dhiig khafiifin (blodfortyndende)</div>
-          <div class="drug-form">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Hjertemagnyl – dhiig khafiifin (blodfortyndende)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
         </div>
       </div>
-      <div class="badge">Akhris fudud oo kooban</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
-    
+
+    <!-- 1 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
       </div>
-      <ul>
-        <li>Hjertemagnyl waa kiniin yar oo <span class='highlight'>dhiig khafiifin</span> ah (acetylsalicylsyre).</li><li>Waxaa loo isticmaalaa in laga hortago xinjirowga dhiiga (blodprop), kadib wadne-istaaga, faalig ama haddii halistaadu sareyso.</li>
-      </ul>
+      <ul id="useList"></ul>
     </div>
-    
+
+    <!-- 2 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
       </div>
-      <ul>
-        <li>Badanaa qiyaas yar oo ah hal mar maalintii, tusaale ahaan, <span class='highlight'>75 mg</span> fiidkii ama subaxdii.</li><li>Ha beddelin qiyaasta adiga oo aan la tashan dhakhtarka, xitaa haddii aad hilmaamto/ilowdo maalin.</li>
-      </ul>
+      <ul id="doseList"></ul>
     </div>
-    
+
+    <!-- 3 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
       </div>
-      <ul>
-        <li>Caloosha oo ku xanuunta, xiritaanka marinnada hawada, laabjeex ama lalabo.</li><li>Khatarta <span class='highlight'>dhiig-baxa</span> ee sare: nabro oo ka soo baxa jirka meelo kala nooc ah, sanka ama cirridka oo dhiig ka yimaado, saxaro madow – wac dhakhtarkaaga haddii ay dhacaan.</li>
-      </ul>
+      <ul id="sideList"></ul>
     </div>
-    
+
+    <!-- 4 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
       </div>
-      <ul>
-        <li>Ha isku darin Hjertemagnyl iyo NSAID kale (ibuprofen, diclofenac, naproxen), adiga oo aan talo ka qaadan farmashiyaha.</li><li>Isku darka daawooyinka kale ee dhiig-khafiifinta (Marevan, Xarelto, Eliquis), wuxuu kordhiyaa khatarta dhiig-baxa.</li>
-      </ul>
+      <ul id="interactList"></ul>
     </div>
-    
+
+    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
       </div>
-      <ul>
-        <li>Haddii aad hore u lahayd boogo caloosha ah ama dhiig-bax caloosha, waxaad u baahantahay shaybaadh.</li><li>Haddii aad xasaasiyad (allergi) ku leedahay aspirin, daawadan ha qaadan.</li>
-      </ul>
+      <ul id="warnList"></ul>
     </div>
-    
+
+    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
       </div>
-      <ul>
-        <li>Kiniinka Hjertemagnyl wuxuu jebiyaa soonka haddii la qaato maalinta.</li><li>Marar badan waxaa suurtagal ah in qiyaasta lagu qaato fiidkii (afurka ka dib) – la hadal dhakhtarkaaga ka hor Ramadaanka.</li>
-      </ul>
+      <ul id="ramadanList"></ul>
     </div>
-    
+
+    <!-- 7 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
       </div>
-      <ul>
-        <li>Daawadan waxaa la qaadan karaa adigoon, cunto cunin, ama adigoo cunno la qaadanaya.</li><li>Ha cabbin khamri badan, waayo wuxuu kordhin karaa khatarta dhiig-baxa caloosha.</li>
-      </ul>
+      <ul id="foodList"></ul>
     </div>
-    
+
+    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title">Kaydinta daawada <small>(Opbevaring)</small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
       </div>
-      <ul>
-        <li>Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda "EXP" (daawada goorta ee dhacday), ama haddii oo midabka isbadalay. Wixii soo haray, weydii farmashiyaha - si loogu tuuro meesha ku habboon.</li>
-      </ul>
+      <ul id="storeList"></ul>
     </div>
-    
+
   </div>
-  <div class="footer-note">
-    Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class="highlight">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)
-  </div>
+
+  <div class="footer-note" id="footerNote"></div>
 </main>
-<div class="footer-note">
-  Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
-</div>
+
+<div class="footer-note" id="credit"></div>
+
+<script>
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+const T = {
+  so: {
+    title: "Hjertemagnyl – dhiig khafiifin (blodfortyndende)",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Hjertemagnyl – dhiig khafiifin (blodfortyndende)",
+    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    sections: {
+      use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
+        "Hjertemagnyl waa kiniin yar oo <span class='highlight'>dhiig khafiifin</span> ah (acetylsalicylsyre).",
+        "Waxaa loo isticmaalaa in laga hortago xinjirowga dhiiga (blodprop), kadib wadne-istaaga, faalig ama haddii halistaadu sareyso."
+      ]},
+      dose: { title:"Qiyaasta", small:"(Dosering)", items:[
+        "Badanaa qiyaas yar oo ah hal mar maalintii, tusaale ahaan <span class='highlight'>75 mg</span> fiidkii ama subaxdii.",
+        "Ha beddelin qiyaasta adiga oo aan la tashan dhakhtarka, xitaa haddii aad hilmaamto/ilowdo maalin."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
+        "Caloosha oo ku xanuunta, xiritaanka marinnada hawada, laabjeex ama lalabo.",
+        "Khatarta <span class='highlight'>dhiig-baxa</span> ee sare: nabro, sanka ama cirridka oo dhiig ka yimaado, saxaro madow – wac dhakhtarkaaga haddii ay dhacaan."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
+        "Ha isku darin Hjertemagnyl iyo NSAID kale (ibuprofen, diclofenac, naproxen) adiga oo aan talo ka qaadan farmashiyaha.",
+        "Isku darka daawooyinka kale ee dhiig-khafiifinta (Marevan, Xarelto, Eliquis) wuxuu kordhiyaa khatarta dhiig-baxa."
+      ]},
+      warn: { title:"Digniino", small:"(Advarsler)", items:[
+        "Haddii aad hore u lahayd boogo caloosha ah ama dhiig-bax caloosha, waxaad u baahantahay shaybaadh.",
+        "Haddii aad xasaasiyad (allergi) ku leedahay aspirin, daawadan ha qaadan."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
+        "Kiniinka Hjertemagnyl wuxuu jebiyaa soonka haddii la qaato maalinta.",
+        "Marar badan waxaa suurtagal ah in qiyaasta lagu qaato fiidkii (afurka ka dib) – la hadal dhakhtarkaaga ka hor Ramadaanka."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
+        "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya.",
+        "Ha cabbin khamri badan, waayo wuxuu kordhin karaa khatarta dhiig-baxa caloosha."
+      ]},
+      store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
+        "Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" (daawada goorta ee dhacday), ama haddii midabka isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  da: {
+    title: "Hjertemagnyl – blodfortyndende",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    badge: "Kort og let at læse",
+    drugName: "Hjertemagnyl – blodfortyndende (acetylsalicylsyre)",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Hjertemagnyl er en lille tablet med acetylsalicylsyre, som virker <span class='highlight'>blodfortyndende</span> (hæmmer blodplader).",
+        "Det bruges til at forebygge blodpropper, fx efter blodprop i hjertet, slagtilfælde eller ved øget risiko."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Ofte en lav dosis én gang dagligt, fx <span class='highlight'>75 mg</span> morgen eller aften.",
+        "Ændr ikke dosis uden at tale med lægen – også selvom du har glemt en dag."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Mavesmerter, halsbrand eller kvalme kan forekomme.",
+        "Øget <span class='highlight'>blødningsrisiko</span>: blå mærker, næse-/tandkødsblødning, sort afføring – kontakt læge hvis det sker."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Undgå at kombinere Hjertemagnyl med andre NSAID (ibuprofen, diclofenac, naproxen) uden råd fra apotek/læge.",
+        "Samtidig brug af andre blodfortyndende midler (Marevan, Xarelto, Eliquis) øger blødningsrisikoen."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Hvis du tidligere har haft mavesår eller mave-tarm-blødning, kan du have behov for særlig vurdering/beskyttelse af maven.",
+        "Hvis du er allergisk over for aspirin, må du ikke tage medicinen."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Hjertemagnyl som tablet bryder fasten, hvis den tages i dagtimerne.",
+        "Ofte kan dosis tages om aftenen (efter iftar) – tal med din læge før Ramadan."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Kan tages med eller uden mad.",
+        "Undgå meget alkohol, da det kan øge risikoen for maveblødning."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C. Opbevar i original emballage for at beskytte mod lys og fugt. Brug ikke efter udløbsdatoen (EXP) eller hvis farven har ændret sig. Spørg apoteket om korrekt bortskaffelse af rester."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Hjertemagnyl – blood thinner",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    badge: "Short and easy to read",
+    drugName: "Hjertemagnyl – blood thinner (acetylsalicylic acid)",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Hjertemagnyl contains acetylsalicylic acid and works as a <span class='highlight'>blood thinner</span> (antiplatelet).",
+        "It is used to help prevent blood clots, for example after a heart attack, stroke, or in people at higher risk."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Often a low dose once daily, e.g., <span class='highlight'>75 mg</span> in the morning or evening.",
+        "Do not change the dose without medical advice – even if you missed a day."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Stomach pain, heartburn, or nausea may occur.",
+        "Higher <span class='highlight'>bleeding risk</span>: bruising, nose/gum bleeding, black stools – contact a doctor if this happens."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Avoid combining with other NSAIDs (ibuprofen, diclofenac, naproxen) without advice from a pharmacist/doctor.",
+        "Using other blood thinners (warfarin, Xarelto, Eliquis) together increases bleeding risk."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "If you have had stomach ulcers or gastrointestinal bleeding, you may need extra precautions.",
+        "Do not take it if you are allergic to aspirin."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Hjertemagnyl tablets break the fast if taken during daytime.",
+        "Often the dose can be taken in the evening (after iftar) – talk to your doctor before Ramadan."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "Can be taken with or without food.",
+        "Avoid heavy alcohol intake, as it may increase the risk of stomach bleeding."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date (EXP) or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "هجيرتماغنيل – مميع للدم",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "هجيرتماغنيل – مميع للدم (أسيتيل ساليسيليك أسيد)",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "هجيرتماغنيل يحتوي على حمض أسيتيل الساليسيليك ويعمل كـ<span class='highlight'>مميع للدم</span> (يقلل تكدس الصفائح).",
+        "يُستخدم للوقاية من الجلطات، مثلاً بعد جلطة قلبية أو سكتة دماغية أو عند زيادة الخطر."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "غالباً جرعة منخفضة مرة يومياً، مثل <span class='highlight'>75 ملغ</span> صباحاً أو مساءً.",
+        "لا تغيّر الجرعة دون استشارة طبية، حتى لو نسيت يوماً."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "ألم معدة، حرقة معدة أو غثيان.",
+        "زيادة خطر <span class='highlight'>النزيف</span>: كدمات، نزيف الأنف/اللثة، براز أسود – راجع الطبيب إذا حدث ذلك."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "تجنب الجمع مع أدوية NSAIDs الأخرى (إيبوبروفين، ديكلوفيناك، نابروكسين) دون نصيحة طبية.",
+        "استخدامه مع مميعات دم أخرى (وارفارين، زارلتو، إليكوس) يزيد خطر النزيف."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "إذا كان لديك قرحة معدة أو نزيف سابق بالجهاز الهضمي فقد تحتاج لإجراءات إضافية لحماية المعدة.",
+        "لا تتناوله إذا لديك حساسية من الأسبرين."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "الأقراص تُفطر إذا أُخذت نهاراً.",
+        "غالباً يمكن أخذ الجرعة مساءً (بعد الإفطار) – تحدث مع طبيبك قبل رمضان."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يمكن تناوله مع الطعام أو بدونه.",
+        "تجنب شرب الكثير من الكحول لأنه قد يزيد خطر نزيف المعدة."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء (EXP) أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  },
+
+  tr: {
+    title: "Hjertemagnyl – kan sulandırıcı",
+    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
+    back: "İlaç listesine geri dön",
+    badge: "Kısa ve anlaşılır",
+    drugName: "Hjertemagnyl – kan sulandırıcı (asetilsalisilik asit)",
+    drugForm: "Ağızdan alınan tablet",
+    sections: {
+      use: { title:"Kullanım", small:"", items:[
+        "Hjertemagnyl asetilsalisilik asit içerir ve <span class='highlight'>kan sulandırıcı</span> (trombosit önleyici) etki gösterir.",
+        "Kalp krizi, inme sonrası veya yüksek riskte pıhtı oluşumunu önlemek için kullanılır."
+      ]},
+      dose: { title:"Doz", small:"", items:[
+        "Genellikle günde 1 kez düşük doz, örn. <span class='highlight'>75 mg</span> sabah veya akşam.",
+        "Bir dozu unutsanız bile doktorunuza danışmadan dozu değiştirmeyin."
+      ]},
+      side: { title:"Yan etkiler", small:"", items:[
+        "Mide ağrısı, mide yanması veya bulantı olabilir.",
+        "<span class='highlight'>Kanama</span> riski artar: morarma, burun/diş eti kanaması, siyah dışkı – olursa doktora başvurun."
+      ]},
+      interact: { title:"Etkileşimler", small:"", items:[
+        "Diğer NSAİİ’lerle (ibuprofen, diklofenak, naproksen) doktor/eczacı önerisi olmadan birlikte kullanmayın.",
+        "Diğer kan sulandırıcılarla (Marevan/warfarin, Xarelto, Eliquis) birlikte kullanım kanama riskini artırır."
+      ]},
+      warn: { title:"Uyarılar", small:"", items:[
+        "Mide ülseri veya mide-bağırsak kanaması öykünüz varsa ek önlemler gerekebilir.",
+        "Aspirine alerjiniz varsa kullanmayın."
+      ]},
+      ramadan: { title:"Ramazan ve oruç", small:"", items:[
+        "Gündüz alınan tablet orucu bozar.",
+        "Çoğu zaman doz akşam (iftardan sonra) alınabilir – Ramazan öncesi doktorunuzla konuşun."
+      ]},
+      food: { title:"Yiyecek ve içecek", small:"", items:[
+        "Yemekle birlikte veya yemeksiz alınabilir.",
+        "Fazla alkol mideden kanama riskini artırabileceği için kaçının."
+      ]},
+      store: { title:"Saklama", small:"", items:[
+        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden (EXP) sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
+      ]}
+    },
+    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
+    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur: {
+    title: "ہیرٹ میگنائل – خون پتلا کرنے والی",
+    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
+    back: "ادویات کی فہرست پر واپس جائیں",
+    badge: "مختصر اور آسان",
+    drugName: "ہیرٹ میگنائل – خون پتلا کرنے والی (ایسیٹائل سیلیسیلک ایسڈ)",
+    drugForm: "منہ کے ذریعے لینے والی گولی",
+    sections: {
+      use: { title:"استعمال", small:"", items:[
+        "ہیرٹ میگنائل میں ایسیٹائل سیلیسیلک ایسڈ ہوتا ہے اور یہ <span class='highlight'>خون پتلا</span> (platelet روکنے والی) دوا ہے۔",
+        "یہ خون کے لوتھڑوں سے بچاؤ کے لیے استعمال ہوتی ہے، مثلاً دل کے دورے یا فالج کے بعد یا زیادہ خطرے میں۔"
+      ]},
+      dose: { title:"خوراک", small:"", items:[
+        "اکثر کم خوراک دن میں ایک بار، مثلاً <span class='highlight'>75 mg</span> صبح یا شام۔",
+        "ڈاکٹر کے مشورے کے بغیر خوراک نہ بدلیں، چاہے ایک دن رہ بھی جائے۔"
+      ]},
+      side: { title:"مضر اثرات", small:"", items:[
+        "پیٹ درد، سینے کی جلن یا متلی ہو سکتی ہے۔",
+        "<span class='highlight'>خون بہنے</span> کا خطرہ بڑھتا ہے: نیل پڑنا، ناک/مسوڑھوں سے خون، کالا پاخانہ – ہو تو ڈاکٹر سے رابطہ کریں۔"
+      ]},
+      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
+        "NSAIDs (ibuprofen, diclofenac, naproxen) کے ساتھ ڈاکٹر/فارماسسٹ کے مشورے کے بغیر استعمال نہ کریں۔",
+        "دیگر خون پتلا کرنے والی ادویات (warfarin, Xarelto, Eliquis) کے ساتھ لینے سے خون بہنے کا خطرہ بڑھتا ہے۔"
+      ]},
+      warn: { title:"احتیاطیں", small:"", items:[
+        "اگر معدے کا السر یا معدے/آنتوں سے خون بہنے کی ہسٹری ہو تو اضافی احتیاط کی ضرورت ہو سکتی ہے۔",
+        "اگر aspirin سے الرجی ہے تو استعمال نہ کریں۔"
+      ]},
+      ramadan: { title:"رمضان اور روزہ", small:"", items:[
+        "دن کے وقت گولی لینے سے روزہ ٹوٹ جاتا ہے۔",
+        "اکثر خوراک شام (افطار کے بعد) لی جا سکتی ہے – رمضان سے پہلے ڈاکٹر سے بات کریں۔"
+      ]},
+      food: { title:"کھانا پینا", small:"", items:[
+        "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
+        "زیادہ الکحل سے پرہیز کریں کیونکہ معدے سے خون بہنے کا خطرہ بڑھ سکتا ہے۔"
+      ]},
+      store: { title:"محفوظ رکھنا", small:"", items:[
+        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے (EXP) کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
+      ]}
+    },
+    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
+    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa: {
+    title: "هیرتمگنایل – رقیق‌کننده خون",
+    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
+    back: "بازگشت به فهرست داروها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "هیرتمگنایل – رقیق‌کننده خون (اسید استیل‌سالیسیلیک)",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد مصرف", small:"", items:[
+        "هیرتمگنایل حاوی اسید استیل‌سالیسیلیک است و اثر <span class='highlight'>رقیق‌کننده خون</span> (ضدپلاکتی) دارد.",
+        "برای پیشگیری از لخته خون، مثلاً پس از سکته قلبی/مغزی یا در افراد پرخطر استفاده می‌شود."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "اغلب یک بار در روز با دوز پایین، مثلاً <span class='highlight'>75 mg</span> صبح یا شب.",
+        "بدون مشورت پزشک دوز را تغییر ندهید، حتی اگر یک روز را فراموش کردید."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "درد معده، سوزش سر دل یا تهوع ممکن است رخ دهد.",
+        "افزایش خطر <span class='highlight'>خونریزی</span>: کبودی، خون دماغ/لثه، مدفوع سیاه – در این موارد با پزشک تماس بگیرید."
+      ]},
+      interact: { title:"تداخل‌های دارویی", small:"", items:[
+        "بدون توصیه پزشک/داروساز با NSAIDها (ایبوپروفن، دیکلوفناک، ناپروکسن) همزمان مصرف نکنید.",
+        "مصرف همزمان با سایر رقیق‌کننده‌های خون (وارفارین، زارلتو، الیکوییس) خطر خونریزی را افزایش می‌دهد."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "اگر سابقه زخم معده یا خونریزی گوارشی دارید، ممکن است به اقدامات محافظتی نیاز باشد.",
+        "اگر به آسپیرین حساسیت دارید، مصرف نکنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "اگر در طول روز مصرف شود، روزه را باطل می‌کند.",
+        "اغلب می‌توان دوز را شب‌ها (بعد از افطار) مصرف کرد – قبل از رمضان با پزشک مشورت کنید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با غذا یا بدون غذا قابل مصرف است.",
+        "از مصرف زیاد الکل خودداری کنید چون خطر خونریزی معده را افزایش می‌دهد."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا (EXP) یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs: {
+    title: "هیرتمگنایل – رقیق‌کننده خون",
+    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
+    back: "بازگشت به فهرست دواها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "هیرتمگنایل – رقیق‌کننده خون (اسید استیل‌سالیسیلیک)",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد استعمال", small:"", items:[
+        "هیرتمگنایل اسید استیل‌سالیسیلیک دارد و اثر <span class='highlight'>رقیق‌کننده خون</span> (ضدپلاکتی) می‌دهد.",
+        "برای پیشگیری از لخته خون، مثلاً بعد از سکته قلبی/مغزی یا در افراد پرخطر استفاده می‌شود."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "اکثر یک بار در روز با دوز پایین، مثل <span class='highlight'>75 mg</span> صبح یا شب.",
+        "بدون مشورهٔ داکتر دوز را تغییر ندهید، حتی اگر یک روز را فراموش کردید."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "درد معده، سوزش سر دل یا تهوع ممکن است رخ بدهد.",
+        "خطر <span class='highlight'>خون‌ریزی</span> زیاد می‌شود: کبودی، خون دماغ/لثه، مدفوع سیاه – در این حالت با داکتر تماس بگیرید."
+      ]},
+      interact: { title:"تداخلات دوایی", small:"", items:[
+        "بدون مشورهٔ داکتر/دواخانه با NSAIDها (ایبوپروفن، دیکلوفناک، ناپروکسن) یک‌جا نگیرید.",
+        "گرفتن همزمان با رقیق‌کننده‌های دیگر (وارفارین، زارلتو، الیکوییس) خطر خون‌ریزی را زیاد می‌کند."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "اگر سابقه زخم معده یا خون‌ریزی گوارشی دارید، ممکن به احتیاط/محافظت بیشتر نیاز باشد.",
+        "اگر به آسپیرین حساسیت دارید، استفاده نکنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "اگر در روز گرفته شود، روزه را باطل می‌کند.",
+        "اکثر می‌توان دوز را شب (بعد از افطار) گرفت – قبل از رمضان با داکتر مشوره کنید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با غذا یا بدون غذا گرفته می‌شود.",
+        "از نوشیدن زیاد الکل خودداری کنید چون خطر خون‌ریزی معده را زیاد می‌کند."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا (EXP) یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps: {
+    title: "هیرتمګنایل – د وینې نری کوونکی",
+    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
+    back: "د درملو لېست ته بېرته",
+    badge: "لنډ او اسانه",
+    drugName: "هیرتمګنایل – د وینې نری کوونکی (اسیتیل‌سالیسلیک اسید)",
+    drugForm: "د خولې ګولۍ",
+    sections: {
+      use: { title:"کارونه", small:"", items:[
+        "هیرتمګنایل اسیتیل‌سالیسلیک اسید لري او د <span class='highlight'>وینې نری کوونکي</span> (ضدپلاکي) په توګه کار کوي.",
+        "د وینې د لختو د مخنیوي لپاره کارېږي، لکه د زړه حملې یا سکتې وروسته یا د لوړې خطر په حالت کې."
+      ]},
+      dose: { title:"دوز", small:"", items:[
+        "اکثره په ورځ کې یو ځل ټیټ دوز، لکه <span class='highlight'>75 mg</span> سهار یا ماښام.",
+        "له طبي مشورې پرته دوز مه بدلوئ، که یوه ورځ مو هم هیره کړه."
+      ]},
+      side: { title:"اړخیزې اغېزې", small:"", items:[
+        "د معدې درد، د سینې سوځېدل یا زړه بدوالی.",
+        "د <span class='highlight'>وینه‌بهېدلو</span> خطر زیاتېږي: کبودي، د پزې/غوښې وینه، تورې غایطې – که پېښ شي ډاکټر ته زنګ ووهئ."
+      ]},
+      interact: { title:"د درملو تعامل", small:"", items:[
+        "له ډاکټر/درملتون له سلا پرته له NSAID درملو (ibuprofen, diclofenac, naproxen) سره یوځای مه کاروئ.",
+        "له نورو وینې نری کوونکو (warfarin/Marevan, Xarelto, Eliquis) سره یوځای کول د وینه‌بهېدلو خطر زیاتوي."
+      ]},
+      warn: { title:"احتیاط", small:"", items:[
+        "که د معدې زخم یا د هاضمې د وینې بهېدلو سابقه لرئ، کېدای شي اضافي احتیاط ته اړتیا وي.",
+        "که د اسپرین حساسیت لرئ، مه یې کاروئ."
+      ]},
+      ramadan: { title:"رمضان او روژه", small:"", items:[
+        "که د ورځې واخیستل شي، روژه ماتوي.",
+        "اکثره دوز ماښام (له افطار وروسته) اخیستل کېدای شي – د رمضان نه مخکې له ډاکټر سره خبرې وکړئ."
+      ]},
+      food: { title:"خواړه او څښاک", small:"", items:[
+        "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
+        "له ډېر الکول څخه ډډه وکړئ، ځکه د معدې د وینې بهېدلو خطر زیاتوي."
+      ]},
+      store: { title:"ساتنه", small:"", items:[
+        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې (EXP) وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
+      ]}
+    },
+    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
+    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
+
+function stripTags(s){ return s.replace(/<[^>]*>?/gm,''); }
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
+  ul.innerHTML = "";
+  items.forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html;
+    ul.appendChild(li);
+  });
+}
+
+function render(lang){
+  const d = T[lang] || T.so;
+
+  setDirLang(lang);
+  document.title = stripTags(d.title);
+
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugForm").textContent = d.drugForm;
+
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  document.getElementById("useSmall").textContent = d.sections.use.small || "";
+
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
+
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
+
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
+
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
+
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
+
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
+
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
+
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
+}
+
+render("so");
+document.getElementById("langSelect").addEventListener("change", function(){
+  render(this.value);
+});
+</script>
+
 </body>
 </html>
