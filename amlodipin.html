@@ -41,9 +41,8 @@ a.back {
   color: #00509e;
   font-size: 0.9rem;
 }
-a.back span {
-  font-size: 1.1rem;
-}
+a.back span { font-size: 1.1rem; }
+
 .card {
   background: #ffffff;
   border-radius: 14px;
@@ -78,18 +77,10 @@ a.back span {
   width: 30px;
   height: 30px;
 }
-.drug-labels {
-  display: flex;
-  flex-direction: column;
-}
-.drug-name {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-.drug-form {
-  font-size: 0.82rem;
-  color: #29516e;
-}
+.drug-labels { display: flex; flex-direction: column; }
+.drug-name { font-weight: 600; font-size: 0.95rem; }
+.drug-form { font-size: 0.82rem; color: #29516e; }
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -100,6 +91,7 @@ a.back span {
   border-radius: 999px;
   font-size: 0.8rem;
 }
+
 .section {
   margin-top: 8px;
   padding-top: 8px;
@@ -129,6 +121,7 @@ a.back span {
 .section-icon.ramadan { background:#e0f7fa; }
 .section-icon.food { background:#f1f8e9; }
 .section-icon.store { background:#edeff9; }
+
 .section-title {
   font-weight: 700;
   color: #123047;
@@ -144,13 +137,16 @@ a.back span {
   font-size: 0.92rem;
 }
 .section ul li { margin-bottom: 4px; }
+
 .highlight { font-weight: 600; }
+
 .footer-note {
   font-size: 0.8rem;
   color: #607089;
   text-align: center;
   margin: 18px 0 10px;
 }
+
 @media (max-width: 600px) {
   header h1 { font-size: 1.5rem; }
 }
@@ -182,38 +178,6 @@ a.back span {
   font-size: 0.9rem;
   max-width: 100%;
 }
-
-/* Professional notes (all languages) */
-.pro-note{
-  margin: 6px 0 0;
-  padding: 8px 10px;
-  border-radius: 10px;
-  background: #f6f9ff;
-  border: 1px solid #d7e3f7;
-  color: #29516e;
-  font-size: 0.86rem;
-}
-.pro-note b{ color:#123047; }
-
-.pro-box{
-  background:#ffffff;
-  border-radius: 14px;
-  padding: 14px 14px 10px;
-  margin: 14px 0 0;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-  border-top: 4px solid #0066cc;
-}
-.pro-box h2{
-  margin: 0 0 8px;
-  font-size: 1.05rem;
-  color:#123047;
-}
-.pro-box ul{
-  margin: 0 0 4px 18px;
-  padding-left: 0;
-  font-size: 0.92rem;
-}
-.pro-box li{ margin-bottom: 4px; }
 
 </style>
 </head>
@@ -267,7 +231,6 @@ a.back span {
         <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
       </div>
       <ul id="useList"></ul>
-      <div class="pro-note" id="useNote" style="display:none;"></div>
     </div>
 
     <!-- 2 -->
@@ -277,7 +240,6 @@ a.back span {
         <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
       </div>
       <ul id="doseList"></ul>
-      <div class="pro-note" id="doseNote" style="display:none;"></div>
     </div>
 
     <!-- 3 -->
@@ -287,7 +249,6 @@ a.back span {
         <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
       </div>
       <ul id="sideList"></ul>
-      <div class="pro-note" id="sideNote" style="display:none;"></div>
     </div>
 
     <!-- 4 -->
@@ -297,7 +258,6 @@ a.back span {
         <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
       </div>
       <ul id="interactList"></ul>
-      <div class="pro-note" id="interactNote" style="display:none;"></div>
     </div>
 
     <!-- 5 -->
@@ -307,7 +267,6 @@ a.back span {
         <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
       </div>
       <ul id="warnList"></ul>
-      <div class="pro-note" id="warnNote" style="display:none;"></div>
     </div>
 
     <!-- 6 -->
@@ -317,7 +276,6 @@ a.back span {
         <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
       </div>
       <ul id="ramadanList"></ul>
-      <div class="pro-note" id="ramadanNote" style="display:none;"></div>
     </div>
 
     <!-- 7 -->
@@ -327,7 +285,6 @@ a.back span {
         <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
       </div>
       <ul id="foodList"></ul>
-      <div class="pro-note" id="foodNote" style="display:none;"></div>
     </div>
 
     <!-- 8 -->
@@ -337,14 +294,8 @@ a.back span {
         <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
       </div>
       <ul id="storeList"></ul>
-      <div class="pro-note" id="storeNote" style="display:none;"></div>
     </div>
 
-  </div>
-
-  <div class="pro-box" id="proBox" style="display:none;">
-    <h2 id="proBoxTitle"></h2>
-    <ul id="proBoxList"></ul>
   </div>
 
   <div class="footer-note" id="footerNote"></div>
@@ -367,44 +318,34 @@ const T = {
       use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
         "Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunada wadnaha (hjerte-kar-lidelser).",
         "Waxay nasisaa xididdada dhiigga, si cadaadisku u yaraado."
-      ], note:"<b>Fiiro farsamo:</b> Amlodipin waa calcium-channel blocker (dihydropyridine). Waxay ballaarisaa xididdada dhiigga (vasodilation) waxaana loo isticmaalaa dhiig-karka iyo mararka qaarkood angina." },
+      ]},
       dose: { title:"Qiyaasta", small:"(Dosering)", items:[
         "Halmar ayaad qaadan kartaa (5 mg) habeenkii ama subixii; qaar ayaa u baahan 10 mg, taasu waa in aad dhakhtarka kala niqaashto.",
-        "Qaado maalin kasta waqti isku mid ah, daawadaan waxaa la qaadan karaa adigoon wax cunin ama adigoo cunno la qaadanaya."
-      ], note:"<b>Fiiro farsamo:</b> Qiyaasta caadiga ah 5 mg/maalin; ugu badnaan 10 mg/maalin. Waxaa lagu hagaajiyaa sida cadaadiska dhiiggu u jawaabo." },
+        "Qaado maalin kasta waqti isku mid ah; daawadan waxaa la qaadan karaa adigoon wax cunin ama adigoo cunno la qaadanaya."
+      ]},
       side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
         "Barar anqawyada ama lugaha hoose, madax-wareer iyo daal.",
-        "Haddii barar kugu bato ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga."
-      ], note:"<b>Fiiro farsamo:</b> Waxyeellada ugu badan: barar lugaha (peripheral edema), madax-xanuun/flushing. La soco hoos-u-dhac cadaadis oo calaamado leh." },
+        "Haddii barar kugu bato, ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga."
+      ]},
       interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
         "Daawooyinka kale ee dhiig-karka hoos u dhiga, waxay xoojin karaan saameynta.",
-        "Cabitaanka badan liin bambeelmada (grapefrugt) waxay kordhin kartaa saameynta amlodipin; xaddid."
-      ], note:"<b>Fiiro farsamo:</b> Waxaa loo burburiyaa CYP3A4. Daawooyinka CYP3A4-ka xanniba waxay kordhin karaan heerka; grapefrugt sidoo kale way kordhin kartaa." },
+        "Cabitaanka badan liin bambeelmada (grapefrugt) waxay kordhin kartaa saameynta amlodipin — sidaas darteed xaddid."
+      ]},
       warn: { title:"Digniino", small:"(Advarsler)", items:[
-        "Ha joojin si lama filaan ah, dhiig-karku wuu kugu kici karaa.",
+        "Ha joojin si lama filaan ah; dhiig-karku wuu kugu kici karaa.",
         "Uurka ama nuujinta: dhakhtarka kala hadal si uu kuu doorto daawada kugu habboon."
-      ], note:"<b>Fiiro farsamo:</b> Taxaddar xaaladaha qaarkood (tusaale aortic stenosis culus/heart failure) iyadoo dhakhtar qiimeynayo. La soco cadaadiska dhiigga." },
+      ]},
       ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
-        "Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama suxuurta.",
+        "Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama <span class='highlight'>cuntada ka hor waaberiga (suhoor)</span>.",
         "Ha joojin daawada si aad u soonto adiga oo aan talo ka helin dhakhtarka."
-      ], note:"<b>Fiiro farsamo:</b> Hal mar maalintii (once daily) ayaa fududeynaysa raacidda daawada inta lagu jiro soonka. Suxuur = cuntada ka hor waaberiga." },
+      ]},
       food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
         "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya.",
         "Isku day in aad ku qaadato waqti isku mid ah maalin kasta."
-      ], note:"<b>Fiiro farsamo:</b> Cunto badanaa si weyn uma beddesho saameynta; ka taxaddar grapefrugt haddii si badan loo cabo." },
+      ]},
       store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka. Ha qaadan marka ay dhaafto \"EXP\" ama haddii midabku is beddelay. Wixii soo haray, weydii farmashiyaha."
-      ], note:"<b>Fiiro farsamo:</b> Kaydi meel qalalan oo aan iftiin badan lahayn; raac EXP iyo talada farmashiyaha ee tuurista." }
-    },
-    proBox: {
-      title: "Fiiro farsamo (kooban)",
-      items: [
-        "Fasalka: Calcium-channel blocker (dihydropyridine).",
-        "Indication: Hypertension; mararka qaarkood angina (dhakhtar).",
-        "Qiyaas: 5 mg/maalin (max 10 mg/maalin) – titration.",
-        "Isdhexgal: CYP3A4; xaddid grapefrugt.",
-        "Waxyeello: barar lugaha, flushing, madax-xanuun; la soco calaamado culus."
-      ]
+        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" ama haddii midabku isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      ]}
     },
     footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
     creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
@@ -421,44 +362,34 @@ const T = {
       use: { title:"Anvendelse", small:"", items:[
         "Amlodipin bruges til behandling af forhøjet blodtryk og visse hjertesygdomme.",
         "Det afslapper blodkarrene, så blodtrykket kan falde."
-      ], note:"<b>Faglig note:</b> Dihydropyridin-calciumantagonist (CCB). Virker primært vasodilaterende perifert; kan anvendes ved stabil angina." },
+      ]},
       dose: { title:"Dosering", small:"", items:[
         "Du tager typisk 5 mg én gang dagligt; nogle har behov for 10 mg efter aftale med lægen.",
         "Tag medicinen på samme tidspunkt hver dag. Den kan tages med eller uden mad."
-      ], note:"<b>Faglig note:</b> Standard 5 mg dgl., maks. 10 mg dgl. Individuel titrering efter blodtryk og tolerabilitet." },
+      ]},
       side: { title:"Bivirkninger", small:"", items:[
         "Hævelse af ankler eller underben, svimmelhed og træthed.",
         "Kontakt lægen, hvis du får udtalt hævelse eller hvis vejrtrækningen bliver besværet."
-      ], note:"<b>Faglig note:</b> Hyppigt: perifere ødemer, flushing, hovedpine. Vurder ved symptomatisk hypotension eller forværring." },
+      ]},
       interact: { title:"Interaktioner", small:"", items:[
         "Andre blodtrykssænkende lægemidler kan forstærke virkningen.",
         "Stort indtag af grapefrugt kan øge virkningen af amlodipin."
-      ], note:"<b>Faglig note:</b> CYP3A4-substrat. Stærke CYP3A4-hæmmere kan øge eksponering; grapefrugt kan øge biotilgængelighed." },
+      ]},
       warn: { title:"Advarsler", small:"", items:[
         "Stop ikke behandlingen pludseligt, da blodtrykket kan stige.",
         "Graviditet eller amning: Tal med lægen om, hvilken behandling der er bedst for dig."
-      ], note:"<b>Faglig note:</b> Forsigtighed ved svær aortastenose og ved hjertesvigt (klinisk vurdering). Monitorér BT og symptomer." },
+      ]},
       ramadan: { title:"Ramadan og faste", small:"", items:[
         "Amlodipin tages én gang dagligt og kan tages om aftenen eller ved måltidet før daggry (suhoor).",
         "Stop ikke medicinen for at faste uden at tale med lægen."
-      ], note:"<b>Faglig note:</b> Én daglig dosering gør behandlingen velegnet at fastholde ved faste; fokus på adherence." },
+      ]},
       food: { title:"Mad og drikke", small:"", items:[
         "Medicinen kan tages med eller uden mad.",
         "Prøv at tage den på samme tidspunkt hver dag."
-      ], note:"<b>Faglig note:</b> Ingen klinisk relevant fødeinteraktion ud over grapefrugt (mængdeafhængigt)." },
+      ]},
       store: { title:"Opbevaring", small:"", items:[
         "Opbevar medicinen utilgængeligt for små børn og under 25 °C. Opbevar den i original emballage for at beskytte mod lys og fugt. Brug ikke medicinen efter udløbsdatoen (EXP), eller hvis den har ændret farve. Spørg apoteket om korrekt bortskaffelse af rester."
-      ], note:"<b>Faglig note:</b> Standard opbevaring: tørt, beskyttet mod lys/fugt; følg EXP og apotekets bortskaffelsesråd." }
-    },
-    proBox: {
-      title: "Faglig note (kort)",
-      items: [
-        "Lægemiddelklasse: Calciumantagonist (dihydropyridin).",
-        "Indikation: Hypertension; evt. angina pectoris efter lægelig vurdering.",
-        "Dosis: 5 mg dgl. (maks. 10 mg dgl.) – individuel titrering.",
-        "Interaktion: CYP3A4 (hæmmere/induktorer); begræns grapefrugt.",
-        "Bivirkninger: perifere ødemer, flushing, hovedpine; vurder ved udtalte symptomer."
-      ]
+      ]}
     },
     footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
     creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
@@ -475,44 +406,34 @@ const T = {
       use: { title:"Use", small:"", items:[
         "Amlodipine is used to treat high blood pressure and certain heart conditions.",
         "It relaxes blood vessels, which can lower blood pressure."
-      ], note:"<b>Professional note:</b> Dihydropyridine calcium-channel blocker (CCB). Mainly peripheral vasodilation; may be used for stable angina in selected patients." },
+      ]},
       dose: { title:"Dosage", small:"", items:[
-        "You may take 5 mg once daily; some people need 10 mg as agreed with the doctor.",
+        "You typically take 5 mg once daily; some people need 10 mg as agreed with the doctor.",
         "Take it at the same time every day. It can be taken with or without food."
-      ], note:"<b>Professional note:</b> Typical 5 mg daily; max 10 mg daily. Titrate based on blood pressure response and tolerability." },
+      ]},
       side: { title:"Side effects", small:"", items:[
         "Swelling of the ankles or lower legs, dizziness, and tiredness.",
         "Contact your doctor if swelling becomes significant or if you develop breathing difficulties."
-      ], note:"<b>Professional note:</b> Common: peripheral oedema, flushing, headache. Assess symptomatic hypotension or clinical deterioration." },
+      ]},
       interact: { title:"Interactions", small:"", items:[
         "Other blood-pressure-lowering medicines may increase the effect.",
         "Large amounts of grapefruit can increase the effect of amlodipine."
-      ], note:"<b>Professional note:</b> CYP3A4 substrate. Strong CYP3A4 inhibitors may increase exposure; grapefruit may increase bioavailability." },
+      ]},
       warn: { title:"Warnings", small:"", items:[
         "Do not stop suddenly; your blood pressure may rise.",
         "Pregnancy or breastfeeding: talk to your doctor about the most suitable treatment."
-      ], note:"<b>Professional note:</b> Use caution in severe aortic stenosis and heart failure (clinical assessment). Monitor blood pressure and symptoms." },
+      ]},
       ramadan: { title:"Ramadan and fasting", small:"", items:[
         "Amlodipine is taken once daily and can be taken in the evening or with the pre-dawn meal (suhoor).",
         "Do not stop the medicine for fasting without medical advice."
-      ], note:"<b>Professional note:</b> Once-daily dosing supports adherence during fasting periods." },
+      ]},
       food: { title:"Food and drink", small:"", items:[
         "It can be taken with or without food.",
         "Try to take it at the same time every day."
-      ], note:"<b>Professional note:</b> No clinically relevant food interaction except grapefruit (dose dependent)." },
+      ]},
       store: { title:"Storage", small:"", items:[
         "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date (EXP) or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
-      ], note:"<b>Professional note:</b> Standard tablet storage: dry, protected from light/moisture; follow expiry and disposal guidance." }
-    },
-    proBox: {
-      title: "Professional note (brief)",
-      items: [
-        "Class: Calcium-channel blocker (dihydropyridine).",
-        "Indication: Hypertension; may be used for angina in selected patients.",
-        "Dose: 5 mg daily (max 10 mg daily) – titrate clinically.",
-        "Interactions: CYP3A4 (inhibitors/inducers); limit grapefruit.",
-        "Adverse effects: peripheral oedema, flushing, headache; assess significant symptoms."
-      ]
+      ]}
     },
     footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
     creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
@@ -529,44 +450,34 @@ const T = {
       use: { title:"الاستعمال", small:"", items:[
         "يُستخدم أملوديبين لعلاج ارتفاع ضغط الدم وبعض أمراض القلب.",
         "يساعد على إرخاء الأوعية الدموية مما يؤدي إلى خفض ضغط الدم."
-      ], note:"<b>ملاحظة مهنية:</b> من حاصرات قنوات الكالسيوم (ديهيدروبيريدين). يسبب توسعاً وعائياً محيطياً؛ وقد يُستخدم للذبحة المستقرة." },
+      ]},
       dose: { title:"الجرعة", small:"", items:[
         "عادةً 5 ملغ مرة واحدة يومياً؛ وقد يحتاج بعض الأشخاص إلى 10 ملغ حسب قرار الطبيب.",
         "تناوله يومياً في نفس الوقت. يمكن تناوله مع الطعام أو بدونه."
-      ], note:"<b>ملاحظة مهنية:</b> الجرعة المعتادة 5 ملغ يومياً (الحد الأقصى 10 ملغ). تُعدّل الجرعة حسب ضغط الدم والتحمل." },
+      ]},
       side: { title:"الآثار الجانبية", small:"", items:[
         "تورم الكاحلين أو أسفل الساقين، دوخة وتعب.",
         "اتصل بالطبيب إذا كان التورم شديداً أو إذا أصبحت لديك صعوبة في التنفس."
-      ], note:"<b>ملاحظة مهنية:</b> شائع: وذمة محيطية، احمرار، صداع. انتبه لهبوط الضغط العرضي أو تدهور الأعراض." },
+      ]},
       interact: { title:"التداخلات الدوائية", small:"", items:[
         "قد تزيد أدوية أخرى لخفض ضغط الدم من تأثير الدواء.",
         "قد يزيد تناول كميات كبيرة من الجريب فروت من تأثير أملوديبين."
-      ], note:"<b>ملاحظة مهنية:</b> يُستقلب عبر CYP3A4. مثبطات CYP3A4 القوية قد تزيد التعرض؛ والجريب فروت قد يزيد الفعالية." },
+      ]},
       warn: { title:"تحذيرات", small:"", items:[
         "لا توقف الدواء فجأة لأن ضغط الدم قد يرتفع.",
         "الحمل أو الرضاعة: ناقش الأمر مع الطبيب لاختيار العلاج الأنسب."
-      ], note:"<b>ملاحظة مهنية:</b> الحذر في تضيق الصمام الأبهري الشديد وفشل القلب (تقييم سريري). مراقبة الضغط والأعراض." },
+      ]},
       ramadan: { title:"رمضان والصيام", small:"", items:[
         "يؤخذ أملوديبين مرة واحدة يومياً ويمكن تناوله مساءً أو مع وجبة ما قبل الفجر (السحور).",
         "لا توقف الدواء من أجل الصيام دون استشارة طبية."
-      ], note:"<b>ملاحظة مهنية:</b> الجرعة مرة يومياً تساعد على الالتزام أثناء الصيام." },
+      ]},
       food: { title:"الطعام والشراب", small:"", items:[
         "يمكن تناوله مع الطعام أو بدونه.",
         "حاول تناوله في نفس الوقت كل يوم."
-      ], note:"<b>ملاحظة مهنية:</b> لا توجد تداخلات غذائية مهمة عادةً باستثناء الجريب فروت (بحسب الكمية)." },
+      ]},
       store: { title:"الحفظ", small:"", items:[
         "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء (EXP) أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
-      ], note:"<b>ملاحظة مهنية:</b> حفظ جاف وبعيداً عن الضوء/الرطوبة، والالتزام بتاريخ الانتهاء والتخلص الصحيح." }
-    },
-    proBox: {
-      title: "ملاحظة مهنية (مختصرة)",
-      items: [
-        "الفئة: حاصر قنوات الكالسيوم (ديهيدروبيريدين).",
-        "الاستطباب: ارتفاع ضغط الدم؛ وقد يُستخدم للذبحة المستقرة.",
-        "الجرعة: 5 ملغ يومياً (حتى 10 ملغ) – تعديل حسب الاستجابة.",
-        "التداخلات: CYP3A4؛ تقليل الجريب فروت.",
-        "الآثار: وذمة محيطية/صداع/احمرار؛ قيّم الأعراض الشديدة."
-      ]
+      ]}
     },
     footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
     creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
@@ -583,44 +494,34 @@ const T = {
       use: { title:"Kullanım", small:"", items:[
         "Amlodipin, yüksek tansiyon ve bazı kalp hastalıklarının tedavisinde kullanılır.",
         "Damarları gevşeterek kan basıncının düşmesine yardımcı olur."
-      ], note:"<b>Profesyonel not:</b> Dihidropiridin kalsiyum kanal blokeri (CCB). Periferik vazodilatasyon yapar; seçilmiş hastalarda stabil anjina için de kullanılabilir." },
+      ]},
       dose: { title:"Doz", small:"", items:[
         "Genellikle günde 1 kez 5 mg; bazı kişiler doktorla görüşerek 10 mg’a ihtiyaç duyabilir.",
         "Her gün aynı saatte alın. Yemekle birlikte veya aç karnına alınabilir."
-      ], note:"<b>Profesyonel not:</b> Tipik doz 5 mg/gün, maksimum 10 mg/gün. Kan basıncı yanıtına göre titrasyon yapılır." },
+      ]},
       side: { title:"Yan etkiler", small:"", items:[
         "Ayak bileklerinde veya alt bacaklarda şişlik, baş dönmesi ve yorgunluk.",
         "Şişlik belirginleşirse veya nefes darlığı olursa doktorunuza başvurun."
-      ], note:"<b>Profesyonel not:</b> Sık: periferik ödem, kızarma, baş ağrısı. Semptomatik hipotansiyon/klinik kötüleşme değerlendirilmelidir." },
+      ]},
       interact: { title:"Etkileşimler", small:"", items:[
         "Diğer tansiyon ilaçları etkiyi artırabilir.",
         "Fazla miktarda greyfurt tüketimi amlodipinin etkisini artırabilir."
-      ], note:"<b>Profesyonel not:</b> CYP3A4 ile metabolize olur. Güçlü CYP3A4 inhibitörleri maruziyeti artırabilir; greyfurt etkisini artırabilir." },
+      ]},
       warn: { title:"Uyarılar", small:"", items:[
         "İlacı aniden kesmeyin; tansiyon yükselebilir.",
         "Hamilelik veya emzirme: uygun tedavi için doktorunuza danışın."
-      ], note:"<b>Profesyonel not:</b> Şiddetli aort darlığı ve kalp yetmezliğinde dikkat (klinik değerlendirme). Kan basıncı ve semptom takibi." },
+      ]},
       ramadan: { title:"Ramazan ve oruç", small:"", items:[
         "Amlodipin günde bir kez alınır ve akşam veya gün doğumundan önceki öğünle (sahur) alınabilir.",
         "Oruç tutmak için ilacı doktorunuza danışmadan bırakmayın."
-      ], note:"<b>Profesyonel not:</b> Günde tek doz olması, oruç döneminde tedaviye uyumu kolaylaştırır." },
+      ]},
       food: { title:"Yiyecek ve içecek", small:"", items:[
         "Yemekle birlikte veya yemeksiz alınabilir.",
         "Her gün aynı saatte almaya çalışın."
-      ], note:"<b>Profesyonel not:</b> Greyfurt dışında belirgin bir gıda etkileşimi beklenmez (miktara bağlı)." },
+      ]},
       store: { title:"Saklama", small:"", items:[
         "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden (EXP) sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
-      ], note:"<b>Profesyonel not:</b> Kuru, ışık/nemden korunmuş şekilde saklayın; SKT ve uygun imha kurallarına uyun." }
-    },
-    proBox: {
-      title: "Profesyonel not (kısa)",
-      items: [
-        "Sınıf: Kalsiyum kanal blokeri (dihidropiridin).",
-        "Endikasyon: Hipertansiyon; seçilmiş hastalarda anjina.",
-        "Doz: 5 mg/gün (maks. 10 mg/gün) – titrasyon.",
-        "Etkileşim: CYP3A4; greyfurtu sınırlayın.",
-        "Yan etki: periferik ödem, baş ağrısı, kızarma; belirgin semptomlarda değerlendirme."
-      ]
+      ]}
     },
     footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
     creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
@@ -637,44 +538,34 @@ const T = {
       use: { title:"استعمال", small:"", items:[
         "ایملوڈیپین بلند فشارِ خون اور بعض دل کی بیماریوں کے لیے استعمال ہوتی ہے۔",
         "یہ خون کی نالیوں کو ڈھیلا کر کے بلڈ پریشر کم کرنے میں مدد دیتی ہے۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> کیلشیم چینل بلاکر (دائی ہائیڈروپیریڈین)۔ زیادہ تر رگیں پھیلا کر اثر کرتا ہے؛ منتخب مریضوں میں مستحکم انجائنا میں بھی استعمال ہو سکتا ہے۔" },
+      ]},
       dose: { title:"خوراک", small:"", items:[
         "عام طور پر 5 mg روزانہ ایک بار؛ کچھ افراد کو ڈاکٹر کے مشورے سے 10 mg کی ضرورت ہو سکتی ہے۔",
         "روزانہ ایک ہی وقت پر لیں۔ کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> معمول کی خوراک 5 mg/دن (زیادہ سے زیادہ 10 mg)۔ بلڈ پریشر کے مطابق ٹائٹریشن کی جاتی ہے۔" },
+      ]},
       side: { title:"مضر اثرات", small:"", items:[
         "ٹخنوں یا نچلی ٹانگوں میں سوجن، چکر آنا اور تھکن۔",
         "اگر سوجن بڑھ جائے یا سانس لینے میں مشکل ہو تو ڈاکٹر سے رابطہ کریں۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> عام: پردیی سوجن، چہرہ گرم ہونا/سرخی، سر درد۔ علامتی لو بلڈ پریشر یا بگڑتی علامات میں معائنہ ضروری ہے۔" },
+      ]},
       interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
         "بلڈ پریشر کم کرنے والی دوسری دوائیں اثر بڑھا سکتی ہیں۔",
         "گریپ فروٹ کا زیادہ استعمال ایملوڈیپین کے اثر میں اضافہ کر سکتا ہے۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> CYP3A4 کے ذریعے میٹابولائز ہوتا ہے۔ مضبوط CYP3A4 inhibitors سطح بڑھا سکتے ہیں؛ گریپ فروٹ بھی اثر بڑھا سکتا ہے۔" },
+      ]},
       warn: { title:"احتیاطیں", small:"", items:[
         "دوا اچانک بند نہ کریں؛ بلڈ پریشر بڑھ سکتا ہے۔",
         "حمل یا دودھ پلانا: مناسب علاج کے لیے ڈاکٹر سے مشورہ کریں۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> شدید aortic stenosis اور heart failure میں احتیاط (کلینیکل اسیسمنٹ)؛ بلڈ پریشر/علامات کی نگرانی۔" },
+      ]},
       ramadan: { title:"رمضان اور روزہ", small:"", items:[
         "ایملوڈیپین روزانہ ایک بار لیا جاتا ہے اور شام میں یا سحر سے پہلے کے کھانے کے ساتھ (سحری) لیا جا سکتا ہے۔",
         "ڈاکٹر کے مشورے کے بغیر روزے کی وجہ سے دوا نہ روکیں۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> روزانہ ایک بار خوراک ہونے کی وجہ سے روزے میں پابندی برقرار رکھنا نسبتاً آسان ہے۔" },
+      ]},
       food: { title:"کھانا پینا", small:"", items:[
         "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
         "کوشش کریں کہ ہر روز ایک ہی وقت پر لیں۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> گریپ فروٹ کے علاوہ اہم غذائی تعامل عموماً نہیں ہوتا (مقدار پر منحصر)۔" },
+      ]},
       store: { title:"محفوظ رکھنا", small:"", items:[
         "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے (EXP) کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
-      ], note:"<b>پیشہ ورانہ نوٹ:</b> خشک جگہ، روشنی/نمی سے بچا کر رکھیں؛ میعاد اور مناسب تلفی کے اصول اپنائیں۔" }
-    },
-    proBox: {
-      title: "پیشہ ورانہ نوٹ (مختصر)",
-      items: [
-        "کلاس: کیلشیم چینل بلاکر (دائی ہائیڈروپیریڈین).",
-        "اشارہ: ہائپرٹینشن؛ منتخب مریضوں میں انجائنا.",
-        "خوراک: 5 mg/دن (زیادہ سے زیادہ 10 mg) – ٹائٹریشن.",
-        "تعامل: CYP3A4؛ گریپ فروٹ محدود کریں.",
-        "مضر اثرات: سوجن، سر درد/سرخی؛ شدید علامات میں معائنہ."
-      ]
+      ]}
     },
     footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
     creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
@@ -691,44 +582,34 @@ const T = {
       use: { title:"موارد مصرف", small:"", items:[
         "آملودیپین برای درمان فشار خون بالا و برخی بیماری‌های قلبی استفاده می‌شود.",
         "این دارو رگ‌های خونی را شل می‌کند تا فشار خون کاهش یابد."
-      ], note:"<b>یادداشت حرفه‌ای:</b> مسدودکنندهٔ کانال کلسیم (دی‌هیدروپیریدین). عمدتاً وازودیلاتاسیون محیطی ایجاد می‌کند؛ در برخی بیماران برای آنژین پایدار هم به‌کار می‌رود." },
+      ]},
       dose: { title:"مقدار مصرف", small:"", items:[
         "معمولاً 5 mg یک‌بار در روز؛ برخی افراد طبق نظر پزشک به 10 mg نیاز دارند.",
         "هر روز در یک زمان ثابت مصرف کنید. با غذا یا بدون غذا قابل مصرف است."
-      ], note:"<b>یادداشت حرفه‌ای:</b> دوز معمول 5 میلی‌گرم/روز (حداکثر 10). تنظیم دوز بر اساس پاسخ فشار خون و تحمل بیمار." },
+      ]},
       side: { title:"عوارض جانبی", small:"", items:[
         "تورم مچ پا یا ساق پا، سرگیجه و خستگی.",
         "اگر تورم زیاد شد یا دچار تنگی نفس شدید، با پزشک تماس بگیرید."
-      ], note:"<b>یادداشت حرفه‌ای:</b> شایع: ادم محیطی، گرگرفتگی، سردرد. افت فشار خون علامت‌دار یا بدتر شدن علائم نیاز به ارزیابی دارد." },
+      ]},
       interact: { title:"تداخل‌های دارویی", small:"", items:[
         "داروهای دیگرِ کاهندهٔ فشار خون می‌توانند اثر را بیشتر کنند.",
         "مصرف زیاد گریپ‌فروت می‌تواند اثر آملودیپین را افزایش دهد."
-      ], note:"<b>یادداشت حرفه‌ای:</b> سوبسترای CYP3A4. مهارکننده‌های قوی CYP3A4 می‌توانند سطح دارو را بالا ببرند؛ گریپ‌فروت نیز ممکن است اثر را افزایش دهد." },
+      ]},
       warn: { title:"هشدارها", small:"", items:[
         "دارو را ناگهانی قطع نکنید؛ ممکن است فشار خون بالا برود.",
         "بارداری یا شیردهی: دربارهٔ درمان مناسب با پزشک صحبت کنید."
-      ], note:"<b>یادداشت حرفه‌ای:</b> احتیاط در تنگی شدید آئورت و نارسایی قلبی (ارزیابی بالینی). پایش فشار خون و علائم." },
+      ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
         "آملودیپین روزی یک‌بار مصرف می‌شود و می‌تواند شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) مصرف شود.",
         "بدون مشورت پزشک، دارو را برای روزه قطع نکنید."
-      ], note:"<b>یادداشت حرفه‌ای:</b> مصرف یک‌بار در روز، رعایت درمان در دورهٔ روزه را آسان‌تر می‌کند." },
+      ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "با غذا یا بدون غذا قابل مصرف است.",
         "سعی کنید هر روز در یک زمان ثابت مصرف کنید."
-      ], note:"<b>یادداشت حرفه‌ای:</b> معمولاً تداخل غذایی مهمی به‌جز گریپ‌فروت وجود ندارد (وابسته به مقدار)." },
+      ]},
       store: { title:"نگهداری", small:"", items:[
         "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا (EXP) یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
-      ], note:"<b>یادداشت حرفه‌ای:</b> در جای خشک و دور از نور/رطوبت نگهداری شود؛ تاریخ انقضا و دستور دورریز رعایت شود." }
-    },
-    proBox: {
-      title: "یادداشت حرفه‌ای (کوتاه)",
-      items: [
-        "کلاس: مسدودکنندهٔ کانال کلسیم (دی‌هیدروپیریدین).",
-        "اندیکاسیون: فشار خون بالا؛ در برخی بیماران آنژین پایدار.",
-        "دوز: 5 mg/روز (حداکثر 10 mg) – تنظیم فردی.",
-        "تداخلات: CYP3A4؛ محدود کردن گریپ‌فروت.",
-        "عوارض: ادم محیطی، سردرد/گرگرفتگی؛ در علائم شدید ارزیابی."
-      ]
+      ]}
     },
     footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
     creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
@@ -745,44 +626,34 @@ const T = {
       use: { title:"موارد استعمال", small:"", items:[
         "آملودیپین برای تداوی فشار خون بلند و بعضی بیماری‌های قلبی استفاده می‌شود.",
         "این دوا رگ‌های خون را آرام می‌کند تا فشار خون پایین بیاید."
-      ], note:"<b>یادداشت مسلکی:</b> بلاکر کانال کلسیم (دی‌هیدروپیریدین). بیشتر باعث توسعۀ رگ‌ها می‌شود؛ در برخی مریضان برای آنژین ثابت هم استفاده می‌شود." },
+      ]},
       dose: { title:"مقدار مصرف", small:"", items:[
         "معمولاً 5 mg یک بار در روز؛ بعضی‌ها مطابق مشوره داکتر به 10 mg ضرورت دارند.",
         "هر روز در یک وقت معین بگیرید. با غذا یا بدون غذا گرفته می‌شود."
-      ], note:"<b>یادداشت مسلکی:</b> دوز معمول 5 mg/روز (حداکثر 10). تنظیم دوز بر اساس فشار خون و تحمل مریض." },
+      ]},
       side: { title:"عوارض جانبی", small:"", items:[
         "پف‌کردگی قوزک پا یا پایین پا، سرگیجه و خستگی.",
         "اگر پف‌کردگی زیاد شد یا نفس‌تنگی پیدا کردید، با داکتر تماس بگیرید."
-      ], note:"<b>یادداشت مسلکی:</b> شایع: پف پا (ادم محیطی)، سرخی/گرمی صورت، سردرد. افت فشار خون علامت‌دار نیاز به ارزیابی دارد." },
+      ]},
       interact: { title:"تداخلات دوایی", small:"", items:[
         "دواهای دیگرِ پایین‌کنندهٔ فشار خون می‌تواند اثر را بیشتر کند.",
         "مصرف زیاد گریپ‌فروت می‌تواند اثر آملودیپین را افزایش بدهد."
-      ], note:"<b>یادداشت مسلکی:</b> از طریق CYP3A4 میتابولیز می‌شود. دواهای مهارکنندۀ قوی CYP3A4 سطح دوا را بالا می‌برد؛ گریپ‌فروت نیز می‌تواند اثر را افزایش دهد." },
+      ]},
       warn: { title:"هشدارها", small:"", items:[
         "دوا را ناگهانی قطع نکنید؛ ممکن فشار خون بالا برود.",
         "حمل یا شیردهی: در مورد درمان مناسب با داکتر صحبت کنید."
-      ], note:"<b>یادداشت مسلکی:</b> در تنگی شدید آئورت و نارسایی قلبی احتیاط (ارزیابی بالینی). فشار خون و علایم تعقیب شود." },
+      ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
         "آملودیپین روزانه یک بار گرفته می‌شود و می‌توان آن را شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) گرفت.",
         "بدون مشورهٔ داکتر برای روزه دوا را قطع نکنید."
-      ], note:"<b>یادداشت مسلکی:</b> یک بار در روز بودن دوا، حفظ درمان را در روزه آسان‌تر می‌کند." },
+      ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "با غذا یا بدون غذا گرفته می‌شود.",
         "کوشش کنید هر روز در یک وقت معین بگیرید."
-      ], note:"<b>یادداشت مسلکی:</b> معمولاً به‌جز گریپ‌فروت تداخل غذایی مهم ندارد (وابسته به مقدار)." },
+      ]},
       store: { title:"نگهداری", small:"", items:[
         "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا (EXP) یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
-      ], note:"<b>یادداشت مسلکی:</b> در جای خشک و دور از نور/رطوبت نگهداری شود؛ تاریخ انقضا و دستور دورریز رعایت گردد." }
-    },
-    proBox: {
-      title: "یادداشت مسلکی (کوتاه)",
-      items: [
-        "کلاس: بلاکر کانال کلسیم (دی‌هیدروپیریدین).",
-        "اندیکاسیون: فشار خون بلند؛ در برخی مریضان آنژین ثابت.",
-        "دوز: 5 mg/روز (حداکثر 10 mg) – تنظیم فردی.",
-        "تداخلات: CYP3A4؛ گریپ‌فروت محدود.",
-        "عوارض: ادم محیطی، سردرد/سرخی؛ در علایم شدید ارزیابی."
-      ]
+      ]}
     },
     footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
     creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
@@ -799,44 +670,34 @@ const T = {
       use: { title:"کارونه", small:"", items:[
         "املوډیپین د لوړ وینې فشار او د ځینو د زړه ناروغیو لپاره کارېږي.",
         "دا د وینې رګونه اراموي او د وینې فشار کمولو کې مرسته کوي."
-      ], note:"<b>مسلکي یادونه:</b> د کلسیم چینل بلاکر (dihydropyridine). زیاتره د رګونو پراخول (vasodilation) کوي؛ په ځینو کسانو کې د ثابتې انجاینې لپاره هم کارېږي." },
+      ]},
       dose: { title:"دوز", small:"", items:[
         "اکثره 5 mg په ورځ کې یو ځل؛ ځینې کسانو ته د ډاکټر په سلا 10 mg پکار وي.",
         "هره ورځ په یو ثابت وخت واخلئ. له خوړو سره یا بې له خوړو اخیستل کېدای شي."
-      ], note:"<b>مسلکي یادونه:</b> معمول دوز 5 mg/ورځ (اعظمي 10 mg). د فشار د ځواب او زغم له مخې تنظیمېږي." },
+      ]},
       side: { title:"اړخیزې اغېزې", small:"", items:[
         "د پښو د مړوند یا ښکته پښو پړسوب، سر ګرځېدل او ستړیا.",
         "که پړسوب ډېر شي یا د ساه اخیستو ستونزه پیدا شي، له ډاکټر سره اړیکه ونیسئ."
-      ], note:"<b>مسلکي یادونه:</b> عام: peripheral edema، flushing، سر درد. د نښو لرونکي ټیټ فشار یا خرابوالي په صورت کې ارزونه." },
+      ]},
       interact: { title:"د درملو تعامل", small:"", items:[
         "نور د فشار ضد درمل د دې اغېزه زیاتولای شي.",
         "د ګریپ فروټ ډېر استعمال د املوډیپین اغېزه زیاتولای شي."
-      ], note:"<b>مسلکي یادونه:</b> CYP3A4 له لارې میتابولیزېږي. قوي CYP3A4 inhibitors کچه لوړه کوي؛ ګریپ فروټ هم اغېزه زیاتولای شي." },
+      ]},
       warn: { title:"احتیاط", small:"", items:[
         "درمل ناڅاپه مه بندوئ؛ وینې فشار لوړېدای شي.",
         "د امیندوارۍ یا شیدو ورکولو پر مهال: له ډاکټر سره مشوره وکړئ."
-      ], note:"<b>مسلکي یادونه:</b> په شدید aortic stenosis او heart failure کې احتیاط (کلینیکي ارزونه). د فشار او نښو څارنه." },
+      ]},
       ramadan: { title:"رمضان او روژه", small:"", items:[
         "دا درمل په ورځ کې یو ځل اخېستل کېږي او ماښام یا د سهار له لمرختو مخکې له خوراک سره (سحري) اخیستل کېدای شي.",
         "له طبي مشورې پرته د روژې لپاره درمل مه بندوئ."
-      ], note:"<b>مسلکي یادونه:</b> یو ځل په ورځ کې اخېستل، د روژې پر مهال د درملو پابندي اسانه کوي." },
+      ]},
       food: { title:"خواړه او څښاک", small:"", items:[
         "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
         "هڅه وکړئ هره ورځ په یو ثابت وخت یې واخلئ."
-      ], note:"<b>مسلکي یادونه:</b> عموماً د ګریپ فروټ پرته مهم غذایي تعامل نه لري (د مقدار پورې تړاو لري)." },
+      ]},
       store: { title:"ساتنه", small:"", items:[
         "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې (EXP) وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
-      ], note:"<b>مسلکي یادونه:</b> وچ، له رڼا/رطوبت خوندي ځای کې وساتئ؛ د ختمېدو نېټه او د ضایع کولو لارښوونې تعقیب کړئ." }
-    },
-    proBox: {
-      title: "مسلکي یادونه (لنډه)",
-      items: [
-        "ډله: Calcium-channel blocker (dihydropyridine).",
-        "اشاره: Hypertension؛ په ځینو کسانو کې stable angina.",
-        "دوز: 5 mg/ورځ (اعظمي 10 mg) – titration.",
-        "تعامل: CYP3A4؛ ګریپ فروټ محدود کړئ.",
-        "اړخیزې اغېزې: پړسوب، سر درد/فلشینګ؛ په شدیدو نښو کې ارزونه."
-      ]
+      ]}
     },
     footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
     creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
@@ -855,41 +716,6 @@ function fillList(listId, items){
     const li = document.createElement("li");
     li.innerHTML = html;
     ul.appendChild(li);
-  });
-}
-
-function setNote(noteId, html){
-  const el = document.getElementById(noteId);
-  if (!el) return;
-  if (typeof html === "string" && html.trim().length > 0) {
-    el.innerHTML = html;
-    el.style.display = "";
-  } else {
-    el.innerHTML = "";
-    el.style.display = "none";
-  }
-}
-
-function fillProBox(proBox){
-  const box = document.getElementById("proBox");
-  const title = document.getElementById("proBoxTitle");
-  const list = document.getElementById("proBoxList");
-  if (!box || !title || !list) return;
-
-  if (!proBox || !Array.isArray(proBox.items) || proBox.items.length === 0) {
-    box.style.display = "none";
-    title.textContent = "";
-    list.innerHTML = "";
-    return;
-  }
-
-  box.style.display = "";
-  title.textContent = proBox.title || "";
-  list.innerHTML = "";
-  proBox.items.forEach(t => {
-    const li = document.createElement("li");
-    li.textContent = t;
-    list.appendChild(li);
   });
 }
 
@@ -940,17 +766,6 @@ function render(lang){
   fillList("ramadanList", d.sections.ramadan.items);
   fillList("foodList", d.sections.food.items);
   fillList("storeList", d.sections.store.items);
-
-  setNote("useNote", d.sections.use.note);
-  setNote("doseNote", d.sections.dose.note);
-  setNote("sideNote", d.sections.side.note);
-  setNote("interactNote", d.sections.interact.note);
-  setNote("warnNote", d.sections.warn.note);
-  setNote("ramadanNote", d.sections.ramadan.note);
-  setNote("foodNote", d.sections.food.note);
-  setNote("storeNote", d.sections.store.note);
-
-  fillProBox(d.proBox);
 
   document.getElementById("footerNote").innerHTML = d.footerHTML;
   document.getElementById("credit").innerHTML = d.creditHTML;
