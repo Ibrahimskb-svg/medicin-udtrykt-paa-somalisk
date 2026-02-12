@@ -6,7 +6,6 @@
 <title>Atorvastatin – kolestarool (kolesterol)</title>
 <style>
 
-
 body {
   font-family: Arial, sans-serif;
   background: #e6f2f8;
@@ -156,162 +155,677 @@ a.back span {
   text-align: center;
   margin: 18px 0 10px;
 }
-.index-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.index-list li {
-  margin-bottom: 8px;
-}
-.index-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 10px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
-  color: #123047;
-}
-.index-link:hover {
-  background: #f1f8ff;
-}
-.index-left {
-  display: flex;
-  flex-direction: column;
-}
-.index-title {
-  font-weight: 600;
-  font-size: 0.96rem;
-}
-.index-sub {
-  font-size: 0.8rem;
-  color: #607089;
-}
-.index-icon {
-  font-size: 1.2rem;
-}
 @media (max-width: 600px) {
   header h1 { font-size: 1.5rem; }
 }
 
+/* Sprog dropdown – matcher dit look */
+.langbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid #00a676;
+}
+.langbar label{
+  font-size:0.9rem;
+  color:#123047;
+  font-weight:600;
+}
+.langbar select{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  background: #fff;
+  color:#123047;
+  font-size: 0.9rem;
+  max-width: 100%;
+}
 
 </style>
 </head>
 <body>
+
 <header>
-  <h1>Atorvastatin – kolestarool (kolesterol)</h1>
-  <p>Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <h1 id="hdrTitle">Atorvastatin – kolestarool (kolesterol)</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
+
 <main>
-  <a href="index.html" class="back"><span>←</span><span>Ku laabo liiska daawooyinka</span></a>
+
+  <!-- Dropdown: Somalisk + 8 sprog -->
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect">Vælg sprog:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
+  </div>
+
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
+
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
           <svg viewBox="0 0 64 64">
-  <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-  <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
-</svg>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name">Atorvastatin – kolestarool (kolesterol)</div>
-          <div class="drug-form">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Atorvastatin – kolestarool (kolesterol)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
         </div>
       </div>
-      <div class="badge">Akhris fudud oo kooban</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
-    
+
+    <!-- 1 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
       </div>
-      <ul>
-        <li>Atorvastatin waa daawo <span class='highlight'>hoos u dhigta kolestaroolka</span> (kolesterol).</li><li>Waxay yareysaa halista wadne-istaag iyo faalig, gaar ahaan dadka leh kolestarool sare ama cudur wadne.</li>
-      </ul>
+      <ul id="useList"></ul>
     </div>
-    
+
+    <!-- 2 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
       </div>
-      <ul>
-        <li>Qaado hal mar maalintii, badanaa fiidkii.</li><li>Qiyaasta (tusaale 10–80 mg), waxaa go'aamiya dhakhtarka iyadoo lagu saleynayo natiijooyinka dhiigga.</li>
-      </ul>
+      <ul id="doseList"></ul>
     </div>
-    
+
+    <!-- 3 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
       </div>
-      <ul>
-        <li>Madax-xanuun ama calool-xanuun khafiif ah ayaa dhici kara.</li><li>Marar dhif ah ayaa murqo-xanuun adag ama daciifnimo (muskelsmerter - rabdomyolyse) u baahan dhakhtar degdeg ah – gaar ahaan haddii aad sidoo kale qandho leedahay.</li>
-      </ul>
+      <ul id="sideList"></ul>
     </div>
-    
+
+    <!-- 4 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
       </div>
-      <ul>
-        <li>Daawooyinka qaar ee fangaska (azole), qaar antibiyootiko ah iyo daawooyinka HIV waxay kordhin karaan heerka atorvastatin.</li><li>Cabitaanka badan ee liin baanbeelmada (grapefrugt), waxeey kordhin kartaa saameynta daawada — sidaas darteed waa in la xaddido.</li>
-      </ul>
+      <ul id="interactList"></ul>
     </div>
-    
+
+    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
       </div>
-      <ul>
-        <li>Ha isticmaalin haddii aad uur leedahay ama nuujinayso; daawadu waxay dhaawici kartaa ilmaha.</li><li>Baaritaanka dhiigga ee beerka (lever) ayaa mararka qaarkood loo baahan yahay – marka saas owgeed raac jadwalka ballamada ee dhakhtarku kuu dejiyey.</li>
-      </ul>
+      <ul id="warnList"></ul>
     </div>
-    
+
+    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
       </div>
-      <ul>
-        <li>Atorvastatin hal mar habeenkii ah badanaa, si fudud ayaa loo sii wadan karaa Ramadaanka.</li><li>Go'aan kaligaa ha qaadan, maadaama kolestaroolku uu korodho muddo dheer - ee la tasho dhakhtarka.</li>
-      </ul>
+      <ul id="ramadanList"></ul>
     </div>
-    
+
+    <!-- 7 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
       </div>
-      <ul>
-        <li>Daawadan waxaa lagu qaadan karaa adigoon, cunto cunin ama adigoo, cunno la qaadanaya.</li><li>Ka fagoow liin baanbeelmada badan iyo khamriga, gaar ahaan haddii beerkaaga daciif yahay.</li>
-      </ul>
+      <ul id="foodList"></ul>
     </div>
-    
+
+    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title">Kaydinta daawada <small>(Opbevaring)</small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
       </div>
-      <ul>
-        <li>Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda "EXP" (daawada goorta ee dhacday), ama haddii oo midabka isbadalay. Wixii soo haray, weydii farmashiyaha - si loogu tuuro meesha ku habboon.</li>
-      </ul>
+      <ul id="storeList"></ul>
     </div>
-    
+
   </div>
-  <div class="footer-note">
+
+  <div class="footer-note" id="footerNote">
     Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class="highlight">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)
   </div>
 </main>
-<div class="footer-note">
+
+<div class="footer-note" id="credit">
   Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
 </div>
+
+<script>
+/* One-file oversættelser: Somalisk (original) + 8 sprog */
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+const T = {
+  // Somalisk = din originale tekst (samme indhold/opsætning)
+  so: {
+    title: "Atorvastatin – kolestarool (kolesterol)",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Atorvastatin – kolestarool (kolesterol)",
+    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    sections: {
+      use: {
+        title: "Isticmaalka",
+        small: "(Anvendelse)",
+        items: [
+          "Atorvastatin waa daawo <span class='highlight'>hoos u dhigta kolestaroolka</span> (kolesterol).",
+          "Waxay yareysaa halista wadne-istaag iyo faalig, gaar ahaan dadka leh kolestarool sare ama cudur wadne."
+        ]
+      },
+      dose: {
+        title: "Qiyaasta",
+        small: "(Dosering)",
+        items: [
+          "Qaado hal mar maalintii, badanaa fiidkii.",
+          "Qiyaasta (tusaale 10–80 mg), waxaa go'aamiya dhakhtarka iyadoo lagu saleynayo natiijooyinka dhiigga."
+        ]
+      },
+      side: {
+        title: "Waxyeellooyinka",
+        small: "(Bivirkninger)",
+        items: [
+          "Madax-xanuun ama calool-xanuun khafiif ah ayaa dhici kara.",
+          "Marar dhif ah ayaa murqo-xanuun adag ama daciifnimo (muskelsmerter - rabdomyolyse) u baahan dhakhtar degdeg ah – gaar ahaan haddii aad sidoo kale qandho leedahay."
+        ]
+      },
+      interact: {
+        title: "Isdhexgalka daawooyinka",
+        small: "(Interaktioner)",
+        items: [
+          "Daawooyinka qaar ee fangaska (azole), qaar antibiyootiko ah iyo daawooyinka HIV waxay kordhin karaan heerka atorvastatin.",
+          "Cabitaanka badan ee liin baanbeelmada (grapefrugt), waxeey kordhin kartaa saameynta daawada — sidaas darteed waa in la xaddido."
+        ]
+      },
+      warn: {
+        title: "Digniino",
+        small: "(Advarsler)",
+        items: [
+          "Ha isticmaalin haddii aad uur leedahay ama nuujinayso; daawadu waxay dhaawici kartaa ilmaha.",
+          "Baaritaanka dhiigga ee beerka (lever) ayaa mararka qaarkood loo baahan yahay – marka saas owgeed raac jadwalka ballamada ee dhakhtarku kuu dejiyey."
+        ]
+      },
+      ramadan: {
+        title: "Ramadaan iyo soonka",
+        small: "(Ramadan og faste)",
+        items: [
+          "Atorvastatin hal mar habeenkii ah badanaa, si fudud ayaa loo sii wadan karaa Ramadaanka.",
+          "Go'aan kaligaa ha qaadan, maadaama kolestaroolku uu korodho muddo dheer - ee la tasho dhakhtarka."
+        ]
+      },
+      food: {
+        title: "Cunto iyo cabitaan",
+        small: "(Mad og drikke)",
+        items: [
+          "Daawadan waxaa lagu qaadan karaa adigoon, cunto cunin ama adigoo, cunno la qaadanaya.",
+          "Ka fagoow liin baanbeelmada badan iyo khamriga, gaar ahaan haddii beerkaaga daciif yahay."
+        ]
+      },
+      store: {
+        title: "Kaydinta daawada",
+        small: "(Opbevaring)",
+        items: [
+          "Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" (daawada goorta ee dhacday), ama haddii oo midabka isbadalay. Wixii soo haray, weydii farmashiyaha - si loogu tuuro meesha ku habboon."
+        ]
+      }
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  da: {
+    title: "Atorvastatin – kolesterol",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    badge: "Kort og let at læse",
+    drugName: "Atorvastatin – kolesterol",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Atorvastatin er et lægemiddel, der sænker kolesterol.",
+        "Det kan reducere risikoen for blodprop i hjertet og slagtilfælde, især ved forhøjet kolesterol eller hjertesygdom."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Tages én gang dagligt, ofte om aftenen.",
+        "Dosis (fx 10–80 mg) fastsættes af lægen ud fra blodprøver."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Hovedpine eller let mavebesvær kan forekomme.",
+        "Sjældent kan der opstå kraftige muskelsmerter eller muskelsvaghed (rhabdomyolyse), som kræver akut lægehjælp – især hvis du også har feber."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Visse svampemidler (azoler), nogle antibiotika og HIV-medicin kan øge niveauet af atorvastatin i kroppen.",
+        "Stort indtag af grapefrugt kan øge virkningen – begræns derfor grapefrugt."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Må ikke anvendes under graviditet eller amning, da medicinen kan skade barnet.",
+        "Blodprøver for leverfunktion kan nogle gange være nødvendige – følg derfor lægens aftaler."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Atorvastatin tages typisk én gang om aftenen og kan som regel fortsættes under ramadan.",
+        "Stop ikke på egen hånd – tal med lægen, da kolesterol påvirkes over længere tid."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Kan tages med eller uden mad.",
+        "Undgå store mængder grapefrugt og begræns alkohol, især hvis du har leverproblemer."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C. Opbevar i original emballage for at beskytte mod lys og fugt. Brug ikke efter udløbsdatoen (EXP) eller hvis farven har ændret sig. Spørg apoteket om korrekt bortskaffelse af rester."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Atorvastatin – cholesterol",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    badge: "Short and easy to read",
+    drugName: "Atorvastatin – cholesterol",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Atorvastatin is a medicine that lowers cholesterol.",
+        "It can reduce the risk of heart attack and stroke, especially in people with high cholesterol or heart disease."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Take once daily, often in the evening.",
+        "The dose (e.g., 10–80 mg) is decided by the doctor based on blood tests."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Headache or mild stomach upset may occur.",
+        "Rarely, severe muscle pain or weakness (rhabdomyolysis) needs urgent medical attention – especially if you also have fever."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Some antifungals (azoles), certain antibiotics, and HIV medicines can increase atorvastatin levels.",
+        "Large amounts of grapefruit can increase the effect – therefore limit grapefruit."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "Do not use during pregnancy or breastfeeding; the medicine may harm the baby.",
+        "Liver blood tests may sometimes be needed – follow your doctor’s appointment schedule."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Atorvastatin is usually taken once in the evening and can generally be continued during Ramadan.",
+        "Do not decide on your own to stop; discuss with your doctor, as cholesterol changes over the long term."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "Can be taken with or without food.",
+        "Avoid large amounts of grapefruit and limit alcohol, especially if you have liver problems."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date (EXP) or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "أتورفاستاتين – الكوليسترول",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "أتورفاستاتين – الكوليسترول",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "أتورفاستاتين دواء يُخفض الكوليسترول.",
+        "يساعد على تقليل خطر النوبة القلبية والسكتة الدماغية، خصوصاً عند ارتفاع الكوليسترول أو وجود مرض قلبي."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "يُؤخذ مرة واحدة يومياً، غالباً في المساء.",
+        "الجرعة (مثل 10–80 ملغ) يحددها الطبيب بناءً على تحاليل الدم."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "قد يحدث صداع أو اضطراب خفيف في المعدة.",
+        "نادراً قد يحدث ألم شديد في العضلات أو ضعف (انحلال الربيدات) ويحتاج إلى رعاية طبية عاجلة – خصوصاً إذا كان هناك حمى."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "بعض مضادات الفطريات (الأزولات) وبعض المضادات الحيوية وأدوية فيروس HIV قد ترفع مستوى الأتورفاستاتين.",
+        "الإكثار من الجريب فروت قد يزيد التأثير – لذا يُنصح بتقليل الجريب فروت."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "لا يُستخدم أثناء الحمل أو الرضاعة؛ فقد يضر بالطفل.",
+        "قد يلزم أحياناً إجراء فحوصات لوظائف الكبد – اتبع مواعيد الطبيب."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "عادةً يؤخذ الأتورفاستاتين مرة واحدة مساءً ويمكن غالباً الاستمرار عليه في رمضان.",
+        "لا توقف الدواء من تلقاء نفسك؛ استشر الطبيب لأن تأثير الكوليسترول يكون على المدى الطويل."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يمكن تناوله مع الطعام أو بدونه.",
+        "تجنب كميات كبيرة من الجريب فروت وقلل الكحول، خصوصاً إذا كانت لديك مشكلة في الكبد."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء (EXP) أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  },
+
+  tr: {
+    title: "Atorvastatin – kolesterol",
+    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
+    back: "İlaç listesine geri dön",
+    badge: "Kısa ve anlaşılır",
+    drugName: "Atorvastatin – kolesterol",
+    drugForm: "Ağızdan alınan tablet",
+    sections: {
+      use: { title:"Kullanım", small:"", items:[
+        "Atorvastatin, kolesterolü düşüren bir ilaçtır.",
+        "Özellikle kolesterol yüksekliği veya kalp hastalığı olan kişilerde kalp krizi ve inme riskini azaltmaya yardımcı olur."
+      ]},
+      dose: { title:"Doz", small:"", items:[
+        "Günde bir kez alınır, genellikle akşam.",
+        "Doz (ör. 10–80 mg) kan tahlillerine göre doktor tarafından belirlenir."
+      ]},
+      side: { title:"Yan etkiler", small:"", items:[
+        "Baş ağrısı veya hafif mide rahatsızlığı olabilir.",
+        "Nadiren şiddetli kas ağrısı veya kas güçsüzlüğü (rabdomiyoliz) acil tıbbi değerlendirme gerektirir – özellikle ateş de varsa."
+      ]},
+      interact: { title:"Etkileşimler", small:"", items:[
+        "Bazı mantar ilaçları (azoller), bazı antibiyotikler ve HIV ilaçları atorvastatin düzeyini artırabilir.",
+        "Fazla miktarda greyfurt tüketimi etkiyi artırabilir – bu nedenle greyfurtu sınırlayın."
+      ]},
+      warn: { title:"Uyarılar", small:"", items:[
+        "Hamilelikte veya emzirme döneminde kullanılmaz; bebeğe zarar verebilir.",
+        "Bazen karaciğer kan testleri gerekebilir – doktorunuzun kontrol planına uyun."
+      ]},
+      ramadan: { title:"Ramazan ve oruç", small:"", items:[
+        "Genellikle akşam tek doz alındığı için Ramazan’da çoğu zaman devam edilebilir.",
+        "Kendi başınıza bırakmayın; kolesterol uzun vadede etkilenir, doktorunuza danışın."
+      ]},
+      food: { title:"Yiyecek ve içecek", small:"", items:[
+        "Yemekle birlikte veya yemeksiz alınabilir.",
+        "Çok greyfurt tüketmeyin ve alkolü sınırlayın, özellikle karaciğer sorununuz varsa."
+      ]},
+      store: { title:"Saklama", small:"", items:[
+        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden (EXP) sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
+      ]}
+    },
+    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
+    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur: {
+    title: "ایٹوروواسٹاٹن – کولیسٹرول",
+    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
+    back: "ادویات کی فہرست پر واپس جائیں",
+    badge: "مختصر اور آسان",
+    drugName: "ایٹوروواسٹاٹن – کولیسٹرول",
+    drugForm: "منہ کے ذریعے لینے والی گولی",
+    sections: {
+      use: { title:"استعمال", small:"", items:[
+        "ایٹوروواسٹاٹن کولیسٹرول کم کرنے والی دوا ہے۔",
+        "یہ دل کے دورے اور فالج کے خطرے کو کم کرنے میں مدد دیتی ہے، خاص طور پر اگر کولیسٹرول زیادہ ہو یا دل کی بیماری ہو۔"
+      ]},
+      dose: { title:"خوراک", small:"", items:[
+        "روزانہ ایک بار لیں، عموماً شام میں۔",
+        "خوراک (مثلاً 10–80 mg) خون کے ٹیسٹ کی بنیاد پر ڈاکٹر طے کرتا ہے۔"
+      ]},
+      side: { title:"مضر اثرات", small:"", items:[
+        "سر درد یا ہلکا پیٹ خراب ہو سکتا ہے۔",
+        "کبھی کبھار شدید پٹھوں کا درد یا کمزوری (rabdomyolysis) فوری طبی مدد کی ضرورت ہوتی ہے — خاص طور پر اگر بخار بھی ہو۔"
+      ]},
+      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
+        "کچھ فنگس کی دوائیں (azoles)، بعض اینٹی بایوٹکس اور HIV کی دوائیں ایٹوروواسٹاٹن کی سطح بڑھا سکتی ہیں۔",
+        "گریپ فروٹ کا زیادہ استعمال اثر بڑھا سکتا ہے — اس لیے اسے محدود رکھیں۔"
+      ]},
+      warn: { title:"احتیاطیں", small:"", items:[
+        "حمل یا دودھ پلانے کے دوران استعمال نہ کریں؛ یہ بچے کو نقصان پہنچا سکتی ہے۔",
+        "کبھی کبھی جگر کے خون کے ٹیسٹ ضروری ہوتے ہیں — ڈاکٹر کے طے کردہ شیڈول پر عمل کریں۔"
+      ]},
+      ramadan: { title:"رمضان اور روزہ", small:"", items:[
+        "یہ دوا عموماً شام میں روزانہ ایک بار لی جاتی ہے اور رمضان میں اکثر جاری رکھی جا سکتی ہے۔",
+        "اپنے طور پر دوا نہ روکیں؛ طویل مدت میں کولیسٹرول متاثر ہوتا ہے، ڈاکٹر سے مشورہ کریں۔"
+      ]},
+      food: { title:"کھانا پینا", small:"", items:[
+        "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
+        "زیادہ گریپ فروٹ اور الکحل سے پرہیز کریں، خاص طور پر اگر جگر کمزور ہو۔"
+      ]},
+      store: { title:"محفوظ رکھنا", small:"", items:[
+        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے (EXP) کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
+      ]}
+    },
+    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
+    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa: {
+    title: "آتورواستاتین – کلسترول",
+    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
+    back: "بازگشت به فهرست داروها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "آتورواستاتین – کلسترول",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد مصرف", small:"", items:[
+        "آتورواستاتین دارویی است که کلسترول را کاهش می‌دهد.",
+        "این دارو می‌تواند خطر سکتهٔ قلبی و سکتهٔ مغزی را کاهش دهد، به‌ویژه در افراد با کلسترول بالا یا بیماری قلبی."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "روزی یک‌بار مصرف می‌شود، معمولاً عصر یا شب.",
+        "دوز (مثلاً 10–80 mg) توسط پزشک و بر اساس آزمایش خون تعیین می‌شود."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "سردرد یا ناراحتی خفیف معده ممکن است رخ دهد.",
+        "به‌ندرت درد شدید عضلانی یا ضعف (رابدومیولیز) نیاز به ارزیابی فوری پزشکی دارد — به‌خصوص اگر تب هم دارید."
+      ]},
+      interact: { title:"تداخل‌های دارویی", small:"", items:[
+        "برخی داروهای ضدقارچ (آزول‌ها)، بعضی آنتی‌بیوتیک‌ها و داروهای HIV می‌توانند سطح آتورواستاتین را افزایش دهند.",
+        "مصرف زیاد گریپ‌فروت می‌تواند اثر را بیشتر کند — بنابراین گریپ‌فروت را محدود کنید."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "در بارداری یا شیردهی استفاده نشود؛ ممکن است به کودک آسیب برساند.",
+        "گاهی آزمایش‌های عملکرد کبد لازم است — برنامهٔ ویزیت‌های پزشک را دنبال کنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "این دارو معمولاً یک‌بار در شب مصرف می‌شود و غالباً می‌توان آن را در رمضان ادامه داد.",
+        "خودسرانه دارو را قطع نکنید؛ دربارهٔ ادامه یا تغییر با پزشک مشورت کنید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با غذا یا بدون غذا قابل مصرف است.",
+        "از مصرف زیاد گریپ‌فروت و الکل پرهیز کنید، به‌ویژه اگر مشکل کبدی دارید."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا (EXP) یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs: {
+    title: "آتورواستاتین – کلسترول",
+    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
+    back: "بازگشت به فهرست دواها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "آتورواستاتین – کلسترول",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد استعمال", small:"", items:[
+        "آتورواستاتین دوایی است که کلسترول را پایین می‌آورد.",
+        "این دوا می‌تواند خطر حملهٔ قلبی و سکتۀ مغزی را کم کند، به‌خصوص در کسانی که کلسترول بلند یا بیماری قلبی دارند."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "روزی یک‌بار گرفته می‌شود، معمولاً شام/شب.",
+        "دوز (مثل 10–80 mg) توسط داکتر و بر اساس نتیجهٔ آزمایش خون تعیین می‌شود."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "سردرد یا ناراحتی خفیف معده ممکن است رخ دهد.",
+        "به‌ندرت درد شدید عضلات یا ضعف (رابدومیولیز) نیاز به کمک فوری طبی دارد — مخصوصاً اگر تب هم داشته باشید."
+      ]},
+      interact: { title:"تداخلات دوایی", small:"", items:[
+        "برخی دواهای ضدقارچ (آزول‌ها)، بعضی انتی‌بیوتیک‌ها و دواهای HIV می‌تواند سطح آتورواستاتین را بالا ببرد.",
+        "مصرف زیاد گریپ‌فروت می‌تواند اثر را بیشتر کند — پس گریپ‌فروت را محدود کنید."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "در زمان حمل یا شیردهی استفاده نشود؛ ممکن است به طفل آسیب برساند.",
+        "گاهی آزمایش‌های کبد لازم می‌شود — برنامهٔ ویزیت‌های داکتر را دنبال کنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "این دوا معمولاً یک‌بار در شب گرفته می‌شود و در رمضان اکثر اوقات می‌توان ادامه داد.",
+        "خودسرانه قطع نکنید؛ با داکتر مشوره کنید، چون کلسترول در درازمدت تغییر می‌کند."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با غذا یا بدون غذا گرفته می‌شود.",
+        "از گریپ‌فروت زیاد و الکول دوری کنید، به‌خصوص اگر مشکل کبدی دارید."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا (EXP) یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps: {
+    title: "اټوروواسټاټین – کولېسټرول",
+    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
+    back: "د درملو لېست ته بېرته",
+    badge: "لنډ او اسانه",
+    drugName: "اټوروواسټاټین – کولېسټرول",
+    drugForm: "د خولې ګولۍ",
+    sections: {
+      use: { title:"کارونه", small:"", items:[
+        "اټوروواسټاټین د کولېسټرول د کمولو درمل دی.",
+        "دا د زړه حملې او سکتې خطر کمولو کې مرسته کوي، په ځانګړي ډول د لوړې کولېسټرول یا د زړه د ناروغۍ په صورت کې."
+      ]},
+      dose: { title:"دوز", small:"", items:[
+        "په ورځ کې یو ځل واخلئ، ډېری وخت ماښام.",
+        "دوز (لکه 10–80 mg) د ډاکټر له خوا د وینې ازموینو پر بنسټ ټاکل کېږي."
+      ]},
+      side: { title:"اړخیزې اغېزې", small:"", items:[
+        "سر درد یا د معدې لږ ناراحتي کېدای شي رامنځته شي.",
+        "په ندرت سره شدید د عضلو درد یا کمزوري (رابدومایولایسس) بېړنۍ طبي ارزونه غواړي — په ځانګړي ډول که تبه هم وي."
+      ]},
+      interact: { title:"د درملو تعامل", small:"", items:[
+        "ځینې د فنګس ضد درمل (ازول)، ځینې انټي‌بیوټیکونه او د HIV درمل د اټوروواسټاټین کچه لوړه کولای شي.",
+        "د ګریپ فروټ ډېر استعمال اغېزه زیاتولای شي — نو یې محدود کړئ."
+      ]},
+      warn: { title:"احتیاط", small:"", items:[
+        "د امیندوارۍ یا شیدو ورکولو پر مهال مه کاروئ؛ ماشوم ته زیان رسولای شي.",
+        "کله ناکله د ځیګر د وینې ازموینې اړینې وي — د ډاکټر د ملاقاتونو پلان تعقیب کړئ."
+      ]},
+      ramadan: { title:"رمضان او روژه", small:"", items:[
+        "دا درمل معمولاً د شپې یو ځل اخیستل کېږي او په رمضان کې اکثره دوام ورکول کېدای شي.",
+        "خپله پرېکړه مه کوئ؛ له ډاکټر سره مشوره وکړئ، ځکه کولېسټرول په اوږدمهال کې اغېزمنېږي."
+      ]},
+      food: { title:"خواړه او څښاک", small:"", items:[
+        "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
+        "د ګریپ فروټ ډېر استعمال او الکول محدود کړئ، په ځانګړي ډول که د ځیګر ستونزه لرئ."
+      ]},
+      store: { title:"ساتنه", small:"", items:[
+        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې (EXP) وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
+      ]}
+    },
+    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
+    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
+  ul.innerHTML = "";
+  items.forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html; // vi kontrollerer indholdet (one-file)
+    ul.appendChild(li);
+  });
+}
+
+function render(lang){
+  const d = T[lang] || T.so;
+
+  setDirLang(lang);
+
+  document.title = d.title;
+
+  document.getElementById("hdrTitle").textContent = d.title;
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  document.getElementById("useSmall").textContent = d.sections.use.small || "";
+
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
+
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
+
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
+
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
+
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
+
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
+
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
+
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
+}
+
+// start in Somalisk
+render("so");
+
+document.getElementById("langSelect").addEventListener("change", function(){
+  render(this.value);
+});
+</script>
+
 </body>
 </html>
