@@ -155,168 +155,683 @@ a.back span {
   text-align: center;
   margin: 18px 0 10px;
 }
-.index-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.index-list li {
-  margin-bottom: 8px;
-}
-.index-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 10px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
-  color: #123047;
-}
-.index-link:hover {
-  background: #f1f8ff;
-}
-.index-left {
-  display: flex;
-  flex-direction: column;
-}
-.index-title {
-  font-weight: 600;
-  font-size: 0.96rem;
-}
-.index-sub {
-  font-size: 0.8rem;
-  color: #607089;
-}
-.index-icon {
-  font-size: 1.2rem;
-}
 @media (max-width: 600px) {
   header h1 { font-size: 1.5rem; }
+}
+
+/* Sprog dropdown – matcher dit look */
+.langbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid #00a676;
+}
+.langbar label{
+  font-size:0.9rem;
+  color:#123047;
+  font-weight:600;
+}
+.langbar select{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid #d0d7e2;
+  background: #fff;
+  color:#123047;
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 </style>
 </head>
 <body>
+
 <header>
-  <h1>Amlodipin – dhiig-karka</h1>
-  <p>Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <h1 id="hdrTitle">Amlodipin – dhiig-karka</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
+
 <main>
-  <a href="index.html" class="back"><span>←</span><span>Ku laabo liiska daawooyinka</span></a>
+
+  <!-- Dropdown: Somalisk + 8 sprog -->
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect">Vælg sprog:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
+  </div>
+
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
+
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
-          
-
 
 <svg viewBox="0 0 64 64">
   <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
   <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
 </svg>
 
-
-
         </div>
         <div class="drug-labels">
-          <div class="drug-name">Amlodipin – dhiig-karka</div>
-          <div class="drug-form">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Amlodipin – dhiig-karka</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
         </div>
       </div>
-      <div class="badge">Akhris fudud oo kooban</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
-    
+
+    <!-- 1 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
       </div>
-      <ul>
-        <li>Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunada wadnaha (hjerte-kar-lidelser).</li><li>Waxay nasisaa xididdada dhiigga, si cadaadisku u yaraado.</li>
-      </ul>
+      <ul id="useList"></ul>
     </div>
-    
+
+    <!-- 2 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
       </div>
-      <ul>
-        <li>Halmar ayaad qaadan kartaa (5 mg) habeenkii ama subixii; qaar ayaa u baahan 10 mg, taasu waa in aad dhaktharka kala niqaashto.</li><li>Qaado maalin kasta waqti isku mid ah, daawadaan waxaa la qaadan karaa adigoon, wax cunin ama adigoo cunno la qaadanaya.</li>
-      </ul>
+      <ul id="doseList"></ul>
     </div>
-    
+
+    <!-- 3 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
       </div>
-      <ul>
-        <li>Barar anqawyada ama lugaha hoose, madax-wareer iyo daal.</li><li>Haddii oo barar kugu keeno, ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga.</li>
-      </ul>
+      <ul id="sideList"></ul>
     </div>
-    
+
+    <!-- 4 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
       </div>
-      <ul>
-        <li>Daawooyinka kale ee dhiig-karka hoos u dhiga, waxay xoojin-karaan saameynta.</li><li>Cabitaanka badan liin bambeelmada (grapefrugt), waxeey kordhin karaa saameynta, daawada lagu magacaawo amlodipin.</li>
-      </ul>
+      <ul id="interactList"></ul>
     </div>
-    
+
+    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
       </div>
-      <ul>
-        <li>Ha joojin si lama filaan ah, dhiig-karku wuu kugu kici karaa.</li><li>Uurka ama nuujinta: dhakhtarka kala hadal - si uu kuu dooro, daawada kugu habboon.</li>
-      </ul>
+      <ul id="warnList"></ul>
     </div>
-    
+
+    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
       </div>
-      <ul>
-        <li>Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama suxuurta.</li><li>Ha joojin daawada si aad u soonto adiga oo aan talo ka helin dhakhtarka.</li>
-      </ul>
+      <ul id="ramadanList"></ul>
     </div>
-    
+
+    <!-- 7 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
       </div>
-      <ul>
-        <li>Daawadan waxaa la qaadan karaa adigoon, cunto cunin ama adigoo cunno la qaadanaya.</li><li>Isku day in aad ku qaadato, waqti isku mid ah maalin kasta.</li>
-      </ul>
+      <ul id="foodList"></ul>
     </div>
-    
+
+    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title">Kaydinta daawada <small>(Opbevaring)</small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
       </div>
-      <ul>
-        <li>Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda "EXP" (daawada goorta ee dhacday), ama haddii uu midabku isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon.</li>
-      </ul>
+      <ul id="storeList"></ul>
     </div>
-    
+
   </div>
 
-  <div class="footer-note">
-    Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class="highlight">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)</div>
+  <div class="footer-note" id="footerNote">
+    Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class="highlight">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)
+  </div>
 </main>
-<div class="footer-note">
+
+<div class="footer-note" id="credit">
   Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf
-<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
+  <br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
 </div>
+
+<script>
+/* One-file oversættelser: Somalisk (original) + 8 sprog */
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+const T = {
+  // Somalisk = din originale tekst (samme indhold/opsætning)
+  so: {
+    title: "Amlodipin – dhiig-karka",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Amlodipin – dhiig-karka",
+    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    sections: {
+      use: {
+        title: "Isticmaalka",
+        small: "(Anvendelse)",
+        items: [
+          "Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunada wadnaha (hjerte-kar-lidelser).",
+          "Waxay nasisaa xididdada dhiigga, si cadaadisku u yaraado."
+        ]
+      },
+      dose: {
+        title: "Qiyaasta",
+        small: "(Dosering)",
+        items: [
+          "Halmar ayaad qaadan kartaa (5 mg) habeenkii ama subixii; qaar ayaa u baahan 10 mg, taasu waa in aad dhaktharka kala niqaashto.",
+          "Qaado maalin kasta waqti isku mid ah, daawadaan waxaa la qaadan karaa adigoon, wax cunin ama adigoo cunno la qaadanaya."
+        ]
+      },
+      side: {
+        title: "Waxyeellooyinka",
+        small: "(Bivirkninger)",
+        items: [
+          "Barar anqawyada ama lugaha hoose, madax-wareer iyo daal.",
+          "Haddii oo barar kugu keeno, ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga."
+        ]
+      },
+      interact: {
+        title: "Isdhexgalka daawooyinka",
+        small: "(Interaktioner)",
+        items: [
+          "Daawooyinka kale ee dhiig-karka hoos u dhiga, waxay xoojin-karaan saameynta.",
+          "Cabitaanka badan liin bambeelmada (grapefrugt), waxeey kordhin karaa saameynta, daawada lagu magacaawo amlodipin."
+        ]
+      },
+      warn: {
+        title: "Digniino",
+        small: "(Advarsler)",
+        items: [
+          "Ha joojin si lama filaan ah, dhiig-karku wuu kugu kici karaa.",
+          "Uurka ama nuujinta: dhakhtarka kala hadal - si uu kuu dooro, daawada kugu habboon."
+        ]
+      },
+      ramadan: {
+        title: "Ramadaan iyo soonka",
+        small: "(Ramadan og faste)",
+        items: [
+          "Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama suxuurta.",
+          "Ha joojin daawada si aad u soonto adiga oo aan talo ka helin dhakhtarka."
+        ]
+      },
+      food: {
+        title: "Cunto iyo cabitaan",
+        small: "(Mad og drikke)",
+        items: [
+          "Daawadan waxaa la qaadan karaa adigoon, cunto cunin ama adigoo cunno la qaadanaya.",
+          "Isku day in aad ku qaadato, waqti isku mid ah maalin kasta."
+        ]
+      },
+      store: {
+        title: "Kaydinta daawada",
+        small: "(Opbevaring)",
+        items: [
+          "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" (daawada goorta ee dhacday), ama haddii uu midabku isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+        ]
+      }
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  da: {
+    title: "Amlodipin – forhøjet blodtryk",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    badge: "Kort og let at læse",
+    drugName: "Amlodipin – forhøjet blodtryk",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Amlodipin bruges til behandling af forhøjet blodtryk og visse hjertesygdomme.",
+        "Det afslapper blodkarrene, så blodtrykket kan falde."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Du tager typisk 5 mg én gang dagligt; nogle har behov for 10 mg efter aftale med lægen.",
+        "Tag medicinen på samme tidspunkt hver dag. Den kan tages med eller uden mad."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Hævelse af ankler eller underben, svimmelhed og træthed.",
+        "Kontakt lægen, hvis du får udtalt hævelse eller hvis vejrtrækningen bliver besværet."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Andre blodtrykssænkende lægemidler kan forstærke virkningen.",
+        "Stort indtag af grapefrugt kan øge virkningen af amlodipin."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Stop ikke behandlingen pludseligt, da blodtrykket kan stige.",
+        "Graviditet eller amning: Tal med lægen om, hvilken behandling der er bedst for dig."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Amlodipin tages én gang dagligt og kan tages om aftenen eller ved suhoor.",
+        "Stop ikke medicinen for at faste uden at tale med lægen."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Medicinen kan tages med eller uden mad.",
+        "Prøv at tage den på samme tidspunkt hver dag."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar medicinen utilgængeligt for små børn og under 25 °C. Opbevar den i original emballage for at beskytte mod lys og fugt. Brug ikke medicinen efter udløbsdatoen (EXP), eller hvis den har ændret farve. Spørg apoteket om korrekt bortskaffelse af rester."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Amlodipine – high blood pressure",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    badge: "Short and easy to read",
+    drugName: "Amlodipine – high blood pressure",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Amlodipine is used to treat high blood pressure and certain heart conditions.",
+        "It relaxes blood vessels, which can lower blood pressure."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "You may take 5 mg once daily; some people need 10 mg as agreed with the doctor.",
+        "Take it at the same time every day. It can be taken with or without food."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Swelling of the ankles or lower legs, dizziness, and tiredness.",
+        "Contact your doctor if swelling becomes significant or if you develop breathing difficulties."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Other blood-pressure-lowering medicines may increase the effect.",
+        "Large amounts of grapefruit can increase the effect of amlodipine."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "Do not stop suddenly; your blood pressure may rise.",
+        "Pregnancy or breastfeeding: talk to your doctor about the most suitable treatment."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Amlodipine is taken once daily and can be taken in the evening or at suhoor.",
+        "Do not stop the medicine for fasting without medical advice."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "It can be taken with or without food.",
+        "Try to take it at the same time every day."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date (EXP) or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "أملوديبين – ارتفاع ضغط الدم",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "أملوديبين – ارتفاع ضغط الدم",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "يُستخدم أملوديبين لعلاج ارتفاع ضغط الدم وبعض أمراض القلب.",
+        "يساعد على إرخاء الأوعية الدموية مما يؤدي إلى خفض ضغط الدم."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "عادةً 5 ملغ مرة واحدة يومياً؛ وقد يحتاج بعض الأشخاص إلى 10 ملغ حسب قرار الطبيب.",
+        "تناوله يومياً في نفس الوقت. يمكن تناوله مع الطعام أو بدونه."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "تورم الكاحلين أو أسفل الساقين، دوخة وتعب.",
+        "اتصل بالطبيب إذا كان التورم شديداً أو إذا أصبحت لديك صعوبة في التنفس."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "قد تزيد أدوية أخرى لخفض ضغط الدم من تأثير الدواء.",
+        "قد يزيد تناول كميات كبيرة من الجريب فروت من تأثير أملوديبين."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "لا توقف الدواء فجأة لأن ضغط الدم قد يرتفع.",
+        "الحمل أو الرضاعة: ناقش الأمر مع الطبيب لاختيار العلاج الأنسب."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "يؤخذ أملوديبين مرة واحدة يومياً ويمكن تناوله مساءً أو وقت السحور.",
+        "لا توقف الدواء من أجل الصيام دون استشارة طبية."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يمكن تناوله مع الطعام أو بدونه.",
+        "حاول تناوله في نفس الوقت كل يوم."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء (EXP) أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  },
+
+  tr: {
+    title: "Amlodipin – yüksek tansiyon",
+    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
+    back: "İlaç listesine geri dön",
+    badge: "Kısa ve anlaşılır",
+    drugName: "Amlodipin – yüksek tansiyon",
+    drugForm: "Ağızdan alınan tablet",
+    sections: {
+      use: { title:"Kullanım", small:"", items:[
+        "Amlodipin, yüksek tansiyon ve bazı kalp hastalıklarının tedavisinde kullanılır.",
+        "Damarları gevşeterek kan basıncının düşmesine yardımcı olur."
+      ]},
+      dose: { title:"Doz", small:"", items:[
+        "Genellikle günde 1 kez 5 mg; bazı kişiler doktorla görüşerek 10 mg’a ihtiyaç duyabilir.",
+        "Her gün aynı saatte alın. Yemekle birlikte veya aç karnına alınabilir."
+      ]},
+      side: { title:"Yan etkiler", small:"", items:[
+        "Ayak bileklerinde veya alt bacaklarda şişlik, baş dönmesi ve yorgunluk.",
+        "Şişlik belirginleşirse veya nefes darlığı olursa doktorunuza başvurun."
+      ]},
+      interact: { title:"Etkileşimler", small:"", items:[
+        "Diğer tansiyon ilaçları etkiyi artırabilir.",
+        "Fazla miktarda greyfurt tüketimi amlodipinin etkisini artırabilir."
+      ]},
+      warn: { title:"Uyarılar", small:"", items:[
+        "İlacı aniden kesmeyin; tansiyon yükselebilir.",
+        "Hamilelik veya emzirme: uygun tedavi için doktorunuza danışın."
+      ]},
+      ramadan: { title:"Ramazan ve oruç", small:"", items:[
+        "Günde bir kez alınır; akşam veya sahurda alınabilir.",
+        "Doktora danışmadan ilacı oruç için bırakmayın."
+      ]},
+      food: { title:"Yiyecek ve içecek", small:"", items:[
+        "Yemekle birlikte veya yemeksiz alınabilir.",
+        "Her gün aynı saatte almaya çalışın."
+      ]},
+      store: { title:"Saklama", small:"", items:[
+        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden (EXP) sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
+      ]}
+    },
+    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
+    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur: {
+    title: "ایملوڈیپین – بلند فشارِ خون",
+    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
+    back: "ادویات کی فہرست پر واپس جائیں",
+    badge: "مختصر اور آسان",
+    drugName: "ایملوڈیپین – بلند فشارِ خون",
+    drugForm: "منہ کے ذریعے لینے والی گولی",
+    sections: {
+      use: { title:"استعمال", small:"", items:[
+        "ایملوڈیپین بلند فشارِ خون اور بعض دل کی بیماریوں کے لیے استعمال ہوتی ہے۔",
+        "یہ خون کی نالیوں کو ڈھیلا کر کے بلڈ پریشر کم کرنے میں مدد دیتی ہے۔"
+      ]},
+      dose: { title:"خوراک", small:"", items:[
+        "عام طور پر 5 mg روزانہ ایک بار؛ کچھ افراد کو ڈاکٹر کے مشورے سے 10 mg کی ضرورت ہو سکتی ہے۔",
+        "روزانہ ایک ہی وقت پر لیں۔ کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔"
+      ]},
+      side: { title:"مضر اثرات", small:"", items:[
+        "ٹخنوں یا نچلی ٹانگوں میں سوجن، چکر آنا اور تھکن۔",
+        "اگر سوجن بڑھ جائے یا سانس لینے میں مشکل ہو تو ڈاکٹر سے رابطہ کریں۔"
+      ]},
+      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
+        "بلڈ پریشر کم کرنے والی دوسری دوائیں اثر بڑھا سکتی ہیں۔",
+        "گریپ فروٹ کا زیادہ استعمال ایملوڈیپین کے اثر میں اضافہ کر سکتا ہے۔"
+      ]},
+      warn: { title:"احتیاطیں", small:"", items:[
+        "دوا اچانک بند نہ کریں؛ بلڈ پریشر بڑھ سکتا ہے۔",
+        "حمل یا دودھ پلانا: مناسب علاج کے لیے ڈاکٹر سے مشورہ کریں۔"
+      ]},
+      ramadan: { title:"رمضان اور روزہ", small:"", items:[
+        "یہ دوا روزانہ ایک بار لی جاتی ہے اور شام یا سحری میں لی جا سکتی ہے۔",
+        "ڈاکٹر کے مشورے کے بغیر روزے کی وجہ سے دوا نہ روکیں۔"
+      ]},
+      food: { title:"کھانا پینا", small:"", items:[
+        "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
+        "کوشش کریں کہ ہر روز ایک ہی وقت پر لیں۔"
+      ]},
+      store: { title:"محفوظ رکھنا", small:"", items:[
+        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے (EXP) کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
+      ]}
+    },
+    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
+    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa: {
+    title: "آملودیپین – فشار خون بالا",
+    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
+    back: "بازگشت به فهرست داروها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "آملودیپین – فشار خون بالا",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد مصرف", small:"", items:[
+        "آملودیپین برای درمان فشار خون بالا و برخی بیماری‌های قلبی استفاده می‌شود.",
+        "این دارو رگ‌های خونی را شل می‌کند تا فشار خون کاهش یابد."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "معمولاً 5 mg یک‌بار در روز؛ برخی افراد طبق نظر پزشک به 10 mg نیاز دارند.",
+        "هر روز در یک زمان ثابت مصرف کنید. با غذا یا بدون غذا قابل مصرف است."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "تورم مچ پا یا ساق پا، سرگیجه و خستگی.",
+        "اگر تورم زیاد شد یا دچار تنگی نفس شدید، با پزشک تماس بگیرید."
+      ]},
+      interact: { title:"تداخل‌های دارویی", small:"", items:[
+        "داروهای دیگرِ کاهندهٔ فشار خون می‌توانند اثر را بیشتر کنند.",
+        "مصرف زیاد گریپ‌فروت می‌تواند اثر آملودیپین را افزایش دهد."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "دارو را ناگهانی قطع نکنید؛ ممکن است فشار خون بالا برود.",
+        "بارداری یا شیردهی: دربارهٔ درمان مناسب با پزشک صحبت کنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "این دارو روزی یک‌بار مصرف می‌شود و می‌توان آن را شب یا هنگام سحری مصرف کرد.",
+        "بدون مشورت پزشک، دارو را برای روزه قطع نکنید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با غذا یا بدون غذا قابل مصرف است.",
+        "سعی کنید هر روز در یک زمان ثابت مصرف کنید."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا (EXP) یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs: {
+    title: "آملودیپین – فشار خون بلند",
+    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
+    back: "بازگشت به فهرست دواها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "آملودیپین – فشار خون بلند",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد استعمال", small:"", items:[
+        "آملودیپین برای تداوی فشار خون بلند و بعضی بیماری‌های قلبی استفاده می‌شود.",
+        "این دوا رگ‌های خون را آرام می‌کند تا فشار خون پایین بیاید."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "معمولاً 5 mg یک بار در روز؛ بعضی‌ها مطابق مشوره داکتر به 10 mg ضرورت دارند.",
+        "هر روز در یک وقت معین بگیرید. با غذا یا بدون غذا گرفته می‌شود."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "پف‌کردگی قوزک پا یا پایین پا، سرگیجه و خستگی.",
+        "اگر پف‌کردگی زیاد شد یا نفس‌تنگی پیدا کردید، با داکتر تماس بگیرید."
+      ]},
+      interact: { title:"تداخلات دوایی", small:"", items:[
+        "دواهای دیگرِ پایین‌کنندهٔ فشار خون می‌تواند اثر را بیشتر کند.",
+        "مصرف زیاد گریپ‌فروت می‌تواند اثر آملودیپین را افزایش بدهد."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "دوا را ناگهانی قطع نکنید؛ ممکن فشار خون بالا برود.",
+        "حمل یا شیردهی: در مورد درمان مناسب با داکتر صحبت کنید."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "این دوا روزانه یک بار گرفته می‌شود و می‌توان آن را شام یا وقت سحری گرفت.",
+        "بدون مشورهٔ داکتر برای روزه دوا را قطع نکنید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با غذا یا بدون غذا گرفته می‌شود.",
+        "کوشش کنید هر روز در یک وقت معین بگیرید."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا (EXP) یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
+      ]}
+    },
+    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps: {
+    title: "املوډیپین – لوړ د وینې فشار",
+    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
+    back: "د درملو لېست ته بېرته",
+    badge: "لنډ او اسانه",
+    drugName: "املوډیپین – لوړ د وینې فشار",
+    drugForm: "د خولې ګولۍ",
+    sections: {
+      use: { title:"کارونه", small:"", items:[
+        "املوډیپین د لوړ وینې فشار او د ځینو د زړه ناروغیو لپاره کارېږي.",
+        "دا د وینې رګونه اراموي او د وینې فشار کمولو کې مرسته کوي."
+      ]},
+      dose: { title:"دوز", small:"", items:[
+        "اکثره 5 mg په ورځ کې یو ځل؛ ځینې کسانو ته د ډاکټر په سلا 10 mg پکار وي.",
+        "هره ورځ په یو ثابت وخت واخلئ. له خوړو سره یا بې له خوړو اخیستل کېدای شي."
+      ]},
+      side: { title:"اړخیزې اغېزې", small:"", items:[
+        "د پښو د مړوند یا ښکته پښو پړسوب، سر ګرځېدل او ستړیا.",
+        "که پړسوب ډېر شي یا د ساه اخیستو ستونزه پیدا شي، له ډاکټر سره اړیکه ونیسئ."
+      ]},
+      interact: { title:"د درملو تعامل", small:"", items:[
+        "نور د فشار ضد درمل د دې اغېزه زیاتولای شي.",
+        "د ګریپ فروټ ډېر استعمال د املوډیپین اغېزه زیاتولای شي."
+      ]},
+      warn: { title:"احتیاط", small:"", items:[
+        "درمل ناڅاپه مه بندوئ؛ وینې فشار لوړېدای شي.",
+        "د امیندوارۍ یا شیدو ورکولو پر مهال: له ډاکټر سره مشوره وکړئ."
+      ]},
+      ramadan: { title:"رمضان او روژه", small:"", items:[
+        "درمل په ورځ کې یو ځل اخېستل کېږي او ماښام یا سحري کې اخیستل کېدای شي.",
+        "له طبي مشورې پرته د روژې لپاره درمل مه بندوئ."
+      ]},
+      food: { title:"خواړه او څښاک", small:"", items:[
+        "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
+        "هڅه وکړئ هره ورځ په یو ثابت وخت یې واخلئ."
+      ]},
+      store: { title:"ساتنه", small:"", items:[
+        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې (EXP) وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
+      ]}
+    },
+    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
+    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
+  ul.innerHTML = "";
+  items.forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html; // vi kontrollerer indholdet (one-file)
+    ul.appendChild(li);
+  });
+}
+
+function render(lang){
+  const d = T[lang] || T.so;
+
+  setDirLang(lang);
+
+  document.title = d.title;
+
+  document.getElementById("hdrTitle").textContent = d.title;
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+
+  // section titles + small labels
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  document.getElementById("useSmall").textContent = d.sections.use.small || "";
+
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
+
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
+
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
+
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
+
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
+
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
+
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+
+  // lists
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
+
+  // footer + credit
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
+}
+
+// start in Somalisk
+render("so");
+
+document.getElementById("langSelect").addEventListener("change", function(){
+  render(this.value);
+});
+</script>
+
 </body>
 </html>
