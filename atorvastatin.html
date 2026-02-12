@@ -41,9 +41,8 @@ a.back {
   color: #00509e;
   font-size: 0.9rem;
 }
-a.back span {
-  font-size: 1.1rem;
-}
+a.back span { font-size: 1.1rem; }
+
 .card {
   background: #ffffff;
   border-radius: 14px;
@@ -78,18 +77,10 @@ a.back span {
   width: 30px;
   height: 30px;
 }
-.drug-labels {
-  display: flex;
-  flex-direction: column;
-}
-.drug-name {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-.drug-form {
-  font-size: 0.82rem;
-  color: #29516e;
-}
+.drug-labels { display: flex; flex-direction: column; }
+.drug-name { font-weight: 600; font-size: 0.95rem; }
+.drug-form { font-size: 0.82rem; color: #29516e; }
+
 .badge {
   display: inline-flex;
   align-items: center;
@@ -100,6 +91,7 @@ a.back span {
   border-radius: 999px;
   font-size: 0.8rem;
 }
+
 .section {
   margin-top: 8px;
   padding-top: 8px;
@@ -129,6 +121,7 @@ a.back span {
 .section-icon.ramadan { background:#e0f7fa; }
 .section-icon.food { background:#f1f8e9; }
 .section-icon.store { background:#edeff9; }
+
 .section-title {
   font-weight: 700;
   color: #123047;
@@ -143,23 +136,22 @@ a.back span {
   padding-left: 0;
   font-size: 0.92rem;
 }
-.section ul li {
-  margin-bottom: 4px;
-}
-.highlight {
-  font-weight: 600;
-}
+.section ul li { margin-bottom: 4px; }
+
+.highlight { font-weight: 600; }
+
 .footer-note {
   font-size: 0.8rem;
   color: #607089;
   text-align: center;
   margin: 18px 0 10px;
 }
+
 @media (max-width: 600px) {
   header h1 { font-size: 1.5rem; }
 }
 
-/* Sprog dropdown – matcher dit look */
+/* Dropdown bar */
 .langbar{
   display:flex;
   align-items:center;
@@ -198,7 +190,6 @@ a.back span {
 
 <main>
 
-  <!-- Dropdown: Somalisk + 8 sprog -->
   <div class="langbar" aria-label="Vælg sprog">
     <label for="langSelect">Vælg sprog:</label>
     <select id="langSelect">
@@ -317,11 +308,9 @@ a.back span {
 </div>
 
 <script>
-/* One-file oversættelser: Somalisk (original) + 8 sprog */
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const T = {
-  // Somalisk = din originale tekst (samme indhold/opsætning)
   so: {
     title: "Atorvastatin – kolestarool (kolesterol)",
     subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
@@ -330,69 +319,37 @@ const T = {
     drugName: "Atorvastatin – kolestarool (kolesterol)",
     drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
     sections: {
-      use: {
-        title: "Isticmaalka",
-        small: "(Anvendelse)",
-        items: [
-          "Atorvastatin waa daawo <span class='highlight'>hoos u dhigta kolestaroolka</span> (kolesterol).",
-          "Waxay yareysaa halista wadne-istaag iyo faalig, gaar ahaan dadka leh kolestarool sare ama cudur wadne."
-        ]
-      },
-      dose: {
-        title: "Qiyaasta",
-        small: "(Dosering)",
-        items: [
-          "Qaado hal mar maalintii, badanaa fiidkii.",
-          "Qiyaasta (tusaale 10–80 mg), waxaa go'aamiya dhakhtarka iyadoo lagu saleynayo natiijooyinka dhiigga."
-        ]
-      },
-      side: {
-        title: "Waxyeellooyinka",
-        small: "(Bivirkninger)",
-        items: [
-          "Madax-xanuun ama calool-xanuun khafiif ah ayaa dhici kara.",
-          "Marar dhif ah ayaa murqo-xanuun adag ama daciifnimo (muskelsmerter - rabdomyolyse) u baahan dhakhtar degdeg ah – gaar ahaan haddii aad sidoo kale qandho leedahay."
-        ]
-      },
-      interact: {
-        title: "Isdhexgalka daawooyinka",
-        small: "(Interaktioner)",
-        items: [
-          "Daawooyinka qaar ee fangaska (azole), qaar antibiyootiko ah iyo daawooyinka HIV waxay kordhin karaan heerka atorvastatin.",
-          "Cabitaanka badan ee liin baanbeelmada (grapefrugt), waxeey kordhin kartaa saameynta daawada — sidaas darteed waa in la xaddido."
-        ]
-      },
-      warn: {
-        title: "Digniino",
-        small: "(Advarsler)",
-        items: [
-          "Ha isticmaalin haddii aad uur leedahay ama nuujinayso; daawadu waxay dhaawici kartaa ilmaha.",
-          "Baaritaanka dhiigga ee beerka (lever) ayaa mararka qaarkood loo baahan yahay – marka saas owgeed raac jadwalka ballamada ee dhakhtarku kuu dejiyey."
-        ]
-      },
-      ramadan: {
-        title: "Ramadaan iyo soonka",
-        small: "(Ramadan og faste)",
-        items: [
-          "Atorvastatin hal mar habeenkii ah badanaa, si fudud ayaa loo sii wadan karaa Ramadaanka.",
-          "Go'aan kaligaa ha qaadan, maadaama kolestaroolku uu korodho muddo dheer - ee la tasho dhakhtarka."
-        ]
-      },
-      food: {
-        title: "Cunto iyo cabitaan",
-        small: "(Mad og drikke)",
-        items: [
-          "Daawadan waxaa lagu qaadan karaa adigoon, cunto cunin ama adigoo, cunno la qaadanaya.",
-          "Ka fagoow liin baanbeelmada badan iyo khamriga, gaar ahaan haddii beerkaaga daciif yahay."
-        ]
-      },
-      store: {
-        title: "Kaydinta daawada",
-        small: "(Opbevaring)",
-        items: [
-          "Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" (daawada goorta ee dhacday), ama haddii oo midabka isbadalay. Wixii soo haray, weydii farmashiyaha - si loogu tuuro meesha ku habboon."
-        ]
-      }
+      use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
+        "Atorvastatin waa daawo <span class='highlight'>hoos u dhigta kolestaroolka</span> (kolesterol).",
+        "Waxay yareysaa halista wadne-istaag iyo faalig, gaar ahaan dadka leh kolestarool sare ama cudur wadne."
+      ]},
+      dose: { title:"Qiyaasta", small:"(Dosering)", items:[
+        "Atorvastatin waxaa la qaadan karaa <span class='highlight'>subax ama fiid</span> — waqtigu muhiim ma aha haddii aad si joogto ah u qaadato.",
+        "Waxay leedahay waqti-dheer oo jirka ku sii jiri karto (halveringstid dheer iyo metabolaytyo firfircoon), sidaas darteed saameyntu waa isku mid subax iyo fiid. Qaado waqti kuu fudud oo joogto ah."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
+        "Madax-xanuun ama calool-xanuun khafiif ah ayaa dhici kara.",
+        "Marar dhif ah ayaa murqo-xanuun adag ama daciifnimo (muskelsmerter - rabdomyolyse) u baahan dhakhtar degdeg ah – gaar ahaan haddii aad sidoo kale qandho leedahay."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
+        "Daawooyinka qaar ee fangaska (azole), qaar antibiyootiko ah iyo daawooyinka HIV waxay kordhin karaan heerka atorvastatin.",
+        "Cabitaanka badan ee liin baanbeelmada (grapefrugt), waxeey kordhin kartaa saameynta daawada — sidaas darteed waa in la xaddido."
+      ]},
+      warn: { title:"Digniino", small:"(Advarsler)", items:[
+        "Ha isticmaalin haddii aad uur leedahay ama nuujinayso; daawadu waxay dhaawici kartaa ilmaha.",
+        "Baaritaanka dhiigga ee beerka (lever) ayaa mararka qaarkood loo baahan yahay – marka saas owgeed raac jadwalka ballamada ee dhakhtarku kuu dejiyey."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
+        "Atorvastatin hal mar maalintii ayaa la qaataa, waxaana lagu qaadan karaa fiidkii ama <span class='highlight'>cuntada ka hor waaberiga (suhoor)</span>.",
+        "Go'aan kaligaa ha qaadan, maadaama kolestaroolku uu korodho muddo dheer - ee la tasho dhakhtarka."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
+        "Daawadan waxaa lagu qaadan karaa adigoon, cunto cunin ama adigoo, cunno la qaadanaya.",
+        "Ka fagoow liin baanbeelmada badan iyo khamriga, gaar ahaan haddii beerkaaga daciif yahay."
+      ]},
+      store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
+        "Ku hay daawada meel ka fog caruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" (daawada goorta ee dhacday), ama haddii oo midabka isbadalay. Wixii soo haray, weydii farmashiyaha - si loogu tuuro meesha ku habboon."
+      ]}
     },
     footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
     creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
@@ -411,8 +368,8 @@ const T = {
         "Det kan reducere risikoen for blodprop i hjertet og slagtilfælde, især ved forhøjet kolesterol eller hjertesygdom."
       ]},
       dose: { title:"Dosering", small:"", items:[
-        "Tages én gang dagligt, ofte om aftenen.",
-        "Dosis (fx 10–80 mg) fastsættes af lægen ud fra blodprøver."
+        "Tages én gang dagligt – <span class='highlight'>morgen eller aften</span>. Vælg det tidspunkt, der passer dig bedst.",
+        "Atorvastatin har lang virkningsvarighed (lang halveringstid og aktive metabolitter), så effekten er tilsvarende uanset tidspunkt. Tag helst på samme tidspunkt hver dag."
       ]},
       side: { title:"Bivirkninger", small:"", items:[
         "Hovedpine eller let mavebesvær kan forekomme.",
@@ -427,7 +384,7 @@ const T = {
         "Blodprøver for leverfunktion kan nogle gange være nødvendige – følg derfor lægens aftaler."
       ]},
       ramadan: { title:"Ramadan og faste", small:"", items:[
-        "Atorvastatin tages typisk én gang om aftenen og kan som regel fortsættes under ramadan.",
+        "Atorvastatin tages én gang dagligt og kan tages om aftenen eller ved måltidet før daggry (suhoor).",
         "Stop ikke på egen hånd – tal med lægen, da kolesterol påvirkes over længere tid."
       ]},
       food: { title:"Mad og drikke", small:"", items:[
@@ -455,8 +412,8 @@ const T = {
         "It can reduce the risk of heart attack and stroke, especially in people with high cholesterol or heart disease."
       ]},
       dose: { title:"Dosage", small:"", items:[
-        "Take once daily, often in the evening.",
-        "The dose (e.g., 10–80 mg) is decided by the doctor based on blood tests."
+        "Take once daily – <span class='highlight'>in the morning or in the evening</span>. Choose the time that suits you best.",
+        "Atorvastatin has a prolonged effect (long half-life and active metabolites), so the LDL-lowering effect is similar regardless of dosing time. Try to take it at the same time each day."
       ]},
       side: { title:"Side effects", small:"", items:[
         "Headache or mild stomach upset may occur.",
@@ -471,7 +428,7 @@ const T = {
         "Liver blood tests may sometimes be needed – follow your doctor’s appointment schedule."
       ]},
       ramadan: { title:"Ramadan and fasting", small:"", items:[
-        "Atorvastatin is usually taken once in the evening and can generally be continued during Ramadan.",
+        "Atorvastatin is taken once daily and can be taken in the evening or with the pre-dawn meal (suhoor).",
         "Do not decide on your own to stop; discuss with your doctor, as cholesterol changes over the long term."
       ]},
       food: { title:"Food and drink", small:"", items:[
@@ -499,8 +456,8 @@ const T = {
         "يساعد على تقليل خطر النوبة القلبية والسكتة الدماغية، خصوصاً عند ارتفاع الكوليسترول أو وجود مرض قلبي."
       ]},
       dose: { title:"الجرعة", small:"", items:[
-        "يُؤخذ مرة واحدة يومياً، غالباً في المساء.",
-        "الجرعة (مثل 10–80 ملغ) يحددها الطبيب بناءً على تحاليل الدم."
+        "يُؤخذ مرة واحدة يومياً — <span class='highlight'>صباحاً أو مساءً</span>. اختر الوقت الأنسب لك.",
+        "للأتورفاستاتين تأثير ممتد (عمر نصف طويل ومستقلبات فعّالة)، لذلك تكون الفعالية متشابهة بغض النظر عن وقت الجرعة. حاول تناوله في نفس الوقت يومياً."
       ]},
       side: { title:"الآثار الجانبية", small:"", items:[
         "قد يحدث صداع أو اضطراب خفيف في المعدة.",
@@ -515,7 +472,7 @@ const T = {
         "قد يلزم أحياناً إجراء فحوصات لوظائف الكبد – اتبع مواعيد الطبيب."
       ]},
       ramadan: { title:"رمضان والصيام", small:"", items:[
-        "عادةً يؤخذ الأتورفاستاتين مرة واحدة مساءً ويمكن غالباً الاستمرار عليه في رمضان.",
+        "يؤخذ أتورفاستاتين مرة واحدة يومياً ويمكن تناوله مساءً أو مع وجبة ما قبل الفجر (السحور).",
         "لا توقف الدواء من تلقاء نفسك؛ استشر الطبيب لأن تأثير الكوليسترول يكون على المدى الطويل."
       ]},
       food: { title:"الطعام والشراب", small:"", items:[
@@ -543,8 +500,8 @@ const T = {
         "Özellikle kolesterol yüksekliği veya kalp hastalığı olan kişilerde kalp krizi ve inme riskini azaltmaya yardımcı olur."
       ]},
       dose: { title:"Doz", small:"", items:[
-        "Günde bir kez alınır, genellikle akşam.",
-        "Doz (ör. 10–80 mg) kan tahlillerine göre doktor tarafından belirlenir."
+        "Günde bir kez alınır — <span class='highlight'>sabah veya akşam</span>. Size en uygun zamanı seçin.",
+        "Atorvastatin uzun etkili olduğu için (uzun yarı ömür ve aktif metabolitler) etki sabah ya da akşam alınsa da benzerdir. Mümkünse her gün aynı saatte alın."
       ]},
       side: { title:"Yan etkiler", small:"", items:[
         "Baş ağrısı veya hafif mide rahatsızlığı olabilir.",
@@ -559,8 +516,8 @@ const T = {
         "Bazen karaciğer kan testleri gerekebilir – doktorunuzun kontrol planına uyun."
       ]},
       ramadan: { title:"Ramazan ve oruç", small:"", items:[
-        "Genellikle akşam tek doz alındığı için Ramazan’da çoğu zaman devam edilebilir.",
-        "Kendi başınıza bırakmayın; kolesterol uzun vadede etkilenir, doktorunuza danışın."
+        "Atorvastatin günde bir kez alınır ve akşam veya gün doğumundan önceki öğünle (sahur) alınabilir.",
+        "Kendi başınıza bırakmayın; doktorunuza danışın, çünkü etki uzun vadede değerlendirilir."
       ]},
       food: { title:"Yiyecek ve içecek", small:"", items:[
         "Yemekle birlikte veya yemeksiz alınabilir.",
@@ -587,8 +544,8 @@ const T = {
         "یہ دل کے دورے اور فالج کے خطرے کو کم کرنے میں مدد دیتی ہے، خاص طور پر اگر کولیسٹرول زیادہ ہو یا دل کی بیماری ہو۔"
       ]},
       dose: { title:"خوراک", small:"", items:[
-        "روزانہ ایک بار لیں، عموماً شام میں۔",
-        "خوراک (مثلاً 10–80 mg) خون کے ٹیسٹ کی بنیاد پر ڈاکٹر طے کرتا ہے۔"
+        "روزانہ ایک بار لیں — <span class='highlight'>صبح یا شام</span>. جو وقت آپ کے لیے آسان ہو وہ منتخب کریں۔",
+        "یہ دوا دیر تک اثر کرتی ہے (طویل نیم حیات اور فعال میٹابولائٹس)، اس لیے صبح یا شام لینے سے اثر تقریباً ایک جیسا رہتا ہے۔ بہتر ہے روزانہ ایک ہی وقت پر لیں۔"
       ]},
       side: { title:"مضر اثرات", small:"", items:[
         "سر درد یا ہلکا پیٹ خراب ہو سکتا ہے۔",
@@ -603,8 +560,8 @@ const T = {
         "کبھی کبھی جگر کے خون کے ٹیسٹ ضروری ہوتے ہیں — ڈاکٹر کے طے کردہ شیڈول پر عمل کریں۔"
       ]},
       ramadan: { title:"رمضان اور روزہ", small:"", items:[
-        "یہ دوا عموماً شام میں روزانہ ایک بار لی جاتی ہے اور رمضان میں اکثر جاری رکھی جا سکتی ہے۔",
-        "اپنے طور پر دوا نہ روکیں؛ طویل مدت میں کولیسٹرول متاثر ہوتا ہے، ڈاکٹر سے مشورہ کریں۔"
+        "ایٹوروواسٹاٹن روزانہ ایک بار لیا جاتا ہے اور شام میں یا سحر سے پہلے کے کھانے کے ساتھ (سحری) لیا جا سکتا ہے۔",
+        "اپنے طور پر دوا نہ روکیں؛ ڈاکٹر سے مشورہ کریں، کیونکہ اثر طویل مدت میں دیکھا جاتا ہے۔"
       ]},
       food: { title:"کھانا پینا", small:"", items:[
         "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
@@ -631,8 +588,8 @@ const T = {
         "این دارو می‌تواند خطر سکتهٔ قلبی و سکتهٔ مغزی را کاهش دهد، به‌ویژه در افراد با کلسترول بالا یا بیماری قلبی."
       ]},
       dose: { title:"مقدار مصرف", small:"", items:[
-        "روزی یک‌بار مصرف می‌شود، معمولاً عصر یا شب.",
-        "دوز (مثلاً 10–80 mg) توسط پزشک و بر اساس آزمایش خون تعیین می‌شود."
+        "روزی یک‌بار مصرف می‌شود — <span class='highlight'>صبح یا شب</span>. زمانی را انتخاب کنید که برای شما راحت‌تر است.",
+        "آتورواستاتین اثر طولانی دارد (نیمه‌عمر طولانی و متابولیت‌های فعال)، بنابراین اثر آن صبح یا شب مشابه است. بهتر است هر روز در یک زمان ثابت مصرف شود."
       ]},
       side: { title:"عوارض جانبی", small:"", items:[
         "سردرد یا ناراحتی خفیف معده ممکن است رخ دهد.",
@@ -647,8 +604,8 @@ const T = {
         "گاهی آزمایش‌های عملکرد کبد لازم است — برنامهٔ ویزیت‌های پزشک را دنبال کنید."
       ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
-        "این دارو معمولاً یک‌بار در شب مصرف می‌شود و غالباً می‌توان آن را در رمضان ادامه داد.",
-        "خودسرانه دارو را قطع نکنید؛ دربارهٔ ادامه یا تغییر با پزشک مشورت کنید."
+        "آتورواستاتین روزی یک‌بار مصرف می‌شود و می‌تواند شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) مصرف شود.",
+        "خودسرانه دارو را قطع نکنید؛ با پزشک مشورت کنید چون اثر در بلندمدت ارزیابی می‌شود."
       ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "با غذا یا بدون غذا قابل مصرف است.",
@@ -675,8 +632,8 @@ const T = {
         "این دوا می‌تواند خطر حملهٔ قلبی و سکتۀ مغزی را کم کند، به‌خصوص در کسانی که کلسترول بلند یا بیماری قلبی دارند."
       ]},
       dose: { title:"مقدار مصرف", small:"", items:[
-        "روزی یک‌بار گرفته می‌شود، معمولاً شام/شب.",
-        "دوز (مثل 10–80 mg) توسط داکتر و بر اساس نتیجهٔ آزمایش خون تعیین می‌شود."
+        "روزی یک‌بار گرفته می‌شود — <span class='highlight'>صبح یا شام/شب</span>. زمانی را انتخاب کنید که برایتان آسان‌تر باشد.",
+        "آتورواستاتین اثر طولانی دارد (نیمه‌عمر طولانی و متابولیت‌های فعال)، بنابراین اثر آن صبح یا شب مشابه است. بهتر است هر روز در یک وقت ثابت گرفته شود."
       ]},
       side: { title:"عوارض جانبی", small:"", items:[
         "سردرد یا ناراحتی خفیف معده ممکن است رخ دهد.",
@@ -691,8 +648,8 @@ const T = {
         "گاهی آزمایش‌های کبد لازم می‌شود — برنامهٔ ویزیت‌های داکتر را دنبال کنید."
       ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
-        "این دوا معمولاً یک‌بار در شب گرفته می‌شود و در رمضان اکثر اوقات می‌توان ادامه داد.",
-        "خودسرانه قطع نکنید؛ با داکتر مشوره کنید، چون کلسترول در درازمدت تغییر می‌کند."
+        "آتورواستاتین روزانه یک بار گرفته می‌شود و می‌تواند شام یا همراه وعدهٔ پیش از سپیده‌دم (سحری) گرفته شود.",
+        "خودسرانه قطع نکنید؛ با داکتر مشوره کنید، چون اثر در درازمدت ارزیابی می‌شود."
       ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "با غذا یا بدون غذا گرفته می‌شود.",
@@ -719,8 +676,8 @@ const T = {
         "دا د زړه حملې او سکتې خطر کمولو کې مرسته کوي، په ځانګړي ډول د لوړې کولېسټرول یا د زړه د ناروغۍ په صورت کې."
       ]},
       dose: { title:"دوز", small:"", items:[
-        "په ورځ کې یو ځل واخلئ، ډېری وخت ماښام.",
-        "دوز (لکه 10–80 mg) د ډاکټر له خوا د وینې ازموینو پر بنسټ ټاکل کېږي."
+        "په ورځ کې یو ځل واخلئ — <span class='highlight'>سهار یا ماښام</span>. کوم وخت چې درته اسانه وي هماغه وټاکئ.",
+        "اټوروواسټاټین اوږد اثر لري (اوږده نیمه‌عمر او فعال مېتابولایټونه)، نو سهار یا ماښام اخیستل یې اغېزه نږدې یو شان ده. غوره ده هره ورځ په یو ثابت وخت واخیستل شي."
       ]},
       side: { title:"اړخیزې اغېزې", small:"", items:[
         "سر درد یا د معدې لږ ناراحتي کېدای شي رامنځته شي.",
@@ -735,8 +692,8 @@ const T = {
         "کله ناکله د ځیګر د وینې ازموینې اړینې وي — د ډاکټر د ملاقاتونو پلان تعقیب کړئ."
       ]},
       ramadan: { title:"رمضان او روژه", small:"", items:[
-        "دا درمل معمولاً د شپې یو ځل اخیستل کېږي او په رمضان کې اکثره دوام ورکول کېدای شي.",
-        "خپله پرېکړه مه کوئ؛ له ډاکټر سره مشوره وکړئ، ځکه کولېسټرول په اوږدمهال کې اغېزمنېږي."
+        "اټوروواسټاټین په ورځ کې یو ځل اخیستل کېږي او ماښام یا د سهار له لمرختو مخکې له خوراک سره (سحري) اخیستل کېدای شي.",
+        "خپله پرېکړه مه کوئ؛ له ډاکټر سره مشوره وکړئ، ځکه اغېزه په اوږدمهال کې ارزول کېږي."
       ]},
       food: { title:"خواړه او څښاک", small:"", items:[
         "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
@@ -761,7 +718,7 @@ function fillList(listId, items){
   ul.innerHTML = "";
   items.forEach(html => {
     const li = document.createElement("li");
-    li.innerHTML = html; // vi kontrollerer indholdet (one-file)
+    li.innerHTML = html;
     ul.appendChild(li);
   });
 }
@@ -770,7 +727,6 @@ function render(lang){
   const d = T[lang] || T.so;
 
   setDirLang(lang);
-
   document.title = d.title;
 
   document.getElementById("hdrTitle").textContent = d.title;
@@ -819,9 +775,7 @@ function render(lang){
   document.getElementById("credit").innerHTML = d.creditHTML;
 }
 
-// start in Somalisk
 render("so");
-
 document.getElementById("langSelect").addEventListener("change", function(){
   render(this.value);
 });
