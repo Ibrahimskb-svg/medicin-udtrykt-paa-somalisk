@@ -4,317 +4,775 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Paracetamol – xanuun &amp; qandho</title>
+
 <style>
+body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+header h1 { margin:0 0 4px; font-size:1.8rem; }
+header p { margin:0; font-size:0.95rem; }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #e6f2f8;
-  color: #123047;
-  margin: 0;
+main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
+a.back span { font-size:1.1rem; }
+
+.langbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  background:#ffffff; border-radius:12px; padding:10px 12px;
+  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
+  border-left:4px solid #00a676;
 }
-header {
-  background: linear-gradient(135deg, #0066cc, #00a676);
-  color: #fff;
-  padding: 22px 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header h1 {
-  margin: 0 0 4px;
-  font-size: 1.8rem;
-}
-header p {
-  margin: 0;
-  font-size: 0.95rem;
-}
-main {
-  max-width: 820px;
-  margin: 18px auto 32px;
-  padding: 0 14px;
-}
-a.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
-  text-decoration: none;
-  color: #00509e;
-  font-size: 0.9rem;
-}
-a.back span {
-  font-size: 1.1rem;
-}
-.card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 16px 16px 10px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-  border-top: 4px solid #00a676;
-}
-.drug-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.drug-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.drug-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #e3f2fd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.drug-icon svg {
-  width: 30px;
-  height: 30px;
-}
-.drug-labels {
-  display: flex;
-  flex-direction: column;
-}
-.drug-name {
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-.drug-form {
-  font-size: 0.82rem;
-  color: #29516e;
-}
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #d9f6e8;
-  color: #16634a;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-}
-.section {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed #d0d7e2;
-}
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-.section-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: #123047;
-}
-.section-icon.use { background:#e3f2fd; }
-.section-icon.dose { background:#e2f5ea; }
-.section-icon.side { background:#fff3e0; }
-.section-icon.interact { background:#ede7f6; }
-.section-icon.warn { background:#ffebee; }
-.section-icon.ramadan { background:#e0f7fa; }
-.section-icon.food { background:#f1f8e9; }
-.section-icon.store { background:#edeff9; }
-.section-title {
-  font-weight: 700;
-  color: #123047;
-  font-size: 0.96rem;
-}
-.section-title small {
-  font-weight: 400;
-  color: #607089;
-}
-.section ul {
-  margin: 0 0 4px 18px;
-  padding-left: 0;
-  font-size: 0.92rem;
-}
-.section ul li {
-  margin-bottom: 4px;
-}
-.highlight {
-  font-weight: 600;
-}
-.footer-note {
-  font-size: 0.8rem;
-  color: #607089;
-  text-align: center;
-  margin: 18px 0 10px;
-}
-.index-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.index-list li {
-  margin-bottom: 8px;
-}
-.index-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 10px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
-  color: #123047;
-}
-.index-link:hover {
-  background: #f1f8ff;
-}
-.index-left {
-  display: flex;
-  flex-direction: column;
-}
-.index-title {
-  font-weight: 600;
-  font-size: 0.96rem;
-}
-.index-sub {
-  font-size: 0.8rem;
-  color: #607089;
-}
-.index-icon {
-  font-size: 1.2rem;
-}
-@media (max-width: 600px) {
-  header h1 { font-size: 1.5rem; }
+.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar select{
+  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
+  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
 }
 
+.card{
+  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
+}
+.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
+.drug-info{ display:flex; align-items:center; gap:10px; }
+.drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
+.drug-icon svg{ width:30px; height:30px; }
+.drug-labels{ display:flex; flex-direction:column; }
+.drug-name{ font-weight:600; font-size:0.95rem; }
+.drug-form{ font-size:0.82rem; color:#29516e; }
+.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-icon{
+  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+  font-size:0.9rem; color:#123047;
+}
+.section-icon.use{ background:#e3f2fd; }
+.section-icon.dose{ background:#e2f5ea; }
+.section-icon.side{ background:#fff3e0; }
+.section-icon.interact{ background:#ede7f6; }
+.section-icon.warn{ background:#ffebee; }
+.section-icon.ramadan{ background:#e0f7fa; }
+.section-icon.food{ background:#f1f8e9; }
+.section-icon.store{ background:#edeff9; }
+
+.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
+.section-title small{ font-weight:400; color:#607089; }
+
+.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
+.section ul li{ margin-bottom:4px; }
+
+.highlight{ font-weight:600; }
+
+.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
+@media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
 </head>
+
 <body>
 <header>
-  <h1>Paracetamol – xanuun &amp; qandho</h1>
-  <p>Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <h1 id="hdrH1">Paracetamol – xanuun &amp; qandho</h1>
+  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
+
 <main>
-  <a href="index.html" class="back"><span>←</span><span>Ku laabo liiska daawooyinka</span></a>
+
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
+  </div>
+
+  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+
   <div class="card">
+
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
-          
-
-
-<svg viewBox="0 0 64 64">
-  <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-  <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
-</svg>
-
-
-
+          <svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name">Paracetamol – xanuun &amp; qandho</div>
-          <div class="drug-form">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Paracetamol – xanuun &amp; qandho</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
         </div>
       </div>
-      <div class="badge">Akhris fudud oo kooban</div>
+      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
     </div>
-    
+
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-title" id="sec1Title">Isticmaalka <small>(Anvendelse)</small></div>
       </div>
-      <ul>
-        <li>Daawadan waxaa loo isticmaalaa <span class='highlight'>xanuun fudud</span> iyo <span class='highlight'>qandho</span> sida madax-xanuun, ilko-xanuun iyo murqo xanuun (muskelsmerter).</li><li>Waa daawo aan xanuunka kaa suulinayn ama kaa qaadayn, laakiin waxay kaa caawineysaa in xanuunku yaraado oo aad ka nasato.</li>
-      </ul>
+      <ul id="sec1List"></ul>
     </div>
-    
+
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-title" id="sec2Title">Qiyaasta <small>(Dosering)</small></div>
       </div>
-      <ul>
-        <li>Qofka weyn (voksne): 500–1000 mg mar, ugu badnaan 4 jeer maalintii.</li><li>Ha dhaafin <span class='highlight'>4 gram maalintii</span> (4000 mg).</li><li>Caruurta: qiyaasta waxaa lagu saleeyaa miisaanka (vægt) – raac qoraalka ama talada dhakhtarka iyo farmashiyaha.</li>
-      </ul>
+      <ul id="sec2List"></ul>
     </div>
-    
+
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title" id="sec3Title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
       </div>
-      <ul>
-        <li>Badanaa wuu fiican yahay. Laakiin marar dhif ah, waxaa uu keenaa finan, cuncun ama neef-qabatin oo xasaasiyad (allergi) ah.</li><li>Haddii aad qaadato qiyaas aad u badan muddo dheer, beerka (leveren) wuu dhaawaci karaa.</li>
-      </ul>
+      <ul id="sec3List"></ul>
     </div>
-    
+
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title" id="sec4Title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
       </div>
-      <ul>
-        <li>Ka taxaddar haddii aad qaadato daawooyin kale oo qandho/xanuun ah oo isla paracetamol ku jiro (tusaale daawo hargab).</li><li>Had iyo jeer u sheeg farmashiyaha daawo kasta aad isticmaasho.</li>
-      </ul>
+      <ul id="sec4List"></ul>
     </div>
-    
+
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title" id="sec5Title">Digniino <small>(Advarsler)</small></div>
       </div>
-      <ul>
-        <li>Ha qaadan qiyaas ka badan tan lagu qoray baakadka, ama uu dhakhtarku kuu sheegay.</li><li>Haddii xanuunka ama qandhada aanad ka caafimaadin, ama ka bogsoon 3–5 maalmood gudahood, la xiriir dhakhtarka.</li>
-      </ul>
+      <ul id="sec5List"></ul>
     </div>
-    
+
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-title" id="sec6Title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
       </div>
-      <ul>
-        <li>Kaniiniga afka (tablet) wuxuu jebinayaa soonka maalinta Ramadaanka.</li><li>Haddii ee suurtagaltahay, qorshee qiyaasta in aad qaadato fiidkii (afurka) ama suxuurta.</li><li>Haddii aad, aad u xanuunsan tahay, la hadal dhakhtarka si aad u hesho ogolansho.</li>
-      </ul>
+      <ul id="sec6List"></ul>
     </div>
-    
+
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title" id="sec7Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
       </div>
-      <ul>
-        <li>Paracetamol waxaa la qaadan karaa cuntada ka hor ama cuntada ka dib.</li><li>Haddii aad calool xanuun isku ogtahay, cunto yar ka hormari.</li>
-      </ul>
+      <ul id="sec7List"></ul>
     </div>
-    
-   <div class="section">
-  <div class="section-header">
-    <div class="section-icon store">⧉</div>
-    <div class="section-title">Kaydinta daawada <small>(Opbevaring)</small></div>
-  </div>
-  <ul>
-    <li>Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda "EXP" (daawada goorta ee dhacday), ama haddii midabka isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon.</li>
-  </ul>
-</div>
 
-  <div class="footer-note">
-    Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class="highlight">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)</div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon store">⧉</div>
+        <div class="section-title" id="sec8Title">Kaydinta daawada <small>(Opbevaring)</small></div>
+      </div>
+      <ul id="sec8List"></ul>
+    </div>
+
+  </div>
+
+  <div class="footer-note" id="footer1"></div>
+  <div class="footer-note" id="footer2"></div>
+
 </main>
-<div class="footer-note">
-  Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf
-<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
-</div>
+
+<script>
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+const T = {
+  so: {
+    pageTitle: "Paracetamol – xanuun & qandho",
+    hdrH1: "Paracetamol – xanuun & qandho",
+    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    backText: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    drugName: "Paracetamol – xanuun & qandho",
+    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    badgeText: "Akhris fudud oo kooban",
+
+    sec1Title: "Isticmaalka (Anvendelse)",
+    sec1: [
+      "Daawadan waxaa loo isticmaalaa <span class='highlight'>xanuun fudud</span> iyo <span class='highlight'>qandho</span> sida madax-xanuun, ilko-xanuun iyo murqo xanuun (muskelsmerter).",
+      "Waa daawo aan xanuunka kaa suulinayn ama kaa qaadayn, laakiin waxay kaa caawineysaa in xanuunku yaraado oo aad ka nasato."
+    ],
+
+    sec2Title: "Qiyaasta (Dosering)",
+    sec2: [
+      "Qofka weyn (voksne): <span class='highlight'>500–1000 mg</span> mar, ugu badnaan 4 jeer maalintii.",
+      "Ha dhaafin <span class='highlight'>4 gram maalintii</span> (4000 mg).",
+      "Caruurta: qiyaasta waxaa lagu saleeyaa miisaanka (vægt) – raac qoraalka ama talada dhakhtarka iyo farmashiyaha."
+    ],
+
+    sec3Title: "Waxyeellooyinka (Bivirkninger)",
+    sec3: [
+      "Badanaa wuu fiican yahay. Laakiin marar dhif ah, wuxuu keenaa finan, cuncun ama neef-qabatin oo xasaasiyad (allergi) ah.",
+      "Haddii aad qaadato qiyaas aad u badan muddo dheer, beerka (leveren) wuu dhaawaci karaa."
+    ],
+
+    sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
+    sec4: [
+      "Ka taxaddar haddii aad qaadato daawooyin kale oo qandho/xanuun ah oo isla paracetamol ku jiro (tusaale daawo hargab).",
+      "Had iyo jeer u sheeg farmashiyaha daawo kasta aad isticmaasho."
+    ],
+
+    sec5Title: "Digniino (Advarsler)",
+    sec5: [
+      "Ha qaadan qiyaas ka badan tan lagu qoray baakadka, ama uu dhakhtarku kuu sheegay.",
+      "Haddii xanuunka ama qandhada aanad ka caafimaadin 3–5 maalmood gudahood, la xiriir dhakhtarka."
+    ],
+
+    sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
+    sec6: [
+      "Kaniiniga afka (tablet) wuxuu jebinayaa soonka maalinta Ramadaanka.",
+      "Haddii ay suurtagal tahay, qorshee qiyaasta in aad qaadato fiidkii (afurka) ama suxuurta.",
+      "Haddii aad aad u xanuunsan tahay, la hadal dhakhtarka si aad u hesho ogolansho."
+    ],
+
+    sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
+    sec7: [
+      "Paracetamol waxaa la qaadan karaa cuntada ka hor ama cuntada ka dib.",
+      "Haddii aad calool xanuun isku ogtahay, cunto yar ka hormari."
+    ],
+
+    sec8Title: "Kaydinta daawada (Opbevaring)",
+    sec8: [
+      "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
+      "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
+      "Ha qaadan daawada marka ay dhaafto taariikhda “EXP”. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+    ],
+
+    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  da: {
+    pageTitle: "Paracetamol – smerter og feber",
+    hdrH1: "Paracetamol – smerter og feber",
+    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
+    backText: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    drugName: "Paracetamol – smerter og feber",
+    drugForm: "Tablet (til at tage gennem munden)",
+    badgeText: "Kort og let",
+
+    sec1Title: "Anvendelse",
+    sec1: [
+      "Bruges mod <span class='highlight'>lette smerter</span> og <span class='highlight'>feber</span> (fx hovedpine, tandpine og muskelsmerter).",
+      "Det fjerner ikke årsagen til smerterne, men kan hjælpe dig med at få det bedre."
+    ],
+    sec2Title: "Dosering",
+    sec2: [
+      "Voksne: <span class='highlight'>500–1000 mg</span> pr. gang, højst 4 gange dagligt.",
+      "Maks <span class='highlight'>4 gram pr. døgn</span> (4000 mg).",
+      "Børn: doseres efter vægt – følg anvisning fra læge/apotek."
+    ],
+    sec3Title: "Bivirkninger",
+    sec3: [
+      "Tåles oftest godt. Sjældent udslæt, kløe eller vejrtrækningsbesvær (allergi).",
+      "For høj dosis over længere tid kan skade leveren."
+    ],
+    sec4Title: "Interaktioner",
+    sec4: [
+      "Pas på med andre produkter der også indeholder paracetamol (fx forkølelsesmidler).",
+      "Fortæl apoteket hvilke andre lægemidler du bruger."
+    ],
+    sec5Title: "Advarsler",
+    sec5: [
+      "Tag ikke mere end der står på pakken eller som lægen har sagt.",
+      "Kontakt læge hvis feber/smerter ikke bedres inden for 3–5 dage."
+    ],
+    sec6Title: "Ramadan og faste",
+    sec6: [
+      "Tablet gennem munden bryder fasten.",
+      "Hvis muligt, planlæg dosis til efter iftar eller ved suhoor.",
+      "Ved svær sygdom: tal med lægen om hvad der er bedst."
+    ],
+    sec7Title: "Mad og drikke",
+    sec7: [
+      "Kan tages både med og uden mad.",
+      "Hvis du får mavegener, kan du tage det sammen med lidt mad."
+    ],
+    sec8Title: "Opbevaring",
+    sec8: [
+      "Opbevares utilgængeligt for børn, under 25°C og i original emballage.",
+      "Brug ikke efter “EXP”. Aflever rester på apoteket."
+    ],
+
+    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    pageTitle: "Paracetamol – pain and fever",
+    hdrH1: "Paracetamol – pain and fever",
+    hdrP: "Brief medicine information for patients and relatives.",
+    backText: "Back to the medicine list",
+    langLabel: "Choose language:",
+    drugName: "Paracetamol – pain and fever",
+    drugForm: "Tablet (by mouth)",
+    badgeText: "Short and clear",
+
+    sec1Title: "Use",
+    sec1: [
+      "Used for <span class='highlight'>mild pain</span> and <span class='highlight'>fever</span> (e.g., headache, toothache, muscle pain).",
+      "It does not treat the cause, but can reduce symptoms and help you feel better."
+    ],
+    sec2Title: "Dose",
+    sec2: [
+      "Adults: <span class='highlight'>500–1000 mg</span> per dose, up to 4 times daily.",
+      "Max <span class='highlight'>4 grams per day</span> (4000 mg).",
+      "Children: dose is based on weight — follow advice from your doctor/pharmacy."
+    ],
+    sec3Title: "Side effects",
+    sec3: [
+      "Usually well tolerated. Rarely rash, itching, or breathing difficulty (allergy).",
+      "Too high doses over time can damage the liver."
+    ],
+    sec4Title: "Interactions",
+    sec4: [
+      "Be careful with other products that also contain paracetamol (e.g., cold/flu medicines).",
+      "Tell the pharmacy about other medicines you use."
+    ],
+    sec5Title: "Warnings",
+    sec5: [
+      "Do not exceed the dose on the package or prescribed by your doctor.",
+      "Contact a doctor if pain/fever does not improve within 3–5 days."
+    ],
+    sec6Title: "Ramadan and fasting",
+    sec6: [
+      "Oral tablets break the fast.",
+      "If possible, plan doses after iftar or at suhoor.",
+      "If you are very unwell, talk to a doctor about what is safest."
+    ],
+    sec7Title: "Food and drink",
+    sec7: [
+      "Can be taken with or without food.",
+      "If you get stomach upset, take it with a small amount of food."
+    ],
+    sec8Title: "Storage",
+    sec8: [
+      "Keep out of reach of children, below 25°C, in the original package.",
+      "Do not use after “EXP”. Return leftovers to the pharmacy."
+    ],
+
+    footer1: "If you need more information, contact your pharmacy or doctor.",
+    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    pageTitle: "باراسيتامول – ألم وحمى",
+    hdrH1: "باراسيتامول – ألم وحمى",
+    hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
+    backText: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    drugName: "باراسيتامول – ألم وحمى",
+    drugForm: "أقراص (عن طريق الفم)",
+    badgeText: "مختصر وواضح",
+
+    sec1Title: "الاستخدام",
+    sec1: [
+      "يستخدم لتخفيف <span class='highlight'>الألم الخفيف</span> و<span class='highlight'>الحمّى</span> (مثل الصداع وألم الأسنان وآلام العضلات).",
+      "لا يعالج السبب لكنه يخفف الأعراض."
+    ],
+    sec2Title: "الجرعة",
+    sec2: [
+      "البالغون: <span class='highlight'>500–1000 ملغ</span> في الجرعة، حتى 4 مرات يومياً.",
+      "الحد الأقصى <span class='highlight'>4 غرام يومياً</span> (4000 ملغ).",
+      "الأطفال: الجرعة حسب الوزن — اتبع تعليمات الطبيب/الصيدلية."
+    ],
+    sec3Title: "الآثار الجانبية",
+    sec3: [
+      "غالباً يتحمل جيداً. نادراً طفح/حكة/ضيق نفس (حساسية).",
+      "الجرعات العالية لفترة طويلة قد تضر الكبد."
+    ],
+    sec4Title: "التداخلات",
+    sec4: [
+      "احذر من أدوية الزكام التي تحتوي أيضاً على باراسيتامول.",
+      "أخبر الصيدلية بكل الأدوية التي تتناولها."
+    ],
+    sec5Title: "تحذيرات",
+    sec5: [
+      "لا تتجاوز الجرعة المكتوبة على العبوة أو الموصوفة من الطبيب.",
+      "راجع الطبيب إذا لم تتحسن الأعراض خلال 3–5 أيام."
+    ],
+    sec6Title: "رمضان والصيام",
+    sec6: [
+      "الأقراص الفموية تُفطر.",
+      "إن أمكن، خذ الجرعة بعد الإفطار أو وقت السحور.",
+      "إذا كنت مريضاً جداً، استشر الطبيب."
+    ],
+    sec7Title: "الطعام والشراب",
+    sec7: [
+      "يمكن تناوله مع أو بدون طعام.",
+      "إذا سبب إزعاجاً للمعدة خذه مع لقمة خفيفة."
+    ],
+    sec8Title: "الحفظ",
+    sec8: [
+      "يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.",
+      "لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."
+    ],
+
+    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
+  },
+
+  tr: {
+    pageTitle: "Parasetamol – ağrı ve ateş",
+    hdrH1: "Parasetamol – ağrı ve ateş",
+    hdrP: "Hasta ve yakınları için kısa bilgi.",
+    backText: "İlaç listesine geri dön",
+    langLabel: "Dil seçin:",
+    drugName: "Parasetamol – ağrı ve ateş",
+    drugForm: "Tablet (ağızdan)",
+    badgeText: "Kısa ve anlaşılır",
+
+    sec1Title: "Kullanım",
+    sec1: [
+      "<span class='highlight'>Hafif ağrı</span> ve <span class='highlight'>ateş</span> için kullanılır (baş ağrısı, diş ağrısı, kas ağrısı).",
+      "Nedeni tedavi etmez, belirtileri azaltır."
+    ],
+    sec2Title: "Doz",
+    sec2: [
+      "Yetişkin: <span class='highlight'>500–1000 mg</span> tek doz, günde en fazla 4 kez.",
+      "Maks <span class='highlight'>günde 4 gram</span> (4000 mg).",
+      "Çocuk: doz kiloya göre — doktor/eczane önerisini izleyin."
+    ],
+    sec3Title: "Yan etkiler",
+    sec3: [
+      "Genelde iyi tolere edilir. Nadiren döküntü/kaşıntı/nefes darlığı (alerji).",
+      "Uzun süre yüksek doz karaciğere zarar verebilir."
+    ],
+    sec4Title: "Etkileşimler",
+    sec4: [
+      "Parasetamol içeren diğer ürünlerle (soğuk algınlığı ilaçları) dikkatli olun.",
+      "Kullandığınız diğer ilaçları eczacıya söyleyin."
+    ],
+    sec5Title: "Uyarılar",
+    sec5: [
+      "Kutudaki veya doktorun söylediği dozu aşmayın.",
+      "3–5 gün içinde düzelmezse doktora başvurun."
+    ],
+    sec6Title: "Ramazan ve oruç",
+    sec6: [
+      "Ağızdan alınan tablet orucu bozar.",
+      "Mümkünse dozu iftardan sonra veya sahurda planlayın.",
+      "Çok hastaysanız doktorla görüşün."
+    ],
+    sec7Title: "Yemek ve içecek",
+    sec7: [
+      "Yemekle veya yemeksiz alınabilir.",
+      "Mide rahatsızlığı olursa az yemekle alın."
+    ],
+    sec8Title: "Saklama",
+    sec8: [
+      "Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.",
+      "“EXP” sonrası kullanmayın. Artanları eczaneye verin."
+    ],
+
+    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur: {
+    pageTitle: "پیراسیٹامول – درد اور بخار",
+    hdrH1: "پیراسیٹامول – درد اور بخار",
+    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText: "فہرست پر واپس",
+    langLabel: "زبان منتخب کریں:",
+    drugName: "پیراسیٹامول – درد اور بخار",
+    drugForm: "گولی (منہ کے ذریعے)",
+    badgeText: "مختصر اور واضح",
+
+    sec1Title: "استعمال",
+    sec1: [
+      "<span class='highlight'>ہلکے درد</span> اور <span class='highlight'>بخار</span> کے لیے (سر درد، دانت درد، پٹھوں کا درد)۔",
+      "وجہ کا علاج نہیں کرتا مگر علامات کم کرتا ہے۔"
+    ],
+    sec2Title: "خوراک",
+    sec2: [
+      "بالغ: <span class='highlight'>500–1000 mg</span> فی خوراک، دن میں زیادہ سے زیادہ 4 بار۔",
+      "زیادہ سے زیادہ <span class='highlight'>4 گرام روزانہ</span> (4000 mg)۔",
+      "بچے: خوراک وزن کے مطابق — ڈاکٹر/فارمیسی کی ہدایت پر عمل کریں۔"
+    ],
+    sec3Title: "مضر اثرات",
+    sec3: [
+      "اکثر ٹھیک رہتا ہے۔ شاذونادر خارش/دانے/سانس میں مشکل (الرجی)۔",
+      "زیادہ مقدار طویل عرصہ لینے سے جگر کو نقصان ہو سکتا ہے۔"
+    ],
+    sec4Title: "دواؤں کے باہمی اثرات",
+    sec4: [
+      "دیگر ادویات میں بھی پیراسیٹامول ہو سکتا ہے (زکام کی دوا) — احتیاط کریں۔",
+      "دوسری ادویات کے بارے میں فارمیسی کو بتائیں۔"
+    ],
+    sec5Title: "احتیاطیں",
+    sec5: [
+      "پیک پر لکھی یا ڈاکٹر کی بتائی خوراک سے زیادہ نہ لیں۔",
+      "3–5 دن میں افاقہ نہ ہو تو ڈاکٹر سے رابطہ کریں۔"
+    ],
+    sec6Title: "رمضان اور روزہ",
+    sec6: [
+      "منہ کے ذریعے گولی روزہ توڑتی ہے۔",
+      "ممکن ہو تو افطار کے بعد یا سحری میں لیں۔",
+      "اگر بہت بیمار ہیں تو ڈاکٹر سے مشورہ کریں۔"
+    ],
+    sec7Title: "کھانا پینا",
+    sec7: [
+      "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
+      "اگر معدہ خراب ہو تو تھوڑے کھانے کے ساتھ لیں۔"
+    ],
+    sec8Title: "محفوظ رکھنا",
+    sec8: [
+      "بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔",
+      "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"
+    ],
+
+    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa: {
+    pageTitle: "استامینوفن – درد و تب",
+    hdrH1: "استامینوفن – درد و تب",
+    hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
+    backText: "بازگشت به فهرست",
+    langLabel: "انتخاب زبان:",
+    drugName: "استامینوفن – درد و تب",
+    drugForm: "قرص (خوراکی)",
+    badgeText: "کوتاه و روشن",
+
+    sec1Title: "مصرف",
+    sec1: [
+      "برای <span class='highlight'>درد خفیف</span> و <span class='highlight'>تب</span> (سردرد، دندان‌درد، درد عضلات).",
+      "علت را درمان نمی‌کند، اما علائم را کاهش می‌دهد."
+    ],
+    sec2Title: "دوز",
+    sec2: [
+      "بزرگسالان: <span class='highlight'>500–1000 mg</span> هر بار، حداکثر 4 بار در روز.",
+      "حداکثر <span class='highlight'>4 گرم در روز</span> (4000 mg).",
+      "کودکان: بر اساس وزن — طبق دستور پزشک/داروخانه."
+    ],
+    sec3Title: "عوارض",
+    sec3: [
+      "اغلب خوب تحمل می‌شود. به ندرت راش/خارش/تنگی نفس (حساسیت).",
+      "مصرف زیاد در طولانی‌مدت می‌تواند به کبد آسیب بزند."
+    ],
+    sec4Title: "تداخلات",
+    sec4: [
+      "در داروهای سرماخوردگی ممکن است استامینوفن هم باشد — احتیاط کنید.",
+      "به داروخانه بگویید چه داروهای دیگری مصرف می‌کنید."
+    ],
+    sec5Title: "هشدارها",
+    sec5: [
+      "بیش از مقدار درج‌شده روی بسته یا توصیه پزشک مصرف نکنید.",
+      "اگر طی 3–5 روز بهتر نشدید، با پزشک تماس بگیرید."
+    ],
+    sec6Title: "رمضان و روزه",
+    sec6: [
+      "قرص خوراکی روزه را باطل می‌کند.",
+      "در صورت امکان بعد از افطار یا در سحری مصرف شود.",
+      "اگر خیلی بیمار هستید با پزشک مشورت کنید."
+    ],
+    sec7Title: "غذا و نوشیدنی",
+    sec7: [
+      "با غذا یا بدون غذا قابل مصرف است.",
+      "اگر معده‌تان اذیت می‌شود با کمی غذا مصرف کنید."
+    ],
+    sec8Title: "نگهداری",
+    sec8: [
+      "دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی نگهداری شود.",
+      "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."
+    ],
+
+    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs: {
+    pageTitle: "استامینوفن – درد و تب",
+    hdrH1: "استامینوفن – درد و تب",
+    hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText: "بازگشت به فهرست",
+    langLabel: "انتخاب زبان:",
+    drugName: "استامینوفن – درد و تب",
+    drugForm: "قرص (خوراکی)",
+    badgeText: "کوتاه و واضح",
+
+    sec1Title: "استفاده",
+    sec1: [
+      "برای <span class='highlight'>درد خفیف</span> و <span class='highlight'>تب</span> (سردرد، دندان‌درد، درد عضلات).",
+      "علت را درمان نمی‌کند، اما علایم را کم می‌کند."
+    ],
+    sec2Title: "دوز",
+    sec2: [
+      "بزرگسالان: <span class='highlight'>500–1000 mg</span> هر بار، حد اکثر 4 بار در روز.",
+      "حد اکثر <span class='highlight'>4 گرام در روز</span> (4000 mg).",
+      "اطفال: بر اساس وزن — طبق دستور داکتر/دواخانه."
+    ],
+    sec3Title: "عوارض",
+    sec3: [
+      "اکثر خوب تحمل می‌شود. به ندرت راش/خارش/تنگی نفس (حساسیت).",
+      "مصرف زیاد در مدت طولانی می‌تواند به جگر آسیب بزند."
+    ],
+    sec4Title: "تداخلات",
+    sec4: [
+      "در دواهای سرماخوردگی ممکن است استامینوفن هم باشد — احتیاط کنید.",
+      "به دواخانه بگویید چه دواهای دیگری می‌گیرید."
+    ],
+    sec5Title: "هشدارها",
+    sec5: [
+      "بیش از مقدار روی بسته یا توصیه داکتر مصرف نکنید.",
+      "اگر طی 3–5 روز بهتر نشدید، با داکتر تماس بگیرید."
+    ],
+    sec6Title: "رمضان و روزه",
+    sec6: [
+      "قرص خوراکی روزه را باطل می‌کند.",
+      "اگر ممکن باشد بعد از افطار یا در سحری مصرف شود.",
+      "اگر خیلی مریض هستید با داکتر مشوره کنید."
+    ],
+    sec7Title: "غذا و نوشیدنی",
+    sec7: [
+      "با غذا یا بدون غذا مصرف می‌شود.",
+      "اگر معده‌تان اذیت می‌شود با کمی غذا بگیرید."
+    ],
+    sec8Title: "نگهداری",
+    sec8: [
+      "دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی نگهداری شود.",
+      "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."
+    ],
+
+    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
+    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps: {
+    pageTitle: "پراسټامول – درد او تبه",
+    hdrH1: "پراسټامول – درد او تبه",
+    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText: "لېست ته بېرته",
+    langLabel: "ژبه وټاکئ:",
+    drugName: "پراسټامول – درد او تبه",
+    drugForm: "ګولۍ (د خولې له لارې)",
+    badgeText: "لنډ او روښانه",
+
+    sec1Title: "کارونه",
+    sec1: [
+      "د <span class='highlight'>سپکو دردونو</span> او <span class='highlight'>تبې</span> لپاره (سر درد، د غاښ درد، د عضلو درد).",
+      "سبب نه درملوي، خو نښې کموي."
+    ],
+    sec2Title: "دوز",
+    sec2: [
+      "لویان: <span class='highlight'>500–1000 mg</span> هر ځل، تر 4 ځله په ورځ کې.",
+      "اعظمي <span class='highlight'>4 ګرامه په ورځ کې</span> (4000 mg).",
+      "ماشومان: د وزن له مخې — د ډاکټر/درملتون لارښوونې تعقیب کړئ."
+    ],
+    sec3Title: "اړخیزې اغېزې",
+    sec3: [
+      "اکثر ښه زغمل کېږي. نادره دانه/خارښت/ساه لنډي (الرجي).",
+      "لوړ دوز اوږدمهاله استعمال د ځیګر زیانمنولای شي."
+    ],
+    sec4Title: "تداخلات",
+    sec4: [
+      "په زکام/فلو درملو کې هم پراسټامول کېدای شي — احتیاط وکړئ.",
+      "نور درمل ډاکټر/درملتون ته ووایئ."
+    ],
+    sec5Title: "خبرداری",
+    sec5: [
+      "له بسته یا د ډاکټر له سپارښتنې زیات مه اخلئ.",
+      "که په 3–5 ورځو کې ښه نه شوئ، له ډاکټر سره اړیکه ونیسئ."
+    ],
+    sec6Title: "رمضان او روژه",
+    sec6: [
+      "د خولې له لارې ګولۍ روژه ماتوي.",
+      "که ممکن وي، له افطار وروسته یا په سحري کې واخلئ.",
+      "که ډېر ناروغ یاست، له ډاکټر سره مشوره وکړئ."
+    ],
+    sec7Title: "خواړه او څښاک",
+    sec7: [
+      "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
+      "که معده مو اذیتېږي، له لږو خوړو سره یې واخلئ."
+    ],
+    sec8Title: "ساتنه",
+    sec8: [
+      "له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې وساتئ.",
+      "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."
+    ],
+
+    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+function fillList(id, arr){
+  const ul = document.getElementById(id);
+  ul.innerHTML = "";
+  (arr || []).forEach(txt => {
+    const li = document.createElement("li");
+    li.innerHTML = txt;
+    ul.appendChild(li);
+  });
+}
+function applyLang(lang){
+  const d = T[lang] || T.so;
+  setDirLang(lang);
+
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.getElementById("hdrP").textContent = d.hdrP;
+  document.getElementById("backText").textContent = d.backText;
+  document.getElementById("langLabel").textContent = d.langLabel;
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("badgeText").textContent = d.badgeText;
+
+  document.getElementById("sec1Title").textContent = d.sec1Title;
+  document.getElementById("sec2Title").textContent = d.sec2Title;
+  document.getElementById("sec3Title").textContent = d.sec3Title;
+  document.getElementById("sec4Title").textContent = d.sec4Title;
+  document.getElementById("sec5Title").textContent = d.sec5Title;
+  document.getElementById("sec6Title").textContent = d.sec6Title;
+  document.getElementById("sec7Title").textContent = d.sec7Title;
+  document.getElementById("sec8Title").textContent = d.sec8Title;
+
+  fillList("sec1List", d.sec1);
+  fillList("sec2List", d.sec2);
+  fillList("sec3List", d.sec3);
+  fillList("sec4List", d.sec4);
+  fillList("sec5List", d.sec5);
+  fillList("sec6List", d.sec6);
+  fillList("sec7List", d.sec7);
+  fillList("sec8List", d.sec8);
+
+  document.getElementById("footer1").textContent = d.footer1;
+  document.getElementById("footer2").innerHTML = d.footer2;
+
+  // keep language when going back
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+}
+
+// Start language from ?lang=
+const params = new URLSearchParams(window.location.search);
+const startLang = params.get("lang") || "so";
+
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
+applyLang(document.getElementById("langSelect").value);
+
+document.getElementById("langSelect").addEventListener("change", function(){
+  applyLang(this.value);
+});
+</script>
+
 </body>
 </html>
