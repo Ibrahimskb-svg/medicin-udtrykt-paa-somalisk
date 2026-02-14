@@ -3,228 +3,827 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Melatonin – hurdo</title>
+<title>Melatonin</title>
 
 <style>
-/* --- SAMME DESIGN SOM AMLODIPIN --- */
+body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+header h1 { margin:0 0 4px; font-size:1.8rem; }
+header p { margin:0; font-size:0.95rem; }
+main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #e6f2f8;
-  color: #123047;
-  margin: 0;
-}
-header {
-  background: linear-gradient(135deg, #0066cc, #00a676);
-  color: #fff;
-  padding: 22px 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header h1 { margin: 0 0 4px; font-size: 1.8rem; }
-header p { margin: 0; font-size: 0.95rem; }
-main { max-width: 820px; margin: 18px auto 32px; padding: 0 14px; }
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
+a.back span { font-size:1.1rem; }
 
-a.back {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-bottom: 14px; text-decoration: none;
-  color: #00509e; font-size: 0.9rem;
+.langbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  background:#ffffff; border-radius:12px; padding:10px 12px;
+  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
+  border-left:4px solid #00a676;
 }
-a.back span { font-size: 1.1rem; }
-
-.card {
-  background: #ffffff; border-radius: 14px;
-  padding: 16px 16px 10px; margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(15,23,42,0.12);
-  border-top: 4px solid #00a676;
+.langbar label{ font-size:0.9rem; font-weight:600; color:#123047; }
+.langbar select{
+  padding:7px 10px; border-radius:10px;
+  border:1px solid #d0d7e2; background:#fff; color:#123047;
+  font-size:0.9rem; max-width:100%;
 }
 
-.drug-meta { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
-.drug-info { display: flex; align-items: center; gap: 10px; }
-
-.drug-icon {
-  width: 44px; height: 44px; border-radius: 12px;
-  background: #e3f2fd; display: flex; align-items: center; justify-content: center;
+.card{
+  background:#ffffff; border-radius:14px;
+  padding:16px 16px 10px; margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12);
+  border-top:4px solid #00a676;
 }
 
-.drug-icon svg { width: 30px; height: 30px; }
+.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
+.drug-info{ display:flex; align-items:center; gap:10px; }
+.drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
+.drug-icon svg{ width:30px; height:30px; }
+.drug-labels{ display:flex; flex-direction:column; }
+.drug-name{ font-weight:600; font-size:0.95rem; }
+.drug-form{ font-size:0.82rem; color:#29516e; }
+.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
-.drug-name { font-weight: 600; font-size: 0.95rem; }
-.drug-form { font-size: 0.82rem; color: #29516e; }
-
-.badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: #d9f6e8; color: #16634a;
-  padding: 4px 10px; border-radius: 999px; font-size: 0.8rem;
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-icon{
+  width:24px; height:24px; border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:0.9rem; color:#123047;
 }
+.section-icon.use{ background:#e3f2fd; }
+.section-icon.dose{ background:#e2f5ea; }
+.section-icon.side{ background:#fff3e0; }
+.section-icon.interact{ background:#ede7f6; }
+.section-icon.warn{ background:#ffebee; }
+.section-icon.ramadan{ background:#e0f7fa; }
+.section-icon.food{ background:#f1f8e9; }
+.section-icon.store{ background:#edeff9; }
 
-.section { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #d0d7e2; }
-.section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
-.section-title { font-weight: 700; font-size: 0.96rem; color: #123047; }
-.section-title small { font-weight: 400; color: #607089; }
+.section-title{ font-weight:700; font-size:0.96rem; color:#123047; }
+.section-title small{ font-weight:400; color:#607089; }
+.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
+.section ul li{ margin-bottom:4px; }
+.highlight{ font-weight:600; }
 
-.section-icon {
-  width: 24px; height: 24px; border-radius: 999px;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 0.9rem; color: #123047;
-}
-.section-icon.use { background:#e3f2fd; }
-.section-icon.dose { background:#e2f5ea; }
-.section-icon.side { background:#fff3e0; }
-.section-icon.interact { background:#ede7f6; }
-.section-icon.warn { background:#ffebee; }
-.section-icon.ramadan { background:#e0f7fa; }
-.section-icon.food { background:#f1f8e9; }
-.section-icon.store { background:#edeff9; }
-
-.section ul { margin: 0 0 4px 18px; padding-left: 0; font-size: 0.92rem; }
-.section ul li { margin-bottom: 4px; }
-.highlight { font-weight: 600; }
-
-.footer-note {
-  font-size: 0.8rem; color: #607089;
-  text-align: center; margin: 18px 0 10px;
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-  header h1 { font-size: 1.5rem; }
-}
+.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
+@media(max-width:600px){ header h1{font-size:1.5rem;} }
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Melatonin – hurdo</h1>
-  <p>Waa warbixin kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed</p>
+  <h1 id="hdrH1">Melatonin – hurdo</h1>
+  <p id="hdrP">Waa warbixin kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed</p>
 </header>
 
 <main>
 
-<a href="index.html" class="back"><span>←</span><span>Ku laabo liiska daawooyinka</span></a>
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
+  </div>
 
-<div class="card">
+  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
 
-  <div class="drug-meta">
-    <div class="drug-info">
-      <div class="drug-icon">
+  <div class="card">
 
-        <!-- TABLET IKON -->
-        <svg viewBox="0 0 64 64">
-          <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-          <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
-        </svg>
-
+    <div class="drug-meta">
+      <div class="drug-info">
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          </svg>
+        </div>
+        <div class="drug-labels">
+          <div class="drug-name" id="drugName">Melatonin</div>
+          <div class="drug-form" id="drugForm">Kiniin hurdo</div>
+        </div>
       </div>
-      <div class="drug-labels">
-        <div class="drug-name">Melatonin</div>
-        <div class="drug-form">Kiniin hurdo</div>
+      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon use">💤</div>
+        <div class="section-title" id="sec1Title">Waa maxay Melatonin? <small>(Hvad er melatonin?)</small></div>
       </div>
+      <ul id="sec1List"></ul>
     </div>
 
-    <div class="badge">Akhris fudud oo kooban</div>
-  </div>
-
-  <!-- CONTENT MED DIN ORIGINALTEKST -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon use">💤</div>
-      <div class="section-title">Waa maxay Melatonin? <small>(Hvad er melatonin?)</small></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title" id="sec2Title">Sida loo qaato <small>(Dosering)</small></div>
+      </div>
+      <ul id="sec2List"></ul>
     </div>
-    <ul>
-      <li>Melatonin waa hormoon caawiya hurdada oo loo isticmaalo hurdo la’aanta.</li>
-    </ul>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon dose">⏰</div>
-      <div class="section-title">Sida loo qaato <small>(Dosering)</small></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽</div>
+        <div class="section-title" id="sec3Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+      </div>
+      <ul id="sec3List"></ul>
     </div>
-    <ul>
-      <li>Qaado fiidkii, 1–2 saac ka hor hurdada.</li>
-    </ul>
-  </div>
 
-  <!-- CUNTO IYO CABITAAN -->
-<div class="section">
-  <div class="section-header">
-    <div class="section-icon drink">💧</div>
-    <div class="section-title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
-  </div>
-
-  <ul>
-    <li>Daawada waxaa la qaataa <strong>hal mar maalintii</strong>, <strong>inta aadan cunteen, ama cuntada ka dib</strong>.</li>
-    <li>Waxaa lagu liqaa <strong>hal koob oo biyo ah (qiyaas ahan 1.5–2 dl)</strong>.</li>
-  </ul>
-</div>
-
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon warn">!</div>
-      <div class="section-title">Digniino <small>(Advarsler)</small></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title" id="sec4Title">Digniino <small>(Advarsler)</small></div>
+      </div>
+      <ul id="sec4List"></ul>
     </div>
-    <ul>
-      <li>Waxay keeni kartaa hurdo badan, madax-wareer ama lalabo.</li>
-    </ul>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon side">⚠️</div>
-      <div class="section-title">Dhibaatooyinka <small>(Bivirkninger)</small></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title" id="sec5Title">Dhibaatooyinka <small>(Bivirkninger)</small></div>
+      </div>
+      <ul id="sec5List"></ul>
     </div>
-    <ul>
-      <li>Hurdo badan ama daal subaxeed.</li>
-      <li>Madax-xanuun ama wareer.</li>
-      <li>Calool-xanuun ama lalabo.</li>
-    </ul>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon interact">⇆</div>
-      <div class="section-title">Is-dhexgalka <small>(Interaktioner)</small></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title" id="sec6Title">Is-dhexgalka <small>(Interaktioner)</small></div>
+      </div>
+      <ul id="sec6List"></ul>
     </div>
-    <ul>
-      <li>Daawooyinka hurdo-dejiya ee kale, waxay kordhiyaan hurdo badan.</li>
-      <li>Khamrada waxay dhaawacdaa hurdada – ka fogow.</li>
-      <li>Daawooyinka wadnaha qaarkood, waxay la falgeli karaan Melatonin.</li>
-    </ul>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon ramadan">☾</div>
-      <div class="section-title">Ramadaanka iyo dawaada <small>(Fasten og brugen af medicinen)</small></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title" id="sec7Title">Ramadaanka iyo dawaada <small>(Fasten og brugen af medicinen)</small></div>
+      </div>
+      <ul id="sec7List"></ul>
     </div>
-    <ul>
-      <li>Badanaa waxaa la qaataa fiidkii (afurka ka dib).</li>
-      <li>La hadal dhakhtarkaaga Ramadaanka ha hor.</li>
-    </ul>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon store">⧉</div>
-      <div class="section-title">Kaydinta <small>(Opbevaring)</small></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon store">⧉</div>
+        <div class="section-title" id="sec8Title">Kaydinta <small>(Opbevaring)</small></div>
+      </div>
+      <ul id="sec8List"></ul>
     </div>
-    <ul>
-      <li>Ku hay meel ka fog caruurta, ka hooseeya 25°C, kuna jira baakadka asalka ah. Ha qaadan daawada marka ay dhacdo (“EXP”). Wixii soo haray, ku celi farmashiyaha.</li>
-    </ul>
+
   </div>
 
-</div>
-
-<div class="footer-note">
-  Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.<br/>
-  (Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>
-  Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>
-  (Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)
-</div>
+  <div class="footer-note" id="footer1"></div>
+  <div class="footer-note" id="footer2"></div>
 
 </main>
+
+<script>
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+const T = {
+  so: {
+    pageTitle: "Melatonin – hurdo",
+    hdrH1: "Melatonin – hurdo",
+    hdrP: "Waa warbixin kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed",
+    backText: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    drugName: "Melatonin",
+    drugForm: "Kiniin hurdo",
+    badgeText: "Akhris fudud oo kooban",
+
+    sec1Title: "Waa maxay Melatonin? (Hvad er melatonin?)",
+    sec1: [
+      "Melatonin waa hormoon ka caawiya jirka in uu helo hurdo, waxaana loo isticmaalaa hurdo la’aanta."
+    ],
+
+    sec2Title: "Sida loo qaato (Dosering)",
+    sec2: [
+      "Badanaa waxaa la qaataa fiidkii, <span class='highlight'>1–2 saac</span> ka hor hurdada.",
+      "Raac qiyaasta uu dhakhtarka kuu qoray; ha kordhin ama ha dhimmin adiga oo aan la tashan."
+    ],
+
+    sec3Title: "Cunto iyo cabitaan (Mad og drikke)",
+    sec3: [
+      "Daawada waxaa la qaadan karaa <span class='highlight'>cunto ka hor ama ka dib</span>.",
+      "Ku liq <span class='highlight'>hal koob biyo</span> (qiyaastii 1.5–2 dl)."
+    ],
+
+    sec4Title: "Digniino (Advarsler)",
+    sec4: [
+      "Waxay keeni kartaa hurdo badan ama madax-wareer – ka taxaddar wadista gaari ama shaqo khatar ah.",
+      "Haddii aad qaadanayso daawooyin kale, la hadal farmashiyaha ama dhakhtarka."
+    ],
+
+    sec5Title: "Dhibaatooyinka (Bivirkninger)",
+    sec5: [
+      "Hurdo badan ama daal subaxeed.",
+      "Madax-xanuun ama wareer.",
+      "Calool-xanuun ama lalabo."
+    ],
+
+    sec6Title: "Is-dhexgalka (Interaktioner)",
+    sec6: [
+      "Daawooyinka hurdo-dejiya ee kale waxay kordhin karaan hurdo badan.",
+      "Khamrigu wuxuu dhaawici karaa hurdada – ka fogow.",
+      "Daawooyin qaar (tusaale qaar ka mid ah daawooyinka dhiig-khafiifiya ama niyad-jabka) waxay u baahan karaan talo farmashiye/dhakhtar."
+    ],
+
+    sec7Title: "Ramadaanka iyo dawaada (Fasten og brugen af medicinen)",
+    sec7: [
+      "Badanaa waxaa la qaataa fiidkii <span class='highlight'>(afurka ka dib)</span>.",
+      "Ka hor Ramadaanka, la tasho dhakhtarkaaga haddii aad u baahan tahay in qiyaasta la hagaajiyo."
+    ],
+
+    sec8Title: "Kaydinta (Opbevaring)",
+    sec8: [
+      "Ku hay meel ka fog carruurta, kana hooseysa 25°C, kuna jira baakadka asalka ah.",
+      "Ha qaadan daawada marka ay dhaafto “EXP”. Wixii soo haray, ku celi farmashiyaha."
+    ],
+
+    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  da: {
+    pageTitle: "Melatonin – søvn",
+    hdrH1: "Melatonin – søvn",
+    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
+    backText: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    drugName: "Melatonin",
+    drugForm: "Søvntablet",
+    badgeText: "Kort og let",
+
+    sec1Title: "Hvad er melatonin?",
+    sec1: [
+      "Melatonin er et hormon, som hjælper kroppen med at falde i søvn, og bruges ved søvnbesvær."
+    ],
+
+    sec2Title: "Sådan tages medicinen",
+    sec2: [
+      "Tages typisk om aftenen, <span class='highlight'>1–2 timer</span> før sengetid.",
+      "Følg den dosis, som din læge har ordineret."
+    ],
+
+    sec3Title: "Mad og drikke",
+    sec3: [
+      "Kan tages <span class='highlight'>med eller uden mad</span>.",
+      "Synkes med <span class='highlight'>et glas vand</span> (ca. 1.5–2 dl)."
+    ],
+
+    sec4Title: "Advarsler",
+    sec4: [
+      "Kan give døsighed og svimmelhed – vær forsigtig med bilkørsel og maskiner.",
+      "Tal med apotek/læge, hvis du bruger anden medicin."
+    ],
+
+    sec5Title: "Bivirkninger",
+    sec5: [
+      "Døsighed eller træthed næste morgen.",
+      "Hovedpine eller svimmelhed.",
+      "Mavegener eller kvalme."
+    ],
+
+    sec6Title: "Interaktioner",
+    sec6: [
+      "Anden sløvende medicin kan øge træthed.",
+      "Undgå alkohol, da det kan forstyrre søvnen.",
+      "Spørg apotek/læge ved samtidig medicin."
+    ],
+
+    sec7Title: "Ramadan og faste",
+    sec7: [
+      "Tages typisk om aftenen <span class='highlight'>(efter iftar)</span>.",
+      "Tal med din læge før Ramadan, hvis dosis skal tilpasses."
+    ],
+
+    sec8Title: "Opbevaring",
+    sec8: [
+      "Opbevares utilgængeligt for børn, under 25°C og i original emballage.",
+      "Brug ikke efter “EXP”. Aflever rester på apoteket."
+    ],
+
+    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    pageTitle: "Melatonin – sleep",
+    hdrH1: "Melatonin – sleep",
+    hdrP: "Brief medicine information for patients and relatives.",
+    backText: "Back to the medicine list",
+    langLabel: "Choose language:",
+    drugName: "Melatonin",
+    drugForm: "Sleep tablet",
+    badgeText: "Short and clear",
+
+    sec1Title: "What is melatonin?",
+    sec1: [
+      "Melatonin is a hormone that helps your body fall asleep and is used for sleep problems."
+    ],
+
+    sec2Title: "How to take it",
+    sec2: [
+      "Usually taken in the evening, <span class='highlight'>1–2 hours</span> before bedtime.",
+      "Follow the dose prescribed by your doctor."
+    ],
+
+    sec3Title: "Food and drink",
+    sec3: [
+      "Can be taken <span class='highlight'>with or without food</span>.",
+      "Swallow with <span class='highlight'>a glass of water</span> (about 150–200 ml)."
+    ],
+
+    sec4Title: "Warnings",
+    sec4: [
+      "May cause drowsiness or dizziness — be careful with driving or operating machines.",
+      "Talk to your pharmacy/doctor if you take other medicines."
+    ],
+
+    sec5Title: "Side effects",
+    sec5: [
+      "Drowsiness or morning tiredness.",
+      "Headache or dizziness.",
+      "Stomach upset or nausea."
+    ],
+
+    sec6Title: "Interactions",
+    sec6: [
+      "Other sedating medicines can increase drowsiness.",
+      "Avoid alcohol as it can disturb sleep.",
+      "Ask your pharmacy/doctor if you use other medicines."
+    ],
+
+    sec7Title: "Ramadan and fasting",
+    sec7: [
+      "Usually taken in the evening <span class='highlight'>(after iftar)</span>.",
+      "Speak to your doctor before Ramadan if your plan needs adjustment."
+    ],
+
+    sec8Title: "Storage",
+    sec8: [
+      "Keep out of reach of children, below 25°C, in the original package.",
+      "Do not use after “EXP”. Return leftovers to the pharmacy."
+    ],
+
+    footer1: "If you need more information, contact your pharmacy or doctor.",
+    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    pageTitle: "ميلاتونين – النوم",
+    hdrH1: "ميلاتونين – النوم",
+    hdrP: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    backText: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    drugName: "ميلاتونين",
+    drugForm: "أقراص للنوم",
+    badgeText: "مختصر وواضح",
+
+    sec1Title: "ما هو الميلاتونين؟",
+    sec1: [
+      "الميلاتونين هرمون يساعد الجسم على النوم، ويُستخدم لعلاج صعوبة النوم."
+    ],
+
+    sec2Title: "طريقة الاستخدام",
+    sec2: [
+      "يؤخذ عادةً مساءً قبل النوم بـ <span class='highlight'>1–2 ساعة</span>.",
+      "اتبع الجرعة التي وصفها لك الطبيب."
+    ],
+
+    sec3Title: "الطعام والشراب",
+    sec3: [
+      "يمكن تناوله <span class='highlight'>مع الطعام أو بدونه</span>.",
+      "يُبتلع مع <span class='highlight'>كوب ماء</span> (حوالي 150–200 مل)."
+    ],
+
+    sec4Title: "تحذيرات",
+    sec4: [
+      "قد يسبب نعاساً أو دوخة — انتبه عند القيادة أو استخدام الآلات.",
+      "استشر الصيدلية/الطبيب إذا كنت تستخدم أدوية أخرى."
+    ],
+
+    sec5Title: "الآثار الجانبية",
+    sec5: [
+      "نعاس أو تعب صباحي.",
+      "صداع أو دوخة.",
+      "اضطراب معدي أو غثيان."
+    ],
+
+    sec6Title: "التداخلات",
+    sec6: [
+      "الأدوية المهدئة الأخرى قد تزيد النعاس.",
+      "تجنب الكحول لأنه قد يفسد النوم.",
+      "اسأل الصيدلية/الطبيب عند استخدام أدوية أخرى."
+    ],
+
+    sec7Title: "رمضان والصيام",
+    sec7: [
+      "يؤخذ غالباً مساءً <span class='highlight'>(بعد الإفطار)</span>.",
+      "تحدث مع طبيبك قبل رمضان إذا احتجت لتعديل الخطة."
+    ],
+
+    sec8Title: "الحفظ",
+    sec8: [
+      "يُحفظ بعيداً عن الأطفال، تحت 25°م، وفي العبوة الأصلية.",
+      "لا تستخدمه بعد “EXP”. أعد البقايا إلى الصيدلية."
+    ],
+
+    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
+  },
+
+  tr: {
+    pageTitle: "Melatonin – uyku",
+    hdrH1: "Melatonin – uyku",
+    hdrP: "Hasta ve yakınları için kısa ilaç bilgisi.",
+    backText: "İlaç listesine geri dön",
+    langLabel: "Dil seçin:",
+    drugName: "Melatonin",
+    drugForm: "Uyku tableti",
+    badgeText: "Kısa ve anlaşılır",
+
+    sec1Title: "Melatonin nedir?",
+    sec1: [
+      "Melatonin, uykuya dalmaya yardımcı olan bir hormondur ve uyku sorunlarında kullanılır."
+    ],
+
+    sec2Title: "Nasıl kullanılır?",
+    sec2: [
+      "Genellikle akşam, yatmadan <span class='highlight'>1–2 saat</span> önce alınır.",
+      "Doktorunuzun önerdiği dozu uygulayın."
+    ],
+
+    sec3Title: "Yemek ve içecek",
+    sec3: [
+      "<span class='highlight'>Yemekle veya yemeksiz</span> alınabilir.",
+      "<span class='highlight'>Bir bardak su</span> ile yutun (yaklaşık 150–200 ml)."
+    ],
+
+    sec4Title: "Uyarılar",
+    sec4: [
+      "Uyuşukluk veya baş dönmesi yapabilir — araç kullanırken dikkatli olun.",
+      "Diğer ilaçlarınızı eczacı/doktorla konuşun."
+    ],
+
+    sec5Title: "Yan etkiler",
+    sec5: [
+      "Uyku hali veya sabah yorgunluğu.",
+      "Baş ağrısı veya baş dönmesi.",
+      "Mide rahatsızlığı veya bulantı."
+    ],
+
+    sec6Title: "Etkileşimler",
+    sec6: [
+      "Diğer sakinleştirici ilaçlar uyku halini artırabilir.",
+      "Alkolden kaçının.",
+      "Başka ilaç kullanıyorsanız eczacı/doktora danışın."
+    ],
+
+    sec7Title: "Ramazan ve oruç",
+    sec7: [
+      "Genellikle akşam <span class='highlight'>(iftardan sonra)</span> alınır.",
+      "Ramazan öncesi doktorunuza danışın."
+    ],
+
+    sec8Title: "Saklama",
+    sec8: [
+      "Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.",
+      "“EXP” sonrası kullanmayın. Artanları eczaneye verin."
+    ],
+
+    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur: {
+    pageTitle: "میلاٹونن – نیند",
+    hdrH1: "میلاٹونن – نیند",
+    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText: "فہرست پر واپس",
+    langLabel: "زبان منتخب کریں:",
+    drugName: "میلاٹونن",
+    drugForm: "نیند کی گولی",
+    badgeText: "مختصر اور واضح",
+
+    sec1Title: "میلاٹونن کیا ہے؟",
+    sec1: [
+      "میلاٹونن ایک ہارمون ہے جو نیند آنے میں مدد دیتا ہے اور نیند کے مسائل میں استعمال ہوتا ہے۔"
+    ],
+
+    sec2Title: "استعمال کا طریقہ",
+    sec2: [
+      "عام طور پر شام میں سونے سے <span class='highlight'>1–2 گھنٹے</span> پہلے لیا جاتا ہے۔",
+      "ڈاکٹر کے بتائے ہوئے ڈوز کے مطابق استعمال کریں۔"
+    ],
+
+    sec3Title: "کھانا پینا",
+    sec3: [
+      "<span class='highlight'>کھانے کے ساتھ یا بغیر</span> لیا جا سکتا ہے۔",
+      "<span class='highlight'>ایک گلاس پانی</span> کے ساتھ نگلیں (تقریباً 150–200 ملی لیٹر)۔"
+    ],
+
+    sec4Title: "احتیاطیں",
+    sec4: [
+      "غنودگی یا چکر آ سکتے ہیں — گاڑی چلانے میں احتیاط کریں۔",
+      "دیگر ادویات کے ساتھ استعمال پر فارمیسی/ڈاکٹر سے مشورہ کریں۔"
+    ],
+
+    sec5Title: "مضر اثرات",
+    sec5: [
+      "غنودگی یا صبح کی تھکن۔",
+      "سر درد یا چکر۔",
+      "پیٹ کی خرابی یا متلی۔"
+    ],
+
+    sec6Title: "دواؤں کے باہمی اثرات",
+    sec6: [
+      "دیگر نیند آور ادویات غنودگی بڑھا سکتی ہیں۔",
+      "الکحل سے پرہیز کریں۔",
+      "دیگر ادویات کے لیے فارمیسی/ڈاکٹر سے پوچھیں۔"
+    ],
+
+    sec7Title: "رمضان اور روزہ",
+    sec7: [
+      "عموماً شام <span class='highlight'>(افطار کے بعد)</span> لی جاتی ہے۔",
+      "رمضان سے پہلے ڈاکٹر سے مشورہ کریں اگر تبدیلی کی ضرورت ہو۔"
+    ],
+
+    sec8Title: "محفوظ رکھنا",
+    sec8: [
+      "بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔",
+      "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"
+    ],
+
+    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa: {
+    pageTitle: "ملاتونین – خواب",
+    hdrH1: "ملاتونین – خواب",
+    hdrP: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
+    backText: "بازگشت به فهرست",
+    langLabel: "انتخاب زبان:",
+    drugName: "ملاتونین",
+    drugForm: "قرص خواب",
+    badgeText: "کوتاه و روشن",
+
+    sec1Title: "ملاتونین چیست؟",
+    sec1: [
+      "ملاتونین هورمونی است که به خوابیدن کمک می‌کند و برای مشکلات خواب استفاده می‌شود."
+    ],
+
+    sec2Title: "نحوه مصرف",
+    sec2: [
+      "معمولاً عصرها <span class='highlight'>۱–۲ ساعت</span> قبل از خواب مصرف می‌شود.",
+      "طبق دستور پزشک مصرف کنید."
+    ],
+
+    sec3Title: "غذا و نوشیدنی",
+    sec3: [
+      "می‌توان <span class='highlight'>با غذا یا بدون غذا</span> مصرف کرد.",
+      "با <span class='highlight'>یک لیوان آب</span> بخورید (حدود ۱۵۰–۲۰۰ میلی‌لیتر)."
+    ],
+
+    sec4Title: "هشدارها",
+    sec4: [
+      "ممکن است خواب‌آلودگی یا سرگیجه ایجاد کند — هنگام رانندگی احتیاط کنید.",
+      "در صورت مصرف داروهای دیگر با داروخانه/پزشک مشورت کنید."
+    ],
+
+    sec5Title: "عوارض",
+    sec5: [
+      "خواب‌آلودگی یا خستگی صبحگاهی.",
+      "سردرد یا سرگیجه.",
+      "ناراحتی معده یا تهوع."
+    ],
+
+    sec6Title: "تداخلات",
+    sec6: [
+      "داروهای آرام‌بخش دیگر می‌تواند خواب‌آلودگی را بیشتر کند.",
+      "از الکل پرهیز کنید.",
+      "در صورت مصرف داروهای دیگر سؤال کنید."
+    ],
+
+    sec7Title: "رمضان و روزه",
+    sec7: [
+      "معمولاً عصر <span class='highlight'>(بعد از افطار)</span> مصرف می‌شود.",
+      "اگر نیاز به تغییر بود، قبل از رمضان با پزشک صحبت کنید."
+    ],
+
+    sec8Title: "نگهداری",
+    sec8: [
+      "دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی نگهداری شود.",
+      "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."
+    ],
+
+    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs: {
+    pageTitle: "ملاتونین – خواب",
+    hdrH1: "ملاتونین – خواب",
+    hdrP: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
+    backText: "بازگشت به فهرست",
+    langLabel: "انتخاب زبان:",
+    drugName: "ملاتونین",
+    drugForm: "قرص خواب",
+    badgeText: "کوتاه و واضح",
+
+    sec1Title: "ملاتونین چیست؟",
+    sec1: [
+      "ملاتونین هورمونی است که به خواب کمک می‌کند و برای مشکلات خواب استفاده می‌شود."
+    ],
+
+    sec2Title: "طرز مصرف",
+    sec2: [
+      "معمولاً شام/عصر <span class='highlight'>۱–۲ ساعت</span> قبل از خواب گرفته می‌شود.",
+      "مطابق هدایت داکتر مصرف کنید."
+    ],
+
+    sec3Title: "غذا و نوشیدنی",
+    sec3: [
+      "با غذا یا بدون غذا قابل استفاده است.",
+      "با <span class='highlight'>یک گیلاس آب</span> بخورید (حدود ۱۵۰–۲۰۰ ملی‌لیتر)."
+    ],
+
+    sec4Title: "هشدارها",
+    sec4: [
+      "ممکن است خواب‌آلودگی یا سرگیجه بدهد — هنگام رانندگی احتیاط کنید.",
+      "در صورت مصرف دواهای دیگر با دواخانه/داکتر مشوره کنید."
+    ],
+
+    sec5Title: "عوارض",
+    sec5: [
+      "خواب‌آلودگی یا خستگی صبحگاهی.",
+      "سردرد یا سرگیجه.",
+      "ناراحتی معده یا تهوع."
+    ],
+
+    sec6Title: "تداخلات",
+    sec6: [
+      "دواهای آرام‌بخش دیگر خواب‌آلودگی را بیشتر می‌کند.",
+      "از الکل دوری کنید.",
+      "در صورت مصرف دواهای دیگر سؤال کنید."
+    ],
+
+    sec7Title: "رمضان و روزه",
+    sec7: [
+      "اکثر شام/عصر <span class='highlight'>(بعد از افطار)</span> استفاده می‌شود.",
+      "اگر نیاز به تغییر بود، قبل از رمضان با داکتر صحبت کنید."
+    ],
+
+    sec8Title: "نگهداری",
+    sec8: [
+      "دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی نگه‌داری شود.",
+      "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."
+    ],
+
+    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
+    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps: {
+    pageTitle: "میلاتونین – خوب",
+    hdrH1: "میلاتونین – خوب",
+    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText: "لېست ته بېرته",
+    langLabel: "ژبه وټاکئ:",
+    drugName: "میلاتونین",
+    drugForm: "د خوب ګولۍ",
+    badgeText: "لنډ او روښانه",
+
+    sec1Title: "میلاتونین څه شی دی؟",
+    sec1: [
+      "میلاتونین یو هورمون دی چې د خوب په راتلو کې مرسته کوي او د خوب ستونزو کې کارېږي."
+    ],
+
+    sec2Title: "څنګه یې واخلو؟",
+    sec2: [
+      "اکثر ماښام، د خوب څخه <span class='highlight'>۱–۲ ساعته</span> مخکې اخیستل کېږي.",
+      "د ډاکټر د سپارښتنې له مخې یې واخلئ."
+    ],
+
+    sec3Title: "خواړه او څښاک",
+    sec3: [
+      "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
+      "له <span class='highlight'>یو ګیلاس اوبو</span> سره یې تېر کړئ (شاوخوا 150–200 ml)."
+    ],
+
+    sec4Title: "خبرداری",
+    sec4: [
+      "خوبوالی یا سر ګرځېدل رامنځته کولی شي — د موټر چلولو پر مهال احتیاط وکړئ.",
+      "که نور درمل کاروئ، له ډاکټر/درملتون سره مشوره وکړئ."
+    ],
+
+    sec5Title: "اړخیزې اغېزې",
+    sec5: [
+      "خوبوالی یا د سهار ستړیا.",
+      "سر درد یا سر ګرځېدل.",
+      "د معدې ناارامي یا زړه بدوالی."
+    ],
+
+    sec6Title: "تداخلات",
+    sec6: [
+      "نور آراموونکي درمل خوبوالی زیاتولی شي.",
+      "له الکول څخه ډډه وکړئ.",
+      "د نورو درملو په اړه پوښتنه وکړئ."
+    ],
+
+    sec7Title: "رمضان او روژه",
+    sec7: [
+      "اکثر ماښام <span class='highlight'>(له افطار وروسته)</span> اخیستل کېږي.",
+      "که بدلون ته اړتیا وي، د رمضان مخکې له ډاکټر سره خبرې وکړئ."
+    ],
+
+    sec8Title: "ساتنه",
+    sec8: [
+      "له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې وساتئ.",
+      "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."
+    ],
+
+    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+
+function fillList(id, arr){
+  const ul = document.getElementById(id);
+  ul.innerHTML = "";
+  (arr || []).forEach(txt => {
+    const li = document.createElement("li");
+    li.innerHTML = txt;
+    ul.appendChild(li);
+  });
+}
+
+function applyLang(lang){
+  const d = T[lang] || T.so;
+  setDirLang(lang);
+
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.getElementById("hdrP").textContent = d.hdrP;
+  document.getElementById("backText").textContent = d.backText;
+  document.getElementById("langLabel").textContent = d.langLabel;
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("badgeText").textContent = d.badgeText;
+
+  document.getElementById("sec1Title").childNodes[0].textContent = d.sec1Title + " ";
+  document.getElementById("sec2Title").childNodes[0].textContent = d.sec2Title + " ";
+  document.getElementById("sec3Title").childNodes[0].textContent = d.sec3Title + " ";
+  document.getElementById("sec4Title").childNodes[0].textContent = d.sec4Title + " ";
+  document.getElementById("sec5Title").childNodes[0].textContent = d.sec5Title + " ";
+  document.getElementById("sec6Title").childNodes[0].textContent = d.sec6Title + " ";
+  document.getElementById("sec7Title").childNodes[0].textContent = d.sec7Title + " ";
+  document.getElementById("sec8Title").childNodes[0].textContent = d.sec8Title + " ";
+
+  fillList("sec1List", d.sec1);
+  fillList("sec2List", d.sec2);
+  fillList("sec3List", d.sec3);
+  fillList("sec4List", d.sec4);
+  fillList("sec5List", d.sec5);
+  fillList("sec6List", d.sec6);
+  fillList("sec7List", d.sec7);
+  fillList("sec8List", d.sec8);
+
+  document.getElementById("footer1").textContent = d.footer1;
+  document.getElementById("footer2").innerHTML = d.footer2;
+
+  // keep language when going back
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+}
+
+// Start language from ?lang=
+const params = new URLSearchParams(window.location.search);
+const startLang = params.get('lang') || 'so';
+
+document.getElementById("langSelect").value = (T[startLang] ? startLang : 'so');
+applyLang(document.getElementById("langSelect").value);
+
+document.getElementById("langSelect").addEventListener("change", function(){
+  applyLang(this.value);
+});
+</script>
+
 </body>
 </html>
