@@ -199,7 +199,7 @@ a.back span {
 <main>
 
   <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect">Vælg sprog:</label>
+    <label for="langSelect" id="langLabel">Vælg sprog:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
@@ -219,12 +219,11 @@ a.back span {
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
-
+          <!-- Tablet icon -->
           <svg viewBox="0 0 64 64">
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
           </svg>
-
         </div>
         <div class="drug-labels">
           <div class="drug-name" id="drugName">Diclofenac – xanuun &amp; barar</div>
@@ -321,6 +320,7 @@ const T = {
     title: "Diclofenac – xanuun &amp; barar",
     subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
     back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
     badge: "Akhris fudud oo kooban",
     drugName: "Diclofenac – xanuun &amp; barar",
     drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
@@ -347,7 +347,7 @@ const T = {
       ]},
       ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
         "Kaniiniga diclofenac wuxuu jebiyaa soonka.",
-        "Gel-ka maqaarka la mariyo badanaa looma tixgeliyo jebin soon, laakiin la hadal wadaad haddii aad shaki ka qabto."
+        "Gel-ka maqaarka la mariyo badanaa looma tixgeliyo jebin soon, madaamo oo jirka gudaha uu galeeyn."
       ]},
       food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
         "Ku qaado cunno si loo ilaaliyo caloosha.",
@@ -365,6 +365,7 @@ const T = {
     title: "Diclofenac – smerter og betændelse",
     subtitle: "Kort information om lægemidlet til patienter og pårørende.",
     back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
     badge: "Kort og let at læse",
     drugName: "Diclofenac – smerter og betændelse",
     drugForm: "Tablet til oral brug",
@@ -391,7 +392,7 @@ const T = {
       ]},
       ramadan: { title:"Ramadan og faste", small:"", items:[
         "Diclofenac som tablet bryder fasten.",
-        "Diclofenac-gel på huden regnes ofte ikke som at bryde fasten, men tal med en imam, hvis du er i tvivl."
+        "Diclofenac gel på huden regnes ofte ikke som at bryde fasten, da det ikke går ind i kroppen."
       ]},
       food: { title:"Mad og drikke", small:"", items:[
         "Tag gerne medicinen sammen med mad for at beskytte maven.",
@@ -409,6 +410,7 @@ const T = {
     title: "Diclofenac – pain and inflammation",
     subtitle: "Brief information about the medicine for patients and relatives.",
     back: "Back to the medicine list",
+    langLabel: "Choose language:",
     badge: "Short and easy to read",
     drugName: "Diclofenac – pain and inflammation",
     drugForm: "Oral tablet",
@@ -435,7 +437,7 @@ const T = {
       ]},
       ramadan: { title:"Ramadan and fasting", small:"", items:[
         "Diclofenac tablets break the fast.",
-        "Diclofenac gel applied to the skin is often not considered to break the fast, but ask an imam if you are unsure."
+        "Diclofenac gel applied to the skin is often not considered to break the fast, as it does not go inside the body."
       ]},
       food: { title:"Food and drink", small:"", items:[
         "Take with food to help protect your stomach.",
@@ -453,6 +455,7 @@ const T = {
     title: "ديكلوفيناك – ألم والتهاب",
     subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
     back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
     badge: "معلومات مختصرة وسهلة",
     drugName: "ديكلوفيناك – ألم والتهاب",
     drugForm: "أقراص فموية",
@@ -479,7 +482,7 @@ const T = {
       ]},
       ramadan: { title:"رمضان والصيام", small:"", items:[
         "أقراص ديكلوفيناك تُفطر.",
-        "جل ديكلوفيناك على الجلد غالباً لا يُعتبر مُفطراً، لكن اسأل إماماً إذا كنت غير متأكد."
+        "جل ديكلوفيناك على الجلد غالباً لا يُعتبر مُفطراً، لأنه لا يدخل إلى داخل الجسم."
       ]},
       food: { title:"الطعام والشراب", small:"", items:[
         "يفضل تناوله مع الطعام لحماية المعدة.",
@@ -497,6 +500,7 @@ const T = {
     title: "Diklofenak – ağrı ve iltihap",
     subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
     back: "İlaç listesine geri dön",
+    langLabel: "Dil seçin:",
     badge: "Kısa ve anlaşılır",
     drugName: "Diklofenak – ağrı ve iltihap",
     drugForm: "Ağızdan alınan tablet",
@@ -523,7 +527,7 @@ const T = {
       ]},
       ramadan: { title:"Ramazan ve oruç", small:"", items:[
         "Diklofenak tablet orucu bozar.",
-        "Cilde sürülen diklofenak jel çoğu zaman orucu bozmaz kabul edilir; emin değilseniz bir imama danışın."
+        "Cilde sürülen diklofenak jel çoğu zaman orucu bozmaz, çünkü vücudun içine girmez."
       ]},
       food: { title:"Yiyecek ve içecek", small:"", items:[
         "Mideyi korumak için yemekle birlikte alın.",
@@ -541,6 +545,7 @@ const T = {
     title: "ڈائکلوفیناک – درد اور سوزش",
     subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
     back: "ادویات کی فہرست پر واپس جائیں",
+    langLabel: "زبان منتخب کریں:",
     badge: "مختصر اور آسان",
     drugName: "ڈائکلوفیناک – درد اور سوزش",
     drugForm: "منہ کے ذریعے لینے والی گولی",
@@ -567,7 +572,7 @@ const T = {
       ]},
       ramadan: { title:"رمضان اور روزہ", small:"", items:[
         "ڈائکلوفیناک کی گولی روزہ توڑ دیتی ہے۔",
-        "جلد پر لگانے والا ڈائکلوفیناک جیل اکثر روزہ توڑنے میں شمار نہیں ہوتا، مگر شک ہو تو کسی امام سے پوچھیں۔"
+        "جلد پر لگانے والا ڈائکلوفیناک جیل اکثر روزہ توڑنے میں شمار نہیں ہوتا، کیونکہ یہ جسم کے اندر نہیں جاتا۔"
       ]},
       food: { title:"کھانا پینا", small:"", items:[
         "معدے کی حفاظت کے لیے کھانے کے ساتھ لیں۔",
@@ -585,6 +590,7 @@ const T = {
     title: "دیکلوفناک – درد و التهاب",
     subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
     back: "بازگشت به فهرست داروها",
+    langLabel: "انتخاب زبان:",
     badge: "کوتاه و قابل‌فهم",
     drugName: "دیکلوفناک – درد و التهاب",
     drugForm: "قرص خوراکی",
@@ -611,7 +617,7 @@ const T = {
       ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
         "قرص دیکلوفناک روزه را باطل می‌کند.",
-        "ژل دیکلوفناک روی پوست معمولاً باطل‌کننده روزه محسوب نمی‌شود؛ اگر تردید دارید از یک عالم دینی بپرسید."
+        "ژل دیکلوفناک روی پوست معمولاً باطل‌کننده روزه محسوب نمی‌شود، چون وارد داخل بدن نمی‌شود."
       ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "برای محافظت از معده همراه غذا مصرف کنید.",
@@ -629,6 +635,7 @@ const T = {
     title: "دیکلوفناک – درد و التهاب",
     subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
     back: "بازگشت به فهرست دواها",
+    langLabel: "انتخاب زبان:",
     badge: "کوتاه و قابل‌فهم",
     drugName: "دیکلوفناک – درد و التهاب",
     drugForm: "قرص خوراکی",
@@ -655,7 +662,7 @@ const T = {
       ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
         "قرص دیکلوفناک روزه را باطل می‌کند.",
-        "ژل دیکلوفناک روی پوست معمولاً باطل‌کننده حساب نمی‌شود؛ اگر شک دارید از یک عالم دینی بپرسید."
+        "ژل دیکلوفناک روی پوست معمولاً باطل‌کننده حساب نمی‌شود، چون داخل بدن نمی‌رود."
       ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
         "برای حفاظت معده با غذا بگیرید.",
@@ -673,6 +680,7 @@ const T = {
     title: "ډيکلوفېناک – درد او التهاب",
     subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
     back: "د درملو لېست ته بېرته",
+    langLabel: "ژبه وټاکئ:",
     badge: "لنډ او اسانه",
     drugName: "ډيکلوفېناک – درد او التهاب",
     drugForm: "د خولې ګولۍ",
@@ -699,7 +707,7 @@ const T = {
       ]},
       ramadan: { title:"رمضان او روژه", small:"", items:[
         "د ډيکلوفېناک ګولۍ روژه ماتوي.",
-        "د پوستکي لپاره ډيکلوفېناک جېل اکثره روژه نه ماتوي، خو که شک لرئ له عالم/امام سره مشوره وکړئ."
+        "د پوستکي لپاره ډيکلوفېناک جېل اکثره روژه نه ماتوي، ځکه د بدن دننه نه ننوځي."
       ]},
       food: { title:"خواړه او څښاک", small:"", items:[
         "د معدې د ساتنې لپاره له خوړو سره واخلئ.",
@@ -744,6 +752,10 @@ function render(lang){
   document.getElementById("drugName").innerHTML = d.drugName;
   document.getElementById("drugForm").textContent = d.drugForm;
 
+  // lang label
+  document.getElementById("langLabel").textContent = d.langLabel;
+
+  // section headers
   document.getElementById("useTitle").textContent = d.sections.use.title;
   document.getElementById("useSmall").textContent = d.sections.use.small || "";
 
@@ -768,6 +780,7 @@ function render(lang){
   document.getElementById("storeTitle").textContent = d.sections.store.title;
   document.getElementById("storeSmall").textContent = d.sections.store.small || "";
 
+  // lists
   fillList("useList", d.sections.use.items);
   fillList("doseList", d.sections.dose.items);
   fillList("sideList", d.sections.side.items);
@@ -779,9 +792,19 @@ function render(lang){
 
   document.getElementById("footerNote").innerHTML = d.footerHTML;
   document.getElementById("credit").innerHTML = d.creditHTML;
+
+  // keep language when going back
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-render("so");
+// Start language from ?lang=
+const params = new URLSearchParams(window.location.search);
+const startLang = params.get("lang") || "so";
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
+
+render(document.getElementById("langSelect").value);
 document.getElementById("langSelect").addEventListener("change", function(){
   render(this.value);
 });
