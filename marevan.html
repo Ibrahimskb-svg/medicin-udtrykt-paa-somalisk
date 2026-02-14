@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Marevan</title>
+<title>Marevan (Warfarin) – dhiig-khafiifin</title>
 
 <style>
+/* UNIVERSAL DESIGN (samme som dine andre filer) */
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
 header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
 header h1 { margin:0 0 4px; font-size:1.8rem; }
 header p { margin:0; font-size:0.95rem; }
+
 main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+
 a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
@@ -20,103 +23,175 @@ a.back span { font-size:1.1rem; }
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
   border-left:4px solid #00a676;
 }
-.langbar label{ font-size:0.9rem; font-weight:600; }
+.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
 .langbar select{
-  padding:7px 10px; border-radius:10px;
-  border:1px solid #d0d7e2; font-size:0.9rem;
+  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
+  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
 }
 
 .card {
-  background:#ffffff; border-radius:14px;
-  padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12);
-  border-top:4px solid #00a676;
+  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
 }
 
-.section { margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-title { font-weight:700; font-size:0.96rem; }
-.section ul { margin:0 0 4px 18px; font-size:0.92rem; }
+.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
+.drug-info{ display:flex; align-items:center; gap:10px; }
+.drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
+.drug-icon svg{ width:30px; height:30px; }
+.drug-labels{ display:flex; flex-direction:column; }
+.drug-name{ font-weight:600; font-size:0.95rem; }
+.drug-form{ font-size:0.82rem; color:#29516e; }
+.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
-.footer-note{
-  font-size:0.8rem; color:#607089;
-  text-align:center; margin:18px 0 10px;
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-icon{
+  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+  font-size:0.9rem; color:#123047;
 }
-@media(max-width:600px){ header h1{font-size:1.5rem;} }
+.section-icon.use{ background:#e3f2fd; }
+.section-icon.dose{ background:#e2f5ea; }
+.section-icon.side{ background:#fff3e0; }
+.section-icon.interact{ background:#ede7f6; }
+.section-icon.warn{ background:#ffebee; }
+.section-icon.ramadan{ background:#e0f7fa; }
+.section-icon.food{ background:#f1f8e9; }
+.section-icon.store{ background:#edeff9; }
+
+.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
+.section-title small{ font-weight:400; color:#607089; }
+
+.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
+.section ul li{ margin-bottom:4px; }
+
+.highlight{ font-weight:600; }
+.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
+
+@media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1 id="title">Marevan (Warfarin)</h1>
-  <p id="subtitle">Waa warbixin kooban oo ku saabsan daawada</p>
+  <h1 id="hdrH1">Marevan (Warfarin) – dhiig-khafiifin</h1>
+  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
 
-<div class="langbar">
-  <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-  <select id="langSelect">
-    <option value="so">Somalisk</option>
-    <option value="da">Dansk</option>
-    <option value="en">Engelsk</option>
-    <option value="ar">Arabisk</option>
-    <option value="tr">Tyrkisk</option>
-    <option value="ur">Urdu</option>
-    <option value="fa">Persisk</option>
-    <option value="prs">Dari</option>
-    <option value="ps">Pashto</option>
-  </select>
-</div>
-
-<a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
-
-<div class="card">
-
-  <div class="section">
-    <div class="section-title" id="useTitle">Isticmaalka</div>
-    <ul id="useList"></ul>
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
   </div>
 
-  <div class="section">
-    <div class="section-title" id="doseTitle">Qiyaasta</div>
-    <ul id="doseList"></ul>
+  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+
+  <div class="card">
+
+    <div class="drug-meta">
+      <div class="drug-info">
+        <div class="drug-icon">
+          <!-- Tablet ikon (samme som andre) -->
+          <svg viewBox="0 0 64 64">
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          </svg>
+        </div>
+        <div class="drug-labels">
+          <div class="drug-name" id="drugName">Marevan (Warfarin)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+        </div>
+      </div>
+      <div class="badge" id="badgeText">Akhris kooban</div>
+    </div>
+
+    <!-- 1: Isticmaalka -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon use">1</div>
+        <div class="section-title" id="useTitle">Isticmaalka <small>(Anvendelse)</small></div>
+      </div>
+      <ul id="useList"></ul>
+    </div>
+
+    <!-- 2: Qiyaasta -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon dose">2</div>
+        <div class="section-title" id="doseTitle">Qiyaasta <small>(Dosering)</small></div>
+      </div>
+      <ul id="doseList"></ul>
+    </div>
+
+    <!-- 3: Waxyeellooyinka -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon side">3</div>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+      </div>
+      <ul id="sideList"></ul>
+    </div>
+
+    <!-- 4: Interaktioner -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon interact">4</div>
+        <div class="section-title" id="interTitle">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+      </div>
+      <ul id="interList"></ul>
+    </div>
+
+    <!-- 5: Advarsler -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title" id="warnTitle">Digniino <small>(Advarsler)</small></div>
+      </div>
+      <ul id="warnList"></ul>
+    </div>
+
+    <!-- 6: Ramadan -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title" id="ramTitle">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+      </div>
+      <ul id="ramList"></ul>
+    </div>
+
+    <!-- 7: Mad og drikke -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽</div>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+      </div>
+      <ul id="foodList"></ul>
+    </div>
+
+    <!-- 8: Opbevaring -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon store">⧉</div>
+        <div class="section-title" id="storeTitle">Kaydinta daawada <small>(Opbevaring)</small></div>
+      </div>
+      <ul id="storeList"></ul>
+    </div>
+
   </div>
 
-  <div class="section">
-    <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
-    <ul id="sideList"></ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title" id="interTitle">Isdhexgalka daawooyinka</div>
-    <ul id="interList"></ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title" id="warnTitle">Digniino</div>
-    <ul id="warnList"></ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title" id="ramTitle">Ramadaan iyo soonka</div>
-    <ul id="ramList"></ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title" id="foodTitle">Cunto iyo cabitaan</div>
-    <ul id="foodList"></ul>
-  </div>
-
-  <div class="section">
-    <div class="section-title" id="storeTitle">Kaydinta daawada</div>
-    <ul id="storeList"></ul>
-  </div>
-
-</div>
-
-<div class="footer-note" id="footerText"></div>
-<div class="footer-note" id="creditText"></div>
+  <div class="footer-note" id="footer1"></div>
+  <div class="footer-note" id="footer2"></div>
 
 </main>
 
@@ -124,535 +199,571 @@ a.back span { font-size:1.1rem; }
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const T = {
-  so:{
-    title:"Marevan (Warfarin) – dhiig-khafiifin",
-    subtitle:"Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    back:"Ku laabo liiska daawooyinka",
-    langLabel:"Dooro luqadda:",
+  so: {
+    pageTitle: "Marevan (Warfarin) – dhiig-khafiifin",
+    hdrH1: "Marevan (Warfarin) – dhiig-khafiifin",
+    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    backText: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    drugName: "Marevan (Warfarin)",
+    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    badgeText: "Akhris kooban",
 
-    useTitle:"Isticmaalka",
-    use:[
-      "Marevan (warfarin) waa daawo dhiigga khafiifisa si looga hortago xinjirow (blodpropper)."
+    useTitle: "Isticmaalka (Anvendelse)",
+    use: [
+      "Marevan (warfarin) waa daawo <span class='highlight'>dhiigga khafiifisa</span> si looga hortago xinjirow (blodpropper)."
     ],
 
-    doseTitle:"Qiyaasta",
-    dose:[
-      "Qiyaasta waxaa lagu saleeyaa natiijada baaritaanka <strong>INR</strong> (cabbir muujinaya sida dhiiggu u xinjiroobo).",
-      "Badanaa hal mar maalintii ayaa la qaataa, inta badan fiidkii."
+    doseTitle: "Qiyaasta (Dosering)",
+    dose: [
+      "Qiyaasta waxaa lagu saleeyaa baaritaanka <span class='highlight'>INR</span> (cabbir muujinaya sida dhiiggu u xinjiroobo).",
+      "Badanaa hal mar maalintii ayaa la qaataa, inta badan <span class='highlight'>fiidkii</span>."
     ],
 
-    sideTitle:"Waxyeellooyinka",
-    side:[
+    sideTitle: "Waxyeellooyinka (Bivirkninger)",
+    side: [
       "Dhiig-bax fudud: nabarro si fudud u soo baxa, sanka ama cirridka oo dhiig ka yimaado.",
-      "Dhiig-bax khatar ah: saxaro madow, matag dhiig leh, madax-xanuun daran → u tag isbitaal degdeg ah."
+      "Dhiig-bax khatar ah: saxaro madow, matag dhiig leh, madax-xanuun daran → raadi gargaar degdeg ah."
     ],
 
-    interTitle:"Isdhexgalka daawooyinka",
-    inter:[
-      "Daawooyin badan (antibiotiko, NSAID, daawooyinka geedaha/dabiiciga ah) waxay beddeli karaan <strong>INR</strong>.",
-      "Cuntooyinka aad u cagaaran (spinach/kaabaj iwm.) waxay saameyn karaan INR – isku day in qaadashada “cagaaran” ay noqoto heer joogto ah maalin kasta."
+    interTitle: "Isdhexgalka daawooyinka (Interaktioner)",
+    inter: [
+      "Daawooyin badan (tusaale: antibiotiko, NSAID, daawooyinka geedaha/dabiiciga ah) waxay beddeli karaan <span class='highlight'>INR</span>.",
+      "Cuntooyinka aad u cagaaran (spinach/kaabaj iwm.) waxay saameyn karaan INR — ujeedadu ma aha inaad joojiso, balse <span class='highlight'>joogteeyso</span> (isku heer maalin kasta)."
     ],
 
-    warnTitle:"Digniino",
-    warn:[
+    warnTitle: "Digniino (Advarsler)",
+    warn: [
       "Had iyo jeer u sheeg dhakhtarka/farmashiyaha in aad qaadato Marevan.",
       "Ha seegin baaritaanka INR iyo ballamaha kormeerka."
     ],
 
-    ramTitle:"Ramadaan iyo soonka",
-    ram:[
-      "Haddii aad qaadato fiidkii, badanaa waad sii wadan kartaa Ramadaanka <strong>ka dib afurka</strong>.",
-      "Ha seegin daawada – xinjiro cusub ayaa samaysmi kara."
+    ramTitle: "Ramadaan iyo soonka (Ramadan og faste)",
+    ram: [
+      "Haddii aad qaadato fiidkii, badanaa waad sii wadan kartaa Ramadaanka <span class='highlight'>ka dib afurka</span>.",
+      "Ha seegin daawada — xinjiro cusub ayaa samaysmi kara."
     ],
 
-    foodTitle:"Cunto iyo cabitaan",
-    food:[
+    foodTitle: "Cunto iyo cabitaan (Mad og drikke)",
+    food: [
       "Ka fogow khamri badan; waxay kordhin kartaa khatarta dhiig-baxa.",
-      "Cuntooyinka cagaaran: ujeedadu ma aha inaad joojiso, balse <strong>joogteeyso</strong> (isku heer maalin kasta)."
+      "Cuntooyinka cagaaran: ujeedadu ma aha inaad joojiso, balse <span class='highlight'>joogteeyso</span> (isku heer maalin kasta)."
     ],
 
-    storeTitle:"Kaydinta daawada",
-    store:[
+    storeTitle: "Kaydinta daawada (Opbevaring)",
+    store: [
       "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
       "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
       "Ha qaadan marka ay dhaafto “EXP” ama haddii midab/qaab isbeddelo.",
       "Wixii soo haray → weydii farmashiyaha si loogu tuuro meesha ku habboon."
     ],
 
-    footer:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    credit:"Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf (Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
 
-  da:{
-    title:"Marevan (Warfarin) – blodfortyndende",
-    subtitle:"Kort information om lægemidlet til patienter og pårørende.",
-    back:"Tilbage til medicinlisten",
-    langLabel:"Vælg sprog:",
+  da: {
+    pageTitle: "Marevan (Warfarin) – blodfortyndende",
+    hdrH1: "Marevan (Warfarin) – blodfortyndende",
+    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
+    backText: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    drugName: "Marevan (Warfarin)",
+    drugForm: "Tablet (til at tage gennem munden)",
+    badgeText: "Kort og let",
 
-    useTitle:"Anvendelse",
-    use:[
+    useTitle: "Anvendelse",
+    use: [
       "Marevan (warfarin) er blodfortyndende medicin, der forebygger blodpropper."
     ],
 
-    doseTitle:"Dosering",
-    dose:[
-      "Dosis tilpasses efter <strong>INR</strong> (en måling af hvor hurtigt blodet størkner).",
+    doseTitle: "Dosering",
+    dose: [
+      "Dosis tilpasses efter <span class='highlight'>INR</span> (en måling af hvor hurtigt blodet størkner).",
       "Tages ofte én gang dagligt – typisk om aftenen."
     ],
 
-    sideTitle:"Bivirkninger",
-    side:[
+    sideTitle: "Bivirkninger",
+    side: [
       "Let blødning: nemme blå mærker, næseblod eller blødning fra tandkød.",
       "Alvorlig blødning: sort afføring, blodig opkast, kraftig hovedpine → søg akut hjælp."
     ],
 
-    interTitle:"Interaktioner",
-    inter:[
-      "Mange lægemidler (antibiotika, NSAID, naturmidler/urter) kan påvirke <strong>INR</strong>.",
-      "Meget grønne fødevarer (fx spinat/kål) kan påvirke INR – hold et <strong>stabilt</strong> indtag fra dag til dag."
+    interTitle: "Interaktioner",
+    inter: [
+      "Mange lægemidler (antibiotika, NSAID, naturmidler/urter) kan påvirke <span class='highlight'>INR</span>.",
+      "Meget grønne fødevarer (fx spinat/kål) kan påvirke INR — hold et <span class='highlight'>stabilt</span> indtag fra dag til dag."
     ],
 
-    warnTitle:"Advarsler",
-    warn:[
+    warnTitle: "Advarsler",
+    warn: [
       "Fortæl altid læge og apotek, at du tager Marevan.",
       "Glem ikke INR-kontroller og aftaler."
     ],
 
-    ramTitle:"Ramadan og faste",
-    ram:[
-      "Hvis du tager Marevan om aftenen, kan det ofte fortsættes i Ramadan <strong>efter iftar</strong>.",
-      "Spring ikke dosis over – der kan dannes nye blodpropper."
+    ramTitle: "Ramadan og faste",
+    ram: [
+      "Hvis du tager Marevan om aftenen, kan det ofte fortsættes i Ramadan <span class='highlight'>efter iftar</span>.",
+      "Spring ikke dosis over — der kan dannes nye blodpropper."
     ],
 
-    foodTitle:"Mad og drikke",
-    food:[
+    foodTitle: "Mad og drikke",
+    food: [
       "Undgå meget alkohol – det kan øge risikoen for blødning.",
-      "Grøntsager med K-vitamin: du behøver ikke stoppe – men spis nogenlunde <strong>ens</strong> fra dag til dag."
+      "Grøntsager med K-vitamin: du behøver ikke stoppe – men spis nogenlunde <span class='highlight'>ens</span> fra dag til dag."
     ],
 
-    storeTitle:"Opbevaring",
-    store:[
+    storeTitle: "Opbevaring",
+    store: [
       "Opbevares utilgængeligt for børn og under 25 °C.",
       "Opbevar i original emballage for at beskytte mod lys og fugt.",
       "Brug ikke efter “EXP” eller hvis tabletterne ændrer udseende.",
       "Aflever rester på apoteket."
     ],
 
-    footer:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    credit:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
-  en:{
-    title:"Marevan (Warfarin) – blood thinner",
-    subtitle:"Brief medicine information for patients and relatives.",
-    back:"Back to the medicine list",
-    langLabel:"Choose language:",
+  en: {
+    pageTitle: "Marevan (Warfarin) – blood thinner",
+    hdrH1: "Marevan (Warfarin) – blood thinner",
+    hdrP: "Brief medicine information for patients and relatives.",
+    backText: "Back to the medicine list",
+    langLabel: "Choose language:",
+    drugName: "Marevan (Warfarin)",
+    drugForm: "Tablet (by mouth)",
+    badgeText: "Short and clear",
 
-    useTitle:"Use",
-    use:[
+    useTitle: "Use",
+    use: [
       "Marevan (warfarin) is a blood thinner used to prevent blood clots."
     ],
 
-    doseTitle:"Dose",
-    dose:[
-      "The dose is adjusted based on <strong>INR</strong> (a test that shows how quickly your blood clots).",
+    doseTitle: "Dose",
+    dose: [
+      "The dose is adjusted based on <span class='highlight'>INR</span> (a test that shows how quickly your blood clots).",
       "Often taken once daily – commonly in the evening."
     ],
 
-    sideTitle:"Side effects",
-    side:[
+    sideTitle: "Side effects",
+    side: [
       "Minor bleeding: easy bruising, nosebleeds, or gum bleeding.",
       "Serious bleeding: black stools, vomiting blood, severe headache → seek urgent care."
     ],
 
-    interTitle:"Interactions",
-    inter:[
-      "Many medicines (antibiotics, NSAIDs, herbal products) can affect <strong>INR</strong>.",
-      "Very green foods (e.g., spinach/cabbage) can affect INR – keep your intake <strong>consistent</strong> day to day."
+    interTitle: "Interactions",
+    inter: [
+      "Many medicines (antibiotics, NSAIDs, herbal products) can affect <span class='highlight'>INR</span>.",
+      "Very green foods (e.g., spinach/cabbage) can affect INR — keep your intake <span class='highlight'>consistent</span> day to day."
     ],
 
-    warnTitle:"Warnings",
-    warn:[
+    warnTitle: "Warnings",
+    warn: [
       "Always tell your doctor/pharmacy that you take warfarin.",
       "Do not miss INR checks and follow-up appointments."
     ],
 
-    ramTitle:"Ramadan and fasting",
-    ram:[
-      "If you take warfarin in the evening, it can often be continued in Ramadan <strong>after iftar</strong>.",
-      "Do not skip doses – new clots can form."
+    ramTitle: "Ramadan and fasting",
+    ram: [
+      "If you take warfarin in the evening, it can often be continued in Ramadan <span class='highlight'>after iftar</span>.",
+      "Do not skip doses — new clots can form."
     ],
 
-    foodTitle:"Food and drink",
-    food:[
+    foodTitle: "Food and drink",
+    food: [
       "Avoid heavy alcohol intake; it can increase bleeding risk.",
-      "Vitamin K foods: you do not need to stop them — keep intake <strong>steady</strong> each day."
+      "Vitamin K foods: you do not need to stop them — keep intake <span class='highlight'>steady</span> each day."
     ],
 
-    storeTitle:"Storage",
-    store:[
+    storeTitle: "Storage",
+    store: [
       "Keep out of reach of children and below 25 °C.",
       "Store in the original pack to protect from light and moisture.",
       "Do not use after “EXP” or if tablets change appearance.",
       "Return leftovers to the pharmacy."
     ],
 
-    footer:"If you need more information, contact your pharmacy or doctor.",
-    credit:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+    footer1: "If you need more information, contact your pharmacy or doctor.",
+    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
-  ar:{
-    title:"ماريفان (وارفارين) – مميع للدم",
-    subtitle:"معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
-    back:"العودة إلى قائمة الأدوية",
-    langLabel:"اختر اللغة:",
+  ar: {
+    pageTitle: "ماريفان (وارفارين) – مميع للدم",
+    hdrH1: "ماريفان (وارفارين) – مميع للدم",
+    hdrP: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    backText: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    drugName: "ماريفان (وارفارين)",
+    drugForm: "أقراص (عن طريق الفم)",
+    badgeText: "مختصر وواضح",
 
-    useTitle:"الاستخدام",
-    use:[
+    useTitle: "الاستخدام",
+    use: [
       "ماريفان (وارفارين) دواء مميع للدم للوقاية من الجلطات."
     ],
 
-    doseTitle:"الجرعة",
-    dose:[
-      "تُعدَّل الجرعة حسب فحص <strong>INR</strong> (قياس يوضح سرعة تخثر الدم).",
+    doseTitle: "الجرعة",
+    dose: [
+      "تُعدَّل الجرعة حسب فحص <span class='highlight'>INR</span> (قياس يوضح سرعة تخثر الدم).",
       "غالباً يؤخذ مرة يومياً – عادةً مساءً."
     ],
 
-    sideTitle:"الآثار الجانبية",
-    side:[
+    sideTitle: "الآثار الجانبية",
+    side: [
       "نزيف خفيف: كدمات سهلة، نزيف أنف أو نزيف لثة.",
       "نزيف خطير: براز أسود، قيء دموي، صداع شديد → اطلب مساعدة عاجلة."
     ],
 
-    interTitle:"التداخلات",
-    inter:[
-      "أدوية كثيرة (مضادات حيوية، NSAID، أعشاب/مكملات) قد تؤثر على <strong>INR</strong>.",
-      "الأطعمة الخضراء جداً (مثل السبانخ/الكرنب) قد تؤثر على INR — حافظ على تناول <strong>ثابت</strong> يومياً."
+    interTitle: "التداخلات",
+    inter: [
+      "أدوية كثيرة (مضادات حيوية، NSAID، أعشاب/مكملات) قد تؤثر على <span class='highlight'>INR</span>.",
+      "الأطعمة الخضراء جداً (مثل السبانخ/الكرنب) قد تؤثر على INR — حافظ على تناول <span class='highlight'>ثابت</span> يومياً."
     ],
 
-    warnTitle:"تحذيرات",
-    warn:[
+    warnTitle: "تحذيرات",
+    warn: [
       "أخبر الطبيب والصيدلية دائماً أنك تتناول وارفارين.",
       "لا تُهمل مواعيد فحص INR والمتابعة."
     ],
 
-    ramTitle:"رمضان والصيام",
-    ram:[
-      "إذا كنت تتناول الدواء مساءً، فيمكن غالباً الاستمرار عليه في رمضان <strong>بعد الإفطار</strong>.",
+    ramTitle: "رمضان والصيام",
+    ram: [
+      "إذا كنت تتناول الدواء مساءً، فيمكن غالباً الاستمرار عليه في رمضان <span class='highlight'>بعد الإفطار</span>.",
       "لا تتجاوز الجرعات — فقد تتكوّن جلطات جديدة."
     ],
 
-    foodTitle:"الطعام والشراب",
-    food:[
+    foodTitle: "الطعام والشراب",
+    food: [
       "تجنّب الإكثار من الكحول لأنه يزيد خطر النزيف.",
-      "أطعمة فيتامين K: لا يلزم منعها — الأهم هو الاستمرار على كمية <strong>متقاربة</strong> يومياً."
+      "أطعمة فيتامين K: لا يلزم منعها — الأهم هو الاستمرار على كمية <span class='highlight'>متقاربة</span> يومياً."
     ],
 
-    storeTitle:"الحفظ",
-    store:[
+    storeTitle: "الحفظ",
+    store: [
       "يُحفظ بعيداً عن الأطفال وتحت 25°م.",
       "يُحفظ في العبوة الأصلية بعيداً عن الضوء والرطوبة.",
       "لا تستخدمه بعد “EXP” أو إذا تغيّر شكله.",
       "أعد البقايا إلى الصيدلية."
     ],
 
-    footer:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    credit:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
+    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
   },
 
-  tr:{
-    title:"Marevan (Warfarin) – kan sulandırıcı",
-    subtitle:"Hasta ve yakınları için kısa ilaç bilgisi.",
-    back:"İlaç listesine geri dön",
-    langLabel:"Dil seçin:",
+  tr: {
+    pageTitle: "Marevan (Warfarin) – kan sulandırıcı",
+    hdrH1: "Marevan (Warfarin) – kan sulandırıcı",
+    hdrP: "Hasta ve yakınları için kısa ilaç bilgisi.",
+    backText: "İlaç listesine geri dön",
+    langLabel: "Dil seçin:",
+    drugName: "Marevan (Warfarin)",
+    drugForm: "Tablet (ağızdan)",
+    badgeText: "Kısa ve anlaşılır",
 
-    useTitle:"Kullanım",
-    use:[
+    useTitle: "Kullanım",
+    use: [
       "Marevan (warfarin) kan pıhtılarını önlemek için kullanılan kan sulandırıcıdır."
     ],
 
-    doseTitle:"Doz",
-    dose:[
-      "Doz, <strong>INR</strong> testine göre ayarlanır (kanın pıhtılaşma hızını gösterir).",
+    doseTitle: "Doz",
+    dose: [
+      "Doz, <span class='highlight'>INR</span> testine göre ayarlanır (kanın pıhtılaşma hızını gösterir).",
       "Genellikle günde 1 kez – çoğunlukla akşam alınır."
     ],
 
-    sideTitle:"Yan etkiler",
-    side:[
+    sideTitle: "Yan etkiler",
+    side: [
       "Hafif kanama: kolay morarma, burun kanaması veya diş eti kanaması.",
       "Ciddi kanama: siyah dışkı, kanlı kusma, şiddetli baş ağrısı → acil yardım alın."
     ],
 
-    interTitle:"Etkileşimler",
-    inter:[
-      "Birçok ilaç (antibiyotikler, NSAID, bitkisel ürünler) <strong>INR</strong>’yi etkileyebilir.",
-      "Çok yeşil gıdalar (ıspanak/lahana) INR’yi etkileyebilir — günlük tüketimi <strong>dengeli</strong> tutun."
+    interTitle: "Etkileşimler",
+    inter: [
+      "Birçok ilaç (antibiyotikler, NSAID, bitkisel ürünler) <span class='highlight'>INR</span>’yi etkileyebilir.",
+      "Çok yeşil gıdalar (ıspanak/lahana) INR’yi etkileyebilir — günlük tüketimi <span class='highlight'>dengeli</span> tutun."
     ],
 
-    warnTitle:"Uyarılar",
-    warn:[
+    warnTitle: "Uyarılar",
+    warn: [
       "Warfarin kullandığınızı doktorunuza ve eczaneye mutlaka söyleyin.",
       "INR kontrollerini aksatmayın."
     ],
 
-    ramTitle:"Ramazan ve oruç",
-    ram:[
-      "İlacı akşam alıyorsanız, Ramazan’da çoğu zaman <strong>iftardan sonra</strong> aynı şekilde devam edilebilir.",
+    ramTitle: "Ramazan ve oruç",
+    ram: [
+      "İlacı akşam alıyorsanız, Ramazan’da çoğu zaman <span class='highlight'>iftardan sonra</span> devam edilebilir.",
       "Dozu atlamayın — yeni pıhtılar oluşabilir."
     ],
 
-    foodTitle:"Yiyecek ve içecek",
-    food:[
+    foodTitle: "Yiyecek ve içecek",
+    food: [
       "Aşırı alkol tüketmeyin; kanama riskini artırabilir.",
-      "K vitamini içeren besinler: tamamen kesmek gerekmez — günlük alımı <strong>benzer</strong> tutun."
+      "K vitamini içeren besinler: tamamen kesmek gerekmez — günlük alımı <span class='highlight'>benzer</span> tutun."
     ],
 
-    storeTitle:"Saklama",
-    store:[
+    storeTitle: "Saklama",
+    store: [
       "Çocuklardan uzak, 25 °C’nin altında saklayın.",
       "Işık ve nemden korumak için orijinal ambalajda saklayın.",
       "“EXP” sonrası veya görünüm değiştiyse kullanmayın.",
       "Artan ilaçları eczaneye verin."
     ],
 
-    footer:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    credit:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
   },
 
-  ur:{
-    title:"ماریوان (وارفرین) – خون پتلا کرنے والی دوا",
-    subtitle:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    back:"فہرست پر واپس",
-    langLabel:"زبان منتخب کریں:",
+  ur: {
+    pageTitle: "ماریوان (وارفرین) – خون پتلا کرنے والی دوا",
+    hdrH1: "ماریوان (وارفرین) – خون پتلا کرنے والی دوا",
+    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText: "فہرست پر واپس",
+    langLabel: "زبان منتخب کریں:",
+    drugName: "ماریوان (وارفرین)",
+    drugForm: "گولی (منہ کے ذریعے)",
+    badgeText: "مختصر اور واضح",
 
-    useTitle:"استعمال",
-    use:[
-      "ماریوان (وارفرین) خون کو پتلا کرنے والی دوا ہے جو خون کے لوتھڑے (clots) سے بچاتی ہے۔"
+    useTitle: "استعمال",
+    use: [
+      "ماریوان (وارفرین) خون کو پتلا کرنے والی دوا ہے جو خون کے لوتھڑے سے بچاتی ہے۔"
     ],
 
-    doseTitle:"خوراک",
-    dose:[
-      "خوراک <strong>INR</strong> ٹیسٹ کے مطابق طے کی جاتی ہے (یہ خون کے جمنے کی رفتار بتاتا ہے)۔",
+    doseTitle: "خوراک",
+    dose: [
+      "خوراک <span class='highlight'>INR</span> ٹیسٹ کے مطابق طے کی جاتی ہے۔",
       "اکثر روزانہ ایک بار – عموماً شام کو لی جاتی ہے۔"
     ],
 
-    sideTitle:"مضر اثرات",
-    side:[
+    sideTitle: "مضر اثرات",
+    side: [
       "ہلکی خون ریزی: آسانی سے نیل پڑنا، ناک یا مسوڑھوں سے خون آنا۔",
       "شدید خون ریزی: کالا پاخانہ، خون کی الٹی، شدید سر درد → فوری طبی مدد لیں۔"
     ],
 
-    interTitle:"دواؤں کے باہمی اثرات",
-    inter:[
-      "کئی دوائیں (اینٹی بایوٹک، NSAID، جڑی بوٹیاں) <strong>INR</strong> کو بدل سکتی ہیں۔",
-      "بہت زیادہ سبز غذائیں (مثلاً پالک/گوبھی) INR پر اثر ڈال سکتی ہیں — روزانہ مقدار <strong>ایک جیسی</strong> رکھیں۔"
+    interTitle: "دواؤں کے باہمی اثرات",
+    inter: [
+      "کئی دوائیں (اینٹی بایوٹک، NSAID، جڑی بوٹیاں) <span class='highlight'>INR</span> کو بدل سکتی ہیں۔",
+      "بہت زیادہ سبز غذائیں (مثلاً پالک/گوبھی) INR پر اثر ڈال سکتی ہیں — مقدار <span class='highlight'>ایک جیسی</span> رکھیں۔"
     ],
 
-    warnTitle:"احتیاطیں",
-    warn:[
+    warnTitle: "احتیاطیں",
+    warn: [
       "ہمیشہ ڈاکٹر اور فارمیسی کو بتائیں کہ آپ وارفرین لیتے ہیں۔",
       "INR چیک اپ اور فالو اپ نہ چھوڑیں۔"
     ],
 
-    ramTitle:"رمضان اور روزہ",
-    ram:[
-      "اگر آپ دوا شام میں لیتے ہیں تو رمضان میں اکثر <strong>افطار کے بعد</strong> اسی وقت جاری رکھی جا سکتی ہے۔",
+    ramTitle: "رمضان اور روزہ",
+    ram: [
+      "اگر آپ دوا شام میں لیتے ہیں تو رمضان میں اکثر <span class='highlight'>افطار کے بعد</span> جاری رکھی جا سکتی ہے۔",
       "خوراک نہ چھوڑیں — نئے لوتھڑے بن سکتے ہیں۔"
     ],
 
-    foodTitle:"کھانا پینا",
-    food:[
+    foodTitle: "کھانا پینا",
+    food: [
       "زیادہ الکحل سے بچیں؛ خون ریزی کا خطرہ بڑھ سکتا ہے۔",
-      "وٹامن K والی غذائیں: روکنا ضروری نہیں — مقدار <strong>مستقل</strong> رکھیں۔"
+      "وٹامن K والی غذائیں: روکنا ضروری نہیں — مقدار <span class='highlight'>مستقل</span> رکھیں۔"
     ],
 
-    storeTitle:"محفوظ رکھنا",
-    store:[
+    storeTitle: "محفوظ رکھنا",
+    store: [
       "بچوں سے دور اور 25 °C سے کم درجہ حرارت پر رکھیں۔",
       "اصل پیک میں روشنی/نمی سے بچا کر رکھیں۔",
-      "“EXP” کے بعد یا شکل بدلنے پر استعمال نہ کریں۔",
-      "بچ جانے والی دوا فارمیسی کو واپس کریں۔"
+      "“EXP” کے بعد استعمال نہ کریں۔",
+      "بچی دوا فارمیسی کو واپس کریں۔"
     ],
 
-    footer:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    credit:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
   },
 
-  fa:{
-    title:"ماروان (وارفارین) – رقیق‌کننده خون",
-    subtitle:"اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
-    back:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
+  fa: {
+    pageTitle: "ماروان (وارفارین) – رقیق‌کننده خون",
+    hdrH1: "ماروان (وارفارین) – رقیق‌کننده خون",
+    hdrP: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
+    backText: "بازگشت به فهرست",
+    langLabel: "انتخاب زبان:",
+    drugName: "ماروان (وارفارین)",
+    drugForm: "قرص (خوراکی)",
+    badgeText: "کوتاه و روشن",
 
-    useTitle:"کاربرد",
-    use:[
+    useTitle: "کاربرد",
+    use: [
       "ماروان (وارفارین) داروی رقیق‌کننده خون برای پیشگیری از لخته‌های خون است."
     ],
 
-    doseTitle:"دوز",
-    dose:[
-      "دوز بر اساس آزمایش <strong>INR</strong> تنظیم می‌شود (نشان می‌دهد خون با چه سرعتی لخته می‌شود).",
+    doseTitle: "دوز",
+    dose: [
+      "دوز بر اساس آزمایش <span class='highlight'>INR</span> تنظیم می‌شود.",
       "اغلب روزی یک‌بار — معمولاً عصرها."
     ],
 
-    sideTitle:"عوارض",
-    side:[
+    sideTitle: "عوارض",
+    side: [
       "خونریزی خفیف: کبودی آسان، خون دماغ یا خونریزی لثه.",
       "خونریزی شدید: مدفوع سیاه، استفراغ خونی، سردرد شدید → فوراً کمک پزشکی بگیرید."
     ],
 
-    interTitle:"تداخلات",
-    inter:[
-      "بسیاری از داروها (آنتی‌بیوتیک‌ها، NSAID، گیاهان دارویی) می‌توانند <strong>INR</strong> را تغییر دهند.",
-      "غذاهای خیلی سبز (اسفناج/کلم) می‌تواند INR را تحت تأثیر قرار دهد — مصرف روزانه را <strong>ثابت</strong> نگه دارید."
+    interTitle: "تداخلات",
+    inter: [
+      "بسیاری از داروها (آنتی‌بیوتیک‌ها، NSAID، گیاهان دارویی) می‌توانند <span class='highlight'>INR</span> را تغییر دهند.",
+      "غذاهای خیلی سبز (اسفناج/کلم) می‌تواند INR را تحت تأثیر قرار دهد — مصرف روزانه را <span class='highlight'>ثابت</span> نگه دارید."
     ],
 
-    warnTitle:"هشدارها",
-    warn:[
+    warnTitle: "هشدارها",
+    warn: [
       "همیشه به پزشک و داروخانه بگویید که وارفارین مصرف می‌کنید.",
       "آزمایش‌های INR و ویزیت‌های پیگیری را از دست ندهید."
     ],
 
-    ramTitle:"رمضان و روزه",
-    ram:[
-      "اگر دارو را عصر مصرف می‌کنید، در رمضان معمولاً می‌توان آن را <strong>بعد از افطار</strong> ادامه داد.",
-      "دوز را حذف نکنید — ممکن است لخته جدید ایجاد شود."
+    ramTitle: "رمضان و روزه",
+    ram: [
+      "اگر دارو را عصر مصرف می‌کنید، در رمضان معمولاً می‌توان آن را <span class='highlight'>بعد از افطار</span> ادامه داد.",
+      "دوز را حذف نکنید."
     ],
 
-    foodTitle:"غذا و نوشیدنی",
-    food:[
+    foodTitle: "غذا و نوشیدنی",
+    food: [
       "از مصرف زیاد الکل خودداری کنید؛ خطر خونریزی را افزایش می‌دهد.",
-      "غذاهای حاوی ویتامین K: قطع لازم نیست — مقدار را <strong>یکنواخت</strong> نگه دارید."
+      "غذاهای حاوی ویتامین K: قطع لازم نیست — مقدار را <span class='highlight'>یکنواخت</span> نگه دارید."
     ],
 
-    storeTitle:"نگهداری",
-    store:[
+    storeTitle: "نگهداری",
+    store: [
       "دور از دسترس کودکان و زیر 25 °C نگهداری شود.",
       "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌داری کنید.",
       "پس از “EXP” یا در صورت تغییر ظاهر مصرف نکنید.",
       "باقی‌مانده را به داروخانه تحویل دهید."
     ],
 
-    footer:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    credit:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
   },
 
-  prs:{
-    title:"ماروان (وارفارین) – رقیق‌کننده خون",
-    subtitle:"معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
-    back:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
+  prs: {
+    pageTitle: "ماروان (وارفارین) – رقیق‌کننده خون",
+    hdrH1: "ماروان (وارفارین) – رقیق‌کننده خون",
+    hdrP: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
+    backText: "بازگشت به فهرست",
+    langLabel: "انتخاب زبان:",
+    drugName: "ماروان (وارفارین)",
+    drugForm: "قرص (خوراکی)",
+    badgeText: "کوتاه و واضح",
 
-    useTitle:"کاربرد",
-    use:[
+    useTitle: "کاربرد",
+    use: [
       "ماروان (وارفارین) دوا برای رقیق‌کردن خون و جلوگیری از لخته‌های خون است."
     ],
 
-    doseTitle:"دوز",
-    dose:[
-      "دوز بر اساس آزمایش <strong>INR</strong> تنظیم می‌شود (نشان می‌دهد خون با چه سرعتی لخته می‌شود).",
+    doseTitle: "دوز",
+    dose: [
+      "دوز بر اساس آزمایش <span class='highlight'>INR</span> تنظیم می‌شود.",
       "اکثر روزانه یک‌بار — معمولاً شام/عصر."
     ],
 
-    sideTitle:"عوارض",
-    side:[
+    sideTitle: "عوارض",
+    side: [
       "خون‌ریزی خفیف: کبودی آسان، خون دماغ یا خون‌ریزی لثه.",
       "خون‌ریزی شدید: مدفوع سیاه، استفراغ خونی، سردرد شدید → عاجل کمک صحی بگیرید."
     ],
 
-    interTitle:"تداخلات",
-    inter:[
-      "بسیاری از دواها (انتی‌بیوتیک، NSAID، گیاهان دارویی) می‌تواند <strong>INR</strong> را تغییر دهد.",
-      "غذاهای خیلی سبز (اسفناج/کلم) روی INR اثر می‌کند — مصرف روزانه را <strong>ثابت</strong> نگه دارید."
+    interTitle: "تداخلات",
+    inter: [
+      "بسیاری از دواها (انتی‌بیوتیک، NSAID، گیاهان دارویی) می‌تواند <span class='highlight'>INR</span> را تغییر دهد.",
+      "غذاهای خیلی سبز (اسفناج/کلم) روی INR اثر می‌کند — مصرف روزانه را <span class='highlight'>ثابت</span> نگه دارید."
     ],
 
-    warnTitle:"هشدارها",
-    warn:[
+    warnTitle: "هشدارها",
+    warn: [
       "همیشه به داکتر و دواخانه بگویید که وارفارین می‌گیرید.",
       "آزمایش‌های INR و وقت‌های کنترول را از دست ندهید."
     ],
 
-    ramTitle:"رمضان و روزه",
-    ram:[
-      "اگر دوا را شام/عصر می‌گیرید، در رمضان معمولاً می‌توانید آن را <strong>بعد از افطار</strong> ادامه دهید.",
-      "دوز را ترک نکنید — ممکن است لخته جدید ایجاد شود."
+    ramTitle: "رمضان و روزه",
+    ram: [
+      "اگر دوا را شام/عصر می‌گیرید، در رمضان معمولاً می‌توانید آن را <span class='highlight'>بعد از افطار</span> ادامه دهید.",
+      "دوز را ترک نکنید."
     ],
 
-    foodTitle:"غذا و نوشیدنی",
-    food:[
+    foodTitle: "غذا و نوشیدنی",
+    food: [
       "از الکل زیاد دوری کنید؛ خطر خون‌ریزی را بالا می‌برد.",
-      "غذاهای دارای ویتامین K: قطع لازم نیست — مقدار را <strong>یکسان</strong> نگه دارید."
+      "غذاهای دارای ویتامین K: قطع لازم نیست — مقدار را <span class='highlight'>یکسان</span> نگه دارید."
     ],
 
-    storeTitle:"نگهداری",
-    store:[
+    storeTitle: "نگهداری",
+    store: [
       "دور از دسترس اطفال و زیر 25 °C نگه‌داری شود.",
       "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌داری کنید.",
       "بعد از “EXP” یا در صورت تغییر ظاهر استفاده نکنید.",
       "باقی‌مانده را به دواخانه بسپارید."
     ],
 
-    footer:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    credit:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
+    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
   },
 
-  ps:{
-    title:"مارېوان (وارفارین) – د وینې نری کوونکی",
-    subtitle:"د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
-    back:"لېست ته بېرته",
-    langLabel:"ژبه وټاکئ:",
+  ps: {
+    pageTitle: "مارېوان (وارفارین) – د وینې نری کوونکی",
+    hdrH1: "مارېوان (وارفارین) – د وینې نری کوونکی",
+    hdrP: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
+    backText: "لېست ته بېرته",
+    langLabel: "ژبه وټاکئ:",
+    drugName: "مارېوان (وارفارین)",
+    drugForm: "ګولۍ (د خولې له لارې)",
+    badgeText: "لنډ او روښانه",
 
-    useTitle:"کارونه",
-    use:[
-      "مارېوان (وارفارین) د وینې نری کوونکی درمل دي چې د وینې له لختو (clots) څخه مخنیوی کوي."
+    useTitle: "کارونه",
+    use: [
+      "مارېوان (وارفارین) د وینې نری کوونکی درمل دي چې د وینې له لختو څخه مخنیوی کوي."
     ],
 
-    doseTitle:"دوز",
-    dose:[
-      "دوز د <strong>INR</strong> ازموینې له مخې برابرېږي (ښيي وینه په کوم سرعت ټینګېږي).",
+    doseTitle: "دوز",
+    dose: [
+      "دوز د <span class='highlight'>INR</span> ازموینې له مخې برابرېږي.",
       "اکثر یو ځل په ورځ کې — معمولاً ماښام."
     ],
 
-    sideTitle:"اړخیزې اغېزې",
-    side:[
+    sideTitle: "اړخیزې اغېزې",
+    side: [
       "سپک وینې بهېدنه: اسانه کبودوالی، د پوزې یا د غاښونو د لثو وینه.",
       "سخته وینې بهېدنه: تورې ګوزارې، د وینې کانګې، سخت سر درد → بیړنۍ مرسته وغواړئ."
     ],
 
-    interTitle:"تداخلات",
-    inter:[
-      "ډېر درمل (انټي‌بیوټیک، NSAID، بوټي/طبیعي محصولات) <strong>INR</strong> بدلولی شي.",
-      "ډېر شین خواړه (لکه پالک/کلم) پر INR اغېز کوي — ورځنی استعمال <strong>ثابت</strong> وساتئ."
+    interTitle: "تداخلات",
+    inter: [
+      "ډېر درمل (انټي‌بیوټیک، NSAID، بوټي/طبیعي محصولات) <span class='highlight'>INR</span> بدلولی شي.",
+      "ډېر شین خواړه (لکه پالک/کلم) پر INR اغېز کوي — ورځنی استعمال <span class='highlight'>ثابت</span> وساتئ."
     ],
 
-    warnTitle:"خبرداری",
-    warn:[
+    warnTitle: "خبرداری",
+    warn: [
       "تل ډاکټر او درملتون ته ووایاست چې وارفارین کاروئ.",
       "د INR ازموینې او کنټرول وختونه مه هېروئ."
     ],
 
-    ramTitle:"رمضان او روژه",
-    ram:[
-      "که تاسو درمل ماښام اخلی، په رمضان کې ډېر وخت <strong>له افطار وروسته</strong> همداسې دوام کولی شي.",
-      "دوز مه پرېږدئ — نوي لختې جوړېدای شي."
+    ramTitle: "رمضان او روژه",
+    ram: [
+      "که تاسو درمل ماښام اخلی، په رمضان کې ډېر وخت <span class='highlight'>له افطار وروسته</span> همداسې دوام کولی شي.",
+      "دوز مه پرېږدئ."
     ],
 
-    foodTitle:"خواړه او څښاک",
-    food:[
+    foodTitle: "خواړه او څښاک",
+    food: [
       "له ډېر الکول څخه ډډه وکړئ؛ د وینې بهېدنې خطر زیاتوي.",
-      "د ویټامین K خواړه: بندول لازم نه دي — مقدار <strong>یو شان</strong> وساتئ."
+      "د ویټامین K خواړه: بندول لازم نه دي — مقدار <span class='highlight'>یو شان</span> وساتئ."
     ],
 
-    storeTitle:"ساتنه",
-    store:[
+    storeTitle: "ساتنه",
+    store: [
       "له ماشومانو لرې او تر 25 °C لاندې وساتئ.",
       "په اصلي بسته کې وساتئ ترڅو له رڼا او رطوبت څخه خوندي وي.",
       "له “EXP” وروسته یا د بڼې بدلون سره مه کاروئ.",
       "پاتې درمل درملتون ته وسپارئ."
     ],
 
-    footer:"د لا نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    credit:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+    footer1: "د لا نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
 
@@ -660,7 +771,6 @@ function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
-
 function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
@@ -670,25 +780,28 @@ function fillList(id, arr){
     ul.appendChild(li);
   });
 }
-
 function applyLang(lang){
   const d = T[lang] || T.so;
   setDirLang(lang);
 
-  document.title = d.title;
-  document.getElementById("title").textContent = d.title;
-  document.getElementById("subtitle").textContent = d.subtitle;
-  document.getElementById("backText").textContent = d.back;
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.getElementById("hdrP").textContent = d.hdrP;
+  document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("useTitle").textContent = d.useTitle;
-  document.getElementById("doseTitle").textContent = d.doseTitle;
-  document.getElementById("sideTitle").textContent = d.sideTitle;
-  document.getElementById("interTitle").textContent = d.interTitle;
-  document.getElementById("warnTitle").textContent = d.warnTitle;
-  document.getElementById("ramTitle").textContent = d.ramTitle;
-  document.getElementById("foodTitle").textContent = d.foodTitle;
-  document.getElementById("storeTitle").textContent = d.storeTitle;
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("badgeText").textContent = d.badgeText;
+
+  document.getElementById("useTitle").innerHTML = d.useTitle;
+  document.getElementById("doseTitle").innerHTML = d.doseTitle;
+  document.getElementById("sideTitle").innerHTML = d.sideTitle;
+  document.getElementById("interTitle").innerHTML = d.interTitle;
+  document.getElementById("warnTitle").innerHTML = d.warnTitle;
+  document.getElementById("ramTitle").innerHTML = d.ramTitle;
+  document.getElementById("foodTitle").innerHTML = d.foodTitle;
+  document.getElementById("storeTitle").innerHTML = d.storeTitle;
 
   fillList("useList", d.use);
   fillList("doseList", d.dose);
@@ -699,15 +812,20 @@ function applyLang(lang){
   fillList("foodList", d.food);
   fillList("storeList", d.store);
 
-  document.getElementById("footerText").textContent = d.footer;
-  document.getElementById("creditText").textContent = d.credit;
+  document.getElementById("footer1").textContent = d.footer1;
+  document.getElementById("footer2").innerHTML = d.footer2;
+
+  // keep language when going back
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
 // Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get('lang') || 'so';
+const startLang = params.get("lang") || "so";
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : 'so');
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
 applyLang(document.getElementById("langSelect").value);
 
 document.getElementById("langSelect").addEventListener("change", function(){
