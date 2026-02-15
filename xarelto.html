@@ -185,6 +185,10 @@ a.back span { font-size:1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
+function stripTags(s){
+  return String(s || "").replace(/<[^>]*>?/gm, "");
+}
+
 const T = {
   so: {
     pageTitle: "Xarelto (Rivaroxaban) – dhiig-khafiifin",
@@ -228,7 +232,7 @@ const T = {
     sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
     sec6: [
       "Haddii hal mar maalintii la qaato, waxaa fiican in lagu qaato <span class='highlight'>fiidkii cuntada ka dib</span>.",
-      "Ha dhaafin xadiga xataa haddii aad sooman tahay."
+      "Ha qaadin qiyaas dheeraad ah xataa haddii aad seegto, adigoon talo ka helin dhakhtar."
     ],
 
     sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
@@ -238,12 +242,14 @@ const T = {
 
     sec8Title: "Kaydinta daawada (Opbevaring)",
     sec8: [
-      "Ku hay daawada meel ka fog carruurta, kana hooseysa 25°C. Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
-      "Ha qaadan haddii ay dhaafto “EXP” ama haddii midabku isbeddelo. Wixii soo haray u gee farmashiyaha."
+      "Ku hay daawada meel ka fog carruurta, kana hooseysa 25 °C.",
+      "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
+      "Ha qaadan haddii ay dhaafto “EXP” ama haddii midabku isbeddelo.",
+      "Wixii soo haray u gee farmashiyaha."
     ],
 
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Hanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
 
   da: {
@@ -276,7 +282,7 @@ const T = {
     sec4Title: "Interaktioner",
     sec4: [
       "Undgå NSAID (fx ibuprofen/naproxen) og aspirin uden lægens råd.",
-      "Nogle svampemidler og antibiotika kan øge effekten/blødningsrisiko."
+      "Nogle svampemidler og visse antibiotika kan øge effekten/blødningsrisiko."
     ],
 
     sec5Title: "Advarsler",
@@ -288,17 +294,17 @@ const T = {
     sec6Title: "Ramadan og faste",
     sec6: [
       "Hvis du tager det 1 gang dagligt, kan det ofte passe at tage det <span class='highlight'>om aftenen efter mad</span>.",
-      "Tag ikke ekstra dosis selv om du faster."
+      "Tag ikke ekstra dosis, hvis du har glemt en dosis, uden at følge lægens instruktion."
     ],
 
     sec7Title: "Mad og drikke",
     sec7: [
-      "Tablet <span class='highlight'>15 mg</span> og <span class='highlight'>20 mg</span> skal tages <span class='highlight'>sammen med mad</span> (giver bedre optagelse)."
+      "Tablet <span class='highlight'>15 mg</span> og <span class='highlight'>20 mg</span> skal tages <span class='highlight'>sammen med mad</span> (bedre optagelse)."
     ],
 
     sec8Title: "Opbevaring",
     sec8: [
-      "Opbevares utilgængeligt for børn, under 25°C og i original emballage.",
+      "Opbevares utilgængeligt for børn og under 25 °C i original emballage.",
       "Brug ikke efter “EXP”. Aflever rester på apoteket."
     ],
 
@@ -336,7 +342,7 @@ const T = {
     sec4Title: "Interactions",
     sec4: [
       "Avoid NSAIDs (e.g., ibuprofen/naproxen) and aspirin unless advised by a doctor.",
-      "Some antibiotics and antifungals can increase the effect/bleeding risk."
+      "Some antifungals and certain antibiotics can increase the effect/bleeding risk."
     ],
 
     sec5Title: "Warnings",
@@ -348,7 +354,7 @@ const T = {
     sec6Title: "Ramadan and fasting",
     sec6: [
       "If taken once daily, it may fit to take it <span class='highlight'>in the evening after food</span>.",
-      "Do not take extra doses because of fasting."
+      "Do not take extra doses for a missed dose unless you follow your prescriber’s instructions."
     ],
 
     sec7Title: "Food and drink",
@@ -358,13 +364,16 @@ const T = {
 
     sec8Title: "Storage",
     sec8: [
-      "Keep out of reach of children, below 25°C, in the original package.",
+      "Keep out of reach of children and below 25 °C in the original package.",
       "Do not use after “EXP”. Return leftovers to the pharmacy."
     ],
 
     footer1: "If you need more information, contact your pharmacy or doctor.",
     footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  }
+  },
+
+  /* Behold dine eksisterende ar/tr/ur/fa/prs/ps-tekster ved at indsætte dem her,
+     hvis du vil have alle sprog i samme fil. */
 };
 
 function setDirLang(lang){
@@ -384,13 +393,13 @@ function applyLang(lang){
   const d = T[lang] || T.so;
   setDirLang(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.title = stripTags(d.pageTitle);
+  document.getElementById("hdrH1").textContent = stripTags(d.hdrH1);
   document.getElementById("hdrP").textContent = d.hdrP;
   document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
@@ -415,6 +424,7 @@ function applyLang(lang){
   document.getElementById("footer1").textContent = d.footer1;
   document.getElementById("footer2").innerHTML = d.footer2;
 
+  // keep language when going back
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
