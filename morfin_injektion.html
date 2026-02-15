@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Morfin (Injektion) – xanuun baabi'iye</title>
+
 <style>
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
 header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
@@ -96,7 +97,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon">
+        <div class="drug-icon" aria-hidden="true">
           <!-- Injection/pen icon -->
           <svg viewBox="0 0 64 64">
             <rect x="26" y="8" width="12" height="14" fill="#c8e6ff" stroke="#1a73e8" stroke-width="2"/>
@@ -687,6 +688,7 @@ function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
+
 function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
@@ -696,6 +698,7 @@ function fillList(id, arr){
     ul.appendChild(li);
   });
 }
+
 function applyLang(lang){
   const d = T[lang] || T.so;
   setDirLang(lang);
