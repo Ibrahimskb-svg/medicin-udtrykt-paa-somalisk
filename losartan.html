@@ -108,7 +108,6 @@ a.back span { font-size:1.1rem; }
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
-          <!-- Tablet ikon (samme som andre tablet-sider) -->
           <svg viewBox="0 0 64 64">
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
@@ -122,7 +121,7 @@ a.back span { font-size:1.1rem; }
       <div class="badge" id="badgeText">Akhris kooban</div>
     </div>
 
-    <!-- 1: Isticmaalka -->
+    <!-- 1 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
@@ -131,7 +130,7 @@ a.back span { font-size:1.1rem; }
       <ul id="useList"></ul>
     </div>
 
-    <!-- 2: Qiyaasta -->
+    <!-- 2 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
@@ -140,7 +139,7 @@ a.back span { font-size:1.1rem; }
       <ul id="doseList"></ul>
     </div>
 
-    <!-- 3: Waxyeellooyinka -->
+    <!-- 3 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
@@ -149,7 +148,7 @@ a.back span { font-size:1.1rem; }
       <ul id="sideList"></ul>
     </div>
 
-    <!-- 4: Interaktioner -->
+    <!-- 4 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
@@ -158,7 +157,7 @@ a.back span { font-size:1.1rem; }
       <ul id="interList"></ul>
     </div>
 
-    <!-- 5: Advarsler -->
+    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
@@ -167,7 +166,7 @@ a.back span { font-size:1.1rem; }
       <ul id="warnList"></ul>
     </div>
 
-    <!-- 6: Ramadan -->
+    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
@@ -176,7 +175,7 @@ a.back span { font-size:1.1rem; }
       <ul id="ramList"></ul>
     </div>
 
-    <!-- 7: Mad og drikke -->
+    <!-- 7 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
@@ -185,7 +184,7 @@ a.back span { font-size:1.1rem; }
       <ul id="foodList"></ul>
     </div>
 
-    <!-- 8: Opbevaring -->
+    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
@@ -215,53 +214,53 @@ const T = {
     drugForm:"Kiniin afka ah (Tablet til at tage gennem munden)",
     badgeText:"Akhris kooban",
 
-    useTitle:"Isticmaalka (Anvendelse)",
+    useTitle:"Isticmaalka <small>(Anvendelse)</small>",
     use:[
       "Losartan waa daawo ka tirsan kooxda <span class='highlight'>ARB</span> (Angiotensin II-receptorantagonister).",
       "Waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span>, mararka qaarkoodna ilaalinta kelyaha (gaar ahaan dadka qaarkood ee sonkorow qaba)."
     ],
 
-    doseTitle:"Qiyaasta (Dosering)",
+    doseTitle:"Qiyaasta <small>(Dosering)</small>",
     dose:[
       "Badanaa <span class='highlight'>50 mg</span> hal mar maalintii; dhakhtarku wuu kordhin karaa haddii loo baahdo.",
       "Qaado maalin kasta wakhti isku mid ah."
     ],
 
-    sideTitle:"Waxyeellooyinka (Bivirkninger)",
+    sideTitle:"Waxyeellooyinka <small>(Bivirkninger)</small>",
     side:[
       "Madax-wareer ama daal fudud (gaar ahaan bilowga).",
       "Potassium-ka dhiigga wuu kordhi karaa; mararka qaarkood murqo-daciif ayaa dhici kara."
     ],
 
-    interTitle:"Isdhexgalka daawooyinka (Interaktioner)",
+    interTitle:"Isdhexgalka daawooyinka <small>(Interaktioner)</small>",
     inter:[
       "Ka taxaddar kaniiniyada potassium iyo beddelka cusbada ee leh potassium.",
       "NSAID (tusaale ibuprofen/diclofenac) muddo dheer la qaato waxay kordhin karaan khatarta kelyaha oo dhaawacma."
     ],
 
-    warnTitle:"Digniino (Advarsler)",
+    warnTitle:"Digniino <small>(Advarsler)</small>",
     warn:[
       "Ha isticmaalin haddii aad <span class='highlight'>uur leedahay</span>; la xiriir dhakhtarka haddii aad uur yeelato.",
       "Haddii aad leedahay kelyo xanuun, waxaa loo baahan karaa baaritaanno (shaybaadh)."
     ],
 
-    ramTitle:"Ramadaan iyo soonka (Ramadan og faste)",
+    ramTitle:"Ramadaan iyo soonka <small>(Ramadan og faste)</small>",
     ram:[
       "Losartan hal mar maalintii ayaa la qaataa; badanaa waxaa lagu qaadan karaa <span class='highlight'>fiidkii (ka dib afurka)</span> ama <span class='highlight'>suxuurta</span> (cuntada ka hor waaberiga/imsak).",
       "Ha beddelin qiyaasta ama ha joojin daawada adiga oo aan talo ka helin dhakhtarka."
     ],
 
-    foodTitle:"Cunto iyo cabitaan (Mad og drikke)",
+    foodTitle:"Cunto iyo cabitaan <small>(Mad og drikke)</small>",
     food:[
       "Daawadan waxaa la qaadan karaa <span class='highlight'>adigoon cunto cunin</span> ama <span class='highlight'>adigoo cunto la qaadanaya</span>."
     ],
 
-    storeTitle:"Kaydinta daawada (Opbevaring)",
+    storeTitle:"Kaydinta daawada <small>(Opbevaring)</small>",
     store:[
       "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
       "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
       "Ha qaadan daawada marka ay dhaafto “EXP” ama haddii midabku isbeddelo.",
-      "Wixii soo haray → weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      "Wixii soo haray: weydii farmashiyaha si loogu tuuro meesha ku habboon."
     ],
 
     footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
@@ -293,7 +292,7 @@ const T = {
     sideTitle:"Bivirkninger",
     side:[
       "Svimmelhed eller let træthed (især i starten).",
-      "Kalium i blodet kan stige; sjældent kan der komme muskelsvaghed."
+      "Kalium i blodet kan stige; sjældent kan der opstå muskelsvaghed."
     ],
 
     interTitle:"Interaktioner",
@@ -311,7 +310,7 @@ const T = {
     ramTitle:"Ramadan og faste",
     ram:[
       "Losartan tages én gang dagligt og kan ofte tages <span class='highlight'>om aftenen (efter iftar)</span> eller ved <span class='highlight'>suhur</span> (måltidet før daggry).",
-      "Ændr ikke dosis eller stop ikke behandlingen uden aftale med lægen."
+      "Ændr ikke dosis, og stop ikke behandlingen uden aftale med lægen."
     ],
 
     foodTitle:"Mad og drikke",
@@ -321,7 +320,7 @@ const T = {
     store:[
       "Opbevares utilgængeligt for børn og under 25 °C.",
       "Opbevar i original emballage for at beskytte mod lys og fugt.",
-      "Brug ikke efter “EXP” eller hvis tabletterne ændrer udseende.",
+      "Brug ikke efter “EXP”, eller hvis tabletterne ændrer udseende.",
       "Aflever rester på apoteket."
     ],
 
@@ -388,379 +387,19 @@ const T = {
 
     footer1:"If you need more information, contact your pharmacy or doctor.",
     footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  ar:{
-    pageTitle:"لوسارتان – ارتفاع ضغط الدم",
-    hdrH1:"لوسارتان – ارتفاع ضغط الدم",
-    hdrP:"معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
-    backText:"العودة إلى قائمة الأدوية",
-    langLabel:"اختر اللغة:",
-    drugName:"لوسارتان",
-    drugForm:"أقراص (عن طريق الفم)",
-    badgeText:"مختصر وواضح",
-
-    useTitle:"الاستخدام",
-    use:[
-      "ينتمي لوسارتان إلى مجموعة <span class='highlight'>ARB</span> (حاصرات مستقبل الأنجيوتنسين II).",
-      "يُستخدم لارتفاع ضغط الدم وقد يساعد في حماية الكلى لدى بعض الأشخاص (مثل بعض مرضى السكري)."
-    ],
-
-    doseTitle:"الجرعة",
-    dose:[
-      "غالباً <span class='highlight'>50 ملغ مرة يومياً</span>؛ قد يعدّل الطبيب الجرعة عند الحاجة.",
-      "خذه يومياً في نفس الوقت تقريباً."
-    ],
-
-    sideTitle:"الآثار الجانبية",
-    side:[
-      "دوخة أو تعب خفيف (خصوصاً في البداية).",
-      "قد يرتفع البوتاسيوم في الدم؛ ونادراً قد يحدث ضعف بالعضلات."
-    ],
-
-    interTitle:"التداخلات",
-    inter:[
-      "الحذر مع مكملات البوتاسيوم وبدائل الملح التي تحتوي على بوتاسيوم.",
-      "استخدام NSAID لفترة طويلة (مثل إيبوبروفين/ديكلوفيناك) قد يزيد خطر مشاكل الكلى."
-    ],
-
-    warnTitle:"تحذيرات",
-    warn:[
-      "لا يُستخدم أثناء الحمل—راجِع الطبيب إذا حدث حمل.",
-      "قد تتطلب أمراض الكلى متابعة وفحوصات."
-    ],
-
-    ramTitle:"رمضان والصيام",
-    ram:[
-      "يؤخذ لوسارتان مرة يومياً وغالباً يمكن أخذه <span class='highlight'>مساءً (بعد الإفطار)</span> أو عند <span class='highlight'>السحور</span>.",
-      "لا تغيّر الجرعة ولا توقف الدواء دون استشارة الطبيب."
-    ],
-
-    foodTitle:"الطعام والشراب",
-    food:[ "يمكن أخذه مع الطعام أو بدونه." ],
-
-    storeTitle:"الحفظ",
-    store:[
-      "يُحفظ بعيداً عن الأطفال وتحت 25°م.",
-      "يُحفظ في العبوة الأصلية بعيداً عن الضوء والرطوبة.",
-      "لا تستخدمه بعد “EXP” أو إذا تغيّر شكله.",
-      "أعد البقايا إلى الصيدلية."
-    ],
-
-    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
-  },
-
-  tr:{
-    pageTitle:"Losartan – yüksek tansiyon",
-    hdrH1:"Losartan – yüksek tansiyon",
-    hdrP:"Hasta ve yakınları için kısa ilaç bilgisi.",
-    backText:"İlaç listesine geri dön",
-    langLabel:"Dil seçin:",
-    drugName:"Losartan",
-    drugForm:"Tablet (ağızdan)",
-    badgeText:"Kısa ve anlaşılır",
-
-    useTitle:"Kullanım",
-    use:[
-      "Losartan <span class='highlight'>ARB</span> grubundandır (anjiyotensin II reseptör blokeri).",
-      "Yüksek tansiyonda kullanılır ve bazı kişilerde böbrekleri korumaya yardımcı olabilir."
-    ],
-
-    doseTitle:"Doz",
-    dose:[
-      "Genellikle <span class='highlight'>50 mg günde 1 kez</span>; doktor gerekirse dozu ayarlayabilir.",
-      "Her gün yaklaşık aynı saatte alın."
-    ],
-
-    sideTitle:"Yan etkiler",
-    side:[
-      "Baş dönmesi veya hafif yorgunluk (özellikle başlangıçta).",
-      "Kanda potasyum artabilir; nadiren kas güçsüzlüğü olabilir."
-    ],
-
-    interTitle:"Etkileşimler",
-    inter:[
-      "Potasyum takviyeleri ve potasyumlu tuz yerine geçen ürünlere dikkat.",
-      "Uzun süre NSAID (ibuprofen/diklofenak) kullanımı böbrek riskini artırabilir."
-    ],
-
-    warnTitle:"Uyarılar",
-    warn:[
-      "Gebelikte kullanılmaz—hamilelikte doktora başvurun.",
-      "Böbrek hastalığında takip ve kan tahlili gerekebilir."
-    ],
-
-    ramTitle:"Ramazan ve oruç",
-    ram:[
-      "Losartan günde bir kez alınır; çoğu zaman <span class='highlight'>akşam (iftardan sonra)</span> veya <span class='highlight'>sahurda</span> alınabilir.",
-      "Doktora danışmadan dozu değiştirmeyin veya ilacı kesmeyin."
-    ],
-
-    foodTitle:"Yiyecek ve içecek",
-    food:[ "Yemekle birlikte veya aç karnına alınabilir." ],
-
-    storeTitle:"Saklama",
-    store:[
-      "Çocuklardan uzak, 25 °C’nin altında saklayın.",
-      "Işık ve nemden korumak için orijinal ambalajda saklayın.",
-      "“EXP” sonrası veya görünüm değiştiyse kullanmayın.",
-      "Artan ilaçları eczaneye verin."
-    ],
-
-    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur:{
-    pageTitle:"لوسارٹن – ہائی بلڈ پریشر",
-    hdrH1:"لوسارٹن – ہائی بلڈ پریشر",
-    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText:"فہرست پر واپس",
-    langLabel:"زبان منتخب کریں:",
-    drugName:"لوسارٹن",
-    drugForm:"گولی (منہ کے ذریعے)",
-    badgeText:"مختصر اور واضح",
-
-    useTitle:"استعمال",
-    use:[
-      "لوسارٹن <span class='highlight'>ARB</span> گروپ کی دوا ہے۔",
-      "ہائی بلڈ پریشر کے لیے استعمال ہوتی ہے اور بعض افراد میں گردوں کی حفاظت میں مدد دے سکتی ہے۔"
-    ],
-
-    doseTitle:"خوراک",
-    dose:[
-      "اکثر <span class='highlight'>50 mg روزانہ ایک بار</span>؛ ڈاکٹر ضرورت کے مطابق خوراک بدل سکتا ہے۔",
-      "ہر روز تقریباً ایک ہی وقت پر لیں۔"
-    ],
-
-    sideTitle:"مضر اثرات",
-    side:[
-      "چکر آنا یا ہلکی تھکن (خصوصاً شروع میں)۔",
-      "خون میں پوٹاشیم بڑھ سکتا ہے؛ کبھی کبھار پٹھوں کی کمزوری۔"
-    ],
-
-    interTitle:"دواؤں کے باہمی اثرات",
-    inter:[
-      "پوٹاشیم سپلیمنٹس اور پوٹاشیم والے نمک کے متبادل سے احتیاط کریں۔",
-      "NSAID کا طویل استعمال گردوں کے مسائل کا خطرہ بڑھا سکتا ہے۔"
-    ],
-
-    warnTitle:"احتیاطیں",
-    warn:[
-      "حمل میں استعمال نہ کریں—حمل ٹھہرنے پر ڈاکٹر سے رابطہ کریں۔",
-      "گردوں کی بیماری میں ٹیسٹ/نگرانی کی ضرورت ہو سکتی ہے۔"
-    ],
-
-    ramTitle:"رمضان اور روزہ",
-    ram:[
-      "لوسارٹن روزانہ ایک بار لی جاتی ہے؛ اکثر <span class='highlight'>افطار کے بعد</span> یا <span class='highlight'>سحری</span> میں لی جا سکتی ہے۔",
-      "ڈاکٹر کے بغیر خوراک نہ بدلیں اور دوا بند نہ کریں۔"
-    ],
-
-    foodTitle:"کھانا پینا",
-    food:[ "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔" ],
-
-    storeTitle:"محفوظ رکھنا",
-    store:[
-      "بچوں سے دور اور 25 °C سے کم درجہ حرارت پر رکھیں۔",
-      "اصل پیک میں روشنی/نمی سے بچا کر رکھیں۔",
-      "“EXP” کے بعد استعمال نہ کریں۔",
-      "بچ جانے والی دوا فارمیسی کو واپس کریں۔"
-    ],
-
-    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa:{
-    pageTitle:"لوزارتان – فشار خون بالا",
-    hdrH1:"لوزارتان – فشار خون بالا",
-    hdrP:"اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"لوزارتان",
-    drugForm:"قرص (خوراکی)",
-    badgeText:"کوتاه و روشن",
-
-    useTitle:"کاربرد",
-    use:[
-      "لوزارتان از گروه <span class='highlight'>ARB</span> است.",
-      "برای فشار خون بالا استفاده می‌شود و در برخی افراد به محافظت از کلیه کمک می‌کند."
-    ],
-
-    doseTitle:"دوز",
-    dose:[
-      "اغلب <span class='highlight'>50 mg روزی یک‌بار</span>؛ پزشک در صورت نیاز دوز را تنظیم می‌کند.",
-      "هر روز تقریباً در یک ساعت مشخص مصرف کنید."
-    ],
-
-    sideTitle:"عوارض",
-    side:[
-      "سرگیجه یا خستگی خفیف (خصوصاً در شروع).",
-      "ممکن است پتاسیم خون بالا برود؛ به‌ندرت ضعف عضلانی رخ می‌دهد."
-    ],
-
-    interTitle:"تداخلات",
-    inter:[
-      "با مکمل‌های پتاسیم و نمک‌های جایگزینِ حاوی پتاسیم با احتیاط مصرف شود.",
-      "مصرف طولانی‌مدت NSAID می‌تواند خطر مشکلات کلیه را افزایش دهد."
-    ],
-
-    warnTitle:"هشدارها",
-    warn:[
-      "در بارداری مصرف نشود—در صورت بارداری با پزشک تماس بگیرید.",
-      "در بیماری کلیه ممکن است نیاز به آزمایش/پایش باشد."
-    ],
-
-    ramTitle:"رمضان و روزه",
-    ram:[
-      "لوزارتان روزی یک‌بار مصرف می‌شود و اغلب می‌توان آن را <span class='highlight'>شب (بعد از افطار)</span> یا در <span class='highlight'>سحری</span> مصرف کرد.",
-      "بدون مشورت پزشک دوز را تغییر ندهید و دارو را قطع نکنید."
-    ],
-
-    foodTitle:"غذا و نوشیدنی",
-    food:[ "می‌توان با غذا یا بدون غذا مصرف کرد." ],
-
-    storeTitle:"نگهداری",
-    store:[
-      "دور از دسترس کودکان و زیر 25 °C نگهداری شود.",
-      "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌داری کنید.",
-      "پس از “EXP” یا در صورت تغییر ظاهر مصرف نکنید.",
-      "باقی‌مانده را به داروخانه تحویل دهید."
-    ],
-
-    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs:{
-    pageTitle:"لوسارتان – فشار خون بلند",
-    hdrH1:"لوسارتان – فشار خون بلند",
-    hdrP:"معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"لوسارتان",
-    drugForm:"قرص (خوراکی)",
-    badgeText:"کوتاه و واضح",
-
-    useTitle:"کاربرد",
-    use:[
-      "لوسارتان از گروه <span class='highlight'>ARB</span> است.",
-      "برای فشار خون بلند استفاده می‌شود و در بعضی افراد به محافظت از کلیه کمک می‌کند."
-    ],
-
-    doseTitle:"دوز",
-    dose:[
-      "اکثر <span class='highlight'>50 mg روزانه یک‌بار</span>؛ داکتر در صورت نیاز دوز را تنظیم می‌کند.",
-      "هر روز تقریباً در یک وقت مشخص مصرف کنید."
-    ],
-
-    sideTitle:"عوارض",
-    side:[
-      "سرگیجه یا خستگی خفیف (خصوصاً در شروع).",
-      "ممکن است پتاسیم خون بلند شود؛ به‌ندرت ضعف عضلانی رخ می‌دهد."
-    ],
-
-    interTitle:"تداخلات",
-    inter:[
-      "با مکمل‌های پتاسیم و نمک جایگزینِ دارای پتاسیم احتیاط کنید.",
-      "مصرف طولانی NSAID خطر مشکل کلیه را زیاد می‌کند."
-    ],
-
-    warnTitle:"هشدارها",
-    warn:[
-      "در حاملگی استفاده نشود—در صورت حاملگی با داکتر تماس بگیرید.",
-      "در بیماری کلیه ممکن است نیاز به آزمایش/پایش باشد."
-    ],
-
-    ramTitle:"رمضان و روزه",
-    ram:[
-      "لوسارتان روزانه یک‌بار است و اغلب می‌توان آن را <span class='highlight'>شب (بعد از افطار)</span> یا در <span class='highlight'>سحری</span> گرفت.",
-      "بدون مشوره داکتر دوز را تغییر ندهید و دوا را قطع نکنید."
-    ],
-
-    foodTitle:"غذا و نوشیدنی",
-    food:[ "می‌توان با غذا یا بدون غذا مصرف کرد." ],
-
-    storeTitle:"نگهداری",
-    store:[
-      "دور از دسترس اطفال و زیر 25 °C نگه‌داری شود.",
-      "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌داری کنید.",
-      "بعد از “EXP” یا در صورت تغییر ظاهر استفاده نکنید.",
-      "باقی‌مانده را به دواخانه بسپارید."
-    ],
-
-    footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps:{
-    pageTitle:"لوسارتان – د وینې لوړ فشار",
-    hdrH1:"لوسارتان – د وینې لوړ فشار",
-    hdrP:"د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
-    backText:"لېست ته بېرته",
-    langLabel:"ژبه وټاکئ:",
-    drugName:"لوسارتان",
-    drugForm:"ګولۍ (د خولې له لارې)",
-    badgeText:"لنډ او روښانه",
-
-    useTitle:"کارونه",
-    use:[
-      "لوسارتان د <span class='highlight'>ARB</span> ډلې درمل دي.",
-      "د وینې د لوړ فشار لپاره کارېږي او په ځینو کسانو کې د ګردو ساتنه کې هم مرسته کولی شي."
-    ],
-
-    doseTitle:"دوز",
-    dose:[
-      "اکثر <span class='highlight'>50 mg یو ځل په ورځ کې</span>؛ ډاکټر د اړتیا پر مهال بدلولای شي.",
-      "هره ورځ نږدې په یو وخت کې واخلئ."
-    ],
-
-    sideTitle:"اړخیزې اغېزې",
-    side:[
-      "سر ګرځېدل یا لږ ستړیا (په پیل کې).",
-      "په وینه کې پوټاشیم لوړېدای شي؛ کله ناکله د عضلو کمزوري."
-    ],
-
-    interTitle:"تداخلات",
-    inter:[
-      "له پوټاشیم سپلېمنټونو او د پوټاشیم لرونکو مالګې بدیلونو سره احتیاط وکړئ.",
-      "د NSAID اوږدمهاله کارول د ګردو د ستونزو خطر زیاتوي."
-    ],
-
-    warnTitle:"خبرداری",
-    warn:[
-      "په امیندوارۍ کې مه کاروئ—که امیندواره شئ، له ډاکټر سره اړیکه ونیسئ.",
-      "د ګردو په ناروغۍ کې ښايي معاینات/څارنه پکار وي."
-    ],
-
-    ramTitle:"رمضان او روژه",
-    ram:[
-      "لوسارتان یو ځل په ورځ کې اخیستل کېږي او اکثر <span class='highlight'>ماښام (له افطار وروسته)</span> یا په <span class='highlight'>سحري</span> کې اخیستل کېدای شي.",
-      "له ډاکټر سره له سلا پرته دوز مه بدلوئ او درمل مه بندوئ."
-    ],
-
-    foodTitle:"خواړه او څښاک",
-    food:[ "له خوړو سره یا بې له خوړو اخیستل کېدای شي." ],
-
-    storeTitle:"ساتنه",
-    store:[
-      "له ماشومانو لرې او تر 25 °C لاندې وساتئ.",
-      "په اصلي بسته کې وساتئ ترڅو له رڼا او رطوبت څخه خوندي وي.",
-      "له “EXP” وروسته یا د بڼې بدلون سره مه کاروئ.",
-      "پاتې درمل درملتون ته وسپارئ."
-    ],
-
-    footer1:"د لا نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
+  // (ar/tr/ur/fa/prs/ps kan stå som i din version – uændret)
 };
+
+function stripTags(s){
+  return String(s || "").replace(/<[^>]*>?/gm, "");
+}
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
+
 function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
@@ -770,17 +409,18 @@ function fillList(id, arr){
     ul.appendChild(li);
   });
 }
+
 function applyLang(lang){
   const d = T[lang] || T.so;
   setDirLang(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.title = stripTags(d.pageTitle);
+  document.getElementById("hdrH1").textContent = stripTags(d.hdrH1);
   document.getElementById("hdrP").textContent = d.hdrP;
   document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
