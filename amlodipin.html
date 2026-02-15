@@ -191,7 +191,7 @@ a.back span { font-size: 1.1rem; }
 <main>
 
   <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect">Vælg sprog:</label>
+    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
@@ -311,32 +311,33 @@ const T = {
     title: "Amlodipin – dhiig-karka",
     subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
     back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
     badge: "Akhris fudud oo kooban",
     drugName: "Amlodipin – dhiig-karka",
     drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
     sections: {
       use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
-        "Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunada wadnaha (hjerte-kar-lidelser).",
+        "Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunnada wadnaha (hjerte-kar-lidelser).",
         "Waxay nasisaa xididdada dhiigga, si cadaadisku u yaraado."
       ]},
       dose: { title:"Qiyaasta", small:"(Dosering)", items:[
-        "Halmar ayaad qaadan kartaa (5 mg) habeenkii ama subixii; qaar ayaa u baahan 10 mg, taasu waa in aad dhakhtarka kala niqaashto.",
-        "Qaado maalin kasta waqti isku mid ah; daawadan waxaa la qaadan karaa adigoon wax cunin ama adigoo cunno la qaadanaya."
+        "Badanaa 5 mg <span class='highlight'>hal mar maalintii</span> (subax ama fiid). Qaar waxay u baahan karaan 10 mg, taas oo dhakhtarku go’aamiyo.",
+        "Qaado maalin kasta waqti isku mid ah. Waxaa la qaadan karaa adigoon wax cunin ama adigoo cunno la qaadanaya."
       ]},
       side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
         "Barar anqawyada ama lugaha hoose, madax-wareer iyo daal.",
-        "Haddii barar kugu bato, ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga."
+        "Haddii bararku bato ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga."
       ]},
       interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
-        "Daawooyinka kale ee dhiig-karka hoos u dhiga, waxay xoojin karaan saameynta.",
-        "Cabitaanka badan liin bambeelmada (grapefrugt) waxay kordhin kartaa saameynta amlodipin — sidaas darteed xaddid."
+        "Daawooyinka kale ee dhiig-karka hoos u dhiga waxay xoojin karaan saameynta.",
+        "Cabitaanka badan ee liin bambeelmo (grapefrugt) waxay kordhin kartaa saameynta amlodipin; sidaas darteed xaddid."
       ]},
       warn: { title:"Digniino", small:"(Advarsler)", items:[
         "Ha joojin si lama filaan ah; dhiig-karku wuu kugu kici karaa.",
-        "Uurka ama nuujinta: dhakhtarka kala hadal si uu kuu doorto daawada kugu habboon."
+        "Uur ama nuujin: dhakhtarka kala hadal si uu kuu doorto daawada kugu habboon."
       ]},
       ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
-        "Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama <span class='highlight'>cuntada ka hor waaberiga (suhoor)</span>.",
+        "Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama <span class='highlight'>suxuurta</span>.",
         "Ha joojin daawada si aad u soonto adiga oo aan talo ka helin dhakhtarka."
       ]},
       food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
@@ -344,7 +345,7 @@ const T = {
         "Isku day in aad ku qaadato waqti isku mid ah maalin kasta."
       ]},
       store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda \"EXP\" ama haddii midabku isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka (expiry date) ama haddii midabku isbeddelay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
       ]}
     },
     footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
@@ -355,6 +356,7 @@ const T = {
     title: "Amlodipin – forhøjet blodtryk",
     subtitle: "Kort information om lægemidlet til patienter og pårørende.",
     back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
     badge: "Kort og let at læse",
     drugName: "Amlodipin – forhøjet blodtryk",
     drugForm: "Tablet til oral brug",
@@ -364,7 +366,7 @@ const T = {
         "Det afslapper blodkarrene, så blodtrykket kan falde."
       ]},
       dose: { title:"Dosering", small:"", items:[
-        "Du tager typisk 5 mg én gang dagligt; nogle har behov for 10 mg efter aftale med lægen.",
+        "Typisk 5 mg én gang dagligt; nogle har behov for 10 mg efter aftale med lægen.",
         "Tag medicinen på samme tidspunkt hver dag. Den kan tages med eller uden mad."
       ]},
       side: { title:"Bivirkninger", small:"", items:[
@@ -388,7 +390,7 @@ const T = {
         "Prøv at tage den på samme tidspunkt hver dag."
       ]},
       store: { title:"Opbevaring", small:"", items:[
-        "Opbevar medicinen utilgængeligt for små børn og under 25 °C. Opbevar den i original emballage for at beskytte mod lys og fugt. Brug ikke medicinen efter udløbsdatoen (EXP), eller hvis den har ændret farve. Spørg apoteket om korrekt bortskaffelse af rester."
+        "Opbevar medicinen utilgængeligt for små børn og under 25 °C. Opbevar den i original emballage for at beskytte mod lys og fugt. Brug ikke medicinen efter udløbsdatoen, eller hvis den har ændret farve. Spørg apoteket om korrekt bortskaffelse af rester."
       ]}
     },
     footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
@@ -399,6 +401,7 @@ const T = {
     title: "Amlodipine – high blood pressure",
     subtitle: "Brief information about the medicine for patients and relatives.",
     back: "Back to the medicine list",
+    langLabel: "Choose language:",
     badge: "Short and easy to read",
     drugName: "Amlodipine – high blood pressure",
     drugForm: "Oral tablet",
@@ -408,7 +411,7 @@ const T = {
         "It relaxes blood vessels, which can lower blood pressure."
       ]},
       dose: { title:"Dosage", small:"", items:[
-        "You typically take 5 mg once daily; some people need 10 mg as agreed with the doctor.",
+        "Typically 5 mg once daily; some people need 10 mg as agreed with the doctor.",
         "Take it at the same time every day. It can be taken with or without food."
       ]},
       side: { title:"Side effects", small:"", items:[
@@ -432,7 +435,7 @@ const T = {
         "Try to take it at the same time every day."
       ]},
       store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date (EXP) or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date, or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
       ]}
     },
     footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
@@ -443,6 +446,7 @@ const T = {
     title: "أملوديبين – ارتفاع ضغط الدم",
     subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
     back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
     badge: "معلومات مختصرة وسهلة",
     drugName: "أملوديبين – ارتفاع ضغط الدم",
     drugForm: "أقراص فموية",
@@ -476,7 +480,7 @@ const T = {
         "حاول تناوله في نفس الوقت كل يوم."
       ]},
       store: { title:"الحفظ", small:"", items:[
-        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء (EXP) أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء، أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
       ]}
     },
     footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
@@ -487,6 +491,7 @@ const T = {
     title: "Amlodipin – yüksek tansiyon",
     subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
     back: "İlaç listesine geri dön",
+    langLabel: "Dil seçin:",
     badge: "Kısa ve anlaşılır",
     drugName: "Amlodipin – yüksek tansiyon",
     drugForm: "Ağızdan alınan tablet",
@@ -520,7 +525,7 @@ const T = {
         "Her gün aynı saatte almaya çalışın."
       ]},
       store: { title:"Saklama", small:"", items:[
-        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden (EXP) sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
+        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
       ]}
     },
     footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
@@ -531,6 +536,7 @@ const T = {
     title: "ایملوڈیپین – بلند فشارِ خون",
     subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
     back: "ادویات کی فہرست پر واپس جائیں",
+    langLabel: "زبان منتخب کریں:",
     badge: "مختصر اور آسان",
     drugName: "ایملوڈیپین – بلند فشارِ خون",
     drugForm: "منہ کے ذریعے لینے والی گولی",
@@ -564,7 +570,7 @@ const T = {
         "کوشش کریں کہ ہر روز ایک ہی وقت پر لیں۔"
       ]},
       store: { title:"محفوظ رکھنا", small:"", items:[
-        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے (EXP) کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
+        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے کی تاریخ کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
       ]}
     },
     footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
@@ -575,6 +581,7 @@ const T = {
     title: "آملودیپین – فشار خون بالا",
     subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
     back: "بازگشت به فهرست داروها",
+    langLabel: "انتخاب زبان:",
     badge: "کوتاه و قابل‌فهم",
     drugName: "آملودیپین – فشار خون بالا",
     drugForm: "قرص خوراکی",
@@ -608,7 +615,7 @@ const T = {
         "سعی کنید هر روز در یک زمان ثابت مصرف کنید."
       ]},
       store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا (EXP) یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
+        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
       ]}
     },
     footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
@@ -619,6 +626,7 @@ const T = {
     title: "آملودیپین – فشار خون بلند",
     subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
     back: "بازگشت به فهرست دواها",
+    langLabel: "انتخاب زبان:",
     badge: "کوتاه و قابل‌فهم",
     drugName: "آملودیپین – فشار خون بلند",
     drugForm: "قرص خوراکی",
@@ -652,7 +660,7 @@ const T = {
         "کوشش کنید هر روز در یک وقت معین بگیرید."
       ]},
       store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا (EXP) یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
+        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
       ]}
     },
     footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
@@ -663,6 +671,7 @@ const T = {
     title: "املوډیپین – لوړ د وینې فشار",
     subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
     back: "د درملو لېست ته بېرته",
+    langLabel: "ژبه وټاکئ:",
     badge: "لنډ او اسانه",
     drugName: "املوډیپین – لوړ د وینې فشار",
     drugForm: "د خولې ګولۍ",
@@ -696,7 +705,7 @@ const T = {
         "هڅه وکړئ هره ورځ په یو ثابت وخت یې واخلئ."
       ]},
       store: { title:"ساتنه", small:"", items:[
-        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې (EXP) وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
+        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
       ]}
     },
     footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
@@ -723,16 +732,18 @@ function render(lang){
   const d = T[lang] || T.so;
 
   setDirLang(lang);
-  document.title = d.title;
+  document.title = d.title.replace(/<[^>]*>/g, "");
 
-  document.getElementById("hdrTitle").textContent = d.title;
+  document.getElementById("hdrTitle").textContent = d.title.replace(/<[^>]*>/g, "");
   document.getElementById("hdrSubtitle").textContent = d.subtitle;
 
   document.getElementById("backLabel").textContent = d.back;
   document.getElementById("badge").textContent = d.badge;
 
-  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugName").textContent = d.drugName.replace(/<[^>]*>/g, "");
   document.getElementById("drugForm").textContent = d.drugForm;
+
+  document.getElementById("langLabel").textContent = d.langLabel;
 
   document.getElementById("useTitle").textContent = d.sections.use.title;
   document.getElementById("useSmall").textContent = d.sections.use.small || "";
@@ -769,9 +780,18 @@ function render(lang){
 
   document.getElementById("footerNote").innerHTML = d.footerHTML;
   document.getElementById("credit").innerHTML = d.creditHTML;
+
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-render("so");
+// Start language from ?lang=
+const params = new URLSearchParams(window.location.search);
+const startLang = params.get("lang") || "so";
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
+
+render(document.getElementById("langSelect").value);
 document.getElementById("langSelect").addEventListener("change", function(){
   render(this.value);
 });
