@@ -98,7 +98,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon">
+        <div class="drug-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64">
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
@@ -206,42 +206,43 @@ const T = {
     sec2Title: "Qiyaasta (Dosering)",
     sec2: [
       "Badanaa <span class='highlight'>20–40 mg</span> hal mar maalintii.",
-      "Subaxdii <span class='highlight'>15–30 daqiiqo</span> ka hor cuntada."
+      "Qaado subaxdii <span class='highlight'>15–30 daqiiqo</span> ka hor cuntada (ama sida dhakhtarka kuu qoray)."
     ],
 
     sec3Title: "Waxyeellooyinka (Bivirkninger)",
     sec3: [
-      "Madax-xanuun, lalabo, calool-xanuun khafiif ah.",
-      "Isticmaalka muddada dheer wuxuu keeni karaa hoos-u-dhac ku yimaada <span class='highlight'>fiitamiin B12</span> iyo qaar ka mid ah macdanaha muhiimka ah."
+      "Madax-xanuun, lalabo, calool-xanuun khafiif ah, shuban ama calool-fadhiyo.",
+      "Isticmaalka muddada dheer wuxuu keeni karaa hoos-u-dhac ku yimaada <span class='highlight'>fiitamiin B12</span> iyo qaar ka mid ah macdanaha."
     ],
 
     sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
     sec4: [
-      "Daawooyin qaarkood waxay u baahan yihiin aashiid badan si ay caloosha ugu milmaan; pantoprazol ayaa hoos u dhigi kara milankooda.",
-      "U sheeg farmashiyaha daawooyinka kale ee aad qaadato."
+      "Daawooyin qaarkood waxay u baahan yihiin aashiid si ay si fiican u milmaan; pantoprazol ayaa hoos u dhigi kara milankooda.",
+      "U sheeg farmashiyaha ama dhakhtarka <span class='highlight'>dhammaan</span> daawooyinka kale ee aad qaadato."
     ],
 
     sec5Title: "Digniino (Advarsler)",
     sec5: [
-      "Haddii aad leedahay <span class='highlight'>saxaro madow</span>, <span class='highlight'>matag dhiig leh</span> ama miisaanka oo si lama filaan ah hoos u dhacay → isla markiiba la xiriir dhakhtarka."
+      "Haddii aad leedahay <span class='highlight'>saxaro madow</span>, <span class='highlight'>matag dhiig leh</span>, liqid xanuun, ama miisaanka oo si lama filaan ah hoos u dhacay → la xiriir dhakhtarka."
     ],
 
     sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
     sec6: [
-      "Qiyaasta subaxda waxaa badanaa loo wareejin karaa <span class='highlight'>suxuurta</span>.",
-      "Ha joojin daawada adiga oo keli ah, gaar ahaan haddii aad qabto reflux/nabarro caloosha oo daran."
+      "Haddii aad sooman tahay, qiyaasta subaxda badanaa waxaa loo wareejin karaa <span class='highlight'>suxuurta</span> (15–30 daqiiqo ka hor cunista).",
+      "Ha joojin daawada adiga oo keli ah, gaar ahaan haddii aad qabto reflux ama nabarro caloosha."
     ],
 
     sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
     sec7: [
-      "Ku qaado <span class='highlight'>calool maran</span>, caadiyan <span class='highlight'>15–30 daqiiqo</span> ka hor cuntada."
+      "Ku qaado <span class='highlight'>calool maran</span>, caadiyan <span class='highlight'>15–30 daqiiqo</span> ka hor cuntada.",
+      "Ka fogow waxyaabaha kicin kara laabjeexa (tusaale: cunto dufan badan, basbaas, kafeega) haddii ay kugu kiciyaan."
     ],
 
     sec8Title: "Kaydinta daawada (Opbevaring)",
     sec8: [
       "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
       "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
-      "Ha qaadan daawada marka ay dhaafto taariikhda “EXP”. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      "Ha qaadan daawada marka ay dhaafto taariikhda “EXP”. Wixii soo haray, u gee farmashiyaha."
     ],
 
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
@@ -266,11 +267,11 @@ const T = {
     sec2Title: "Dosering",
     sec2: [
       "Typisk <span class='highlight'>20–40 mg</span> én gang dagligt.",
-      "Tages ofte om morgenen <span class='highlight'>15–30 min</span> før mad."
+      "Tages ofte om morgenen <span class='highlight'>15–30 min</span> før mad (eller som lægen har ordineret)."
     ],
     sec3Title: "Bivirkninger",
     sec3: [
-      "Hovedpine, kvalme, let mavesmerte.",
+      "Hovedpine, kvalme, let mavebesvær, diarré eller forstoppelse.",
       "Lang tids brug kan give lavere <span class='highlight'>vitamin B12</span> og påvirke nogle mineraler."
     ],
     sec4Title: "Interaktioner",
@@ -280,16 +281,17 @@ const T = {
     ],
     sec5Title: "Advarsler",
     sec5: [
-      "Kontakt læge ved <span class='highlight'>sort afføring</span>, <span class='highlight'>blodigt opkast</span> eller uforklaret vægttab."
+      "Kontakt læge ved <span class='highlight'>sort afføring</span>, <span class='highlight'>blodigt opkast</span>, synkebesvær eller uforklaret vægttab."
     ],
     sec6Title: "Ramadan og faste",
     sec6: [
-      "Morgendosis kan ofte flyttes til <span class='highlight'>suhoor</span>.",
+      "Morgendosis kan ofte flyttes til <span class='highlight'>suhoor</span> (15–30 min før du spiser).",
       "Stop ikke selv – især hvis du har svær refluks eller mavesår."
     ],
     sec7Title: "Mad og drikke",
     sec7: [
-      "Tages på <span class='highlight'>tom mave</span>, typisk <span class='highlight'>15–30 min</span> før et måltid."
+      "Tages på <span class='highlight'>tom mave</span>, typisk <span class='highlight'>15–30 min</span> før et måltid.",
+      "Undgå det, der udløser halsbrand hos dig (fx meget fed mad, stærk mad, kaffe)."
     ],
     sec8Title: "Opbevaring",
     sec8: [
@@ -319,11 +321,11 @@ const T = {
     sec2Title: "Dose",
     sec2: [
       "Usually <span class='highlight'>20–40 mg</span> once daily.",
-      "Often taken in the morning <span class='highlight'>15–30 minutes</span> before food."
+      "Often taken in the morning <span class='highlight'>15–30 minutes</span> before food (or as prescribed)."
     ],
     sec3Title: "Side effects",
     sec3: [
-      "Headache, nausea, mild stomach discomfort.",
+      "Headache, nausea, mild stomach upset, diarrhea or constipation.",
       "Long-term use may lower <span class='highlight'>vitamin B12</span> and affect some minerals."
     ],
     sec4Title: "Interactions",
@@ -333,16 +335,17 @@ const T = {
     ],
     sec5Title: "Warnings",
     sec5: [
-      "Seek medical advice if you have <span class='highlight'>black stools</span>, <span class='highlight'>vomiting blood</span>, or unexplained weight loss."
+      "Seek medical advice if you have <span class='highlight'>black stools</span>, <span class='highlight'>vomiting blood</span>, trouble swallowing, or unexplained weight loss."
     ],
     sec6Title: "Ramadan and fasting",
     sec6: [
-      "Morning dose can often be moved to <span class='highlight'>suhoor</span>.",
+      "Morning dose can often be moved to <span class='highlight'>suhoor</span> (15–30 minutes before eating).",
       "Do not stop on your own, especially with severe reflux or ulcers."
     ],
     sec7Title: "Food and drink",
     sec7: [
-      "Take on an <span class='highlight'>empty stomach</span>, usually <span class='highlight'>15–30 minutes</span> before a meal."
+      "Take on an <span class='highlight'>empty stomach</span>, usually <span class='highlight'>15–30 minutes</span> before a meal.",
+      "Avoid triggers that worsen your symptoms (e.g., fatty/spicy foods, coffee) if relevant."
     ],
     sec8Title: "Storage",
     sec8: [
@@ -352,324 +355,6 @@ const T = {
 
     footer1: "If you need more information, contact your pharmacy or doctor.",
     footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  ar: {
-    pageTitle: "بانتوبرازول – حموضة، حرقة المعدة وارتجاع",
-    hdrH1: "بانتوبرازول – حموضة، حرقة المعدة وارتجاع",
-    hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    drugName: "بانتوبرازول – حرقة وارتجاع",
-    drugForm: "أقراص (عن طريق الفم)",
-    badgeText: "مختصر وواضح",
-
-    sec1Title: "الاستخدام",
-    sec1: [
-      "بانتوبرازول يقلل حمض المعدة.",
-      "يستخدم لحرقة المعدة والارتجاع وقرحة المعدة."
-    ],
-    sec2Title: "الجرعة",
-    sec2: [
-      "عادة <span class='highlight'>20–40 ملغ</span> مرة يومياً.",
-      "غالباً صباحاً <span class='highlight'>قبل الطعام بـ 15–30 دقيقة</span>."
-    ],
-    sec3Title: "الآثار الجانبية",
-    sec3: [
-      "صداع، غثيان، ألم معدة خفيف.",
-      "الاستخدام الطويل قد يقلل <span class='highlight'>فيتامين B12</span> ويؤثر على بعض المعادن."
-    ],
-    sec4Title: "التداخلات",
-    sec4: [
-      "بعض الأدوية تحتاج حموضة أعلى لتمتص جيداً؛ قد يقل امتصاصها مع بانتوبرازول.",
-      "أخبر الصيدلية بكل الأدوية الأخرى."
-    ],
-    sec5Title: "تحذيرات",
-    sec5: [
-      "راجع الطبيب إذا ظهر <span class='highlight'>براز أسود</span> أو <span class='highlight'>قيء دموي</span> أو نقص وزن غير مفسر."
-    ],
-    sec6Title: "رمضان والصيام",
-    sec6: [
-      "يمكن غالباً نقل جرعة الصباح إلى <span class='highlight'>السحور</span>.",
-      "لا توقف الدواء من نفسك، خاصة مع ارتجاع شديد أو قرحة."
-    ],
-    sec7Title: "الطعام والشراب",
-    sec7: [
-      "يؤخذ على <span class='highlight'>معدة فارغة</span> قبل الوجبة بـ <span class='highlight'>15–30 دقيقة</span>."
-    ],
-    sec8Title: "الحفظ",
-    sec8: [
-      "يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.",
-      "لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."
-    ],
-
-    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
-  },
-
-  tr: {
-    pageTitle: "Pantoprazol – mide asidi, reflü",
-    hdrH1: "Pantoprazol – mide asidi, reflü",
-    hdrP: "Hasta ve yakınları için kısa bilgi.",
-    backText: "İlaç listesine geri dön",
-    langLabel: "Dil seçin:",
-    drugName: "Pantoprazol – reflü ve mide asidi",
-    drugForm: "Tablet (ağızdan)",
-    badgeText: "Kısa ve anlaşılır",
-
-    sec1Title: "Kullanım",
-    sec1: [
-      "Pantoprazol mide asidini azaltır.",
-      "Mide yanması (halsbrand), reflü ve mide ülserinde kullanılır."
-    ],
-    sec2Title: "Doz",
-    sec2: [
-      "Genellikle <span class='highlight'>20–40 mg</span> günde 1 kez.",
-      "Sıklıkla sabah <span class='highlight'>yemekten 15–30 dk önce</span> alınır."
-    ],
-    sec3Title: "Yan etkiler",
-    sec3: [
-      "Baş ağrısı, bulantı, hafif mide ağrısı.",
-      "Uzun süreli kullanım <span class='highlight'>B12 vitamini</span> ve bazı mineralleri azaltabilir."
-    ],
-    sec4Title: "Etkileşimler",
-    sec4: [
-      "Bazı ilaçların emilimi mide asidine bağlıdır; pantoprazol emilimi azaltabilir.",
-      "Diğer ilaçları eczacıya/hekime bildiriniz."
-    ],
-    sec5Title: "Uyarılar",
-    sec5: [
-      "<span class='highlight'>Siyah dışkı</span>, <span class='highlight'>kanlı kusma</span> veya açıklanamayan kilo kaybında doktora başvurun."
-    ],
-    sec6Title: "Ramazan ve oruç",
-    sec6: [
-      "Sabah dozu çoğu zaman <span class='highlight'>sahura</span> alınabilir.",
-      "Özellikle şiddetli reflü/ülserde kendi kendinize bırakmayın."
-    ],
-    sec7Title: "Yemek ve içecek",
-    sec7: [
-      "<span class='highlight'>Aç karnına</span>, genellikle <span class='highlight'>yemekten 15–30 dk önce</span> alın."
-    ],
-    sec8Title: "Saklama",
-    sec8: [
-      "Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.",
-      "“EXP” sonrası kullanmayın. Artanları eczaneye verin."
-    ],
-
-    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    pageTitle: "پینٹوپرازول – تیزابیت، جلن اور ریفلکس",
-    hdrH1: "پینٹوپرازول – تیزابیت، جلن اور ریفلکس",
-    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText: "فہرست پر واپس",
-    langLabel: "زبان منتخب کریں:",
-    drugName: "پینٹوپرازول – ریفلکس/جلن",
-    drugForm: "گولی (منہ کے ذریعے)",
-    badgeText: "مختصر اور واضح",
-
-    sec1Title: "استعمال",
-    sec1: [
-      "پینٹوپرازول معدے کا تیزاب کم کرتا ہے۔",
-      "جلن، ریفلکس اور معدے کے السر میں استعمال ہوتا ہے۔"
-    ],
-    sec2Title: "خوراک",
-    sec2: [
-      "عام طور پر <span class='highlight'>20–40 mg</span> روزانہ ایک بار۔",
-      "اکثر صبح <span class='highlight'>کھانے سے 15–30 منٹ پہلے</span>۔"
-    ],
-    sec3Title: "مضر اثرات",
-    sec3: [
-      "سر درد، متلی، ہلکا پیٹ درد۔",
-      "لمبے عرصے میں <span class='highlight'>وٹامن B12</span> اور کچھ معدنیات کم ہو سکتے ہیں۔"
-    ],
-    sec4Title: "دواؤں کے باہمی اثرات",
-    sec4: [
-      "کچھ دوائیں تیزاب کے بغیر اچھی طرح جذب نہیں ہوتیں؛ پینٹوپرازول جذب کم کر سکتا ہے۔",
-      "تمام دوسری دوائیں فارمیسی/ڈاکٹر کو بتائیں۔"
-    ],
-    sec5Title: "احتیاطیں",
-    sec5: [
-      "<span class='highlight'>کالا پاخانہ</span>، <span class='highlight'>خون کی قے</span> یا بغیر وجہ وزن کم ہونے پر ڈاکٹر سے رابطہ کریں۔"
-    ],
-    sec6Title: "رمضان اور روزہ",
-    sec6: [
-      "صبح والی خوراک اکثر <span class='highlight'>سحری</span> میں لی جا سکتی ہے۔",
-      "خاص طور پر شدید ریفلکس/السر میں خود سے بند نہ کریں۔"
-    ],
-    sec7Title: "کھانا پینا",
-    sec7: [
-      "<span class='highlight'>خالی پیٹ</span>، عام طور پر <span class='highlight'>کھانے سے 15–30 منٹ پہلے</span> لیں۔"
-    ],
-    sec8Title: "محفوظ رکھنا",
-    sec8: [
-      "بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔",
-      "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"
-    ],
-
-    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    pageTitle: "پانتوپرازول – اسید معده و رفلاکس",
-    hdrH1: "پانتوپرازول – اسید معده و رفلاکس",
-    hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "پانتوپرازول – رفلاکس/سوزش",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و روشن",
-
-    sec1Title: "مصرف",
-    sec1: [
-      "پانتوپرازول اسید معده را کم می‌کند.",
-      "برای سوزش سر دل، رفلاکس و زخم معده استفاده می‌شود."
-    ],
-    sec2Title: "دوز",
-    sec2: [
-      "معمولاً <span class='highlight'>20–40 میلی‌گرم</span> روزی یک بار.",
-      "اغلب صبح <span class='highlight'>15–30 دقیقه قبل از غذا</span>."
-    ],
-    sec3Title: "عوارض",
-    sec3: [
-      "سردرد، تهوع، درد خفیف شکم.",
-      "مصرف طولانی می‌تواند <span class='highlight'>ویتامین B12</span> و برخی مواد معدنی را کاهش دهد."
-    ],
-    sec4Title: "تداخلات",
-    sec4: [
-      "برخی داروها برای جذب به اسید معده نیاز دارند؛ ممکن است جذبشان کاهش یابد.",
-      "همه داروهای دیگر را به داروخانه/پزشک بگویید."
-    ],
-    sec5Title: "هشدارها",
-    sec5: [
-      "در صورت <span class='highlight'>مدفوع سیاه</span>، <span class='highlight'>استفراغ خونی</span> یا کاهش وزن ناگهانی به پزشک مراجعه کنید."
-    ],
-    sec6Title: "رمضان و روزه",
-    sec6: [
-      "دوز صبح را اغلب می‌توان به <span class='highlight'>سحری</span> منتقل کرد.",
-      "در رفلاکس شدید/زخم، خودسرانه قطع نکنید."
-    ],
-    sec7Title: "غذا و نوشیدنی",
-    sec7: [
-      "روی <span class='highlight'>معده خالی</span>، معمولاً <span class='highlight'>15–30 دقیقه قبل از غذا</span> مصرف شود."
-    ],
-    sec8Title: "نگهداری",
-    sec8: [
-      "دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی نگهداری شود.",
-      "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."
-    ],
-
-    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    pageTitle: "پانتوپرازول – اسید معده و رفلاکس",
-    hdrH1: "پانتوپرازول – اسید معده و رفلاکس",
-    hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "پانتوپرازول – رفلاکس/سوزش",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و واضح",
-
-    sec1Title: "استفاده",
-    sec1: [
-      "پانتوپرازول اسید معده را کم می‌کند.",
-      "برای سوزش سر دل، رفلاکس و زخم معده استفاده می‌شود."
-    ],
-    sec2Title: "دوز",
-    sec2: [
-      "معمولاً <span class='highlight'>20–40 mg</span> روز یک بار.",
-      "اکثر صبح <span class='highlight'>15–30 دقیقه قبل از غذا</span>."
-    ],
-    sec3Title: "عوارض",
-    sec3: [
-      "سردرد، تهوع، درد خفیف شکم.",
-      "مصرف طولانی می‌تواند <span class='highlight'>ویتامین B12</span> و بعضی مواد معدنی را کم کند."
-    ],
-    sec4Title: "تداخلات",
-    sec4: [
-      "برخی دواها برای جذب به اسید معده نیاز دارند؛ ممکن است جذب شان کم شود.",
-      "تمام دواهای دیگر را به دواخانه/داکتر بگویید."
-    ],
-    sec5Title: "هشدارها",
-    sec5: [
-      "در صورت <span class='highlight'>مدفوع سیاه</span>، <span class='highlight'>استفراغ خونی</span> یا کاهش وزن ناگهانی، به داکتر مراجعه کنید."
-    ],
-    sec6Title: "رمضان و روزه",
-    sec6: [
-      "دوز صبح را اغلب می‌توان به <span class='highlight'>سحری</span> انتقال داد.",
-      "در رفلاکس شدید/زخم، خودسرانه قطع نکنید."
-    ],
-    sec7Title: "غذا و نوشیدنی",
-    sec7: [
-      "روی <span class='highlight'>معده خالی</span>، معمولاً <span class='highlight'>15–30 دقیقه قبل از غذا</span>."
-    ],
-    sec8Title: "نگهداری",
-    sec8: [
-      "دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی نگهداری شود.",
-      "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."
-    ],
-
-    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    pageTitle: "پانتوپرازول – د معدې تېزاب او ریفلوکس",
-    hdrH1: "پانتوپرازول – د معدې تېزاب او ریفلوکس",
-    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText: "لېست ته بېرته",
-    langLabel: "ژبه وټاکئ:",
-    drugName: "پانتوپرازول – ریفلوکس/سوځښت",
-    drugForm: "ګولۍ (د خولې له لارې)",
-    badgeText: "لنډ او روښانه",
-
-    sec1Title: "کارونه",
-    sec1: [
-      "پانتوپرازول د معدې تېزاب کموي.",
-      "د سینه سوځېدو، ریفلوکس او د معدې زخم لپاره کارېږي."
-    ],
-    sec2Title: "دوز",
-    sec2: [
-      "اکثر <span class='highlight'>20–40 mg</span> په ورځ کې یو ځل.",
-      "ډېر وخت سهار <span class='highlight'>15–30 دقیقې د خوړو مخکې</span>."
-    ],
-    sec3Title: "اړخیزې اغېزې",
-    sec3: [
-      "سر درد، زړه بدوالی، د نس خفیف درد.",
-      "اوږدمهاله استعمال <span class='highlight'>B12 ویټامین</span> او ځینې منرالونه کمولای شي."
-    ],
-    sec4Title: "تداخلات",
-    sec4: [
-      "ځینې درمل د جذب لپاره د معدې تېزاب ته اړتیا لري؛ جذب یې کمېدای شي.",
-      "نور ټول درمل ډاکټر/درملتون ته ووایئ."
-    ],
-    sec5Title: "خبرداری",
-    sec5: [
-      "که <span class='highlight'>تور غایطه</span>، <span class='highlight'>وینه لرونکې کانګې</span> یا ناڅاپه وزن کمېدل وي، ډاکټر ته ورشئ."
-    ],
-    sec6Title: "رمضان او روژه",
-    sec6: [
-      "د سهار دوز اکثر <span class='highlight'>سحري</span> ته انتقالېدای شي.",
-      "په شدید ریفلوکس/زخم کې خپله مه بندوئ."
-    ],
-    sec7Title: "خواړه او څښاک",
-    sec7: [
-      "په <span class='highlight'>خالي معده</span>، عموماً <span class='highlight'>15–30 دقیقې د خوړو مخکې</span> واخلئ."
-    ],
-    sec8Title: "ساتنه",
-    sec8: [
-      "له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې وساتئ.",
-      "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."
-    ],
-
-    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
 
@@ -699,14 +384,14 @@ function applyLang(lang){
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("sec1Title").textContent = d.sec1Title;
-  document.getElementById("sec2Title").textContent = d.sec2Title;
-  document.getElementById("sec3Title").textContent = d.sec3Title;
-  document.getElementById("sec4Title").textContent = d.sec4Title;
-  document.getElementById("sec5Title").textContent = d.sec5Title;
-  document.getElementById("sec6Title").textContent = d.sec6Title;
-  document.getElementById("sec7Title").textContent = d.sec7Title;
-  document.getElementById("sec8Title").textContent = d.sec8Title;
+  document.getElementById("sec1Title").innerHTML = d.sec1Title;
+  document.getElementById("sec2Title").innerHTML = d.sec2Title;
+  document.getElementById("sec3Title").innerHTML = d.sec3Title;
+  document.getElementById("sec4Title").innerHTML = d.sec4Title;
+  document.getElementById("sec5Title").innerHTML = d.sec5Title;
+  document.getElementById("sec6Title").innerHTML = d.sec6Title;
+  document.getElementById("sec7Title").innerHTML = d.sec7Title;
+  document.getElementById("sec8Title").innerHTML = d.sec8Title;
 
   fillList("sec1List", d.sec1);
   fillList("sec2List", d.sec2);
