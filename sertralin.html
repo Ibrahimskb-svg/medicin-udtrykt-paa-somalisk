@@ -669,6 +669,23 @@ function fillList(id, arr){
     ul.appendChild(li);
   });
 }
+function setSectionTitle(elId, title){
+  const el = document.getElementById(elId);
+  const smallEl = el.querySelector("small");
+  const textOnly = title || "";
+
+  if (smallEl) {
+    // preserve <small> and only update the text before it
+    const firstNode = el.childNodes[0];
+    if (firstNode && firstNode.nodeType === Node.TEXT_NODE) {
+      firstNode.textContent = textOnly + " ";
+    } else {
+      el.insertBefore(document.createTextNode(textOnly + " "), smallEl);
+    }
+  } else {
+    el.textContent = textOnly;
+  }
+}
 function applyLang(lang){
   const d = T[lang] || T.so;
   setDirLang(lang);
@@ -683,15 +700,16 @@ function applyLang(lang){
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("sec0Title").textContent = d.sec0Title;
-  document.getElementById("sec1Title").textContent = d.sec1Title;
-  document.getElementById("sec2Title").textContent = d.sec2Title;
-  document.getElementById("sec3Title").textContent = d.sec3Title;
-  document.getElementById("sec4Title").textContent = d.sec4Title;
-  document.getElementById("sec5Title").textContent = d.sec5Title;
-  document.getElementById("sec6Title").textContent = d.sec6Title;
-  document.getElementById("sec7Title").textContent = d.sec7Title;
-  document.getElementById("sec8Title").textContent = d.sec8Title;
+  // FIX: keep the <small> subtitles in the markup (don't overwrite them)
+  setSectionTitle("sec0Title", d.sec0Title);
+  setSectionTitle("sec1Title", d.sec1Title);
+  setSectionTitle("sec2Title", d.sec2Title);
+  setSectionTitle("sec3Title", d.sec3Title);
+  setSectionTitle("sec4Title", d.sec4Title);
+  setSectionTitle("sec5Title", d.sec5Title);
+  setSectionTitle("sec6Title", d.sec6Title);
+  setSectionTitle("sec7Title", d.sec7Title);
+  setSectionTitle("sec8Title", d.sec8Title);
 
   fillList("sec0List", d.sec0);
   fillList("sec1List", d.sec1);
