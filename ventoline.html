@@ -9,9 +9,7 @@ body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin
 header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
 header h1 { margin:0 0 4px; font-size:1.8rem; }
 header p { margin:0; font-size:0.95rem; }
-
 main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
-
 a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
@@ -31,7 +29,6 @@ a.back span { font-size:1.1rem; }
   background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
   box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
 }
-
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
 .drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
@@ -58,10 +55,8 @@ a.back span { font-size:1.1rem; }
 
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
 .section-title small{ font-weight:400; color:#607089; }
-
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section ul li{ margin-bottom:4px; }
-
 .highlight{ font-weight:600; }
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
@@ -94,6 +89,7 @@ a.back span { font-size:1.1rem; }
   <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
+
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
@@ -174,6 +170,7 @@ a.back span { font-size:1.1rem; }
       </div>
       <ul id="sec8List"></ul>
     </div>
+
   </div>
 
   <div class="footer-note" id="footer1"></div>
@@ -243,7 +240,7 @@ const T = {
     ],
 
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Hanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
 
   da: {
@@ -669,6 +666,7 @@ function applyLang(lang){
   document.getElementById("footer1").textContent = d.footer1;
   document.getElementById("footer2").innerHTML = d.footer2;
 
+  // keep language when going back
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
@@ -676,7 +674,6 @@ function applyLang(lang){
 
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
-
 document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
 applyLang(document.getElementById("langSelect").value);
 
