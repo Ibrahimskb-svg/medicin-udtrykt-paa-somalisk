@@ -10,9 +10,7 @@ body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin
 header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
 header h1 { margin:0 0 4px; font-size:1.8rem; }
 header p { margin:0; font-size:0.95rem; }
-
 main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
-
 a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
@@ -22,52 +20,29 @@ a.back span { font-size:1.1rem; }
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
   border-left:4px solid #00a676;
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{ font-size:0.9rem; font-weight:600; }
 .langbar select{
   padding:7px 10px; border-radius:10px;
-  border:1px solid #d0d7e2; background:#fff; color:#123047;
-  font-size:0.9rem; max-width:100%;
+  border:1px solid #d0d7e2; font-size:0.9rem;
+  background:#fff; color:#123047; max-width:100%;
 }
 
-/* Same "card" + meta header as the previous pages */
 .card{
   background:#ffffff; border-radius:14px;
   padding:16px 16px 10px; margin-bottom:14px;
   box-shadow:0 3px 10px rgba(15,23,42,0.12);
   border-top:4px solid #00a676;
 }
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
-.drug-icon svg{ width:30px; height:30px; }
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
-/* Same section styling as previous pages */
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.section-icon{
-  width:24px; height:24px; border-radius:999px;
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
-}
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.side{ background:#fff3e0; }
-
-.section-title{ font-weight:700; font-size:0.96rem; color:#123047; }
-.section-title small{ font-weight:400; color:#607089; }
-
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
+.section { margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+.section-title { font-weight:700; font-size:0.96rem; color:#123047; }
+.section ul { margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section ul li{ margin-bottom:4px; }
 
 .footer-note{
   font-size:0.8rem; color:#607089;
   text-align:center; margin:18px 0 10px;
 }
-
 @media(max-width:600px){ header h1{font-size:1.5rem;} }
 </style>
 </head>
@@ -75,16 +50,16 @@ a.back span { font-size:1.1rem; }
 <body>
 
 <header>
-  <h1 id="hdrH1">Lamotrigin – suuxdin & laba-cirifood</h1>
-  <p id="hdrP">Warbixin kooban oo ku saabsan daawada</p>
+  <h1 id="lam_title">Lamotrigin</h1>
+  <p id="lam_subtitle">Kort information om medicinen</p>
 </header>
 
 <main>
 
   <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-    <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
+    <label for="lam_langSelect" id="lam_langLabel">Vælg sprog:</label>
+    <select id="lam_langSelect">
+      <option value="so">Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
@@ -96,199 +71,154 @@ a.back span { font-size:1.1rem; }
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="lam_backText">Tilbage</span></a>
 
   <div class="card">
 
-    <div class="drug-meta">
-      <div class="drug-info">
-        <div class="drug-icon">
-          <!-- tablet icon (same as previous) -->
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
-          </svg>
-        </div>
-        <div class="drug-labels">
-          <div class="drug-name" id="drugName">Lamotrigin</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
-        </div>
-      </div>
-      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+    <div class="section">
+      <div class="section-title" id="lam_useTitle">Anvendelse</div>
+      <ul id="lam_useList"></ul>
     </div>
 
     <div class="section">
-      <div class="section-header">
-        <div class="section-icon use">✔</div>
-        <div class="section-title" id="useTitle">Isticmaalka</div>
-      </div>
-      <ul id="useList"></ul>
+      <div class="section-title" id="lam_warnTitle">Advarsler</div>
+      <ul id="lam_warnList"></ul>
     </div>
 
     <div class="section">
-      <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="warnTitle">Digniino</div>
-      </div>
-      <ul id="warnList"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
-      </div>
-      <ul id="sideList"></ul>
+      <div class="section-title" id="lam_sideTitle">Bivirkninger</div>
+      <ul id="lam_sideList"></ul>
     </div>
 
   </div>
 
-  <div class="footer-note" id="footerText"></div>
+  <div class="footer-note" id="lam_footerText"></div>
 
 </main>
 
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+(() => {
+  const LAM_RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-const T = {
-  so:{
-    title:"Lamotrigin – suuxdin & laba-cirifood",
-    subtitle:"Warbixin kooban oo ku saabsan daawada",
-    back:"Ku laabo",
-    langLabel:"Dooro luqadda:",
-    drugName:"Lamotrigin",
-    drugForm:"Kiniin afka ah",
-    badgeText:"Akhris fudud oo kooban",
+  const LAM_T = {
+    so:{
+      title:"Lamotrigin – suuxdin & laba-cirifood",
+      subtitle:"Warbixin kooban oo ku saabsan daawada",
+      back:"Ku laabo",
+      useTitle:"Isticmaalka",
+      use:[
+        "Daawo ka hortagta suuxdinta.",
+        "Loo isticmaalo laba-cirifoodka."
+      ],
+      warnTitle:"Digniino",
+      warn:[
+        "Finan cusub → la xiriir dhakhtar.",
+        "Ha joojin daawada si kedis ah."
+      ],
+      sideTitle:"Waxyeellooyinka",
+      side:[
+        "Madax-xanuun iyo wareer.",
+        "Lalabo ama hurdo."
+      ],
+      footer:"La xiriir farmashiyaha ama dhakhtarkaaga wixii faahfaahin ah."
+    },
+    da:{
+      title:"Lamotrigin – epilepsi & bipolar",
+      subtitle:"Kort information om medicinen",
+      back:"Tilbage",
+      useTitle:"Anvendelse",
+      use:[
+        "Forebygger epileptiske anfald.",
+        "Anvendes ved bipolar lidelse."
+      ],
+      warnTitle:"Advarsler",
+      warn:[
+        "Udslæt → kontakt læge straks.",
+        "Stop ikke behandlingen pludseligt."
+      ],
+      sideTitle:"Bivirkninger",
+      side:[
+        "Hovedpine og svimmelhed.",
+        "Kvalme eller træthed."
+      ],
+      footer:"Kontakt apoteket eller lægen for mere information."
+    },
+    en:{
+      title:"Lamotrigine – epilepsy & bipolar disorder",
+      subtitle:"Short medicine information",
+      back:"Back",
+      useTitle:"Use",
+      use:[
+        "Prevents epileptic seizures.",
+        "Used in bipolar disorder."
+      ],
+      warnTitle:"Warnings",
+      warn:[
+        "New rash → seek medical help.",
+        "Do not stop suddenly."
+      ],
+      sideTitle:"Side effects",
+      side:[
+        "Headache and dizziness.",
+        "Nausea or fatigue."
+      ],
+      footer:"Contact your pharmacy or doctor for more information."
+    }
+  };
 
-    useTitle:"Isticmaalka",
-    use:[
-      "Daawo ka hortagta suuxdinta.",
-      "Loo isticmaalo laba-cirifoodka."
-    ],
-    warnTitle:"Digniino",
-    warn:[
-      "Finan cusub → la xiriir dhakhtar.",
-      "Ha joojin daawada si kedis ah."
-    ],
-    sideTitle:"Waxyeellooyinka",
-    side:[
-      "Madax-xanuun iyo wareer.",
-      "Lalabo ama hurdo."
-    ],
-    footer:"La xiriir farmashiyaha ama dhakhtarkaaga wixii faahfaahin ah."
-  },
-
-  da:{
-    title:"Lamotrigin – epilepsi & bipolar",
-    subtitle:"Kort information om medicinen",
-    back:"Tilbage",
-    langLabel:"Vælg sprog:",
-    drugName:"Lamotrigin",
-    drugForm:"Tablet (til at tage gennem munden)",
-    badgeText:"Kort og let",
-
-    useTitle:"Anvendelse",
-    use:[
-      "Forebygger epileptiske anfald.",
-      "Anvendes ved bipolar lidelse."
-    ],
-    warnTitle:"Advarsler",
-    warn:[
-      "Udslæt → kontakt læge straks.",
-      "Stop ikke behandlingen pludseligt."
-    ],
-    sideTitle:"Bivirkninger",
-    side:[
-      "Hovedpine og svimmelhed.",
-      "Kvalme eller træthed."
-    ],
-    footer:"Kontakt apoteket eller lægen for mere information."
-  },
-
-  en:{
-    title:"Lamotrigine – epilepsy & bipolar disorder",
-    subtitle:"Short medicine information",
-    back:"Back",
-    langLabel:"Choose language:",
-    drugName:"Lamotrigine",
-    drugForm:"Tablet (by mouth)",
-    badgeText:"Short and clear",
-
-    useTitle:"Use",
-    use:[
-      "Prevents epileptic seizures.",
-      "Used in bipolar disorder."
-    ],
-    warnTitle:"Warnings",
-    warn:[
-      "New rash → seek medical help.",
-      "Do not stop suddenly."
-    ],
-    sideTitle:"Side effects",
-    side:[
-      "Headache and dizziness.",
-      "Nausea or fatigue."
-    ],
-    footer:"Contact your pharmacy or doctor for more information."
+  function LAM_setDirLang(lang){
+    document.documentElement.lang = lang;
+    document.documentElement.dir = LAM_RTL.has(lang) ? "rtl" : "ltr";
   }
-};
 
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
+  function LAM_fill(id, arr){
+    const ul = document.getElementById(id);
+    ul.innerHTML = "";
+    (arr || []).forEach(t => {
+      const li = document.createElement("li");
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+  }
 
-function fillList(id, arr){
-  const ul = document.getElementById(id);
-  ul.innerHTML = "";
-  (arr || []).forEach(txt => {
-    const li = document.createElement("li");
-    li.textContent = txt;
-    ul.appendChild(li);
+  function LAM_applyLang(lang){
+    // Hvis valgt sprog ikke findes i teksten, så brug engelsk (men behold RTL hvis relevant)
+    const d = LAM_T[lang] || LAM_T.en;
+
+    LAM_setDirLang(lang);
+
+    document.title = d.title;
+    document.getElementById("lam_title").textContent = d.title;
+    document.getElementById("lam_subtitle").textContent = d.subtitle;
+    document.getElementById("lam_backText").textContent = d.back;
+
+    document.getElementById("lam_useTitle").textContent = d.useTitle;
+    document.getElementById("lam_warnTitle").textContent = d.warnTitle;
+    document.getElementById("lam_sideTitle").textContent = d.sideTitle;
+
+    LAM_fill("lam_useList", d.use);
+    LAM_fill("lam_warnList", d.warn);
+    LAM_fill("lam_sideList", d.side);
+
+    document.getElementById("lam_footerText").textContent = d.footer;
+
+    // keep language when going back
+    const backA = document.querySelector("a.back");
+    const base = backA.getAttribute("href").split("?")[0];
+    backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+  }
+
+  const LAM_params = new URLSearchParams(window.location.search);
+  const LAM_startLang = LAM_params.get("lang") || "so";
+
+  const sel = document.getElementById("lam_langSelect");
+  sel.value = (LAM_T[LAM_startLang] ? LAM_startLang : "so");
+  LAM_applyLang(sel.value);
+
+  sel.addEventListener("change", function(){
+    LAM_applyLang(this.value);
   });
-}
-
-function applyLang(lang){
-  const d = T[lang] || T.so;
-  setDirLang(lang);
-
-  document.title = d.title;
-
-  document.getElementById("hdrH1").textContent = d.title;
-  document.getElementById("hdrP").textContent = d.subtitle;
-  document.getElementById("backText").textContent = d.back;
-  document.getElementById("langLabel").textContent = d.langLabel;
-
-  document.getElementById("drugName").textContent = d.drugName;
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
-
-  document.getElementById("useTitle").textContent = d.useTitle;
-  document.getElementById("warnTitle").textContent = d.warnTitle;
-  document.getElementById("sideTitle").textContent = d.sideTitle;
-
-  fillList("useList", d.use);
-  fillList("warnList", d.warn);
-  fillList("sideList", d.side);
-
-  document.getElementById("footerText").textContent = d.footer;
-
-  // keep language when going back
-  const backA = document.querySelector("a.back");
-  const base = backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
-}
-
-// Start language from ?lang=
-const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
-
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
-
-document.getElementById("langSelect").addEventListener("change", function(){
-  applyLang(this.value);
-});
+})();
 </script>
 
 </body>
