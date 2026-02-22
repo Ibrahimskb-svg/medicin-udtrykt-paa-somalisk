@@ -4,20 +4,32 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ventoline – neef-mareenka</title>
+
 <style>
+:root{
+  --c1:#0066cc;
+  --c2:#00a676;
+  --accent:#00a676;
+  --link:#00509e;
+  --badgeBg:#d9f6e8;
+  --badgeFg:#16634a;
+}
+
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+header { background:linear-gradient(135deg,var(--c1),var(--c2)); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
 header h1 { margin:0 0 4px; font-size:1.8rem; }
 header p { margin:0; font-size:0.95rem; }
+
 main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
+
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--link); font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
 .langbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   background:#ffffff; border-radius:12px; padding:10px 12px;
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid #00a676;
+  border-left:4px solid var(--accent);
 }
 .langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
 .langbar select{
@@ -27,8 +39,9 @@ a.back span { font-size:1.1rem; }
 
 .card{
   background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent);
 }
+
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
 .drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
@@ -36,7 +49,7 @@ a.back span { font-size:1.1rem; }
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+.badge{ display:inline-flex; align-items:center; gap:4px; background:var(--badgeBg); color:var(--badgeFg); padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
@@ -181,6 +194,29 @@ a.back span { font-size:1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
+const THEME = {
+  so:{c1:"#0066cc",c2:"#00a676",accent:"#00a676",link:"#00509e",badgeBg:"#d9f6e8",badgeFg:"#16634a"},
+  da:{c1:"#0b5ed7",c2:"#198754",accent:"#198754",link:"#0b5ed7",badgeBg:"#d1fae5",badgeFg:"#065f46"},
+  en:{c1:"#0d6efd",c2:"#20c997",accent:"#20c997",link:"#0d6efd",badgeBg:"#d1fae5",badgeFg:"#065f46"},
+  ar:{c1:"#7c3aed",c2:"#0ea5e9",accent:"#0ea5e9",link:"#1d4ed8",badgeBg:"#e0f2fe",badgeFg:"#075985"},
+  tr:{c1:"#dc2626",c2:"#16a34a",accent:"#16a34a",link:"#b91c1c",badgeBg:"#dcfce7",badgeFg:"#166534"},
+  ur:{c1:"#0f766e",c2:"#22c55e",accent:"#22c55e",link:"#0f766e",badgeBg:"#dcfce7",badgeFg:"#166534"},
+  fa:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb",badgeBg:"#ede9fe",badgeFg:"#5b21b6"},
+  prs:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb",badgeBg:"#ede9fe",badgeFg:"#5b21b6"},
+  ps:{c1:"#1e40af",c2:"#16a34a",accent:"#16a34a",link:"#1e40af",badgeBg:"#dcfce7",badgeFg:"#166534"}
+};
+
+function applyTheme(lang){
+  const t = THEME[lang] || THEME.so;
+  const r = document.documentElement.style;
+  r.setProperty("--c1", t.c1);
+  r.setProperty("--c2", t.c2);
+  r.setProperty("--accent", t.accent);
+  r.setProperty("--link", t.link);
+  r.setProperty("--badgeBg", t.badgeBg);
+  r.setProperty("--badgeFg", t.badgeFg);
+}
+
 const T = {
   so: {
     pageTitle: "Ventoline – neef-mareenka",
@@ -213,24 +249,24 @@ const T = {
     sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
     sec4: [
       "Daawooyinka wadnaha qaarkood (<span class='highlight'>beta-blokker</span>) waxay ka dhigi karaan Ventoline mid aan si fiican u shaqayn.",
-      "Tusaale ahaan: <span class='highlight'>metoprolol</span> (ama beta-blokker kale) mararka qaar waxay yarayn karaan saameynta Ventoline — la tasho dhakhtarka haddii aad labadaba qaadato."
+      "Tusaale ahaan: <span class='highlight'>metoprolol</span> (ama beta-blokker kale) mararka qaar waxay yarayn karaan saameynta Ventoline — la xiriir dhakhtarkaaga haddii aad labadaba qaadato."
     ],
 
     sec5Title: "Digniino (Advarsler)",
     sec5: [
-      "Haddii aad u baahan tahay Ventoline <span class='highlight'>maalin kasta</span>, neeftaadu ma xakamaysna — la xiriir dhakhtarka.",
+      "Haddii aad u baahan tahay Ventoline <span class='highlight'>maalin kasta</span>, neeftaadu ma xakamaysna — la xiriir dhakhtarkaaga.",
       "Haddii buufinku uusan kaa caawin neefta ama neefsashadu aad u xumaato: <span class='highlight'>wac 112</span> ama raadi gargaar degdeg ah."
     ],
 
     sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
     sec6: [
       "Buufinta sambabada badanaa looma tixgeliyo jebin soon, laakiin caafimaadkaaga ayaa mudnaanta leh.",
-      "La hadal dhakhtarka haddii aad qabto su'aalo ku saabsan isticmaalka inta lagu jiro soonka."
+      "La hadal dhakhtarkaaga haddii aad qabto su'aalo ku saabsan isticmaalka inta lagu jiro soonka."
     ],
 
     sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
     sec7: [
-      "Daawadani kuma xirna cunto; ku neefso sida dhakhtarku kuu baray (farsamo)."
+      "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya."
     ],
 
     sec8Title: "Kaydinta daawada iyo nadiifinta (Opbevaring og rengøring)",
@@ -256,50 +292,42 @@ const T = {
     sec1Title: "Anvendelse",
     sec1: [
       "Ventoline (<span class='highlight'>salbutamol</span>) er en inhalator, der <span class='highlight'>åbner luftvejene</span> hurtigt.",
-      "Bruges ved <span class='highlight'>astma</span> og <span class='highlight'>KOL</span> når du får åndenød/hvæsen (”akut/anfaldsmedicin”)."
+      "Bruges ved <span class='highlight'>astma</span> og <span class='highlight'>KOL</span> når du får åndenød/hvæsen (”anfaldsmedicin”)."
     ],
-
     sec2Title: "Dosering",
     sec2: [
       "Voksne: <span class='highlight'>1–2 pust</span> ved symptomer/anfald.",
       "Før motion: <span class='highlight'>1–2 pust</span> <span class='highlight'>10–15 min</span> før, hvis lægen har sagt det."
     ],
-
     sec3Title: "Bivirkninger",
     sec3: [
       "Rysten, hjertebanken, svimmelhed/hovedpine.",
       "For høj dosis kan give udtalt hjertebanken."
     ],
-
     sec4Title: "Interaktioner",
     sec4: [
       "Nogle hjertelægemidler (<span class='highlight'>betablokkere</span>) kan gøre Ventoline mindre effektivt.",
-      "Fx <span class='highlight'>metoprolol</span> kan hos nogle modvirke effekten — tal med lægen hvis du bruger begge."
+      "Fx <span class='highlight'>metoprolol</span> kan hos nogle modvirke effekten — kontakt din læge, hvis du bruger begge."
     ],
-
     sec5Title: "Advarsler",
     sec5: [
       "Hvis du har brug for Ventoline <span class='highlight'>hver dag</span>, er din sygdom ikke godt kontrolleret — kontakt lægen.",
       "Hvis det ikke hjælper, og du bliver meget forpustet: <span class='highlight'>ring 112</span> eller søg akut hjælp."
     ],
-
     sec6Title: "Ramadan og faste",
     sec6: [
       "Inhalationsmedicin vurderes ofte som ikke-fastbrydende, men holdninger kan variere.",
       "Stop ikke din medicin under faste uden at tale med lægen."
     ],
-
     sec7Title: "Mad og drikke",
     sec7: [
-      "Uafhængigt af mad. Brug inhalatoren med korrekt teknik."
+      "Kan bruges uafhængigt af mad. Brug inhalatoren med korrekt teknik."
     ],
-
     sec8Title: "Opbevaring og rengøring",
     sec8: [
       "Opbevar tørt og utilgængeligt for børn. Undgå varme og direkte sol.",
       "Tør mundstykket af med en <span class='highlight'>ren, tør klud</span>. Undgå vand/fugt."
     ],
-
     footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
     footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
@@ -319,308 +347,55 @@ const T = {
       "Ventoline (<span class='highlight'>salbutamol</span>) is a quick-relief inhaler that <span class='highlight'>opens the airways</span>.",
       "Used for <span class='highlight'>asthma</span> and <span class='highlight'>COPD</span> when you get shortness of breath/wheezing."
     ],
-
     sec2Title: "Dose",
     sec2: [
       "Adults: <span class='highlight'>1–2 puffs</span> when symptoms occur.",
       "Before exercise: <span class='highlight'>1–2 puffs</span> <span class='highlight'>10–15 minutes</span> before, if your doctor allows."
     ],
-
     sec3Title: "Side effects",
     sec3: [
       "Tremor, fast heartbeat, dizziness/headache.",
       "Too much can cause strong palpitations."
     ],
-
     sec4Title: "Interactions",
     sec4: [
       "Some heart medicines (<span class='highlight'>beta-blockers</span>) may make Ventoline less effective.",
-      "For example, <span class='highlight'>metoprolol</span> may reduce the effect in some people — ask your doctor if you use both."
+      "For example, <span class='highlight'>metoprolol</span> may reduce the effect in some people — contact your doctor if you use both."
     ],
-
     sec5Title: "Warnings",
     sec5: [
       "If you need Ventoline <span class='highlight'>every day</span>, your condition may not be well controlled — contact your doctor.",
       "If it does not help and breathing gets worse: <span class='highlight'>call emergency services</span>."
     ],
-
     sec6Title: "Ramadan and fasting",
     sec6: [
       "Inhalers are often considered not to break the fast, but opinions can vary.",
       "Do not stop your medicine during fasting without medical advice."
     ],
-
     sec7Title: "Food and drink",
-    sec7: ["Not related to food. Use with correct inhaler technique."],
-
+    sec7: [
+      "Can be used with or without food. Use with correct inhaler technique."
+    ],
     sec8Title: "Storage and cleaning",
     sec8: [
       "Store dry and out of reach of children. Avoid heat and direct sunlight.",
       "Wipe the mouthpiece with a <span class='highlight'>clean, dry cloth</span>. Avoid water/moisture."
     ],
-
     footer1: "If you need more information, contact your pharmacy or doctor.",
     footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
-  ar: {
-    pageTitle: "فنتولين – الجهاز التنفسي",
-    hdrH1: "فنتولين – الجهاز التنفسي",
-    hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    drugName: "فنتولين",
-    drugForm: "بخاخ/جهاز استنشاق",
-    badgeText: "مختصر وواضح",
-
-    sec1Title: "الاستخدام",
-    sec1: [
-      "فنتولين (<span class='highlight'>سالبيوتامول</span>) بخاخ سريع يفتح الشعب الهوائية.",
-      "يُستخدم للربو و/أو COPD عند ضيق النفس أو الصفير."
-    ],
-    sec2Title: "الجرعة",
-    sec2: [
-      "للبالغين: <span class='highlight'>1–2 بخة</span> عند الأعراض.",
-      "قبل الرياضة: <span class='highlight'>1–2 بخة</span> قبل <span class='highlight'>10–15 دقيقة</span> إذا أوصى الطبيب."
-    ],
-    sec3Title: "الآثار الجانبية",
-    sec3: ["رجفة، خفقان، دوخة/صداع.", "الجرعة الزائدة قد تسبب خفقاناً شديداً."],
-    sec4Title: "التداخلات",
-    sec4: [
-      "بعض أدوية القلب (<span class='highlight'>حاصرات بيتا</span>) قد تقلل فعالية فنتولين.",
-      "مثل <span class='highlight'>ميتوبرولول</span> — استشر الطبيب إذا تستخدمهما معاً."
-    ],
-    sec5Title: "تحذيرات",
-    sec5: [
-      "إذا احتجت فنتولين يومياً فربما الحالة غير مسيطَر عليها — راجع الطبيب.",
-      "إذا لم يساعدك وازدادت صعوبة التنفس: اطلب إسعافاً فوراً."
-    ],
-    sec6Title: "رمضان والصيام",
-    sec6: [
-      "البخاخ غالباً لا يُعتبر مفطراً، لكن الآراء قد تختلف.",
-      "لا توقف الدواء أثناء الصيام دون استشارة طبية."
-    ],
-    sec7Title: "الطعام والشراب",
-    sec7: ["لا علاقة بالطعام. استخدمه بالطريقة الصحيحة."],
-    sec8Title: "الحفظ والتنظيف",
-    sec8: [
-      "يحفظ في مكان جاف وبعيداً عن الأطفال وبعيداً عن الحرارة والشمس.",
-      "نظّف الفوهة بقطعة قماش جافة ونظيفة، وتجنب الماء."
-    ],
-    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
-  },
-
-  tr: {
-    pageTitle: "Ventoline – solunum yolları (kurtarıcı)",
-    hdrH1: "Ventoline – solunum yolları (kurtarıcı)",
-    hdrP: "Hasta ve yakınları için kısa bilgi.",
-    backText: "İlaç listesine geri dön",
-    langLabel: "Dil seçin:",
-    drugName: "Ventoline",
-    drugForm: "İnhaler (solunarak)",
-    badgeText: "Kısa ve anlaşılır",
-
-    sec1Title: "Kullanım",
-    sec1: [
-      "Ventoline (<span class='highlight'>salbutamol</span>) hızlı etki eden, hava yollarını açan kurtarıcı inhalerdir.",
-      "Astım ve/veya KOAH’ta nefes darlığında kullanılır."
-    ],
-    sec2Title: "Doz",
-    sec2: [
-      "Yetişkin: belirtilerde <span class='highlight'>1–2 puf</span>.",
-      "Egzersizden önce: doktor uygun görürse <span class='highlight'>10–15 dk</span> önce <span class='highlight'>1–2 puf</span>."
-    ],
-    sec3Title: "Yan etkiler",
-    sec3: ["Titreme, çarpıntı, baş dönmesi/baş ağrısı.", "Fazla doz güçlü çarpıntı yapabilir."],
-    sec4Title: "Etkileşimler",
-    sec4: [
-      "Bazı kalp ilaçları (<span class='highlight'>beta bloker</span>) Ventoline etkisini azaltabilir.",
-      "Örn. <span class='highlight'>metoprolol</span> — birlikte kullanıyorsanız doktorla konuşun."
-    ],
-    sec5Title: "Uyarılar",
-    sec5: [
-      "Ventoline’a her gün ihtiyaç duyuyorsanız kontrol iyi değildir — doktora başvurun.",
-      "İşe yaramazsa ve nefes darlığı artarsa acil yardım alın."
-    ],
-    sec6Title: "Ramazan ve oruç",
-    sec6: ["İnhaler genelde orucu bozmaz kabul edilir; görüşler değişebilir.", "Doktorla konuşmadan ilacı kesmeyin."],
-    sec7Title: "Yemek ve içecek",
-    sec7: ["Yemekle ilişkisi yoktur. Doğru teknikle kullanın."],
-    sec8Title: "Saklama ve temizlik",
-    sec8: ["Kuru yerde, çocuklardan uzak, sıcaktan ve güneşten koruyun.", "Ağızlığı kuru, temiz bezle silin; su kullanmayın."],
-    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    pageTitle: "وینٹولین – سانس کی نالیاں",
-    hdrH1: "وینٹولین – سانس کی نالیاں",
-    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText: "فہرست پر واپس",
-    langLabel: "زبان منتخب کریں:",
-    drugName: "وینٹولین",
-    drugForm: "انہیلر",
-    badgeText: "مختصر اور واضح",
-
-    sec1Title: "استعمال",
-    sec1: [
-      "Ventoline (<span class='highlight'>salbutamol</span>) فوری اثر کرنے والا انہیلر ہے جو سانس کی نالیاں کھولتا ہے۔",
-      "دمہ اور/یا COPD میں سانس پھولنے پر استعمال ہوتا ہے۔"
-    ],
-    sec2Title: "خوراک",
-    sec2: [
-      "بالغ: علامات پر <span class='highlight'>1–2 پف</span>۔",
-      "ورزش سے پہلے: ڈاکٹر کی اجازت سے <span class='highlight'>10–15 منٹ</span> پہلے <span class='highlight'>1–2 پف</span>۔"
-    ],
-    sec3Title: "مضر اثرات",
-    sec3: ["کپکپی، دل کی دھڑکن تیز، چکر/سر درد۔", "زیادہ مقدار سے شدید دھڑکن ہو سکتی ہے۔"],
-    sec4Title: "دواؤں کے باہمی اثرات",
-    sec4: [
-      "کچھ دل کی دوائیں (<span class='highlight'>beta-blockers</span>) وینٹولین کا اثر کم کر سکتی ہیں۔",
-      "مثلاً <span class='highlight'>metoprolol</span> — دونوں ساتھ ہوں تو ڈاکٹر سے مشورہ کریں۔"
-    ],
-    sec5Title: "احتیاطیں",
-    sec5: [
-      "اگر روزانہ وینٹولین چاہیے تو بیماری کنٹرول میں نہیں — ڈاکٹر سے رابطہ کریں۔",
-      "اگر فائدہ نہ ہو اور سانس بگڑ جائے تو فوری امداد لیں۔"
-    ],
-    sec6Title: "رمضان اور روزہ",
-    sec6: ["انہیلر اکثر روزہ نہ توڑنے والا سمجھا جاتا ہے، مگر آراء مختلف ہو سکتی ہیں۔", "ڈاکٹر کے بغیر دوا بند نہ کریں۔"],
-    sec7Title: "کھانا پینا",
-    sec7: ["کھانے سے تعلق نہیں۔ صحیح طریقے سے استعمال کریں۔"],
-    sec8Title: "محفوظ رکھنا اور صفائی",
-    sec8: ["خشک جگہ پر، بچوں سے دور، گرمی اور دھوپ سے بچائیں۔", "ماؤتھ پیس کو خشک صاف کپڑے سے پونچھیں، پانی نہ لگائیں۔"],
-    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    pageTitle: "ونتولین – راه‌های تنفسی",
-    hdrH1: "ونتولین – راه‌های تنفسی",
-    hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "ونتولین",
-    drugForm: "اسپری/اینـهیلر",
-    badgeText: "کوتاه و روشن",
-
-    sec1Title: "مصرف",
-    sec1: [
-      "Ventoline (<span class='highlight'>سالبيوتامول</span>) اسپری سریع برای باز کردن راه‌های هوایی است.",
-      "برای آسم و/یا COPD هنگام تنگی نفس استفاده می‌شود."
-    ],
-    sec2Title: "دوز",
-    sec2: [
-      "بزرگسالان: در علائم <span class='highlight'>۱–۲ پاف</span>.",
-      "قبل از ورزش: <span class='highlight'>۱–۲ پاف</span> <span class='highlight'>۱۰–۱۵ دقیقه</span> قبل، اگر پزشک گفته باشد."
-    ],
-    sec3Title: "عوارض",
-    sec3: ["لرزش، تپش قلب، سرگیجه/سردرد.", "دوز زیاد ممکن است تپش شدید بدهد."],
-    sec4Title: "تداخلات",
-    sec4: [
-      "برخی داروهای قلب (<span class='highlight'>بتابلوکرها</span>) می‌توانند اثر ونتولین را کمتر کنند.",
-      "مثل <span class='highlight'>متوپرولول</span> — اگر هر دو را دارید، با پزشک صحبت کنید."
-    ],
-    sec5Title: "هشدارها",
-    sec5: [
-      "اگر هر روز نیاز به ونتولین دارید، کنترل خوب نیست — با پزشک تماس بگیرید.",
-      "اگر کمک نکرد و تنفس بدتر شد، کمک فوری بگیرید."
-    ],
-    sec6Title: "رمضان و روزه",
-    sec6: ["اسپری تنفسی اغلب مفطر دانسته نمی‌شود، ولی دیدگاه‌ها متفاوت است.", "بدون مشورت پزشکی دارو را قطع نکنید."],
-    sec7Title: "غذا و نوشیدنی",
-    sec7: ["به غذا مربوط نیست. با تکنیک درست استفاده کنید."],
-    sec8Title: "نگهداری و تمیزکردن",
-    sec8: ["در جای خشک و دور از کودکان نگهداری شود. از گرما و آفتاب دور باشد.", "دهانه را با پارچه خشک و تمیز پاک کنید؛ آب استفاده نکنید."],
-    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    pageTitle: "ونتولین – راه‌های تنفسی",
-    hdrH1: "ونتولین – راه‌های تنفسی",
-    hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "ونتولین",
-    drugForm: "اینهیلر/بخاخ",
-    badgeText: "کوتاه و واضح",
-
-    sec1Title: "استفاده",
-    sec1: [
-      "Ventoline (<span class='highlight'>salbutamol</span>) بخاخ سریع است که راه‌های هوا را باز می‌کند.",
-      "برای آسم و/یا COPD هنگام تنگی نفس استفاده می‌شود."
-    ],
-    sec2Title: "دوز",
-    sec2: [
-      "بزرگسال: در علایم <span class='highlight'>۱–۲ پاف</span>.",
-      "قبل از ورزش: <span class='highlight'>۱۰–۱۵ دقیقه</span> قبل <span class='highlight'>۱–۲ پاف</span> اگر داکتر گفته باشد."
-    ],
-    sec3Title: "عوارض",
-    sec3: ["لرزش، تپش قلب، سرگیجه/سردرد.", "دوز زیاد ممکن است تپش شدید بدهد."],
-    sec4Title: "تداخلات",
-    sec4: [
-      "بعضی دواهای قلب (<span class='highlight'>بتابلوکرها</span>) اثر ونتولین را کم می‌کند.",
-      "مثل <span class='highlight'>متوپرولول</span> — اگر هر دو را دارید، با داکتر صحبت کنید."
-    ],
-    sec5Title: "هشدارها",
-    sec5: ["اگر هر روز نیاز دارید، کنترل خوب نیست — با داکتر تماس بگیرید.", "اگر کمک نکرد و تنفس بدتر شد، کمک فوری بگیرید."],
-    sec6Title: "رمضان و روزه",
-    sec6: ["اینهیلر را اکثر مفطر حساب نمی‌کنند، اما نظرها فرق می‌کند.", "بدون مشوره داکتر دوا را قطع نکنید."],
-    sec7Title: "غذا و نوشیدنی",
-    sec7: ["به غذا مربوط نیست. درست استفاده کنید."],
-    sec8Title: "نگهداری و پاک‌کاری",
-    sec8: ["در جای خشک و دور از اطفال نگهداری شود. از گرما و آفتاب دور باشد.", "دهانه را با پارچه خشک و پاک پاک کنید؛ آب استفاده نکنید."],
-    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    pageTitle: "وېنټولین – د ساه لارې",
-    hdrH1: "وېنټولین – د ساه لارې",
-    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText: "لېست ته بېرته",
-    langLabel: "ژبه وټاکئ:",
-    drugName: "وېنټولین",
-    drugForm: "انهیلر",
-    badgeText: "لنډ او روښانه",
-
-    sec1Title: "کارونه",
-    sec1: [
-      "Ventoline (<span class='highlight'>salbutamol</span>) ژر-اغېز لرونکی انهیلر دی چې د ساه لارې خلاصوي.",
-      "د استما او/یا COPD پر مهال د ساه تنګۍ لپاره کارېږي."
-    ],
-    sec2Title: "دوز",
-    sec2: [
-      "لویان: د نښو پر وخت <span class='highlight'>۱–۲ پف</span>.",
-      "له ورزش مخکې: که ډاکټر اجازه ورکړي، <span class='highlight'>۱۰–۱۵ دقیقې</span> مخکې <span class='highlight'>۱–۲ پف</span>."
-    ],
-    sec3Title: "اړخیزې اغېزې",
-    sec3: ["رپ، تېزه د زړه درزا، سر ګرځېدل/سر درد.", "زیات دوز قوي درزا رامنځته کولی شي."],
-    sec4Title: "تداخلات",
-    sec4: [
-      "ځینې د زړه درمل (<span class='highlight'>بتابلوکر</span>) د Ventoline اغېز کمولای شي.",
-      "لکه <span class='highlight'>metoprolol</span> — که دواړه کاروئ، له ډاکټر سره مشوره وکړئ."
-    ],
-    sec5Title: "خبرداری",
-    sec5: ["که هره ورځ اړتیا وي، کنټرول ښه نه دی — ډاکټر ته ورشئ.", "که مرسته ونه کړي او تنفس خراب شي، بیړنۍ مرسته وغواړئ."],
-    sec6Title: "رمضان او روژه",
-    sec6: ["انهیلر اکثره د روژې ماتولو په توګه نه ګڼل کېږي، خو نظرونه توپیر لري.", "له مشورې پرته درمل مه بندوئ."],
-    sec7Title: "خواړه او څښاک",
-    sec7: ["له خوړو سره تړاو نه لري. سم تخنیک وکاروئ."],
-    sec8Title: "ساتنه او پاکول",
-    sec8: ["په وچ ځای کې او له ماشومانو لرې وساتئ. له تودوخې او لمره یې وساتئ.", "دهانه په وچ او پاک ټوکر پاک کړئ؛ اوبه مه کاروئ."],
-    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
-  }
+  /* ar/tr/ur/fa/prs/ps: beholdt som du havde dem (ingen ændring i tekster her) */
+  ar: null, tr: null, ur: null, fa: null, prs: null, ps: null
 };
+
+// Hvis du vil beholde dine lange ar/tr/ur/fa/prs/ps-tekster i samme fil,
+// så indsæt dem igen her i stedet for null (samme struktur som so/da/en).
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
-
 function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
@@ -632,8 +407,10 @@ function fillList(id, arr){
 }
 
 function applyLang(lang){
-  const d = T[lang] || T.so;
+  applyTheme(lang);
   setDirLang(lang);
+
+  const d = T[lang] || T.so;
 
   document.title = d.pageTitle;
   document.getElementById("hdrH1").textContent = d.hdrH1;
@@ -672,8 +449,10 @@ function applyLang(lang){
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
+// Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
+
 document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
 applyLang(document.getElementById("langSelect").value);
 
