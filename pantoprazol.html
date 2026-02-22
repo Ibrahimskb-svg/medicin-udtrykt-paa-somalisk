@@ -3,423 +3,142 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pantoprazol – gaastriga iyo labjeexa &amp; reflux</title>
+<title>Pantoprazol – gaastriga iyo labjeexa & reflux</title>
 
 <style>
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-header h1 { margin:0 0 4px; font-size:1.8rem; }
-header p { margin:0; font-size:0.95rem; }
+:root{
+  --c1:#0066cc;
+  --c2:#00a676;
+  --accent:#00a676;
+  --link:#00509e;
+}
 
-main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+body{font-family:Arial,sans-serif;background:#e6f2f8;color:#123047;margin:0}
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
-a.back span { font-size:1.1rem; }
+header{
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:#fff;padding:22px 16px;text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,.15)
+}
+
+header h1{margin:0 0 4px;font-size:1.8rem}
+header p{margin:0;font-size:.95rem}
+
+main{max-width:820px;margin:18px auto 32px;padding:0 14px}
+
+a.back{
+  display:inline-flex;align-items:center;gap:6px;margin-bottom:14px;
+  text-decoration:none;color:var(--link);font-size:.9rem
+}
 
 .langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#ffffff; border-radius:12px; padding:10px 12px;
-  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid #00a676;
-}
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
-.langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:#fff;border-radius:12px;padding:10px 12px;margin:0 0 14px 0;
+  box-shadow:0 2px 8px rgba(15,23,42,.10);
+  border-left:4px solid var(--accent);
 }
 
 .card{
-  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
+  background:#fff;border-radius:14px;padding:16px 16px 10px;margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,.12);
+  border-top:4px solid var(--accent)
 }
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
-.drug-icon svg{ width:30px; height:30px; }
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
-}
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
-
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
-
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
-
-.highlight{ font-weight:600; }
-
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.section{margin-top:8px;padding-top:8px;border-top:1px dashed #d0d7e2}
+.section-title{font-weight:700;font-size:.96rem}
+.section ul{margin:0 0 4px 18px;font-size:.92rem}
+.highlight{font-weight:600}
+.footer-note{font-size:.8rem;color:#607089;text-align:center;margin:18px 0 10px}
 </style>
 </head>
 
 <body>
+
 <header>
-  <h1 id="hdrH1">Pantoprazol – gaastriga iyo labjeexa &amp; reflux</h1>
-  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+<h1 id="hdrH1">Pantoprazol – gaastriga iyo labjeexa & reflux</h1>
+<p id="hdrP">Waa warbixin kooban oo ku saabsan daawada.</p>
 </header>
 
 <main>
 
-  <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-    <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
-      <option value="en">Engelsk</option>
-      <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
-    </select>
-  </div>
+<div class="langbar">
+<label for="langSelect" id="langLabel">Dooro luqadda:</label>
+<select id="langSelect">
+<option value="so">Somalisk</option>
+<option value="da">Dansk</option>
+<option value="en">Engelsk</option>
+<option value="ar">Arabisk</option>
+<option value="tr">Tyrkisk</option>
+<option value="ur">Urdu</option>
+<option value="fa">Persisk</option>
+<option value="prs">Dari</option>
+<option value="ps">Pashto</option>
+</select>
+</div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+<a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
 
-  <div class="card">
+<div class="card">
+<div class="section-title" id="sec1Title"></div>
+<ul id="sec1List"></ul>
 
-    <div class="drug-meta">
-      <div class="drug-info">
-        <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
-          </svg>
-        </div>
-        <div class="drug-labels">
-          <div class="drug-name" id="drugName">Pantoprazol – gaastriga iyo labjeexa &amp; reflux</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
-        </div>
-      </div>
-      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
-    </div>
+<div class="section-title" id="sec2Title"></div>
+<ul id="sec2List"></ul>
 
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon use">1</div>
-        <div class="section-title" id="sec1Title">Isticmaalka <small>(Anvendelse)</small></div>
-      </div>
-      <ul id="sec1List"></ul>
-    </div>
+<div class="section-title" id="sec8Title"></div>
+<ul id="sec8List"></ul>
+</div>
 
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon dose">2</div>
-        <div class="section-title" id="sec2Title">Qiyaasta <small>(Dosering)</small></div>
-      </div>
-      <ul id="sec2List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon side">3</div>
-        <div class="section-title" id="sec3Title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
-      </div>
-      <ul id="sec3List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon interact">4</div>
-        <div class="section-title" id="sec4Title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
-      </div>
-      <ul id="sec4List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec5Title">Digniino <small>(Advarsler)</small></div>
-      </div>
-      <ul id="sec5List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec6Title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
-      </div>
-      <ul id="sec6List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon food">🍽</div>
-        <div class="section-title" id="sec7Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
-      </div>
-      <ul id="sec7List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta daawada <small>(Opbevaring)</small></div>
-      </div>
-      <ul id="sec8List"></ul>
-    </div>
-
-  </div>
-
-  <div class="footer-note" id="footer1"></div>
-  <div class="footer-note" id="footer2"></div>
+<div class="footer-note" id="footer1"></div>
+<div class="footer-note" id="footer2"></div>
 
 </main>
 
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const RTL=new Set(["ar","fa","ur","prs","ps"]);
 
-const T = {
-  so: {
-    pageTitle: "Pantoprazol – gaastriga iyo labjeexa & reflux",
-    hdrH1: "Pantoprazol – gaastriga iyo labjeexa & reflux",
-    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    backText: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    drugName: "Pantoprazol – gaastriga iyo labjeexa & reflux",
-    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
-    badgeText: "Akhris fudud oo kooban",
-
-    sec1Title: "Isticmaalka (Anvendelse)",
-    sec1: [
-      "Pantoprazol waxay yaraysaa aashiidka caloosha.",
-      "Waxaa loo isticmaalaa laabjeex (halsbrand), soo-laabashada aashiidka (reflux) iyo nabarrada caloosha (mavesår)."
-    ],
-
-    sec2Title: "Qiyaasta (Dosering)",
-    sec2: [
-      "Badanaa <span class='highlight'>20–40 mg</span> hal mar maalintii.",
-      "Qaado subaxdii <span class='highlight'>15–30 daqiiqo</span> ka hor cuntada (ama sida dhakhtarka kuu qoray)."
-    ],
-
-    sec3Title: "Waxyeellooyinka (Bivirkninger)",
-    sec3: [
-      "Madax-xanuun, lalabo, calool-xanuun khafiif ah, shuban ama calool-fadhiyo.",
-      "Isticmaalka muddada dheer wuxuu keeni karaa hoos-u-dhac ku yimaada <span class='highlight'>fiitamiin B12</span> iyo qaar ka mid ah macdanaha."
-    ],
-
-    sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
-    sec4: [
-      "Daawooyin qaarkood waxay u baahan yihiin aashiid si ay si fiican u milmaan; pantoprazol ayaa hoos u dhigi kara milankooda.",
-      "U sheeg farmashiyaha ama dhakhtarka <span class='highlight'>dhammaan</span> daawooyinka kale ee aad qaadato."
-    ],
-
-    sec5Title: "Digniino (Advarsler)",
-    sec5: [
-      "Haddii aad leedahay <span class='highlight'>saxaro madow</span>, <span class='highlight'>matag dhiig leh</span>, liqid xanuun, ama miisaanka oo si lama filaan ah hoos u dhacay → la xiriir dhakhtarka."
-    ],
-
-    sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
-    sec6: [
-      "Haddii aad sooman tahay, qiyaasta subaxda badanaa waxaa loo wareejin karaa <span class='highlight'>suxuurta</span> (15–30 daqiiqo ka hor cunista).",
-      "Ha joojin daawada adiga oo keli ah, gaar ahaan haddii aad qabto reflux ama nabarro caloosha."
-    ],
-
-    sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
-    sec7: [
-      "Ku qaado <span class='highlight'>calool maran</span>, caadiyan <span class='highlight'>15–30 daqiiqo</span> ka hor cuntada.",
-      "Ka fogow waxyaabaha kicin kara laabjeexa (tusaale: cunto dufan badan, basbaas, kafeega) haddii ay kugu kiciyaan."
-    ],
-
-    sec8Title: "Kaydinta daawada (Opbevaring)",
-    sec8: [
-      "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
-      "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
-      "Ha qaadan daawada marka ay dhaafto taariikhda “EXP”. Wixii soo haray, u gee farmashiyaha."
-    ],
-
-    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle: "Pantoprazol – mavesyre, halsbrand & refluks",
-    hdrH1: "Pantoprazol – mavesyre, halsbrand & refluks",
-    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
-    backText: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    drugName: "Pantoprazol – mavesyre, halsbrand & refluks",
-    drugForm: "Tablet (til at tage gennem munden)",
-    badgeText: "Kort og let",
-
-    sec1Title: "Anvendelse",
-    sec1: [
-      "Pantoprazol nedsætter mængden af mavesyre.",
-      "Bruges ved halsbrand, refluks og mavesår."
-    ],
-    sec2Title: "Dosering",
-    sec2: [
-      "Typisk <span class='highlight'>20–40 mg</span> én gang dagligt.",
-      "Tages ofte om morgenen <span class='highlight'>15–30 min</span> før mad (eller som lægen har ordineret)."
-    ],
-    sec3Title: "Bivirkninger",
-    sec3: [
-      "Hovedpine, kvalme, let mavebesvær, diarré eller forstoppelse.",
-      "Lang tids brug kan give lavere <span class='highlight'>vitamin B12</span> og påvirke nogle mineraler."
-    ],
-    sec4Title: "Interaktioner",
-    sec4: [
-      "Nogle lægemidler optages dårligere, når mavesyren sænkes.",
-      "Fortæl altid apotek/læge hvilke andre lægemidler du tager."
-    ],
-    sec5Title: "Advarsler",
-    sec5: [
-      "Kontakt læge ved <span class='highlight'>sort afføring</span>, <span class='highlight'>blodigt opkast</span>, synkebesvær eller uforklaret vægttab."
-    ],
-    sec6Title: "Ramadan og faste",
-    sec6: [
-      "Morgendosis kan ofte flyttes til <span class='highlight'>suhoor</span> (15–30 min før du spiser).",
-      "Stop ikke selv – især hvis du har svær refluks eller mavesår."
-    ],
-    sec7Title: "Mad og drikke",
-    sec7: [
-      "Tages på <span class='highlight'>tom mave</span>, typisk <span class='highlight'>15–30 min</span> før et måltid.",
-      "Undgå det, der udløser halsbrand hos dig (fx meget fed mad, stærk mad, kaffe)."
-    ],
-    sec8Title: "Opbevaring",
-    sec8: [
-      "Opbevares utilgængeligt for børn, under 25°C og i original emballage.",
-      "Brug ikke efter “EXP”. Aflever rester på apoteket."
-    ],
-
-    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle: "Pantoprazole – stomach acid, heartburn & reflux",
-    hdrH1: "Pantoprazole – stomach acid, heartburn & reflux",
-    hdrP: "Brief medicine information for patients and relatives.",
-    backText: "Back to the medicine list",
-    langLabel: "Choose language:",
-    drugName: "Pantoprazole – heartburn & reflux",
-    drugForm: "Tablet (by mouth)",
-    badgeText: "Short and clear",
-
-    sec1Title: "Use",
-    sec1: [
-      "Pantoprazole reduces stomach acid.",
-      "Used for heartburn, reflux, and stomach ulcers."
-    ],
-    sec2Title: "Dose",
-    sec2: [
-      "Usually <span class='highlight'>20–40 mg</span> once daily.",
-      "Often taken in the morning <span class='highlight'>15–30 minutes</span> before food (or as prescribed)."
-    ],
-    sec3Title: "Side effects",
-    sec3: [
-      "Headache, nausea, mild stomach upset, diarrhea or constipation.",
-      "Long-term use may lower <span class='highlight'>vitamin B12</span> and affect some minerals."
-    ],
-    sec4Title: "Interactions",
-    sec4: [
-      "Some medicines need stomach acid to be absorbed well; pantoprazole may reduce their absorption.",
-      "Tell your pharmacy/doctor about all other medicines you take."
-    ],
-    sec5Title: "Warnings",
-    sec5: [
-      "Seek medical advice if you have <span class='highlight'>black stools</span>, <span class='highlight'>vomiting blood</span>, trouble swallowing, or unexplained weight loss."
-    ],
-    sec6Title: "Ramadan and fasting",
-    sec6: [
-      "Morning dose can often be moved to <span class='highlight'>suhoor</span> (15–30 minutes before eating).",
-      "Do not stop on your own, especially with severe reflux or ulcers."
-    ],
-    sec7Title: "Food and drink",
-    sec7: [
-      "Take on an <span class='highlight'>empty stomach</span>, usually <span class='highlight'>15–30 minutes</span> before a meal.",
-      "Avoid triggers that worsen your symptoms (e.g., fatty/spicy foods, coffee) if relevant."
-    ],
-    sec8Title: "Storage",
-    sec8: [
-      "Keep out of reach of children, below 25°C, in the original package.",
-      "Do not use after “EXP”. Return leftovers to the pharmacy."
-    ],
-
-    footer1: "If you need more information, contact your pharmacy or doctor.",
-    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  }
+const THEME={
+so:{c1:"#0066cc",c2:"#00a676",accent:"#00a676",link:"#00509e"},
+da:{c1:"#0b5ed7",c2:"#198754",accent:"#198754",link:"#0b5ed7"},
+en:{c1:"#0d6efd",c2:"#20c997",accent:"#20c997",link:"#0d6efd"},
+ar:{c1:"#7c3aed",c2:"#0ea5e9",accent:"#0ea5e9",link:"#1d4ed8"},
+tr:{c1:"#dc2626",c2:"#16a34a",accent:"#16a34a",link:"#b91c1c"},
+ur:{c1:"#0f766e",c2:"#22c55e",accent:"#22c55e",link:"#0f766e"},
+fa:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb"},
+prs:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb"},
+ps:{c1:"#1e40af",c2:"#16a34a",accent:"#16a34a",link:"#1e40af"}
 };
 
+function applyTheme(lang){
+const t=THEME[lang]||THEME.so;
+const r=document.documentElement.style;
+r.setProperty("--c1",t.c1);
+r.setProperty("--c2",t.c2);
+r.setProperty("--accent",t.accent);
+r.setProperty("--link",t.link);
+}
+
 function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+document.documentElement.lang=lang;
+document.documentElement.dir=RTL.has(lang)?"rtl":"ltr";
 }
-function fillList(id, arr){
-  const ul = document.getElementById(id);
-  ul.innerHTML = "";
-  (arr || []).forEach(txt => {
-    const li = document.createElement("li");
-    li.innerHTML = txt;
-    ul.appendChild(li);
-  });
-}
+
 function applyLang(lang){
-  const d = T[lang] || T.so;
-  setDirLang(lang);
+applyTheme(lang);
+setDirLang(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
-  document.getElementById("langLabel").textContent = d.langLabel;
-  document.getElementById("drugName").textContent = d.drugName;
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
-
-  document.getElementById("sec1Title").innerHTML = d.sec1Title;
-  document.getElementById("sec2Title").innerHTML = d.sec2Title;
-  document.getElementById("sec3Title").innerHTML = d.sec3Title;
-  document.getElementById("sec4Title").innerHTML = d.sec4Title;
-  document.getElementById("sec5Title").innerHTML = d.sec5Title;
-  document.getElementById("sec6Title").innerHTML = d.sec6Title;
-  document.getElementById("sec7Title").innerHTML = d.sec7Title;
-  document.getElementById("sec8Title").innerHTML = d.sec8Title;
-
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
-
-  document.getElementById("footer1").textContent = d.footer1;
-  document.getElementById("footer2").innerHTML = d.footer2;
-
-  // keep language when going back
-  const backA = document.querySelector("a.back");
-  const base = backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+const backA=document.querySelector("a.back");
+const base=backA.getAttribute("href").split("?")[0];
+backA.setAttribute("href",base+"?lang="+encodeURIComponent(lang));
 }
 
-// Start language from ?lang=
-const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
+const params=new URLSearchParams(window.location.search);
+const startLang=params.get("lang")||"so";
+document.getElementById("langSelect").value=startLang;
+applyLang(startLang);
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
-
-document.getElementById("langSelect").addEventListener("change", function(){
-  applyLang(this.value);
+document.getElementById("langSelect").addEventListener("change",function(){
+applyLang(this.value);
 });
 </script>
 
