@@ -6,15 +6,39 @@
 <title>Losartan – dhiig-karka</title>
 
 <style>
-/* UNIVERSAL DESIGN (samme som de andre sider) */
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
+:root{
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
+
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
+
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{ transition: background .45s ease, color .35s ease; }
+}
+
+body { font-family: Arial, sans-serif; background:var(--bg); color:var(--text); margin:0; }
+header { background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:var(--accentText); padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
 header h1 { margin:0 0 4px; font-size:1.8rem; }
 header p { margin:0; font-size:0.95rem; }
 
 main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--link); font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
 /* Language bar */
@@ -22,18 +46,18 @@ a.back span { font-size:1.1rem; }
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   background:#ffffff; border-radius:12px; padding:10px 12px;
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid #00a676;
+  border-left:4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{ font-size:0.9rem; color:var(--text); font-weight:600; }
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  padding:7px 10px; border-radius:10px; border:1px solid var(--stroke);
+  background:#fff; color:var(--text); font-size:0.9rem; max-width:100%;
 }
 
 /* Card */
 .card{
-  background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
+  background:var(--card); border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent1);
 }
 
 /* Meta */
@@ -41,21 +65,26 @@ a.back span { font-size:1.1rem; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
 .drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
 .drug-icon svg{ width:30px; height:30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.badge{
+  background:var(--pillBg); color:var(--pillText);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display:inline-flex; align-items:center; border:1px solid rgba(0,0,0,0.04);
+}
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; display:inline-flex; align-items:center; }
 
 /* Sections */
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--stroke); }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.section-title{ font-weight:700; font-size:0.96rem; color:#123047; }
-.section-title small{ font-weight:400; color:#607089; }
+.section-title{ font-weight:700; font-size:0.96rem; color:var(--text); }
+.section-title small{ font-weight:400; color:var(--muted); }
 
 .section-icon{
   width:24px; height:24px; border-radius:999px;
   display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  font-size:0.9rem; color:var(--text);
 }
 .section-icon.use{ background:#e3f2fd; }
 .section-icon.dose{ background:#e2f5ea; }
@@ -70,7 +99,7 @@ a.back span { font-size:1.1rem; }
 .section li{ margin-bottom:4px; }
 .highlight{ font-weight:600; }
 
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
+.footer-note{ font-size:0.8rem; color:var(--muted); text-align:center; margin:18px 0 10px; }
 
 @media(max-width:600px){ header h1{font-size:1.5rem;} }
 </style>
@@ -104,13 +133,13 @@ a.back span { font-size:1.1rem; }
 
   <div class="card">
 
-    <!-- META -->
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" />
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
@@ -121,7 +150,6 @@ a.back span { font-size:1.1rem; }
       <div class="badge" id="badgeText">Akhris kooban</div>
     </div>
 
-    <!-- 1 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
@@ -130,7 +158,6 @@ a.back span { font-size:1.1rem; }
       <ul id="useList"></ul>
     </div>
 
-    <!-- 2 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
@@ -139,7 +166,6 @@ a.back span { font-size:1.1rem; }
       <ul id="doseList"></ul>
     </div>
 
-    <!-- 3 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
@@ -148,7 +174,6 @@ a.back span { font-size:1.1rem; }
       <ul id="sideList"></ul>
     </div>
 
-    <!-- 4 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
@@ -157,7 +182,6 @@ a.back span { font-size:1.1rem; }
       <ul id="interList"></ul>
     </div>
 
-    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
@@ -166,7 +190,6 @@ a.back span { font-size:1.1rem; }
       <ul id="warnList"></ul>
     </div>
 
-    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
@@ -175,7 +198,6 @@ a.back span { font-size:1.1rem; }
       <ul id="ramList"></ul>
     </div>
 
-    <!-- 7 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
@@ -184,7 +206,6 @@ a.back span { font-size:1.1rem; }
       <ul id="foodList"></ul>
     </div>
 
-    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
@@ -202,6 +223,29 @@ a.back span { font-size:1.1rem; }
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+/* Same 9-language themes */
+const THEMES = {
+  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
+  en:  { a1:"#0ea5e9", a2:"#2563eb", link:"#1d4ed8", pillBg:"#e0f2fe", pillText:"#075985" },
+  ar:  { a1:"#7c3aed", a2:"#4f46e5", link:"#4f46e5", pillBg:"#ede9fe", pillText:"#5b21b6" },
+  tr:  { a1:"#ef4444", a2:"#f97316", link:"#b91c1c", pillBg:"#fee2e2", pillText:"#b91c1c" },
+  ur:  { a1:"#16a34a", a2:"#0f766e", link:"#0f766e", pillBg:"#dcfce7", pillText:"#166534" },
+  fa:  { a1:"#0f766e", a2:"#0891b2", link:"#0f766e", pillBg:"#ccfbf1", pillText:"#115e59" },
+  prs: { a1:"#a855f7", a2:"#6d28d9", link:"#6d28d9", pillBg:"#f3e8ff", pillText:"#6b21b6" },
+  ps:  { a1:"#f59e0b", a2:"#d97706", link:"#b45309", pillBg:"#ffedd5", pillText:"#9a3412" }
+};
+
+function applyTheme(lang){
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
+}
 
 const T = {
   so:{
@@ -387,13 +431,377 @@ const T = {
 
     footer1:"If you need more information, contact your pharmacy or doctor.",
     footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  /* The 6 missing languages are added here so dropdown never breaks */
+  ar:{
+    pageTitle:"لوسارتان – ارتفاع ضغط الدم",
+    hdrH1:"لوسارتان – ارتفاع ضغط الدم",
+    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
+    backText:"العودة إلى قائمة الأدوية",
+    langLabel:"اختر اللغة:",
+    drugName:"لوسارتان",
+    drugForm:"أقراص (عن طريق الفم)",
+    badgeText:"مختصر وواضح",
+
+    useTitle:"الاستخدام",
+    use:[
+      "لوسارتان من مجموعة <span class='highlight'>ARB</span> (حاصرات مستقبلات الأنجيوتنسين II).",
+      "يُستخدم لارتفاع ضغط الدم وقد يساعد في حماية الكلى لدى بعض المرضى (مثل بعض مرضى السكري)."
+    ],
+
+    doseTitle:"الجرعة",
+    dose:[
+      "غالباً <span class='highlight'>50 ملغ مرة يومياً</span>؛ قد يغيّر الطبيب الجرعة عند الحاجة.",
+      "تناوله يومياً في نفس الوقت تقريباً."
+    ],
+
+    sideTitle:"الآثار الجانبية",
+    side:[
+      "دوخة أو تعب خفيف (خصوصاً في البداية).",
+      "قد يرتفع البوتاسيوم في الدم؛ ونادراً قد يحدث ضعف في العضلات."
+    ],
+
+    interTitle:"التداخلات",
+    inter:[
+      "الحذر مع مكملات البوتاسيوم وبدائل الملح المحتوية على بوتاسيوم.",
+      "الاستخدام الطويل لمسكنات NSAID (مثل إيبوبروفين/ديكلوفيناك) قد يزيد خطر مشاكل الكلى."
+    ],
+
+    warnTitle:"تحذيرات",
+    warn:[
+      "لا يُستخدم أثناء الحمل—اتصل بالطبيب إذا حدث حمل.",
+      "قد تحتاج أمراض الكلى إلى فحوصات/متابعة."
+    ],
+
+    ramTitle:"رمضان والصيام",
+    ram:[
+      "عادةً يؤخذ مرة يومياً ويمكن تناوله <span class='highlight'>بعد الإفطار</span> أو وقت <span class='highlight'>السحور</span>.",
+      "لا تغيّر الجرعة ولا توقف الدواء دون استشارة طبية."
+    ],
+
+    foodTitle:"الطعام والشراب",
+    food:[ "يمكن تناوله مع الطعام أو بدونه." ],
+
+    storeTitle:"الحفظ",
+    store:[
+      "يحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
+      "يحفظ في العبوة الأصلية للحماية من الضوء والرطوبة.",
+      "لا يستخدم بعد “EXP” أو إذا تغيّر شكل الأقراص.",
+      "أعد البقايا إلى الصيدلية."
+    ],
+
+    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
+  },
+
+  tr:{
+    pageTitle:"Losartan – yüksek tansiyon",
+    hdrH1:"Losartan – yüksek tansiyon",
+    hdrP:"Hasta ve yakınları için kısa bilgi.",
+    backText:"İlaç listesine geri dön",
+    langLabel:"Dil seçin:",
+    drugName:"Losartan",
+    drugForm:"Tablet (ağızdan)",
+    badgeText:"Kısa ve anlaşılır",
+
+    useTitle:"Kullanım",
+    use:[
+      "Losartan <span class='highlight'>ARB</span> grubundandır (anjiyotensin II reseptör blokeri).",
+      "Yüksek tansiyonda kullanılır; bazı kişilerde böbrekleri korumaya da yardımcı olabilir (ör. bazı diyabet hastalarında)."
+    ],
+
+    doseTitle:"Doz",
+    dose:[
+      "Sıklıkla <span class='highlight'>günde 1 kez 50 mg</span>; doktor gerekirse dozu ayarlayabilir.",
+      "Her gün yaklaşık aynı saatte alın."
+    ],
+
+    sideTitle:"Yan etkiler",
+    side:[
+      "Baş dönmesi veya hafif yorgunluk (özellikle başlangıçta).",
+      "Kandaki potasyum artabilir; nadiren kas güçsüzlüğü olabilir."
+    ],
+
+    interTitle:"Etkileşimler",
+    inter:[
+      "Potasyum takviyeleri ve potasyum içeren tuz ikamelerine dikkat.",
+      "NSAİİ’lerin uzun süreli kullanımı (ibuprofen/diklofenak) böbrek riskini artırabilir."
+    ],
+
+    warnTitle:"Uyarılar",
+    warn:[
+      "Hamilelikte kullanılmaz—hamile kalırsanız doktorla görüşün.",
+      "Böbrek hastalığında takip/kan tahlilleri gerekebilir."
+    ],
+
+    ramTitle:"Ramazan ve oruç",
+    ram:[
+      "Genelde günde bir kez alınır; <span class='highlight'>iftardan sonra</span> veya <span class='highlight'>sahurda</span> alınabilir.",
+      "Doktora danışmadan dozu değiştirmeyin veya ilacı kesmeyin."
+    ],
+
+    foodTitle:"Yemek ve içecek",
+    food:[ "Yemekle birlikte veya yemeksiz alınabilir." ],
+
+    storeTitle:"Saklama",
+    store:[
+      "Çocuklardan uzak, 25 °C’nin altında saklayın.",
+      "Işık ve nemden korumak için orijinal ambalajında tutun.",
+      "“EXP” sonrası veya görünüm değiştiyse kullanmayın.",
+      "Artanları eczaneye verin."
+    ],
+
+    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur:{
+    pageTitle:"لوسارٹن – بلند فشارِ خون",
+    hdrH1:"لوسارٹن – بلند فشارِ خون",
+    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText:"فہرست پر واپس",
+    langLabel:"زبان منتخب کریں:",
+    drugName:"لوسارٹن",
+    drugForm:"گولی (منہ کے ذریعے)",
+    badgeText:"مختصر اور واضح",
+
+    useTitle:"استعمال",
+    use:[
+      "لوسارٹن <span class='highlight'>ARB</span> گروپ سے ہے (Angiotensin II receptor blocker).",
+      "بلڈ پریشر کے لیے استعمال ہوتی ہے اور کچھ مریضوں میں گردوں کی حفاظت میں مدد دے سکتی ہے (مثلاً بعض ذیابیطس میں)."
+    ],
+
+    doseTitle:"خوراک",
+    dose:[
+      "اکثر <span class='highlight'>50 mg روزانہ ایک بار</span>؛ ڈاکٹر ضرورت کے مطابق خوراک بدل سکتا ہے۔",
+      "ہر روز تقریباً ایک ہی وقت پر لیں۔"
+    ],
+
+    sideTitle:"مضر اثرات",
+    side:[
+      "چکر آنا یا ہلکی تھکن (خاص طور پر ابتدا میں).",
+      "خون میں پوٹاشیم بڑھ سکتا ہے؛ شاذونادر پٹھوں کی کمزوری ہو سکتی ہے۔"
+    ],
+
+    interTitle:"دواؤں کے باہمی اثرات",
+    inter:[
+      "پوٹاشیم سپلیمنٹس اور پوٹاشیم والے نمک کے متبادل میں احتیاط۔",
+      "NSAIDs کا طویل استعمال (ibuprofen/diclofenac) گردوں کے مسائل کا خطرہ بڑھا سکتا ہے۔"
+    ],
+
+    warnTitle:"احتیاطیں",
+    warn:[
+      "حمل میں استعمال نہ کریں—حمل ٹھہر جائے تو ڈاکٹر سے رابطہ کریں۔",
+      "گردوں کی بیماری میں ٹیسٹ/مانیٹرنگ کی ضرورت ہو سکتی ہے۔"
+    ],
+
+    ramTitle:"رمضان اور روزہ",
+    ram:[
+      "یہ عموماً روزانہ ایک بار لی جاتی ہے؛ <span class='highlight'>افطار کے بعد</span> یا <span class='highlight'>سحری</span> میں لی جا سکتی ہے۔",
+      "ڈاکٹر کے مشورے کے بغیر خوراک نہ بدلیں اور دوا بند نہ کریں۔"
+    ],
+
+    foodTitle:"کھانا پینا",
+    food:[ "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔" ],
+
+    storeTitle:"محفوظ رکھنا",
+    store:[
+      "بچوں سے دور، 25°C سے کم درجۂ حرارت پر رکھیں۔",
+      "اصل پیک میں رکھیں تاکہ روشنی/نمی سے بچ سکے۔",
+      "“EXP” کے بعد یا شکل بدل جائے تو استعمال نہ کریں۔",
+      "بچی دوا فارمیسی کو دیں۔"
+    ],
+
+    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa:{
+    pageTitle:"لوزارتان – فشار خون بالا",
+    hdrH1:"لوزارتان – فشار خون بالا",
+    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"لوزارتان",
+    drugForm:"قرص (خوراکی)",
+    badgeText:"کوتاه و روشن",
+
+    useTitle:"مصرف",
+    use:[
+      "لوزارتان از گروه <span class='highlight'>ARB</span> است (مسدودکننده گیرنده آنژیوتانسین II).",
+      "برای فشار خون بالا استفاده می‌شود و در برخی افراد ممکن است به محافظت از کلیه کمک کند (مثلاً در برخی بیماران دیابتی)."
+    ],
+
+    doseTitle:"دوز",
+    dose:[
+      "معمولاً <span class='highlight'>50 میلی‌گرم روزی یک‌بار</span>؛ پزشک در صورت نیاز دوز را تغییر می‌دهد.",
+      "هر روز تقریباً در یک زمان ثابت مصرف کنید."
+    ],
+
+    sideTitle:"عوارض",
+    side:[
+      "سرگیجه یا خستگی خفیف (خصوصاً در شروع).",
+      "ممکن است پتاسیم خون بالا برود؛ به‌ندرت ضعف عضلانی رخ می‌دهد."
+    ],
+
+    interTitle:"تداخلات",
+    inter:[
+      "با مکمل پتاسیم و جایگزین‌های نمکِ حاوی پتاسیم احتیاط کنید.",
+      "مصرف طولانی NSAIDها (مثل ایبوپروفن/دیکلوفناک) می‌تواند خطر مشکلات کلیوی را افزایش دهد."
+    ],
+
+    warnTitle:"هشدارها",
+    warn:[
+      "در بارداری استفاده نشود—در صورت بارداری با پزشک تماس بگیرید.",
+      "در بیماری کلیه ممکن است نیاز به آزمایش/پایش باشد."
+    ],
+
+    ramTitle:"رمضان و روزه",
+    ram:[
+      "معمولاً روزی یک‌بار مصرف می‌شود و می‌تواند <span class='highlight'>بعد از افطار</span> یا در <span class='highlight'>سحری</span> مصرف شود.",
+      "بدون مشورت پزشک دوز را تغییر ندهید و دارو را قطع نکنید."
+    ],
+
+    foodTitle:"غذا و نوشیدنی",
+    food:[ "با غذا یا بدون غذا قابل مصرف است." ],
+
+    storeTitle:"نگهداری",
+    store:[
+      "دور از دسترس کودکان و زیر 25°C نگهداری شود.",
+      "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه دارید.",
+      "پس از “EXP” یا در صورت تغییر ظاهر مصرف نکنید.",
+      "باقی‌مانده را به داروخانه تحویل دهید."
+    ],
+
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs:{
+    pageTitle:"لوزارتان – فشار خون بلند",
+    hdrH1:"لوزارتان – فشار خون بلند",
+    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"لوزارتان",
+    drugForm:"قرص (خوراکی)",
+    badgeText:"کوتاه و واضح",
+
+    useTitle:"استفاده",
+    use:[
+      "لوزارتان از گروه <span class='highlight'>ARB</span> است (مسدودکننده گیرنده آنژیوتانسین II).",
+      "برای فشار خون بلند استفاده می‌شود و در برخی افراد ممکن است به محافظت از کلیه کمک کند (مثلاً در برخی بیماران دیابتی)."
+    ],
+
+    doseTitle:"دوز",
+    dose:[
+      "معمولاً <span class='highlight'>50 mg روزانه یک بار</span>؛ داکتر در صورت نیاز دوز را تغییر می‌دهد.",
+      "هر روز تقریباً در یک وقت ثابت بگیرید."
+    ],
+
+    sideTitle:"عوارض",
+    side:[
+      "سرگیجه یا خستگی خفیف (خصوصاً در شروع).",
+      "ممکن است پتاسیم خون بالا برود؛ به‌ندرت ضعف عضلانی رخ می‌دهد."
+    ],
+
+    interTitle:"تداخلات",
+    inter:[
+      "با مکمل پتاسیم و بدیل‌های نمکِ حاوی پتاسیم احتیاط کنید.",
+      "مصرف طولانی NSAIDها (مثل ایبوپروفن/دیکلوفناک) می‌تواند خطر مشکلات کلیوی را افزایش دهد."
+    ],
+
+    warnTitle:"هشدارها",
+    warn:[
+      "در بارداری استفاده نشود—در صورت بارداری با داکتر تماس بگیرید.",
+      "در بیماری کلیه ممکن است نیاز به آزمایش/پایش باشد."
+    ],
+
+    ramTitle:"رمضان و روزه",
+    ram:[
+      "معمولاً روزانه یک بار گرفته می‌شود و می‌تواند <span class='highlight'>بعد از افطار</span> یا در <span class='highlight'>سحری</span> گرفته شود.",
+      "بدون مشوره داکتر دوز را تغییر ندهید و دوا را قطع نکنید."
+    ],
+
+    foodTitle:"غذا و نوشیدنی",
+    food:[ "با غذا یا بدون غذا گرفته می‌شود." ],
+
+    storeTitle:"نگهداری",
+    store:[
+      "دور از دسترس اطفال و زیر 25°C نگهداری شود.",
+      "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه دارید.",
+      "پس از “EXP” یا در صورت تغییر ظاهر استفاده نکنید.",
+      "باقی‌مانده را به دواخانه بسپارید."
+    ],
+
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps:{
+    pageTitle:"لوسارتان – لوړ د وینې فشار",
+    hdrH1:"لوسارتان – لوړ د وینې فشار",
+    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText:"لېست ته بېرته",
+    langLabel:"ژبه وټاکئ:",
+    drugName:"لوسارتان",
+    drugForm:"ګولۍ (د خولې له لارې)",
+    badgeText:"لنډ او روښانه",
+
+    useTitle:"کارونه",
+    use:[
+      "لوسارتان د <span class='highlight'>ARB</span> ډلې څخه دی (Angiotensin II receptor blocker).",
+      "د لوړ وینې فشار لپاره کارېږي او ځینو کسانو کې د پښتورګو ساتنه کې مرسته کولای شي (لکه د ځینو شکر ناروغانو کې)."
+    ],
+
+    doseTitle:"دوز",
+    dose:[
+      "اکثر <span class='highlight'>50 mg په ورځ کې یو ځل</span>؛ ډاکټر که اړتیا وي بدلوي.",
+      "هره ورځ نږدې په یو ثابت وخت یې واخلئ."
+    ],
+
+    sideTitle:"اړخیزې اغېزې",
+    side:[
+      "سر ګرځېدل یا لږ ستړیا (په پیل کې).",
+      "د وینې پوټاشیم لوړېدای شي؛ نادره د عضلو کمزوري رامنځته کېدای شي."
+    ],
+
+    interTitle:"تداخلات",
+    inter:[
+      "د پوټاشیم سپلېمنټونو او د پوټاشیم لرونکي مالګې بدیلونو سره احتیاط وکړئ.",
+      "د NSAID درملو اوږدمهاله استعمال (ibuprofen/diclofenac) د پښتورګو ستونزو خطر زیاتوي."
+    ],
+
+    warnTitle:"احتیاط",
+    warn:[
+      "په امیندوارۍ کې مه کاروئ—که امیندواره شئ، ډاکټر ته مراجعه وکړئ.",
+      "د پښتورګو ناروغي کې ممکن ازموینې/څارنه پکار وي."
+    ],
+
+    ramTitle:"رمضان او روژه",
+    ram:[
+      "اکثره په ورځ کې یو ځل اخېستل کېږي؛ <span class='highlight'>له افطار وروسته</span> یا د <span class='highlight'>سحري</span> سره اخیستل کېدای شي.",
+      "له طبي مشورې پرته دوز مه بدلوئ او درمل مه بندوئ."
+    ],
+
+    foodTitle:"خواړه او څښاک",
+    food:[ "له خوړو سره یا بې له خوړو اخیستل کېدای شي." ],
+
+    storeTitle:"ساتنه",
+    store:[
+      "له ماشومانو لرې او تر 25°C لاندې وساتئ.",
+      "په اصلي بسته کې وساتئ څو له رڼا/نمی خوندي وي.",
+      "د “EXP” وروسته یا د بڼې بدلون په صورت کې مه کاروئ.",
+      "پاتې درمل درملتون ته وسپارئ."
+    ],
+
+    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
-  // (ar/tr/ur/fa/prs/ps kan stå som i din version – uændret)
 };
 
-function stripTags(s){
-  return String(s || "").replace(/<[^>]*>?/gm, "");
-}
+function stripTags(s){ return String(s||"").replace(/<[^>]*>?/gm, ""); }
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
@@ -412,7 +820,9 @@ function fillList(id, arr){
 
 function applyLang(lang){
   const d = T[lang] || T.so;
+
   setDirLang(lang);
+  applyTheme(lang);
 
   document.title = stripTags(d.pageTitle);
   document.getElementById("hdrH1").textContent = stripTags(d.hdrH1);
@@ -449,16 +859,22 @@ function applyLang(lang){
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  // Update URL without reload
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
 // Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
+const select = document.getElementById("langSelect");
+select.value = (T[startLang] ? startLang : "so");
 
-document.getElementById("langSelect").addEventListener("change", function(){
+applyLang(select.value);
+select.addEventListener("change", function(){
   applyLang(this.value);
 });
 </script>
