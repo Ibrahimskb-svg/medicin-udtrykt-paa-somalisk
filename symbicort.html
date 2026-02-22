@@ -6,47 +6,85 @@
 <title>Symbicort – neef-mareenka</title>
 
 <style>
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+:root{
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
+
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
+
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{ transition: background .45s ease, color .35s ease; }
+}
+
+body { font-family: Arial, sans-serif; background:var(--bg); color:var(--text); margin:0; }
+header { background:linear-gradient(135deg,var(--accent1),var(--accent2)); color:var(--accentText); padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);}
 header h1 { margin:0 0 4px; font-size:1.8rem; }
 header p { margin:0; font-size:0.95rem; }
 
 main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--link); font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
+/* Language bar */
 .langbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   background:#ffffff; border-radius:12px; padding:10px 12px;
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid #00a676;
+  border-left:4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{ font-size:0.9rem; color:var(--text); font-weight:600; }
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  padding:7px 10px; border-radius:10px; border:1px solid var(--stroke);
+  background:#fff; color:var(--text); font-size:0.9rem; max-width:100%;
 }
 
+/* Card */
 .card{
-  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
+  background:var(--card); border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent1);
 }
 
+/* Meta */
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
 .drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
 .drug-icon svg{ width:30px; height:30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.badge{
+  background:var(--pillBg); color:var(--pillText);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display:inline-flex; align-items:center; border:1px solid rgba(0,0,0,0.04);
+}
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+/* Sections */
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--stroke); }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-title{ font-weight:700; font-size:0.96rem; color:var(--text); }
+.section-title small{ font-weight:400; color:var(--muted); }
+
 .section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  width:24px; height:24px; border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:0.9rem; color:var(--text);
 }
 .section-icon.use{ background:#e3f2fd; }
 .section-icon.dose{ background:#e2f5ea; }
@@ -57,19 +95,18 @@ a.back span { font-size:1.1rem; }
 .section-icon.food{ background:#f1f8e9; }
 .section-icon.store{ background:#edeff9; }
 
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
-
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
+.section li{ margin-bottom:4px; }
 .highlight{ font-weight:600; }
 
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.footer-note{ font-size:0.8rem; color:var(--muted); text-align:center; margin:18px 0 10px; }
+
+@media(max-width:600px){ header h1{font-size:1.5rem;} }
 </style>
 </head>
 
 <body>
+
 <header>
   <h1 id="hdrH1">Symbicort – neef-mareenka</h1>
   <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
@@ -95,86 +132,92 @@ a.back span { font-size:1.1rem; }
   <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
+
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
+          <!-- inhaler icon -->
           <svg viewBox="0 0 64 64">
-            <rect x="18" y="10" width="22" height="30" rx="4" fill="#c8e6ff" stroke="#1a73e8" stroke-width="3"/>
-            <rect x="28" y="30" width="24" height="20" rx="3" fill="#ffffff" stroke="#0f9d58" stroke-width="3"/>
-            <rect x="40" y="18" width="8" height="10" rx="2" fill="#bbdefb" stroke="#1a73e8" stroke-width="2"/>
+            <rect x="18" y="10" width="22" height="30" rx="4" fill="#c8e6ff"/>
+            <rect x="18" y="10" width="22" height="30" rx="4" fill="none" class="stroke" stroke-width="3"/>
+            <rect x="28" y="30" width="24" height="20" rx="3" fill="#ffffff"/>
+            <rect x="28" y="30" width="24" height="20" rx="3" fill="none" class="stroke" stroke-width="3"/>
+            <rect x="40" y="18" width="8" height="10" rx="2" fill="#bbdefb"/>
+            <rect x="40" y="18" width="8" height="10" rx="2" fill="none" class="stroke" stroke-width="2"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Symbicort – neef-mareenka</div>
+          <div class="drug-name" id="drugName">Symbicort</div>
           <div class="drug-form" id="drugForm">Buufin la neefsado (Inhalator til at indånde medicin)</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+      <div class="badge" id="badgeText">Akhris kooban</div>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title" id="sec1Title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-title" id="useTitle">Isticmaalka <small>(Anvendelse)</small></div>
       </div>
-      <ul id="sec1List"></ul>
+      <ul id="useList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title" id="sec2Title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-title" id="doseTitle">Qiyaasta <small>(Dosering)</small></div>
       </div>
-      <ul id="sec2List"></ul>
+      <ul id="doseList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title" id="sec3Title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka <small>(Bivirkninger)</small></div>
       </div>
-      <ul id="sec3List"></ul>
+      <ul id="sideList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title" id="sec4Title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title" id="interTitle">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
       </div>
-      <ul id="sec4List"></ul>
+      <ul id="interList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec5Title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title" id="warnTitle">Digniino <small>(Advarsler)</small></div>
       </div>
-      <ul id="sec5List"></ul>
+      <ul id="warnList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec6Title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-title" id="ramTitle">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
       </div>
-      <ul id="sec6List"></ul>
+      <ul id="ramList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title" id="sec7Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
       </div>
-      <ul id="sec7List"></ul>
+      <ul id="foodList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta &amp; nadiifinta <small>(Opbevaring og rengøring)</small></div>
+        <div class="section-title" id="storeTitle">Kaydinta & nadiifinta <small>(Opbevaring og rengøring)</small></div>
       </div>
-      <ul id="sec8List"></ul>
+      <ul id="storeList"></ul>
     </div>
+
   </div>
 
   <div class="footer-note" id="footer1"></div>
@@ -185,10 +228,624 @@ a.back span { font-size:1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
+/* Same 9-language themes */
+const THEMES = {
+  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
+  en:  { a1:"#0ea5e9", a2:"#2563eb", link:"#1d4ed8", pillBg:"#e0f2fe", pillText:"#075985" },
+  ar:  { a1:"#7c3aed", a2:"#4f46e5", link:"#4f46e5", pillBg:"#ede9fe", pillText:"#5b21b6" },
+  tr:  { a1:"#ef4444", a2:"#f97316", link:"#b91c1c", pillBg:"#fee2e2", pillText:"#b91c1c" },
+  ur:  { a1:"#16a34a", a2:"#0f766e", link:"#0f766e", pillBg:"#dcfce7", pillText:"#166534" },
+  fa:  { a1:"#0f766e", a2:"#0891b2", link:"#0f766e", pillBg:"#ccfbf1", pillText:"#115e59" },
+  prs: { a1:"#a855f7", a2:"#6d28d9", link:"#6d28d9", pillBg:"#f3e8ff", pillText:"#6b21b6" },
+  ps:  { a1:"#f59e0b", a2:"#d97706", link:"#b45309", pillBg:"#ffedd5", pillText:"#9a3412" }
+};
+
+function applyTheme(lang){
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
+}
+
+const T = {
+  so: {
+    pageTitle:"Symbicort – neef-mareenka",
+    hdrH1:"Symbicort – neef-mareenka",
+    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    backText:"Ku laabo liiska daawooyinka",
+    langLabel:"Dooro luqadda:",
+    drugName:"Symbicort – neef-mareenka",
+    drugForm:"Buufin la neefsado (Inhalator til at indånde medicin)",
+    badgeText:"Akhris kooban",
+
+    useTitle:"Isticmaalka <small>(Anvendelse)</small>",
+    use:[
+      "Symbicort waa buufin isku jir ah: <span class='highlight'>budesonid</span> (steroid/hormoon yar) + <span class='highlight'>formoterol</span> (fura marinnada hawada).",
+      "Waxaa loo isticmaalaa <span class='highlight'>neefta (astma)</span> iyo mararka qaarkood <span class='highlight'>KOL</span> sida daawo joogto ah.",
+      "Badanaa <span class='highlight'>ma aha</span> buufinta degdegga ah ee “rescue” marka neef-kac xooggan yimaado, <span class='highlight'>haddii aan dhakhtarka si gaar ah ugu qorin</span> (SMART/MART qorshe)."
+    ],
+
+    doseTitle:"Qiyaasta <small>(Dosering)</small>",
+    dose:[
+      "Badanaa <span class='highlight'>1–2 buufin</span> <span class='highlight'>1–2 jeer maalintii</span> (raac qorshahaaga).",
+      "Haddii aad haysato astma-qorshe oo oggolaanaya buufin dheeraad ah marka calaamado yimaadaan: raac <span class='highlight'>qorshaha dhakhtarka</span>."
+    ],
+
+    sideTitle:"Waxyeellooyinka <small>(Bivirkninger)</small>",
+    side:[
+      "Cuncun/hur ama <span class='highlight'>svamp afka</span> (thrush) — khatarta way yaraataa haddii aad <span class='highlight'>afka biyo ku luqluqato</span> kadib buufin kasta.",
+      "Gariir, wadne-garaac degdeg ah, ama madax-xanuun mararka qaarkood."
+    ],
+
+    interTitle:"Isdhexgalka daawooyinka <small>(Interaktioner)</small>",
+    inter:[
+      "Daawooyinka qaarkood (tusaale antibiyootiko/fangas/HIV qaarkood) waxay kordhin karaan saameynta steroid-ka.",
+      "Daawooyinka wadnaha qaarkood (gaar ahaan <span class='highlight'>beta-blockers</span>) waxay saamayn karaan neefsiga — la hadal dhakhtar/farmashiye."
+    ],
+
+    warnTitle:"Digniino <small>(Advarsler)</small>",
+    warn:[
+      "<span class='highlight'>Skyl/luqluqo afka</span> kadib buufin kasta si looga hortago svamp.",
+      "Haddii neef-kacu sii badanayo, ama aad u baahato buufin degdeg ah si ka badan caadi: <span class='highlight'>la xiriir dhakhtar</span> (waxay tilmaami kartaa astma aan si fiican u xakamaysnayn).",
+      "Hubi farsamada buufinta (inhalationsteknik) — farmashiyaha/kalkaaliso ayaa ku tusi kara."
+    ],
+
+    ramTitle:"Ramadaan iyo soonka <small>(Ramadan og faste)</small>",
+    ram:[
+      "Buufinta sambabada badanaa looma tixgeliyo jebin soon, laakiin aragtida diinta way kala duwanaan kartaa.",
+      "Ha joojin daawada neefta adiga oo keli ah inta aad sooman tahay — caafimaadka ayaa mudnaanta leh."
+    ],
+
+    foodTitle:"Cunto iyo cabitaan <small>(Mad og drikke)</small>",
+    food:[
+      "Daawadani kuma xirna cunto; ku neefso sida laguu baray.",
+      "Afta biyo ku luqluqo kadib waxay yareyneysaa cuncun/svamp."
+    ],
+
+    storeTitle:"Kaydinta & nadiifinta <small>(Opbevaring og rengøring)</small>",
+    store:[
+      "Ku kaydi qalabka meel <span class='highlight'>qalalan</span> oo ka fog carruurta. Ha dhigin qorrax toos ah ama kulayl badan.",
+      "Afka/mouthpiece ku tirtir <span class='highlight'>maro nadiif ah oo qalalan</span>.",
+      "Ha isticmaalin biyo haddii aan buugga qalabku sidaas kuu sheegin."
+    ],
+
+    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  da: {
+    pageTitle:"Symbicort – luftveje (astma/KOL)",
+    hdrH1:"Symbicort – luftveje (astma/KOL)",
+    hdrP:"Kort information om lægemidlet til patienter og pårørende.",
+    backText:"Tilbage til medicinlisten",
+    langLabel:"Vælg sprog:",
+    drugName:"Symbicort – luftveje",
+    drugForm:"Inhalator (til at indånde medicin)",
+    badgeText:"Kort og let",
+
+    useTitle:"Anvendelse",
+    use:[
+      "Symbicort er en kombinationsinhalator: <span class='highlight'>budesonid</span> (steroid) + <span class='highlight'>formoterol</span> (udvider luftvejene).",
+      "Bruges til <span class='highlight'>astma</span> og/eller <span class='highlight'>KOL</span> som fast behandling (som lægen har ordineret).",
+      "Typisk <span class='highlight'>ikke</span> til akut anfald, <span class='highlight'>medmindre</span> du har en aftale (SMART/MART)."
+    ],
+
+    doseTitle:"Dosering",
+    dose:[
+      "Ofte <span class='highlight'>1–2 pust</span> <span class='highlight'>1–2 gange dagligt</span> (følg din plan).",
+      "Nogle med astma kan have aftale om ekstra pust ved symptomer — <span class='highlight'>følg din astmaplan</span>."
+    ],
+
+    sideTitle:"Bivirkninger",
+    side:[
+      "Hæshed/irritation i halsen eller svamp i munden — risikoen mindskes hvis du <span class='highlight'>skyller munden</span> efter brug.",
+      "Rysten, hjertebanken og hovedpine kan forekomme."
+    ],
+
+    interTitle:"Interaktioner",
+    inter:[
+      "Nogle lægemidler (fx visse antibiotika, svampemidler og nogle HIV-midler) kan øge steroid-effekten/bivirkninger.",
+      "Visse hjertelægemidler, især <span class='highlight'>beta-blokkere</span>, kan påvirke vejrtrækningen — tal med læge/apotek."
+    ],
+
+    warnTitle:"Advarsler",
+    warn:[
+      "<span class='highlight'>Skyl munden med vand</span> efter brug for at forebygge svamp.",
+      "Hvis du får hyppigere symptomer eller har behov for mere anfaldsmedicin end normalt: <span class='highlight'>kontakt lægen</span>.",
+      "Få <span class='highlight'>tjekket inhalationsteknik</span> hos læge/apotek ved tvivl."
+    ],
+
+    ramTitle:"Ramadan og faste",
+    ram:[
+      "Inhalationsmedicin vurderes ofte som ikke-fastbrydende, men holdninger kan variere.",
+      "Stop ikke din astma/KOL-medicin under faste uden at tale med lægen."
+    ],
+
+    foodTitle:"Mad og drikke",
+    food:[
+      "Uafhængigt af mad. Brug inhalatoren som instrueret.",
+      "Mundskyl efter brug hjælper mod irritation/svamp."
+    ],
+
+    storeTitle:"Opbevaring og rengøring",
+    store:[
+      "Opbevar <span class='highlight'>tørt</span> og utilgængeligt for børn. Undgå varme og direkte sol.",
+      "Tør mundstykket af med <span class='highlight'>en ren, tør klud</span>.",
+      "Undgå vand/fugt, medmindre brugsanvisningen siger noget andet."
+    ],
+
+    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    pageTitle:"Symbicort – airways (asthma/COPD)",
+    hdrH1:"Symbicort – airways (asthma/COPD)",
+    hdrP:"Brief medicine information for patients and relatives.",
+    backText:"Back to the medicine list",
+    langLabel:"Choose language:",
+    drugName:"Symbicort – airways",
+    drugForm:"Inhaler (to breathe in medicine)",
+    badgeText:"Short and clear",
+
+    useTitle:"Use",
+    use:[
+      "Symbicort is a combination inhaler: <span class='highlight'>budesonide</span> (steroid) + <span class='highlight'>formoterol</span> (opens the airways).",
+      "Used for <span class='highlight'>asthma</span> and/or <span class='highlight'>COPD</span> as regular treatment (as prescribed).",
+      "Usually <span class='highlight'>not</span> for sudden attacks unless you have a specific plan (SMART/MART)."
+    ],
+
+    doseTitle:"Dose",
+    dose:[
+      "Often <span class='highlight'>1–2 puffs</span> <span class='highlight'>1–2 times daily</span> (follow your plan).",
+      "Some people with asthma may use extra puffs for symptoms — <span class='highlight'>follow your asthma action plan</span>."
+    ],
+
+    sideTitle:"Side effects",
+    side:[
+      "Hoarseness/throat irritation or oral thrush — reduced by <span class='highlight'>rinsing your mouth</span> after use.",
+      "Tremor, fast heartbeat, and headache may occur."
+    ],
+
+    interTitle:"Interactions",
+    inter:[
+      "Some medicines (e.g., certain antibiotics, antifungals and some HIV medicines) can increase steroid effects/side effects.",
+      "Some heart medicines, especially <span class='highlight'>beta-blockers</span>, may affect breathing — ask your doctor/pharmacy."
+    ],
+
+    warnTitle:"Warnings",
+    warn:[
+      "<span class='highlight'>Rinse your mouth with water</span> after use to reduce thrush risk.",
+      "If symptoms keep returning or you need more rescue medication than usual: <span class='highlight'>contact a doctor</span>.",
+      "Ask for a <span class='highlight'>technique check</span> if you are unsure you inhale correctly."
+    ],
+
+    ramTitle:"Ramadan and fasting",
+    ram:[
+      "Inhalers are often considered not to break the fast, but opinions may vary.",
+      "Do not stop your asthma/COPD medicine during fasting without medical advice."
+    ],
+
+    foodTitle:"Food and drink",
+    food:[
+      "Not related to food. Use the inhaler as instructed.",
+      "Rinsing the mouth after use helps reduce irritation/thrush."
+    ],
+
+    storeTitle:"Storage and cleaning",
+    store:[
+      "Store <span class='highlight'>dry</span>, out of reach of children. Avoid heat and direct sunlight.",
+      "Wipe the mouthpiece with a <span class='highlight'>clean, dry cloth</span>.",
+      "Avoid water/moisture unless the device instructions say otherwise."
+    ],
+
+    footer1:"If you need more information, contact your pharmacy or doctor.",
+    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  /* The remaining 6 languages are filled so dropdown + themes always work */
+  ar:{
+    pageTitle:"سيمبيكورت – الجهاز التنفسي",
+    hdrH1:"سيمبيكورت – الجهاز التنفسي",
+    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
+    backText:"العودة إلى قائمة الأدوية",
+    langLabel:"اختر اللغة:",
+    drugName:"سيمبيكورت – الجهاز التنفسي",
+    drugForm:"بخاخ للاستنشاق",
+    badgeText:"مختصر وواضح",
+
+    useTitle:"الاستخدام",
+    use:[
+      "سيمبيكورت بخاخ مركب: <span class='highlight'>بوديزونيد</span> (ستيرويد) + <span class='highlight'>فورموتيرول</span> (يوسّع الشعب الهوائية).",
+      "يستخدم للربو و/أو COPD كعلاج منتظم حسب وصف الطبيب.",
+      "عادةً ليس للإغاثة الفورية إلا إذا كان لديك خطة خاصة (SMART/MART)."
+    ],
+
+    doseTitle:"الجرعة",
+    dose:[
+      "غالباً 1–2 بخة 1–2 مرة يومياً حسب الخطة.",
+      "قد يُسمح لبعض مرضى الربو ببخات إضافية عند الأعراض — اتبع خطة الربو."
+    ],
+
+    sideTitle:"الآثار الجانبية",
+    side:[
+      "بحة/تهيج بالحلق أو فطريات بالفم — يقل ذلك عند <span class='highlight'>شطف الفم</span> بعد الاستخدام.",
+      "رجفة أو خفقان أو صداع قد يحدث."
+    ],
+
+    interTitle:"التداخلات",
+    inter:[
+      "بعض المضادات الحيوية/مضادات الفطريات وبعض أدوية HIV قد تزيد التأثير/الأعراض.",
+      "بعض أدوية القلب خاصة <span class='highlight'>حاصرات بيتا</span> قد تؤثر على التنفس — اسأل الطبيب/الصيدلية."
+    ],
+
+    warnTitle:"تحذيرات",
+    warn:[
+      "<span class='highlight'>اشطف الفم بالماء</span> بعد كل استخدام لتقليل الفطريات.",
+      "إذا زادت الأعراض أو احتجت أكثر لدواء الإسعاف: تواصل مع الطبيب.",
+      "اطلب فحص طريقة الاستنشاق إذا لم تكن متأكداً."
+    ],
+
+    ramTitle:"رمضان والصيام",
+    ram:[
+      "غالباً لا يُعتبر البخاخ مفطراً، لكن الآراء قد تختلف.",
+      "لا توقف علاج الربو/COPD أثناء الصيام دون نصيحة طبية."
+    ],
+
+    foodTitle:"الطعام والشراب",
+    food:[
+      "لا علاقة بالطعام. استخدمه حسب التعليمات.",
+      "شطف الفم بعد الاستخدام يقلل التهيج/الفطريات."
+    ],
+
+    storeTitle:"الحفظ والتنظيف",
+    store:[
+      "يحفظ جافاً وبعيداً عن الأطفال، وتجنب الحرارة والشمس.",
+      "امسح الفوهة بقطعة قماش نظيفة وجافة.",
+      "تجنب الماء إلا إذا أوصى دليل الجهاز."
+    ],
+
+    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
+  },
+
+  tr:{
+    pageTitle:"Symbicort – solunum yolları",
+    hdrH1:"Symbicort – solunum yolları",
+    hdrP:"Hasta ve yakınları için kısa bilgi.",
+    backText:"İlaç listesine geri dön",
+    langLabel:"Dil seçin:",
+    drugName:"Symbicort – solunum yolları",
+    drugForm:"İnhaler (solunarak)",
+    badgeText:"Kısa ve anlaşılır",
+
+    useTitle:"Kullanım",
+    use:[
+      "Symbicort kombinasyon inhalerdir: <span class='highlight'>budesonid</span> (steroid) + <span class='highlight'>formoterol</span> (hava yollarını açar).",
+      "Astım ve/veya KOAH’ta düzenli tedavi için kullanılır.",
+      "Genelde akut atak için değildir; özel plan (SMART/MART) varsa kullanılabilir."
+    ],
+
+    doseTitle:"Doz",
+    dose:[
+      "Genellikle 1–2 puf günde 1–2 kez (planınıza uyun).",
+      "Bazı astım hastalarında belirtilerde ek puf planı olabilir — astım planını izleyin."
+    ],
+
+    sideTitle:"Yan etkiler",
+    side:[
+      "Ses kısıklığı/boğaz tahrişi veya ağızda mantar — kullanımdan sonra <span class='highlight'>ağzı çalkalamak</span> riski azaltır.",
+      "Titreme, çarpıntı, baş ağrısı olabilir."
+    ],
+
+    interTitle:"Etkileşimler",
+    inter:[
+      "Bazı antibiyotikler, mantar ilaçları ve bazı HIV ilaçları yan etkileri artırabilir.",
+      "Bazı kalp ilaçları özellikle <span class='highlight'>beta blokerler</span> solunumu etkileyebilir."
+    ],
+
+    warnTitle:"Uyarılar",
+    warn:[
+      "<span class='highlight'>Her kullanım sonrası ağzınızı çalkalayın</span>.",
+      "Belirtiler artarsa veya daha sık kurtarıcı ilaç gerekir ise doktora başvurun.",
+      "İnhalasyon tekniğini eczane/doktorla kontrol ettirin."
+    ],
+
+    ramTitle:"Ramazan ve oruç",
+    ram:[
+      "İnhaler çoğu zaman orucu bozmaz olarak değerlendirilir; görüşler değişebilir.",
+      "Doktora danışmadan astım/KOAH ilacınızı bırakmayın."
+    ],
+
+    foodTitle:"Yemek ve içecek",
+    food:[
+      "Yemekten bağımsızdır.",
+      "Ağız çalkalama tahriş/mantar riskini azaltır."
+    ],
+
+    storeTitle:"Saklama ve temizlik",
+    store:[
+      "Kuru yerde, çocuklardan uzak saklayın; ısı ve güneşten koruyun.",
+      "Ağızlığı temiz, kuru bir bezle silin.",
+      "Kullanma talimatı söylemedikçe su kullanmayın."
+    ],
+
+    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
+
+  ur:{
+    pageTitle:"سمبیکورٹ – سانس کی نالیاں",
+    hdrH1:"سمبیکورٹ – سانس کی نالیاں",
+    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText:"فہرست پر واپس",
+    langLabel:"زبان منتخب کریں:",
+    drugName:"سمبیکورٹ – سانس کی نالیاں",
+    drugForm:"انہیلر (سانس کے ذریعے)",
+    badgeText:"مختصر اور واضح",
+
+    useTitle:"استعمال",
+    use:[
+      "Symbicort ایک کومبینیشن انہیلر ہے: <span class='highlight'>budesonide</span> (steroid) + <span class='highlight'>formoterol</span> (ہوا کی نالیاں کھولتا ہے).",
+      "دمہ اور/یا COPD میں باقاعدہ علاج کے لیے استعمال ہوتا ہے۔",
+      "عام طور پر اچانک اٹیک کے لیے نہیں، مگر خاص پلان (SMART/MART) ہو تو ہو سکتا ہے۔"
+    ],
+
+    doseTitle:"خوراک",
+    dose:[
+      "اکثر 1–2 پف دن میں 1–2 بار (اپنے پلان کے مطابق).",
+      "کچھ دمہ میں علامات پر اضافی پف کی اجازت ہو سکتی ہے — پلان فالو کریں۔"
+    ],
+
+    sideTitle:"مضر اثرات",
+    side:[
+      "گلا خراب/آواز بیٹھنا یا منہ میں فنگس — استعمال کے بعد <span class='highlight'>کلی کرنا</span> مدد دیتا ہے۔",
+      "کپکپی، دل کی دھڑکن تیز، یا سر درد ہو سکتا ہے۔"
+    ],
+
+    interTitle:"دواؤں کے باہمی اثرات",
+    inter:[
+      "کچھ اینٹی بایوٹکس، فنگس کی دوائیں اور کچھ HIV دوائیں اثر/سائیڈ ایفیکٹ بڑھا سکتی ہیں۔",
+      "کچھ دل کی دوائیں خاص طور پر <span class='highlight'>beta-blockers</span> سانس پر اثر ڈال سکتی ہیں۔"
+    ],
+
+    warnTitle:"احتیاطیں",
+    warn:[
+      "<span class='highlight'>ہر استعمال کے بعد منہ کلی کریں</span>۔",
+      "اگر علامات بڑھیں یا ریسکیو دوا زیادہ چاہیے ہو تو ڈاکٹر سے رابطہ کریں۔",
+      "انہیلر ٹیکنیک ڈاکٹر/فارمیسی سے چیک کروائیں۔"
+    ],
+
+    ramTitle:"رمضان اور روزہ",
+    ram:[
+      "انہیلر کو اکثر روزہ نہ توڑنے والا سمجھا جاتا ہے، مگر رائے مختلف ہو سکتی ہے۔",
+      "ڈاکٹر کے مشورے کے بغیر دوا نہ روکیں۔"
+    ],
+
+    foodTitle:"کھانا پینا",
+    food:[
+      "کھانے سے کوئی خاص تعلق نہیں۔",
+      "کلی کرنے سے فنگس/خراش کم ہوتی ہے۔"
+    ],
+
+    storeTitle:"محفوظ رکھنا اور صفائی",
+    store:[
+      "خشک جگہ پر، بچوں سے دور؛ گرمی/دھوپ سے بچائیں۔",
+      "ماؤتھ پیس کو صاف، خشک کپڑے سے صاف کریں۔",
+      "جب تک ہدایت نہ ہو پانی استعمال نہ کریں۔"
+    ],
+
+    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
+
+  fa:{
+    pageTitle:"سیمبیکورت – راه‌های هوایی",
+    hdrH1:"سیمبیکورت – راه‌های هوایی",
+    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"سیمبیکورت – راه‌های هوایی",
+    drugForm:"اسپری استنشاقی",
+    badgeText:"کوتاه و روشن",
+
+    useTitle:"مصرف",
+    use:[
+      "Symbicort اسپری ترکیبی است: <span class='highlight'>بودزوناید</span> (استروئید) + <span class='highlight'>فورموتِرول</span> (بازکننده راه‌های هوایی).",
+      "برای آسم و/یا COPD به‌صورت درمان منظم استفاده می‌شود.",
+      "معمولاً برای حمله ناگهانی نیست مگر اینکه برنامه خاص (SMART/MART) داشته باشید."
+    ],
+
+    doseTitle:"دوز",
+    dose:[
+      "اغلب 1–2 پاف 1–2 بار در روز (طبق برنامه).",
+      "در برخی بیماران آسم ممکن است پاف اضافی طبق برنامه مجاز باشد."
+    ],
+
+    sideTitle:"عوارض",
+    side:[
+      "گرفتگی صدا/تحریک گلو یا برفک دهانی — با <span class='highlight'>شستشوی دهان</span> بعد از مصرف کمتر می‌شود.",
+      "لرزش، تپش قلب یا سردرد ممکن است رخ دهد."
+    ],
+
+    interTitle:"تداخلات",
+    inter:[
+      "برخی آنتی‌بیوتیک‌ها/ضدقارچ‌ها و بعضی داروهای HIV می‌توانند عوارض را افزایش دهند.",
+      "برخی داروهای قلبی به‌ویژه <span class='highlight'>بتابلوکرها</span> ممکن است روی تنفس اثر بگذارند."
+    ],
+
+    warnTitle:"هشدارها",
+    warn:[
+      "<span class='highlight'>بعد از هر بار مصرف دهان را با آب بشویید</span>.",
+      "اگر علائم بیشتر شد یا بیشتر از حالت معمول به داروی نجات نیاز داشتید با پزشک تماس بگیرید.",
+      "تکنیک صحیح استنشاق را با داروخانه/پزشک بررسی کنید."
+    ],
+
+    ramTitle:"رمضان و روزه",
+    ram:[
+      "اسپری استنشاقی اغلب مفطر محسوب نمی‌شود، اما دیدگاه‌ها ممکن است متفاوت باشد.",
+      "بدون مشورت پزشکی دارو را قطع نکنید."
+    ],
+
+    foodTitle:"غذا و نوشیدنی",
+    food:[
+      "با غذا ارتباطی ندارد.",
+      "شستشوی دهان بعد از مصرف کمک می‌کند."
+    ],
+
+    storeTitle:"نگهداری و تمیزکردن",
+    store:[
+      "در جای خشک، دور از کودکان؛ از گرما و نور مستقیم دور نگه دارید.",
+      "دهانه را با دستمال تمیز و خشک پاک کنید.",
+      "مگر اینکه دستور دستگاه بگوید، از آب استفاده نکنید."
+    ],
+
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  prs:{
+    pageTitle:"سیمبیکورت – راه‌های هوایی",
+    hdrH1:"سیمبیکورت – راه‌های هوایی",
+    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"سیمبیکورت – راه‌های هوایی",
+    drugForm:"اسپری استنشاقی",
+    badgeText:"کوتاه و واضح",
+
+    useTitle:"استفاده",
+    use:[
+      "Symbicort اسپری ترکیبی است: <span class='highlight'>بودزوناید</span> + <span class='highlight'>فورموتِرول</span>.",
+      "برای آسم و/یا COPD به‌طور منظم استفاده می‌شود.",
+      "معمولاً برای حمله ناگهانی نیست مگر پلان خاص (SMART/MART) داشته باشید."
+    ],
+
+    doseTitle:"دوز",
+    dose:[
+      "اکثر 1–2 پاف 1–2 بار در روز (طبق پلان).",
+      "در برخی آسم ممکن است پاف اضافی طبق پلان مجاز باشد."
+    ],
+
+    sideTitle:"عوارض",
+    side:[
+      "گرفتگی صدا/تحریک گلو یا برفک — با <span class='highlight'>شستشوی دهان</span> بعد از مصرف کمتر می‌شود.",
+      "لرزش، تپش قلب یا سردرد ممکن است رخ دهد."
+    ],
+
+    interTitle:"تداخلات",
+    inter:[
+      "برخی آنتی‌بیوتیک‌ها/ضدقارچ‌ها و بعضی دواهای HIV می‌توانند عوارض را افزایش دهند.",
+      "برخی دواهای قلبی مخصوصاً <span class='highlight'>بتابلوکرها</span> ممکن است روی تنفس اثر بگذارند."
+    ],
+
+    warnTitle:"هشدارها",
+    warn:[
+      "<span class='highlight'>بعد از هر بار مصرف دهان را با آب بشویید</span>.",
+      "اگر علایم بیشتر شد یا بیشتر از معمول به دواهای نجات نیاز داشتید با داکتر تماس بگیرید.",
+      "تکنیک صحیح استنشاق را با دواخانه/داکتر بررسی کنید."
+    ],
+
+    ramTitle:"رمضان و روزه",
+    ram:[
+      "اسپری استنشاقی غالباً مفطر حساب نمی‌شود، اما دیدگاه‌ها متفاوت است.",
+      "بدون مشوره داکتر دوا را قطع نکنید."
+    ],
+
+    foodTitle:"غذا و نوشیدنی",
+    food:[
+      "با غذا ارتباطی ندارد.",
+      "شستشوی دهان بعد از مصرف کمک می‌کند."
+    ],
+
+    storeTitle:"نگهداری و پاک‌کاری",
+    store:[
+      "در جای خشک، دور از اطفال؛ از گرما و نور مستقیم دور نگه دارید.",
+      "دهانه را با دستمال تمیز و خشک پاک کنید.",
+      "مگر اینکه دستور دستگاه بگوید، از آب استفاده نکنید."
+    ],
+
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
+
+  ps:{
+    pageTitle:"سیمبیکورت – د ساه لاري",
+    hdrH1:"سیمبیکورت – د ساه لاري",
+    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText:"لېست ته بېرته",
+    langLabel:"ژبه وټاکئ:",
+    drugName:"سیمبیکورت – د ساه لاري",
+    drugForm:"انهیلر (استنشاق)",
+    badgeText:"لنډ او روښانه",
+
+    useTitle:"کارونه",
+    use:[
+      "Symbicort ګډ انهیلر دی: <span class='highlight'>budesonide</span> + <span class='highlight'>formoterol</span>.",
+      "د آسمه او/یا COPD لپاره منظم درملنه کې کارېږي.",
+      "اکثره د ناڅاپي شدید حملې لپاره نه وي، مګر که ځانګړی پلان (SMART/MART) ولرئ."
+    ],
+
+    doseTitle:"دوز",
+    dose:[
+      "اکثر 1–2 پف، په ورځ کې 1–2 ځله (د خپل پلان مطابق).",
+      "ځینو آسمه ناروغانو کې د نښو پر مهال اضافي پف د پلان له مخې ممکن وي."
+    ],
+
+    sideTitle:"اړخیزې اغېزې",
+    side:[
+      "د ستوني خراش/غږ بدلون یا د خولې فنګس — د استعمال وروسته <span class='highlight'>خوله مینځل</span> مرسته کوي.",
+      "لړزه، زړه درزا یا سر درد ممکن وي."
+    ],
+
+    interTitle:"تداخلات",
+    inter:[
+      "ځینې انټي‌بیوټیکونه/د فنګس ضد او ځینې HIV درمل عوارض زیاتولای شي.",
+      "ځینې د زړه درمل، په ځانګړي ډول <span class='highlight'>beta-blockers</span> د تنفس اغېزمنولای شي."
+    ],
+
+    warnTitle:"خبرداری",
+    warn:[
+      "<span class='highlight'>هر ځل وروسته خوله په اوبو ووینځئ</span>.",
+      "که نښې زیاتې شي یا ډېر rescue درمل ته اړتیا وي، له ډاکټر سره اړیکه ونیسئ.",
+      "د انهیلر طریقه له درملتون/ډاکټر سره چک کړئ."
+    ],
+
+    ramTitle:"رمضان او روژه",
+    ram:[
+      "انهیلر ډېر وخت روژه نه ماتوي، خو نظرونه توپیر لري.",
+      "بې له طبي مشورې درمل مه بندوئ."
+    ],
+
+    foodTitle:"خواړه او څښاک",
+    food:[
+      "له خوړو سره تړاو نه لري.",
+      "خوله مینځل د خراش/فنګس خطر کموي."
+    ],
+
+    storeTitle:"ساتنه او پاکول",
+    store:[
+      "په وچ ځای کې، له ماشومانو لرې؛ له تودوخې او لمر څخه یې وساتئ.",
+      "دهانه په پاک، وچ ټوکر سره پاک کړئ.",
+      "تر څو لارښود نه وي ویلي، اوبه مه کاروئ."
+    ],
+
+    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
+
+function stripTags(s){ return String(s||"").replace(/<[^>]*>?/gm, ""); }
+
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
+
 function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
@@ -199,246 +856,59 @@ function fillList(id, arr){
   });
 }
 
-const T = {
-  so: {
-    pageTitle: "Symbicort – neef-mareenka",
-    hdrH1: "Symbicort – neef-mareenka",
-    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    backText: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    drugName: "Symbicort – neef-mareenka",
-    drugForm: "Buufin la neefsado (Inhalator til at indånde medicin)",
-    badgeText: "Akhris fudud oo kooban",
-
-    sec1Title: "Isticmaalka (Anvendelse)",
-    sec1: [
-      "Symbicort waa buufin isku jir ah: <span class='highlight'>budesonid</span> (hormoon yar) iyo <span class='highlight'>formoterol</span> (daawo fura marinnada hawada).",
-      "Waxaa loo isticmaalaa <span class='highlight'>neefta (astma)</span> iyo <span class='highlight'>KOL</span> si joogto ah (sida uu dhakhtarku kuu qoray)."
-    ],
-
-    sec2Title: "Qiyaasta (Dosering)",
-    sec2: [
-      "Badanaa <span class='highlight'>1–2 buufin</span> <span class='highlight'>1–2 jeer maalintii</span> (raac qorshahaaga).",
-      "Qaar ka mid ah dadka neefta qaba waxaa loo oggol yahay buufin dheeraad ah marka neef-kac yimaado — <span class='highlight'>eeg qorshaha neefta</span>."
-    ],
-
-    sec3Title: "Waxyeellooyinka (Bivirkninger)",
-    sec3: [
-      "Af qalalan, cuncun, ama afka oo huuro yeesha (svamp) — khatarta way yaraataa haddii aad <span class='highlight'>afka biyo ku luqluqato</span> kadib.",
-      "Gariir, wadne-garaac degdeg ah, ama madax-xanuun mararka qaarkood."
-    ],
-
-    sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
-    sec4: [
-      "Daawooyinka kale ee neef-mareenka ama qaar ka mid ah daawooyinka wadnaha waxay kordhin karaan saameynta/side effects.",
-      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato."
-    ],
-
-    sec5Title: "Digniino (Advarsler)",
-    sec5: [
-      "<span class='highlight'>Afka ku raaci biyo</span> kadib buufin kasta si looga hortago svamp.",
-      "Haddii aad weli leedahay neef-kac ama aad u maleyso in daawadu aysan si fiican sambabada u gaarin: <span class='highlight'>la xiriir dhakhtarka ama farmashiyaha</span> si farsamada buufinta loo hubiyo."
-    ],
-
-    sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
-    sec6: [
-      "Buufinta sambabada badanaa looma tixgeliyo jebin soon, laakiin aragtida diinta way kala duwanaan kartaa.",
-      "Ha joojin daawada neefta adiga oo keli ah inta aad sooman tahay — caafimaadka ayaa mudnaanta leh."
-    ],
-
-    sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
-    sec7: [
-      "Daawadani kuma xirna cunto; ku neefso sida dhakhtarku kuu baray.",
-      "Haddii aad afka biyo ku luqluqato kadib, waxay yareyneysaa svamp/cuncun."
-    ],
-
-    sec8Title: "Kaydinta & nadiifinta (Opbevaring og rengøring)",
-    sec8: [
-      "Ku kaydi qalabka meel <span class='highlight'>qalalan</span> oo ka fog carruurta. Ha dhigin qorrax toos ah ama kulayl badan.",
-      "Afka iyo qaybta aad ku neefsato ku tirtir <span class='highlight'>maro nadiif ah oo qalalan</span>.",
-      "Ha isticmaalin biyo ama wax qoyan haddii aan buugga qalabku si kale u sheegin."
-    ],
-
-    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle: "Symbicort – luftveje (astma/KOL)",
-    hdrH1: "Symbicort – luftveje (astma/KOL)",
-    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
-    backText: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    drugName: "Symbicort – luftveje",
-    drugForm: "Inhalator (til at indånde medicin)",
-    badgeText: "Kort og let",
-
-    sec1Title: "Anvendelse",
-    sec1: [
-      "Symbicort er en kombinationsinhalator: <span class='highlight'>budesonid</span> (steroid) + <span class='highlight'>formoterol</span> (udvider luftvejene).",
-      "Bruges til <span class='highlight'>astma</span> og/eller <span class='highlight'>KOL</span> som fast behandling (som lægen har ordineret)."
-    ],
-
-    sec2Title: "Dosering",
-    sec2: [
-      "Ofte <span class='highlight'>1–2 pust</span> <span class='highlight'>1–2 gange dagligt</span> (følg din plan).",
-      "Nogle med astma kan have aftale om ekstra pust ved symptomer — <span class='highlight'>følg din astmaplan</span>."
-    ],
-
-    sec3Title: "Bivirkninger",
-    sec3: [
-      "Hæshed/irritation i halsen eller svamp i munden — risikoen mindskes hvis du <span class='highlight'>skyller munden</span> efter brug.",
-      "Rysten, hjertebanken og hovedpine kan forekomme."
-    ],
-
-    sec4Title: "Interaktioner",
-    sec4: [
-      "Anden medicin til luftveje eller visse hjertelægemidler kan påvirke effekt/bivirkninger.",
-      "Fortæl altid læge/apotek hvilke lægemidler du bruger."
-    ],
-
-    sec5Title: "Advarsler",
-    sec5: [
-      "<span class='highlight'>Skyl munden med vand</span> efter brug for at forebygge svamp.",
-      "Hvis du stadig får hyppige symptomer, eller føler at inhalationen ikke virker: få <span class='highlight'>tjekket inhalationsteknik</span> hos læge/apotek."
-    ],
-
-    sec6Title: "Ramadan og faste",
-    sec6: [
-      "Inhalationsmedicin vurderes ofte som ikke-fastbrydende, men holdninger kan variere.",
-      "Stop ikke din astma/KOL-medicin under faste uden at tale med lægen."
-    ],
-
-    sec7Title: "Mad og drikke",
-    sec7: [
-      "Uafhængigt af mad. Brug inhalatoren som instrueret.",
-      "Mundskyl efter brug hjælper mod irritation/svamp."
-    ],
-
-    sec8Title: "Opbevaring og rengøring",
-    sec8: [
-      "Opbevar <span class='highlight'>tørt</span> og utilgængeligt for børn. Undgå varme og direkte sol.",
-      "Tør mundstykket af med <span class='highlight'>en ren, tør klud</span>.",
-      "Undgå vand/fugt, medmindre brugsanvisningen siger noget andet."
-    ],
-
-    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle: "Symbicort – airways (asthma/COPD)",
-    hdrH1: "Symbicort – airways (asthma/COPD)",
-    hdrP: "Brief medicine information for patients and relatives.",
-    backText: "Back to the medicine list",
-    langLabel: "Choose language:",
-    drugName: "Symbicort – airways",
-    drugForm: "Inhaler (to breathe in medicine)",
-    badgeText: "Short and clear",
-
-    sec1Title: "Use",
-    sec1: [
-      "Symbicort is a combination inhaler: <span class='highlight'>budesonide</span> (steroid) + <span class='highlight'>formoterol</span> (opens the airways).",
-      "Used for <span class='highlight'>asthma</span> and/or <span class='highlight'>COPD</span> as regular treatment (as prescribed)."
-    ],
-
-    sec2Title: "Dose",
-    sec2: [
-      "Often <span class='highlight'>1–2 puffs</span> <span class='highlight'>1–2 times daily</span> (follow your plan).",
-      "Some people with asthma may use extra puffs for symptoms — <span class='highlight'>follow your asthma action plan</span>."
-    ],
-
-    sec3Title: "Side effects",
-    sec3: [
-      "Hoarseness/throat irritation or oral thrush — reduced by <span class='highlight'>rinsing your mouth</span> after use.",
-      "Tremor, fast heartbeat, and headache may occur."
-    ],
-
-    sec4Title: "Interactions",
-    sec4: [
-      "Other airway medicines or some heart medicines can affect effects/side effects.",
-      "Tell your doctor/pharmacy what else you take."
-    ],
-
-    sec5Title: "Warnings",
-    sec5: [
-      "<span class='highlight'>Rinse your mouth with water</span> after use to reduce thrush risk.",
-      "If symptoms keep returning or it feels like the inhaler is not reaching your lungs: ask for a <span class='highlight'>technique check</span>."
-    ],
-
-    sec6Title: "Ramadan and fasting",
-    sec6: [
-      "Inhalers are often considered not to break the fast, but opinions may vary.",
-      "Do not stop your asthma/COPD medicine during fasting without medical advice."
-    ],
-
-    sec7Title: "Food and drink",
-    sec7: [
-      "Not related to food. Use the inhaler as instructed.",
-      "Rinsing the mouth after use helps reduce irritation/thrush."
-    ],
-
-    sec8Title: "Storage and cleaning",
-    sec8: [
-      "Store <span class='highlight'>dry</span>, out of reach of children. Avoid heat and direct sunlight.",
-      "Wipe the mouthpiece with a <span class='highlight'>clean, dry cloth</span>.",
-      "Avoid water/moisture unless the device instructions say otherwise."
-    ],
-
-    footer1: "If you need more information, contact your pharmacy or doctor.",
-    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  }
-};
-
 function applyLang(lang){
   const d = T[lang] || T.so;
-  setDirLang(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
+  setDirLang(lang);
+  applyTheme(lang);
+
+  document.title = stripTags(d.pageTitle);
+  document.getElementById("hdrH1").textContent = stripTags(d.hdrH1);
   document.getElementById("hdrP").textContent = d.hdrP;
   document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("sec1Title").innerHTML = d.sec1Title;
-  document.getElementById("sec2Title").innerHTML = d.sec2Title;
-  document.getElementById("sec3Title").innerHTML = d.sec3Title;
-  document.getElementById("sec4Title").innerHTML = d.sec4Title;
-  document.getElementById("sec5Title").innerHTML = d.sec5Title;
-  document.getElementById("sec6Title").innerHTML = d.sec6Title;
-  document.getElementById("sec7Title").innerHTML = d.sec7Title;
-  document.getElementById("sec8Title").innerHTML = d.sec8Title;
+  document.getElementById("useTitle").innerHTML = d.useTitle;
+  document.getElementById("doseTitle").innerHTML = d.doseTitle;
+  document.getElementById("sideTitle").innerHTML = d.sideTitle;
+  document.getElementById("interTitle").innerHTML = d.interTitle;
+  document.getElementById("warnTitle").innerHTML = d.warnTitle;
+  document.getElementById("ramTitle").innerHTML = d.ramTitle;
+  document.getElementById("foodTitle").innerHTML = d.foodTitle;
+  document.getElementById("storeTitle").innerHTML = d.storeTitle;
 
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
+  fillList("useList", d.use);
+  fillList("doseList", d.dose);
+  fillList("sideList", d.side);
+  fillList("interList", d.inter);
+  fillList("warnList", d.warn);
+  fillList("ramList", d.ram);
+  fillList("foodList", d.food);
+  fillList("storeList", d.store);
 
   document.getElementById("footer1").textContent = d.footer1;
   document.getElementById("footer2").innerHTML = d.footer2;
 
-  // keep language when going back
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
-// Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
+const select = document.getElementById("langSelect");
+select.value = (T[startLang] ? startLang : "so");
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
-
-document.getElementById("langSelect").addEventListener("change", function(){
+applyLang(select.value);
+select.addEventListener("change", function(){
   applyLang(this.value);
 });
 </script>
