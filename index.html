@@ -6,89 +6,62 @@
 <title>Medicin udtrykt på somalisk</title>
 
 <style>
-body {
+body{
   font-family: Arial, sans-serif;
-  background: #e6f2f8;
-  color: #123047;
-  margin: 0;
+  background:#e6f2f8;
+  color:#123047;
+  margin:0;
 }
 
-header {
-  background: linear-gradient(135deg, #0066cc, #00a676);
-  color: #fff;
-  padding: 26px 16px 32px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+/* Header uses CSS vars so we can change theme per language */
+header{
+  --c1:#0066cc;
+  --c2:#00a676;
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:#fff;
+  padding:26px 16px 32px;
+  text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  transition:background 260ms ease;
+}
+header h1{ margin:0; font-size:2rem; }
+header p{ margin:6px 0 0; font-size:1rem; }
+
+main{
+  max-width:850px;
+  margin:20px auto 40px;
+  padding:0 14px;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 2rem;
-}
+.index-list{ list-style:none; padding:0; margin:0; }
+.index-list li{ margin-bottom:10px; }
 
-header p {
-  margin: 6px 0 0;
-  font-size: 1rem;
+.index-link{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  text-decoration:none;
+  background:#ffffff;
+  padding:12px 14px;
+  border-radius:12px;
+  box-shadow:0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left:4px solid var(--accent, #00a676);
+  color:#123047;
+  transition: background 200ms ease, transform 200ms ease, border-left-color 260ms ease;
 }
+.index-link:hover{ background:#f1f8ff; }
 
-main {
-  max-width: 850px;
-  margin: 20px auto 40px;
-  padding: 0 14px;
-}
+.index-left{ display:flex; flex-direction:column; }
+.index-title{ font-weight:600; font-size:1rem; }
+.index-sub{ font-size:0.82rem; color:#607089; }
 
-.index-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+.index-icon{ font-size:1.2rem; color:var(--accent, #00a676); transition:color 260ms ease; }
 
-.index-list li {
-  margin-bottom: 10px;
-}
-
-.index-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-decoration: none;
-  background: #ffffff;
-  padding: 12px 14px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
-  color: #123047;
-}
-
-.index-link:hover {
-  background: #f1f8ff;
-}
-
-.index-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.index-title {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.index-sub {
-  font-size: 0.82rem;
-  color: #607089;
-}
-
-.index-icon {
-  font-size: 1.2rem;
-  color: #00a676;
-}
-
-footer {
-  text-align: center;
-  font-size: 0.8rem;
-  color: #607089;
-  margin: 30px 0 20px;
+footer{
+  text-align:center;
+  font-size:0.8rem;
+  color:#607089;
+  margin:30px 0 20px;
 }
 
 /* Dropdown bar */
@@ -98,11 +71,12 @@ footer {
   gap:10px;
   flex-wrap:wrap;
   background:#ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 0 0 14px 0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
+  border-radius:12px;
+  padding:10px 12px;
+  margin:0 0 14px 0;
+  box-shadow:0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left:4px solid var(--accent, #00a676);
+  transition:border-left-color 260ms ease;
 }
 .langbar label{
   font-size:0.9rem;
@@ -110,22 +84,36 @@ footer {
   font-weight:600;
 }
 .langbar select{
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid #d0d7e2;
-  background: #fff;
+  padding:7px 10px;
+  border-radius:10px;
+  border:1px solid #d0d7e2;
+  background:#fff;
   color:#123047;
-  font-size: 0.9rem;
-  max-width: 100%;
+  font-size:0.9rem;
+  max-width:100%;
+}
+
+/* ===== Animation (language switch) ===== */
+.index-sub,
+#hdrTitle, #hdrSubtitle, #pickTitle, #footLine1, #footLine2, #footStrong, #footLine3, #langLabel, #pickSmall {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.fade-out{ opacity:0; transform:translateY(4px); }
+.fade-in{ opacity:1; transform:translateY(0); }
+
+/* Flash on cards when language changes – uses accent */
+.index-link.lang-flash{
+  background: var(--flash, #eef9f3);
+  transform: translateY(-1px);
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<header id="header">
   <h1 id="hdrTitle">Medicin udtrykt på somalisk</h1>
-  <p id="hdrSubtitle">Liis kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed</p>
+  <p id="hdrSubtitle">Liis kooban oo loogu talagalay waalidiinta &amp; bukaannada Soomaaliyeed</p>
 </header>
 
 <main>
@@ -145,47 +133,47 @@ footer {
     </select>
   </div>
 
-  <h3 id="pickTitle" style="margin: 10px 0 14px; color: #123047;">
+  <h3 id="pickTitle" style="margin:10px 0 14px; color:#123047;">
     Dooro daawada hoos ka muuqata <span style="color:#607089;" id="pickSmall">(Vælg medicin nedenfor)</span>
   </h3>
 
   <ul class="index-list">
 
-    <li><a class="index-link" href="paracetamol.html"><div class="index-left"><span class="index-title">Paracetamol</span><span class="index-sub">xanuun &amp; qandho</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="ibuprofen.html"><div class="index-left"><span class="index-title">Ibuprofen</span><span class="index-sub">xanuun &amp; barar</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="naproxen.html"><div class="index-left"><span class="index-title">Naproxen</span><span class="index-sub">xanuun &amp; barar</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="diclofenac.html"><div class="index-left"><span class="index-title">Diclofenac</span><span class="index-sub">xanuun &amp; barar</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="paracetamol" href="paracetamol.html"><div class="index-left"><span class="index-title">Paracetamol</span><span class="index-sub" data-role="sub">xanuun &amp; qandho</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="ibuprofen" href="ibuprofen.html"><div class="index-left"><span class="index-title">Ibuprofen</span><span class="index-sub" data-role="sub">xanuun &amp; barar</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="naproxen" href="naproxen.html"><div class="index-left"><span class="index-title">Naproxen</span><span class="index-sub" data-role="sub">xanuun &amp; barar</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="diclofenac" href="diclofenac.html"><div class="index-left"><span class="index-title">Diclofenac</span><span class="index-sub" data-role="sub">xanuun &amp; barar</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="amlodipin.html"><div class="index-left"><span class="index-title">Amlodipin</span><span class="index-sub">dhiig-karka</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="enalapril.html"><div class="index-left"><span class="index-title">Enalapril</span><span class="index-sub">dhiig-karka</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="losartan.html"><div class="index-left"><span class="index-title">Losartan</span><span class="index-sub">dhiig-karka</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="metoprolol.html"><div class="index-left"><span class="index-title">Metoprolol</span><span class="index-sub">dhiig-karka &amp; wadne garaac</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="amlodipin" href="amlodipin.html"><div class="index-left"><span class="index-title">Amlodipin</span><span class="index-sub" data-role="sub">dhiig-karka</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="enalapril" href="enalapril.html"><div class="index-left"><span class="index-title">Enalapril</span><span class="index-sub" data-role="sub">dhiig-karka</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="losartan" href="losartan.html"><div class="index-left"><span class="index-title">Losartan</span><span class="index-sub" data-role="sub">dhiig-karka</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="metoprolol" href="metoprolol.html"><div class="index-left"><span class="index-title">Metoprolol</span><span class="index-sub" data-role="sub">dhiig-karka &amp; wadne garaac</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="marevan.html"><div class="index-left"><span class="index-title">Marevan (Warfarin)</span><span class="index-sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="xarelto.html"><div class="index-left"><span class="index-title">Xarelto</span><span class="index-sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="eliquis.html"><div class="index-left"><span class="index-title">Eliquis</span><span class="index-sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="marevan" href="marevan.html"><div class="index-left"><span class="index-title">Marevan (Warfarin)</span><span class="index-sub" data-role="sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="xarelto" href="xarelto.html"><div class="index-left"><span class="index-title">Xarelto</span><span class="index-sub" data-role="sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="eliquis" href="eliquis.html"><div class="index-left"><span class="index-title">Eliquis</span><span class="index-sub" data-role="sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="metformin.html"><div class="index-left"><span class="index-title">Metformin</span><span class="index-sub">sonkoroow</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="insulin.html"><div class="index-left"><span class="index-title">Insulin</span><span class="index-sub">sonkoroow</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="metformin" href="metformin.html"><div class="index-left"><span class="index-title">Metformin</span><span class="index-sub" data-role="sub">sonkoroow</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="insulin" href="insulin.html"><div class="index-left"><span class="index-title">Insulin</span><span class="index-sub" data-role="sub">sonkoroow</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="pantoprazol.html"><div class="index-left"><span class="index-title">Pantoprazol</span><span class="index-sub">gaastriga iyo labjeexa</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="pantoprazol" href="pantoprazol.html"><div class="index-left"><span class="index-title">Pantoprazol</span><span class="index-sub" data-role="sub">gaastriga iyo labjeexa</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="ventoline.html"><div class="index-left"><span class="index-title">Ventoline</span><span class="index-sub">neef-mareenka</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="symbicort.html"><div class="index-left"><span class="index-title">Symbicort</span><span class="index-sub">neef-mareenka</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="ventoline" href="ventoline.html"><div class="index-left"><span class="index-title">Ventoline</span><span class="index-sub" data-role="sub">neef-mareenka</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="symbicort" href="symbicort.html"><div class="index-left"><span class="index-title">Symbicort</span><span class="index-sub" data-role="sub">neef-mareenka</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="hjertemagnyl.html"><div class="index-left"><span class="index-title">Hjertemagnyl</span><span class="index-sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="hjertemagnyl" href="hjertemagnyl.html"><div class="index-left"><span class="index-title">Hjertemagnyl</span><span class="index-sub" data-role="sub">dhiig-khafiifin</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="atorvastatin.html"><div class="index-left"><span class="index-title">Atorvastatin</span><span class="index-sub">kolestarool</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="atorvastatin" href="atorvastatin.html"><div class="index-left"><span class="index-title">Atorvastatin</span><span class="index-sub" data-role="sub">kolestarool</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="morfin_tablet.html"><div class="index-left"><span class="index-title">Morfin (kiniin)</span><span class="index-sub">xanuun baabi'iye</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="morfin_injektion.html"><div class="index-left"><span class="index-title">Morfin (irbad)</span><span class="index-sub">xanuun baabi'iye</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="morfin_tablet" href="morfin_tablet.html"><div class="index-left"><span class="index-title">Morfin (kiniin)</span><span class="index-sub" data-role="sub">xanuun baabi'iye</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="morfin_injektion" href="morfin_injektion.html"><div class="index-left"><span class="index-title">Morfin (irbad)</span><span class="index-sub" data-role="sub">xanuun baabi'iye</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="melatonin.html"><div class="index-left"><span class="index-title">Melatonin</span><span class="index-sub">hurdo</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="melatonin" href="melatonin.html"><div class="index-left"><span class="index-title">Melatonin</span><span class="index-sub" data-role="sub">hurdo</span></div><span class="index-icon">➜</span></a></li>
 
-    <li><a class="index-link" href="sertralin.html"><div class="index-left"><span class="index-title">Sertralin</span><span class="index-sub">niyad-jab &amp; welwel</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="lamotrigin.html"><div class="index-left"><span class="index-title">Lamotrigin</span><span class="index-sub">suuxdin &amp; laba-cirifood</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="quetiapin.html"><div class="index-left"><span class="index-title">Quetiapin</span><span class="index-sub">cilad dhimirka &amp; laba-cirifood</span></div><span class="index-icon">➜</span></a></li>
-    <li><a class="index-link" href="zopiclon.html"><div class="index-left"><span class="index-title">Imozop (Zopiclon)</span><span class="index-sub">hurdo la’aan</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="sertralin" href="sertralin.html"><div class="index-left"><span class="index-title">Sertralin</span><span class="index-sub" data-role="sub">niyad-jab &amp; welwel</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="lamotrigin" href="lamotrigin.html"><div class="index-left"><span class="index-title">Lamotrigin</span><span class="index-sub" data-role="sub">suuxdin &amp; laba-cirifood</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="quetiapin" href="quetiapin.html"><div class="index-left"><span class="index-title">Quetiapin</span><span class="index-sub" data-role="sub">cilad dhimirka &amp; laba-cirifood</span></div><span class="index-icon">➜</span></a></li>
+    <li><a class="index-link" data-med="zopiclon" href="zopiclon.html"><div class="index-left"><span class="index-title">Imozop (Zopiclon)</span><span class="index-sub" data-role="sub">hurdo la’aan</span></div><span class="index-icon">➜</span></a></li>
 
   </ul>
 
@@ -201,114 +189,169 @@ footer {
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
+/* Theme per language: header + card border + arrow + flash */
+const THEME = {
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", flash:"#eef9f3" },
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", flash:"#edf4ff" },
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", flash:"#eef4ff" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", flash:"#f3e9ff" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", flash:"#fff0f0" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", flash:"#eefaf4" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", flash:"#e9fbff" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", flash:"#eef2ff" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", flash:"#fff3e6" }
+};
+
+/* Undertekster per medicin per sprog */
+const SUB = {
+  paracetamol: { so:"xanuun & qandho", da:"smerter & feber", en:"pain & fever", ar:"الألم والحمّى", tr:"ağrı & ateş", ur:"درد & بخار", fa:"درد و تب", prs:"درد و تبه", ps:"درد & تبه" },
+  ibuprofen: { so:"xanuun & barar", da:"smerter & betændelse", en:"pain & inflammation", ar:"الألم والالتهاب", tr:"ağrı & iltihap", ur:"درد & سوزش", fa:"درد و التهاب", prs:"درد و التهاب", ps:"درد & التهاب" },
+  naproxen: { so:"xanuun & barar", da:"smerter & betændelse", en:"pain & inflammation", ar:"الألم والالتهاب", tr:"ağrı & iltihap", ur:"درد & سوزش", fa:"درد و التهاب", prs:"درد و التهاب", ps:"درد & التهاب" },
+  diclofenac: { so:"xanuun & barar", da:"smerter & betændelse", en:"pain & inflammation", ar:"الألم والالتهاب", tr:"ağrı & iltihap", ur:"درد & سوزش", fa:"درد و التهاب", prs:"درد و التهاب", ps:"درد & التهاب" },
+
+  amlodipin: { so:"dhiig-karka", da:"forhøjet blodtryk", en:"high blood pressure", ar:"ارتفاع ضغط الدم", tr:"yüksek tansiyon", ur:"بلند فشار خون", fa:"فشار خون بالا", prs:"فشار خون بلند", ps:"لوړ د وینې فشار" },
+  enalapril: { so:"dhiig-karka", da:"forhøjet blodtryk", en:"high blood pressure", ar:"ارتفاع ضغط الدم", tr:"yüksek tansiyon", ur:"بلند فشار خون", fa:"فشار خون بالا", prs:"فشار خون بلند", ps:"لوړ د وینې فشار" },
+  losartan: { so:"dhiig-karka", da:"forhøjet blodtryk", en:"high blood pressure", ar:"ارتفاع ضغط الدم", tr:"yüksek tansiyon", ur:"بلند فشار خون", fa:"فشار خون بالا", prs:"فشار خون بلند", ps:"لوړ د وینې فشار" },
+  metoprolol: { so:"dhiig-karka & wadne garaac", da:"blodtryk & hjertebanken", en:"blood pressure & palpitations", ar:"ضغط الدم وخفقان القلب", tr:"tansiyon & çarpıntı", ur:"بلڈ پریشر & دل کی دھڑکن", fa:"فشار خون و تپش قلب", prs:"فشار خون و تپش قلب", ps:"فشار او د زړه درزا" },
+
+  marevan: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کننده خون", ps:"د وینې نری کوونکی" },
+  xarelto: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کننده خون", ps:"د وینې نری کوونکی" },
+  eliquis: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کننده خون", ps:"د وینې نری کوونکی" },
+
+  metformin: { so:"sonkoroow", da:"diabetes", en:"diabetes", ar:"السكري", tr:"diyabet", ur:"ذیابیطس", fa:"دیابت", prs:"دیابت", ps:"شکر" },
+  insulin: { so:"sonkoroow", da:"diabetes", en:"diabetes", ar:"السكري", tr:"diyabet", ur:"ذیابیطس", fa:"دیابت", prs:"دیابت", ps:"شکر" },
+
+  pantoprazol: { so:"gaastriga iyo labjeexa", da:"mavesyre & halsbrand", en:"stomach acid & heartburn", ar:"حموضة المعدة وحرقة المعدة", tr:"mide asidi & reflü", ur:"معدے کی تیزابیت & سینے کی جلن", fa:"اسید معده و سوزش سر دل", prs:"اسید معده و سوزش سر دل", ps:"د معدې تیزاب او د سینې سوځېدنه" },
+
+  ventoline: { so:"neef-mareenka", da:"astma", en:"asthma", ar:"الربو", tr:"astım", ur:"دمہ", fa:"آسم", prs:"آسم", ps:"استما" },
+  symbicort: { so:"neef-mareenka", da:"astma", en:"asthma", ar:"الربو", tr:"astım", ur:"دمہ", fa:"آسم", prs:"آسم", ps:"استما" },
+
+  hjertemagnyl: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کننده خون", ps:"د وینې نری کوونکی" },
+
+  atorvastatin: { so:"kolestarool", da:"kolesterol", en:"cholesterol", ar:"الكوليسترول", tr:"kolesterol", ur:"کولیسٹرول", fa:"کلسترول", prs:"کلسترول", ps:"کولېسټرول" },
+
+  morfin_tablet: { so:"xanuun baabi'iye", da:"smertestillende", en:"pain relief", ar:"مسكن ألم", tr:"ağrı kesici", ur:"درد کش", fa:"مسکن درد", prs:"مسکن درد", ps:"د درد ضد" },
+  morfin_injektion: { so:"xanuun baabi'iye", da:"smertestillende", en:"pain relief", ar:"مسكن ألم", tr:"ağrı kesici", ur:"درد کش", fa:"مسکن درد", prs:"مسکن درد", ps:"د درد ضد" },
+
+  melatonin: { so:"hurdo", da:"søvn", en:"sleep", ar:"النوم", tr:"uyku", ur:"نیند", fa:"خواب", prs:"خواب", ps:"خوب" },
+
+  sertralin: { so:"niyad-jab & welwel", da:"depression & angst", en:"depression & anxiety", ar:"الاكتئاب والقلق", tr:"depresyon & kaygı", ur:"ڈپریشن & بے چینی", fa:"افسردگی و اضطراب", prs:"افسردگی و اضطراب", ps:"خپګان او اضطراب" },
+
+  lamotrigin: { so:"suuxdin & laba-cirifood", da:"epilepsi & bipolar", en:"epilepsy & bipolar", ar:"الصرع وثنائي القطب", tr:"epilepsi & bipolar", ur:"مرگی & بائی پولر", fa:"صرع و دوقطبی", prs:"صرع و دوقطبی", ps:"مرۍ & بایپولر" },
+
+  quetiapin: { so:"cilad dhimirka & laba-cirifood", da:"psykose & bipolar", en:"psychosis & bipolar", ar:"الذهان وثنائي القطب", tr:"psikoz & bipolar", ur:"نفسیاتی عارضہ & بائی پولر", fa:"روان‌پریشی و دوقطبی", prs:"روان‌پریشی و دوقطبی", ps:"سایکوسس & بایپولر" },
+
+  zopiclon: { so:"hurdo la’aan", da:"søvnløshed", en:"insomnia", ar:"الأرق", tr:"uykusuzluk", ur:"بے خوابی", fa:"بی‌خوابی", prs:"بی‌خوابی", ps:"بې خوبي" }
+};
+
 const T = {
   so: {
-    pageTitle: "Medicin udtrykt på somalisk",
-    hdrTitle: "Medicin udtrykt på somalisk",
-    hdrSubtitle: "Liis kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed",
-    langLabel: "Dooro luqadda:",
-    pickTitle: "Dooro daawada hoos ka muuqata",
-    pickSmall: "(Vælg medicin nedenfor)",
-    footer1: "Qoraalladan waa hagitaan guud oo fudud. Ma beddelayso talada tooska ah ee farmashiyaha ama dhakhtarka.",
-    footer2: "(Disse tekster erstatter ikke rådgivning fra apoteket eller lægen.)",
-    footerStrong: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf",
-    footer3: "(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    pageTitle:"Medicin udtrykt på somalisk",
+    hdrTitle:"Medicin udtrykt på somalisk",
+    hdrSubtitle:"Liis kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed",
+    langLabel:"Dooro luqadda:",
+    pickTitle:"Dooro daawada hoos ka muuqata",
+    pickSmall:"(Vælg medicin nedenfor)",
+    footer1:"Qoraalladan waa hagitaan guud oo fudud. Ma beddelayso talada tooska ah ee farmashiyaha ama dhakhtarka.",
+    footer2:"(Disse tekster erstatter ikke rådgivning fra apoteket eller lægen.)",
+    footerStrong:"Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf",
+    footer3:"(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
   da: {
-    pageTitle: "Medicin på somalisk",
-    hdrTitle: "Medicin på Somalisk",
-    hdrSubtitle: "En kort liste til patienter og pårørende",
-    langLabel: "Vælg sprog:",
-    pickTitle: "Vælg medicin nedenfor",
-    pickSmall: "",
-    footer1: "Teksterne er generel vejledning og erstatter ikke rådgivning fra apoteket eller lægen.",
-    footer2: "",
-    footerStrong: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf",
-    footer3: ""
+    pageTitle:"Medicin på somalisk",
+    hdrTitle:"Medicin på somalisk",
+    hdrSubtitle:"En kort liste til patienter og pårørende.",
+    langLabel:"Vælg sprog:",
+    pickTitle:"Vælg medicin nedenfor",
+    pickSmall:"",
+    footer1:"Teksterne er generel vejledning og erstatter ikke rådgivning fra apoteket eller lægen.",
+    footer2:"",
+    footerStrong:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf",
+    footer3:""
   },
   en: {
-    pageTitle: "Medicines in Somali",
-    hdrTitle: "Medicines in Somali",
-    hdrSubtitle: "A short list for patients and relatives",
-    langLabel: "Choose language:",
-    pickTitle: "Choose a medicine below",
-    pickSmall: "",
-    footer1: "These texts are general guidance and do not replace advice from your pharmacy or doctor.",
-    footer2: "",
-    footerStrong: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf",
-    footer3: ""
+    pageTitle:"Medicines in Somali",
+    hdrTitle:"Medicines in Somali",
+    hdrSubtitle:"A short list for patients and relatives.",
+    langLabel:"Choose language:",
+    pickTitle:"Choose a medicine below",
+    pickSmall:"",
+    footer1:"These texts are general guidance and do not replace advice from your pharmacy or doctor.",
+    footer2:"",
+    footerStrong:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf",
+    footer3:""
   },
   ar: {
-    pageTitle: "أدوية باللغة الصومالية",
-    hdrTitle: "أدوية باللغة الصومالية",
-    hdrSubtitle: "قائمة مختصرة للمرضى وأفراد الأسرة",
-    langLabel: "اختر اللغة:",
-    pickTitle: "اختر دواءً من القائمة",
-    pickSmall: "",
-    footer1: "هذه النصوص معلومات عامة ولا تغني عن نصيحة الصيدلية أو الطبيب.",
-    footer2: "",
-    footerStrong: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)",
-    footer3: ""
+    pageTitle:"أدوية باللغة الصومالية",
+    hdrTitle:"أدوية باللغة الصومالية",
+    hdrSubtitle:"قائمة مختصرة للمرضى وأفراد الأسرة",
+    langLabel:"اختر اللغة:",
+    pickTitle:"اختر دواءً من القائمة",
+    pickSmall:"",
+    footer1:"هذه النصوص معلومات عامة ولا تغني عن نصيحة الصيدلية أو الطبيب.",
+    footer2:"",
+    footerStrong:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)",
+    footer3:""
   },
   tr: {
-    pageTitle: "Somalice ilaç bilgileri",
-    hdrTitle: "Somalice ilaç bilgileri",
-    hdrSubtitle: "Hasta ve yakınları için kısa liste",
-    langLabel: "Dil seçin:",
-    pickTitle: "Aşağıdan ilacı seçin",
-    pickSmall: "",
-    footer1: "Bu metinler genel bilgilendirme amaçlıdır; eczane veya doktor tavsiyesinin yerine geçmez.",
-    footer2: "",
-    footerStrong: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf",
-    footer3: ""
+    pageTitle:"Somalice ilaç bilgileri",
+    hdrTitle:"Somalice ilaç bilgileri",
+    hdrSubtitle:"Hasta ve yakınları için kısa liste.",
+    langLabel:"Dil seçin:",
+    pickTitle:"Aşağıdan ilacı seçin",
+    pickSmall:"",
+    footer1:"Bu metinler genel bilgilendirme amaçlıdır; eczane veya doktor tavsiyesinin yerine geçmez.",
+    footer2:"",
+    footerStrong:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf",
+    footer3:""
   },
   ur: {
-    pageTitle: "سومالی زبان میں ادویات",
-    hdrTitle: "سومالی زبان میں ادویات",
-    hdrSubtitle: "مریضوں اور اہلِ خانہ کے لیے مختصر فہرست",
-    langLabel: "زبان منتخب کریں:",
-    pickTitle: "نیچے سے دوا منتخب کریں",
-    pickSmall: "",
-    footer1: "یہ تحریریں عمومی رہنمائی ہیں اور ڈاکٹر یا فارمیسی کے مشورے کا متبادل نہیں۔",
-    footer2: "",
-    footerStrong: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف",
-    footer3: ""
+    pageTitle:"سومالی زبان میں ادویات",
+    hdrTitle:"سومالی زبان میں ادویات",
+    hdrSubtitle:"مریضوں اور اہلِ خانہ کے لیے مختصر فہرست",
+    langLabel:"زبان منتخب کریں:",
+    pickTitle:"نیچے سے دوا منتخب کریں",
+    pickSmall:"",
+    footer1:"یہ تحریریں عمومی رہنمائی ہیں اور ڈاکٹر یا فارمیسی کے مشورے کا متبادل نہیں۔",
+    footer2:"",
+    footerStrong:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف",
+    footer3:""
   },
   fa: {
-    pageTitle: "داروها به زبان سومالی",
-    hdrTitle: "داروها به زبان سومالی",
-    hdrSubtitle: "فهرست کوتاه برای بیماران و خانواده‌ها",
-    langLabel: "انتخاب زبان:",
-    pickTitle: "دارو را از فهرست انتخاب کنید",
-    pickSmall: "",
-    footer1: "این متن‌ها راهنمای عمومی هستند و جایگزین توصیه پزشک یا داروخانه نیستند.",
-    footer2: "",
-    footerStrong: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف",
-    footer3: ""
+    pageTitle:"داروها به زبان سومالی",
+    hdrTitle:"داروها به زبان سومالی",
+    hdrSubtitle:"فهرست کوتاه برای بیماران و خانواده‌ها",
+    langLabel:"انتخاب زبان:",
+    pickTitle:"دارو را از فهرست انتخاب کنید",
+    pickSmall:"",
+    footer1:"این متن‌ها راهنمای عمومی هستند و جایگزین توصیه پزشک یا داروخانه نیستند.",
+    footer2:"",
+    footerStrong:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف",
+    footer3:""
   },
   prs: {
-    pageTitle: "دواها به زبان سومالی",
-    hdrTitle: "دواها به زبان سومالی",
-    hdrSubtitle: "فهرست کوتاه برای مریضان و خانواده‌ها",
-    langLabel: "انتخاب زبان:",
-    pickTitle: "دوا را از فهرست انتخاب کنید",
-    pickSmall: "",
-    footer1: "این متن‌ها رهنمای عمومی هستند و جایگزین مشوره داکتر یا دواخانه نیستند.",
-    footer2: "",
-    footerStrong: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف",
-    footer3: ""
+    pageTitle:"دواها به زبان سومالی",
+    hdrTitle:"دواها به زبان سومالی",
+    hdrSubtitle:"فهرست کوتاه برای مریضان و خانواده‌ها",
+    langLabel:"انتخاب زبان:",
+    pickTitle:"دوا را از فهرست انتخاب کنید",
+    pickSmall:"",
+    footer1:"این متن‌ها رهنمای عمومی هستند و جایگزین مشوره داکتر یا دواخانه نیستند.",
+    footer2:"",
+    footerStrong:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف",
+    footer3:""
   },
   ps: {
-    pageTitle: "درمل په سومالي ژبه",
-    hdrTitle: "درمل په سومالي ژبه",
-    hdrSubtitle: "د ناروغانو او کورنۍ لپاره لنډ لېست",
-    langLabel: "ژبه وټاکئ:",
-    pickTitle: "لاندې درمل وټاکئ",
-    pickSmall: "",
-    footer1: "دا متنونه عمومي لارښوونې دي او د ډاکټر يا درملتون مشوره نه بدلوي.",
-    footer2: "",
-    footerStrong: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف",
-    footer3: ""
+    pageTitle:"درمل په سومالي ژبه",
+    hdrTitle:"درمل په سومالي ژبه",
+    hdrSubtitle:"د ناروغانو او کورنۍ لپاره لنډ لېست",
+    langLabel:"ژبه وټاکئ:",
+    pickTitle:"لاندې درمل وټاکئ",
+    pickSmall:"",
+    footer1:"دا متنونه عمومي لارښوونې دي او د ډاکټر يا درملتون مشوره نه بدلوي.",
+    footer2:"",
+    footerStrong:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف",
+    footer3:""
   }
 };
 
@@ -316,36 +359,85 @@ function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
+function setLangInUrl(lang){
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  history.replaceState({}, "", url.toString());
+}
+function applyTheme(lang){
+  const th = THEME[lang] || THEME.so;
+  document.documentElement.style.setProperty("--accent", th.accent);
+  document.documentElement.style.setProperty("--flash", th.flash);
+  const header = document.getElementById("header");
+  if (header){
+    header.style.setProperty("--c1", th.c1);
+    header.style.setProperty("--c2", th.c2);
+  }
+}
+
+/* animation helpers */
+function animateSwap(el, newText){
+  if (!el) return;
+  el.classList.add("fade-out");
+  setTimeout(() => {
+    el.textContent = newText;
+    el.classList.remove("fade-out");
+    el.classList.add("fade-in");
+    setTimeout(() => el.classList.remove("fade-in"), 200);
+  }, 140);
+}
+function flashCards(){
+  document.querySelectorAll("a.index-link").forEach(a => {
+    a.classList.add("lang-flash");
+    setTimeout(() => a.classList.remove("lang-flash"), 220);
+  });
+}
+function updateIndexSubs(lang){
+  document.querySelectorAll('a.index-link[data-med]').forEach(a => {
+    const key = a.getAttribute('data-med');
+    const subText = (SUB[key] && (SUB[key][lang] || SUB[key].so)) || "";
+    const subEl = a.querySelector('[data-role="sub"]');
+    animateSwap(subEl, subText);
+  });
+}
 
 function applyLang(lang){
   const d = T[lang] || T.so;
 
+  applyTheme(lang);
   setDirLang(lang);
   document.title = d.pageTitle;
 
-  document.getElementById("hdrTitle").textContent = d.hdrTitle;
-  document.getElementById("hdrSubtitle").textContent = d.hdrSubtitle;
-  document.getElementById("langLabel").textContent = d.langLabel;
+  animateSwap(document.getElementById("hdrTitle"), d.hdrTitle);
+  animateSwap(document.getElementById("hdrSubtitle"), d.hdrSubtitle);
+  animateSwap(document.getElementById("langLabel"), d.langLabel);
 
-  document.getElementById("pickTitle").childNodes[0].textContent = d.pickTitle + " ";
-  document.getElementById("pickSmall").textContent = d.pickSmall;
+  const pick = document.getElementById("pickTitle");
+  if (pick && pick.childNodes && pick.childNodes[0]) {
+    pick.childNodes[0].textContent = d.pickTitle + " ";
+  }
+  animateSwap(document.getElementById("pickSmall"), d.pickSmall);
 
-  document.getElementById("footLine1").textContent = d.footer1;
-  document.getElementById("footLine2").textContent = d.footer2;
-  document.getElementById("footStrong").textContent = d.footerStrong;
-  document.getElementById("footLine3").textContent = d.footer3;
+  animateSwap(document.getElementById("footLine1"), d.footer1);
+  animateSwap(document.getElementById("footLine2"), d.footer2);
+  animateSwap(document.getElementById("footStrong"), d.footerStrong);
+  animateSwap(document.getElementById("footLine3"), d.footer3);
 
-  // Add ?lang=xx to all links
+  updateIndexSubs(lang);
+  flashCards();
+
+  // keep language when opening a medicine page
   document.querySelectorAll('a.index-link').forEach(a => {
     const base = a.getAttribute('href').split('?')[0];
     a.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
   });
+
+  setLangInUrl(lang);
 }
 
-// Default language Somali, but allow index.html?lang=da
+// Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get('lang') || 'so';
-
 document.getElementById("langSelect").value = (T[startLang] ? startLang : 'so');
 applyLang(document.getElementById("langSelect").value);
 
