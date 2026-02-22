@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Symbicort – neef-mareenka</title>
+
 <style>
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
 header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
@@ -61,8 +62,8 @@ a.back span { font-size:1.1rem; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section ul li{ margin-bottom:4px; }
-
 .highlight{ font-weight:600; }
+
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
@@ -170,7 +171,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta & nadiifinta <small>(Opbevaring og rengøring)</small></div>
+        <div class="section-title" id="sec8Title">Kaydinta &amp; nadiifinta <small>(Opbevaring og rengøring)</small></div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -183,6 +184,20 @@ a.back span { font-size:1.1rem; }
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+function fillList(id, arr){
+  const ul = document.getElementById(id);
+  ul.innerHTML = "";
+  (arr || []).forEach(txt => {
+    const li = document.createElement("li");
+    li.innerHTML = txt;
+    ul.appendChild(li);
+  });
+}
 
 const T = {
   so: {
@@ -372,60 +387,31 @@ const T = {
 
     footer1: "If you need more information, contact your pharmacy or doctor.",
     footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  /* Placeholders (so siden virker). Udfyld når du er klar */
-  ar: { pageTitle:"Symbicort", hdrH1:"Symbicort", hdrP:"", backText:"", langLabel:"", drugName:"Symbicort", drugForm:"", badgeText:"",
-        sec1Title:"", sec1:[], sec2Title:"", sec2:[], sec3Title:"", sec3:[], sec4Title:"", sec4:[], sec5Title:"", sec5:[], sec6Title:"", sec6:[], sec7Title:"", sec7:[], sec8Title:"", sec8:[], footer1:"", footer2:"" },
-  tr: { pageTitle:"Symbicort", hdrH1:"Symbicort", hdrP:"", backText:"", langLabel:"", drugName:"Symbicort", drugForm:"", badgeText:"",
-        sec1Title:"", sec1:[], sec2Title:"", sec2:[], sec3Title:"", sec3:[], sec4Title:"", sec4:[], sec5Title:"", sec5:[], sec6Title:"", sec6:[], sec7Title:"", sec7:[], sec8Title:"", sec8:[], footer1:"", footer2:"" },
-  ur: { pageTitle:"Symbicort", hdrH1:"Symbicort", hdrP:"", backText:"", langLabel:"", drugName:"Symbicort", drugForm:"", badgeText:"",
-        sec1Title:"", sec1:[], sec2Title:"", sec2:[], sec3Title:"", sec3:[], sec4Title:"", sec4:[], sec5Title:"", sec5:[], sec6Title:"", sec6:[], sec7Title:"", sec7:[], sec8Title:"", sec8:[], footer1:"", footer2:"" },
-  fa: { pageTitle:"Symbicort", hdrH1:"Symbicort", hdrP:"", backText:"", langLabel:"", drugName:"Symbicort", drugForm:"", badgeText:"",
-        sec1Title:"", sec1:[], sec2Title:"", sec2:[], sec3Title:"", sec3:[], sec4Title:"", sec4:[], sec5Title:"", sec5:[], sec6Title:"", sec6:[], sec7Title:"", sec7:[], sec8Title:"", sec8:[], footer1:"", footer2:"" },
-  prs:{ pageTitle:"Symbicort", hdrH1:"Symbicort", hdrP:"", backText:"", langLabel:"", drugName:"Symbicort", drugForm:"", badgeText:"",
-        sec1Title:"", sec1:[], sec2Title:"", sec2:[], sec3Title:"", sec3:[], sec4Title:"", sec4:[], sec5Title:"", sec5:[], sec6Title:"", sec6:[], sec7Title:"", sec7:[], sec8Title:"", sec8:[], footer1:"", footer2:"" },
-  ps: { pageTitle:"Symbicort", hdrH1:"Symbicort", hdrP:"", backText:"", langLabel:"", drugName:"Symbicort", drugForm:"", badgeText:"",
-        sec1Title:"", sec1:[], sec2Title:"", sec2:[], sec3Title:"", sec3:[], sec4Title:"", sec4:[], sec5Title:"", sec5:[], sec6Title:"", sec6:[], sec7Title:"", sec7:[], sec8Title:"", sec8:[], footer1:"", footer2:"" }
+  }
 };
-
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
-
-function fillList(id, arr){
-  const ul = document.getElementById(id);
-  ul.innerHTML = "";
-  (arr || []).forEach(txt => {
-    const li = document.createElement("li");
-    li.innerHTML = txt;
-    ul.appendChild(li);
-  });
-}
 
 function applyLang(lang){
   const d = T[lang] || T.so;
   setDirLang(lang);
 
-  document.title = d.pageTitle || "Symbicort";
-  document.getElementById("hdrH1").textContent = d.hdrH1 || "Symbicort";
-  document.getElementById("hdrP").textContent = d.hdrP || "";
-  document.getElementById("backText").textContent = d.backText || "";
-  document.getElementById("langLabel").textContent = d.langLabel || "";
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.getElementById("hdrP").textContent = d.hdrP;
+  document.getElementById("backText").textContent = d.backText;
+  document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName || "Symbicort";
-  document.getElementById("drugForm").textContent = d.drugForm || "";
-  document.getElementById("badgeText").textContent = d.badgeText || "";
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("sec1Title").textContent = d.sec1Title || "";
-  document.getElementById("sec2Title").textContent = d.sec2Title || "";
-  document.getElementById("sec3Title").textContent = d.sec3Title || "";
-  document.getElementById("sec4Title").textContent = d.sec4Title || "";
-  document.getElementById("sec5Title").textContent = d.sec5Title || "";
-  document.getElementById("sec6Title").textContent = d.sec6Title || "";
-  document.getElementById("sec7Title").textContent = d.sec7Title || "";
-  document.getElementById("sec8Title").textContent = d.sec8Title || "";
+  document.getElementById("sec1Title").innerHTML = d.sec1Title;
+  document.getElementById("sec2Title").innerHTML = d.sec2Title;
+  document.getElementById("sec3Title").innerHTML = d.sec3Title;
+  document.getElementById("sec4Title").innerHTML = d.sec4Title;
+  document.getElementById("sec5Title").innerHTML = d.sec5Title;
+  document.getElementById("sec6Title").innerHTML = d.sec6Title;
+  document.getElementById("sec7Title").innerHTML = d.sec7Title;
+  document.getElementById("sec8Title").innerHTML = d.sec8Title;
 
   fillList("sec1List", d.sec1);
   fillList("sec2List", d.sec2);
@@ -436,16 +422,19 @@ function applyLang(lang){
   fillList("sec7List", d.sec7);
   fillList("sec8List", d.sec8);
 
-  document.getElementById("footer1").textContent = d.footer1 || "";
-  document.getElementById("footer2").innerHTML = d.footer2 || "";
+  document.getElementById("footer1").textContent = d.footer1;
+  document.getElementById("footer2").innerHTML = d.footer2;
 
+  // keep language when going back
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
+// Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
+
 document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
 applyLang(document.getElementById("langSelect").value);
 
