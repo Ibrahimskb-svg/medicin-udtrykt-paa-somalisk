@@ -6,21 +6,32 @@
 <title>Paracetamol – xanuun &amp; qandho</title>
 
 <style>
+/* ===== Language theme (NO external files) ===== */
+:root{
+  --accent:#00a676;
+  --c1:#0066cc;
+  --c2:#00a676;
+}
+
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
+header {
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  transition: background 260ms ease;
+}
 header h1 { margin:0 0 4px; font-size:1.8rem; }
 header p { margin:0; font-size:0.95rem; }
 
 main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:#00509e; font-size:0.9rem; }
+a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--accent); font-size:0.9rem; }
 a.back span { font-size:1.1rem; }
 
 .langbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   background:#ffffff; border-radius:12px; padding:10px 12px;
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid #00a676;
+  border-left:4px solid var(--accent);
 }
 .langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
 .langbar select{
@@ -30,7 +41,7 @@ a.back span { font-size:1.1rem; }
 
 .card{
   background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid #00a676;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent);
 }
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
@@ -63,7 +74,6 @@ a.back span { font-size:1.1rem; }
 .section ul li{ margin-bottom:4px; }
 
 .highlight{ font-weight:600; }
-
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
@@ -184,7 +194,61 @@ a.back span { font-size:1.1rem; }
 </main>
 
 <script>
+/* RTL languages */
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+/* Colors per language (same idea as index: Danish = blue) */
+const THEME = {
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" }, // default
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" }, // blue
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
+};
+
+function applyTheme(lang){
+  const th = THEME[lang] || THEME.so;
+  document.documentElement.style.setProperty("--c1", th.c1);
+  document.documentElement.style.setProperty("--c2", th.c2);
+  document.documentElement.style.setProperty("--accent", th.accent);
+}
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+
+function fillList(id, arr){
+  const ul = document.getElementById(id);
+  ul.innerHTML = "";
+  (arr || []).forEach(txt => {
+    const li = document.createElement("li");
+    li.innerHTML = txt;
+    ul.appendChild(li);
+  });
+}
+
+/* Preserve <small>(...)</small> in section headings */
+function setSectionTitle(elId, title){
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const small = el.querySelector("small");
+  if (small){
+    const first = el.childNodes[0];
+    const t = (title || "").trim();
+    if (first && first.nodeType === Node.TEXT_NODE){
+      first.textContent = t + " ";
+    } else {
+      el.insertBefore(document.createTextNode(t + " "), small);
+    }
+  } else {
+    el.textContent = title || "";
+  }
+}
 
 const T = {
   so: {
@@ -213,7 +277,7 @@ const T = {
     sec3Title: "Waxyeellooyinka (Bivirkninger)",
     sec3: [
       "Badanaa wuu fiican yahay. Laakiin marar dhif ah, wuxuu keenaa finan, cuncun ama neef-qabatin oo xasaasiyad (allergi) ah.",
-      "Haddii aad qaadato qiyaas aad u badan muddo dheer, beerka (leveren) wuu dhaawaci karaa."
+      "Haddii aad qaadato qiyaas aad u badan muddo dheer, beerka (leveren) wuu dhaawici karaa."
     ],
 
     sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
@@ -709,21 +773,10 @@ const T = {
   }
 };
 
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
-function fillList(id, arr){
-  const ul = document.getElementById(id);
-  ul.innerHTML = "";
-  (arr || []).forEach(txt => {
-    const li = document.createElement("li");
-    li.innerHTML = txt;
-    ul.appendChild(li);
-  });
-}
 function applyLang(lang){
   const d = T[lang] || T.so;
+
+  applyTheme(lang);
   setDirLang(lang);
 
   document.title = d.pageTitle;
@@ -731,18 +784,20 @@ function applyLang(lang){
   document.getElementById("hdrP").textContent = d.hdrP;
   document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
+
   document.getElementById("drugName").textContent = d.drugName;
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("sec1Title").textContent = d.sec1Title;
-  document.getElementById("sec2Title").textContent = d.sec2Title;
-  document.getElementById("sec3Title").textContent = d.sec3Title;
-  document.getElementById("sec4Title").textContent = d.sec4Title;
-  document.getElementById("sec5Title").textContent = d.sec5Title;
-  document.getElementById("sec6Title").textContent = d.sec6Title;
-  document.getElementById("sec7Title").textContent = d.sec7Title;
-  document.getElementById("sec8Title").textContent = d.sec8Title;
+  /* Keep <small>(...)</small> visible in headings */
+  setSectionTitle("sec1Title", d.sec1Title);
+  setSectionTitle("sec2Title", d.sec2Title);
+  setSectionTitle("sec3Title", d.sec3Title);
+  setSectionTitle("sec4Title", d.sec4Title);
+  setSectionTitle("sec5Title", d.sec5Title);
+  setSectionTitle("sec6Title", d.sec6Title);
+  setSectionTitle("sec7Title", d.sec7Title);
+  setSectionTitle("sec8Title", d.sec8Title);
 
   fillList("sec1List", d.sec1);
   fillList("sec2List", d.sec2);
@@ -756,11 +811,13 @@ function applyLang(lang){
   document.getElementById("footer1").textContent = d.footer1;
   document.getElementById("footer2").innerHTML = d.footer2;
 
+  /* keep language when going back */
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
+/* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
 
