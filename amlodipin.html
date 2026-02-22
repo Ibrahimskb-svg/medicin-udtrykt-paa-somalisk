@@ -4,54 +4,87 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amlodipin – dhiig-karka</title>
-<style>
 
-body {
+<style>
+:root{
+  /* Theme variables (set by JS) */
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
+
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
+
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
+}
+
+/* Smooth theme transitions */
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{
+    transition: background .45s ease, color .35s ease;
+  }
+}
+
+body{
   font-family: Arial, sans-serif;
-  background: #e6f2f8;
-  color: #123047;
+  background: var(--bg);
+  color: var(--text);
   margin: 0;
 }
-header {
-  background: linear-gradient(135deg, #0066cc, #00a676);
-  color: #fff;
+
+header{
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
   padding: 22px 16px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1 {
+header h1{
   margin: 0 0 4px;
   font-size: 1.8rem;
 }
-header p {
+header p{
   margin: 0;
   font-size: 0.95rem;
 }
-main {
+
+main{
   max-width: 820px;
   margin: 18px auto 32px;
   padding: 0 14px;
 }
-a.back {
+
+a.back{
   display: inline-flex;
   align-items: center;
   gap: 6px;
   margin-bottom: 14px;
   text-decoration: none;
-  color: #00509e;
+  color: var(--link);
   font-size: 0.9rem;
 }
-a.back span { font-size: 1.1rem; }
+a.back span{ font-size: 1.1rem; }
 
-.card {
-  background: #ffffff;
+.card{
+  background: var(--card);
   border-radius: 14px;
   padding: 16px 16px 10px;
   margin-bottom: 14px;
   box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-  border-top: 4px solid #00a676;
+  border-top: 4px solid var(--accent1);
 }
-.drug-meta {
+
+.drug-meta{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,12 +92,12 @@ a.back span { font-size: 1.1rem; }
   gap: 10px;
   margin-bottom: 8px;
 }
-.drug-info {
+.drug-info{
   display: flex;
   align-items: center;
   gap: 10px;
 }
-.drug-icon {
+.drug-icon{
   width: 44px;
   height: 44px;
   border-radius: 12px;
@@ -73,37 +106,38 @@ a.back span { font-size: 1.1rem; }
   align-items: center;
   justify-content: center;
 }
-.drug-icon svg {
-  width: 30px;
-  height: 30px;
-}
-.drug-labels { display: flex; flex-direction: column; }
-.drug-name { font-weight: 600; font-size: 0.95rem; }
-.drug-form { font-size: 0.82rem; color: #29516e; }
+.drug-icon svg{ width: 30px; height: 30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.drug-icon svg .fill{ fill:#e8f3ff; }
 
-.badge {
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
+
+.badge{
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: #d9f6e8;
-  color: #16634a;
+  background: var(--pillBg);
+  color: var(--pillText);
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 0.8rem;
+  border:1px solid rgba(0,0,0,0.04);
 }
 
-.section {
+.section{
   margin-top: 8px;
   padding-top: 8px;
-  border-top: 1px dashed #d0d7e2;
+  border-top: 1px dashed var(--stroke);
 }
-.section-header {
+.section-header{
   display: flex;
   align-items: center;
   gap: 8px;
   margin-bottom: 4px;
 }
-.section-icon {
+.section-icon{
   width: 24px;
   height: 24px;
   border-radius: 999px;
@@ -111,7 +145,7 @@ a.back span { font-size: 1.1rem; }
   align-items: center;
   justify-content: center;
   font-size: 0.9rem;
-  color: #123047;
+  color: var(--text);
 }
 .section-icon.use { background:#e3f2fd; }
 .section-icon.dose { background:#e2f5ea; }
@@ -122,32 +156,32 @@ a.back span { font-size: 1.1rem; }
 .section-icon.food { background:#f1f8e9; }
 .section-icon.store { background:#edeff9; }
 
-.section-title {
+.section-title{
   font-weight: 700;
-  color: #123047;
+  color: var(--text);
   font-size: 0.96rem;
 }
-.section-title small {
+.section-title small{
   font-weight: 400;
-  color: #607089;
+  color: var(--muted);
 }
-.section ul {
+.section ul{
   margin: 0 0 4px 18px;
   padding-left: 0;
   font-size: 0.92rem;
 }
-.section ul li { margin-bottom: 4px; }
+.section ul li{ margin-bottom: 4px; }
 
-.highlight { font-weight: 600; }
+.highlight{ font-weight: 600; }
 
-.footer-note {
+.footer-note{
   font-size: 0.8rem;
-  color: #607089;
+  color: var(--muted);
   text-align: center;
   margin: 18px 0 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 600px){
   header h1 { font-size: 1.5rem; }
 }
 
@@ -162,25 +196,25 @@ a.back span { font-size: 1.1rem; }
   padding: 10px 12px;
   margin: 0 0 14px 0;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid #00a676;
+  border-left: 4px solid var(--accent1);
 }
 .langbar label{
   font-size:0.9rem;
-  color:#123047;
+  color:var(--text);
   font-weight:600;
 }
 .langbar select{
   padding: 7px 10px;
   border-radius: 10px;
-  border: 1px solid #d0d7e2;
+  border: 1px solid var(--stroke);
   background: #fff;
-  color:#123047;
+  color:var(--text);
   font-size: 0.9rem;
   max-width: 100%;
 }
-
 </style>
 </head>
+
 <body>
 
 <header>
@@ -211,9 +245,10 @@ a.back span { font-size: 1.1rem; }
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
@@ -305,6 +340,29 @@ a.back span { font-size: 1.1rem; }
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+/* Same 9-language themes */
+const THEMES = {
+  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
+  en:  { a1:"#0ea5e9", a2:"#2563eb", link:"#1d4ed8", pillBg:"#e0f2fe", pillText:"#075985" },
+  ar:  { a1:"#7c3aed", a2:"#4f46e5", link:"#4f46e5", pillBg:"#ede9fe", pillText:"#5b21b6" },
+  tr:  { a1:"#ef4444", a2:"#f97316", link:"#b91c1c", pillBg:"#fee2e2", pillText:"#b91c1c" },
+  ur:  { a1:"#16a34a", a2:"#0f766e", link:"#0f766e", pillBg:"#dcfce7", pillText:"#166534" },
+  fa:  { a1:"#0f766e", a2:"#0891b2", link:"#0f766e", pillBg:"#ccfbf1", pillText:"#115e59" },
+  prs: { a1:"#a855f7", a2:"#6d28d9", link:"#6d28d9", pillBg:"#f3e8ff", pillText:"#6b21a8" },
+  ps:  { a1:"#f59e0b", a2:"#d97706", link:"#b45309", pillBg:"#ffedd5", pillText:"#9a3412" }
+};
+
+function applyTheme(lang){
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
+}
 
 const T = {
   so: {
@@ -713,6 +771,8 @@ const T = {
   }
 };
 
+function stripTags(s){ return (s||"").replace(/<[^>]*>?/gm, ""); }
+
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
@@ -721,7 +781,7 @@ function setDirLang(lang){
 function fillList(listId, items){
   const ul = document.getElementById(listId);
   ul.innerHTML = "";
-  items.forEach(html => {
+  (items || []).forEach(html => {
     const li = document.createElement("li");
     li.innerHTML = html;
     ul.appendChild(li);
@@ -732,15 +792,17 @@ function render(lang){
   const d = T[lang] || T.so;
 
   setDirLang(lang);
-  document.title = d.title.replace(/<[^>]*>/g, "");
+  applyTheme(lang);
 
-  document.getElementById("hdrTitle").textContent = d.title.replace(/<[^>]*>/g, "");
+  document.title = stripTags(d.title);
+
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
   document.getElementById("hdrSubtitle").textContent = d.subtitle;
 
   document.getElementById("backLabel").textContent = d.back;
   document.getElementById("badge").textContent = d.badge;
 
-  document.getElementById("drugName").textContent = d.drugName.replace(/<[^>]*>/g, "");
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
 
   document.getElementById("langLabel").textContent = d.langLabel;
@@ -781,18 +843,26 @@ function render(lang){
   document.getElementById("footerNote").innerHTML = d.footerHTML;
   document.getElementById("credit").innerHTML = d.creditHTML;
 
+  // keep language when going back
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  // Update URL without reload
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
 // Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
 
-render(document.getElementById("langSelect").value);
-document.getElementById("langSelect").addEventListener("change", function(){
+const select = document.getElementById("langSelect");
+select.value = (T[startLang] ? startLang : "so");
+
+render(select.value);
+select.addEventListener("change", function(){
   render(this.value);
 });
 </script>
