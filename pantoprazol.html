@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Metformin – type 2-diabetes</title>
+<title>Pantoprazol – mavesyre og refluks</title>
 
 <style>
 :root{
@@ -93,8 +93,8 @@ a.back span{ font-size:1.1rem; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section li{ margin-bottom:4px; }
-
 .highlight{ font-weight:600; }
+
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
@@ -102,7 +102,7 @@ a.back span{ font-size:1.1rem; }
 
 <body>
 <header>
-  <h1 id="hdrH1">Metformin – type 2-diabetes</h1>
+  <h1 id="hdrH1">Pantoprazol – mavesyre og refluks</h1>
   <p id="hdrP">Kort og let information om lægemidlet – til patienter og pårørende.</p>
 </header>
 
@@ -134,17 +134,18 @@ a.back span{ font-size:1.1rem; }
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Metformin</div>
-          <div class="drug-form" id="drugForm">Tablet (til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Pantoprazol</div>
+          <div class="drug-form" id="drugForm">Enterotablet / tablet (mod mavesyre)</div>
         </div>
       </div>
       <div class="badge" id="badgeText">Kort og let</div>
     </div>
 
+    <!-- Identiske sektion-ikoner som de andre -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er Metformin? <small>(What is it?)</small></div>
+        <div class="section-title" id="sec0Title">Hvad er Pantoprazol? <small>(What is it?)</small></div>
       </div>
       <ul id="sec0List"></ul>
     </div>
@@ -253,152 +254,153 @@ function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
   (arr || []).forEach(txt=>{
-    const li=document.createElement("li");
-    li.innerHTML=txt;
+    const li = document.createElement("li");
+    li.innerHTML = txt;
     ul.appendChild(li);
   });
 }
 
 function setSectionTitle(elId, title){
-  const el=document.getElementById(elId);
+  const el = document.getElementById(elId);
   if(!el) return;
-  const small=el.querySelector("small");
-  const t=(title||"").trim();
+  const small = el.querySelector("small");
+  const t = (title || "").trim();
   if(small){
-    const first=el.childNodes[0];
-    if(first && first.nodeType===Node.TEXT_NODE){
-      first.textContent=t+" ";
+    const first = el.childNodes[0];
+    if(first && first.nodeType === Node.TEXT_NODE){
+      first.textContent = t + " ";
     }else{
-      el.insertBefore(document.createTextNode(t+" "), small);
+      el.insertBefore(document.createTextNode(t + " "), small);
     }
   }else{
-    el.textContent=t;
+    el.textContent = t;
   }
 }
 
 const T = {
   da:{
-    pageTitle:"Metformin – type 2-diabetes",
-    hdrH1:"Metformin – type 2-diabetes",
+    pageTitle:"Pantoprazol – mavesyre og refluks",
+    hdrH1:"Pantoprazol – mavesyre og refluks",
     hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
     backText:"Tilbage til medicinlisten",
     langLabel:"Vælg sprog:",
-    drugName:"Metformin",
-    drugForm:"Tablet (til at tage gennem munden)",
+    drugName:"Pantoprazol",
+    drugForm:"Enterotablet / tablet (mod mavesyre)",
     badgeText:"Kort og let",
 
-    sec0Title:"Hvad er Metformin?",
+    sec0Title:"Hvad er Pantoprazol?",
     sec0:[
-      "Metformin er et <span class='highlight'>blodsukkersænkende</span> lægemiddel.",
-      "Det hjælper kroppen med at udnytte insulin bedre og kan mindske leverens produktion af sukker."
+      "Pantoprazol er et lægemiddel, der <span class='highlight'>nedsætter produktionen af mavesyre</span> (protonpumpehæmmer/PPI).",
+      "Det virker ikke som et hurtigt ‘neutraliserende’ middel, men <span class='highlight'>bygger effekten op over timer til dage</span>."
     ],
     sec1Title:"Hvad bruges det til?",
     sec1:[
-      "Behandling af <span class='highlight'>type 2-diabetes</span> – ofte som førstevalg.",
-      "Kan også bruges sammen med anden diabetesmedicin, hvis det er nødvendigt."
+      "Sure opstød og <span class='highlight'>refluks</span> (halsbrand).",
+      "Mavesår/duodenalsår og forebyggelse af sår ved særlig risiko (efter lægens plan).",
+      "Som del af behandling mod <span class='highlight'>Helicobacter pylori</span> (sammen med antibiotika) – hvis lægen ordinerer det."
     ],
     sec2Title:"Sådan tages medicinen",
     sec2:[
-      "Tages som regel <span class='highlight'>1–3 gange dagligt</span> afhængigt af præparat og lægens plan.",
-      "Start ofte med lav dosis og trappes op for at mindske mavegener.",
-      "Glemte du en dosis? Tag den, når du husker det – <span class='highlight'>tag ikke dobbeltdosis</span>."
+      "Tages ofte <span class='highlight'>1 gang dagligt</span> – nogle får 2 gange dagligt (lægens plan).",
+      "Synkes hel med vand. <span class='highlight'>Tabletten må normalt ikke tygges eller knuses</span> (enterotablet).",
+      "Hvis du glemmer en dosis: tag den, når du husker det – <span class='highlight'>tag ikke dobbeltdosis</span>."
     ],
     sec3Title:"Mad og drikke",
     sec3:[
-      "Tages helst <span class='highlight'>sammen med mad</span> for at mindske kvalme og diarré.",
-      "Synkes med <span class='highlight'>et glas vand</span>.",
-      "Vær forsigtig med meget alkohol (kan øge risikoen for sjældne, alvorlige bivirkninger)."
+      "For mange virker det bedst at tage pantoprazol <span class='highlight'>før et måltid</span> (ofte om morgenen). Følg din ordination.",
+      "Kan tages med et glas vand. Undgå store mængder alkohol, hvis det forværrer mavesymptomer."
     ],
     sec4Title:"Advarsler",
     sec4:[
-      "Kontakt læge ved vedvarende opkastning/diarré eller hvis du bliver meget dehydreret (væskemangel).",
-      "Fortæl lægen hvis du har <span class='highlight'>nyreproblemer</span> eller skal have kontrast ved scanning – der kan være behov for pause i behandlingen.",
-      "Ved akut sygdom, høj feber eller operation: følg lægens plan for medicinen."
+      "Kontakt læge ved <span class='highlight'>alarmtegn</span>: blod i opkast/afføring, sort afføring, uforklarligt vægttab, synkebesvær, stærke vedvarende mavesmerter.",
+      "Langtidsbrug bør vurderes af lægen: nogle kan få mangel på <span class='highlight'>magnesium</span> eller <span class='highlight'>B12</span> og øget risiko for visse infektioner i mave/tarm (sjældent).",
+      "Stop ikke pludseligt uden aftale, hvis du har taget det længe – nogle får <span class='highlight'>rebound-syre</span> (mere syre i en periode)."
     ],
     sec5Title:"Bivirkninger",
     sec5:[
-      "Mavegener er almindelige i starten: kvalme, løs mave/diarré, luft i maven.",
-      "Metallisk smag kan forekomme.",
-      "Lang tids brug kan hos nogle give lavt B12-vitamin – lægen kan kontrollere dette."
+      "Hovedpine, kvalme, mavesmerter eller diarré/forstoppelse.",
+      "Oppustethed/luft i maven.",
+      "Udslæt forekommer sjældent – kontakt læge ved kraftig reaktion."
     ],
     sec6Title:"Interaktioner",
     sec6:[
-      "Nogle lægemidler kan påvirke nyrefunktionen og dermed metformin – oplys altid al medicin til læge/apotek.",
-      "Kontrastmiddel ved visse scanninger kan kræve midlertidig pause (aftales med lægen)."
+      "Pantoprazol kan påvirke optagelsen af lægemidler, der kræver mavesyre (fx nogle svampemidler).",
+      "Fortæl lægen/apoteket hvis du får <span class='highlight'>blodfortyndende</span> medicin eller anden fast medicin – så vurderes det samlet.",
+      "Hvis du er i tvivl: spørg apoteket, før du starter nye håndkøbsprodukter."
     ],
     sec7Title:"Ramadan og faste",
     sec7:[
-      "Tal med lægen før Ramadan om en sikker plan.",
-      "Metformin kan ofte planlægges til <span class='highlight'>iftar</span> og/eller <span class='highlight'>suhoor</span> afhængigt af dosis.",
-      "Hold øje med blodsukker efter aftale (særligt hvis du også får insulin eller anden medicin)."
+      "Tal med lægen om bedste plan før Ramadan.",
+      "Kan ofte planlægges til <span class='highlight'>suhoor</span> eller <span class='highlight'>iftar</span>. Mange tager den før et måltid – aftal tidspunkt der passer til din ordination.",
+      "Hvis du får stærke symptomer under faste, søg rådgivning."
     ],
     sec8Title:"Opbevaring",
     sec8:[
       "Opbevares utilgængeligt for børn og i original emballage.",
       "Brug ikke efter “EXP”. Aflever rester på apoteket."
     ],
+
     footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
     footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
   en:{
-    pageTitle:"Metformin – type 2 diabetes",
-    hdrH1:"Metformin – type 2 diabetes",
+    pageTitle:"Pantoprazole – acid reflux",
+    hdrH1:"Pantoprazole – acid reflux",
     hdrP:"Brief medicine information for patients and relatives.",
     backText:"Back to the medicine list",
     langLabel:"Choose language:",
-    drugName:"Metformin",
-    drugForm:"Tablet (by mouth)",
+    drugName:"Pantoprazole",
+    drugForm:"Gastro-resistant tablet (acid reducer)",
     badgeText:"Short and clear",
 
-    sec0Title:"What is Metformin?",
+    sec0Title:"What is pantoprazole?",
     sec0:[
-      "Metformin is a <span class='highlight'>blood sugar-lowering</span> medicine.",
-      "It improves insulin sensitivity and reduces sugar production by the liver."
+      "Pantoprazole reduces <span class='highlight'>stomach acid production</span> (a PPI).",
+      "It is not an instant antacid—effect often improves over hours to days."
     ],
     sec1Title:"What is it used for?",
     sec1:[
-      "Treatment of <span class='highlight'>type 2 diabetes</span>, often first-line.",
-      "May be combined with other diabetes medicines if needed."
+      "Heartburn and <span class='highlight'>reflux</span>.",
+      "Stomach/duodenal ulcers and prevention in selected patients (doctor’s plan).",
+      "Part of <span class='highlight'>H. pylori</span> eradication therapy with antibiotics when prescribed."
     ],
     sec2Title:"How to take",
     sec2:[
-      "Usually taken <span class='highlight'>1–3 times daily</span> depending on product and plan.",
-      "Often started at a low dose and increased to reduce stomach side effects.",
-      "Missed dose: take when remembered—<span class='highlight'>do not double dose</span>."
+      "Often taken <span class='highlight'>once daily</span>; some take it twice daily (as prescribed).",
+      "Swallow whole with water—do <span class='highlight'>not chew or crush</span> gastro-resistant tablets.",
+      "Missed dose: take when remembered—<span class='highlight'>do not double</span>."
     ],
     sec3Title:"Food and drink",
     sec3:[
-      "Preferably <span class='highlight'>with food</span> to reduce nausea/diarrhea.",
-      "Swallow with <span class='highlight'>a glass of water</span>.",
-      "Be cautious with heavy alcohol use."
+      "Often works best <span class='highlight'>before a meal</span> (commonly in the morning). Follow your prescription.",
+      "Take with a glass of water."
     ],
     sec4Title:"Warnings",
     sec4:[
-      "Seek advice if you have severe vomiting/diarrhea or dehydration.",
-      "Tell your doctor about <span class='highlight'>kidney problems</span> or contrast scans—temporary pause may be needed.",
-      "Follow medical advice during acute illness or surgery."
+      "Seek medical help for alarm symptoms: vomiting blood, black stools, unexplained weight loss, trouble swallowing, severe persistent pain.",
+      "Long-term use should be reviewed by a doctor (possible low magnesium/B12, rarely infections).",
+      "Stopping suddenly after long use may cause rebound symptoms—discuss with your doctor."
     ],
     sec5Title:"Side effects",
     sec5:[
-      "Common early: nausea, diarrhea, gas/abdominal discomfort.",
-      "Metallic taste may occur.",
-      "Long-term: some people may develop low vitamin B12."
+      "Headache, nausea, abdominal pain, diarrhea or constipation.",
+      "Bloating/flatulence.",
+      "Rash is uncommon—seek advice if severe."
     ],
     sec6Title:"Interactions",
     sec6:[
-      "Medicines affecting kidney function can affect metformin—tell your healthcare provider.",
-      "Contrast agents may require a temporary pause (doctor decides)."
+      "May affect absorption of medicines that need stomach acid (e.g., some antifungals).",
+      "Tell your doctor/pharmacy about blood thinners and all regular medicines."
     ],
     sec7Title:"Ramadan and fasting",
     sec7:[
-      "Talk to your doctor before Ramadan for a safe plan.",
-      "Often scheduled at <span class='highlight'>iftar</span> and/or <span class='highlight'>suhoor</span> depending on dose.",
-      "Monitor blood sugar as advised, especially if combined with insulin."
+      "Discuss a safe plan before Ramadan.",
+      "Often scheduled at <span class='highlight'>suhoor</span> or <span class='highlight'>iftar</span>. Many take it before a meal—follow your plan."
     ],
     sec8Title:"Storage",
     sec8:[
-      "Keep out of reach of children, in the original package.",
+      "Keep out of reach of children, in original package.",
       "Do not use after “EXP”. Return leftovers to the pharmacy."
     ],
     footer1:"If you need more information, contact your pharmacy or doctor.",
@@ -406,59 +408,58 @@ const T = {
   },
 
   so:{
-    pageTitle:"Metformin – sonkorowga nooca 2aad",
-    hdrH1:"Metformin – sonkorowga nooca 2aad",
+    pageTitle:"Pantoprazol – laabjeex/refluks",
+    hdrH1:"Pantoprazol – laabjeex/refluks",
     hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed.",
     backText:"Ku laabo liiska daawooyinka",
     langLabel:"Dooro luqadda:",
-    drugName:"Metformin",
-    drugForm:"Kiniin afka ah",
+    drugName:"Pantoprazol",
+    drugForm:"Kiniin ka hortaga aashitada caloosha",
     badgeText:"Akhris kooban",
 
-    sec0Title:"Waa maxay Metformin?",
+    sec0Title:"Waa maxay Pantoprazol?",
     sec0:[
-      "Metformin waa daawo <span class='highlight'>hoos u dhigta sonkorta dhiigga</span>.",
-      "Waxay ka caawisaa jirka inuu insulin-ka si fiican u isticmaalo, sidoo kale waxay yareyn kartaa sonkorta uu beerku sameeyo."
+      "Pantoprazol wuxuu <span class='highlight'>yareeyaa aashitada caloosha</span> (PPI).",
+      "Ma aha daawo degdeg u joojisa aashitada isla markiiba—saameyntu waxay hagaagtaa maalmo gudahood."
     ],
     sec1Title:"Maxaa loo isticmaalaa?",
     sec1:[
-      "Daaweynta <span class='highlight'>sonkorowga nooca 2aad</span>.",
-      "Mararka qaarkood waxaa lala isticmaalaa daawooyin kale oo sonkorow."
+      "Laabjeex iyo <span class='highlight'>refluks</span> (halsano).",
+      "Boog caloosha/xiidanka iyo ka hortag boog (qorshaha dhakhtarka).",
+      "Qayb ka mid ah daaweynta <span class='highlight'>H. pylori</span> (antibiotic la socota) haddii la qoro."
     ],
     sec2Title:"Sida loo qaato",
     sec2:[
-      "Badanaa waxaa la qaataa <span class='highlight'>1–3 jeer maalintii</span> (raac qorshaha dhakhtarka).",
-      "Qiyaasta waxaa laga bilaabaa mid hoose si loo yareeyo calool xanuunka, kadibna waa la kordhiyaa.",
-      "Haddii aad hilmaanto, qaado markaad xasuusato – <span class='highlight'>ha qaadan laba jeer</span>."
+      "Badanaa <span class='highlight'>1 jeer maalintii</span>; mararka qaar 2 jeer (sida dhakhtarku qoro).",
+      "Ku liq biyo – <span class='highlight'>ha calalin/ha burburin</span> kiniinka enteric.",
+      "Haddii aad hilmaanto: qaado markaad xasuusato – <span class='highlight'>ha qaadan laba jeer</span>."
     ],
     sec3Title:"Cunto iyo cabitaan",
     sec3:[
-      "Si fiican ayay u shaqeysaa haddii lagu qaato <span class='highlight'>cunto la jirto</span> (yareyso lallabbo/diarré).",
-      "Ku liq <span class='highlight'>hal koob biyo ah</span>.",
-      "Ka digtoonow khamriga badan."
+      "Badanaa waxaa fiican in la qaato <span class='highlight'>ka hor cuntada</span> (badanaa subax). Raac warqadda qiyaasta.",
+      "Ku qaado hal koob biyo ah."
     ],
     sec4Title:"Digniino",
     sec4:[
-      "Haddii aad qabto matag/diarré daran ama aad fuuqbaxdo → la xiriir dhakhtar.",
-      "Haddii aad qabto <span class='highlight'>dhibaato kelyaha</span> ama aad geli doonto scan leh contrast → dhakhtarka ayaa go’aamiya in la joojiyo si ku-meelgaar ah.",
-      "Xanuun daran/ qaliin: raac talada dhakhtarka."
+      "La xiriir dhakhtar haddii aad aragto: dhiig matag/ saxaro madow, miisaan dhimis aan la fasiri karin, liqid dhib, xanuun daran oo joogto ah.",
+      "Isticmaal dheer waa in dhakhtarku qiimeeyaa (magnesium/B12 hoose mararka qaar; infekshan dhif ah).",
+      "Haddii aad muddo dheer qaadatay, ha joojin si kedis ah adigoon la tashan."
     ],
     sec5Title:"Dhibaatooyinka",
     sec5:[
-      "Bilowga: calool wareem, lallabbo, diarré, gaas.",
-      "Dhadhan bir ah mararka qaar.",
-      "Isticmaal dheer: B12-vitamin hoose ayaa dhici kara (la hubin karo)."
+      "Madax-xanuun, lallabbo, calool xanuun, shuban ama calool-istaag.",
+      "Barar/gaas.",
+      "Finan waa dhif – haddii ay daran tahay la xiriir dhakhtar."
     ],
     sec6Title:"Is-dhexgalka daawooyinka",
     sec6:[
-      "Daawooyin saameeya kelyaha waxay saameyn karaan metformin – u sheeg dhakhtarka/farmashiyaha daawo kasta.",
-      "Contrast-ka scan-ka qaarkood wuxuu u baahan karaa joojin ku-meelgaar ah."
+      "Waxay saameyn kartaa nuugista daawooyin u baahan aashito (tusaale daawo fangas qaarkood).",
+      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo joogto ah, gaar ahaan kuwa dhiig-fiiqiya."
     ],
     sec7Title:"Ramadaanka iyo soonka",
     sec7:[
-      "La hadal dhakhtarka ka hor Ramadaan si loo sameeyo qorshe.",
-      "Badanaa waxaa lagu beegaa <span class='highlight'>afurka</span> iyo/ama <span class='highlight'>suxuurta</span> iyadoo ku xiran qiyaasta.",
-      "La soco sonkorta dhiigga sida lagu heshiiyo (gaar ahaan haddii insulin la jiro)."
+      "Ka hor Ramadaan la hadal dhakhtarka qorshe ammaan ah.",
+      "Badanaa waxaa lagu beegaa <span class='highlight'>suxuur</span> ama <span class='highlight'>afur</span> – raac qorshaha."
     ],
     sec8Title:"Kaydinta",
     sec8:[
@@ -466,26 +467,28 @@ const T = {
       "Ha qaadan haddii ay dhaafto “EXP”. Wixii haray ku celi farmashiyaha."
     ],
     footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Hanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   }
 };
 
+// fallback for remaining languages (keeps layout + theme switching)
 ["ar","tr","ur","fa","prs","ps"].forEach(l=>{ if(!T[l]) T[l]=T.en; });
 
 function applyLang(lang){
   const d = T[lang] || T.da;
+
   applyTheme(lang);
   setDirLang(lang);
 
-  document.title=d.pageTitle;
-  document.getElementById("hdrH1").textContent=d.hdrH1;
-  document.getElementById("hdrP").textContent=d.hdrP;
-  document.getElementById("backText").textContent=d.backText;
-  document.getElementById("langLabel").textContent=d.langLabel;
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.getElementById("hdrP").textContent = d.hdrP;
+  document.getElementById("backText").textContent = d.backText;
+  document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent=d.drugName;
-  document.getElementById("drugForm").textContent=d.drugForm;
-  document.getElementById("badgeText").textContent=d.badgeText;
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("badgeText").textContent = d.badgeText;
 
   setSectionTitle("sec0Title", d.sec0Title);
   setSectionTitle("sec1Title", d.sec1Title);
@@ -507,19 +510,23 @@ function applyLang(lang){
   fillList("sec7List", d.sec7);
   fillList("sec8List", d.sec8);
 
-  document.getElementById("footer1").textContent=d.footer1;
-  document.getElementById("footer2").innerHTML=d.footer2;
+  document.getElementById("footer1").textContent = d.footer1;
+  document.getElementById("footer2").innerHTML = d.footer2;
 
-  const backA=document.querySelector("a.back");
-  const base=backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base+"?lang="+encodeURIComponent(lang));
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-const params=new URLSearchParams(window.location.search);
-const startLang=params.get("lang") || "da";
-document.getElementById("langSelect").value=(T[startLang]?startLang:"da");
+const params = new URLSearchParams(window.location.search);
+const startLang = params.get("lang") || "da";
+
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
 applyLang(document.getElementById("langSelect").value);
-document.getElementById("langSelect").addEventListener("change", function(){ applyLang(this.value); });
+
+document.getElementById("langSelect").addEventListener("change", function(){
+  applyLang(this.value);
+});
 </script>
 
 </body>
