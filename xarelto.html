@@ -1,36 +1,47 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="da">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Xarelto (Rivaroxaban) – dhiig-khafiifin</title>
+<title>Xarelto (rivaroxaban) – blodfortyndende</title>
 
 <style>
+/* ===== Language theme (NO external files) ===== */
 :root{
+  --accent:#00a676;
   --c1:#0066cc;
   --c2:#00a676;
-  --accent:#00a676;
-  --link:#00509e;
+
+  /* derived / component tokens */
+  --badgeBg:#d9f6e8;
+  --badgeText:#16634a;
+
+  --iconBg:#e3f2fd;
+  --iconStroke:#1a73e8;
 }
 
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
 
 header{
   background:linear-gradient(135deg,var(--c1),var(--c2));
   color:#fff; padding:22px 16px; text-align:center;
   box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  transition:background 260ms ease;
 }
 header h1{ margin:0 0 4px; font-size:1.8rem; }
 header p{ margin:0; font-size:0.95rem; }
 
 main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-a.back{ display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--link); font-size:0.9rem; }
+a.back{
+  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
+  text-decoration:none; color:var(--accent); font-size:0.9rem;
+}
 a.back span{ font-size:1.1rem; }
 
 .langbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#ffffff; border-radius:12px; padding:10px 12px;
+  background:#fff; border-radius:12px; padding:10px 12px;
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
   border-left:4px solid var(--accent);
 }
@@ -41,23 +52,37 @@ a.back span{ font-size:1.1rem; }
 }
 
 .card{
-  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent);
+  background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12);
+  border-top:4px solid var(--accent);
 }
 
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
+.drug-icon{
+  width:44px; height:44px; border-radius:12px;
+  background:var(--iconBg);
+  display:flex; align-items:center; justify-content:center;
+}
 .drug-icon svg{ width:30px; height:30px; }
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--badgeBg); color:var(--badgeText);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+}
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
+.section-title small{ font-weight:400; color:#607089; }
+
 .section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+  width:24px; height:24px; border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center;
   font-size:0.9rem; color:#123047;
 }
 .section-icon.use{ background:#e3f2fd; }
@@ -69,13 +94,11 @@ a.back span{ font-size:1.1rem; }
 .section-icon.food{ background:#f1f8e9; }
 .section-icon.store{ background:#edeff9; }
 
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
-
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
+.section li{ margin-bottom:4px; }
 
 .highlight{ font-weight:600; }
+
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
@@ -84,17 +107,16 @@ a.back span{ font-size:1.1rem; }
 
 <body>
 <header>
-  <h1 id="hdrH1">Xarelto (Rivaroxaban) – dhiig-khafiifin</h1>
-  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <h1 id="hdrH1">Xarelto (rivaroxaban) – blodfortyndende</h1>
+  <p id="hdrP">Kort og let information om lægemidlet – til patienter og pårørende.</p>
 </header>
 
 <main>
-
   <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
+    <label for="langSelect" id="langLabel">Vælg sprog:</label>
     <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
+      <option value="so">Somalisk</option>
+      <option value="da" selected>Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
       <option value="tr">Tyrkisk</option>
@@ -105,313 +127,139 @@ a.back span{ font-size:1.1rem; }
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="backText">Tilbage til medicinlisten</span></a>
 
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
+          <svg viewBox="0 0 64 64" role="img" aria-label="">
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--iconStroke)" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--iconStroke)" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Xarelto (Rivaroxaban) – dhiig-khafiifin</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Xarelto (rivaroxaban)</div>
+          <div class="drug-form" id="drugForm">Tablet (til at tage gennem munden)</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+      <div class="badge" id="badgeText">Kort og let</div>
     </div>
 
+    <!-- 1: Hvad er -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">1</div>
-        <div class="section-title" id="sec1Title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-icon use">💊</div>
+        <div class="section-title" id="sec0Title">Hvad er Xarelto? <small>(What is it?)</small></div>
+      </div>
+      <ul id="sec0List"></ul>
+    </div>
+
+    <!-- 2: Brug -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon use">✔</div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
       </div>
       <ul id="sec1List"></ul>
     </div>
 
+    <!-- 3: Dosering -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">2</div>
-        <div class="section-title" id="sec2Title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title" id="sec2Title">Sådan tages medicinen <small>(How to take)</small></div>
       </div>
       <ul id="sec2List"></ul>
     </div>
 
+    <!-- 4: Mad og drikke -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">3</div>
-        <div class="section-title" id="sec3Title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
       </div>
       <ul id="sec3List"></ul>
     </div>
 
+    <!-- 5: Advarsler -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">4</div>
-        <div class="section-title" id="sec4Title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-icon warn">!</div>
+        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
       </div>
       <ul id="sec4List"></ul>
     </div>
 
+    <!-- 6: Bivirkninger -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec5Title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
       </div>
       <ul id="sec5List"></ul>
     </div>
 
+    <!-- 7: Interaktioner -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec6Title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
       </div>
       <ul id="sec6List"></ul>
     </div>
 
+    <!-- 8: Ramadan -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon food">🍽</div>
-        <div class="section-title" id="sec7Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
       </div>
       <ul id="sec7List"></ul>
     </div>
 
+    <!-- 9: Opbevaring -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta daawada <small>(Opbevaring)</small></div>
+        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
       </div>
       <ul id="sec8List"></ul>
     </div>
+
   </div>
 
   <div class="footer-note" id="footer1"></div>
   <div class="footer-note" id="footer2"></div>
-
 </main>
 
 <script>
+/* RTL languages */
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
+/* Theme per language (Danish must be BLUE) */
 const THEME = {
-  so:{c1:"#0066cc",c2:"#00a676",accent:"#00a676",link:"#00509e"},
-  da:{c1:"#0b5ed7",c2:"#198754",accent:"#198754",link:"#0b5ed7"},
-  en:{c1:"#0d6efd",c2:"#20c997",accent:"#20c997",link:"#0d6efd"},
-  ar:{c1:"#7c3aed",c2:"#0ea5e9",accent:"#0ea5e9",link:"#1d4ed8"},
-  tr:{c1:"#dc2626",c2:"#16a34a",accent:"#16a34a",link:"#b91c1c"},
-  ur:{c1:"#0f766e",c2:"#22c55e",accent:"#22c55e",link:"#0f766e"},
-  fa:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb"},
-  prs:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb"},
-  ps:{c1:"#1e40af",c2:"#16a34a",accent:"#16a34a",link:"#1e40af"}
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" },
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#3a86ff" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeText:"#3a1a66", iconBg:"#efe7ff", iconStroke:"#7b2cbf" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe8ea", badgeText:"#7a0b14", iconBg:"#ffe8ea", iconStroke:"#c1121f" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", badgeBg:"#e6fff6", badgeText:"#0b4f49", iconBg:"#e6fff6", iconStroke:"#0f766e" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", badgeBg:"#e6fffb", badgeText:"#0b5b57", iconBg:"#e6fffb", iconStroke:"#14b8a6" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", badgeBg:"#ecebff", badgeText:"#1f1a7a", iconBg:"#ecebff", iconStroke:"#4338ca" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", badgeBg:"#fff3db", badgeText:"#7a4703", iconBg:"#fff3db", iconStroke:"#f59e0b" }
 };
 
 function applyTheme(lang){
-  const t = THEME[lang] || THEME.so;
-  const r = document.documentElement.style;
-  r.setProperty("--c1", t.c1);
-  r.setProperty("--c2", t.c2);
-  r.setProperty("--accent", t.accent);
-  r.setProperty("--link", t.link);
+  const th = THEME[lang] || THEME.so;
+  document.documentElement.style.setProperty("--c1", th.c1);
+  document.documentElement.style.setProperty("--c2", th.c2);
+  document.documentElement.style.setProperty("--accent", th.accent);
+  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
+  document.documentElement.style.setProperty("--badgeText", th.badgeText);
+  document.documentElement.style.setProperty("--iconBg", th.iconBg);
+  document.documentElement.style.setProperty("--iconStroke", th.iconStroke);
 }
-
-function stripTags(s){
-  return String(s || "").replace(/<[^>]*>?/gm, "");
-}
-
-const T = {
-  so: {
-    pageTitle: "Xarelto (Rivaroxaban) – dhiig-khafiifin",
-    hdrH1: "Xarelto (Rivaroxaban) – dhiig-khafiifin",
-    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    backText: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    drugName: "Xarelto (Rivaroxaban) – dhiig-khafiifin",
-    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
-    badgeText: "Akhris fudud oo kooban",
-
-    sec1Title: "Isticmaalka (Anvendelse)",
-    sec1: [
-      "Xarelto (<span class='highlight'>rivaroxaban</span>) waa dhiig-khafiifin casri ah oo ka hortaga xinjirowga dhiigga (blodpropper)."
-    ],
-
-    sec2Title: "Qiyaasta (Dosering)",
-    sec2: [
-      "Qaado sida uu dhakhtarku kuu qoray. Badanaa hal mar maalintii; mararka qaarkood laba jeer maalintii bilowga.",
-      "Ha ka boodin qiyaasta. Haddii aad seegto qiyaas, la xiriir dhakhtarkaaga."
-    ],
-
-    sec3Title: "Waxyeellooyinka (Bivirkninger)",
-    sec3: [
-      "Dhiig-bax fudud (sanka, cirridka, ama nabro si fudud u soo baxa).",
-      "Dhiig-bax khatar ah: saxaro madow, matag dhiig leh, ama kaadi gaduud → La xiriir dhakhtarkaaga."
-    ],
-
-    sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
-    sec4: [
-      "Ha qaadan NSAID (tusaale ibuprofen/naproxen) ama aspirin adigoon talo ka helin dhakhtarka.",
-      "Daawooyinka qaar (tusaale qaar ka mid ah antibiyootikada ama daawooyinka fangaska) waxay kordhin karaan khatarta dhiig-baxa."
-    ],
-
-    sec5Title: "Digniino (Advarsler)",
-    sec5: [
-      "Ha joojin daawada adiga oo aan la tashan dhakhtar — xinjiro cusub ayaa samaysmi kara.",
-      "U sheeg dhakhtarka/takhtarka ilkaha haddii aad u socoto qalliin ama daaweyn ilkaha."
-    ],
-
-    sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
-    sec6: [
-      "Haddii hal mar maalintii la qaato, badanaa waxaa lagu qaadan karaa <span class='highlight'>fiidkii (ka dib afurka)</span>.",
-      "Ha beddelin qiyaasta adiga oo aan talo ka helin dhakhtarka."
-    ],
-
-    sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
-    sec7: [
-      "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya.",
-      "Haddii aad qaadanayso <span class='highlight'>15 mg</span> ama <span class='highlight'>20 mg</span>, waa in lagu qaataa <span class='highlight'>cunto</span> (si daawadu si fiican u milanto)."
-    ],
-
-    sec8Title: "Kaydinta daawada (Opbevaring)",
-    sec8: [
-      "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
-      "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
-      "Ha qaadan marka ay dhaafto taariikhda dhacitaanka ama haddii midab/qaab isbeddelo.",
-      "Wixii soo haray u gee farmashiyaha."
-    ],
-
-    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle: "Xarelto (rivaroxaban) – blodfortyndende",
-    hdrH1: "Xarelto (rivaroxaban) – blodfortyndende",
-    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
-    backText: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    drugName: "Xarelto (rivaroxaban)",
-    drugForm: "Tablet (til at tage gennem munden)",
-    badgeText: "Kort og let",
-
-    sec1Title: "Anvendelse",
-    sec1: [
-      "Xarelto (<span class='highlight'>rivaroxaban</span>) er et blodfortyndende middel, der forebygger blodpropper."
-    ],
-
-    sec2Title: "Dosering",
-    sec2: [
-      "Tag medicinen præcis som lægen har ordineret (ofte 1 gang dagligt; nogle gange 2 gange dagligt i starten).",
-      "Hvis du glemmer en dosis: Kontakt din læge."
-    ],
-
-    sec3Title: "Bivirkninger",
-    sec3: [
-      "Let blødning (næse, tandkød, blå mærker).",
-      "Tegn på alvorlig blødning: sort afføring, blodig opkast eller rød urin → Kontakt din læge."
-    ],
-
-    sec4Title: "Interaktioner",
-    sec4: [
-      "Undgå NSAID (fx ibuprofen/naproxen) og aspirin uden lægens råd.",
-      "Visse antibiotika og svampemidler kan øge blødningsrisikoen."
-    ],
-
-    sec5Title: "Advarsler",
-    sec5: [
-      "Stop ikke på egen hånd — der kan dannes nye blodpropper.",
-      "Fortæl læge/tandlæge hvis du skal opereres eller have tandbehandling."
-    ],
-
-    sec6Title: "Ramadan og faste",
-    sec6: [
-      "Hvis du tager det 1 gang dagligt, passer det ofte at tage det <span class='highlight'>om aftenen efter iftar</span>.",
-      "Ændr ikke dosis uden aftale med lægen."
-    ],
-
-    sec7Title: "Mad og drikke",
-    sec7: [
-      "Kan tages med eller uden mad.",
-      "Tablet <span class='highlight'>15 mg</span> og <span class='highlight'>20 mg</span> skal tages <span class='highlight'>sammen med mad</span> (bedre optagelse)."
-    ],
-
-    sec8Title: "Opbevaring",
-    sec8: [
-      "Opbevares utilgængeligt for børn og under 25 °C.",
-      "Opbevar i original emballage for at beskytte mod lys og fugt.",
-      "Brug ikke efter udløbsdatoen eller hvis tabletterne ændrer udseende.",
-      "Aflever rester på apoteket."
-    ],
-
-    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle: "Xarelto (rivaroxaban) – blood thinner",
-    hdrH1: "Xarelto (rivaroxaban) – blood thinner",
-    hdrP: "Brief medicine information for patients and relatives.",
-    backText: "Back to the medicine list",
-    langLabel: "Choose language:",
-    drugName: "Xarelto (rivaroxaban)",
-    drugForm: "Tablet (by mouth)",
-    badgeText: "Short and clear",
-
-    sec1Title: "Use",
-    sec1: [
-      "Xarelto (<span class='highlight'>rivaroxaban</span>) is a blood thinner used to help prevent blood clots."
-    ],
-
-    sec2Title: "Dose",
-    sec2: [
-      "Take exactly as prescribed (often once daily; sometimes twice daily at the beginning).",
-      "If you miss a dose: Contact your doctor."
-    ],
-
-    sec3Title: "Side effects",
-    sec3: [
-      "Minor bleeding (nose, gums, easy bruising).",
-      "Signs of serious bleeding: black stools, vomiting blood, or red urine → Contact your doctor."
-    ],
-
-    sec4Title: "Interactions",
-    sec4: [
-      "Avoid NSAIDs (e.g., ibuprofen/naproxen) and aspirin unless advised by a doctor.",
-      "Some antibiotics and antifungals can increase bleeding risk."
-    ],
-
-    sec5Title: "Warnings",
-    sec5: [
-      "Do not stop on your own — new clots can form.",
-      "Tell your doctor/dentist before surgery or dental treatment."
-    ],
-
-    sec6Title: "Ramadan and fasting",
-    sec6: [
-      "If taken once daily, it may fit to take it <span class='highlight'>in the evening after iftar</span>.",
-      "Do not change the dose without medical advice."
-    ],
-
-    sec7Title: "Food and drink",
-    sec7: [
-      "Can be taken with or without food.",
-      "<span class='highlight'>15 mg</span> and <span class='highlight'>20 mg</span> tablets must be taken <span class='highlight'>with food</span> for better absorption."
-    ],
-
-    sec8Title: "Storage",
-    sec8: [
-      "Keep out of reach of children and below 25 °C.",
-      "Store in the original pack to protect from light and moisture.",
-      "Do not use after the expiry date or if tablets change appearance.",
-      "Return leftovers to the pharmacy."
-    ],
-
-    footer1: "If you need more information, contact your pharmacy or doctor.",
-    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  }
-};
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
@@ -428,32 +276,246 @@ function fillList(id, arr){
   });
 }
 
-function applyLang(lang){
-  applyTheme(lang);
+/* Preserve <small> in headings */
+function setSectionTitle(elId, title){
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const small = el.querySelector("small");
+  const t = (title || "").trim();
+  if (small){
+    const first = el.childNodes[0];
+    if (first && first.nodeType === Node.TEXT_NODE){
+      first.textContent = t + " ";
+    } else {
+      el.insertBefore(document.createTextNode(t + " "), small);
+    }
+  } else {
+    el.textContent = t;
+  }
+}
 
+const T = {
+  da: {
+    pageTitle:"Xarelto (rivaroxaban) – blodfortyndende",
+    hdrH1:"Xarelto (rivaroxaban) – blodfortyndende",
+    hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
+    backText:"Tilbage til medicinlisten",
+    langLabel:"Vælg sprog:",
+    drugName:"Xarelto (rivaroxaban)",
+    drugForm:"Tablet (til at tage gennem munden)",
+    badgeText:"Kort og let",
+
+    sec0Title:"Hvad er Xarelto?",
+    sec0:[
+      "Xarelto er et <span class='highlight'>blodfortyndende</span> lægemiddel (antikoagulans).",
+      "Det mindsker risikoen for, at blodet danner <span class='highlight'>blodpropper</span>."
+    ],
+    sec1Title:"Hvad bruges det til?",
+    sec1:[
+      "Forebygge blodpropper ved <span class='highlight'>atrieflimren</span> (visse patienter).",
+      "Behandling og forebyggelse af <span class='highlight'>DVT</span> (blodprop i ben) og <span class='highlight'>LE</span> (blodprop i lungen) – efter lægens plan."
+    ],
+    sec2Title:"Sådan tages medicinen",
+    sec2:[
+      "Tag medicinen <span class='highlight'>præcis som lægen har ordineret</span> (dosis afhænger af din sygdom).",
+      "Forsøg at tage den <span class='highlight'>på samme tidspunkt</span> hver dag.",
+      "Glemte du en dosis? Følg din læges/medicin-vejledning – <span class='highlight'>tag ikke dobbeltdosis</span> medmindre du har fået besked på det."
+    ],
+    sec3Title:"Mad og drikke",
+    sec3:[
+      "Synkes med <span class='highlight'>et glas vand</span>.",
+      "Nogle doser skal tages <span class='highlight'>sammen med mad</span> – følg altid din plan/etiketten fra apoteket.",
+      "Undgå større alkoholindtag, da det kan øge risikoen for blødning hos nogle."
+    ],
+    sec4Title:"Advarsler",
+    sec4:[
+      "Kontakt læge straks ved tegn på <span class='highlight'>blødning</span>: blod i urin/afføring, sort afføring, opkast med blod, usædvanlige blå mærker, eller langvarig næseblod.",
+      "Fortæl altid tandlæge/læge, at du får blodfortyndende før operation/indgreb.",
+      "Stop <span class='highlight'>ikke</span> behandlingen uden aftale (kan øge risiko for blodprop)."
+    ],
+    sec5Title:"Bivirkninger",
+    sec5:[
+      "Den vigtigste bivirkning er <span class='highlight'>blødning</span>.",
+      "Nogle får mavegener, kvalme eller lette blå mærker."
+    ],
+    sec6Title:"Interaktioner",
+    sec6:[
+      "Nogle lægemidler kan øge blødningsrisikoen, fx <span class='highlight'>NSAID</span> (ibuprofen/naproxen) og andre blodfortyndende.",
+      "Visse antibiotika og svampemidler kan påvirke effekten – oplys altid al medicin (inkl. naturmidler)."
+    ],
+    sec7Title:"Ramadan og faste",
+    sec7:[
+      "Tal med lægen før Ramadan om en sikker plan.",
+      "Hvis din dosis skal tages med mad, kan tidspunktet ofte lægges til <span class='highlight'>iftar</span> (efter lægens plan).",
+      "Ændr ikke dosis/tidspunkt uden at aftale det."
+    ],
+    sec8Title:"Opbevaring",
+    sec8:[
+      "Opbevares utilgængeligt for børn og i original emballage.",
+      "Brug ikke efter “EXP”. Aflever rester på apoteket."
+    ],
+    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    pageTitle:"Xarelto (rivaroxaban) – blood thinner",
+    hdrH1:"Xarelto (rivaroxaban) – blood thinner",
+    hdrP:"Brief medicine information for patients and relatives.",
+    backText:"Back to the medicine list",
+    langLabel:"Choose language:",
+    drugName:"Xarelto (rivaroxaban)",
+    drugForm:"Tablet (by mouth)",
+    badgeText:"Short and clear",
+
+    sec0Title:"What is Xarelto?",
+    sec0:[
+      "Xarelto is a <span class='highlight'>blood thinner</span> (anticoagulant).",
+      "It lowers the risk of forming <span class='highlight'>blood clots</span>."
+    ],
+    sec1Title:"What is it used for?",
+    sec1:[
+      "Preventing clots in some people with <span class='highlight'>atrial fibrillation</span>.",
+      "Treating/preventing <span class='highlight'>DVT</span> and <span class='highlight'>PE</span> as prescribed."
+    ],
+    sec2Title:"How to take",
+    sec2:[
+      "Take exactly as prescribed (dose depends on your condition).",
+      "Try to take it at the <span class='highlight'>same time</span> each day.",
+      "If you miss a dose, follow your plan – <span class='highlight'>do not double dose</span> unless instructed."
+    ],
+    sec3Title:"Food and drink",
+    sec3:[
+      "Swallow with <span class='highlight'>a glass of water</span>.",
+      "Some doses must be taken <span class='highlight'>with food</span> – follow the pharmacy label.",
+      "Avoid heavy alcohol use (may increase bleeding risk for some)."
+    ],
+    sec4Title:"Warnings",
+    sec4:[
+      "Seek medical help for signs of <span class='highlight'>bleeding</span> (blood in urine/stool, black stool, vomiting blood, unusual bruising).",
+      "Always tell doctors/dentists you take a blood thinner before procedures.",
+      "Do not stop without medical advice (higher clot risk)."
+    ],
+    sec5Title:"Side effects",
+    sec5:[
+      "Main risk: <span class='highlight'>bleeding</span>.",
+      "Some people get stomach upset or easy bruising."
+    ],
+    sec6Title:"Interactions",
+    sec6:[
+      "NSAIDs (ibuprofen/naproxen) and other blood thinners can increase bleeding risk.",
+      "Some antibiotics/antifungals can change the effect – tell your doctor/pharmacy everything you take."
+    ],
+    sec7Title:"Ramadan and fasting",
+    sec7:[
+      "Talk to your doctor before Ramadan for a safe plan.",
+      "If your dose should be taken with food, it can often be placed at <span class='highlight'>iftar</span> (as prescribed).",
+      "Do not change dose/timing on your own."
+    ],
+    sec8Title:"Storage",
+    sec8:[
+      "Keep out of reach of children, in the original package.",
+      "Do not use after “EXP”. Return leftovers to the pharmacy."
+    ],
+    footer1:"If you need more information, contact your pharmacy or doctor.",
+    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  so: {
+    pageTitle:"Xarelto (Rivaroxaban) – dhiig-khafiifiye",
+    hdrH1:"Xarelto (Rivaroxaban) – dhiig-khafiifiye",
+    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed.",
+    backText:"Ku laabo liiska daawooyinka",
+    langLabel:"Dooro luqadda:",
+    drugName:"Xarelto (Rivaroxaban)",
+    drugForm:"Kiniin afka ah",
+    badgeText:"Akhris kooban",
+
+    sec0Title:"Waa maxay Xarelto?",
+    sec0:[
+      "Xarelto waa <span class='highlight'>dhiig-khafiifiye</span> (antikoagulant).",
+      "Waxay yareysaa khatarta <span class='highlight'>xinjirowga dhiigga</span> (blood clots)."
+    ],
+    sec1Title:"Maxaa loo isticmaalaa?",
+    sec1:[
+      "Qaar ka mid ah dadka qaba <span class='highlight'>atrial fibrillation</span> si looga hortago xinjirow.",
+      "Daaweynta/ka hortagga xinjirowga lugta (<span class='highlight'>DVT</span>) ama sambabada (<span class='highlight'>PE</span>) sida dhakhtarku kuu qoray."
+    ],
+    sec2Title:"Sida loo qaato",
+    sec2:[
+      "Qaado sida dhakhtarku kuu qoray (qiyaastu way ku xiran tahay xaaladda).",
+      "Isku day in aad qaadato <span class='highlight'>waqti isku mid ah</span> maalin kasta.",
+      "Haddii aad hilmaanto, raac qorshaha – <span class='highlight'>ha qaadan laba jeer</span> adigoon talo helin."
+    ],
+    sec3Title:"Cunto iyo cabitaan",
+    sec3:[
+      "Ku liq <span class='highlight'>hal koob biyo ah</span>.",
+      "Qaar ka mid ah qiyaasaha waa in lagu qaataa <span class='highlight'>cunto la jirto</span> – raac warqadda farmashiyaha.",
+      "Ka fogow khamriga badan (waxay kordhin kartaa khatarta dhiig-bax)."
+    ],
+    sec4Title:"Digniino",
+    sec4:[
+      "Haddii aad aragto calaamado <span class='highlight'>dhiig-bax</span> (dhiig kaadida/saxarada, saxaro madow, matag dhiig, nabarro badan) → la xiriir dhakhtar degdeg.",
+      "U sheeg dhakhtar/ilko-dhakhtar ka hor qaliin ama faragelin.",
+      "Ha joojin daawada adigoon dhakhtar la tashan."
+    ],
+    sec5Title:"Dhibaatooyinka",
+    sec5:[
+      "Khatarta ugu weyn: <span class='highlight'>dhiig-bax</span>.",
+      "Qaar waxay la kulmaan calool-wareem ama nabarro fudud."
+    ],
+    sec6Title:"Is-dhexgalka daawooyinka",
+    sec6:[
+      "Ibuprofen/naproxen (NSAID) iyo dhiig-khafiifiyeyaal kale waxay kordhin karaan dhiig-baxa.",
+      "Antibiotiko/antifungal qaar waxay saameyn karaan – u sheeg dhakhtarka/farmashiyaha wax kasta oo aad qaadato."
+    ],
+    sec7Title:"Ramadaanka iyo soonka",
+    sec7:[
+      "La hadal dhakhtarka ka hor Ramadaan si loo sameeyo qorshe.",
+      "Haddii qiyaastaadu u baahan tahay cunto, badanaa waxaa lagu beegaa <span class='highlight'>afurka</span> (sida qorshaha).",
+      "Ha beddelin qiyaasta/waqtiga adigoon talo helin."
+    ],
+    sec8Title:"Kaydinta",
+    sec8:[
+      "Ka fogee carruurta; ku hay baakadka asalka ah.",
+      "Ha qaadan haddii ay dhaafto “EXP”. Wixii haray ku celi farmashiyaha."
+    ],
+    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  }
+};
+
+/* Minimal fallbacks for languages not explicitly filled above */
+["ar","tr","ur","fa","prs","ps"].forEach(lang=>{
+  if(!T[lang]) T[lang] = T.en;
+});
+
+function applyLang(lang){
   const d = T[lang] || T.so;
+  applyTheme(lang);
   setDirLang(lang);
 
-  document.title = stripTags(d.pageTitle);
-  document.getElementById("hdrH1").textContent = stripTags(d.hdrH1);
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
   document.getElementById("hdrP").textContent = d.hdrP;
-
   document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugName").textContent = d.drugName;
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("sec1Title").innerHTML = d.sec1Title;
-  document.getElementById("sec2Title").innerHTML = d.sec2Title;
-  document.getElementById("sec3Title").innerHTML = d.sec3Title;
-  document.getElementById("sec4Title").innerHTML = d.sec4Title;
-  document.getElementById("sec5Title").innerHTML = d.sec5Title;
-  document.getElementById("sec6Title").innerHTML = d.sec6Title;
-  document.getElementById("sec7Title").innerHTML = d.sec7Title;
-  document.getElementById("sec8Title").innerHTML = d.sec8Title;
+  setSectionTitle("sec0Title", d.sec0Title);
+  setSectionTitle("sec1Title", d.sec1Title);
+  setSectionTitle("sec2Title", d.sec2Title);
+  setSectionTitle("sec3Title", d.sec3Title);
+  setSectionTitle("sec4Title", d.sec4Title);
+  setSectionTitle("sec5Title", d.sec5Title);
+  setSectionTitle("sec6Title", d.sec6Title);
+  setSectionTitle("sec7Title", d.sec7Title);
+  setSectionTitle("sec8Title", d.sec8Title);
 
+  fillList("sec0List", d.sec0);
   fillList("sec1List", d.sec1);
   fillList("sec2List", d.sec2);
   fillList("sec3List", d.sec3);
@@ -466,22 +528,18 @@ function applyLang(lang){
   document.getElementById("footer1").textContent = d.footer1;
   document.getElementById("footer2").innerHTML = d.footer2;
 
-  // keep language when going back
+  /* keep language when going back */
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-// Start language from ?lang=
+/* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
-
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
+const startLang = params.get("lang") || "da";
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
 applyLang(document.getElementById("langSelect").value);
-
-document.getElementById("langSelect").addEventListener("change", function(){
-  applyLang(this.value);
-});
+document.getElementById("langSelect").addEventListener("change", function(){ applyLang(this.value); });
 </script>
 
 </body>
