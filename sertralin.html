@@ -3,34 +3,33 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sertralin – niyad-jab & walwal</title>
+<title>Sertralin – niyad-jab & welwel</title>
 
 <style>
 :root{
   --accent:#00a676;
   --c1:#0066cc;
   --c2:#00a676;
-
-  /* drug icon theme */
-  --iconBg:#e3f2fd;
-  --iconStroke:#1a73e8;
+  --accent-soft: rgba(0,166,118,0.16);
+  --accent-soft2: rgba(0,166,118,0.10);
 }
 
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-
+body{ font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
 header{
   background:linear-gradient(135deg,var(--c1),var(--c2));
-  color:#fff; padding:22px 16px; text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);
   transition: background 260ms ease;
 }
-header h1 { margin:0 0 4px; font-size:1.8rem; }
-header p { margin:0; font-size:0.95rem; }
+header h1{ margin:0 0 4px; font-size:1.8rem; }
+header p{ margin:0; font-size:0.95rem; }
 
-main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--accent); font-size:0.9rem; }
-a.back span { font-size:1.1rem; }
+a.back{
+  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
+  text-decoration:none; color:var(--accent); font-size:0.9rem;
+}
+a.back span{ font-size:1.1rem; }
 
 .langbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
@@ -52,25 +51,27 @@ a.back span { font-size:1.1rem; }
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
 .drug-icon{
-  width:44px; height:44px; border-radius:12px;
-  background:var(--iconBg);
+  width:44px; height:44px; border-radius:12px; background:var(--accent-soft2);
   display:flex; align-items:center; justify-content:center;
-  transition: background 260ms ease;
 }
 .drug-icon svg{ width:30px; height:30px; }
-.drug-icon .pill-ellipse{ fill:#e8f3ff; stroke:var(--iconStroke); stroke-width:3; transition: stroke 260ms ease; }
-.drug-icon .pill-line{ stroke:var(--iconStroke); stroke-width:4; transition: stroke 260ms ease; }
-
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+
+.badge{
+  display:inline-flex; align-items:center; gap:4px;
+  background:var(--accent-soft);
+  color:#123047; border:1px solid rgba(0,0,0,0.06);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+}
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+
 .section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  width:24px; height:24px; border-radius:999px; display:inline-flex;
+  align-items:center; justify-content:center; font-size:0.9rem; color:#123047;
 }
 .section-icon.use{ background:#e3f2fd; }
 .section-icon.dose{ background:#e2f5ea; }
@@ -78,16 +79,17 @@ a.back span { font-size:1.1rem; }
 .section-icon.interact{ background:#ede7f6; }
 .section-icon.warn{ background:#ffebee; }
 .section-icon.ramadan{ background:#e0f7fa; }
+.section-icon.food{ background:#f1f8e9; }
 .section-icon.store{ background:#edeff9; }
-.section-icon.drink{ background:#e0f7fa; } /* important */
+.section-icon.drink{ background:#e0f7fa; }
 
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
 .section-title small{ font-weight:400; color:#607089; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
-.highlight{ font-weight:600; }
+.section li{ margin-bottom:4px; }
 
+.highlight{ font-weight:600; }
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
@@ -95,8 +97,8 @@ a.back span { font-size:1.1rem; }
 
 <body>
 <header>
-  <h1 id="hdrH1">Sertralin – niyad-jab &amp; walwal</h1>
-  <p id="hdrP">Waa warbixin kooban oo loogu talagalay waalidiinta &amp; bukaannada Soomaaliyeed</p>
+  <h1 id="hdrH1">Sertralin – niyad-jab & welwel</h1>
+  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed</p>
 </header>
 
 <main>
@@ -122,8 +124,8 @@ a.back span { font-size:1.1rem; }
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64">
-            <ellipse class="pill-ellipse" cx="32" cy="32" rx="22" ry="14"/>
-            <line class="pill-line" x1="20" y1="20" x2="44" y2="44"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--accent)" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--accent)" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
@@ -205,7 +207,6 @@ a.back span { font-size:1.1rem; }
       </div>
       <ul id="sec8List"></ul>
     </div>
-
   </div>
 
   <div class="footer-note" id="footer1"></div>
@@ -217,7 +218,7 @@ const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const THEME = {
   so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" },
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" }, /* Danish = BLUE */
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" },
   en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
   ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
   tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
@@ -227,15 +228,22 @@ const THEME = {
   ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
 };
 
+function hexToRgba(hex, a){
+  const h = (hex || "").replace("#","").trim();
+  if (h.length !== 6) return `rgba(0,0,0,${a})`;
+  const r = parseInt(h.slice(0,2),16);
+  const g = parseInt(h.slice(2,4),16);
+  const b = parseInt(h.slice(4,6),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
 function applyTheme(lang){
   const th = THEME[lang] || THEME.so;
   document.documentElement.style.setProperty("--c1", th.c1);
   document.documentElement.style.setProperty("--c2", th.c2);
   document.documentElement.style.setProperty("--accent", th.accent);
-
-  /* drug icon follows theme */
-  document.documentElement.style.setProperty("--iconBg", "color-mix(in srgb, " + th.accent + " 16%, #ffffff)");
-  document.documentElement.style.setProperty("--iconStroke", th.accent);
+  document.documentElement.style.setProperty("--accent-soft", hexToRgba(th.accent, 0.16));
+  document.documentElement.style.setProperty("--accent-soft2", hexToRgba(th.accent, 0.10));
 }
 
 function setDirLang(lang){
@@ -253,7 +261,6 @@ function fillList(id, arr){
   });
 }
 
-/* Preserve <small>(...)</small> */
 function setSectionTitle(elId, title){
   const el = document.getElementById(elId);
   if (!el) return;
@@ -273,71 +280,51 @@ function setSectionTitle(elId, title){
 
 const T = {
   so: {
-    pageTitle: "Sertralin – niyad-jab & walwal",
-    hdrH1: "Sertralin – niyad-jab & walwal",
-    hdrP: "Waa warbixin kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed",
+    pageTitle: "Sertralin – niyad-jab & welwel",
+    hdrH1: "Sertralin – niyad-jab & welwel",
+    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed",
     backText: "Ku laabo liiska daawooyinka",
     langLabel: "Dooro luqadda:",
     drugName: "Sertralin",
     drugForm: "Kiniin afka ah",
     badgeText: "Akhris kooban",
-
     sec0Title: "Waa maxay Sertralin? (Hvad er Sertralin?)",
     sec0: [
-      "Sertralin waa daawo ka tirsan <span class='highlight'>SSRI</span> (daawooyinka niyadda kor u qaada).",
-      "Waxay saameysaa walaxda maskaxda ee <span class='highlight'>serotonin</span> si ay u yareyso niyad-jabka iyo walwalka."
+      "Sertralin waa daawo lid ku ah niyad-jabka, oo ka tirsan <span class='highlight'>SSRI</span>.",
+      "Waxay hagaajisaa niyadda, yareysaa walbahaarka iyo welwelka."
     ],
     sec1Title: "Maxaa loo isticmaalaa? (Hvad bruges det til?)",
-    sec1: [
-      "Niyad-jab (depression).",
-      "Walwal (angst) iyo argagax (panic).",
-      "OCD (fikir/ficil ku celcelis).",
-      "PTSD (ka dib dhacdo naxdin leh) iyo cabsida bulshada (social angst) — haddii dhakhtarku qoro."
-    ],
+    sec1: ["Niyad-jabka (depression).", "Walbahaarka iyo welwelka (stress & angst)."],
     sec2Title: "Sida loo qaato (Sådan tages medicinen)",
     sec2: [
-      "Badanaa waxaa la qaataa <span class='highlight'>hal mar maalintii</span> (subax ama fiid).",
-      "Saameynta buuxda waxay qaadan kartaa <span class='highlight'>2–6 toddobaad</span>.",
-      "Bilowga waxaa jiri kara waxyeellooyin khafiif ah; badanaa way yaraadaan 1–2 toddobaad gudahood.",
-      "Ha joojin si kedis ah — joojinta waa in si tartiib ah loo sameeyaa (la tasho dhakhtar).",
-      "Haddii aad hilmaanto: qaado markaad xasuusato; haddii ay dhowdahay qiyaasta xigta, ka tag middii la hilmaamay. <span class='highlight'>Ha qaadan labo qiyaas</span>."
+      "Dadka waaweyn: <span class='highlight'>50 mg</span> maalintii marka hore.",
+      "Waxaa la kordhin karaa <span class='highlight'>50 mg toddobaad kasta</span> haddii dhakhtarku ku yiraahdo.",
+      "Qiyaasta ugu badan waa <span class='highlight'>200 mg</span> maalintii.",
+      "Badanaa waxay bilaabataa inay shaqeyso <span class='highlight'>2–4 toddobaad</span> gudahood; saameyn buuxda <span class='highlight'>6–8 toddobaad</span>.",
+      "Liq biyo. Qaado cunto la jirta/ka dib haddii calool-xanuun jiro."
     ],
     sec3Title: "Cunto iyo cabitaan (Mad og drikke)",
     sec3: [
-      "Waxaa la qaadan karaa <span class='highlight'>cunto la’aan ama cunto la socota</span>.",
-      "Khamriga wuxuu kordhin karaa dawakh/daal — <span class='highlight'>ka fogow</span> ama yaree."
+      "Liq <span class='highlight'>hal koob biyo ah (1.5–2 dl)</span>.",
+      "Haddii calool-xanuun ama lalabo, qaado <span class='highlight'>cunto ka dib</span>."
     ],
     sec4Title: "Digniino (Advarsler)",
     sec4: [
-      "Haddii aad yeelato fikir is-dil, kacsanaan badan, ama hurdo la’aan aad u daran (gaar ahaan bilowga) → <span class='highlight'>la xiriir dhakhtar si degdeg ah</span>.",
-      "Haddii aad hesho qandho, gariir, dhidid badan, jahwareer, ama shuban daran → waxay noqon kartaa xaalad halis ah (serotonin syndrome) → raadi gargaar caafimaad.",
-      "Ka taxaddar haddii aad uur leedahay/nuujinayso — la tasho dhakhtar."
+      "Isbeddel niyadeed ama fikir isdil → <span class='highlight'>la xiriir dhakhtarka</span> isla markiiba.",
+      "Ha joojin daawada si kedis ah."
     ],
     sec5Title: "Dhibaatooyinka (Bivirkninger)",
-    sec5: [
-      "Lalabo, calool-wareem, ama shuban (bilowga).",
-      "Madax-xanuun, daal ama hurdo la’aan.",
-      "Dareen kacsanaan ama gariir yar.",
-      "Hoos u dhac rabitaanka galmada ama dhibaato orgasm (dadka qaar)."
-    ],
+    sec5: ["Lalabo ama calool-xanuun.", "Madax-xanuun ama wareer.", "Hurdo badan ama hurdo la’aan.", "Miisaanka ama rabitaanka cuntada oo is beddela (qaarkood)."],
     sec6Title: "Is-dhexgalka daawooyinka (Interaktioner)",
     sec6: [
-      "Ha isku darin <span class='highlight'>MAO-hæmmere</span> (daawooyin gaar ah) — khatar is-dhexgal.",
-      "Daawooyinka kale ee serotonin kordhiya (tusaale tramadol, triptan, linezolid, St. John’s wort) → kordhin kara khatarta serotonin syndrome.",
-      "Dhiig-khafiifiyaal (tusaale warfarin, NOAC) ama NSAID (ibuprofen) → kordhin kara dhiig-bax (weydii dhakhtar/farmashiiste)."
+      "Ha isku darin daawooyin kale oo hurdo-dejiya adigoon la tashan.",
+      "Daawooyinka dhiig-khafiifinta/NSAID qaar waxay kordhin karaan khatarta dhiig-bax (la-talin).",
+      "Antibiotiko & antifungal qaarkood waxay kordhin karaan saamayn — u sheeg dhakhtarka/farmashiyaha."
     ],
     sec7Title: "Ramadaanka iyo daawada (Fasten og brugen af medicinen)",
-    sec7: [
-      "La hadal dhakhtar haddii aad rabto jadwal gaar ah.",
-      "Badanaa waxaa lagu qaadan karaa <span class='highlight'>afurka kadib</span> ama <span class='highlight'>suxuurta</span> — muhiimku waa <span class='highlight'>joogteyn</span> (hal mar maalintii)."
-    ],
+    sec7: ["La hadal dhakhtar ka hor Ramadaan.", "Badanaa waxaa la qaadan karaa <span class='highlight'>fiidkii (afurka ka dib)</span> haddii qorshaha la oggol yahay."],
     sec8Title: "Kaydinta (Opbevaring)",
-    sec8: [
-      "Ku hay meel ka fog carruurta, kana hooseeya 25°C.",
-      "Ku hay baakadka asalka ah.",
-      "Ha isticmaalin haddii ay dhaafto “EXP”. Wixii haray → ku celi farmashiyaha."
-    ],
-
+    sec8: ["Ka fog carruurta, <span class='highlight'>< 25°C</span>, baakadka asalka ah.", "Ha qaadan haddii “EXP” dhaafto. Rester → farmashiye."],
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
@@ -351,54 +338,24 @@ const T = {
     drugName: "Sertralin",
     drugForm: "Tablet (til at tage gennem munden)",
     badgeText: "Kort og let",
-
     sec0Title: "Hvad er Sertralin?",
-    sec0: [
-      "Sertralin er et <span class='highlight'>SSRI</span> (antidepressiv medicin).",
-      "Det påvirker <span class='highlight'>serotonin</span> i hjernen og kan mindske depression og angst."
-    ],
+    sec0: ["Sertralin er et antidepressivt lægemiddel i gruppen <span class='highlight'>SSRI</span>.", "Det kan forbedre humør og mindske angst/uro."],
     sec1Title: "Hvad bruges det til?",
-    sec1: [
-      "Depression.",
-      "Angst/panikangst.",
-      "OCD (tvangstanker/tvangshandlinger).",
-      "PTSD og social angst (efter lægens vurdering)."
-    ],
+    sec1: ["Depression.", "Angst og uro (stress/angst)."],
     sec2Title: "Sådan tages medicinen",
-    sec2: [
-      "Tages oftest <span class='highlight'>1 gang dagligt</span> (morgen eller aften).",
-      "Fuld effekt kan tage <span class='highlight'>2–6 uger</span>.",
-      "Bivirkninger i starten aftager ofte efter 1–2 uger.",
-      "Stop ikke brat — nedtrapning skal ske gradvist efter aftale.",
-      "Glemt dosis: tag når du husker det; <span class='highlight'>ingen dobbeltdosis</span>."
-    ],
+    sec2: ["Voksne: ofte start med <span class='highlight'>50 mg én gang dagligt</span>.", "Dosis kan øges med <span class='highlight'>50 mg pr. uge</span> efter aftale.", "Maksimal dosis er ofte <span class='highlight'>200 mg dagligt</span>.", "Effekt ses ofte efter <span class='highlight'>2–4 uger</span>; fuld effekt kan tage <span class='highlight'>6–8 uger</span>.", "Synkes med vand. Tag gerne med/efter mad ved mavegener."],
     sec3Title: "Mad og drikke",
-    sec3: [
-      "Kan tages med eller uden mad.",
-      "Alkohol kan øge træthed/svimmelhed — undgå eller begræns."
-    ],
+    sec3: ["Synkes med <span class='highlight'>et glas vand</span>.", "Tag den <span class='highlight'>efter mad</span> ved kvalme/mavegener."],
     sec4Title: "Advarsler",
-    sec4: [
-      "Kontakt læge straks ved selvmordstanker, udtalt uro, eller markant forværring (især i starten).",
-      "Søg akut hjælp ved symptomer på serotonin-syndrom (feber, rysten, forvirring, kraftig sved, diarré).",
-      "Tal med læge ved graviditet/amning."
-    ],
+    sec4: ["Kontakt læge ved forværring eller <span class='highlight'>selvmordstanker</span>.", "Stop ikke pludseligt uden aftale."],
     sec5Title: "Bivirkninger",
-    sec5: ["Kvalme/mavegener/diarré (ofte i starten).", "Hovedpine, træthed eller søvnproblemer.", "Uro/let rysten.", "Nedsat sexlyst eller seksuelle problemer (hos nogle)."],
+    sec5: ["Kvalme/mavegener.", "Hovedpine eller svimmelhed.", "Søvnighed eller søvnløshed.", "Vægt-/appetitændring hos nogle."],
     sec6Title: "Interaktioner",
-    sec6: [
-      "Må ikke kombineres med MAO-hæmmere.",
-      "Andre midler der øger serotonin (fx tramadol, triptan, perikon) kan øge risiko for serotonin-syndrom.",
-      "Blodfortyndende/NSAID kan øge blødningsrisiko — drøft med læge/apotek."
-    ],
+    sec6: ["Vær forsigtig med andre sløvende midler.", "Blodfortyndende/NSAID kan øge blødningsrisiko – tal med læge/apotek.", "Nogle antibiotika/svampemidler kan påvirke sertralin – oplys altid al medicin."],
     sec7Title: "Ramadan og faste",
-    sec7: [
-      "Kan ofte tages efter iftar eller ved suhoor.",
-      "Vigtigst er fast daglig rytme (1 gang dagligt)."
-    ],
+    sec7: ["Tal med lægen før Ramadan.", "Kan ofte tages <span class='highlight'>efter iftar</span> (efter plan)."],
     sec8Title: "Opbevaring",
     sec8: ["Opbevares utilgængeligt for børn, under 25°C og i original emballage.", "Brug ikke efter “EXP”. Aflever rester på apoteket."],
-
     footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
     footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
@@ -412,26 +369,24 @@ const T = {
     drugName: "Sertraline",
     drugForm: "Tablet (by mouth)",
     badgeText: "Short and clear",
-
     sec0Title: "What is Sertraline?",
-    sec0: ["Sertraline is an <span class='highlight'>SSRI</span> antidepressant.", "It affects <span class='highlight'>serotonin</span> and may reduce depression and anxiety symptoms."],
+    sec0: ["Sertraline is an antidepressant in the <span class='highlight'>SSRI</span> group.", "It can improve mood and reduce anxiety/stress."],
     sec1Title: "What is it used for?",
-    sec1: ["Depression.", "Anxiety/panic disorder.", "OCD.", "PTSD and social anxiety (if prescribed)."],
+    sec1: ["Depression.", "Anxiety/stress."],
     sec2Title: "How to take",
-    sec2: ["Usually <span class='highlight'>once daily</span> (morning or evening).", "Full effect may take <span class='highlight'>2–6 weeks</span>.", "Early side effects often improve after 1–2 weeks.", "Do not stop suddenly — taper with medical advice.", "Missed dose: take when remembered; <span class='highlight'>do not double</span>."],
+    sec2: ["Adults: often start with <span class='highlight'>50 mg once daily</span>.", "Dose may increase by <span class='highlight'>50 mg per week</span> as prescribed.", "Max often <span class='highlight'>200 mg daily</span>.", "Effect often after <span class='highlight'>2–4 weeks</span>; full effect <span class='highlight'>6–8 weeks</span>.", "Swallow with water; take with food if stomach upset."],
     sec3Title: "Food and drink",
-    sec3: ["Can be taken with or without food.", "Avoid/limit alcohol (may increase drowsiness)."],
+    sec3: ["Swallow with <span class='highlight'>a glass of water</span>.", "Take <span class='highlight'>after food</span> if nausea/stomach upset."],
     sec4Title: "Warnings",
-    sec4: ["Seek help urgently if you develop suicidal thoughts, severe agitation, or worsening symptoms (especially early).", "Get urgent care for possible serotonin syndrome (fever, shaking, confusion, heavy sweating, severe diarrhea).", "Discuss if pregnant/breastfeeding."],
+    sec4: ["Seek help if mood worsens or <span class='highlight'>suicidal thoughts</span> occur.", "Do not stop suddenly."],
     sec5Title: "Side effects",
-    sec5: ["Nausea/stomach upset/diarrhea.", "Headache, tiredness or insomnia.", "Restlessness/tremor.", "Sexual side effects in some people."],
+    sec5: ["Nausea/stomach upset.", "Headache/dizziness.", "Sleepiness or insomnia.", "Weight/appetite changes in some."],
     sec6Title: "Interactions",
-    sec6: ["Do not combine with MAO inhibitors.", "Other serotonin-increasing drugs (e.g., tramadol, triptans, St John’s wort) can increase risk.", "Blood thinners/NSAIDs may increase bleeding risk."],
+    sec6: ["Be careful with other sedatives.", "Blood thinners/NSAIDs may increase bleeding risk (ask doctor).", "Some antibiotics/antifungals may affect sertraline."],
     sec7Title: "Ramadan and fasting",
-    sec7: ["Often after iftar or at suhoor; keep a consistent once-daily routine."],
+    sec7: ["Talk to your doctor before Ramadan.", "Often taken <span class='highlight'>after iftar</span> if appropriate."],
     sec8Title: "Storage",
-    sec8: ["Keep out of reach of children, below 25°C, in the original package.", "Do not use after “EXP”. Return leftovers to the pharmacy."],
-
+    sec8: ["Keep out of reach of children, below 25°C, in original package.", "Do not use after “EXP”. Return leftovers to the pharmacy."],
     footer1: "If you need more information, contact your pharmacy or doctor.",
     footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
@@ -445,26 +400,24 @@ const T = {
     drugName: "سيرترالين",
     drugForm: "أقراص (عن طريق الفم)",
     badgeText: "مختصر وواضح",
-
     sec0Title: "ما هو سيرترالين؟",
-    sec0: ["سيرترالين من أدوية <span class='highlight'>SSRI</span>.", "يؤثر على <span class='highlight'>السيروتونين</span> وقد يقلل أعراض الاكتئاب والقلق."],
+    sec0: ["سيرترالين دواء مضاد للاكتئاب من مجموعة <span class='highlight'>SSRI</span>.", "يمكن أن يحسّن المزاج ويقلل القلق."],
     sec1Title: "لماذا يُستخدم؟",
-    sec1: ["الاكتئاب.", "القلق/نوبات الهلع.", "الوسواس القهري.", "اضطراب ما بعد الصدمة والقلق الاجتماعي (حسب الوصفة)."],
+    sec1: ["الاكتئاب.", "القلق/التوتر."],
     sec2Title: "طريقة الاستعمال",
-    sec2: ["غالباً <span class='highlight'>مرة يومياً</span>.", "قد يحتاج 2–6 أسابيع لظهور التأثير الكامل.", "لا توقفه فجأة؛ يجب التدرج.", "جرعة منسية: لا تضاعف."],
+    sec2: ["للبالغين: غالباً يبدأ بـ <span class='highlight'>50 ملغ مرة يومياً</span>.", "قد تُزاد الجرعة <span class='highlight'>50 ملغ أسبوعياً</span> حسب الطبيب.", "الحد الأقصى غالباً <span class='highlight'>200 ملغ يومياً</span>.", "قد يظهر التحسن بعد <span class='highlight'>2–4 أسابيع</span>؛ الكامل <span class='highlight'>6–8 أسابيع</span>.", "يُبلع مع الماء ويفضل بعد الطعام إذا سبب غثياناً."],
     sec3Title: "الطعام والشراب",
-    sec3: ["مع أو بدون طعام.", "تجنب/قلل الكحول."],
+    sec3: ["يُبلع مع <span class='highlight'>كوب ماء</span>.", "يفضّل <span class='highlight'>بعد الطعام</span> عند الغثيان."],
     sec4Title: "تحذيرات",
-    sec4: ["اطلب المساعدة فوراً عند أفكار انتحارية أو تدهور شديد.", "اشتباه متلازمة السيروتونين: حمى/رجفان/ارتباك/تعرق/إسهال شديد → طوارئ."],
+    sec4: ["اتصل بالطبيب إذا ساء المزاج أو ظهرت <span class='highlight'>أفكار انتحارية</span>.", "لا توقفه فجأة."],
     sec5Title: "الآثار الجانبية",
-    sec5: ["غثيان/اضطراب معدة.", "صداع أو تعب/أرق.", "قلق أو رجفة.", "مشاكل جنسية لدى البعض."],
+    sec5: ["غثيان/اضطراب معدة.", "صداع أو دوخة.", "نعاس أو أرق.", "تغير وزن/شهية لدى بعض الأشخاص."],
     sec6Title: "التداخلات",
-    sec6: ["لا يُجمع مع مثبطات MAO.", "أدوية تزيد السيروتونين قد تزيد الخطر (ترامادول، تريبتان، عشبة سانت جون).", "مميعات الدم/NSAID قد تزيد النزف."],
+    sec6: ["الحذر مع المهدئات.", "مميعات الدم/NSAID قد تزيد النزف.", "بعض المضادات الحيوية/الفطريات قد تؤثر — أخبر الطبيب بكل الأدوية."],
     sec7Title: "رمضان والصيام",
-    sec7: ["يمكن غالباً بعد الإفطار أو السحور مع الحفاظ على انتظام مرة يومياً."],
+    sec7: ["استشر الطبيب قبل رمضان.", "يمكن غالباً تناوله <span class='highlight'>بعد الإفطار</span> حسب الخطة."],
     sec8Title: "الحفظ",
     sec8: ["يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.", "لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."],
-
     footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
     footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
   },
@@ -478,26 +431,24 @@ const T = {
     drugName: "Sertralin",
     drugForm: "Tablet (ağızdan)",
     badgeText: "Kısa ve anlaşılır",
-
     sec0Title: "Sertralin nedir?",
-    sec0: ["Sertralin bir <span class='highlight'>SSRI</span> antidepresandır.", "<span class='highlight'>Serotonin</span> üzerinde etkili olup depresyon/anksiyeteyi azaltabilir."],
+    sec0: ["Sertralin <span class='highlight'>SSRI</span> grubunda bir antidepresandır.", "Ruh halini iyileştirip kaygıyı azaltabilir."],
     sec1Title: "Ne için kullanılır?",
-    sec1: ["Depresyon.", "Anksiyete/panik.", "OKB.", "TSSB ve sosyal anksiyete (uygunsa)."],
+    sec1: ["Depresyon.", "Anksiyete/stres."],
     sec2Title: "Nasıl alınır?",
-    sec2: ["Genelde <span class='highlight'>günde 1 kez</span>.", "Tam etki 2–6 haftayı bulabilir.", "Ani bırakmayın; kademeli azaltın.", "Unutulan doz: çift doz almayın."],
+    sec2: ["Genelde başlangıç <span class='highlight'>50 mg günde 1 kez</span>.", "Haftada <span class='highlight'>50 mg</span> artırılabilir (doktorla).", "Maks genelde <span class='highlight'>200 mg/gün</span>.", "Etkisi <span class='highlight'>2–4 hafta</span>; tam etki <span class='highlight'>6–8 hafta</span>.", "Su ile yutun; mide şikayeti varsa yemekten sonra."],
     sec3Title: "Yemek ve içecek",
-    sec3: ["Yemekle/yemeksiz.", "Alkolü azaltın/kaçının."],
+    sec3: ["<span class='highlight'>Bir bardak su</span> ile yutun.", "Bulantı varsa <span class='highlight'>yemekten sonra</span> alın."],
     sec4Title: "Uyarılar",
-    sec4: ["İntihar düşüncesi/şiddetli kötüleşme olursa acil yardım alın.", "Serotonin sendromu belirtileri olursa acile başvurun."],
+    sec4: ["Kötüleşme veya <span class='highlight'>intihar düşüncesi</span> olursa doktora başvurun.", "Aniden bırakmayın."],
     sec5Title: "Yan etkiler",
-    sec5: ["Bulantı/mide rahatsızlığı.", "Baş ağrısı, yorgunluk veya uykusuzluk.", "Huzursuzluk/titreme.", "Bazılarında cinsel yan etkiler."],
+    sec5: ["Bulantı/mide şikayeti.", "Baş ağrısı/baş dönmesi.", "Uyku hali veya uykusuzluk.", "Bazılarında kilo/iştah değişikliği."],
     sec6Title: "Etkileşimler",
-    sec6: ["MAO inhibitörleri ile birlikte kullanılmaz.", "Serotonin artıran ilaçlar riski artırabilir.", "Kan sulandırıcı/NSAID kanama riskini artırabilir."],
+    sec6: ["Diğer sakinleştiricilerle dikkat.", "Kan sulandırıcı/NSAİİ kanama riskini artırabilir.", "Bazı antibiyotik/mantar ilaçları etkileyebilir."],
     sec7Title: "Ramazan ve oruç",
-    sec7: ["İftardan sonra veya sahurda alınabilir; günde 1 kez düzenli alın."],
+    sec7: ["Ramazan öncesi doktorla plan yapın.", "Uygunsa <span class='highlight'>iftardan sonra</span> alınabilir."],
     sec8Title: "Saklama",
     sec8: ["Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.", "“EXP” sonrası kullanmayın. Artanları eczaneye verin."],
-
     footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
     footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
   },
@@ -511,26 +462,24 @@ const T = {
     drugName: "سرٹرالین",
     drugForm: "گولی (منہ کے ذریعے)",
     badgeText: "مختصر اور واضح",
-
     sec0Title: "سرٹرالین کیا ہے؟",
-    sec0: ["سرٹرالین <span class='highlight'>SSRI</span> دوا ہے۔", "<span class='highlight'>سیروٹونن</span> پر اثر کر کے ڈپریشن/بے چینی کم کر سکتی ہے۔"],
+    sec0: ["سرٹرالین <span class='highlight'>SSRI</span> گروپ کی اینٹی ڈپریسنٹ دوا ہے۔", "موڈ بہتر اور بے چینی کم کر سکتی ہے۔"],
     sec1Title: "کس لیے استعمال ہوتی ہے؟",
-    sec1: ["ڈپریشن۔", "بے چینی/پینک۔", "OCD۔", "PTSD اور سوشل اینگزائٹی (اگر تجویز ہو)۔"],
+    sec1: ["ڈپریشن۔", "بے چینی/اینزائٹی۔"],
     sec2Title: "طریقہ استعمال",
-    sec2: ["اکثر <span class='highlight'>روزانہ ایک بار</span>۔", "مکمل اثر 2–6 ہفتے لے سکتا ہے۔", "اچانک بند نہ کریں؛ آہستہ کم کریں۔", "بھولی خوراک: ڈبل نہ لیں۔"],
+    sec2: ["عموماً آغاز <span class='highlight'>50 mg روزانہ</span>۔", "<span class='highlight'>50 mg فی ہفتہ</span> بڑھ سکتی ہے (ڈاکٹر کے مطابق)۔", "زیادہ سے زیادہ <span class='highlight'>200 mg روزانہ</span>۔", "اثر <span class='highlight'>2–4 ہفتے</span>؛ مکمل <span class='highlight'>6–8 ہفتے</span>۔", "پانی کے ساتھ نگلیں؛ متلی ہو تو کھانے کے بعد۔"],
     sec3Title: "کھانا پینا",
-    sec3: ["کھانے کے ساتھ یا بغیر۔", "الکحل سے پرہیز/کم کریں۔"],
+    sec3: ["<span class='highlight'>ایک گلاس پانی</span> کے ساتھ لیں۔", "متلی ہو تو <span class='highlight'>کھانے کے بعد</span> لیں۔"],
     sec4Title: "احتیاطیں",
-    sec4: ["خودکشی کے خیالات یا شدید بگڑاؤ ہو تو فوراً مدد لیں۔", "سیروٹونن سنڈروم کی علامات ہوں تو ایمرجنسی۔"],
+    sec4: ["موڈ خراب ہو یا <span class='highlight'>خودکشی کے خیالات</span> ہوں تو فوراً ڈاکٹر۔", "اچانک بند نہ کریں۔"],
     sec5Title: "مضر اثرات",
-    sec5: ["متلی/معدے کی خرابی۔", "سر درد، تھکن یا نیند کی مشکل۔", "بے چینی/ہلکی کپکپی۔", "کچھ افراد میں جنسی مسائل۔"],
+    sec5: ["متلی/پیٹ کی خرابی۔", "سر درد/چکر۔", "نیند یا بے خوابی۔", "کچھ میں وزن/بھوک میں تبدیلی۔"],
     sec6Title: "دواؤں کے باہمی اثرات",
-    sec6: ["MAO inhibitors کے ساتھ نہیں۔", "سیروٹونن بڑھانے والی ادویات خطرہ بڑھا سکتی ہیں۔", "خون پتلا کرنے والی/NSAID سے خون بہنے کا خطرہ بڑھ سکتا ہے۔"],
+    sec6: ["سکون آور ادویات کے ساتھ احتیاط۔", "خون پتلا کرنے والی/NSAID خون بہنے کا خطرہ بڑھا سکتی ہیں۔", "کچھ اینٹی بایوٹک/فنگس کی ادویات اثر بدل سکتی ہیں۔"],
     sec7Title: "رمضان اور روزہ",
-    sec7: ["افطار کے بعد یا سحری میں لی جا سکتی ہے؛ روزانہ ایک بار باقاعدگی ضروری ہے۔"],
+    sec7: ["رمضان سے پہلے ڈاکٹر سے پلان۔", "اکثر <span class='highlight'>افطار کے بعد</span> لیا جا سکتا ہے (اگر مناسب ہو)۔"],
     sec8Title: "محفوظ رکھنا",
     sec8: ["بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔", "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"],
-
     footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
     footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
   },
@@ -544,26 +493,24 @@ const T = {
     drugName: "سرترالین",
     drugForm: "قرص (خوراکی)",
     badgeText: "کوتاه و روشن",
-
     sec0Title: "سرترالین چیست؟",
-    sec0: ["سرترالین از گروه <span class='highlight'>SSRI</span> است.", "روی <span class='highlight'>سروتونین</span> اثر می‌گذارد و می‌تواند افسردگی/اضطراب را کاهش دهد."],
+    sec0: ["سرترالین یک داروی ضد افسردگی از گروه <span class='highlight'>SSRI</span> است.", "می‌تواند خلق را بهتر و اضطراب را کمتر کند."],
     sec1Title: "موارد مصرف",
-    sec1: ["افسردگی.", "اضطراب/پانیک.", "OCD.", "PTSD و اضطراب اجتماعی (در صورت تجویز)."],
+    sec1: ["افسردگی.", "اضطراب/استرس."],
     sec2Title: "نحوه مصرف",
-    sec2: ["معمولاً <span class='highlight'>روزی یک‌بار</span>.", "اثر کامل 2–6 هفته زمان می‌برد.", "ناگهانی قطع نکنید؛ باید تدریجی کم شود.", "دوز فراموش‌شده: دوز دو برابر نخورید."],
+    sec2: ["معمولاً شروع <span class='highlight'>50 mg روزی یک‌بار</span>.", "افزایش <span class='highlight'>هفتگی 50 mg</span> با نظر پزشک.", "حداکثر معمولاً <span class='highlight'>200 mg در روز</span>.", "اثر <span class='highlight'>2–4 هفته</span>؛ کامل <span class='highlight'>6–8 هفته</span>.", "با آب قورت دهید؛ در صورت ناراحتی معده بعد از غذا."],
     sec3Title: "غذا و نوشیدنی",
-    sec3: ["با یا بدون غذا.", "الکل را محدود/ترک کنید."],
+    sec3: ["با <span class='highlight'>یک لیوان آب</span>.", "در صورت تهوع <span class='highlight'>بعد از غذا</span>."],
     sec4Title: "هشدارها",
-    sec4: ["در صورت افکار خودکشی یا بدتر شدن شدید فوراً کمک بگیرید.", "علائم سندرم سروتونین → اورژانس."],
+    sec4: ["بدتر شدن خلق یا <span class='highlight'>افکار خودکشی</span> → تماس با پزشک.", "ناگهانی قطع نکنید."],
     sec5Title: "عوارض",
-    sec5: ["تهوع/ناراحتی معده.", "سردرد، خستگی یا بی‌خوابی.", "بی‌قراری/لرزش.", "مشکلات جنسی در برخی."],
+    sec5: ["تهوع/ناراحتی معده.", "سردرد/سرگیجه.", "خواب‌آلودگی یا بی‌خوابی.", "تغییر وزن/اشتها در برخی."],
     sec6Title: "تداخلات",
-    sec6: ["با MAO inhibitors نباید مصرف شود.", "داروهای افزایش‌دهنده سروتونین خطر را زیاد می‌کنند.", "رقیق‌کننده خون/NSAID ممکن است خطر خونریزی را افزایش دهد."],
+    sec6: ["با آرام‌بخش‌ها احتیاط.", "رقیق‌کننده خون/NSAID خطر خونریزی را افزایش می‌دهد.", "برخی آنتی‌بیوتیک/ضدقارچ اثر را تغییر می‌دهند."],
     sec7Title: "رمضان و روزه",
-    sec7: ["بعد از افطار یا در سحر قابل مصرف است؛ نظم روزی یک‌بار مهم است."],
+    sec7: ["قبل از رمضان با پزشک برنامه‌ریزی کنید.", "اغلب <span class='highlight'>بعد از افطار</span> قابل مصرف است."],
     sec8Title: "نگهداری",
     sec8: ["دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی.", "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."],
-
     footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
     footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
   },
@@ -577,59 +524,55 @@ const T = {
     drugName: "سرترالین",
     drugForm: "قرص (خوراکی)",
     badgeText: "کوتاه و واضح",
-
     sec0Title: "سرترالین چیست؟",
-    sec0: ["سرترالین از گروه <span class='highlight'>SSRI</span> است.", "روی <span class='highlight'>سروتونین</span> اثر دارد و می‌تواند افسردگی/اضطراب را کم کند."],
+    sec0: ["سرترالین از گروه <span class='highlight'>SSRI</span> است.", "می‌تواند خلق را بهتر و اضطراب را کمتر کند."],
     sec1Title: "برای چی استفاده می‌شود؟",
-    sec1: ["افسردگی.", "اضطراب/پانیک.", "OCD.", "PTSD و اضطراب اجتماعی (در صورت تجویز)."],
+    sec1: ["افسردگی.", "اضطراب/استرس."],
     sec2Title: "چگونه گرفته شود؟",
-    sec2: ["اکثر <span class='highlight'>روزی یک‌بار</span>.", "اثر کامل 2–6 هفته.", "ناگهانی قطع نکنید؛ تدریجی کم کنید.", "دوز فراموش‌شده: دوز دو برابر نگیرید."],
+    sec2: ["معمولاً شروع <span class='highlight'>50 mg روزی یک‌بار</span>.", "هفته‌وار <span class='highlight'>50 mg</span> زیاد می‌شود (با نظر داکتر).", "حداکثر <span class='highlight'>200 mg</span>.", "اثر <span class='highlight'>2–4 هفته</span>؛ کامل <span class='highlight'>6–8 هفته</span>.", "با آب؛ اگر معده اذیت می‌کند بعد از غذا."],
     sec3Title: "غذا و نوشیدنی",
-    sec3: ["با یا بدون غذا.", "الکل را کم/ترک کنید."],
+    sec3: ["با <span class='highlight'>یک گلاس آب</span>.", "در صورت تهوع <span class='highlight'>بعد از غذا</span>."],
     sec4Title: "هشدارها",
-    sec4: ["افکار خودکشی یا بدتر شدن شدید → فوراً کمک بگیرید.", "علائم سندرم سروتونین → عاجل."],
+    sec4: ["بدتر شدن خلق یا <span class='highlight'>فکر خودکشی</span> → تماس با داکتر.", "ناگهانی قطع نکنید."],
     sec5Title: "عوارض",
-    sec5: ["تهوع/ناراحتی معده.", "سردرد، خستگی یا بی‌خوابی.", "بی‌قراری/لرزش.", "مشکلات جنسی در بعضی."],
+    sec5: ["تهوع/معده.", "سردرد/سرگیجه.", "خواب‌آلودگی یا بی‌خوابی.", "تغییر وزن/اشتها در بعضی."],
     sec6Title: "تداخلات",
-    sec6: ["با MAO inhibitors نباید.", "داروهای افزایش‌دهنده سروتونین خطر را زیاد می‌کند.", "رقیق‌کننده خون/NSAID خطر خونریزی را بالا می‌برد."],
+    sec6: ["با آرام‌بخش‌ها احتیاط.", "رقیق‌کننده خون/NSAID خطر خونریزی را زیاد می‌کند.", "برخی انتی‌بیوتیک/ضدقارچ اثر را تغییر می‌دهد."],
     sec7Title: "رمضان و روزه",
-    sec7: ["بعد از افطار یا در سحری؛ نظم روزی یک‌بار مهم است."],
+    sec7: ["قبل از رمضان با داکتر پلان بسازید.", "اکثر <span class='highlight'>بعد از افطار</span> قابل گرفتن است."],
     sec8Title: "نگهداری",
     sec8: ["دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی.", "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."],
-
     footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
     footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
   },
 
   ps: {
-    pageTitle: "سېرټرالین – خپګان او اندېښنه",
-    hdrH1: "سېرټرالین – خپګان او اندېښنه",
+    pageTitle: "سېرټرالین – خپګان او اضطراب",
+    hdrH1: "سېرټرالین – خپګان او اضطراب",
     hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
     backText: "لېست ته بېرته",
     langLabel: "ژبه وټاکئ:",
     drugName: "سېرټرالین",
     drugForm: "ګولۍ (د خولې له لارې)",
     badgeText: "لنډ او روښانه",
-
     sec0Title: "سېرټرالین څه شی دی؟",
-    sec0: ["سېرټرالین د <span class='highlight'>SSRI</span> ډلې درمل دي.", "په <span class='highlight'>سېرټو نین</span> اغېز کوي او د خپګان/اندېښنې نښې کمولای شي."],
+    sec0: ["سېرټرالین د <span class='highlight'>SSRI</span> ډلې ضد خپګان درمل دي.", "مزاج ښه او اضطراب کموي."],
     sec1Title: "د څه لپاره کارېږي؟",
-    sec1: ["خپګان.", "اندېښنه/پانیک.", "OCD.", "PTSD او ټولنیزه اندېښنه (که تجویز شي)."],
+    sec1: ["خپګان.", "اضطراب/اندېښنه."],
     sec2Title: "څنګه واخیستل شي؟",
-    sec2: ["اکثره <span class='highlight'>ورځ کې ۱ ځل</span>.", "بشپړ اغېز 2–6 اونۍ وخت نیسي.", "ناڅاپه مه بندوئ؛ تدریجي کمول اړین دي.", "هېر شوی دوز: ډبل مه اخلئ."],
+    sec2: ["اکثر پیل <span class='highlight'>50 mg ورځ کې 1 ځل</span>.", "هره اونۍ <span class='highlight'>50 mg</span> زیاتېدای شي.", "اعظمي <span class='highlight'>200 mg</span>.", "اغېز <span class='highlight'>2–4 اونۍ</span>؛ بشپړ <span class='highlight'>6–8 اونۍ</span>.", "له اوبو سره؛ که معده خرابوي له خوړو وروسته."],
     sec3Title: "خواړه او څښاک",
-    sec3: ["له خوړو سره یا بې له خوړو.", "الکول کم/ډډه وکړئ."],
+    sec3: ["له <span class='highlight'>یو ګیلاس اوبو</span> سره.", "که زړه بدوالی وي <span class='highlight'>له خوړو وروسته</span>."],
     sec4Title: "خبرداری",
-    sec4: ["که ځان‌زیان فکرونه یا شدید خرابوالی رامنځته شي → بیړنۍ مرسته.", "د serotonin syndrome نښې → عاجل طبي مرسته."],
+    sec4: ["که <span class='highlight'>د ځان وژنې فکرونه</span> وي، ژر ډاکټر.", "ناڅاپه مه بندوئ."],
     sec5Title: "اړخیزې اغېزې",
-    sec5: ["زړه بدوالی/معدې ناارامي.", "سر درد، ستړیا یا بې خوبۍ.", "بې قراري/لرزش.", "په ځینو کې جنسي ستونزې."],
+    sec5: ["زړه بدوالی/معده.", "سر درد/سر ګرځېدل.", "خوبولي یا بې خوبي.", "په ځینو کې وزن/اشتها بدلون."],
     sec6Title: "تداخلات",
-    sec6: ["له MAO inhibitors سره مه کاروئ.", "نور serotonin زیاتونکي درمل خطر زیاتوي.", "د وینې نری کوونکي/NSAID د وینې بهېدو خطر زیاتولای شي."],
+    sec6: ["له اراموونکو درملو سره احتیاط.", "د وینې نری کوونکي/NSAID د وینې بهېدو خطر زیاتوي.", "ځینې انټي‌بیوتیک/فنګس درمل اغېز بدلوي."],
     sec7Title: "رمضان او روژه",
-    sec7: ["له افطار وروسته یا په سحري کې اخیستل کېدای شي؛ ورځ کې ۱ ځل منظم اخیستل مهم دي."],
+    sec7: ["له رمضان مخکې له ډاکټر سره پلان.", "اکثر <span class='highlight'>له افطار وروسته</span> اخیستل کېږي."],
     sec8Title: "ساتنه",
     sec8: ["له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې.", "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."],
-
     footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
     footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
@@ -688,6 +631,5 @@ document.getElementById("langSelect").addEventListener("change", function(){
   applyLang(this.value);
 });
 </script>
-
 </body>
 </html>
