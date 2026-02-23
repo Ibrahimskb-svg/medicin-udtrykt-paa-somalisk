@@ -1,33 +1,44 @@
 <!DOCTYPE html>
-<html lang="so">
+<html lang="da">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ventoline – neef-mareenka</title>
+<title>Ventoline – åndenød (astma/KOL)</title>
 
 <style>
 :root{
+  --accent:#00a676;
   --c1:#0066cc;
   --c2:#00a676;
-  --accent:#00a676;
-  --link:#00509e;
+
   --badgeBg:#d9f6e8;
-  --badgeFg:#16634a;
+  --badgeText:#16634a;
+
+  --iconBg:#e3f2fd;
+  --iconStroke:#1a73e8;
 }
 
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,var(--c1),var(--c2)); color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15); }
-header h1 { margin:0 0 4px; font-size:1.8rem; }
-header p { margin:0; font-size:0.95rem; }
+body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+header{
+  background:linear-gradient(135deg,var(--c1),var(--c2));
+  color:#fff; padding:22px 16px; text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  transition:background 260ms ease;
+}
+header h1{ margin:0 0 4px; font-size:1.8rem; }
+header p{ margin:0; font-size:0.95rem; }
 
-main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--link); font-size:0.9rem; }
-a.back span { font-size:1.1rem; }
+a.back{
+  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
+  text-decoration:none; color:var(--accent); font-size:0.9rem;
+}
+a.back span{ font-size:1.1rem; }
 
 .langbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#ffffff; border-radius:12px; padding:10px 12px;
+  background:#fff; border-radius:12px; padding:10px 12px;
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
   border-left:4px solid var(--accent);
 }
@@ -38,23 +49,37 @@ a.back span { font-size:1.1rem; }
 }
 
 .card{
-  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent);
+  background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+  box-shadow:0 3px 10px rgba(15,23,42,0.12);
+  border-top:4px solid var(--accent);
 }
 
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{ width:44px; height:44px; border-radius:12px; background:#e3f2fd; display:flex; align-items:center; justify-content:center; }
+.drug-icon{
+  width:44px; height:44px; border-radius:12px;
+  background:var(--iconBg);
+  display:flex; align-items:center; justify-content:center;
+}
 .drug-icon svg{ width:30px; height:30px; }
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:var(--badgeBg); color:var(--badgeFg); padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--badgeBg); color:var(--badgeText);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+}
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
+.section-title small{ font-weight:400; color:#607089; }
+
 .section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+  width:24px; height:24px; border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center;
   font-size:0.9rem; color:#123047;
 }
 .section-icon.use{ background:#e3f2fd; }
@@ -66,11 +91,10 @@ a.back span { font-size:1.1rem; }
 .section-icon.food{ background:#f1f8e9; }
 .section-icon.store{ background:#edeff9; }
 
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
+.section li{ margin-bottom:4px; }
 .highlight{ font-weight:600; }
+
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
@@ -78,17 +102,16 @@ a.back span { font-size:1.1rem; }
 
 <body>
 <header>
-  <h1 id="hdrH1">Ventoline – neef-mareenka</h1>
-  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <h1 id="hdrH1">Ventoline – åndenød (astma/KOL)</h1>
+  <p id="hdrP">Kort og let information om lægemidlet – til patienter og pårørende.</p>
 </header>
 
 <main>
-
   <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
+    <label for="langSelect" id="langLabel">Vælg sprog:</label>
     <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
+      <option value="so">Somalisk</option>
+      <option value="da" selected>Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
       <option value="tr">Tyrkisk</option>
@@ -99,79 +122,86 @@ a.back span { font-size:1.1rem; }
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="backText">Tilbage til medicinlisten</span></a>
 
   <div class="card">
-
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64">
-            <rect x="18" y="10" width="22" height="30" rx="4" fill="#c8e6ff" stroke="#1a73e8" stroke-width="3"/>
-            <rect x="28" y="30" width="24" height="20" rx="3" fill="#ffffff" stroke="#0f9d58" stroke-width="3"/>
-            <rect x="40" y="18" width="8" height="10" rx="2" fill="#bbdefb" stroke="#1a73e8" stroke-width="2"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--iconStroke)" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--iconStroke)" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Ventoline – neef-mareenka</div>
-          <div class="drug-form" id="drugForm">Buufin la neefsado (Inhalator til at indånde medicin)</div>
+          <div class="drug-name" id="drugName">Ventoline (salbutamol)</div>
+          <div class="drug-form" id="drugForm">Inhalation (spray/pulver) – hurtigtvirkende</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+      <div class="badge" id="badgeText">Kort og let</div>
+    </div>
+
+    <!-- Identiske sektion-ikoner som de andre -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon use">💊</div>
+        <div class="section-title" id="sec0Title">Hvad er Ventoline? <small>(What is it?)</small></div>
+      </div>
+      <ul id="sec0List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">1</div>
-        <div class="section-title" id="sec1Title">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-icon use">✔</div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
       </div>
       <ul id="sec1List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">2</div>
-        <div class="section-title" id="sec2Title">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title" id="sec2Title">Sådan bruges inhalatoren <small>(How to use)</small></div>
       </div>
       <ul id="sec2List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">3</div>
-        <div class="section-title" id="sec3Title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
       </div>
       <ul id="sec3List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">4</div>
-        <div class="section-title" id="sec4Title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-icon warn">!</div>
+        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
       </div>
       <ul id="sec4List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec5Title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
       </div>
       <ul id="sec5List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec6Title">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
       </div>
       <ul id="sec6List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon food">🍽</div>
-        <div class="section-title" id="sec7Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
       </div>
       <ul id="sec7List"></ul>
     </div>
@@ -179,238 +209,276 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta daawada iyo nadiifinta <small>(Opbevaring og rengøring)</small></div>
+        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
       </div>
       <ul id="sec8List"></ul>
     </div>
-
   </div>
 
   <div class="footer-note" id="footer1"></div>
   <div class="footer-note" id="footer2"></div>
-
 </main>
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const THEME = {
-  so:{c1:"#0066cc",c2:"#00a676",accent:"#00a676",link:"#00509e",badgeBg:"#d9f6e8",badgeFg:"#16634a"},
-  da:{c1:"#0b5ed7",c2:"#198754",accent:"#198754",link:"#0b5ed7",badgeBg:"#d1fae5",badgeFg:"#065f46"},
-  en:{c1:"#0d6efd",c2:"#20c997",accent:"#20c997",link:"#0d6efd",badgeBg:"#d1fae5",badgeFg:"#065f46"},
-  ar:{c1:"#7c3aed",c2:"#0ea5e9",accent:"#0ea5e9",link:"#1d4ed8",badgeBg:"#e0f2fe",badgeFg:"#075985"},
-  tr:{c1:"#dc2626",c2:"#16a34a",accent:"#16a34a",link:"#b91c1c",badgeBg:"#dcfce7",badgeFg:"#166534"},
-  ur:{c1:"#0f766e",c2:"#22c55e",accent:"#22c55e",link:"#0f766e",badgeBg:"#dcfce7",badgeFg:"#166534"},
-  fa:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb",badgeBg:"#ede9fe",badgeFg:"#5b21b6"},
-  prs:{c1:"#2563eb",c2:"#a855f7",accent:"#a855f7",link:"#2563eb",badgeBg:"#ede9fe",badgeFg:"#5b21b6"},
-  ps:{c1:"#1e40af",c2:"#16a34a",accent:"#16a34a",link:"#1e40af",badgeBg:"#dcfce7",badgeFg:"#166534"}
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" },
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#3a86ff" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeText:"#3a1a66", iconBg:"#efe7ff", iconStroke:"#7b2cbf" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe8ea", badgeText:"#7a0b14", iconBg:"#ffe8ea", iconStroke:"#c1121f" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", badgeBg:"#e6fff6", badgeText:"#0b4f49", iconBg:"#e6fff6", iconStroke:"#0f766e" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", badgeBg:"#e6fffb", badgeText:"#0b5b57", iconBg:"#e6fffb", iconStroke:"#14b8a6" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", badgeBg:"#ecebff", badgeText:"#1f1a7a", iconBg:"#ecebff", iconStroke:"#4338ca" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", badgeBg:"#fff3db", badgeText:"#7a4703", iconBg:"#fff3db", iconStroke:"#f59e0b" }
 };
 
 function applyTheme(lang){
-  const t = THEME[lang] || THEME.so;
-  const r = document.documentElement.style;
-  r.setProperty("--c1", t.c1);
-  r.setProperty("--c2", t.c2);
-  r.setProperty("--accent", t.accent);
-  r.setProperty("--link", t.link);
-  r.setProperty("--badgeBg", t.badgeBg);
-  r.setProperty("--badgeFg", t.badgeFg);
+  const th = THEME[lang] || THEME.so;
+  document.documentElement.style.setProperty("--c1", th.c1);
+  document.documentElement.style.setProperty("--c2", th.c2);
+  document.documentElement.style.setProperty("--accent", th.accent);
+  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
+  document.documentElement.style.setProperty("--badgeText", th.badgeText);
+  document.documentElement.style.setProperty("--iconBg", th.iconBg);
+  document.documentElement.style.setProperty("--iconStroke", th.iconStroke);
 }
-
-const T = {
-  so: {
-    pageTitle: "Ventoline – neef-mareenka",
-    hdrH1: "Ventoline – neef-mareenka",
-    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    backText: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    drugName: "Ventoline – neef-mareenka",
-    drugForm: "Buufin la neefsado (Inhalator til at indånde medicin)",
-    badgeText: "Akhris fudud oo kooban",
-
-    sec1Title: "Isticmaalka (Anvendelse)",
-    sec1: [
-      "Ventoline (<span class='highlight'>salbutamol</span>) waa buufin lagu neefsado oo <span class='highlight'>fura marinnada hawada</span>.",
-      "Waxaa loo isticmaalaa <span class='highlight'>neefta (astma)</span> iyo <span class='highlight'>KOL</span> marka neefsashadu kugu adkaato (daawo “degdeg ah”)."
-    ],
-
-    sec2Title: "Qiyaasta (Dosering)",
-    sec2: [
-      "Dadka waaweyn: <span class='highlight'>1–2 buufin</span> marka neef-kac (xiiq) dhacdo.",
-      "Ka hor jimicsi: <span class='highlight'>1–2 buufin</span> <span class='highlight'>10–15 daqiiqo</span> ka hor, haddii dhakhtarku oggol yahay."
-    ],
-
-    sec3Title: "Waxyeellooyinka (Bivirkninger)",
-    sec3: [
-      "Gariir gacmaha, wadne-garaac degdeg ah, madax-wareer.",
-      "Qiyaas badan waxay keeni kartaa wadne-garaac aad u degdeg ah ama xanaaq/wareer."
-    ],
-
-    sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
-    sec4: [
-      "Daawooyinka wadnaha qaarkood (<span class='highlight'>beta-blokker</span>) waxay ka dhigi karaan Ventoline mid aan si fiican u shaqayn.",
-      "Tusaale ahaan: <span class='highlight'>metoprolol</span> (ama beta-blokker kale) mararka qaar waxay yarayn karaan saameynta Ventoline — la xiriir dhakhtarkaaga haddii aad labadaba qaadato."
-    ],
-
-    sec5Title: "Digniino (Advarsler)",
-    sec5: [
-      "Haddii aad u baahan tahay Ventoline <span class='highlight'>maalin kasta</span>, neeftaadu ma xakamaysna — la xiriir dhakhtarkaaga.",
-      "Haddii buufinku uusan kaa caawin neefta ama neefsashadu aad u xumaato: <span class='highlight'>wac 112</span> ama raadi gargaar degdeg ah."
-    ],
-
-    sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
-    sec6: [
-      "Buufinta sambabada badanaa looma tixgeliyo jebin soon, laakiin caafimaadkaaga ayaa mudnaanta leh.",
-      "La hadal dhakhtarkaaga haddii aad qabto su'aalo ku saabsan isticmaalka inta lagu jiro soonka."
-    ],
-
-    sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
-    sec7: [
-      "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya."
-    ],
-
-    sec8Title: "Kaydinta daawada iyo nadiifinta (Opbevaring og rengøring)",
-    sec8: [
-      "Ku kaydi qalabka neefsashada meel qalalan oo ka fog carruurta. Ka fogee qorrax toos ah ama kulayl badan.",
-      "Afka iyo qaybta aad ku neefsato ku tirtir <span class='highlight'>maro nadiif ah oo qalalan</span>. Ka fogow biyo/wax qoyan."
-    ],
-
-    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle: "Ventoline – luftveje (anfaldsmedicin)",
-    hdrH1: "Ventoline – luftveje (anfaldsmedicin)",
-    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
-    backText: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    drugName: "Ventoline",
-    drugForm: "Inhalator (til at indånde medicin)",
-    badgeText: "Kort og let",
-
-    sec1Title: "Anvendelse",
-    sec1: [
-      "Ventoline (<span class='highlight'>salbutamol</span>) er en inhalator, der <span class='highlight'>åbner luftvejene</span> hurtigt.",
-      "Bruges ved <span class='highlight'>astma</span> og <span class='highlight'>KOL</span> når du får åndenød/hvæsen (”anfaldsmedicin”)."
-    ],
-    sec2Title: "Dosering",
-    sec2: [
-      "Voksne: <span class='highlight'>1–2 pust</span> ved symptomer/anfald.",
-      "Før motion: <span class='highlight'>1–2 pust</span> <span class='highlight'>10–15 min</span> før, hvis lægen har sagt det."
-    ],
-    sec3Title: "Bivirkninger",
-    sec3: [
-      "Rysten, hjertebanken, svimmelhed/hovedpine.",
-      "For høj dosis kan give udtalt hjertebanken."
-    ],
-    sec4Title: "Interaktioner",
-    sec4: [
-      "Nogle hjertelægemidler (<span class='highlight'>betablokkere</span>) kan gøre Ventoline mindre effektivt.",
-      "Fx <span class='highlight'>metoprolol</span> kan hos nogle modvirke effekten — kontakt din læge, hvis du bruger begge."
-    ],
-    sec5Title: "Advarsler",
-    sec5: [
-      "Hvis du har brug for Ventoline <span class='highlight'>hver dag</span>, er din sygdom ikke godt kontrolleret — kontakt lægen.",
-      "Hvis det ikke hjælper, og du bliver meget forpustet: <span class='highlight'>ring 112</span> eller søg akut hjælp."
-    ],
-    sec6Title: "Ramadan og faste",
-    sec6: [
-      "Inhalationsmedicin vurderes ofte som ikke-fastbrydende, men holdninger kan variere.",
-      "Stop ikke din medicin under faste uden at tale med lægen."
-    ],
-    sec7Title: "Mad og drikke",
-    sec7: [
-      "Kan bruges uafhængigt af mad. Brug inhalatoren med korrekt teknik."
-    ],
-    sec8Title: "Opbevaring og rengøring",
-    sec8: [
-      "Opbevar tørt og utilgængeligt for børn. Undgå varme og direkte sol.",
-      "Tør mundstykket af med en <span class='highlight'>ren, tør klud</span>. Undgå vand/fugt."
-    ],
-    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle: "Ventoline – airways (reliever inhaler)",
-    hdrH1: "Ventoline – airways (reliever inhaler)",
-    hdrP: "Brief medicine information for patients and relatives.",
-    backText: "Back to the medicine list",
-    langLabel: "Choose language:",
-    drugName: "Ventoline",
-    drugForm: "Inhaler (to breathe in medicine)",
-    badgeText: "Short and clear",
-
-    sec1Title: "Use",
-    sec1: [
-      "Ventoline (<span class='highlight'>salbutamol</span>) is a quick-relief inhaler that <span class='highlight'>opens the airways</span>.",
-      "Used for <span class='highlight'>asthma</span> and <span class='highlight'>COPD</span> when you get shortness of breath/wheezing."
-    ],
-    sec2Title: "Dose",
-    sec2: [
-      "Adults: <span class='highlight'>1–2 puffs</span> when symptoms occur.",
-      "Before exercise: <span class='highlight'>1–2 puffs</span> <span class='highlight'>10–15 minutes</span> before, if your doctor allows."
-    ],
-    sec3Title: "Side effects",
-    sec3: [
-      "Tremor, fast heartbeat, dizziness/headache.",
-      "Too much can cause strong palpitations."
-    ],
-    sec4Title: "Interactions",
-    sec4: [
-      "Some heart medicines (<span class='highlight'>beta-blockers</span>) may make Ventoline less effective.",
-      "For example, <span class='highlight'>metoprolol</span> may reduce the effect in some people — contact your doctor if you use both."
-    ],
-    sec5Title: "Warnings",
-    sec5: [
-      "If you need Ventoline <span class='highlight'>every day</span>, your condition may not be well controlled — contact your doctor.",
-      "If it does not help and breathing gets worse: <span class='highlight'>call emergency services</span>."
-    ],
-    sec6Title: "Ramadan and fasting",
-    sec6: [
-      "Inhalers are often considered not to break the fast, but opinions can vary.",
-      "Do not stop your medicine during fasting without medical advice."
-    ],
-    sec7Title: "Food and drink",
-    sec7: [
-      "Can be used with or without food. Use with correct inhaler technique."
-    ],
-    sec8Title: "Storage and cleaning",
-    sec8: [
-      "Store dry and out of reach of children. Avoid heat and direct sunlight.",
-      "Wipe the mouthpiece with a <span class='highlight'>clean, dry cloth</span>. Avoid water/moisture."
-    ],
-    footer1: "If you need more information, contact your pharmacy or doctor.",
-    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  /* ar/tr/ur/fa/prs/ps: beholdt som du havde dem (ingen ændring i tekster her) */
-  ar: null, tr: null, ur: null, fa: null, prs: null, ps: null
-};
-
-// Hvis du vil beholde dine lange ar/tr/ur/fa/prs/ps-tekster i samme fil,
-// så indsæt dem igen her i stedet for null (samme struktur som so/da/en).
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
+
 function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
-  (arr || []).forEach(txt => {
+  (arr || []).forEach(txt=>{
     const li = document.createElement("li");
     li.innerHTML = txt;
     ul.appendChild(li);
   });
 }
 
+function setSectionTitle(elId, title){
+  const el = document.getElementById(elId);
+  if(!el) return;
+  const small = el.querySelector("small");
+  const t = (title || "").trim();
+  if(small){
+    const first = el.childNodes[0];
+    if(first && first.nodeType === Node.TEXT_NODE){
+      first.textContent = t + " ";
+    }else{
+      el.insertBefore(document.createTextNode(t + " "), small);
+    }
+  }else{
+    el.textContent = t;
+  }
+}
+
+const T = {
+  da:{
+    pageTitle:"Ventoline – åndenød (astma/KOL)",
+    hdrH1:"Ventoline – åndenød (astma/KOL)",
+    hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
+    backText:"Tilbage til medicinlisten",
+    langLabel:"Vælg sprog:",
+    drugName:"Ventoline (salbutamol)",
+    drugForm:"Inhalation (spray/pulver) – hurtigtvirkende",
+    badgeText:"Kort og let",
+
+    sec0Title:"Hvad er Ventoline?",
+    sec0:[
+      "Ventoline (salbutamol) er en <span class='highlight'>hurtigtvirkende</span> inhalationsmedicin, der udvider luftvejene (bronchodilatator).",
+      "Den bruges som <span class='highlight'>anfaldsmedicin</span> ved pludselig åndenød/piben."
+    ],
+    sec1Title:"Hvad bruges det til?",
+    sec1:[
+      "Akut lindring ved <span class='highlight'>astma</span> og <span class='highlight'>KOL</span> (åndenød, hvæsende vejrtrækning).",
+      "Kan også bruges <span class='highlight'>før fysisk aktivitet</span>, hvis du får anstrengelsesudløst symptomer (efter plan)."
+    ],
+    sec2Title:"Sådan bruges inhalatoren",
+    sec2:[
+      "Følg din ordination. Typisk bruges Ventoline <span class='highlight'>efter behov</span> ved symptomer.",
+      "Hvis du har spray (MDI): ryst inhalatoren, pust ud, sæt mundstykket til læberne, tryk én gang og <span class='highlight'>træk langsomt dybt ind</span>, hold vejret ca. 5–10 sek, pust ud.",
+      "Spacer (forstøverkammer) kan gøre det lettere, især for børn.",
+      "Hvis du ofte har behov (fx dagligt eller flere gange dagligt), bør du kontakte lægen – det kan være tegn på utilstrækkelig kontrol."
+    ],
+    sec3Title:"Mad og drikke",
+    sec3:[
+      "Kan bruges uafhængigt af mad og drikke.",
+      "Drik gerne vand, hvis du får tør mund."
+    ],
+    sec4Title:"Advarsler",
+    sec4:[
+      "Søg akut hjælp ved svær åndenød, blå læber, eller hvis Ventoline <span class='highlight'>ikke hjælper som normalt</span>.",
+      "Overforbrug kan være farligt og kan skjule forværring af sygdom – kontakt læge ved hyppigt behov.",
+      "Hvis du har hjertesygdom, højt blodtryk eller stofskiftesygdom: nævn det for lægen."
+    ],
+    sec5Title:"Bivirkninger",
+    sec5:[
+      "Rysten på hænderne, hjertebanken, uro.",
+      "Hovedpine eller muskelkramper kan forekomme.",
+      "I sjældne tilfælde kan det irritere luftvejene kortvarigt."
+    ],
+    sec6Title:"Interaktioner",
+    sec6:[
+      "Nogle lægemidler kan påvirke effekten (fx visse <span class='highlight'>betablokkere</span>).",
+      "Fortæl lægen/apoteket om din faste medicin."
+    ],
+    sec7Title:"Ramadan og faste",
+    sec7:[
+      "Inhalationsmedicin bruges ofte under Ramadan efter religiøs vejledning – hvis du er i tvivl, tal med imam og læge.",
+      "Sundhedsmæssigt: brug Ventoline ved behov. Ved anfald bør du <span class='highlight'>prioritere din sikkerhed</span> og søge hjælp."
+    ],
+    sec8Title:"Opbevaring",
+    sec8:[
+      "Opbevares ved stuetemperatur og utilgængeligt for børn.",
+      "Beskyt spray mod varme og direkte sollys.",
+      "Hold øje med udløbsdato og antal doser (hvis tæller findes)."
+    ],
+
+    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en:{
+    pageTitle:"Ventoline – shortness of breath (asthma/COPD)",
+    hdrH1:"Ventoline – shortness of breath (asthma/COPD)",
+    hdrP:"Brief medicine information for patients and relatives.",
+    backText:"Back to the medicine list",
+    langLabel:"Choose language:",
+    drugName:"Ventoline (salbutamol)",
+    drugForm:"Inhalation (spray/powder) – fast-acting",
+    badgeText:"Short and clear",
+
+    sec0Title:"What is Ventoline?",
+    sec0:[
+      "Ventoline (salbutamol) is a <span class='highlight'>fast-acting</span> inhaler that opens the airways.",
+      "It is used as a <span class='highlight'>reliever</span> for sudden wheeze or shortness of breath."
+    ],
+    sec1Title:"What is it used for?",
+    sec1:[
+      "Quick relief in <span class='highlight'>asthma</span> and <span class='highlight'>COPD</span> symptoms.",
+      "May be used <span class='highlight'>before exercise</span> if prescribed."
+    ],
+    sec2Title:"How to use",
+    sec2:[
+      "Use as prescribed—often <span class='highlight'>as needed</span>.",
+      "For spray (MDI): shake, breathe out, seal lips, press once and inhale <span class='highlight'>slow and deep</span>, hold 5–10 seconds, breathe out.",
+      "A spacer can help, especially for children.",
+      "Frequent need suggests poor control—contact your doctor."
+    ],
+    sec3Title:"Food and drink",
+    sec3:[
+      "Can be used regardless of food.",
+      "Water may help if mouth feels dry."
+    ],
+    sec4Title:"Warnings",
+    sec4:[
+      "Seek urgent help if severe symptoms or if it <span class='highlight'>does not work as usual</span>.",
+      "Overuse can be risky—contact a doctor if you need it often.",
+      "Tell your doctor if you have heart disease or thyroid problems."
+    ],
+    sec5Title:"Side effects",
+    sec5:[
+      "Tremor, palpitations, feeling jittery.",
+      "Headache or muscle cramps may occur.",
+      "Rarely, short-term airway irritation."
+    ],
+    sec6Title:"Interactions",
+    sec6:[
+      "Some medicines may reduce effect (e.g., certain <span class='highlight'>beta-blockers</span>).",
+      "Tell your doctor/pharmacy about regular medicines."
+    ],
+    sec7Title:"Ramadan and fasting",
+    sec7:[
+      "If in doubt about religious aspects, ask your imam and doctor.",
+      "Health-wise: use when needed—your safety comes first."
+    ],
+    sec8Title:"Storage",
+    sec8:[
+      "Store at room temperature, out of reach of children.",
+      "Protect spray from heat/direct sunlight.",
+      "Check expiry date and dose counter if available."
+    ],
+    footer1:"If you need more information, contact your pharmacy or doctor.",
+    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  so:{
+    pageTitle:"Ventoline – neef-qabatin (asthma/KOL)",
+    hdrH1:"Ventoline – neef-qabatin (asthma/KOL)",
+    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed.",
+    backText:"Ku laabo liiska daawooyinka",
+    langLabel:"Dooro luqadda:",
+    drugName:"Ventoline (salbutamol)",
+    drugForm:"Neef-mareen (spray/powder) – degdeg u shaqeeya",
+    badgeText:"Akhris kooban",
+
+    sec0Title:"Waa maxay Ventoline?",
+    sec0:[
+      "Ventoline (salbutamol) waa daawo <span class='highlight'>degdeg u fura hawada</span> (bronchodilator).",
+      "Waxaa badanaa loo isticmaalaa <span class='highlight'>weerarka neef-qabatinka</span>."
+    ],
+    sec1Title:"Maxaa loo isticmaalaa?",
+    sec1:[
+      "Asthma iyo KOL: neef-qabatin, xiiq, neef-celin.",
+      "Mararka qaar ka hor jimicsi haddii calaamado kugu kiciyaan (qorshe)."
+    ],
+    sec2Title:"Sida loo isticmaalo",
+    sec2:[
+      "Raac qorshaha dhakhtarka—badanaa <span class='highlight'>marka loo baahdo</span>.",
+      "Haddii ay spray tahay: rux, neef saar, afka ku xir, hal mar riix oo si tartiib ah u neefso, hay 5–10 ilbiriqsi.",
+      "Spacer wuxuu caawiyaa, gaar ahaan carruurta.",
+      "Haddii aad marar badan u baahato, la xiriir dhakhtar (xanuunku wuu sii xumaan karaa)."
+    ],
+    sec3Title:"Cunto iyo cabitaan",
+    sec3:[
+      "Cunto kuma xirna.",
+      "Biyo cab haddii afku qalalo."
+    ],
+    sec4Title:"Digniino",
+    sec4:[
+      "Haddii neeftu aad u xumaato ama Ventoline uusan shaqayn sida caadiga ah → raadi gargaar degdeg ah.",
+      "Isticmaal badan waa khatar; la xiriir dhakhtar haddii aad si joogto ah u isticmaasho.",
+      "Haddii aad qabto xanuun wadne ama thyroid, u sheeg dhakhtarka."
+    ],
+    sec5Title:"Dhibaatooyinka",
+    sec5:[
+      "Gacmo gariir, wadne garaac, kacsanaan/werwer.",
+      "Madax-xanuun ama murqo qandac.",
+      "Dhif: cuncun/irritation yar oo hawada ah."
+    ],
+    sec6Title:"Is-dhexgalka daawooyinka",
+    sec6:[
+      "Daawooyin qaar (tusaale betablokker qaarkood) waxay yarayn karaan saamaynta.",
+      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato."
+    ],
+    sec7Title:"Ramadaanka iyo soonka",
+    sec7:[
+      "Haddii aad ka shaki qabto dhinaca diinta, la tasho imam iyo dhakhtar.",
+      "Caafimaad ahaan: isticmaal marka loo baahdo—badbaadadaadu waa muhiim."
+    ],
+    sec8Title:"Kaydinta",
+    sec8:[
+      "Ku hay heerkulka qolka, kana fog carruurta.",
+      "Ka ilaali kulayl/qorrax toos ah (spray).",
+      "Hubi EXP iyo tirada puff-yada haddii ay leedahay counter."
+    ],
+    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  }
+};
+
+["ar","tr","ur","fa","prs","ps"].forEach(l=>{ if(!T[l]) T[l]=T.en; });
+
 function applyLang(lang){
+  const d = T[lang] || T.da;
+
   applyTheme(lang);
   setDirLang(lang);
-
-  const d = T[lang] || T.so;
 
   document.title = d.pageTitle;
   document.getElementById("hdrH1").textContent = d.hdrH1;
@@ -422,15 +490,17 @@ function applyLang(lang){
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("sec1Title").textContent = d.sec1Title;
-  document.getElementById("sec2Title").textContent = d.sec2Title;
-  document.getElementById("sec3Title").textContent = d.sec3Title;
-  document.getElementById("sec4Title").textContent = d.sec4Title;
-  document.getElementById("sec5Title").textContent = d.sec5Title;
-  document.getElementById("sec6Title").textContent = d.sec6Title;
-  document.getElementById("sec7Title").textContent = d.sec7Title;
-  document.getElementById("sec8Title").textContent = d.sec8Title;
+  setSectionTitle("sec0Title", d.sec0Title);
+  setSectionTitle("sec1Title", d.sec1Title);
+  setSectionTitle("sec2Title", d.sec2Title);
+  setSectionTitle("sec3Title", d.sec3Title);
+  setSectionTitle("sec4Title", d.sec4Title);
+  setSectionTitle("sec5Title", d.sec5Title);
+  setSectionTitle("sec6Title", d.sec6Title);
+  setSectionTitle("sec7Title", d.sec7Title);
+  setSectionTitle("sec8Title", d.sec8Title);
 
+  fillList("sec0List", d.sec0);
   fillList("sec1List", d.sec1);
   fillList("sec2List", d.sec2);
   fillList("sec3List", d.sec3);
@@ -443,17 +513,15 @@ function applyLang(lang){
   document.getElementById("footer1").textContent = d.footer1;
   document.getElementById("footer2").innerHTML = d.footer2;
 
-  // keep language when going back
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-// Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
+const startLang = params.get("lang") || "da";
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
 applyLang(document.getElementById("langSelect").value);
 
 document.getElementById("langSelect").addEventListener("change", function(){
