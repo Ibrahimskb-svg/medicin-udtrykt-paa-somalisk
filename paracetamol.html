@@ -11,6 +11,10 @@
   --accent:#00a676;
   --c1:#0066cc;
   --c2:#00a676;
+
+  /* badge */
+  --badgeBg:#d9f6e8;
+  --badgeFg:#16634a;
 }
 
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
@@ -50,7 +54,13 @@ a.back span { font-size:1.1rem; }
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+
+/* FIX: badge uses theme variables (so Danish can be blue) */
+.badge{
+  display:inline-flex; align-items:center; gap:4px;
+  background:var(--badgeBg); color:var(--badgeFg);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+}
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
@@ -58,6 +68,7 @@ a.back span { font-size:1.1rem; }
   width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
   font-size:0.9rem; color:#123047;
 }
+/* Identical icon color blocks as your other pages */
 .section-icon.use{ background:#e3f2fd; }
 .section-icon.dose{ background:#e2f5ea; }
 .section-icon.side{ background:#fff3e0; }
@@ -108,7 +119,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon">
+        <div class="drug-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64">
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="#1a73e8" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" stroke="#1a73e8" stroke-width="4"/>
@@ -122,38 +133,43 @@ a.back span { font-size:1.1rem; }
       <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
     </div>
 
+    <!-- 1: Isticmaalka -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">1</div>
+        <div class="section-icon use">💊</div>
         <div class="section-title" id="sec1Title">Isticmaalka <small>(Anvendelse)</small></div>
       </div>
       <ul id="sec1List"></ul>
     </div>
 
+    <!-- 2: Qiyaasta -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">2</div>
+        <div class="section-icon dose">⏰</div>
         <div class="section-title" id="sec2Title">Qiyaasta <small>(Dosering)</small></div>
       </div>
       <ul id="sec2List"></ul>
     </div>
 
+    <!-- 3: Waxyeellooyinka -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">3</div>
+        <div class="section-icon side">⚠️</div>
         <div class="section-title" id="sec3Title">Waxyeellooyinka <small>(Bivirkninger)</small></div>
       </div>
       <ul id="sec3List"></ul>
     </div>
 
+    <!-- 4: Interaktioner -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">4</div>
+        <div class="section-icon interact">⇆</div>
         <div class="section-title" id="sec4Title">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
       </div>
       <ul id="sec4List"></ul>
     </div>
 
+    <!-- 5: Digniino -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
@@ -162,6 +178,7 @@ a.back span { font-size:1.1rem; }
       <ul id="sec5List"></ul>
     </div>
 
+    <!-- 6: Ramadan -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
@@ -170,14 +187,16 @@ a.back span { font-size:1.1rem; }
       <ul id="sec6List"></ul>
     </div>
 
+    <!-- 7: Cunto -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon food">🍽</div>
+        <div class="section-icon food">🍽️</div>
         <div class="section-title" id="sec7Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
       </div>
       <ul id="sec7List"></ul>
     </div>
 
+    <!-- 8: Opbevaring -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
@@ -197,17 +216,17 @@ a.back span { font-size:1.1rem; }
 /* RTL languages */
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-/* Colors per language (same idea as index: Danish = blue) */
+/* Colors per language */
 const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" }, // default
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" }, // blue
-  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
-  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e" },
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6" },
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca" },
-  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeFg:"#16634a" }, // default green badge
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeFg:"#0b5ed7" }, // FIX: blue badge in Danish
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeFg:"#0b3d91" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeFg:"#5b2a86" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe7ea", badgeFg:"#8a0f17" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", badgeBg:"#e6fff7", badgeFg:"#0f766e" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", badgeBg:"#e6fbff", badgeFg:"#0b7285" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", badgeBg:"#ecebff", badgeFg:"#4338ca" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", badgeBg:"#fff2df", badgeFg:"#b45309" }
 };
 
 function applyTheme(lang){
@@ -215,6 +234,8 @@ function applyTheme(lang){
   document.documentElement.style.setProperty("--c1", th.c1);
   document.documentElement.style.setProperty("--c2", th.c2);
   document.documentElement.style.setProperty("--accent", th.accent);
+  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
+  document.documentElement.style.setProperty("--badgeFg", th.badgeFg);
 }
 
 function setDirLang(lang){
@@ -266,45 +287,38 @@ const T = {
       "Daawadan waxaa loo isticmaalaa <span class='highlight'>xanuun fudud</span> iyo <span class='highlight'>qandho</span> sida madax-xanuun, ilko-xanuun iyo murqo xanuun (muskelsmerter).",
       "Waa daawo aan xanuunka kaa suulinayn ama kaa qaadayn, laakiin waxay kaa caawineysaa in xanuunku yaraado oo aad ka nasato."
     ],
-
     sec2Title: "Qiyaasta (Dosering)",
     sec2: [
       "Qofka weyn (voksne): <span class='highlight'>500–1000 mg</span> mar, ugu badnaan 4 jeer maalintii.",
       "Ha dhaafin <span class='highlight'>4 gram maalintii</span> (4000 mg).",
       "Caruurta: qiyaasta waxaa lagu saleeyaa miisaanka (vægt) – raac qoraalka ama talada dhakhtarka iyo farmashiyaha."
     ],
-
     sec3Title: "Waxyeellooyinka (Bivirkninger)",
     sec3: [
       "Badanaa wuu fiican yahay. Laakiin marar dhif ah, wuxuu keenaa finan, cuncun ama neef-qabatin oo xasaasiyad (allergi) ah.",
       "Haddii aad qaadato qiyaas aad u badan muddo dheer, beerka (leveren) wuu dhaawici karaa."
     ],
-
     sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
     sec4: [
       "Ka taxaddar haddii aad qaadato daawooyin kale oo qandho/xanuun ah oo isla paracetamol ku jiro (tusaale daawo hargab).",
       "Had iyo jeer u sheeg farmashiyaha daawo kasta aad isticmaasho."
     ],
-
     sec5Title: "Digniino (Advarsler)",
     sec5: [
       "Ha qaadan qiyaas ka badan tan lagu qoray baakadka, ama uu dhakhtarku kuu sheegay.",
       "Haddii xanuunka ama qandhada aanad ka caafimaadin 3–5 maalmood gudahood, la xiriir dhakhtarka."
     ],
-
     sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
     sec6: [
       "Kaniiniga afka (tablet) wuxuu jebinayaa soonka maalinta Ramadaanka.",
       "Haddii ay suurtagal tahay, qorshee qiyaasta in aad qaadato fiidkii (afurka) ama suxuurta.",
       "Haddii aad aad u xanuunsan tahay, la hadal dhakhtarka si aad u hesho ogolansho."
     ],
-
     sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
     sec7: [
       "Paracetamol waxaa la qaadan karaa cuntada ka hor ama cuntada ka dib.",
       "Haddii aad calool xanuun isku ogtahay, cunto yar ka hormari."
     ],
-
     sec8Title: "Kaydinta daawada (Opbevaring)",
     sec8: [
       "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
@@ -324,7 +338,7 @@ const T = {
     langLabel: "Vælg sprog:",
     drugName: "Paracetamol – smerter og feber",
     drugForm: "Tablet (til at tage gennem munden)",
-    badgeText: "Kort og let",
+    badgeText: "Kort og let at læse",
 
     sec1Title: "Anvendelse",
     sec1: [
@@ -789,7 +803,6 @@ function applyLang(lang){
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  /* Keep <small>(...)</small> visible in headings */
   setSectionTitle("sec1Title", d.sec1Title);
   setSectionTitle("sec2Title", d.sec2Title);
   setSectionTitle("sec3Title", d.sec3Title);
