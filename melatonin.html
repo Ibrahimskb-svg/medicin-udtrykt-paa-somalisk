@@ -3,33 +3,38 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Melatonin – hurdo</title>
+<title>Melatonin – hurdo la’aan</title>
 
 <style>
+/* ===== Theme (NO external files) ===== */
 :root{
   --accent:#00a676;
   --c1:#0066cc;
   --c2:#00a676;
 
-  --iconBg:#e3f2fd;
-  --iconStroke:#1a73e8;
+  --accent-soft: rgba(0,166,118,0.16);
+  --accent-soft2: rgba(0,166,118,0.10);
 }
 
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+/* Base */
+body{ font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
 header{
   background:linear-gradient(135deg,var(--c1),var(--c2));
-  color:#fff; padding:22px 16px; text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);
   transition: background 260ms ease;
 }
-header h1 { margin:0 0 4px; font-size:1.8rem; }
-header p { margin:0; font-size:0.95rem; }
+header h1{ margin:0 0 4px; font-size:1.8rem; }
+header p{ margin:0; font-size:0.95rem; }
 
-main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--accent); font-size:0.9rem; }
-a.back span { font-size:1.1rem; }
+a.back{
+  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
+  text-decoration:none; color:var(--accent); font-size:0.9rem;
+}
+a.back span{ font-size:1.1rem; }
 
+/* Language bar */
 .langbar{
   display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   background:#ffffff; border-radius:12px; padding:10px 12px;
@@ -42,33 +47,41 @@ a.back span { font-size:1.1rem; }
   background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
 }
 
+/* Card */
 .card{
   background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
   box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent);
 }
 
+/* Drug header row */
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
 .drug-icon{
   width:44px; height:44px; border-radius:12px;
-  background:var(--iconBg);
+  background:var(--accent-soft2);
   display:flex; align-items:center; justify-content:center;
-  transition: background 260ms ease;
 }
 .drug-icon svg{ width:30px; height:30px; }
-.drug-icon .pill-ellipse{ fill:#e8f3ff; stroke:var(--iconStroke); stroke-width:3; transition: stroke 260ms ease; }
-.drug-icon .pill-line{ stroke:var(--iconStroke); stroke-width:4; transition: stroke 260ms ease; }
-
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
+/* Badge follows theme */
+.badge{
+  display:inline-flex; align-items:center; gap:4px;
+  background:var(--accent-soft);
+  color:#123047;
+  border:1px solid rgba(0,0,0,0.06);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+}
+
+/* Sections */
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+
 .section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  width:24px; height:24px; border-radius:999px; display:inline-flex;
+  align-items:center; justify-content:center; font-size:0.9rem; color:#123047;
 }
 .section-icon.use{ background:#e3f2fd; }
 .section-icon.dose{ background:#e2f5ea; }
@@ -76,6 +89,7 @@ a.back span { font-size:1.1rem; }
 .section-icon.interact{ background:#ede7f6; }
 .section-icon.warn{ background:#ffebee; }
 .section-icon.ramadan{ background:#e0f7fa; }
+.section-icon.food{ background:#f1f8e9; }
 .section-icon.store{ background:#edeff9; }
 .section-icon.drink{ background:#e0f7fa; }
 
@@ -83,7 +97,7 @@ a.back span { font-size:1.1rem; }
 .section-title small{ font-weight:400; color:#607089; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
+.section li{ margin-bottom:4px; }
 .highlight{ font-weight:600; }
 
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
@@ -93,8 +107,8 @@ a.back span { font-size:1.1rem; }
 
 <body>
 <header>
-  <h1 id="hdrH1">Melatonin – hurdo</h1>
-  <p id="hdrP">Waa warbixin kooban oo loogu talagalay waalidiinta &amp; bukaannada Soomaaliyeed</p>
+  <h1 id="hdrH1">Melatonin – hurdo la’aan</h1>
+  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed</p>
 </header>
 
 <main>
@@ -120,8 +134,8 @@ a.back span { font-size:1.1rem; }
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64">
-            <ellipse class="pill-ellipse" cx="32" cy="32" rx="22" ry="14"/>
-            <line class="pill-line" x1="20" y1="20" x2="44" y2="44"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--accent)" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--accent)" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
@@ -158,7 +172,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon drink">💧</div>
+        <div class="section-icon food">🍽️</div>
         <div class="section-title" id="sec3Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
       </div>
       <ul id="sec3List"></ul>
@@ -203,7 +217,6 @@ a.back span { font-size:1.1rem; }
       </div>
       <ul id="sec8List"></ul>
     </div>
-
   </div>
 
   <div class="footer-note" id="footer1"></div>
@@ -212,6 +225,7 @@ a.back span { font-size:1.1rem; }
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
 const THEME = {
   so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" },
   da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" },
@@ -229,8 +243,18 @@ function applyTheme(lang){
   document.documentElement.style.setProperty("--c1", th.c1);
   document.documentElement.style.setProperty("--c2", th.c2);
   document.documentElement.style.setProperty("--accent", th.accent);
-  document.documentElement.style.setProperty("--iconBg", "color-mix(in srgb, " + th.accent + " 16%, #ffffff)");
-  document.documentElement.style.setProperty("--iconStroke", th.accent);
+
+  // Accent tints for icon/badge backgrounds
+  document.documentElement.style.setProperty("--accent-soft", hexToRgba(th.accent, 0.16));
+  document.documentElement.style.setProperty("--accent-soft2", hexToRgba(th.accent, 0.10));
+}
+function hexToRgba(hex, a){
+  const h = (hex || "").replace("#","").trim();
+  if (h.length !== 6) return `rgba(0,0,0,${a})`;
+  const r = parseInt(h.slice(0,2),16);
+  const g = parseInt(h.slice(2,4),16);
+  const b = parseInt(h.slice(4,6),16);
+  return `rgba(${r},${g},${b},${a})`;
 }
 
 function setDirLang(lang){
@@ -267,357 +291,354 @@ function setSectionTitle(elId, title){
 
 const T = {
   so: {
-    pageTitle: "Melatonin – hurdo",
-    hdrH1: "Melatonin – hurdo",
-    hdrP: "Waa warbixin kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed",
+    pageTitle: "Melatonin – hurdo la’aan",
+    hdrH1: "Melatonin – hurdo la’aan",
+    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed",
     backText: "Ku laabo liiska daawooyinka",
     langLabel: "Dooro luqadda:",
     drugName: "Melatonin",
     drugForm: "Kiniin afka ah",
     badgeText: "Akhris kooban",
-
     sec0Title: "Waa maxay Melatonin? (Hvad er Melatonin?)",
     sec0: [
-      "Melatonin waa hormoon uu jirku si dabiici ah u sameeyo habeenkii si uu u caawiyo <span class='highlight'>hab-socodka hurdada</span>.",
-      "Daawada melatonin waxay ka caawin kartaa dadka qaar inay si fudud u seexdaan ama u hagaajiyaan saacadda hurdada."
+      "Melatonin waa <span class='highlight'>hormoon dabiici ah</span> oo jirku sameeyo habeenkii si uu u caawiyo hurdada.",
+      "Daawada melatonin waxay caawisaa in <span class='highlight'>saacadda hurdada</span> (døgnrytme) ay hagaagto."
     ],
     sec1Title: "Maxaa loo isticmaalaa? (Hvad bruges det til?)",
     sec1: [
-      "Hurdo la’aan (insomni) — gaar ahaan dhibaato seexashada.",
-      "Jet lag ama wareeg hurdo oo qaldan (dadka qaar).",
-      "Carruur/da’yar: kaliya marka dhakhtar qorsheeyo (tusaale neuro/ADHD iwm. xaalado gaar ah)."
+      "Hurdo la’aan (insomni) ama hurdada oo soo daahda.",
+      "Dhibaatada saacadda hurdada (tusaale: jetlag ama dhalinyaro/waayeel qaarkood)."
     ],
     sec2Title: "Sida loo qaato (Sådan tages medicinen)",
     sec2: [
-      "Badanaa waxaa la qaataa <span class='highlight'>30–60 daqiiqo ka hor hurdada</span> (raac qorshaha dhakhtarka).",
-      "Qiyaasta way kala duwanaan kartaa (tusaale 1–5 mg ama sida lagu qoray).",
-      "Qaado wakhti isku mid ah habeen walba si natiijo wanaagsan loo helo.",
-      "Haddii aad aad u hurdooto subaxdii → la hadal dhakhtar/farmashiiste (qiyaas ama waqtiga ayaa la beddeli karaa)."
+      "Raac qiyaasta dhakhtarka. Badanaa waxaa la qaataa <span class='highlight'>30–60 daqiiqo ka hor hurdada</span>.",
+      "Qaarkood (depottablet) waa in la liqaa oo aan la burburin/jeexin.",
+      "Haddii aysan wax tar muuqan 1–2 toddobaad, la hadal dhakhtarka/farmashiyaha."
     ],
     sec3Title: "Cunto iyo cabitaan (Mad og drikke)",
     sec3: [
-      "Waxaa la qaadan karaa cunto la’aan ama cunto la socota, laakiin <span class='highlight'>cunto culus</span> waxay dib u dhigi kartaa saameynta.",
-      "Ka fogow <span class='highlight'>kafeega</span> iyo shaaha xooggan habeenkii haddii ay hurdada kaa dhaawacaan."
+      "Waxaa la qaadan karaa cunto la’aan ama cunto la jirta, laakiin isku day <span class='highlight'>wakhti joogto ah</span> habeen kasta.",
+      "Ka fogow kafeyn (qaxwo/shaah xooggan/energy) fiidkii."
     ],
     sec4Title: "Digniino (Advarsler)",
     sec4: [
-      "Melatonin waxay keeni kartaa hurdo — <span class='highlight'>ha wadin</span> haddii aad dareento daal/dawakh.",
-      "U sheeg dhakhtarka haddii aad uur leedahay/nuujinayso ama aad qabto cudur difaac-jirka (autoimmune) ama suuxdin."
+      "Waxay keeni kartaa hurdo – ha wadin gaari haddii aad dareento hurdo/dawakh.",
+      "Ha isku darin khamri (waxay kordhin kartaa hurdo/dawakh).",
+      "U sheeg dhakhtarka haddii aad uur leedahay/nuujinayso ama aad qabto xanuun beerka ah."
     ],
     sec5Title: "Dhibaatooyinka (Bivirkninger)",
     sec5: [
-      "Hurdo subaxda ama daal.",
+      "Hurdo ama daal subaxdii.",
       "Madax-xanuun.",
-      "Riyooyin badan ama riyooyin adag (mararka qaar).",
-      "Lalabo ama calool-wareem khafiif ah."
+      "Riyooyin xooggan ama wareer khafiif ah (qaarkood)."
     ],
     sec6Title: "Is-dhexgalka daawooyinka (Interaktioner)",
     sec6: [
-      "Daawooyinka hurdo-dejiya kale (benzodiazepiner, opioids, antihistamin) → hurdo badan.",
-      "Daawooyinka qaar ee dhiig-khafiifinta (tusaale warfarin) ama daawooyin kale: <span class='highlight'>la tasho</span> dhakhtar/farmashiiste haddii aad qaadato.",
-      "Khamriga → kordhiya hurdo/dawakh → ka fogow."
+      "Daawooyinka hurdo-dejiya kale waxay kordhin karaan hurdo.",
+      "Daawooyin qaar (tusaale anticoagulants, antidepressants qaarkood) waxay u baahan karaan la-talin – u sheeg farmashiyaha wax kasta oo aad qaadato."
     ],
     sec7Title: "Ramadaanka iyo daawada (Fasten og brugen af medicinen)",
     sec7: [
-      "La hadal dhakhtar haddii aad u baahan tahay jadwal gaar ah.",
-      "Badanaa waxaa lagu qaataa <span class='highlight'>afurka kadib</span> 30–60 daqiiqo ka hor hurdada."
+      "Haddii aad sooman tahay, badanaa melatonin waxaa la qaataa <span class='highlight'>fiidkii (afurka kadib)</span> marka aad diyaar u tahay hurdo.",
+      "Haddii jadwalka hurdada is beddelo, la hadal dhakhtarka qorshe ku habboon."
     ],
     sec8Title: "Kaydinta (Opbevaring)",
     sec8: [
-      "Ku hay meel ka fog carruurta, kana hooseeya 25°C.",
-      "Ku hay baakadka asalka ah.",
-      "Ha isticmaalin haddii ay dhaafto “EXP”."
+      "Ku hay meel ka fog carruurta, heerkulka qolka, oo ka ilaali iftiin/huur.",
+      "Ha qaadan haddii ay dhaafto “EXP”.",
+      "Wixii soo haray → ku celi farmashiyaha."
     ],
-
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
 
   da: {
-    pageTitle: "Melatonin – søvn",
-    hdrH1: "Melatonin – søvn",
+    pageTitle: "Melatonin – søvnbesvær",
+    hdrH1: "Melatonin – søvnbesvær",
     hdrP: "Kort information om lægemidlet til patienter og pårørende.",
     backText: "Tilbage til medicinlisten",
     langLabel: "Vælg sprog:",
     drugName: "Melatonin",
     drugForm: "Tablet (til at tage gennem munden)",
     badgeText: "Kort og let",
-
     sec0Title: "Hvad er Melatonin?",
     sec0: [
-      "Melatonin er et hormon kroppen selv danner om aftenen for at støtte <span class='highlight'>søvnrytmen</span>.",
-      "Melatonin som medicin kan hjælpe nogle med at falde i søvn eller stabilisere døgnrytmen."
+      "Melatonin er et <span class='highlight'>naturligt hormon</span>, som kroppen danner om aftenen for at fremme søvn.",
+      "Som medicin kan melatonin hjælpe med at stabilisere <span class='highlight'>døgnrytmen</span>."
     ],
     sec1Title: "Hvad bruges det til?",
     sec1: [
-      "Søvnproblemer (især indsovningsbesvær).",
-      "Døgnrytmeforstyrrelse/jet lag hos nogle.",
-      "Børn/unge: kun efter lægens vurdering og plan."
+      "Søvnbesvær/indsovningsproblemer.",
+      "Døgnrytmeforstyrrelser (fx jetlag eller forskudt søvnrytme)."
     ],
     sec2Title: "Sådan tages medicinen",
     sec2: [
-      "Tages ofte <span class='highlight'>30–60 minutter før sengetid</span> (følg lægens plan).",
-      "Dosis varierer (fx 1–5 mg eller som ordineret).",
-      "Tag den på nogenlunde samme tidspunkt hver aften.",
-      "Hvis du bliver meget træt næste morgen: tal med læge/apotek om dosis/tidspunkt."
+      "Følg lægens plan. Ofte tages det <span class='highlight'>30–60 minutter før sengetid</span>.",
+      "Depot-tabletter skal typisk synkes hele (må ikke knuses/deles).",
+      "Kontakt læge/apotek hvis effekten udebliver efter 1–2 uger."
     ],
     sec3Title: "Mad og drikke",
     sec3: [
-      "Kan tages med eller uden mad, men <span class='highlight'>tung mad</span> kan forsinke virkningen.",
-      "Undgå koffein sent, hvis det påvirker din søvn."
+      "Kan tages med eller uden mad – prøv at tage det på <span class='highlight'>samme tidspunkt</span> hver aften.",
+      "Undgå koffein sent på dagen."
     ],
     sec4Title: "Advarsler",
     sec4: [
-      "Kan give døsighed — undgå bilkørsel hvis du føler dig træt.",
-      "Tal med læge ved graviditet/amning eller særlige sygdomme (fx autoimmun sygdom, epilepsi)."
+      "Kan give døsighed – vær forsigtig ved bilkørsel, hvis du føler dig træt.",
+      "Undgå alkohol (kan øge døsighed).",
+      "Tal med læge ved graviditet/amning eller leversygdom."
     ],
     sec5Title: "Bivirkninger",
-    sec5: ["Døsighed næste dag.", "Hovedpine.", "Levende drømme.", "Let kvalme/maveuro."],
+    sec5: ["Træthed næste morgen.", "Hovedpine.", "Livlige drømme eller let svimmelhed hos nogle."],
     sec6Title: "Interaktioner",
     sec6: [
-      "Andre sløvende midler kan forstærke døsighed.",
-      "Ved blodfortyndende (fx warfarin): drøft med læge/apotek.",
-      "Alkohol øger døsighed — undgå."
+      "Andre sløvende midler kan øge døsighed.",
+      "Nogle lægemidler kan påvirke effekten – oplys altid al medicin til læge/apotek."
     ],
     sec7Title: "Ramadan og faste",
     sec7: [
-      "Kan ofte tages efter iftar 30–60 minutter før sengetid.",
-      "Tal med lægen hvis du har brug for en særlig plan."
+      "Tages ofte om aftenen (efter iftar), når du er klar til at sove.",
+      "Ved ændret søvnmønster: tal med lægen om en plan."
     ],
     sec8Title: "Opbevaring",
-    sec8: ["Opbevares utilgængeligt for børn, under 25°C og i original emballage.", "Brug ikke efter “EXP”."],
-
+    sec8: [
+      "Opbevares utilgængeligt for børn, ved stuetemperatur og beskyttet mod lys/fugt.",
+      "Brug ikke efter “EXP”. Aflever rester på apoteket."
+    ],
     footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
     footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
   en: {
-    pageTitle: "Melatonin – sleep",
-    hdrH1: "Melatonin – sleep",
+    pageTitle: "Melatonin – sleep problems",
+    hdrH1: "Melatonin – sleep problems",
     hdrP: "Brief medicine information for patients and relatives.",
     backText: "Back to the medicine list",
     langLabel: "Choose language:",
     drugName: "Melatonin",
     drugForm: "Tablet (by mouth)",
     badgeText: "Short and clear",
-
     sec0Title: "What is Melatonin?",
-    sec0: ["Melatonin is a hormone your body produces in the evening to support the <span class='highlight'>sleep-wake rhythm</span>.", "As a medicine, it may help some people fall asleep or stabilize the body clock."],
+    sec0: [
+      "Melatonin is a <span class='highlight'>natural hormone</span> produced in the evening to support sleep.",
+      "As a medicine it can help stabilize the <span class='highlight'>sleep-wake rhythm</span>."
+    ],
     sec1Title: "What is it used for?",
-    sec1: ["Sleep problems (especially trouble falling asleep).", "Circadian rhythm issues/jet lag in some people.", "Children/adolescents: only when prescribed by a doctor."],
+    sec1: ["Difficulty falling asleep.", "Circadian rhythm problems (e.g., jet lag)."],
     sec2Title: "How to take",
-    sec2: ["Often <span class='highlight'>30–60 minutes before bedtime</span> (follow your plan).", "Dose varies (e.g., 1–5 mg or as prescribed).", "Take at a consistent time each night.", "If next-day drowsiness is a problem, discuss dose/timing."],
+    sec2: [
+      "Follow your doctor’s plan. Often taken <span class='highlight'>30–60 minutes before bedtime</span>.",
+      "Extended-release tablets should usually be swallowed whole.",
+      "Contact your doctor/pharmacy if there is no benefit after 1–2 weeks."
+    ],
     sec3Title: "Food and drink",
-    sec3: ["Can be taken with or without food; <span class='highlight'>heavy meals</span> may delay effect.", "Avoid late caffeine if it affects you."],
+    sec3: [
+      "Can be taken with or without food – try to take it at the <span class='highlight'>same time</span> each evening.",
+      "Avoid caffeine late in the day."
+    ],
     sec4Title: "Warnings",
-    sec4: ["May cause drowsiness — avoid driving if tired.", "Discuss use if pregnant/breastfeeding or with special conditions (e.g., autoimmune disease, epilepsy)."],
+    sec4: ["May cause drowsiness – be careful with driving.", "Avoid alcohol.", "Talk to a doctor if pregnant/breastfeeding or with liver disease."],
     sec5Title: "Side effects",
-    sec5: ["Next-day sleepiness.", "Headache.", "Vivid dreams.", "Mild nausea/stomach upset."],
+    sec5: ["Morning sleepiness.", "Headache.", "Vivid dreams or mild dizziness in some."],
     sec6Title: "Interactions",
-    sec6: ["Other sedatives can increase drowsiness.", "If on blood thinners (e.g., warfarin), check with doctor/pharmacy.", "Avoid alcohol."],
+    sec6: ["Other sedatives can increase drowsiness.", "Some medicines may affect melatonin – tell your doctor/pharmacy what you take."],
     sec7Title: "Ramadan and fasting",
-    sec7: ["Often taken after iftar 30–60 minutes before sleep.", "Talk to your doctor if you need a specific plan."],
+    sec7: ["Often taken in the evening (after iftar) when you are ready to sleep.", "If your sleep pattern changes, ask a doctor for a plan."],
     sec8Title: "Storage",
-    sec8: ["Keep out of reach of children, below 25°C, in the original package.", "Do not use after “EXP”."],
-
+    sec8: ["Keep out of reach of children, store at room temperature protected from light/moisture.", "Do not use after “EXP”. Return leftovers to the pharmacy."],
     footer1: "If you need more information, contact your pharmacy or doctor.",
     footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
   ar: {
-    pageTitle: "ميلاتونين – النوم",
-    hdrH1: "ميلاتونين – النوم",
+    pageTitle: "ميلاتونين – مشاكل النوم",
+    hdrH1: "ميلاتونين – مشاكل النوم",
     hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
     backText: "العودة إلى قائمة الأدوية",
     langLabel: "اختر اللغة:",
     drugName: "ميلاتونين",
     drugForm: "أقراص (عن طريق الفم)",
     badgeText: "مختصر وواضح",
-
     sec0Title: "ما هو الميلاتونين؟",
-    sec0: ["الميلاتونين هرمون يفرزه الجسم مساءً لدعم <span class='highlight'>إيقاع النوم</span>.", "قد يساعد كدواء بعض الأشخاص على النوم أو تنظيم الساعة البيولوجية."],
+    sec0: [
+      "الميلاتونين <span class='highlight'>هرمون طبيعي</span> يفرزه الجسم مساءً للمساعدة على النوم.",
+      "كدواء يساعد على تنظيم <span class='highlight'>الساعة البيولوجية</span>."
+    ],
     sec1Title: "لماذا يُستخدم؟",
-    sec1: ["مشاكل النوم (خصوصاً صعوبة الدخول في النوم).", "اضطراب الإيقاع اليومي/Jet lag لدى بعض الأشخاص.", "للأطفال: فقط حسب وصف الطبيب."],
+    sec1: ["صعوبة بدء النوم.", "اضطراب الإيقاع اليومي (مثل اضطراب السفر)."],
     sec2Title: "طريقة الاستعمال",
-    sec2: ["غالباً قبل النوم بـ <span class='highlight'>30–60 دقيقة</span>.", "الجرعة تختلف حسب الوصفة.", "يفضل وقت ثابت يومياً.", "إذا حدث نعاس صباحاً تحدث مع الطبيب/الصيدلي."],
+    sec2: [
+      "اتبع خطة الطبيب. غالباً يؤخذ <span class='highlight'>قبل النوم بـ 30–60 دقيقة</span>.",
+      "الأقراص ممتدة المفعول تُبلع كاملة.",
+      "راجع الطبيب/الصيدلية إذا لم تتحسن خلال 1–2 أسبوع."
+    ],
     sec3Title: "الطعام والشراب",
-    sec3: ["يمكن مع أو بدون طعام، لكن الوجبات الثقيلة قد تؤخر المفعول.", "تجنب الكافيين المتأخر."],
+    sec3: ["يمكن أخذه مع أو بدون طعام – حاول أخذه في <span class='highlight'>نفس الوقت</span> مساءً.", "تجنب الكافيين في وقت متأخر."],
     sec4Title: "تحذيرات",
-    sec4: ["قد يسبب نعاساً — تجنب القيادة إذا كنت متعباً.", "استشر الطبيب عند الحمل/الرضاعة أو حالات خاصة."],
+    sec4: ["قد يسبب نعاساً – انتبه عند القيادة.", "تجنب الكحول.", "استشر الطبيب في الحمل/الرضاعة أو أمراض الكبد."],
     sec5Title: "الآثار الجانبية",
-    sec5: ["نعاس صباحي.", "صداع.", "أحلام واضحة.", "غثيان خفيف."],
+    sec5: ["نعاس صباحي.", "صداع.", "أحلام حيوية أو دوخة خفيفة لدى البعض."],
     sec6Title: "التداخلات",
-    sec6: ["المهدئات تزيد النعاس.", "مع مميعات الدم (مثل وارفارين): استشر الطبيب/الصيدلية.", "تجنب الكحول."],
+    sec6: ["المهدئات الأخرى قد تزيد النعاس.", "أخبر الطبيب/الصيدلية بكل أدويتك."],
     sec7Title: "رمضان والصيام",
-    sec7: ["غالباً بعد الإفطار قبل النوم بـ 30–60 دقيقة.", "استشر الطبيب عند الحاجة لخطة خاصة."],
+    sec7: ["غالباً يُؤخذ مساءً بعد الإفطار عندما تكون مستعداً للنوم.", "إذا تغير نمط نومك فاطلب خطة من الطبيب."],
     sec8Title: "الحفظ",
-    sec8: ["يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.", "لا يستخدم بعد “EXP”."],
-
+    sec8: ["يحفظ بعيداً عن الأطفال وفي درجة حرارة الغرفة وبعيداً عن الضوء/الرطوبة.", "لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."],
     footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
     footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
   },
 
   tr: {
-    pageTitle: "Melatonin – uyku",
-    hdrH1: "Melatonin – uyku",
+    pageTitle: "Melatonin – uyku sorunları",
+    hdrH1: "Melatonin – uyku sorunları",
     hdrP: "Hasta ve yakınları için kısa bilgi.",
     backText: "İlaç listesine geri dön",
     langLabel: "Dil seçin:",
     drugName: "Melatonin",
     drugForm: "Tablet (ağızdan)",
     badgeText: "Kısa ve anlaşılır",
-
     sec0Title: "Melatonin nedir?",
-    sec0: ["Melatonin, vücudun akşam ürettiği ve <span class='highlight'>uyku ritmini</span> destekleyen bir hormondur.", "İlaç olarak bazı kişilerde uykuya dalmayı kolaylaştırabilir."],
+    sec0: ["Melatonin, akşamları salgılanan <span class='highlight'>doğal bir hormon</span>dur.", "İlaç olarak <span class='highlight'>uyku ritmini</span> düzenlemeye yardımcı olabilir."],
     sec1Title: "Ne için kullanılır?",
-    sec1: ["Uykuya dalma güçlüğü.", "Biyolojik saat/jet lag (bazı kişilerde).", "Çocuklarda sadece doktor planıyla."],
+    sec1: ["Uykuya dalma güçlüğü.", "Biyolojik saat bozukluğu (jetlag vb.)."],
     sec2Title: "Nasıl alınır?",
-    sec2: ["Genelde yatmadan <span class='highlight'>30–60 dk önce</span>.", "Doz reçeteye göre değişir.", "Her gece benzer saatte alın.", "Ertesi gün aşırı uyku hali olursa danışın."],
+    sec2: ["Doktor planına uyun. Genelde <span class='highlight'>yatmadan 30–60 dk önce</span> alınır.", "Uzatılmış salım tabletler genelde bütün yutulur.", "1–2 haftada fayda yoksa doktor/eczane ile görüşün."],
     sec3Title: "Yemek ve içecek",
-    sec3: ["Yemekle veya yemeksiz; ağır yemek etkiyi geciktirebilir.", "Geç saat kafeinden kaçının."],
+    sec3: ["Yemekle veya yemeksiz alınabilir – her akşam <span class='highlight'>aynı saatte</span> almaya çalışın.", "Geç saatlerde kafeinden kaçının."],
     sec4Title: "Uyarılar",
-    sec4: ["Uyku hali yapabilir — yorgunsanız araç kullanmayın.", "Hamilelik/emzirme veya özel hastalıklarda doktora danışın."],
+    sec4: ["Uyku hali yapabilir – araç kullanırken dikkat.", "Alkolden kaçının.", "Hamilelik/emzirme veya karaciğer hastalığında doktora danışın."],
     sec5Title: "Yan etkiler",
-    sec5: ["Ertesi gün uyku hali.", "Baş ağrısı.", "Canlı rüyalar.", "Hafif bulantı."],
+    sec5: ["Sabah uyku hali.", "Baş ağrısı.", "Bazılarında canlı rüyalar/hafif baş dönmesi."],
     sec6Title: "Etkileşimler",
-    sec6: ["Sakinleştiriciler uyku halini artırır.", "Kan sulandırıcı (warfarin vb.) kullanıyorsanız danışın.", "Alkolden kaçının."],
+    sec6: ["Diğer sakinleştiriciler uyku halini artırabilir.", "Kullandığınız tüm ilaçları söyleyin."],
     sec7Title: "Ramazan ve oruç",
-    sec7: ["Genelde iftardan sonra, yatmadan 30–60 dk önce.", "Gerekirse doktorla plan yapın."],
+    sec7: ["Genelde iftardan sonra, uyumaya hazırken alınır.", "Uyku düzeni değişirse doktorla plan yapın."],
     sec8Title: "Saklama",
-    sec8: ["Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.", "“EXP” sonrası kullanmayın."],
-
+    sec8: ["Çocuklardan uzak, oda sıcaklığında, ışıktan/nemden koruyun.", "“EXP” sonrası kullanmayın. Artanları eczaneye verin."],
     footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
     footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
   },
 
   ur: {
-    pageTitle: "میلاٹونن – نیند",
-    hdrH1: "میلاٹونن – نیند",
+    pageTitle: "میلاٹونن – نیند کے مسائل",
+    hdrH1: "میلاٹونن – نیند کے مسائل",
     hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
     backText: "فہرست پر واپس",
     langLabel: "زبان منتخب کریں:",
     drugName: "میلاٹونن",
     drugForm: "گولی (منہ کے ذریعے)",
     badgeText: "مختصر اور واضح",
-
     sec0Title: "میلاٹونن کیا ہے؟",
-    sec0: ["میلاٹونن ایک ہارمون ہے جو جسم شام میں بناتا ہے اور <span class='highlight'>نیند کے نظام</span> میں مدد کرتا ہے۔", "دوائی کی شکل میں کچھ لوگوں کو نیند آنے میں مدد دے سکتا ہے۔"],
+    sec0: ["میلاٹونن <span class='highlight'>قدرتی ہارمون</span> ہے جو شام میں نیند کے لیے مدد دیتا ہے۔", "بطور دوا نیند کا <span class='highlight'>رِدم</span> بہتر کر سکتا ہے۔"],
     sec1Title: "کس لیے استعمال ہوتا ہے؟",
-    sec1: ["نیند آنے میں مشکل۔", "بایولوجیکل کلاک/جیٹ لیگ (کچھ افراد میں)۔", "بچوں میں صرف ڈاکٹر کے مشورے سے۔"],
+    sec1: ["نیند آنے میں مشکل۔", "جسمانی گھڑی کی خرابی (جیٹ لیگ وغیرہ)۔"],
     sec2Title: "طریقہ استعمال",
-    sec2: ["اکثر سونے سے <span class='highlight'>30–60 منٹ پہلے</span>۔", "خوراک ڈاکٹر کے مطابق۔", "ہر رات تقریباً ایک ہی وقت پر لیں۔", "اگر صبح بہت غنودگی ہو تو مشورہ کریں۔"],
+    sec2: ["ڈاکٹر کے مطابق۔ عام طور پر <span class='highlight'>سونے سے 30–60 منٹ پہلے</span>۔", "ایکسٹینڈڈ ریلیز گولی عموماً پوری نگلیں۔", "1–2 ہفتے میں فائدہ نہ ہو تو ڈاکٹر/فارمیسی سے رابطہ کریں۔"],
     sec3Title: "کھانا پینا",
-    sec3: ["کھانے کے ساتھ یا بغیر؛ بھاری کھانا اثر دیر سے کر سکتا ہے۔", "دیر سے کیفین سے پرہیز کریں۔"],
+    sec3: ["کھانے کے ساتھ یا بغیر – ہر رات <span class='highlight'>ایک ہی وقت</span> پر لیں۔", "رات دیر سے کیفین سے پرہیز کریں۔"],
     sec4Title: "احتیاطیں",
-    sec4: ["غنودگی ہو سکتی ہے — تھکے ہوں تو ڈرائیونگ نہ کریں۔", "حمل/دودھ پلانے یا خاص بیماری میں ڈاکٹر سے مشورہ کریں۔"],
+    sec4: ["غنودگی ہو سکتی ہے – ڈرائیونگ میں احتیاط۔", "الکحل سے پرہیز کریں۔", "حمل/دودھ پلانے یا جگر کے مریض مشورہ کریں۔"],
     sec5Title: "مضر اثرات",
-    sec5: ["اگلے دن غنودگی۔", "سر درد۔", "زیادہ واضح خواب۔", "ہلکی متلی۔"],
+    sec5: ["صبح غنودگی۔", "سر درد۔", "کچھ میں خواب زیادہ آ سکتے ہیں/ہلکا چکر۔"],
     sec6Title: "دواؤں کے باہمی اثرات",
-    sec6: ["سکون آور ادویات غنودگی بڑھا سکتی ہیں۔", "اگر خون پتلا کرنے والی دوا ہے (وارفرین) تو مشورہ کریں۔", "الکحل سے پرہیز کریں۔"],
+    sec6: ["دیگر سکون آور ادویات غنودگی بڑھا سکتی ہیں۔", "تمام ادویات کے بارے میں بتائیں۔"],
     sec7Title: "رمضان اور روزہ",
-    sec7: ["عموماً افطار کے بعد، سونے سے 30–60 منٹ پہلے۔", "ضرورت ہو تو ڈاکٹر سے پلان بنائیں۔"],
+    sec7: ["اکثر افطار کے بعد جب نیند کے لیے تیار ہوں تب لیا جاتا ہے۔", "اگر نیند کا شیڈول بدلے تو ڈاکٹر سے پلان کریں۔"],
     sec8Title: "محفوظ رکھنا",
-    sec8: ["بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔", "“EXP” کے بعد استعمال نہ کریں۔"],
-
+    sec8: ["بچوں سے دور، کمرہ درجہ حرارت پر، روشنی/نمی سے بچائیں۔", "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"],
     footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
     footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
   },
 
   fa: {
-    pageTitle: "ملاتونین – خواب",
-    hdrH1: "ملاتونین – خواب",
+    pageTitle: "ملاتونین – مشکلات خواب",
+    hdrH1: "ملاتونین – مشکلات خواب",
     hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
     backText: "بازگشت به فهرست",
     langLabel: "انتخاب زبان:",
     drugName: "ملاتونین",
     drugForm: "قرص (خوراکی)",
     badgeText: "کوتاه و روشن",
-
     sec0Title: "ملاتونین چیست؟",
-    sec0: ["ملاتونین هورمونی است که بدن شب‌ها تولید می‌کند و به <span class='highlight'>ریتم خواب</span> کمک می‌کند.", "به صورت دارو ممکن است به خواب رفتن یا تنظیم ساعت زیستی کمک کند."],
+    sec0: ["ملاتونین <span class='highlight'>هورمون طبیعی</span> بدن است که شب‌ها به خواب کمک می‌کند.", "به‌صورت دارو می‌تواند <span class='highlight'>ریتم خواب</span> را تنظیم کند."],
     sec1Title: "موارد مصرف",
-    sec1: ["مشکلات خواب (به‌خصوص مشکل در به خواب رفتن).", "اختلال ریتم شبانه‌روزی/jet lag در برخی.", "کودکان: فقط طبق نظر پزشک."],
+    sec1: ["مشکل در به خواب رفتن.", "اختلال ریتم شبانه‌روزی (مثل جت‌لگ)."],
     sec2Title: "نحوه مصرف",
-    sec2: ["معمولاً <span class='highlight'>30–60 دقیقه قبل از خواب</span>.", "دوز طبق نسخه.", "هر شب در زمان مشابه.", "اگر خواب‌آلودگی صبحگاهی دارید با پزشک/داروخانه مشورت کنید."],
+    sec2: ["طبق دستور پزشک. معمولاً <span class='highlight'>۳۰–۶۰ دقیقه قبل از خواب</span>.", "قرص آهسته‌رهش را کامل قورت دهید.", "اگر طی ۱–۲ هفته بهتر نشدید، با پزشک/داروخانه تماس بگیرید."],
     sec3Title: "غذا و نوشیدنی",
-    sec3: ["با یا بدون غذا؛ غذای سنگین می‌تواند اثر را عقب بیندازد.", "از کافئین دیرهنگام پرهیز کنید."],
+    sec3: ["با غذا یا بدون غذا – سعی کنید هر شب <span class='highlight'>در زمان ثابت</span> مصرف کنید.", "کافئین را دیر وقت مصرف نکنید."],
     sec4Title: "هشدارها",
-    sec4: ["ممکن است خواب‌آلودگی بدهد — در صورت خستگی رانندگی نکنید.", "در بارداری/شیردهی یا بیماری‌های خاص مشورت کنید."],
+    sec4: ["ممکن است خواب‌آلودگی ایجاد کند – در رانندگی احتیاط کنید.", "از الکل پرهیز کنید.", "در بارداری/شیردهی یا بیماری کبدی با پزشک مشورت کنید."],
     sec5Title: "عوارض",
-    sec5: ["خواب‌آلودگی روز بعد.", "سردرد.", "رویاهای واضح.", "تهوع خفیف."],
+    sec5: ["خواب‌آلودگی صبح.", "سردرد.", "رویاهای زنده یا سرگیجه خفیف در برخی."],
     sec6Title: "تداخلات",
-    sec6: ["آرام‌بخش‌ها خواب‌آلودگی را بیشتر می‌کنند.", "در مصرف رقیق‌کننده خون (مثل وارفارین) مشورت کنید.", "از الکل پرهیز کنید."],
+    sec6: ["آرام‌بخش‌های دیگر خواب‌آلودگی را افزایش می‌دهند.", "همه داروهای خود را اعلام کنید."],
     sec7Title: "رمضان و روزه",
-    sec7: ["اغلب بعد از افطار، 30–60 دقیقه قبل از خواب.", "در صورت نیاز برنامه‌ریزی با پزشک."],
+    sec7: ["اغلب بعد از افطار و وقتی آماده خواب هستید مصرف می‌شود.", "اگر الگوی خواب تغییر کرد، با پزشک برنامه‌ریزی کنید."],
     sec8Title: "نگهداری",
-    sec8: ["دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی.", "پس از “EXP” مصرف نشود."],
-
+    sec8: ["دور از دسترس کودکان، در دمای اتاق و دور از نور/رطوبت.", "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."],
     footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
     footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
   },
 
   prs: {
-    pageTitle: "ملاتونین – خواب",
-    hdrH1: "ملاتونین – خواب",
+    pageTitle: "ملاتونین – مشکلات خواب",
+    hdrH1: "ملاتونین – مشکلات خواب",
     hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
     backText: "بازگشت به فهرست",
     langLabel: "انتخاب زبان:",
     drugName: "ملاتونین",
     drugForm: "قرص (خوراکی)",
     badgeText: "کوتاه و واضح",
-
     sec0Title: "ملاتونین چیست؟",
-    sec0: ["ملاتونین هورمون طبیعی بدن است که شب‌ها برای <span class='highlight'>ریتم خواب</span> کمک می‌کند.", "به شکل دوا ممکن است به خواب رفتن کمک کند."],
+    sec0: ["ملاتونین <span class='highlight'>هورمون طبیعی</span> است که شب‌ها به خواب کمک می‌کند.", "به شکل دوا می‌تواند <span class='highlight'>ریتم خواب</span> را تنظیم کند."],
     sec1Title: "برای چی استفاده می‌شود؟",
-    sec1: ["مشکل خواب (خصوصاً مشکل در خواب رفتن).", "اختلال ساعت زیستی/jet lag در بعضی.", "اطفال: فقط با نظر داکتر."],
+    sec1: ["مشکل در خواب رفتن.", "اختلال ریتم شبانه‌روزی (مثل جت‌لگ)."],
     sec2Title: "چگونه گرفته شود؟",
-    sec2: ["اکثر <span class='highlight'>30–60 دقیقه قبل از خواب</span>.", "دوز مطابق نسخه.", "هر شب تقریباً یک وقت ثابت.", "اگر خواب‌آلودگی صبحگاهی زیاد است مشوره کنید."],
+    sec2: ["طبق دستور داکتر. معمولاً <span class='highlight'>۳۰–۶۰ دقیقه قبل از خواب</span>.", "قرص آهسته‌رهش را کامل قورت دهید.", "اگر طی ۱–۲ هفته بهتر نشدید، با داکتر/دواخانه تماس بگیرید."],
     sec3Title: "غذا و نوشیدنی",
-    sec3: ["با یا بدون غذا؛ غذای سنگین اثر را عقب می‌اندازد.", "کافئین دیرهنگام را کم کنید."],
+    sec3: ["با غذا یا بدون غذا – هر شب <span class='highlight'>در یک وقت ثابت</span> بگیرید.", "کافئین را ناوقت نخورید."],
     sec4Title: "هشدارها",
-    sec4: ["خواب‌آلودگی می‌دهد — اگر خسته هستید رانندگی نکنید.", "در بارداری/شیردهی یا بیماری خاص مشوره کنید."],
+    sec4: ["خواب‌آلودگی می‌دهد – در رانندگی احتیاط.", "الکل را دوری کنید.", "در بارداری/شیردهی یا بیماری جگر مشوره کنید."],
     sec5Title: "عوارض",
-    sec5: ["خواب‌آلودگی روز بعد.", "سردرد.", "رویاهای واضح.", "تهوع خفیف."],
+    sec5: ["خواب‌آلودگی صبح.", "سردرد.", "رویاهای زنده یا سرگیجه خفیف در بعضی."],
     sec6Title: "تداخلات",
-    sec6: ["آرام‌بخش‌ها خواب‌آلودگی را بیشتر می‌کند.", "اگر رقیق‌کننده خون دارید (warfarin) مشوره کنید.", "الکل را دوری کنید."],
+    sec6: ["آرام‌بخش‌های دیگر خواب‌آلودگی را زیاد می‌کند.", "همه دواها را بگویید."],
     sec7Title: "رمضان و روزه",
-    sec7: ["اکثر بعد از افطار، 30–60 دقیقه قبل از خواب.", "در صورت ضرورت با داکتر پلان بسازید."],
+    sec7: ["اکثر بعد از افطار و وقتی آماده خواب هستید گرفته می‌شود.", "اگر خواب تغییر کرد، با داکتر پلان بسازید."],
     sec8Title: "نگهداری",
-    sec8: ["دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی.", "بعد از “EXP” استفاده نشود."],
-
+    sec8: ["دور از دسترس اطفال، در دمای اتاق و دور از نور/رطوبت.", "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."],
     footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
     footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
   },
 
   ps: {
-    pageTitle: "ملاتونین – خوب",
-    hdrH1: "ملاتونین – خوب",
+    pageTitle: "مېلاتونین – د خوب ستونزې",
+    hdrH1: "مېلاتونین – د خوب ستونزې",
     hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
     backText: "لېست ته بېرته",
     langLabel: "ژبه وټاکئ:",
-    drugName: "ملاتونین",
+    drugName: "مېلاتونین",
     drugForm: "ګولۍ (د خولې له لارې)",
     badgeText: "لنډ او روښانه",
-
-    sec0Title: "ملاتونین څه شی دی؟",
-    sec0: ["ملاتونین یو طبیعي هورمون دی چې بدن یې د شپې جوړوي او د <span class='highlight'>خوب ریتم</span> سره مرسته کوي.", "دوايي بڼه یې ځینو کسانو ته د خوب په راتلو کې مرسته کولای شي."],
+    sec0Title: "مېلاتونین څه شی دی؟",
+    sec0: ["مېلاتونین <span class='highlight'>طبیعي هورمون</span> دی چې د شپې د خوب مرسته کوي.", "د درمل په توګه د <span class='highlight'>خوب ریتم</span> ښه کوي."],
     sec1Title: "د څه لپاره کارېږي؟",
-    sec1: ["د خوب ستونزې (د خوب پیل مشکل).", "د وخت/ریتم ګډوډي یا jet lag (په ځینو کې).", "ماشومان: یوازې د ډاکټر له مخې."],
+    sec1: ["د خوب ته تللو ستونزه.", "د ورځ/شپې ریتم ګډوډي (jet lag)."],
     sec2Title: "څنګه واخیستل شي؟",
-    sec2: ["اکثره د خوب نه <span class='highlight'>30–60 دقیقې مخکې</span>.", "دوز د نسخې له مخې.", "هره شپه نږدې په یو وخت.", "که سهار ډېر خوبولي یاست، مشوره وکړئ."],
+    sec2: ["د ډاکټر له مخې. اکثر <span class='highlight'>۳۰–۶۰ دقیقې د خوب مخکې</span>.", "آهسته‌خوشې کېدونکې ګولۍ بشپړه تېر کړئ.", "که ۱–۲ اونیو کې ګټه نه وي، ډاکټر/درملتون سره خبرې وکړئ."],
     sec3Title: "خواړه او څښاک",
-    sec3: ["له خوړو سره یا بې له خوړو؛ دروند خواړه اغېز ځنډولای شي.", "د شپې کافئین کم کړئ."],
+    sec3: ["له خوړو سره یا بې خوړو – هره شپه <span class='highlight'>په یو ثابت وخت</span> واخلئ.", "ناوخته کافین مه څښئ."],
     sec4Title: "خبرداری",
-    sec4: ["خوبولي رامنځته کوي — که ستړي یاست موټر مه چلوئ.", "په امیندوارۍ/شیدې ورکولو یا ځانګړو ناروغیو کې مشوره وکړئ."],
+    sec4: ["خوبولي ورکوي – د موټر چلولو پر مهال احتیاط.", "له الکول څخه ډډه وکړئ.", "د امیندوارۍ/شیدې ورکولو یا د ځیګر ناروغۍ کې ډاکټر سره مشوره."],
     sec5Title: "اړخیزې اغېزې",
-    sec5: ["د بلې ورځې خوبولي.", "سر درد.", "ژوندۍ خوبونه.", "سپک زړه بدوالی."],
+    sec5: ["د سهار خوبولي.", "سر درد.", "په ځینو کې قوي خوبونه/سپک سر ګرځېدل."],
     sec6Title: "تداخلات",
-    sec6: ["اراموونکي درمل خوبولي زیاتوي.", "که د وینې نری کوونکي کاروئ (warfarin) مشوره وکړئ.", "له الکول څخه ډډه وکړئ."],
+    sec6: ["نور اراموونکي درمل خوبولي زیاتوي.", "خپل ټول درمل ووایئ."],
     sec7Title: "رمضان او روژه",
-    sec7: ["اکثر له افطار وروسته، د خوب نه 30–60 دقیقې مخکې.", "که اړتیا وي له ډاکټر سره پلان جوړ کړئ."],
+    sec7: ["اکثر له افطار وروسته، کله چې د خوب لپاره تیار یاست اخیستل کېږي.", "که د خوب نظم بدل شي، ډاکټر سره پلان جوړ کړئ."],
     sec8Title: "ساتنه",
-    sec8: ["له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې.", "له “EXP” وروسته مه کاروئ."],
-
+    sec8: ["له ماشومانو لرې، د خونې په تودوخې کې او له رڼا/رطوبت څخه خوندي.", "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."],
     footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
     footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
