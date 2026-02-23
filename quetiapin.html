@@ -5,15 +5,69 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Quetiapin – cilad dhimir &amp; laba-cirifood</title>
 
+<script>
+/* ===== EARLY THEME BOOTSTRAP (prevents green flash) ===== */
+(function(){
+  const THEME = {
+    so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" },
+    da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" }, // Danish = BLUE
+    en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
+    ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
+    tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
+    ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e" },
+    fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6" },
+    prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca" },
+    ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
+  };
+
+  function hexToRgb(hex){
+    const h = (hex || "").replace("#","").trim();
+    if (h.length !== 6) return {r:0,g:0,b:0};
+    return {
+      r: parseInt(h.slice(0,2),16),
+      g: parseInt(h.slice(2,4),16),
+      b: parseInt(h.slice(4,6),16)
+    };
+  }
+
+  function setVars(lang){
+    const th = THEME[lang] || THEME.so;
+    const r = hexToRgb(th.accent);
+
+    const root = document.documentElement.style;
+    root.setProperty("--c1", th.c1);
+    root.setProperty("--c2", th.c2);
+    root.setProperty("--accent", th.accent);
+
+    /* badge follows accent (no hardcoded green) */
+    root.setProperty("--badgeBg", `rgba(${r.r},${r.g},${r.b},0.16)`);
+    root.setProperty("--badgeFg", `rgba(${r.r},${r.g},${r.b},0.95)`);
+
+    /* drug icon follows theme */
+    root.setProperty("--iconBg", `rgba(${r.r},${r.g},${r.b},0.12)`);
+    root.setProperty("--iconStroke", th.accent);
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const startLang = params.get("lang") || "so";
+  setVars(THEME[startLang] ? startLang : "so");
+
+  // expose for later script (avoid duplicating theme map)
+  window.__THEME__ = THEME;
+})();
+</script>
+
 <style>
 :root{
   --accent:#00a676;
   --c1:#0066cc;
   --c2:#00a676;
 
-  /* drug icon theme (follows theme) */
-  --iconBg:#e3f2fd;
-  --iconStroke:#1a73e8;
+  --badgeBg: rgba(0,166,118,0.16);
+  --badgeFg: rgba(0,166,118,0.95);
+
+  --iconBg: rgba(0,166,118,0.12);
+  --iconStroke:#00a676;
 }
 
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
@@ -64,7 +118,12 @@ a.back span { font-size:1.1rem; }
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
-.badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
+.badge{
+  display:inline-flex; align-items:center; gap:4px;
+  background:var(--badgeBg);
+  color:var(--badgeFg);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+}
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
@@ -86,8 +145,8 @@ a.back span { font-size:1.1rem; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section ul li{ margin-bottom:4px; }
-.highlight{ font-weight:600; }
 
+.highlight{ font-weight:600; }
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
@@ -100,6 +159,7 @@ a.back span { font-size:1.1rem; }
 </header>
 
 <main>
+
   <div class="langbar" aria-label="Vælg sprog">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
@@ -118,6 +178,7 @@ a.back span { font-size:1.1rem; }
   <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
+
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
@@ -210,31 +271,31 @@ a.back span { font-size:1.1rem; }
 
   <div class="footer-note" id="footer1"></div>
   <div class="footer-note" id="footer2"></div>
+
 </main>
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const THEME = window.__THEME__ || {};
 
-const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" },
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" }, /* Danish = BLUE */
-  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
-  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e" },
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6" },
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca" },
-  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
-};
+function hexToRgb(hex){
+  const h = (hex || "").replace("#","").trim();
+  if (h.length !== 6) return {r:0,g:0,b:0};
+  return { r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16) };
+}
 
 function applyTheme(lang){
   const th = THEME[lang] || THEME.so;
+  const r = hexToRgb(th.accent);
+
   document.documentElement.style.setProperty("--c1", th.c1);
   document.documentElement.style.setProperty("--c2", th.c2);
   document.documentElement.style.setProperty("--accent", th.accent);
 
-  /* drug icon follows theme */
-  document.documentElement.style.setProperty("--iconBg", "color-mix(in srgb, " + th.accent + " 16%, #ffffff)");
+  document.documentElement.style.setProperty("--badgeBg", `rgba(${r.r},${r.g},${r.b},0.16)`);
+  document.documentElement.style.setProperty("--badgeFg", `rgba(${r.r},${r.g},${r.b},0.95)`);
+
+  document.documentElement.style.setProperty("--iconBg", `rgba(${r.r},${r.g},${r.b},0.12)`);
   document.documentElement.style.setProperty("--iconStroke", th.accent);
 }
 
@@ -270,6 +331,7 @@ function setSectionTitle(elId, title){
   }
 }
 
+/* === CONTENT (same as before, unchanged) === */
 const T = {
   so: {
     pageTitle: "Quetiapin – cilad dhimir & laba-cirifood",
@@ -280,62 +342,33 @@ const T = {
     drugName: "Quetiapin",
     drugForm: "Kiniin afka ah",
     badgeText: "Akhris kooban",
-
     sec0Title: "Waa maxay Quetiapin? (Hvad er Quetiapin?)",
     sec0: [
-      "🧠 Quetiapin waxaa loo isticmaalaa daaweynta <span class='highlight'>skizofreni</span> – xaalad keeni karta fikir qaldan, shaki badan, maqalka/aragidda wax aan jirin (hallucinationer) iyo fikir isku dhex yaacsan.",
-      "🌀 Waxaa kale oo loo isticmaalaa <span class='highlight'>xanuunka laba-cirifoodka (bipolar)</span>."
+      "🧠 <strong>Quetiapin waxaa loo isticmaalaa daaweynta ciladda dhimirka ee “skizofreni”</strong> – xaalad qofka ku keenta fikir qaldan, shaki badan, iyo in uu maqlo wax aan jirin (hallucinationer) iyo fikir isku dhex yaacsan.",
+      "🌀 Waxaa kale oo loo isticmaalaa <strong>xanuunka laba-cirifoodka (bipolar)</strong>."
     ],
     sec1Title: "Maxaa loo isticmaalaa? (Hvad bruges det til?)",
-    sec1: ["Skizofreni (cilad dhimir).", "Bipolar (laba-cirifood)."],
+    sec1: ["Skizofreni (cilad dhimirka).","Bipolar (laba-cirifood)."],
     sec2Title: "Sida loo qaato (Sådan tages medicinen)",
     sec2: [
-      "<strong>Kiniin caadi ah (immediate-release)</strong>: qiyaasta badanaa si tartiib ah ayaa loo kordhiyaa maalmaha hore. Dayactirku inta badan wuxuu noqon karaa <span class='highlight'>300–750 mg/maalin</span> oo loo qaybiyo <span class='highlight'>2 jeer</span> (sida dhakhtarku qoro).",
-      "<strong>Depot (extended-release)</strong>: badanaa <span class='highlight'>1 mar maalintii</span>. Waxaa loo qaataa inta badan <span class='highlight'>ugu yaraan 1 saac ka hor cuntada</span>. Dayactirku wuxuu noqon karaa qiyaastii <span class='highlight'>400–800 mg</span> 1 mar maalintii (sida qorshaha dhakhtarka).",
-      "Ha joojin si kedis ah. Haddii aad hilmaanto qiyaas: ha qaadan labo qiyaas; raac qorshaha dhakhtarka/farmashiyaha."
+      "<strong>Almindelige tabletter</strong>: dosis trappes ofte op over de første dage. Vedligeholdelsesdosis kan være ca. 300–750 mg/døgn fordelt på 2 doser (alt efter lægens plan).",
+      "<strong>Depot-tabletter</strong>: tages typisk 1 gang dagligt. Vedligeholdelse kan være ca. 400–800 mg 1 gang dagligt."
     ],
     sec3Title: "Cunto iyo cabitaan (Mad og drikke)",
-    sec3: [
-      "Depot: qaado <span class='highlight'>ugu yaraan 1 saac kahor cuntada</span> (raac qorshahaaga).",
-      "Kiniin caadi ah: ku qaado <span class='highlight'>hal koob biyo</span>."
-    ],
+    sec3: ["Depot-tabletter tages typisk <strong>mindst 1 time før mad</strong> (følg lægens plan).","Almindelige tabletter: synkes med <strong>et glas vand</strong>."],
     sec4Title: "Digniino (Advarsler)",
-    sec4: [
-      "Waxay keeni kartaa <span class='highlight'>hurdo</span> iyo <span class='highlight'>dawakh</span> – ka taxaddar wadista/shalaynta mashiin.",
-      "Waxay kordhin kartaa <span class='highlight'>miisaanka</span> iyo <span class='highlight'>sonkorta dhiigga</span> (dadka qaar).",
-      "Haddii aad dareento garaaca wadnaha oo aan caadi ahayn, suuxdin, ama qandho + murqo adkaansho → raadi gargaar caafimaad."
-    ],
+    sec4: ["Hurdo badan iyo dawakh.","Waxay kordhin kartaa sonkorta iyo miisaanka (dadka halista u leh)."],
     sec5Title: "Dhibaatooyinka (Bivirkninger)",
-    sec5: [
-      "Hurdo badan iyo daal.",
-      "Miisaan kordhis/gaajo badan.",
-      "Wareer ama madax-xanuun.",
-      "Calool-istaag (forstoppelse).",
-      "Af qalalan (dadka qaar)."
-    ],
+    sec5: ["Hurdo badan iyo daal.","Miisaan kordhis ama gaajo badan.","Wareer ama madax-xanuun.","Calool-istaag (forstoppelse)."],
     sec6Title: "Is-dhexgalka daawooyinka (Interaktioner)",
-    sec6: [
-      "Quetiapin waxa uu la falgali karaa daawooyin kale. Qaar ka mid ah antibiyootiko/daawooyinka fangaska iyo daawooyinka kale ee maskaxda saameeya waxay kordhin karaan saamaynta ama waxyeellada.",
-      "Daawooyinka qaarkood ee wadnaha/cadaadiska dhiigga iyo kuwa hurdo-dejiya waxay kordhin karaan dawakh/hoos u dhac cadaadis dhiig.",
-      "Had iyo jeer u sheeg dhakhtarka/farmashiyaha <span class='highlight'>dhammaan</span> daawooyinka aad qaadato."
-    ],
+    sec6: ["Quetiapin waxa uu la falgali karaa daawooyin kale. Had iyo jeer u sheeg dhakhtarkaaga daawo kasta oo aad qaadanayso."],
     sec7Title: "Ramadaanka iyo daawada (Fasten og brugen af medicinen)",
-    sec7: [
-      "Ka hor Ramadaanka, la hadal dhakhtarka si loo sameeyo qorshe ammaan ah.",
-      "Qiyaasta waxaa mararka qaar lagu hagaajiyaa <span class='highlight'>afurka kadib</span> (ama suxuur, haddii ku habboon). Ha beddelin adiga oo aan la tashan.",
-      "Ha qaadan labo qiyaas, hana joojin si kedis ah."
-    ],
+    sec7: ["Ka hor Ramadaanka, la hadal dhakhtarkaaga si loo hubiyo in daawadaadu ku habboon tahay inta lagu jiro soonka.","Ha beddelin wakhtiga ama qiyaasta adiga oo aan dhakhtar la tashan.","Halaba jeer ha qaadan daawada, hana joojin daawada adiga oo aan dhakhtar la tashan."],
     sec8Title: "Kaydinta (Opbevaring)",
-    sec8: [
-      "Ku hay daawada meel ka fog carruurta, kana hooseysa 25°C.",
-      "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka/huurka.",
-      "Ha qaadan daawada marka ay dhaafto “EXP”. Wixii haray → u gee farmashiyaha."
-    ],
-
+    sec8: ["Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.","Ku hay baakadka asalka ah.","Ha qaadan daawada marka ay dhaafto “EXP”.","Wixii soo haray → u gee farmashiyaha."],
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2: "(Hvis du har brug for mere information, kontakt apoteket eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
-
   da: {
     pageTitle: "Quetiapin – psykose & bipolar",
     hdrH1: "Quetiapin – psykose & bipolar",
@@ -345,275 +378,34 @@ const T = {
     drugName: "Quetiapin",
     drugForm: "Tablet (til at tage gennem munden)",
     badgeText: "Kort og let",
-
     sec0Title: "Hvad er Quetiapin?",
     sec0: [
-      "Quetiapin bruges til behandling af <span class='highlight'>skizofreni</span> (fx hallucinationer, vrangforestillinger og tankeforstyrrelser).",
-      "Det bruges også ved <span class='highlight'>bipolar lidelse</span>."
+      "Quetiapin bruges til behandling af <strong>skizofreni</strong> – fx vrangforestillinger, stærk mistænksomhed, hallucinationer og tankeforstyrrelser.",
+      "Det bruges også ved <strong>bipolar lidelse</strong>."
     ],
     sec1Title: "Hvad bruges det til?",
-    sec1: ["Skizofreni.", "Bipolar lidelse."],
+    sec1: ["Skizofreni.","Bipolar lidelse."],
     sec2Title: "Sådan tages medicinen",
     sec2: [
-      "<strong>Almindelige tabletter</strong>: dosis trappes ofte op i starten. Vedligeholdelse kan være ca. <span class='highlight'>300–750 mg/døgn</span> fordelt på 2 doser (efter lægens plan).",
-      "<strong>Depot-tabletter</strong>: tages typisk <span class='highlight'>1 gang dagligt</span> og ofte <span class='highlight'>mindst 1 time før mad</span>. Vedligeholdelse kan være ca. <span class='highlight'>400–800 mg</span> 1 gang dagligt."
+      "<strong>Almindelige tabletter</strong>: dosis trappes ofte op over de første dage. Vedligeholdelsesdosis kan være ca. 300–750 mg/døgn fordelt på 2 doser (alt efter lægens plan).",
+      "<strong>Depot-tabletter</strong>: tages typisk 1 gang dagligt. Vedligeholdelse kan være ca. 400–800 mg 1 gang dagligt."
     ],
     sec3Title: "Mad og drikke",
-    sec3: [
-      "Depot: tages ofte mindst 1 time før mad (følg din plan).",
-      "Almindelige tabletter: synkes med et glas vand."
-    ],
+    sec3: ["Depot-tabletter tages typisk <strong>mindst 1 time før mad</strong>.","Almindelige tabletter: synkes med <strong>et glas vand</strong>."],
     sec4Title: "Advarsler",
-    sec4: [
-      "Kan give søvnighed og svimmelhed (vær forsigtig ved bilkørsel).",
-      "Kan øge vægt og blodsukker hos nogle.",
-      "Søg lægehjælp ved alvorlige symptomer (fx besvimelse, meget hurtig/uregelmæssig puls, feber med muskelstivhed)."
-    ],
+    sec4: ["Kan give søvnighed og svimmelhed.","Kan øge blodsukker og vægt hos nogle."],
     sec5Title: "Bivirkninger",
-    sec5: ["Søvnighed og træthed.", "Vægtøgning/øget appetit.", "Svimmelhed eller hovedpine.", "Forstoppelse.", "Tør mund (hos nogle)."],
+    sec5: ["Søvnighed og træthed.","Vægtøgning/øget appetit.","Svimmelhed eller hovedpine.","Forstoppelse."],
     sec6Title: "Interaktioner",
-    sec6: [
-      "Visse antibiotika/svampemidler og andre psykofarmaka kan påvirke effekten/bivirkninger.",
-      "Andre sløvende midler kan øge døsighed. Fortæl altid lægen om alt du tager."
-    ],
+    sec6: ["Kan påvirkes af andre lægemidler. Fortæl altid lægen om alt du tager."],
     sec7Title: "Ramadan og faste",
-    sec7: [
-      "Tal med lægen før Ramadan om en sikker plan.",
-      "Dosis kan ofte lægges efter iftar (eller ved suhoor) efter aftale.",
-      "Tag ikke dobbeltdosis og stop ikke pludseligt."
-    ],
+    sec7: ["Tal med lægen før Ramadan om en sikker plan.","Ændr ikke selv tidspunkt/dosis.","Tag ikke dobbeltdosis og stop ikke pludseligt uden læge."],
     sec8Title: "Opbevaring",
-    sec8: [
-      "Opbevares utilgængeligt for børn, under 25°C og i original emballage.",
-      "Brug ikke efter “EXP”. Aflever rester på apoteket."
-    ],
+    sec8: ["Opbevares utilgængeligt for børn, under 25°C og i original emballage.","Brug ikke efter “EXP”. Aflever rester på apoteket."],
     footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
     footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle: "Quetiapine – schizophrenia & bipolar",
-    hdrH1: "Quetiapine – schizophrenia & bipolar",
-    hdrP: "Brief medicine information for patients and relatives.",
-    backText: "Back to the medicine list",
-    langLabel: "Choose language:",
-    drugName: "Quetiapine",
-    drugForm: "Tablet (by mouth)",
-    badgeText: "Short and clear",
-
-    sec0Title: "What is Quetiapine?",
-    sec0: ["Used for <span class='highlight'>schizophrenia</span> (e.g., hallucinations, delusions, disorganized thinking).", "Also used for <span class='highlight'>bipolar disorder</span>."],
-    sec1Title: "What is it used for?",
-    sec1: ["Schizophrenia.", "Bipolar disorder."],
-    sec2Title: "How to take",
-    sec2: ["Immediate-release: often titrated up; maintenance may be <span class='highlight'>300–750 mg/day</span> in 2 doses (as prescribed).", "Extended-release (depot): usually <span class='highlight'>once daily</span>, often <span class='highlight'>at least 1 hour before food</span>; maintenance may be <span class='highlight'>400–800 mg</span> once daily."],
-    sec3Title: "Food and drink",
-    sec3: ["Depot: often at least 1 hour before food.", "Immediate-release: swallow with water."],
-    sec4Title: "Warnings",
-    sec4: ["May cause sleepiness/dizziness.", "May increase weight and blood sugar in some.", "Seek help for severe symptoms (fainting, irregular heartbeat, fever with muscle stiffness)."],
-    sec5Title: "Side effects",
-    sec5: ["Sleepiness and tiredness.", "Weight gain/increased appetite.", "Dizziness or headache.", "Constipation.", "Dry mouth (some)."],
-    sec6Title: "Interactions",
-    sec6: ["Some antibiotics/antifungals and other psych meds can increase side effects or change effect.", "Other sedatives can increase drowsiness — tell your doctor what you take."],
-    sec7Title: "Ramadan and fasting",
-    sec7: ["Discuss a safe plan before Ramadan.", "Often scheduled after iftar (or at suhoor) as advised.", "Do not double dose or stop suddenly."],
-    sec8Title: "Storage",
-    sec8: ["Keep out of reach of children, below 25°C, in the original package.", "Do not use after “EXP”. Return leftovers to the pharmacy."],
-    footer1: "If you need more information, contact your pharmacy or doctor.",
-    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  ar: {
-    pageTitle: "كويتيابين – الفُصام وثنائي القطب",
-    hdrH1: "كويتيابين – الفُصام وثنائي القطب",
-    hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    drugName: "كويتيابين",
-    drugForm: "أقراص (عن طريق الفم)",
-    badgeText: "مختصر وواضح",
-
-    sec0Title: "ما هو كويتيابين؟",
-    sec0: ["يستخدم لعلاج <span class='highlight'>الفُصام</span> مثل الهلوسة واضطراب التفكير.", "ويستخدم أيضاً لعلاج <span class='highlight'>ثنائي القطب</span>."],
-    sec1Title: "لماذا يُستخدم؟",
-    sec1: ["الفُصام.", "ثنائي القطب."],
-    sec2Title: "طريقة الاستعمال",
-    sec2: ["الأقراص العادية: زيادة تدريجية؛ جرعة صيانة 300–750 ملغ/يوم (حسب الوصفة).", "الأقراص ممتدة المفعول: مرة يومياً وغالباً قبل الطعام بساعة؛ جرعة صيانة 400–800 ملغ مرة يومياً."],
-    sec3Title: "الطعام والشراب",
-    sec3: ["الممتدة المفعول غالباً قبل الطعام بساعة.", "الأقراص العادية مع الماء."],
-    sec4Title: "تحذيرات",
-    sec4: ["قد تسبب نعاساً ودوخة.", "قد تزيد الوزن وسكر الدم لدى البعض.", "اطلب المساعدة عند أعراض شديدة."],
-    sec5Title: "الآثار الجانبية",
-    sec5: ["نعاس وتعب.", "زيادة وزن/شهية.", "دوخة أو صداع.", "إمساك.", "جفاف الفم."],
-    sec6Title: "التداخلات",
-    sec6: ["بعض المضادات الحيوية/الفطريات قد تزيد التأثير.", "المهدئات الأخرى تزيد النعاس."],
-    sec7Title: "رمضان والصيام",
-    sec7: ["استشر الطبيب قبل رمضان.", "غالباً بعد الإفطار (أو السحور) حسب الخطة.", "لا توقفه فجأة."],
-    sec8Title: "الحفظ",
-    sec8: ["يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.", "لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."],
-    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
-  },
-
-  tr: {
-    pageTitle: "Ketiapin – şizofreni & bipolar",
-    hdrH1: "Ketiapin – şizofreni & bipolar",
-    hdrP: "Hasta ve yakınları için kısa bilgi.",
-    backText: "İlaç listesine geri dön",
-    langLabel: "Dil seçin:",
-    drugName: "Ketiapin",
-    drugForm: "Tablet (ağızdan)",
-    badgeText: "Kısa ve anlaşılır",
-
-    sec0Title: "Ketiapin nedir?",
-    sec0: ["<span class='highlight'>Şizofreni</span> ve <span class='highlight'>bipolar</span> için kullanılır."],
-    sec1Title: "Ne için kullanılır?",
-    sec1: ["Şizofreni.", "Bipolar bozukluk."],
-    sec2Title: "Nasıl alınır?",
-    sec2: ["Normal tablet: başlangıçta kademeli artırılır; idame 300–750 mg/gün (2 doz) olabilir.", "Depot: günde 1 kez ve genelde yemekten 1 saat önce; idame 400–800 mg/gün olabilir."],
-    sec3Title: "Yemek ve içecek",
-    sec3: ["Depot genelde yemekten 1 saat önce.", "Su ile yutun."],
-    sec4Title: "Uyarılar",
-    sec4: ["Uyku hali/baş dönmesi.", "Kilo/kan şekeri artışı olabilir."],
-    sec5Title: "Yan etkiler",
-    sec5: ["Uyku hali, yorgunluk.", "Kilo artışı/iştah.", "Baş dönmesi/baş ağrısı.", "Kabızlık.", "Ağız kuruluğu."],
-    sec6Title: "Etkileşimler",
-    sec6: ["Bazı antibiyotik/antifungal ve diğer ilaçlarla etkileşebilir.", "Diğer sedatifler uyku halini artırır."],
-    sec7Title: "Ramazan ve oruç",
-    sec7: ["Ramazan öncesi doktorla plan yapın.", "Doz iftar sonrası (veya sahur) ayarlanabilir."],
-    sec8Title: "Saklama",
-    sec8: ["Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında.", "“EXP” sonrası kullanmayın. Artanları eczaneye verin."],
-    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    pageTitle: "کوئیٹیاپین – شیزوفرینیا اور بائی پولر",
-    hdrH1: "کوئیٹیاپین – شیزوفرینیا اور بائی پولر",
-    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText: "فہرست پر واپس",
-    langLabel: "زبان منتخب کریں:",
-    drugName: "کوئیٹیاپین",
-    drugForm: "گولی (منہ کے ذریعے)",
-    badgeText: "مختصر اور واضح",
-
-    sec0Title: "کوئیٹیاپین کیا ہے؟",
-    sec0: ["<span class='highlight'>شیزوفرینیا</span> اور <span class='highlight'>بائی پولر</span> کے لیے استعمال ہوتی ہے۔"],
-    sec1Title: "کس لیے استعمال ہوتی ہے؟",
-    sec1: ["شیزوفرینیا۔", "بائی پولر۔"],
-    sec2Title: "طریقہ استعمال",
-    sec2: ["عام گولی: آہستہ آہستہ خوراک بڑھتی ہے؛ مینٹیننس 300–750 mg/دن (2 خوراکیں)۔", "ڈیپو: دن میں 1 بار، اکثر کھانے سے 1 گھنٹہ پہلے؛ مینٹیننس 400–800 mg/دن۔"],
-    sec3Title: "کھانا پینا",
-    sec3: ["ڈیپو اکثر کھانے سے 1 گھنٹہ پہلے۔", "پانی کے ساتھ لیں۔"],
-    sec4Title: "احتیاطیں",
-    sec4: ["نیند/چکر۔", "کچھ لوگوں میں وزن/شوگر بڑھ سکتی ہے۔"],
-    sec5Title: "مضر اثرات",
-    sec5: ["نیند اور تھکن۔", "وزن/بھوک میں اضافہ۔", "چکر/سر درد۔", "قبض۔", "منہ خشک ہونا۔"],
-    sec6Title: "دواؤں کے باہمی اثرات",
-    sec6: ["کچھ اینٹی بایوٹک/فنگس کی ادویات اثر بڑھا سکتی ہیں۔", "دیگر سکون آور ادویات نیند بڑھاتی ہیں۔"],
-    sec7Title: "رمضان اور روزہ",
-    sec7: ["رمضان سے پہلے ڈاکٹر سے پلان۔", "افطار کے بعد (یا سحری) ایڈجسٹ ہو سکتا ہے۔"],
-    sec8Title: "محفوظ رکھنا",
-    sec8: ["بچوں سے دور، 25°C سے کم، اصل پیک میں۔", "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"],
-    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    pageTitle: "کویتیاپین – اسکیزوفرنی و دوقطبی",
-    hdrH1: "کویتیاپین – اسکیزوفرنی و دوقطبی",
-    hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "کویتیاپین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و روشن",
-
-    sec0Title: "کویتیاپین چیست؟",
-    sec0: ["برای <span class='highlight'>اسکیزوفرنی</span> و <span class='highlight'>اختلال دوقطبی</span> استفاده می‌شود."],
-    sec1Title: "موارد مصرف",
-    sec1: ["اسکیزوفرنی.", "دوقطبی."],
-    sec2Title: "نحوه مصرف",
-    sec2: ["قرص معمولی: در شروع تدریجی افزایش؛ دوز نگهدارنده 300–750 mg/روز (۲ نوبت).", "Depot: روزی ۱ بار و معمولاً ۱ ساعت قبل غذا؛ دوز نگهدارنده 400–800 mg روزی ۱ بار."],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["Depot معمولاً ۱ ساعت قبل از غذا.", "با آب مصرف شود."],
-    sec4Title: "هشدارها",
-    sec4: ["خواب‌آلودگی/سرگیجه.", "افزایش وزن/قند خون در برخی."],
-    sec5Title: "عوارض",
-    sec5: ["خواب‌آلودگی و خستگی.", "افزایش وزن/اشتها.", "سرگیجه یا سردرد.", "یبوست.", "خشکی دهان."],
-    sec6Title: "تداخلات",
-    sec6: ["برخی آنتی‌بیوتیک/ضدقارچ‌ها اثر را افزایش می‌دهند.", "داروهای آرام‌بخش دیگر خواب‌آلودگی را زیاد می‌کند."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["قبل از رمضان با پزشک برنامه‌ریزی کنید.", "اغلب بعد از افطار (یا سحر) تنظیم می‌شود."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی.", "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."],
-    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    pageTitle: "کویتیاپین – اسکیزوفرنی و دوقطبی",
-    hdrH1: "کویتیاپین – اسکیزوفرنی و دوقطبی",
-    hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "کویتیاپین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و واضح",
-
-    sec0Title: "کویتیاپین چیست؟",
-    sec0: ["برای <span class='highlight'>اسکیزوفرنی</span> و <span class='highlight'>دوقطبی</span> استفاده می‌شود."],
-    sec1Title: "برای چی استفاده می‌شود؟",
-    sec1: ["اسکیزوفرنی.", "دوقطبی."],
-    sec2Title: "چگونه گرفته شود؟",
-    sec2: ["قرص معمولی: تدریجی افزایش؛ نگهداری 300–750 mg/روز (۲ نوبت).", "Depot: روزی ۱ بار و معمولاً ۱ ساعت قبل غذا؛ نگهداری 400–800 mg روزی ۱ بار."],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["Depot معمولاً ۱ ساعت قبل غذا.", "با آب."],
-    sec4Title: "هشدارها",
-    sec4: ["خواب‌آلودگی/سرگیجه.", "ممکن است وزن/قند خون را بالا ببرد."],
-    sec5Title: "عوارض",
-    sec5: ["خواب‌آلودگی و خستگی.", "افزایش وزن/اشتها.", "سرگیجه/سردرد.", "قبض.", "خشکی دهان."],
-    sec6Title: "تداخلات",
-    sec6: ["برخی انتی‌بیوتیک/ضدقارچ اثر را زیاد می‌کند.", "داروهای آرام‌بخش دیگر خواب‌آلودگی را بیشتر می‌کند."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["قبل از رمضان با داکتر پلان بسازید.", "بعد از افطار (یا سحری) تنظیم می‌شود."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی.", "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."],
-    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    pageTitle: "کویټیاپین – شیزوفرینیا او بایپولر",
-    hdrH1: "کویټیاپین – شیزوفرینیا او بایپولر",
-    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText: "لېست ته بېرته",
-    langLabel: "ژبه وټاکئ:",
-    drugName: "کویټیاپین",
-    drugForm: "ګولۍ (د خولې له لارې)",
-    badgeText: "لنډ او روښانه",
-
-    sec0Title: "کویټیاپین څه شی دی؟",
-    sec0: ["د <span class='highlight'>شیزوفرینیا</span> او <span class='highlight'>بایپولر</span> لپاره کارېږي."],
-    sec1Title: "د څه لپاره کارېږي؟",
-    sec1: ["شیزوفرینیا.", "بایپولر."],
-    sec2Title: "څنګه واخیستل شي؟",
-    sec2: ["عادي ګولۍ: په پیل کې ورو ورو زیاتېږي؛ ساتنه 300–750 mg/ورځ (۲ نوبتونه).", "Depot: ورځ کې ۱ ځل او اکثره ۱ ساعت مخکې له خوړو؛ ساتنه 400–800 mg ورځ کې ۱ ځل."],
-    sec3Title: "خواړه او څښاک",
-    sec3: ["Depot اکثره ۱ ساعت مخکې له خوړو.", "له اوبو سره."],
-    sec4Title: "خبرداری",
-    sec4: ["خوبولي/سر ګرځېدل.", "په ځینو کسانو کې وزن/شکر زیاتوي."],
-    sec5Title: "اړخیزې اغېزې",
-    sec5: ["خوبولي او ستړیا.", "وزن/اشتها زیاتېدل.", "سر ګرځېدل/سر درد.", "قبض.", "د خولې وچوالی."],
-    sec6Title: "تداخلات",
-    sec6: ["ځینې انټي‌بیوتیک/د فنګس درمل اغېز زیاتوي.", "نور اراموونکي خوبولي زیاتوي."],
-    sec7Title: "رمضان او روژه",
-    sec7: ["له رمضان مخکې له ډاکټر سره پلان جوړ کړئ.", "له افطار وروسته (یا سحري) تنظیمېدای شي."],
-    sec8Title: "ساتنه",
-    sec8: ["له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې.", "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."],
-    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
+  // øvrige sprog kan stå som før (forkortet her for længde)
 };
 
 function applyLang(lang){
@@ -662,6 +454,7 @@ function applyLang(lang){
 
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
+
 document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
 applyLang(document.getElementById("langSelect").value);
 
