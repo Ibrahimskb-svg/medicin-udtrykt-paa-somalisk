@@ -189,17 +189,20 @@ footer{
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-/* Theme per language: header + card border + arrow + flash */
+/*
+  ✅ Forskellige farver pr. sprog (tydeligt forskellige – inkl. pink/brun osv.)
+  Bruges til: header gradient (c1/c2), accent (venstrekant + pil) og flash (kort highlight).
+*/
 const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", flash:"#eef9f3" },
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", flash:"#edf4ff" },
-  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", flash:"#eef4ff" },
-  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", flash:"#f3e9ff" },
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", flash:"#fff0f0" },
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", flash:"#eefaf4" },
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", flash:"#e9fbff" },
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", flash:"#eef2ff" },
-  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", flash:"#fff3e6" }
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", flash:"#eef9f3" }, // blå→grøn (som før)
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", flash:"#edf4ff" }, // blå (DK)
+  en:  { c1:"#111827", c2:"#ec4899", accent:"#ec4899", flash:"#fff1f7" }, // sort→pink
+  ar:  { c1:"#7c2d12", c2:"#f97316", accent:"#b45309", flash:"#fff7ed" }, // brun→orange
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", flash:"#fff0f0" }, // rød
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", flash:"#eefaf4" }, // teal→grøn
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", flash:"#e9fbff" }, // cyan→teal
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", flash:"#eef2ff" }, // indigo→cyan
+  ps:  { c1:"#7c3aed", c2:"#a78bfa", accent:"#7c3aed", flash:"#f5f3ff" }  // lilla (anderledes end de andre)
 };
 
 /* Undertekster per medicin per sprog */
@@ -216,7 +219,7 @@ const SUB = {
 
   marevan: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کننده خون", ps:"د وینې نری کوونکی" },
   xarelto: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کننده خون", ps:"د وینې نری کوونکی" },
-  eliquis: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کنende خون", ps:"د وینې نری کوونکی" },
+  eliquis: { so:"dhiig-khafiifin", da:"blodfortyndende", en:"blood thinner", ar:"مُميّع للدم", tr:"kan sulandırıcı", ur:"خون پتلا کرنے والی", fa:"رقیق‌کننده خون", prs:"رقیق‌کننده خون", ps:"د وینې نری کوونکی" },
 
   metformin: { so:"sonkoroow", da:"diabetes", en:"diabetes", ar:"السكري", tr:"diyabet", ur:"ذیابیطس", fa:"دیابت", prs:"دیابت", ps:"شکر" },
   insulin: { so:"sonkoroow", da:"diabetes", en:"diabetes", ar:"السكري", tr:"diyabet", ur:"ذیابیطس", fa:"دیابت", prs:"دیابت", ps:"شکر" },
