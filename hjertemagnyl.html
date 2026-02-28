@@ -16,6 +16,10 @@
 
   --iconBg:#e3f2fd;
   --iconStroke:#1a73e8;
+
+  /* Zebra/sektion-baggrunde (farveskift uden at ændre tekst/struktur) */
+  --secBg1:#ffffff;
+  --secBg2:#f7fbff;
 }
 
 body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
@@ -73,6 +77,11 @@ a.back span{ font-size:1.1rem; }
 }
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+
+/* Zebra-farveskift på sektioner (kun visuel forbedring) */
+.section:nth-of-type(odd){ background:var(--secBg1); border-radius:10px; padding:10px 10px 6px; }
+.section:nth-of-type(even){ background:var(--secBg2); border-radius:10px; padding:10px 10px 6px; }
+
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
 .section-title small{ font-weight:400; color:#607089; }
@@ -252,7 +261,8 @@ function setDirLang(lang){
 
 function fillList(id, arr){
   const ul = document.getElementById(id);
-  ul.innerHTML = "";
+  if(!ul) return;
+  ul.replaceChildren(); /* robust: no leftover nodes / no gentagelser */
   (arr || []).forEach(txt=>{
     const li = document.createElement("li");
     li.innerHTML = txt;
