@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Morfin (injektion) – stærke smerter</title>
+<title>Morfin (injektion) – mod stærke smerter</title>
 
 <style>
 :root{
@@ -75,7 +75,6 @@ a.back span{ font-size:1.1rem; }
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
 
 .section-icon{
   width:24px; height:24px; border-radius:999px;
@@ -135,17 +134,16 @@ a.back span{ font-size:1.1rem; }
         </div>
         <div class="drug-labels">
           <div class="drug-name" id="drugName">Morfin</div>
-          <div class="drug-form" id="drugForm">Injektion (opioid smertestillende)</div>
+          <div class="drug-form" id="drugForm">Injektion</div>
         </div>
       </div>
       <div class="badge" id="badgeText">Kort og let</div>
     </div>
 
-    <!-- Identiske sektion-ikoner -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er morfin? <small>(What is it?)</small></div>
+        <div class="section-icon use">💉</div>
+        <div class="section-title" id="sec0Title">Hvad er morfin</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
@@ -153,7 +151,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
@@ -161,7 +159,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Hvordan gives det? <small>(How is it given?)</small></div>
+        <div class="section-title" id="sec2Title">Hvordan gives det</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
@@ -169,7 +167,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
+        <div class="section-title" id="sec3Title">Mad og drikke</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
@@ -177,7 +175,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
+        <div class="section-title" id="sec4Title">Advarsler</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
@@ -185,7 +183,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
+        <div class="section-title" id="sec5Title">Bivirkninger</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
@@ -193,7 +191,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
+        <div class="section-title" id="sec6Title">Interaktioner</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
@@ -201,7 +199,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
+        <div class="section-title" id="sec7Title">Ramadan og faste</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
@@ -209,7 +207,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
+        <div class="section-title" id="sec8Title">Opbevaring</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -224,7 +222,7 @@ const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const THEME = {
   so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" }, /* Dansk = blå */
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" },
   en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#3a86ff" },
   ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeText:"#3a1a66", iconBg:"#efe7ff", iconStroke:"#7b2cbf" },
   tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe8ea", badgeText:"#7a0b14", iconBg:"#ffe8ea", iconStroke:"#c1121f" },
@@ -260,219 +258,6 @@ function fillList(id, arr){
   });
 }
 
-function setSectionTitle(elId, title){
-  const el = document.getElementById(elId);
-  if(!el) return;
-  const small = el.querySelector("small");
-  const t = (title || "").trim();
-  if(small){
-    const first = el.childNodes[0];
-    if(first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
-    }else{
-      el.insertBefore(document.createTextNode(t + " "), small);
-    }
-  }else{
-    el.textContent = t;
-  }
-}
-
-const T = {
-  da:{
-    pageTitle:"Morfin (injektion) – stærke smerter",
-    hdrH1:"Morfin (injektion) – mod stærke smerter",
-    hdrP:"Kort og let information – morfin gives normalt af sundhedspersonale efter plan.",
-    backText:"Tilbage til medicinlisten",
-    langLabel:"Vælg sprog:",
-    drugName:"Morfin",
-    drugForm:"Injektion (opioid smertestillende)",
-    badgeText:"Kort og let",
-
-    sec0Title:"Hvad er morfin?",
-    sec0:[
-      "Morfin er et <span class='highlight'>stærkt smertestillende</span> lægemiddel (opioid).",
-      "Det kan også give <span class='highlight'>døsighed</span> og påvirke vejrtrækningen – derfor bruges det efter plan og ofte under observation."
-    ],
-    sec1Title:"Hvad bruges det til?",
-    sec1:[
-      "Behandling af <span class='highlight'>stærke smerter</span> (fx efter operation, ved skader eller ved alvorlig sygdom) – når andre midler ikke er nok.",
-      "I nogle situationer bruges det også til <span class='highlight'>smerte- og åndenødslindring</span> efter lægens vurdering."
-    ],
-    sec2Title:"Hvordan gives det?",
-    sec2:[
-      "Morfin-injektion gives typisk <span class='highlight'>af sundhedspersonale</span> (i en blodåre, i en muskel eller under huden), eller via pumpe efter plan.",
-      "Dosis afhænger af smerter, alder, vægt, nyre-/leverfunktion og anden medicin.",
-      "Hvis du får morfin hjemme: brug kun som aftalt, og kontakt behandlingssted ved tvivl."
-    ],
-    sec3Title:"Mad og drikke",
-    sec3:[
-      "Undgå <span class='highlight'>alkohol</span> – det kan øge sløvhed og risiko for vejrtrækningsproblemer.",
-      "Drik væske og spis fibre hvis muligt – morfin giver ofte <span class='highlight'>forstoppelse</span>."
-    ],
-    sec4Title:"Advarsler",
-    sec4:[
-      "<span class='highlight'>Søg akut hjælp</span> ved meget langsom vejrtrækning, svær sløvhed, blå læber, besvimelse eller hvis personen er svær at vække.",
-      "Morfin kan give afhængighed ved længere brug – derfor planlægges behandlingen og evt. nedtrapning.",
-      "Kørsel/arbejde med maskiner: morfin kan påvirke reaktionsevne – følg lægens råd."
-    ],
-    sec5Title:"Bivirkninger",
-    sec5:[
-      "Kvalme/opkast (ofte i starten).",
-      "Forstoppelse (meget almindeligt) – ofte behov for afføringsmiddel efter plan.",
-      "Døsighed, svimmelhed, kløe.",
-      "I høje doser: langsom vejrtrækning (alvorligt)."
-    ],
-    sec6Title:"Interaktioner",
-    sec6:[
-      "Andre sløvende midler (fx <span class='highlight'>benzodiazepiner</span>, sovemedicin, alkohol) øger risiko for farlig sløvhed/vejrtrækningsproblemer.",
-      "Visse psykofarmaka og stærke smertestillende kan forstærke effekten.",
-      "Fortæl altid læge/apotek om al medicin – også håndkøb."
-    ],
-    sec7Title:"Ramadan og faste",
-    sec7:[
-      "Injektion bryder fasten efter nogle religiøse vurderinger; spørg imam hvis du er i tvivl.",
-      "Helbred først: ved stærke smerter eller behov for morfin bør du følge behandlingsplanen og søge rådgivning."
-    ],
-    sec8Title:"Opbevaring",
-    sec8:[
-      "Opbevaring gælder især ved hjemmebrug: opbevar <span class='highlight'>utilgængeligt for børn</span> og andre, gerne aflåst.",
-      "Brug kun ampuller med intakt emballage og inden “EXP”.",
-      "Aflever rester og brugte kanyler efter lokale retningslinjer (apotek/behandlingssted)."
-    ],
-
-    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en:{
-    pageTitle:"Morphine (injection) – severe pain",
-    hdrH1:"Morphine (injection) – for severe pain",
-    hdrP:"Brief information – morphine is usually administered by healthcare staff as prescribed.",
-    backText:"Back to the medicine list",
-    langLabel:"Choose language:",
-    drugName:"Morphine",
-    drugForm:"Injection (opioid pain medicine)",
-    badgeText:"Short and clear",
-
-    sec0Title:"What is morphine?",
-    sec0:[
-      "Morphine is a <span class='highlight'>strong pain medicine</span> (opioid).",
-      "It can cause <span class='highlight'>drowsiness</span> and affect breathing, so it is used according to a plan and often with monitoring."
-    ],
-    sec1Title:"What is it used for?",
-    sec1:[
-      "Treatment of <span class='highlight'>severe pain</span> when other options are not enough.",
-      "Sometimes also used for symptom relief in selected situations as assessed by a clinician."
-    ],
-    sec2Title:"How is it given?",
-    sec2:[
-      "Usually administered <span class='highlight'>by healthcare professionals</span> (IV/IM/SC) or via a pump as prescribed.",
-      "Dose depends on pain, age, weight, kidney/liver function, and other medicines."
-    ],
-    sec3Title:"Food & drink",
-    sec3:[
-      "Avoid <span class='highlight'>alcohol</span> (increases sedation and breathing risk).",
-      "Constipation is common—fluids/fiber and laxatives may be needed."
-    ],
-    sec4Title:"Warnings",
-    sec4:[
-      "Get urgent help for very slow breathing, extreme sleepiness, fainting, or if the person is hard to wake.",
-      "Long use can lead to dependence—treatment and tapering should be planned.",
-      "Driving/machinery: may impair reactions—follow medical advice."
-    ],
-    sec5Title:"Side effects",
-    sec5:[
-      "Nausea/vomiting (often early).",
-      "Constipation (very common).",
-      "Drowsiness, dizziness, itching.",
-      "High doses: slow breathing (serious)."
-    ],
-    sec6Title:"Interactions",
-    sec6:[
-      "Other sedatives (e.g., <span class='highlight'>benzodiazepines</span>, sleeping pills, alcohol) increase risk of dangerous sedation/respiratory depression.",
-      "Tell your doctor/pharmacy about all medicines."
-    ],
-    sec7Title:"Ramadan & fasting",
-    sec7:[
-      "Religious guidance may differ for injections—ask your imam if unsure.",
-      "Health first: follow the treatment plan for severe pain."
-    ],
-    sec8Title:"Storage",
-    sec8:[
-      "If stored at home: keep <span class='highlight'>locked away</span> and out of reach of children.",
-      "Use only intact ampoules and before “EXP”.",
-      "Dispose of leftovers/sharps according to local guidance."
-    ],
-    footer1:"If you need more information, contact your pharmacy or doctor.",
-    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  so:{
-    pageTitle:"Morfiin (duritaan) – xanuun daran",
-    hdrH1:"Morfiin (duritaan) – xanuun daran",
-    hdrP:"Warbixin kooban – morfiinka badanaa waxaa bixiya shaqaalaha caafimaadka sida qorshaha.",
-    backText:"Ku laabo liiska daawooyinka",
-    langLabel:"Dooro luqadda:",
-    drugName:"Morfiin",
-    drugForm:"Duritaan (opioid xanuun-joojiye)",
-    badgeText:"Akhris kooban",
-
-    sec0Title:"Waa maxay morfiin?",
-    sec0:[
-      "Morfiin waa <span class='highlight'>xanuun-joojiye xooggan</span> (opioid).",
-      "Waxay keeni kartaa hurdo badan, waxayna saameyn kartaa neefsashada – sidaas darteed waxaa loo isticmaalaa qorshe iyo kormeer."
-    ],
-    sec1Title:"Maxaa loo isticmaalaa?",
-    sec1:[
-      "Xanuun <span class='highlight'>aad u daran</span> marka daawooyin kale aysan ku filnayn.",
-      "Mararka qaar waxaa loo adeegsadaa yareynta calaamado gaar ah sida dhakhtarku qiimeeyo."
-    ],
-    sec2Title:"Sidee loo bixiyaa?",
-    sec2:[
-      "Badanaa <span class='highlight'>shaqaalaha caafimaadka</span> ayaa bixiya (xidid/muruq/maqaarka hoostiisa) ama pump qorsheysan.",
-      "Qiyaastu waxay ku xirantahay xanuunka, da’da, miisaanka, kelyaha/beerka iyo daawooyinka kale."
-    ],
-    sec3Title:"Cunto iyo cabitaan",
-    sec3:[
-      "Ka fogow <span class='highlight'>khamriga</span> – wuxuu kordhiyaa hurdo iyo khatar neefsasho.",
-      "Calool-istaag waa caadi – biyo, cunto fiber leh iyo mararka qaar laxative."
-    ],
-    sec4Title:"Digniino",
-    sec4:[
-      "Raadi gargaar degdeg ah haddii neefsashadu gaabis noqoto, hurdo aad u badan, suuxdin, ama qofka aan si fudud loo kicin karin.",
-      "Isticmaal dheer wuxuu keeni karaa laqabsasho – joojinta/hoos-u-dhigista waa in qorsheysnaataa.",
-      "Baabuur wadis: morfiin waxay daciifin kartaa feejignaanta – raac talada dhakhtarka."
-    ],
-    sec5Title:"Dhibaatooyinka",
-    sec5:[
-      "Lallabbo/matag (gaar ahaan bilowga).",
-      "Calool-istaag (aad u badan).",
-      "Hurdo, dawakh, cuncun.",
-      "Qiyaas sare: neefsasho gaabis (khatar)."
-    ],
-    sec6Title:"Is-dhexgalka daawooyinka",
-    sec6:[
-      "Daawooyin hurdo-dejiya (benzodiazepines, hurdo-qaad) iyo khamri → khatar badan.",
-      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato."
-    ],
-    sec7Title:"Ramadaanka iyo soonka",
-    sec7:[
-      "Duritaan waxaa laga yaabaa inuu jebiyo soonka (aragtiyo kala duwan) – la tasho imam haddii aad shaki qabto.",
-      "Caafimaad ahaan: xanuun daran ama baahi morfiin → raac qorshaha daaweynta."
-    ],
-    sec8Title:"Kaydinta",
-    sec8:[
-      "Haddii guriga lagu hayo: ku hay <span class='highlight'>meel qufulan</span> kana fog carruurta.",
-      "Ha isticmaalin haddii ay dhaafto “EXP”.",
-      "Ku tuur/ku celi hadhaaga iyo cirbadaha sida tilmaamaha deegaanka."
-    ],
-    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  }
-};
-
-["ar","tr","ur","fa","prs","ps"].forEach(l=>{ if(!T[l]) T[l]=T.en; });
-
 function applyLang(lang){
   const d = T[lang] || T.da;
 
@@ -489,15 +274,15 @@ function applyLang(lang){
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  setSectionTitle("sec0Title", d.sec0Title);
-  setSectionTitle("sec1Title", d.sec1Title);
-  setSectionTitle("sec2Title", d.sec2Title);
-  setSectionTitle("sec3Title", d.sec3Title);
-  setSectionTitle("sec4Title", d.sec4Title);
-  setSectionTitle("sec5Title", d.sec5Title);
-  setSectionTitle("sec6Title", d.sec6Title);
-  setSectionTitle("sec7Title", d.sec7Title);
-  setSectionTitle("sec8Title", d.sec8Title);
+  document.getElementById("sec0Title").textContent = d.sec0Title;
+  document.getElementById("sec1Title").textContent = d.sec1Title;
+  document.getElementById("sec2Title").textContent = d.sec2Title;
+  document.getElementById("sec3Title").textContent = d.sec3Title;
+  document.getElementById("sec4Title").textContent = d.sec4Title;
+  document.getElementById("sec5Title").textContent = d.sec5Title;
+  document.getElementById("sec6Title").textContent = d.sec6Title;
+  document.getElementById("sec7Title").textContent = d.sec7Title;
+  document.getElementById("sec8Title").textContent = d.sec8Title;
 
   fillList("sec0List", d.sec0);
   fillList("sec1List", d.sec1);
@@ -515,12 +300,587 @@ function applyLang(lang){
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
+
+const T = {
+  da:{
+    pageTitle:"Morfin (injektion) – mod stærke smerter",
+    hdrH1:"Morfin (injektion) – mod stærke smerter",
+    hdrP:"Kort og let information – morfin gives normalt af sundhedspersonale efter plan.",
+    backText:"Tilbage til medicinlisten",
+    langLabel:"Vælg sprog:",
+    drugName:"Morfin",
+    drugForm:"Injektion",
+    badgeText:"Kort og let",
+
+    sec0Title:"Hvad er morfin",
+    sec0:[
+      "Morfin er et <span class='highlight'>stærkt smertestillende</span> lægemiddel (opioid).",
+      "Det kan give <span class='highlight'>døsighed</span> og påvirke vejrtrækningen, derfor gives det efter plan og ofte under observation."
+    ],
+    sec1Title:"Hvad bruges det til",
+    sec1:[
+      "Behandling af <span class='highlight'>stærke smerter</span>, når andre midler ikke er nok.",
+      "I nogle situationer kan det også bruges til symptomlindring efter lægens vurdering."
+    ],
+    sec2Title:"Hvordan gives det",
+    sec2:[
+      "Gives typisk <span class='highlight'>af sundhedspersonale</span> i en blodåre, muskel eller under huden, eller via pumpe efter plan.",
+      "Dosis afhænger af smerter, alder, vægt, nyre-/leverfunktion og anden medicin.",
+      "Hvis du får det i hjemmet: brug kun som aftalt og kontakt behandlingssted ved tvivl."
+    ],
+    sec3Title:"Mad og drikke",
+    sec3:[
+      "Undgå <span class='highlight'>alkohol</span>.",
+      "Forstoppelse er almindeligt – drik væske, spis fibre hvis muligt, og brug evt. afføringsmiddel efter plan."
+    ],
+    sec4Title:"Advarsler",
+    sec4:[
+      "<span class='highlight'>Søg akut hjælp</span> ved meget langsom vejrtrækning, svær sløvhed, blå læber, besvimelse eller hvis personen er svær at vække.",
+      "Morfin kan give afhængighed ved længere brug – derfor planlægges behandling og evt. nedtrapning.",
+      "Kørsel og maskiner: morfin kan påvirke reaktionsevne – følg lægens råd."
+    ],
+    sec5Title:"Bivirkninger",
+    sec5:[
+      "Kvalme/opkast, især i starten.",
+      "Forstoppelse, meget almindeligt.",
+      "Døsighed, svimmelhed, kløe.",
+      "Høje doser kan give langsom vejrtrækning, alvorligt."
+    ],
+    sec6Title:"Interaktioner",
+    sec6:[
+      "Andre sløvende midler som <span class='highlight'>benzodiazepiner</span>, sovemedicin og alkohol øger risiko for farlig sløvhed og vejrtrækningsproblemer.",
+      "Fortæl altid læge/apotek om al medicin, også håndkøb."
+    ],
+    sec7Title:"Ramadan og faste",
+    sec7:[
+      "Religiøse vurderinger kan være forskellige for injektioner – spørg imam hvis du er i tvivl.",
+      "Helbred først: ved stærke smerter bør du følge behandlingsplanen."
+    ],
+    sec8Title:"Opbevaring",
+    sec8:[
+      "Ved hjemmebrug: opbevar <span class='highlight'>utilgængeligt for børn</span> og andre, gerne aflåst.",
+      "Brug kun ampuller med intakt emballage og inden udløbsdato.",
+      "Aflever rester og brugte kanyler efter lokale retningslinjer."
+    ],
+    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en:{
+    pageTitle:"Morphine (injection) – severe pain",
+    hdrH1:"Morphine (injection) – severe pain",
+    hdrP:"Brief information – morphine is usually administered by healthcare staff as prescribed.",
+    backText:"Back to the medicine list",
+    langLabel:"Choose language:",
+    drugName:"Morphine",
+    drugForm:"Injection",
+    badgeText:"Short and clear",
+
+    sec0Title:"What is morphine",
+    sec0:[
+      "Morphine is a <span class='highlight'>strong pain medicine</span> (opioid).",
+      "It can cause <span class='highlight'>drowsiness</span> and affect breathing, so it is given according to a plan and often with monitoring."
+    ],
+    sec1Title:"What is it used for",
+    sec1:[
+      "Treatment of <span class='highlight'>severe pain</span> when other options are not enough.",
+      "Sometimes used for symptom relief in selected situations as assessed by a clinician."
+    ],
+    sec2Title:"How is it given",
+    sec2:[
+      "Usually administered <span class='highlight'>by healthcare professionals</span> into a vein, muscle, or under the skin, or via a pump as prescribed.",
+      "Dose depends on pain, age, weight, kidney/liver function, and other medicines.",
+      "If used at home: use only as agreed and contact your care team if unsure."
+    ],
+    sec3Title:"Food and drink",
+    sec3:[
+      "Avoid <span class='highlight'>alcohol</span>.",
+      "Constipation is common—fluids, fibre and laxatives may be needed."
+    ],
+    sec4Title:"Warnings",
+    sec4:[
+      "Get urgent help for very slow breathing, extreme sleepiness, fainting, blue lips, or if the person is hard to wake.",
+      "Long-term use can lead to dependence—treatment and tapering should be planned.",
+      "Driving/machinery: may impair reactions—follow medical advice."
+    ],
+    sec5Title:"Side effects",
+    sec5:[
+      "Nausea/vomiting, often early.",
+      "Constipation, very common.",
+      "Drowsiness, dizziness, itching.",
+      "High doses: slow breathing, serious."
+    ],
+    sec6Title:"Interactions",
+    sec6:[
+      "Other sedatives (e.g., <span class='highlight'>benzodiazepines</span>, sleeping pills, alcohol) increase the risk of dangerous sedation and breathing problems.",
+      "Tell your doctor/pharmacy about all medicines."
+    ],
+    sec7Title:"Ramadan and fasting",
+    sec7:[
+      "Religious guidance may differ for injections—ask your imam if unsure.",
+      "Health first: follow the treatment plan for severe pain."
+    ],
+    sec8Title:"Storage",
+    sec8:[
+      "If stored at home: keep <span class='highlight'>locked away</span> and out of reach of children.",
+      "Use only intact ampoules and before expiry date.",
+      "Dispose of leftovers and sharps according to local guidance."
+    ],
+    footer1:"If you need more information, contact your pharmacy or doctor.",
+    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  so:{
+    pageTitle:"Morfiin (duritaan) – xanuun daran",
+    hdrH1:"Morfiin (duritaan) – xanuun daran",
+    hdrP:"Warbixin kooban – morfiinka badanaa waxaa bixiya shaqaalaha caafimaadka sida qorshaha.",
+    backText:"Ku laabo liiska daawooyinka",
+    langLabel:"Dooro luqadda:",
+    drugName:"Morfiin",
+    drugForm:"Duritaan",
+    badgeText:"Akhris kooban",
+
+    sec0Title:"Waa maxay morfiin",
+    sec0:[
+      "Morfiin waa <span class='highlight'>xanuun-joojiye xooggan</span> (opioid).",
+      "Waxay keeni kartaa hurdo badan waxayna saameyn kartaa neefsashada, sidaas darteed waxaa loo isticmaalaa qorshe iyo kormeer."
+    ],
+    sec1Title:"Maxaa loo isticmaalaa",
+    sec1:[
+      "Xanuun <span class='highlight'>aad u daran</span> marka daawooyin kale aysan ku filnayn.",
+      "Mararka qaar waxaa loo adeegsadaa yareynta calaamado gaar ah sida dhakhtarku qiimeeyo."
+    ],
+    sec2Title:"Sidee loo bixiyaa",
+    sec2:[
+      "Badanaa <span class='highlight'>shaqaalaha caafimaadka</span> ayaa bixiya xidid, muruq, ama maqaarka hoostiisa, ama pump qorsheysan.",
+      "Qiyaastu waxay ku xirantahay xanuunka, da’da, miisaanka, kelyaha/beerka iyo daawooyinka kale.",
+      "Haddii guriga lagu siiyo: u isticmaal sida laguugu sheegay oo la xiriir xarunta haddii aad shaki qabto."
+    ],
+    sec3Title:"Cunto iyo cabitaan",
+    sec3:[
+      "Ka fogow <span class='highlight'>khamriga</span>.",
+      "Calool-istaag waa caadi – biyo, cunto fiber leh, mararka qaarna laxative."
+    ],
+    sec4Title:"Digniino",
+    sec4:[
+      "Raadi gargaar degdeg ah haddii neefsashadu gaabis noqoto, hurdo aad u badan, suuxdin, ama qofka aan si fudud loo kicin karin.",
+      "Isticmaal dheer wuxuu keeni karaa laqabsasho; joojinta/hoos-u-dhigista waa in qorsheysnaataa.",
+      "Baabuur wadis: morfiin waxay daciifin kartaa feejignaanta – raac talada dhakhtarka."
+    ],
+    sec5Title:"Dhibaatooyinka",
+    sec5:[
+      "Lallabbo/matag, gaar ahaan bilowga.",
+      "Calool-istaag, aad u badan.",
+      "Hurdo, dawakh, cuncun.",
+      "Qiyaas sare: neefsasho gaabis, khatar."
+    ],
+    sec6Title:"Is-dhexgalka daawooyinka",
+    sec6:[
+      "Daawooyin hurdo-dejiya sida benzodiazepines, hurdo-qaad, iyo khamri waxay kordhiyaan khatarta.",
+      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato."
+    ],
+    sec7Title:"Ramadaanka iyo soonka",
+    sec7:[
+      "Aragtiyada diinta way kala duwanaan karaan duritaanka; la tasho imam haddii aad shaki qabto.",
+      "Caafimaad ahaan: xanuun daran ama baahi morfiin – raac qorshaha daaweynta."
+    ],
+    sec8Title:"Kaydinta",
+    sec8:[
+      "Haddii guriga lagu hayo: ku hay <span class='highlight'>meel qufulan</span> kana fog carruurta.",
+      "Ha isticmaalin haddii ay dhaafto taariikhda dhicitaanka.",
+      "Ku tuur/ku celi hadhaaga iyo cirbadaha sida tilmaamaha deegaanka."
+    ],
+    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2:"Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
+
+  ar:{
+    pageTitle:"المورفين (حقن) – للألم الشديد",
+    hdrH1:"المورفين (حقن) – للألم الشديد",
+    hdrP:"معلومات مختصرة – يُعطى المورفين عادةً بواسطة الطاقم الصحي حسب الخطة.",
+    backText:"العودة إلى قائمة الأدوية",
+    langLabel:"اختر اللغة:",
+    drugName:"المورفين",
+    drugForm:"حقن",
+    badgeText:"مختصر وواضح",
+
+    sec0Title:"ما هو المورفين",
+    sec0:[
+      "المورفين مسكن قوي للألم (أفيوني).",
+      "قد يسبب نعاساً وقد يؤثر على التنفس لذلك يُستخدم حسب خطة وغالباً مع مراقبة."
+    ],
+    sec1Title:"لماذا يُستخدم",
+    sec1:[
+      "لعلاج الألم الشديد عندما لا تكفي الخيارات الأخرى.",
+      "قد يُستخدم أحياناً لتخفيف الأعراض في حالات محددة حسب تقييم الطبيب."
+    ],
+    sec2Title:"كيف يُعطى",
+    sec2:[
+      "عادةً يُعطى بواسطة الطاقم الصحي في الوريد أو العضلة أو تحت الجلد أو عبر مضخة حسب الخطة.",
+      "تعتمد الجرعة على الألم والعمر والوزن ووظائف الكلى والكبد والأدوية الأخرى."
+    ],
+    sec3Title:"الطعام والشراب",
+    sec3:[
+      "تجنب الكحول.",
+      "الإمساك شائع وقد تحتاج سوائل وألياف ومليناً."
+    ],
+    sec4Title:"تحذيرات",
+    sec4:[
+      "اطلب مساعدة عاجلة عند بطء التنفس الشديد أو نعاس شديد أو إغماء أو صعوبة إيقاظ الشخص.",
+      "الاستخدام الطويل قد يسبب اعتماداً ويجب أن يكون الإيقاف تدريجياً حسب خطة.",
+      "القيادة والآلات قد تتأثر."
+    ],
+    sec5Title:"الآثار الجانبية",
+    sec5:[
+      "غثيان أو قيء خاصة في البداية.",
+      "إمساك شائع جداً.",
+      "نعاس ودوخة وحكة.",
+      "جرعات عالية قد تسبب بطء التنفس وهو أمر خطير."
+    ],
+    sec6Title:"التداخلات الدوائية",
+    sec6:[
+      "المهدئات مثل البنزوديازيبينات والمنومات والكحول تزيد خطر مشاكل التنفس.",
+      "أخبر الطبيب/الصيدلية بكل الأدوية."
+    ],
+    sec7Title:"رمضان والصيام",
+    sec7:[
+      "قد تختلف الآراء الدينية حول الحقن؛ اسأل الإمام إن كنت غير متأكد.",
+      "الصحة أولاً واتبع الخطة العلاجية."
+    ],
+    sec8Title:"الحفظ",
+    sec8:[
+      "عند التخزين في المنزل يجب أن يكون بعيداً عن الأطفال ومغلقاً.",
+      "استخدم فقط العبوات السليمة وقبل تاريخ الانتهاء.",
+      "تخلص من البقايا والإبر حسب الإرشادات."
+    ],
+    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2:"إعداد: إبراهيم ظاهر حنف"
+  },
+
+  tr:{
+    pageTitle:"Morfin (enjeksiyon) – şiddetli ağrı",
+    hdrH1:"Morfin (enjeksiyon) – şiddetli ağrı",
+    hdrP:"Kısa bilgi – morfin genellikle sağlık personeli tarafından planına göre uygulanır.",
+    backText:"İlaç listesine geri dön",
+    langLabel:"Dil seçin:",
+    drugName:"Morfin",
+    drugForm:"Enjeksiyon",
+    badgeText:"Kısa ve anlaşılır",
+
+    sec0Title:"Morfin nedir",
+    sec0:[
+      "Morfin güçlü bir ağrı kesicidir (opioid).",
+      "Uyku hali yapabilir ve solunumu etkileyebilir; bu yüzden planla ve çoğu zaman izlemle uygulanır."
+    ],
+    sec1Title:"Ne için kullanılır",
+    sec1:[
+      "Diğer seçenekler yeterli olmadığında şiddetli ağrıyı tedavi etmek için.",
+      "Bazı durumlarda doktor değerlendirmesiyle belirti rahatlatmak için."
+    ],
+    sec2Title:"Nasıl uygulanır",
+    sec2:[
+      "Genellikle sağlık personeli tarafından damardan, kas içine, cilt altına veya pompa ile uygulanır.",
+      "Doz ağrı, yaş, kilo, böbrek/karaciğer durumu ve diğer ilaçlara göre belirlenir."
+    ],
+    sec3Title:"Yemek ve içecek",
+    sec3:[
+      "Alkolden kaçının.",
+      "Kabızlık yaygındır; sıvı, lif ve gerekirse laksatif."
+    ],
+    sec4Title:"Uyarılar",
+    sec4:[
+      "Çok yavaş solunum, aşırı uyku hali, bayılma veya uyandırılamama olursa acil yardım alın.",
+      "Uzun süreli kullanım bağımlılık yapabilir; azaltma planla yapılır.",
+      "Araç ve makine kullanımını etkileyebilir."
+    ],
+    sec5Title:"Yan etkiler",
+    sec5:[
+      "Bulantı/kusma, özellikle başlangıçta.",
+      "Kabızlık, çok yaygın.",
+      "Uyku hali, baş dönmesi, kaşıntı.",
+      "Yüksek dozlarda yavaş solunum, ciddi."
+    ],
+    sec6Title:"Etkileşimler",
+    sec6:[
+      "Benzodiazepinler, uyku ilaçları ve alkol solunum baskılanması riskini artırır.",
+      "Tüm ilaçlarınızı doktor/eczacıya bildirin."
+    ],
+    sec7Title:"Ramazan ve oruç",
+    sec7:[
+      "Enjeksiyonla ilgili dini görüşler farklı olabilir; emin değilseniz imamınıza danışın.",
+      "Sağlık önceliklidir, tedavi planına uyun."
+    ],
+    sec8Title:"Saklama",
+    sec8:[
+      "Evde saklanıyorsa çocuklardan uzak ve kilitli tutun.",
+      "Son kullanma tarihine dikkat edin.",
+      "Atıkları ve iğneleri yerel kurallara göre imha edin."
+    ],
+    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
+  },
+
+  ur:{
+    pageTitle:"مورفین (انجیکشن) – شدید درد",
+    hdrH1:"مورفین (انجیکشن) – شدید درد",
+    hdrP:"مختصر معلومات – مورفین عام طور پر صحت کے عملے کی طرف سے پلان کے مطابق دی جاتی ہے۔",
+    backText:"فہرست پر واپس",
+    langLabel:"زبان منتخب کریں:",
+    drugName:"مورفین",
+    drugForm:"انجیکشن",
+    badgeText:"مختصر اور واضح",
+
+    sec0Title:"مورفین کیا ہے",
+    sec0:[
+      "مورفین ایک طاقتور درد کم کرنے والی دوا ہے (اوپیئڈ).",
+      "یہ غنودگی پیدا کر سکتی ہے اور سانس پر اثر ڈال سکتی ہے، اس لیے پلان کے مطابق اور اکثر نگرانی کے ساتھ دی جاتی ہے۔"
+    ],
+    sec1Title:"کس لیے استعمال ہوتی ہے",
+    sec1:[
+      "شدید درد کے لیے جب دوسری دوائیں کافی نہ ہوں۔",
+      "کچھ حالات میں ڈاکٹر کے فیصلے سے علامات میں آرام کے لیے۔"
+    ],
+    sec2Title:"کیسے دی جاتی ہے",
+    sec2:[
+      "اکثر صحت کا عملہ رگ میں، پٹھے میں، جلد کے نیچے یا پمپ کے ذریعے دیتا ہے۔",
+      "خوراک درد، عمر، وزن، گردہ/جگر اور دوسری ادویات پر منحصر ہے۔"
+    ],
+    sec3Title:"کھانا پینا",
+    sec3:[
+      "الکحل سے پرہیز کریں۔",
+      "قبض عام ہے؛ پانی، فائبر اور ضرورت پر ملین۔"
+    ],
+    sec4Title:"احتیاطیں",
+    sec4:[
+      "سانس بہت آہستہ ہو، بہت زیادہ غنودگی ہو، بے ہوشی ہو یا جگایا نہ جا سکے تو فوری مدد لیں۔",
+      "لمبے عرصے کے استعمال سے انحصار ہو سکتا ہے؛ کم کرنا پلان کے ساتھ ہوتا ہے۔",
+      "ڈرائیونگ اور مشینری متاثر ہو سکتی ہے۔"
+    ],
+    sec5Title:"مضر اثرات",
+    sec5:[
+      "متلی/قے، خاص طور پر شروع میں۔",
+      "قبض، بہت عام۔",
+      "غنودگی، چکر، خارش۔",
+      "زیادہ خوراک میں سانس آہستہ، خطرناک۔"
+    ],
+    sec6Title:"دواؤں کے باہمی اثرات",
+    sec6:[
+      "benzodiazepines، نیند کی دوائیں اور الکحل خطرہ بڑھاتے ہیں۔",
+      "تمام ادویات ڈاکٹر/فارماسسٹ کو بتائیں۔"
+    ],
+    sec7Title:"رمضان اور روزہ",
+    sec7:[
+      "انجیکشن کے بارے میں مذہبی رائے مختلف ہو سکتی ہے؛ شک ہو تو امام سے پوچھیں۔",
+      "صحت پہلے ہے، علاج کے پلان پر عمل کریں۔"
+    ],
+    sec8Title:"محفوظ رکھنا",
+    sec8:[
+      "اگر گھر میں رکھا جائے تو بچوں سے دور اور بہتر ہے لاک میں۔",
+      "ایکسپائری تاریخ چیک کریں۔",
+      "سرنج/سوئی اور بچی دوا مقامی ہدایات کے مطابق تلف کریں۔"
+    ],
+    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
+  },
+
+  fa:{
+    pageTitle:"مورفین (تزریق) – درد شدید",
+    hdrH1:"مورفین (تزریق) – درد شدید",
+    hdrP:"اطلاعات کوتاه – مورفین معمولاً توسط کادر درمان طبق برنامه تزریق می‌شود.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"مورفین",
+    drugForm:"تزریق",
+    badgeText:"کوتاه و روشن",
+
+    sec0Title:"مورفین چیست",
+    sec0:[
+      "مورفین یک مسکن قوی (اوپیوئید) است.",
+      "می‌تواند خواب‌آلودگی ایجاد کند و روی تنفس اثر بگذارد، بنابراین طبق برنامه و اغلب با پایش داده می‌شود."
+    ],
+    sec1Title:"موارد مصرف",
+    sec1:[
+      "درمان درد شدید وقتی گزینه‌های دیگر کافی نیستند.",
+      "گاهی برای تسکین علائم در شرایط خاص با نظر پزشک."
+    ],
+    sec2Title:"نحوه تزریق",
+    sec2:[
+      "معمولاً توسط کادر درمان داخل رگ، عضله، زیر پوست یا با پمپ تزریق می‌شود.",
+      "دوز به درد، سن، وزن، کلیه/کبد و داروهای دیگر بستگی دارد."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "از الکل پرهیز کنید.",
+      "یبوست شایع است؛ مایعات، فیبر و در صورت نیاز ملین."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "در صورت تنفس بسیار کند، خواب‌آلودگی شدید، غش یا سخت بیدار شدن فوراً کمک بگیرید.",
+      "مصرف طولانی می‌تواند وابستگی ایجاد کند؛ کاهش باید طبق برنامه باشد.",
+      "رانندگی و کار با ماشین‌آلات ممکن است تحت تأثیر قرار گیرد."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "تهوع/استفراغ به‌ویژه در شروع.",
+      "یبوست، بسیار شایع.",
+      "خواب‌آلودگی، سرگیجه، خارش.",
+      "دوز بالا: تنفس کند، جدی."
+    ],
+    sec6Title:"تداخلات دارویی",
+    sec6:[
+      "بنزودیازپین‌ها، داروهای خواب‌آور و الکل خطر را افزایش می‌دهند.",
+      "همه داروها را به پزشک/داروساز بگویید."
+    ],
+    sec7Title:"رمضان و روزه",
+    sec7:[
+      "دیدگاه‌ها درباره تزریق ممکن است متفاوت باشد؛ اگر مطمئن نیستید از امام بپرسید.",
+      "سلامت اول است و باید طبق برنامه درمان عمل شود."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "در خانه دور از دسترس کودکان و ترجیحاً در جای قفل‌دار نگهداری شود.",
+      "به تاریخ انقضا توجه کنید.",
+      "دفع سرسوزن و باقی‌مانده طبق دستورالعمل محلی."
+    ],
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  prs:{
+    pageTitle:"مورفین (تزریق) – درد شدید",
+    hdrH1:"مورفین (تزریق) – درد شدید",
+    hdrP:"معلومات کوتاه – مورفین معمولاً توسط کادر صحی طبق پلان تزریق می‌شود.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"مورفین",
+    drugForm:"تزریق",
+    badgeText:"کوتاه و واضح",
+
+    sec0Title:"مورفین چیست",
+    sec0:[
+      "مورفین یک مسکن قوی (اوپیوئید) است.",
+      "می‌تواند خواب‌آلودگی ایجاد کند و روی تنفس اثر بگذارد، بنابراین طبق پلان و اغلب با نظارت داده می‌شود."
+    ],
+    sec1Title:"برای چی استفاده می‌شود",
+    sec1:[
+      "برای درد شدید وقتی گزینه‌های دیگر کافی نیستند.",
+      "گاهی برای تسکین علایم در شرایط خاص با نظر داکتر."
+    ],
+    sec2Title:"چگونه تزریق می‌شود",
+    sec2:[
+      "معمولاً توسط کادر صحی داخل رگ، عضله، زیر پوست یا با پمپ داده می‌شود.",
+      "دوز به درد، سن، وزن، کلیه/کبد و دواهای دیگر بستگی دارد."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "از الکول پرهیز کنید.",
+      "یبوست شایع است؛ مایعات، فایبر و در صورت نیاز ملین."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "اگر تنفس بسیار کند شد یا خواب‌آلودگی شدید یا بیهوشی بود فوراً کمک بگیرید.",
+      "مصرف طولانی می‌تواند وابستگی ایجاد کند؛ کاهش باید طبق پلان باشد.",
+      "رانندگی و ماشین‌آلات ممکن است تحت تأثیر قرار گیرد."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "تهوع/استفراغ به‌خصوص در شروع.",
+      "یبوست، بسیار شایع.",
+      "خواب‌آلودگی، سرگیجه، خارش.",
+      "دوز بالا: تنفس کند، جدی."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "بنزودیازپین‌ها، دواهای خواب و الکول خطر را افزایش می‌دهند.",
+      "همه دواها را به داکتر/دواخانه بگویید."
+    ],
+    sec7Title:"رمضان و روزه",
+    sec7:[
+      "نظرها درباره تزریق ممکن است متفاوت باشد؛ اگر مطمئن نیستید از امام بپرسید.",
+      "سلامت اول است و باید طبق پلان درمان عمل شود."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "در خانه دور از دسترس اطفال و بهتر است در جای قفل‌دار نگهداری شود.",
+      "به تاریخ انقضا توجه کنید.",
+      "دفع سرسوزن و باقی‌مانده طبق دستورالعمل محلی."
+    ],
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  ps:{
+    pageTitle:"مورفین (انجکشن) – سخت درد",
+    hdrH1:"مورفین (انجکشن) – سخت درد",
+    hdrP:"لنډ معلومات – مورفین عموماً د روغتیايي کارکوونکو له خوا د پلان له مخې ورکول کېږي.",
+    backText:"لېست ته بېرته",
+    langLabel:"ژبه وټاکئ:",
+    drugName:"مورفین",
+    drugForm:"انجکشن",
+    badgeText:"لنډ او روښانه",
+
+    sec0Title:"مورفین څه شی دی",
+    sec0:[
+      "مورفین یو قوي درد کموونکی (اوپیوئید) دی.",
+      "خوبوالی او د تنفس اغېزمنولای شي، نو د پلان له مخې او ډېری وخت تر څارنې لاندې ورکول کېږي."
+    ],
+    sec1Title:"د څه لپاره کارېږي",
+    sec1:[
+      "د سخت درد لپاره کله چې نورې لارې بسنه نه کوي.",
+      "ځینې وخت د ځانګړو نښو د کمولو لپاره د ډاکټر په ارزونه."
+    ],
+    sec2Title:"څنګه ورکول کېږي",
+    sec2:[
+      "اکثر د روغتیايي کارکوونکو له خوا رګ، عضله، د پوست لاندې یا د پمپ له لارې ورکول کېږي.",
+      "دوز د درد، عمر، وزن، پښتورګي/ځیګر او نورو درملو پورې تړاو لري."
+    ],
+    sec3Title:"خواړه او څښاک",
+    sec3:[
+      "له الکول څخه ډډه وکړئ.",
+      "قبض عام دی؛ اوبه، فایبر او که اړتیا وي ملین."
+    ],
+    sec4Title:"خبرداری",
+    sec4:[
+      "که تنفس ډېر ورو شي، ډېر خوبوالی، بېهوشي یا سړی نه راویښېږي نو بیړنۍ مرسته وغواړئ.",
+      "اوږدمهاله استعمال انحصار رامنځته کولای شي؛ کمول باید د پلان له مخې وي.",
+      "موټر چلول او ماشینونه اغېزمنېدای شي."
+    ],
+    sec5Title:"اړخیزې اغېزې",
+    sec5:[
+      "زړه بدوالی/کانګې په پیل کې.",
+      "قبض، ډېر عام.",
+      "خوبوالی، سرګرځېدل، خارښت.",
+      "لوړ دوز: ورو تنفس، جدي."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "بنزودیازپینونه، د خوب درمل او الکول خطر زیاتوي.",
+      "ټول درمل ډاکټر/درملتون ته ووایئ."
+    ],
+    sec7Title:"رمضان او روژه",
+    sec7:[
+      "د انجکشن په اړه دیني نظرونه فرق لري؛ که ډاډه نه یاست له امامه پوښتنه وکړئ.",
+      "روغتیا لومړی ده او د درملنې پلان تعقیب کړئ."
+    ],
+    sec8Title:"ساتنه",
+    sec8:[
+      "که په کور کې ساتل کېږي، له ماشومانو لرې او په قلف ځای کې وساتئ.",
+      "د ختمېدو نېټه وګورئ.",
+      "ستنې او پاتې درمل د ځایي لارښوونو مطابق له منځه یوسئ."
+    ],
+    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
+  }
+};
 
 /* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "da";
-
 document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
 applyLang(document.getElementById("langSelect").value);
 
