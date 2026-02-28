@@ -141,11 +141,10 @@ a.back span{ font-size:1.1rem; }
       <div class="badge" id="badgeText">Kort og let</div>
     </div>
 
-    <!-- Identiske sektion-ikoner som de andre -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er Pantoprazol? <small>(What is it?)</small></div>
+        <div class="section-title" id="sec0Title">Hvad er Pantoprazol?</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
@@ -153,7 +152,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til?</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
@@ -161,7 +160,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sådan tages medicinen <small>(How to take)</small></div>
+        <div class="section-title" id="sec2Title">Sådan tages medicinen</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
@@ -169,7 +168,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
+        <div class="section-title" id="sec3Title">Mad og drikke</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
@@ -177,7 +176,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
+        <div class="section-title" id="sec4Title">Advarsler</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
@@ -185,7 +184,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
+        <div class="section-title" id="sec5Title">Bivirkninger</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
@@ -193,7 +192,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
+        <div class="section-title" id="sec6Title">Interaktioner</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
@@ -201,7 +200,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
+        <div class="section-title" id="sec7Title">Ramadan og faste</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
@@ -209,7 +208,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
+        <div class="section-title" id="sec8Title">Opbevaring</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -263,18 +262,7 @@ function fillList(id, arr){
 function setSectionTitle(elId, title){
   const el = document.getElementById(elId);
   if(!el) return;
-  const small = el.querySelector("small");
-  const t = (title || "").trim();
-  if(small){
-    const first = el.childNodes[0];
-    if(first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
-    }else{
-      el.insertBefore(document.createTextNode(t + " "), small);
-    }
-  }else{
-    el.textContent = t;
-  }
+  el.textContent = (title || "").trim();
 }
 
 const T = {
@@ -468,11 +456,386 @@ const T = {
     ],
     footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  ar:{
+    pageTitle:"بانتوبرازول – الحموضة والارتجاع",
+    hdrH1:"بانتوبرازول – الحموضة والارتجاع",
+    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
+    backText:"العودة إلى قائمة الأدوية",
+    langLabel:"اختر اللغة:",
+    drugName:"بانتوبرازول",
+    drugForm:"أقراص مغلّفة معوياً لعلاج الحموضة",
+    badgeText:"مختصر وواضح",
+
+    sec0Title:"ما هو بانتوبرازول؟",
+    sec0:[
+      "دواء يقلل <span class='highlight'>إنتاج حمض المعدة</span> (مثبط مضخة البروتون).",
+      "ليس مضاد حموضة فوري—تتحسن الفعالية خلال ساعات إلى أيام."
+    ],
+    sec1Title:"لماذا يُستخدم؟",
+    sec1:[
+      "حرقة المعدة و<span class='highlight'>الارتجاع</span>.",
+      "قرحة المعدة/الاثني عشر والوقاية عند الحاجة حسب الخطة.",
+      "جزء من علاج <span class='highlight'>جرثومة المعدة H. pylori</span> مع المضادات عند وصف الطبيب."
+    ],
+    sec2Title:"كيف يؤخذ؟",
+    sec2:[
+      "غالباً مرة يومياً، وأحياناً مرتين حسب وصف الطبيب.",
+      "يُبلع كاملاً مع الماء—<span class='highlight'>لا يُمضغ ولا يُسحق</span>.",
+      "عند نسيان الجرعة: خذها عند التذكر—<span class='highlight'>لا تضاعف الجرعة</span>."
+    ],
+    sec3Title:"الطعام والشراب",
+    sec3:[
+      "غالباً الأفضل قبل وجبة (كثيراً صباحاً) حسب الوصفة.",
+      "يؤخذ مع كوب ماء."
+    ],
+    sec4Title:"تحذيرات",
+    sec4:[
+      "راجع الطبيب عند علامات خطورة: قيء دموي، براز أسود، نقص وزن غير مفسر، صعوبة بلع، ألم شديد مستمر.",
+      "يجب تقييم الاستخدام الطويل (نقص مغنيسيوم/B12 ونادراً عدوى).",
+      "لا توقفه فجأة بعد استعمال طويل دون استشارة."
+    ],
+    sec5Title:"الآثار الجانبية",
+    sec5:[
+      "صداع، غثيان، ألم بطني، إسهال أو إمساك.",
+      "انتفاخ/غازات.",
+      "طفح جلدي نادر—استشر عند شدة."
+    ],
+    sec6Title:"التداخلات",
+    sec6:[
+      "قد يؤثر على امتصاص أدوية تحتاج حمض المعدة (بعض مضادات الفطريات).",
+      "أخبر طبيبك/صيدليك عن جميع الأدوية خاصة مميعات الدم."
+    ],
+    sec7Title:"رمضان والصيام",
+    sec7:[
+      "ناقش خطة آمنة قبل رمضان.",
+      "يمكن غالباً أخذه عند <span class='highlight'>السحور</span> أو <span class='highlight'>الإفطار</span> حسب الوصفة."
+    ],
+    sec8Title:"الحفظ",
+    sec8:[
+      "يحفظ بعيداً عن الأطفال وفي العبوة الأصلية.",
+      "لا يُستخدم بعد EXP وأعد البقايا للصيدلية."
+    ],
+    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2:"إعداد: إبراهيم ظاهر حنف"
+  },
+
+  tr:{
+    pageTitle:"Pantoprazol – mide asidi ve reflü",
+    hdrH1:"Pantoprazol – mide asidi ve reflü",
+    hdrP:"Hasta ve yakınları için kısa bilgi.",
+    backText:"İlaç listesine geri dön",
+    langLabel:"Dil seçin:",
+    drugName:"Pantoprazol",
+    drugForm:"Enterik kaplı tablet (mide asidi için)",
+    badgeText:"Kısa ve anlaşılır",
+
+    sec0Title:"Pantoprazol nedir?",
+    sec0:[
+      "Mide asidi üretimini <span class='highlight'>azaltan</span> bir ilaçtır (PPI).",
+      "Anında etki eden antiasit değildir; etki saatler-günler içinde artar."
+    ],
+    sec1Title:"Ne için kullanılır?",
+    sec1:[
+      "Mide yanması ve <span class='highlight'>reflü</span>.",
+      "Mide/onikiparmak bağırsağı ülseri ve bazı kişilerde koruma (doktor planı).",
+      "<span class='highlight'>H. pylori</span> tedavisinin bir parçası olarak antibiyotiklerle birlikte (doktor yazarsa)."
+    ],
+    sec2Title:"Nasıl alınır?",
+    sec2:[
+      "Genellikle günde <span class='highlight'>1 kez</span>; bazıları 2 kez alır (reçeteye göre).",
+      "Su ile bütün yutun—<span class='highlight'>çiğnemeyin/ezmeyin</span>.",
+      "Doz unutulursa: hatırlayınca alın—<span class='highlight'>çift doz almayın</span>."
+    ],
+    sec3Title:"Yemek ve içecek",
+    sec3:[
+      "Çoğu kişide <span class='highlight'>yemekten önce</span> (sıklıkla sabah) daha iyi çalışır; reçeteyi takip edin.",
+      "Bir bardak su ile alın."
+    ],
+    sec4Title:"Uyarılar",
+    sec4:[
+      "Alarm belirtilerinde doktora başvurun: kanlı kusma, siyah dışkı, açıklanamayan kilo kaybı, yutma güçlüğü, şiddetli kalıcı ağrı.",
+      "Uzun süreli kullanım doktor tarafından değerlendirilmelidir (magnezyum/B12 düşüklüğü, nadiren enfeksiyonlar).",
+      "Uzun kullanım sonrası aniden bırakmayın; rebound şikayet olabilir."
+    ],
+    sec5Title:"Yan etkiler",
+    sec5:[
+      "Baş ağrısı, bulantı, karın ağrısı, ishal veya kabızlık.",
+      "Şişkinlik/gaz.",
+      "Döküntü nadirdir—şiddetliyse danışın."
+    ],
+    sec6Title:"Etkileşimler",
+    sec6:[
+      "Mide asidine ihtiyaç duyan bazı ilaçların emilimini etkileyebilir (bazı mantar ilaçları).",
+      "Kan sulandırıcılar ve tüm düzenli ilaçlar hakkında doktor/eczacıya bilgi verin."
+    ],
+    sec7Title:"Ramazan",
+    sec7:[
+      "Ramazan öncesi güvenli plan için doktorla görüşün.",
+      "Genellikle <span class='highlight'>sahur</span> veya <span class='highlight'>iftar</span> zamanına planlanabilir."
+    ],
+    sec8Title:"Saklama",
+    sec8:[
+      "Çocuklardan uzak, orijinal ambalajında saklayın.",
+      "EXP sonrası kullanmayın; artanları eczaneye verin."
+    ],
+    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
+  },
+
+  ur:{
+    pageTitle:"پینٹوپرازول – معدے کی تیزابیت اور ریفلکس",
+    hdrH1:"پینٹوپرازول – معدے کی تیزابیت اور ریفلکس",
+    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText:"فہرست پر واپس",
+    langLabel:"زبان منتخب کریں:",
+    drugName:"پینٹوپرازول",
+    drugForm:"انٹیرک کوٹڈ گولی (تیزابیت کیلئے)",
+    badgeText:"مختصر اور واضح",
+
+    sec0Title:"پینٹوپرازول کیا ہے؟",
+    sec0:[
+      "یہ دوا <span class='highlight'>معدے کا تیزاب کم</span> کرتی ہے (PPI).",
+      "یہ فوری اینٹاسیڈ نہیں؛ اثر چند گھنٹوں سے دنوں میں بہتر ہوتا ہے۔"
+    ],
+    sec1Title:"کس لیے استعمال ہوتی ہے؟",
+    sec1:[
+      "سینے کی جلن اور <span class='highlight'>ریفلکس</span>.",
+      "معدہ/اثناعشر کا السر اور کچھ مریضوں میں بچاؤ (ڈاکٹر کے پلان کے مطابق).",
+      "<span class='highlight'>H. pylori</span> کے علاج میں اینٹی بایوٹک کے ساتھ حصہ (اگر ڈاکٹر لکھے)."
+    ],
+    sec2Title:"کیسے لیں؟",
+    sec2:[
+      "اکثر روزانہ <span class='highlight'>1 بار</span>؛ کچھ میں 2 بار (نسخے کے مطابق).",
+      "پانی کے ساتھ پوری نگلیں—<span class='highlight'>چبائیں/کچلیں نہیں</span>.",
+      "بھول جائیں تو یاد آنے پر لے لیں—<span class='highlight'>ڈبل خوراک نہ لیں</span>."
+    ],
+    sec3Title:"کھانا پینا",
+    sec3:[
+      "اکثر <span class='highlight'>کھانے سے پہلے</span> (عموماً صبح) بہتر کام کرتی ہے؛ نسخہ فالو کریں.",
+      "ایک گلاس پانی کے ساتھ لیں."
+    ],
+    sec4Title:"احتیاطیں",
+    sec4:[
+      "خطرے کی علامات پر فوراً ڈاکٹر سے رابطہ کریں: خون کی الٹی، کالا پاخانہ، بلا وجہ وزن کم ہونا، نگلنے میں مشکل، شدید مسلسل درد.",
+      "لمبے عرصے کا استعمال ڈاکٹر دیکھے (میگنیشیم/B12 کمی، شاذونادر انفیکشن).",
+      "لمبے استعمال کے بعد اچانک بند نہ کریں؛ علامات بڑھ سکتی ہیں."
+    ],
+    sec5Title:"مضر اثرات",
+    sec5:[
+      "سر درد، متلی، پیٹ درد، اسہال یا قبض.",
+      "پیٹ پھولنا/گیس.",
+      "دانے کم ہوتے ہیں—شدید ہوں تو مشورہ کریں."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "کچھ دواؤں کے جذب پر اثر ہو سکتا ہے جنہیں تیزاب چاہیے (کچھ اینٹی فنگل).",
+      "خون پتلا کرنے والی ادویات اور تمام مستقل دواؤں کے بارے میں بتائیں."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "رمضان سے پہلے محفوظ پلان کیلئے ڈاکٹر سے بات کریں.",
+      "اکثر <span class='highlight'>سحری</span> یا <span class='highlight'>افطار</span> پر ترتیب دی جا سکتی ہے."
+    ],
+    sec8Title:"محفوظ رکھنا",
+    sec8:[
+      "بچوں سے دور، اصل پیک میں رکھیں.",
+      "EXP کے بعد استعمال نہ کریں؛ باقی دوا فارمیسی واپس کریں."
+    ],
+    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
+  },
+
+  fa:{
+    pageTitle:"پانتوپرازول – رفلاکس و اسید معده",
+    hdrH1:"پانتوپرازول – رفلاکس و اسید معده",
+    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"پانتوپرازول",
+    drugForm:"قرص روکش‌دار روده‌ای (کاهش اسید)",
+    badgeText:"کوتاه و روشن",
+
+    sec0Title:"پانتوپرازول چیست؟",
+    sec0:[
+      "دارویی است که <span class='highlight'>تولید اسید معده را کم</span> می‌کند (PPI).",
+      "اثر فوری مانند آنتی‌اسید ندارد و طی ساعت‌ها تا چند روز بهتر می‌شود."
+    ],
+    sec1Title:"موارد مصرف",
+    sec1:[
+      "سوزش سر دل و <span class='highlight'>رفلاکس</span>.",
+      "زخم معده/دوازدهه و پیشگیری در برخی افراد طبق برنامه پزشک.",
+      "بخشی از درمان <span class='highlight'>H. pylori</span> همراه آنتی‌بیوتیک در صورت تجویز."
+    ],
+    sec2Title:"نحوه مصرف",
+    sec2:[
+      "معمولاً روزی <span class='highlight'>۱ بار</span> و گاهی ۲ بار طبق نسخه.",
+      "با آب کامل ببلعید—<span class='highlight'>نجوید/خرد نکنید</span>.",
+      "در صورت فراموشی: به محض یادآوری مصرف کنید—<span class='highlight'>دوز دوبرابر نکنید</span>."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "اغلب <span class='highlight'>قبل از غذا</span> (معمولاً صبح) بهتر است؛ طبق نسخه عمل کنید.",
+      "با یک لیوان آب مصرف شود."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "در علائم هشدار مراجعه کنید: استفراغ خونی، مدفوع سیاه، کاهش وزن بی‌دلیل، مشکل بلع، درد شدید و مداوم.",
+      "مصرف طولانی‌مدت باید توسط پزشک بررسی شود (کمبود منیزیم/B12 و به‌ندرت عفونت‌ها).",
+      "بعد از مصرف طولانی ناگهانی قطع نکنید."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "سردرد، تهوع، درد شکم، اسهال یا یبوست.",
+      "نفخ/گاز.",
+      "راش پوستی نادر است—در صورت شدت مشورت کنید."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "ممکن است جذب برخی داروهای نیازمند اسید معده را تغییر دهد (برخی ضدقارچ‌ها).",
+      "همه داروها به‌ویژه رقیق‌کننده‌های خون را اطلاع دهید."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "قبل از رمضان برای برنامه ایمن با پزشک مشورت کنید.",
+      "اغلب در <span class='highlight'>سحری</span> یا <span class='highlight'>افطار</span> قابل تنظیم است."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "دور از دسترس کودکان و در بسته‌بندی اصلی نگهداری شود.",
+      "پس از EXP مصرف نشود؛ باقیمانده را به داروخانه تحویل دهید."
+    ],
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  prs:{
+    pageTitle:"پانتوپرازول – رفلاکس و تیزاب معده",
+    hdrH1:"پانتوپرازول – رفلاکس و تیزاب معده",
+    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"پانتوپرازول",
+    drugForm:"قرص روکش‌دار روده‌ای",
+    badgeText:"کوتاه و واضح",
+
+    sec0Title:"پانتوپرازول چیست؟",
+    sec0:[
+      "تولید تیزاب معده را <span class='highlight'>کم</span> می‌کند (PPI).",
+      "اثر فوری ندارد و طی ساعت‌ها تا روزها بهتر می‌شود."
+    ],
+    sec1Title:"برای چی استفاده می‌شود؟",
+    sec1:[
+      "سوزش سر دل و <span class='highlight'>رفلاکس</span>.",
+      "زخم معده/دوازدهه و پیشگیری در بعضی‌ها طبق پلان داکتر.",
+      "بخشی از تداوی <span class='highlight'>H. pylori</span> با انتی‌بیوتیک اگر تجویز شود."
+    ],
+    sec2Title:"چگونه گرفته شود؟",
+    sec2:[
+      "اکثر روزی <span class='highlight'>۱ بار</span>؛ گاهی ۲ بار طبق نسخه.",
+      "با آب کامل قورت دهید—<span class='highlight'>نجوید/خرد نکنید</span>.",
+      "در فراموشی: به یاد آمد، بگیرید—<span class='highlight'>دوز دو برابر نگیرید</span>."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "اکثر <span class='highlight'>قبل از غذا</span> بهتر است؛ طبق نسخه عمل کنید.",
+      "با یک گیلاس آب بگیرید."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "در علایم هشدار مراجعه کنید: قی خون، مدفوع سیاه، کاهش وزن بی‌دلیل، مشکل بلع، درد شدید و دوامدار.",
+      "استفاده طولانی باید توسط داکتر بررسی شود.",
+      "بعد از استفاده طولانی ناگهانی قطع نکنید."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "سردرد، دل‌بدی، درد شکم، اسهال یا قبض.",
+      "نفخ/گاز.",
+      "دانۀ جلدی نادر است."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "ممکن است جذب بعضی دواها را تغییر دهد (برخی ضدقارچ‌ها).",
+      "تمام دواها به‌خصوص رقیق‌کننده‌های خون را اطلاع دهید."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "قبل از رمضان با داکتر پلان بسازید.",
+      "اکثر در <span class='highlight'>سحری</span> یا <span class='highlight'>افطار</span> تنظیم می‌شود."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "دور از دسترس اطفال و در بسته‌بندی اصلی نگهداری شود.",
+      "بعد از EXP استفاده نشود؛ باقی‌مانده را به دواخانه بسپارید."
+    ],
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  ps:{
+    pageTitle:"پانتوپرازول – د معدې تیزاب او رفلوکس",
+    hdrH1:"پانتوپrazol – د معدې تیزاب او رفلوکس",
+    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText:"لېست ته بېرته",
+    langLabel:"ژبه وټاکئ:",
+    drugName:"پانتوپرازول",
+    drugForm:"انتریک ګولۍ (د معدې تیزاب کموي)",
+    badgeText:"لنډ او روښانه",
+
+    sec0Title:"پانتوپرازول څه شی دی؟",
+    sec0:[
+      "دا درمل د معدې تیزاب <span class='highlight'>کموي</span> (PPI).",
+      "سمدستي انټي‌اسید نه دی؛ اغېزه یې په ساعتونو تر ورځو کې ښه کېږي."
+    ],
+    sec1Title:"د څه لپاره کارېږي؟",
+    sec1:[
+      "سینه‌سوځېدنه او <span class='highlight'>رفلوکس</span>.",
+      "د معدې/دولس‌ګونې کولمو زخم او د ځینو لپاره مخنیوی (د ډاکټر پلان).",
+      "د <span class='highlight'>H. pylori</span> د درملنې برخه د انټي‌بیوټیک سره که ډاکټر یې ولیکي."
+    ],
+    sec2Title:"څنګه واخیستل شي؟",
+    sec2:[
+      "اکثره ورځ کې <span class='highlight'>۱ ځل</span>؛ ځینې ۲ ځله (د نسخې له مخې).",
+      "له اوبو سره یې بشپړ تېر کړئ—<span class='highlight'>مه ژوئ/مه ماتوئ</span>.",
+      "هېر شو: چې یاد مو شو واخلئ—<span class='highlight'>ډبل دوز مه اخلئ</span>."
+    ],
+    sec3Title:"خواړه او څښاک",
+    sec3:[
+      "ډېری وخت <span class='highlight'>له خوړو مخکې</span> ښه کار کوي؛ خپل پلان تعقیب کړئ.",
+      "له یو ګیلاس اوبو سره واخلئ."
+    ],
+    sec4Title:"خبرداری",
+    sec4:[
+      "د خطر نښې: وینه په کانګې/تور غایطه، بې‌دلیله وزن کموالی، د تېرولو ستونزه، شدید دوامدار درد—ډاکټر ته ورشئ.",
+      "اوږدمهاله استعمال باید ډاکټر وارزوي.",
+      "له اوږدې مودې وروسته ناڅاپه مه بندوئ."
+    ],
+    sec5Title:"اړخیزې اغېزې",
+    sec5:[
+      "سر درد، زړه بدوالی، د نس درد، اسهال یا قبض.",
+      "پړسوب/ګاز.",
+      "د پوستکي دانې نادرې دي."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "د ځینو درملو جذب بدلولای شي (ځینې د فنګس ضد درمل).",
+      "د وینې نری کوونکي او ټول منظم درمل ډاکټر/درملتون ته ووایئ."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "له رمضان مخکې له ډاکټر سره خوندي پلان جوړ کړئ.",
+      "اکثر <span class='highlight'>سحور</span> یا <span class='highlight'>افطار</span> کې تنظیمېږي."
+    ],
+    sec8Title:"ساتنه",
+    sec8:[
+      "له ماشومانو لرې او په اصلي بسته کې وساتئ.",
+      "له EXP وروسته مه کاروئ؛ پاتې درمل درملتون ته وسپارئ."
+    ],
+    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
   }
 };
-
-// fallback for remaining languages (keeps layout + theme switching)
-["ar","tr","ur","fa","prs","ps"].forEach(l=>{ if(!T[l]) T[l]=T.en; });
 
 function applyLang(lang){
   const d = T[lang] || T.da;
