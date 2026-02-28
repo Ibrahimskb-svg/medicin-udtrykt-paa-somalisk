@@ -6,7 +6,6 @@
 <title>Melatonin – hurdo la’aan</title>
 
 <style>
-/* ===== Theme (NO external files) ===== */
 :root{
   --accent:#00a676;
   --c1:#0066cc;
@@ -91,10 +90,8 @@ a.back span{ font-size:1.1rem; }
 .section-icon.ramadan{ background:#e0f7fa; }
 .section-icon.food{ background:#f1f8e9; }
 .section-icon.store{ background:#edeff9; }
-.section-icon.drink{ background:#e0f7fa; }
 
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section li{ margin-bottom:4px; }
@@ -108,7 +105,7 @@ a.back span{ font-size:1.1rem; }
 <body>
 <header>
   <h1 id="hdrH1">Melatonin – hurdo la’aan</h1>
-  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed</p>
+  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waalidiinta &amp; bukaannada Soomaaliyeed</p>
 </header>
 
 <main>
@@ -149,7 +146,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Waa maxay Melatonin? <small>(Hvad er Melatonin?)</small></div>
+        <div class="section-title" id="sec0Title">Waa maxay Melatonin?</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
@@ -157,7 +154,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Maxaa loo isticmaalaa? <small>(Hvad bruges det til?)</small></div>
+        <div class="section-title" id="sec1Title">Maxaa loo isticmaalaa?</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
@@ -165,7 +162,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sida loo qaato <small>(Sådan tages medicinen)</small></div>
+        <div class="section-title" id="sec2Title">Sida loo qaato</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
@@ -173,7 +170,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title" id="sec3Title">Cunto iyo cabitaan</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
@@ -181,7 +178,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title" id="sec4Title">Digniino</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
@@ -189,7 +186,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Dhibaatooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title" id="sec5Title">Dhibaatooyinka</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
@@ -197,7 +194,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Is-dhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title" id="sec6Title">Is-dhexgalka daawooyinka</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
@@ -205,7 +202,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadaanka iyo daawada <small>(Fasten og brugen af medicinen)</small></div>
+        <div class="section-title" id="sec7Title">Ramadaanka iyo daawada</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
@@ -213,7 +210,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta <small>(Opbevaring)</small></div>
+        <div class="section-title" id="sec8Title">Kaydinta</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -238,16 +235,6 @@ const THEME = {
   ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
 };
 
-function applyTheme(lang){
-  const th = THEME[lang] || THEME.so;
-  document.documentElement.style.setProperty("--c1", th.c1);
-  document.documentElement.style.setProperty("--c2", th.c2);
-  document.documentElement.style.setProperty("--accent", th.accent);
-
-  // Accent tints for icon/badge backgrounds
-  document.documentElement.style.setProperty("--accent-soft", hexToRgba(th.accent, 0.16));
-  document.documentElement.style.setProperty("--accent-soft2", hexToRgba(th.accent, 0.10));
-}
 function hexToRgba(hex, a){
   const h = (hex || "").replace("#","").trim();
   if (h.length !== 6) return `rgba(0,0,0,${a})`;
@@ -255,6 +242,15 @@ function hexToRgba(hex, a){
   const g = parseInt(h.slice(2,4),16);
   const b = parseInt(h.slice(4,6),16);
   return `rgba(${r},${g},${b},${a})`;
+}
+
+function applyTheme(lang){
+  const th = THEME[lang] || THEME.so;
+  document.documentElement.style.setProperty("--c1", th.c1);
+  document.documentElement.style.setProperty("--c2", th.c2);
+  document.documentElement.style.setProperty("--accent", th.accent);
+  document.documentElement.style.setProperty("--accent-soft", hexToRgba(th.accent, 0.16));
+  document.documentElement.style.setProperty("--accent-soft2", hexToRgba(th.accent, 0.10));
 }
 
 function setDirLang(lang){
@@ -272,21 +268,9 @@ function fillList(id, arr){
   });
 }
 
-function setSectionTitle(elId, title){
-  const el = document.getElementById(elId);
-  if (!el) return;
-  const small = el.querySelector("small");
-  const t = (title || "").trim();
-  if (small){
-    const first = el.childNodes[0];
-    if (first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
-    } else {
-      el.insertBefore(document.createTextNode(t + " "), small);
-    }
-  } else {
-    el.textContent = t;
-  }
+function setText(id, value){
+  const el = document.getElementById(id);
+  if (el) el.textContent = value || "";
 }
 
 const T = {
@@ -299,54 +283,55 @@ const T = {
     drugName: "Melatonin",
     drugForm: "Kiniin afka ah",
     badgeText: "Akhris kooban",
-    sec0Title: "Waa maxay Melatonin? (Hvad er Melatonin?)",
+
+    sec0Title: "Waa maxay Melatonin?",
     sec0: [
       "Melatonin waa <span class='highlight'>hormoon dabiici ah</span> oo jirku sameeyo habeenkii si uu u caawiyo hurdada.",
-      "Daawada melatonin waxay caawisaa in <span class='highlight'>saacadda hurdada</span> (døgnrytme) ay hagaagto."
+      "Daawada melatonin waxay caawisaa in <span class='highlight'>saacadda hurdada</span> ay hagaagto."
     ],
-    sec1Title: "Maxaa loo isticmaalaa? (Hvad bruges det til?)",
+    sec1Title: "Maxaa loo isticmaalaa?",
     sec1: [
-      "Hurdo la’aan (insomni) ama hurdada oo soo daahda.",
-      "Dhibaatada saacadda hurdada (tusaale: jetlag ama dhalinyaro/waayeel qaarkood)."
+      "Hurdo la’aan ama hurdada oo soo daahda.",
+      "Dhibaatada saacadda hurdada (tusaale: jetlag ama jadwal hurdo oo is beddela)."
     ],
-    sec2Title: "Sida loo qaato (Sådan tages medicinen)",
+    sec2Title: "Sida loo qaato",
     sec2: [
       "Raac qiyaasta dhakhtarka. Badanaa waxaa la qaataa <span class='highlight'>30–60 daqiiqo ka hor hurdada</span>.",
-      "Qaarkood (depottablet) waa in la liqaa oo aan la burburin/jeexin.",
+      "Haddii ay tahay kiniin si tartiib ah u sii daaya (extended-release), <span class='highlight'>liq oo ha jebin/ruugin</span>.",
       "Haddii aysan wax tar muuqan 1–2 toddobaad, la hadal dhakhtarka/farmashiyaha."
     ],
-    sec3Title: "Cunto iyo cabitaan (Mad og drikke)",
+    sec3Title: "Cunto iyo cabitaan",
     sec3: [
-      "Waxaa la qaadan karaa cunto la’aan ama cunto la jirta, laakiin isku day <span class='highlight'>wakhti joogto ah</span> habeen kasta.",
-      "Ka fogow kafeyn (qaxwo/shaah xooggan/energy) fiidkii."
+      "Waxaa la qaadan karaa cunto la’aan ama cunto la jirta, laakiin qaado <span class='highlight'>wakhti joogto ah</span> habeen kasta.",
+      "Ka fogow kafeyn fiidkii (qaxwo, shaah xooggan, energy drink)."
     ],
-    sec4Title: "Digniino (Advarsler)",
+    sec4Title: "Digniino",
     sec4: [
-      "Waxay keeni kartaa hurdo – ha wadin gaari haddii aad dareento hurdo/dawakh.",
-      "Ha isku darin khamri (waxay kordhin kartaa hurdo/dawakh).",
+      "Waxay keeni kartaa hurdo – ha wadin gaari haddii aad dareento hurdo ama dawakh.",
+      "Ha isku darin <span class='highlight'>khamri</span> (waxay kordhin kartaa hurdo/dawakh).",
       "U sheeg dhakhtarka haddii aad uur leedahay/nuujinayso ama aad qabto xanuun beerka ah."
     ],
-    sec5Title: "Dhibaatooyinka (Bivirkninger)",
+    sec5Title: "Dhibaatooyinka",
     sec5: [
       "Hurdo ama daal subaxdii.",
       "Madax-xanuun.",
       "Riyooyin xooggan ama wareer khafiif ah (qaarkood)."
     ],
-    sec6Title: "Is-dhexgalka daawooyinka (Interaktioner)",
+    sec6Title: "Is-dhexgalka daawooyinka",
     sec6: [
       "Daawooyinka hurdo-dejiya kale waxay kordhin karaan hurdo.",
-      "Daawooyin qaar (tusaale anticoagulants, antidepressants qaarkood) waxay u baahan karaan la-talin – u sheeg farmashiyaha wax kasta oo aad qaadato."
+      "Daawooyin qaar waxay u baahan karaan la-talin – u sheeg farmashiyaha/dhakhtarka wax kasta oo aad qaadato."
     ],
-    sec7Title: "Ramadaanka iyo daawada (Fasten og brugen af medicinen)",
+    sec7Title: "Ramadaanka iyo daawada",
     sec7: [
-      "Haddii aad sooman tahay, badanaa melatonin waxaa la qaataa <span class='highlight'>fiidkii (afurka kadib)</span> marka aad diyaar u tahay hurdo.",
+      "Haddii aad sooman tahay, badanaa melatonin waxaa la qaataa <span class='highlight'>fiidkii</span> marka aad diyaar u tahay hurdo.",
       "Haddii jadwalka hurdada is beddelo, la hadal dhakhtarka qorshe ku habboon."
     ],
-    sec8Title: "Kaydinta (Opbevaring)",
+    sec8Title: "Kaydinta",
     sec8: [
       "Ku hay meel ka fog carruurta, heerkulka qolka, oo ka ilaali iftiin/huur.",
       "Ha qaadan haddii ay dhaafto “EXP”.",
-      "Wixii soo haray → ku celi farmashiyaha."
+      "Wixii soo haray ku celi farmashiyaha."
     ],
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
@@ -361,6 +346,7 @@ const T = {
     drugName: "Melatonin",
     drugForm: "Tablet (til at tage gennem munden)",
     badgeText: "Kort og let",
+
     sec0Title: "Hvad er Melatonin?",
     sec0: [
       "Melatonin er et <span class='highlight'>naturligt hormon</span>, som kroppen danner om aftenen for at fremme søvn.",
@@ -374,7 +360,7 @@ const T = {
     sec2Title: "Sådan tages medicinen",
     sec2: [
       "Følg lægens plan. Ofte tages det <span class='highlight'>30–60 minutter før sengetid</span>.",
-      "Depot-tabletter skal typisk synkes hele (må ikke knuses/deles).",
+      "Depot-tabletter skal typisk synkes hele (må ikke knuses/deles/tygges).",
       "Kontakt læge/apotek hvis effekten udebliver efter 1–2 uger."
     ],
     sec3Title: "Mad og drikke",
@@ -418,6 +404,7 @@ const T = {
     drugName: "Melatonin",
     drugForm: "Tablet (by mouth)",
     badgeText: "Short and clear",
+
     sec0Title: "What is Melatonin?",
     sec0: [
       "Melatonin is a <span class='highlight'>natural hormone</span> produced in the evening to support sleep.",
@@ -428,7 +415,7 @@ const T = {
     sec2Title: "How to take",
     sec2: [
       "Follow your doctor’s plan. Often taken <span class='highlight'>30–60 minutes before bedtime</span>.",
-      "Extended-release tablets should usually be swallowed whole.",
+      "Extended-release tablets should usually be swallowed whole (do not crush/split).",
       "Contact your doctor/pharmacy if there is no benefit after 1–2 weeks."
     ],
     sec3Title: "Food and drink",
@@ -459,6 +446,7 @@ const T = {
     drugName: "ميلاتونين",
     drugForm: "أقراص (عن طريق الفم)",
     badgeText: "مختصر وواضح",
+
     sec0Title: "ما هو الميلاتونين؟",
     sec0: [
       "الميلاتونين <span class='highlight'>هرمون طبيعي</span> يفرزه الجسم مساءً للمساعدة على النوم.",
@@ -469,7 +457,7 @@ const T = {
     sec2Title: "طريقة الاستعمال",
     sec2: [
       "اتبع خطة الطبيب. غالباً يؤخذ <span class='highlight'>قبل النوم بـ 30–60 دقيقة</span>.",
-      "الأقراص ممتدة المفعول تُبلع كاملة.",
+      "الأقراص ممتدة المفعول تُبلع كاملة (لا تُسحق ولا تُقسم).",
       "راجع الطبيب/الصيدلية إذا لم تتحسن خلال 1–2 أسبوع."
     ],
     sec3Title: "الطعام والشراب",
@@ -497,12 +485,13 @@ const T = {
     drugName: "Melatonin",
     drugForm: "Tablet (ağızdan)",
     badgeText: "Kısa ve anlaşılır",
+
     sec0Title: "Melatonin nedir?",
     sec0: ["Melatonin, akşamları salgılanan <span class='highlight'>doğal bir hormon</span>dur.", "İlaç olarak <span class='highlight'>uyku ritmini</span> düzenlemeye yardımcı olabilir."],
     sec1Title: "Ne için kullanılır?",
     sec1: ["Uykuya dalma güçlüğü.", "Biyolojik saat bozukluğu (jetlag vb.)."],
     sec2Title: "Nasıl alınır?",
-    sec2: ["Doktor planına uyun. Genelde <span class='highlight'>yatmadan 30–60 dk önce</span> alınır.", "Uzatılmış salım tabletler genelde bütün yutulur.", "1–2 haftada fayda yoksa doktor/eczane ile görüşün."],
+    sec2: ["Doktor planına uyun. Genelde <span class='highlight'>yatmadan 30–60 dk önce</span> alınır.", "Uzatılmış salım tabletleri genelde bütün yutun (ezmeyin/bölmeyin).", "1–2 haftada fayda yoksa doktor/eczane ile görüşün."],
     sec3Title: "Yemek ve içecek",
     sec3: ["Yemekle veya yemeksiz alınabilir – her akşam <span class='highlight'>aynı saatte</span> almaya çalışın.", "Geç saatlerde kafeinden kaçının."],
     sec4Title: "Uyarılar",
@@ -528,12 +517,13 @@ const T = {
     drugName: "میلاٹونن",
     drugForm: "گولی (منہ کے ذریعے)",
     badgeText: "مختصر اور واضح",
+
     sec0Title: "میلاٹونن کیا ہے؟",
     sec0: ["میلاٹونن <span class='highlight'>قدرتی ہارمون</span> ہے جو شام میں نیند کے لیے مدد دیتا ہے۔", "بطور دوا نیند کا <span class='highlight'>رِدم</span> بہتر کر سکتا ہے۔"],
     sec1Title: "کس لیے استعمال ہوتا ہے؟",
     sec1: ["نیند آنے میں مشکل۔", "جسمانی گھڑی کی خرابی (جیٹ لیگ وغیرہ)۔"],
     sec2Title: "طریقہ استعمال",
-    sec2: ["ڈاکٹر کے مطابق۔ عام طور پر <span class='highlight'>سونے سے 30–60 منٹ پہلے</span>۔", "ایکسٹینڈڈ ریلیز گولی عموماً پوری نگلیں۔", "1–2 ہفتے میں فائدہ نہ ہو تو ڈاکٹر/فارمیسی سے رابطہ کریں۔"],
+    sec2: ["ڈاکٹر کے مطابق۔ عام طور پر <span class='highlight'>سونے سے 30–60 منٹ پہلے</span>۔", "ایکسٹینڈڈ ریلیز گولی عموماً پوری نگلیں (نہ توڑیں/نہ پیسیں)۔", "1–2 ہفتے میں فائدہ نہ ہو تو ڈاکٹر/فارمیسی سے رابطہ کریں۔"],
     sec3Title: "کھانا پینا",
     sec3: ["کھانے کے ساتھ یا بغیر – ہر رات <span class='highlight'>ایک ہی وقت</span> پر لیں۔", "رات دیر سے کیفین سے پرہیز کریں۔"],
     sec4Title: "احتیاطیں",
@@ -559,12 +549,13 @@ const T = {
     drugName: "ملاتونین",
     drugForm: "قرص (خوراکی)",
     badgeText: "کوتاه و روشن",
+
     sec0Title: "ملاتونین چیست؟",
     sec0: ["ملاتونین <span class='highlight'>هورمون طبیعی</span> بدن است که شب‌ها به خواب کمک می‌کند.", "به‌صورت دارو می‌تواند <span class='highlight'>ریتم خواب</span> را تنظیم کند."],
     sec1Title: "موارد مصرف",
     sec1: ["مشکل در به خواب رفتن.", "اختلال ریتم شبانه‌روزی (مثل جت‌لگ)."],
     sec2Title: "نحوه مصرف",
-    sec2: ["طبق دستور پزشک. معمولاً <span class='highlight'>۳۰–۶۰ دقیقه قبل از خواب</span>.", "قرص آهسته‌رهش را کامل قورت دهید.", "اگر طی ۱–۲ هفته بهتر نشدید، با پزشک/داروخانه تماس بگیرید."],
+    sec2: ["طبق دستور پزشک. معمولاً <span class='highlight'>۳۰–۶۰ دقیقه قبل از خواب</span>.", "قرص آهسته‌رهش را کامل قورت دهید (خرد/نصف نکنید).", "اگر طی ۱–۲ هفته بهتر نشدید، با پزشک/داروخانه تماس بگیرید."],
     sec3Title: "غذا و نوشیدنی",
     sec3: ["با غذا یا بدون غذا – سعی کنید هر شب <span class='highlight'>در زمان ثابت</span> مصرف کنید.", "کافئین را دیر وقت مصرف نکنید."],
     sec4Title: "هشدارها",
@@ -590,12 +581,13 @@ const T = {
     drugName: "ملاتونین",
     drugForm: "قرص (خوراکی)",
     badgeText: "کوتاه و واضح",
+
     sec0Title: "ملاتونین چیست؟",
     sec0: ["ملاتونین <span class='highlight'>هورمون طبیعی</span> است که شب‌ها به خواب کمک می‌کند.", "به شکل دوا می‌تواند <span class='highlight'>ریتم خواب</span> را تنظیم کند."],
     sec1Title: "برای چی استفاده می‌شود؟",
     sec1: ["مشکل در خواب رفتن.", "اختلال ریتم شبانه‌روزی (مثل جت‌لگ)."],
     sec2Title: "چگونه گرفته شود؟",
-    sec2: ["طبق دستور داکتر. معمولاً <span class='highlight'>۳۰–۶۰ دقیقه قبل از خواب</span>.", "قرص آهسته‌رهش را کامل قورت دهید.", "اگر طی ۱–۲ هفته بهتر نشدید، با داکتر/دواخانه تماس بگیرید."],
+    sec2: ["طبق دستور داکتر. معمولاً <span class='highlight'>۳۰–۶۰ دقیقه قبل از خواب</span>.", "قرص آهسته‌رهش را کامل قورت دهید (خرد/نصف نکنید).", "اگر طی ۱–۲ هفته بهتر نشدید، با داکتر/دواخانه تماس بگیرید."],
     sec3Title: "غذا و نوشیدنی",
     sec3: ["با غذا یا بدون غذا – هر شب <span class='highlight'>در یک وقت ثابت</span> بگیرید.", "کافئین را ناوقت نخورید."],
     sec4Title: "هشدارها",
@@ -621,12 +613,13 @@ const T = {
     drugName: "مېلاتونین",
     drugForm: "ګولۍ (د خولې له لارې)",
     badgeText: "لنډ او روښانه",
+
     sec0Title: "مېلاتونین څه شی دی؟",
     sec0: ["مېلاتونین <span class='highlight'>طبیعي هورمون</span> دی چې د شپې د خوب مرسته کوي.", "د درمل په توګه د <span class='highlight'>خوب ریتم</span> ښه کوي."],
     sec1Title: "د څه لپاره کارېږي؟",
     sec1: ["د خوب ته تللو ستونزه.", "د ورځ/شپې ریتم ګډوډي (jet lag)."],
     sec2Title: "څنګه واخیستل شي؟",
-    sec2: ["د ډاکټر له مخې. اکثر <span class='highlight'>۳۰–۶۰ دقیقې د خوب مخکې</span>.", "آهسته‌خوشې کېدونکې ګولۍ بشپړه تېر کړئ.", "که ۱–۲ اونیو کې ګټه نه وي، ډاکټر/درملتون سره خبرې وکړئ."],
+    sec2: ["د ډاکټر له مخې. اکثر <span class='highlight'>۳۰–۶۰ دقیقې د خوب مخکې</span>.", "آهسته‌خوشې کېدونکې ګولۍ بشپړه تېر کړئ (مه ماتوئ/مه میچوئ).", "که ۱–۲ اونیو کې ګټه نه وي، ډاکټر/درملتون سره خبرې وکړئ."],
     sec3Title: "خواړه او څښاک",
     sec3: ["له خوړو سره یا بې خوړو – هره شپه <span class='highlight'>په یو ثابت وخت</span> واخلئ.", "ناوخته کافین مه څښئ."],
     sec4Title: "خبرداری",
@@ -651,24 +644,25 @@ function applyLang(lang){
   setDirLang(lang);
 
   document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
-  document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName;
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
+  setText("hdrH1", d.hdrH1);
+  setText("hdrP", d.hdrP);
+  setText("backText", d.backText);
+  setText("langLabel", d.langLabel);
 
-  setSectionTitle("sec0Title", d.sec0Title);
-  setSectionTitle("sec1Title", d.sec1Title);
-  setSectionTitle("sec2Title", d.sec2Title);
-  setSectionTitle("sec3Title", d.sec3Title);
-  setSectionTitle("sec4Title", d.sec4Title);
-  setSectionTitle("sec5Title", d.sec5Title);
-  setSectionTitle("sec6Title", d.sec6Title);
-  setSectionTitle("sec7Title", d.sec7Title);
-  setSectionTitle("sec8Title", d.sec8Title);
+  setText("drugName", d.drugName);
+  setText("drugForm", d.drugForm);
+  setText("badgeText", d.badgeText);
+
+  setText("sec0Title", d.sec0Title);
+  setText("sec1Title", d.sec1Title);
+  setText("sec2Title", d.sec2Title);
+  setText("sec3Title", d.sec3Title);
+  setText("sec4Title", d.sec4Title);
+  setText("sec5Title", d.sec5Title);
+  setText("sec6Title", d.sec6Title);
+  setText("sec7Title", d.sec7Title);
+  setText("sec8Title", d.sec8Title);
 
   fillList("sec0List", d.sec0);
   fillList("sec1List", d.sec1);
@@ -680,7 +674,7 @@ function applyLang(lang){
   fillList("sec7List", d.sec7);
   fillList("sec8List", d.sec8);
 
-  document.getElementById("footer1").textContent = d.footer1;
+  setText("footer1", d.footer1);
   document.getElementById("footer2").innerHTML = d.footer2;
 
   const backA = document.querySelector("a.back");
@@ -688,12 +682,15 @@ function applyLang(lang){
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
+/* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
 
-document.getElementById("langSelect").addEventListener("change", function(){
+const sel = document.getElementById("langSelect");
+sel.value = (T[startLang] ? startLang : "so");
+applyLang(sel.value);
+
+sel.addEventListener("change", function(){
   applyLang(this.value);
 });
 </script>
