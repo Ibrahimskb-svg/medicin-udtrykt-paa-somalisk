@@ -15,6 +15,10 @@
   /* drug icon theme */
   --iconBg:#e3f2fd;
   --iconStroke:#1a73e8;
+
+  /* Zebra/sektion-baggrunde (farveskift uden at ændre tekst/struktur) */
+  --secBg1:#ffffff;
+  --secBg2:#f7fbff;
 }
 
 body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
@@ -68,6 +72,11 @@ a.back span { font-size:1.1rem; }
 .badge{ display:inline-flex; align-items:center; gap:4px; background:#d9f6e8; color:#16634a; padding:4px 10px; border-radius:999px; font-size:0.8rem; }
 
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
+
+/* Zebra-farveskift (kun visuelt) */
+.section:nth-of-type(odd){ background:var(--secBg1); border-radius:10px; padding:10px 10px 6px; }
+.section:nth-of-type(even){ background:var(--secBg2); border-radius:10px; padding:10px 10px 6px; }
+
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .section-icon{
   width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
@@ -256,7 +265,8 @@ function setDirLang(lang){
 
 function fillList(id, arr){
   const ul = document.getElementById(id);
-  ul.innerHTML = "";
+  if(!ul) return;
+  ul.replaceChildren(); /* robust: no gentagelser */
   (arr || []).forEach(txt => {
     const li = document.createElement("li");
     li.innerHTML = txt;
@@ -293,50 +303,51 @@ const T = {
     drugForm: "Kiniin afka ah",
     badgeText: "Akhris kooban",
 
-    sec0Title: "Waa maxay Atorvastatin? (Hvad er Atorvastatin?)",
+    /* IMPORTANT: titles must NOT repeat what is already inside <small> in HTML */
+    sec0Title: "Waa maxay Atorvastatin?",
     sec0: [
       "Atorvastatin waa daawo ka tirsan <span class='highlight'>statin</span> (kolesterol-dhime).",
       "Waxay hoos u dhigtaa <span class='highlight'>LDL-kolesteroolka</span> (“kolesterolka xun”) waxayna yareyn kartaa halista xinjirowga/dhibaatada wadnaha."
     ],
-    sec1Title: "Maxaa loo isticmaalaa? (Hvad bruges det til?)",
+    sec1Title: "Maxaa loo isticmaalaa?",
     sec1: [
       "Kolesterol sare (hyperkolesterolæmi).",
       "Ka hortagga cudurrada wadnaha (wadne-qabad/istaroog), gaar ahaan haddii aad leedahay sonkorow, dhiig-kar, ama halis sare."
     ],
-    sec2Title: "Sida loo qaato (Sådan tages medicinen)",
+    sec2Title: "Sida loo qaato",
     sec2: [
       "Badanaa waxaa la qaataa <span class='highlight'>hal mar maalintii</span> (waqtiga aad ku heshiiseen dhakhtarka).",
       "Kiniinka ku liq <span class='highlight'>biyo</span>; qaado <span class='highlight'>cunto la’aan ama cunto la socota</span>.",
       "Ha joojin daawada adigoon dhakhtar la tashan (kolesteroolku wuu kici karaa).",
-      "Haddii aad hilmaanto: qaado markaad xasuusato, laakiin <span class='highlight'>ha qaadan labo qiyaas</span> hal mar."
+      "Haddii aad hilmaento: qaado markaad xasuusato, laakiin <span class='highlight'>ha qaadan labo qiyaas</span> hal mar."
     ],
-    sec3Title: "Cunto iyo cabitaan (Mad og drikke)",
+    sec3Title: "Cunto iyo cabitaan",
     sec3: [
       "Waxaa la qaadan karaa <span class='highlight'>cunto la’aan ama cunto la socota</span>.",
       "Ka taxaddar <span class='highlight'>canabka (grapefruit)</span> iyo casiirkiisa — wuxuu kordhin karaa saameynta daawada (weydii farmashiyaha haddii aad si joogto ah u isticmaasho)."
     ],
-    sec4Title: "Digniino (Advarsler)",
+    sec4Title: "Digniino",
     sec4: [
       "Haddii aad yeelato <span class='highlight'>murqo xanuun daran</span>, tabar-darro, ama kaadi madow → <span class='highlight'>la xiriir dhakhtar</span>.",
       "Cudurka beerka (lever) ama cabbid khamri badan: dhakhtarku wuxuu u baahan karaa kormeer."
     ],
-    sec5Title: "Dhibaatooyinka (Bivirkninger)",
+    sec5Title: "Dhibaatooyinka",
     sec5: [
       "Murqo xanuun ama murqo daal (mararka qaar).",
       "Calool-xanuun/gaas ama lalabo.",
       "Madax-xanuun."
     ],
-    sec6Title: "Is-dhexgalka daawooyinka (Interaktioner)",
+    sec6Title: "Is-dhexgalka daawooyinka",
     sec6: [
       "Daawooyin qaar (tusaale qaar ka mid ah antibiotika/antifungal, iyo daawooyinka kolesterol kale) waxay kordhin karaan halista murqo-dhibaato.",
       "Had iyo jeer u sheeg dhakhtarka/farmashiyaha <span class='highlight'>daawo kasta</span> oo aad qaadato."
     ],
-    sec7Title: "Ramadaanka iyo daawada (Fasten og brugen af medicinen)",
+    sec7Title: "Ramadaanka iyo daawada",
     sec7: [
       "La hadal dhakhtar haddii aad rabto jadwal gaar ah.",
       "Badanaa waxaa lagu qaadan karaa <span class='highlight'>afurka kadib</span> ama <span class='highlight'>suxuurta</span> — muhiimku waa in lagu qaato <span class='highlight'>hal mar maalintii</span> si joogto ah."
     ],
-    sec8Title: "Kaydinta (Opbevaring)",
+    sec8Title: "Kaydinta",
     sec8: [
       "Ku hay meel ka fog carruurta, kana hooseeya 25°C.",
       "Ku hay baakadka asalka ah.",
@@ -447,203 +458,12 @@ const T = {
     footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
-  ar: {
-    pageTitle: "أتورفاستاتين – الكوليسترول",
-    hdrH1: "أتورفاستاتين – الكوليسترول",
-    hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    drugName: "أتورفاستاتين",
-    drugForm: "أقراص (عن طريق الفم)",
-    badgeText: "مختصر وواضح",
-
-    sec0Title: "ما هو أتورفاستاتين؟",
-    sec0: ["أتورفاستاتين من أدوية <span class='highlight'>الستاتين</span> لخفض الكوليسترول.", "يخفض كوليسترول LDL وقد يقلل خطر الجلطات."],
-    sec1Title: "لماذا يُستخدم؟",
-    sec1: ["ارتفاع الكوليسترول.", "الوقاية من أمراض القلب عند وجود عوامل خطورة."],
-    sec2Title: "طريقة الاستعمال",
-    sec2: ["يؤخذ غالباً <span class='highlight'>مرة يومياً</span>.", "يمكن تناوله مع أو بدون طعام، ويُبلع مع الماء.", "لا توقفه دون استشارة.", "عند نسيان الجرعة: خذها عند التذكر دون مضاعفة."],
-    sec3Title: "الطعام والشراب",
-    sec3: ["يمكن تناوله مع أو بدون طعام.", "احذر من <span class='highlight'>الجريب فروت</span> (قد يزيد التأثير)."],
-    sec4Title: "تحذيرات",
-    sec4: ["راجع الطبيب عند ألم عضلات شديد أو ضعف أو بول داكن.", "أمراض الكبد/الكحول قد تحتاج متابعة."],
-    sec5Title: "الآثار الجانبية",
-    sec5: ["ألم عضلات/تعب.", "اضطراب معدة/غثيان.", "صداع."],
-    sec6Title: "التداخلات",
-    sec6: ["بعض المضادات الحيوية/الفطريات وأدوية أخرى قد تزيد خطر ألم العضلات.", "أخبر الطبيب/الصيدلية بكل أدويتك."],
-    sec7Title: "رمضان والصيام",
-    sec7: ["يمكن غالباً بعد الإفطار أو وقت السحور.", "المهم انتظام مرة يومياً."],
-    sec8Title: "الحفظ",
-    sec8: ["يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.", "لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."],
-
-    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
-  },
-
-  tr: {
-    pageTitle: "Atorvastatin – kolesterol",
-    hdrH1: "Atorvastatin – kolesterol",
-    hdrP: "Hasta ve yakınları için kısa bilgi.",
-    backText: "İlaç listesine geri dön",
-    langLabel: "Dil seçin:",
-    drugName: "Atorvastatin",
-    drugForm: "Tablet (ağızdan)",
-    badgeText: "Kısa ve anlaşılır",
-
-    sec0Title: "Atorvastatin nedir?",
-    sec0: ["Atorvastatin <span class='highlight'>statin</span> grubunda kolesterol düşürücü ilaçtır.", "LDL’yi düşürür, kalp krizi/inme riskini azaltabilir."],
-    sec1Title: "Ne için kullanılır?",
-    sec1: ["Yüksek kolesterol.", "Kalp-damar hastalığı riskini azaltma (risk varsa)."],
-    sec2Title: "Nasıl alınır?",
-    sec2: ["Genelde <span class='highlight'>günde 1 kez</span> alınır.", "Yemekle veya yemeksiz alınabilir; su ile yutun.", "Doktor söylemeden bırakmayın.", "Unutulan doz: hatırlayınca alın, <span class='highlight'>çift doz almayın</span>."],
-    sec3Title: "Yemek ve içecek",
-    sec3: ["Yemekle/yemeksiz alınabilir.", "<span class='highlight'>Greyfurt</span> dikkat (etkiyi artırabilir)."],
-    sec4Title: "Uyarılar",
-    sec4: ["Şiddetli kas ağrısı, güçsüzlük veya koyu idrar olursa doktora başvurun.", "Karaciğer hastalığı/alkol takibi gerekebilir."],
-    sec5Title: "Yan etkiler",
-    sec5: ["Kas ağrısı/yorgunluk.", "Mide rahatsızlığı/bulantı.", "Baş ağrısı."],
-    sec6Title: "Etkileşimler",
-    sec6: ["Bazı antibiyotik/mantar ilaçları ve diğer ilaçlar kas yan etki riskini artırabilir.", "Tüm ilaçlarınızı söyleyin."],
-    sec7Title: "Ramazan ve oruç",
-    sec7: ["İftardan sonra veya sahurda alınabilir.", "Günde 1 kez düzenli alınması önemli."],
-    sec8Title: "Saklama",
-    sec8: ["Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.", "“EXP” sonrası kullanmayın. Artanları eczaneye verin."],
-
-    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    pageTitle: "ایٹورواسٹیٹن – کولیسٹرول",
-    hdrH1: "ایٹورواسٹیٹن – کولیسٹرول",
-    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText: "فہرست پر واپس",
-    langLabel: "زبان منتخب کریں:",
-    drugName: "ایٹورواسٹیٹن",
-    drugForm: "گولی (منہ کے ذریعے)",
-    badgeText: "مختصر اور واضح",
-
-    sec0Title: "ایٹورواسٹیٹن کیا ہے؟",
-    sec0: ["ایٹورواسٹیٹن <span class='highlight'>اسٹیٹن</span> دوا ہے جو کولیسٹرول کم کرتی ہے۔", "LDL کم کر کے دل کے دورے/فالج کے خطرے کو کم کر سکتی ہے۔"],
-    sec1Title: "کس لیے استعمال ہوتی ہے؟",
-    sec1: ["کولیسٹرول زیادہ ہونا۔", "دل کی بیماری سے بچاؤ (زیادہ خطرہ ہو تو)۔"],
-    sec2Title: "طریقہ استعمال",
-    sec2: ["اکثر <span class='highlight'>روزانہ ایک بار</span> لی جاتی ہے۔", "کھانے کے ساتھ یا بغیر لی جا سکتی ہے؛ پانی کے ساتھ نگلیں۔", "ڈاکٹر کے بغیر بند نہ کریں۔", "بھولی خوراک: یاد آئے تو لیں، <span class='highlight'>ڈبل خوراک نہ لیں</span>۔"],
-    sec3Title: "کھانا پینا",
-    sec3: ["کھانے کے ساتھ یا بغیر لی جا سکتی ہے۔", "<span class='highlight'>گریپ فروٹ</span> سے احتیاط (اثر بڑھ سکتا ہے)۔"],
-    sec4Title: "احتیاطیں",
-    sec4: ["شدید پٹھوں کا درد/کمزوری یا گہرا پیشاب ہو تو ڈاکٹر سے رابطہ کریں۔", "جگر/الکحل میں نگرانی ضروری ہو سکتی ہے۔"],
-    sec5Title: "مضر اثرات",
-    sec5: ["پٹھوں میں درد/تھکن۔", "متلی/معدے کی خرابی۔", "سر درد۔"],
-    sec6Title: "دواؤں کے باہمی اثرات",
-    sec6: ["کچھ اینٹی بایوٹک/فنگس کی ادویات اور دیگر ادویات پٹھوں کے سائیڈ ایفیکٹ کا خطرہ بڑھا سکتی ہیں۔", "تمام ادویات بتائیں۔"],
-    sec7Title: "رمضان اور روزہ",
-    sec7: ["افطار کے بعد یا سحری میں لی جا سکتی ہے۔", "روزانہ ایک بار باقاعدگی اہم ہے۔"],
-    sec8Title: "محفوظ رکھنا",
-    sec8: ["بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔", "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"],
-
-    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    pageTitle: "آتورواستاتین – کلسترول",
-    hdrH1: "آتورواستاتین – کلسترول",
-    hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "آتورواستاتین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و روشن",
-
-    sec0Title: "آتورواستاتین چیست؟",
-    sec0: ["آتورواستاتین از گروه <span class='highlight'>استاتین</span> است.", "LDL را کاهش می‌دهد و می‌تواند خطر حمله قلبی/سکته را کم کند."],
-    sec1Title: "موارد مصرف",
-    sec1: ["کلسترول بالا.", "کاهش خطر بیماری قلبی-عروقی در افراد پرخطر."],
-    sec2Title: "نحوه مصرف",
-    sec2: ["معمولاً <span class='highlight'>روزی یک‌بار</span>.", "با یا بدون غذا؛ با آب قورت دهید.", "بدون نظر پزشک قطع نکنید.", "دوز فراموش‌شده: یادآوری شد مصرف کنید، <span class='highlight'>دوز دو برابر نخورید</span>."],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["با یا بدون غذا.", "در مصرف <span class='highlight'>گریپ‌فروت</span> احتیاط کنید (ممکن است اثر را زیاد کند)."],
-    sec4Title: "هشدارها",
-    sec4: ["درد شدید عضلات/ضعف یا ادرار تیره → به پزشک مراجعه کنید.", "بیماری کبد/الکل ممکن است نیاز به پایش داشته باشد."],
-    sec5Title: "عوارض",
-    sec5: ["درد عضلات/خستگی.", "تهوع/ناراحتی معده.", "سردرد."],
-    sec6Title: "تداخلات",
-    sec6: ["برخی آنتی‌بیوتیک/ضدقارچ‌ها و داروهای دیگر خطر عوارض عضلانی را افزایش می‌دهند.", "همه داروها را اعلام کنید."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["اغلب بعد از افطار یا در سحر مصرف می‌شود.", "مصرف منظم روزی یک‌بار مهم است."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی نگهداری شود.", "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."],
-
-    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    pageTitle: "آتورواستاتین – کلسترول",
-    hdrH1: "آتورواستاتین – کلسترول",
-    hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "آتورواستاتین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و واضح",
-
-    sec0Title: "آتورواستاتین چیست؟",
-    sec0: ["آتورواستاتین از گروه <span class='highlight'>استاتین</span> است.", "LDL را پایین می‌آورد و خطر حمله قلبی/سکته را کم می‌کند."],
-    sec1Title: "برای چی استفاده می‌شود؟",
-    sec1: ["کلسترول بلند.", "کاهش خطر بیماری‌های قلبی در افراد پرخطر."],
-    sec2Title: "چگونه گرفته شود؟",
-    sec2: ["معمولاً <span class='highlight'>روزی یک‌بار</span>.", "با یا بدون غذا؛ با آب قورت دهید.", "بدون مشوره قطع نکنید.", "دوز فراموش‌شده: بگیرید، <span class='highlight'>دوز دو برابر نگیرید</span>."],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["با یا بدون غذا.", "با <span class='highlight'>گریپ‌فروت</span> احتیاط کنید."],
-    sec4Title: "هشدارها",
-    sec4: ["درد شدید عضلات/ضعف یا ادرار تیره → به داکتر مراجعه کنید."],
-    sec5Title: "عوارض",
-    sec5: ["درد عضلات/خستگی.", "تهوع/ناراحتی معده.", "سردرد."],
-    sec6Title: "تداخلات",
-    sec6: ["برخی انتی‌بیوتیک/ضدقارچ‌ها و داروها خطر عوارض عضلانی را زیاد می‌کند.", "همه دواها را بگویید."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["اکثر بعد از افطار یا در سحری.", "روزی یک‌بار منظم بگیرید."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی.", "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."],
-
-    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    pageTitle: "آتورواسټاټین – کلېسټرول",
-    hdrH1: "آتورواسټاټین – کلېسټرول",
-    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText: "لېست ته بېرته",
-    langLabel: "ژبه وټاکئ:",
-    drugName: "آتورواسټاټین",
-    drugForm: "ګولۍ (د خولې له لارې)",
-    badgeText: "لنډ او روښانه",
-
-    sec0Title: "آتورواسټاټین څه شی دی؟",
-    sec0: ["آتورواسټاټین د <span class='highlight'>سټاټین</span> ډلې درمل دي.", "LDL کموي او د زړه حملې/سټروک خطر کمولای شي."],
-    sec1Title: "د څه لپاره کارېږي؟",
-    sec1: ["لوړ کلېسټرول.", "په لوړ خطر کې د زړه ناروغۍ مخنیوی."],
-    sec2Title: "څنګه واخیستل شي؟",
-    sec2: ["اکثره <span class='highlight'>ورځ کې ۱ ځل</span>.", "له خوړو سره یا بې له خوړو؛ له اوبو سره تېر کړئ.", "بې له مشورې مه بندوئ.", "هېر شوی دوز: واخلئ، <span class='highlight'>ډبل دوز مه اخلئ</span>."],
-    sec3Title: "خواړه او څښاک",
-    sec3: ["له خوړو سره یا بې له خوړو.", "له <span class='highlight'>ګریپ‌فروټ</span> سره احتیاط."],
-    sec4Title: "خبرداری",
-    sec4: ["شدید د عضلو درد/کمزوري یا توره ادرار → ډاکټر ته ولاړ شئ."],
-    sec5Title: "اړخیزې اغېزې",
-    sec5: ["د عضلو درد/ستړیا.", "معدې ناارامي/زړه بدوالی.", "سر درد."],
-    sec6Title: "تداخلات",
-    sec6: ["ځینې انټي‌بیوتیک/فنګس درمل او نور درمل د عضلو عوارض زیاتولای شي.", "ټول درمل ووایئ."],
-    sec7Title: "رمضان او روژه",
-    sec7: ["له افطار وروسته یا په سحري کې اخیستل کېدای شي.", "ورځ کې ۱ ځل منظم اخیستل مهم دي."],
-    sec8Title: "ساتنه",
-    sec8: ["له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې.", "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."],
-
-    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
-  }
+  ar: T.ar,
+  tr: T.tr,
+  ur: T.ur,
+  fa: T.fa,
+  prs: T.prs,
+  ps: T.ps
 };
 
 function applyLang(lang){
