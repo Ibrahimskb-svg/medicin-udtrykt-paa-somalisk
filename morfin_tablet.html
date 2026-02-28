@@ -79,7 +79,6 @@ a.back span { font-size:1.1rem; }
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--stroke); }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .section-title{ font-weight:700; font-size:0.96rem; color:var(--text); }
-.section-title small{ font-weight:400; color:var(--muted); }
 
 .section-icon{
   width:24px; height:24px; border-radius:999px;
@@ -109,7 +108,7 @@ a.back span { font-size:1.1rem; }
 
 <header>
   <h1 id="hdrH1">Morfin (kiniin) – xanuun baabi'iye</h1>
-  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
+  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada.</p>
 </header>
 
 <main>
@@ -145,7 +144,7 @@ a.back span { font-size:1.1rem; }
         </div>
         <div class="drug-labels">
           <div class="drug-name" id="drugName">Morfin (kiniin)</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
       <div class="badge" id="badgeText">Akhris kooban</div>
@@ -154,7 +153,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title" id="useTitle">Isticmaalka <small>(Anvendelse)</small></div>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
       </div>
       <ul id="useList"></ul>
     </div>
@@ -162,7 +161,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title" id="doseTitle">Qiyaasta <small>(Dosering)</small></div>
+        <div class="section-title" id="doseTitle">Qiyaasta</div>
       </div>
       <ul id="doseList"></ul>
     </div>
@@ -170,7 +169,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title" id="sideTitle">Waxyeellooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
       </div>
       <ul id="sideList"></ul>
     </div>
@@ -178,7 +177,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title" id="interTitle">Isdhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title" id="interTitle">Isdhexgalka daawooyinka</div>
       </div>
       <ul id="interList"></ul>
     </div>
@@ -186,7 +185,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="warnTitle">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title" id="warnTitle">Digniino</div>
       </div>
       <ul id="warnList"></ul>
     </div>
@@ -194,7 +193,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="ramTitle">Ramadaan iyo soonka <small>(Ramadan og faste)</small></div>
+        <div class="section-title" id="ramTitle">Ramadaan iyo soonka</div>
       </div>
       <ul id="ramList"></ul>
     </div>
@@ -202,7 +201,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title" id="foodTitle">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan</div>
       </div>
       <ul id="foodList"></ul>
     </div>
@@ -210,7 +209,7 @@ a.back span { font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="storeTitle">Kaydinta daawada <small>(Opbevaring)</small></div>
+        <div class="section-title" id="storeTitle">Kaydinta daawada</div>
       </div>
       <ul id="storeList"></ul>
     </div>
@@ -225,7 +224,6 @@ a.back span { font-size:1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-/* Same 9-language themes */
 const THEMES = {
   so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
   da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
@@ -248,613 +246,6 @@ function applyTheme(lang){
   r.setProperty("--pillText", th.pillText || "#16634a");
 }
 
-const T = {
-  so: {
-    pageTitle:"Morfin (kiniin) – xanuun baabi'iye",
-    hdrH1:"Morfin (kiniin) – xanuun baabi'iye",
-    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    backText:"Ku laabo liiska daawooyinka",
-    langLabel:"Dooro luqadda:",
-    drugName:"Morfin (kiniin) – xanuun baabi'iye",
-    drugForm:"Kiniin afka ah (Tablet til at tage gennem munden)",
-    badgeText:"Akhris kooban",
-
-    useTitle:"Isticmaalka <small>(Anvendelse)</small>",
-    use:[
-      "Morfinka waa daawo xooggan oo <span class='highlight'>xanuun baabi'iye</span> ah (opioid).",
-      "Waxaa loo isticmaalaa <span class='highlight'>xanuun aad u daran</span>, tusaale: xanuun ka dib qalliin ama xanuunka kansarka."
-    ],
-
-    doseTitle:"Qiyaasta <small>(Dosering)</small>",
-    dose:[
-      "Qiyaasta waxaa doorta dhakhtarka iyadoo ku xiran xanuunkaaga iyo daawooyinka kale.",
-      "Ha beddelin qiyaasta. <span class='highlight'>Ha jebin, ha ruugin, hana kala qaybin</span> haddii ay tahay <span class='highlight'>depottablet</span> (kiniin si tartiib ah u sii daaya daawada).",
-      "Haddii aad ilowdo qiyaas: raac tilmaanta dhakhtarka/farmashiyaha (ha laba-laabin qiyaasta adigoon talo helin)."
-    ],
-
-    sideTitle:"Waxyeellooyinka <small>(Bivirkninger)</small>",
-    side:[
-      "Caadi: lulmo, madax-wareer, lalabbo iyo matag.",
-      "Calool-istaag aad u badan — cab biyo, cun fiber; mararka qaarkood waxaa loo baahan yahay <span class='highlight'>laksativ</span> (daawo calool-fur).",
-      "Xad-dhaaf: neefsashadu oo yaraata, hurdo aad u badan, ama qofka oo aan si sahal ah loo kicin karin — <span class='highlight'>wac 112</span>."
-    ],
-
-    interTitle:"Isdhexgalka daawooyinka <small>(Interaktioner)</small>",
-    inter:[
-      "Khamriga, benzodiazepiner (tusaale diazepam), daawooyinka hurdada, iyo opioids kale waxay kordhiyaan lulmada iyo khatarta <span class='highlight'>neefsashada oo yaraata</span>.",
-      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato (sidoo kale daawooyinka dabiiciga ah)."
-    ],
-
-    warnTitle:"Digniino <small>(Advarsler)</small>",
-    warn:[
-      "Ha kaxayn gaari ama ha shaqayn qalab halis ah haddii aad dareento lulmo ama madax-wareer.",
-      "Isticmaalka muddada dheer wuxuu sababi karaa <span class='highlight'>ku-darid (dependency)</span>. Ha joojin si lama filaan ah — dhakhtar ayaa qorsheeya hoos-u-dhigid (udtrapning).",
-      "Haddii aad qabto dhibaato neefsasho (tusaale COPD/sleep apnoea) ama aad tahay qof da' ah: khatartu way kordhi kartaa — la hadal dhakhtar."
-    ],
-
-    ramTitle:"Ramadaan iyo soonka <small>(Ramadan og faste)</small>",
-    ram:[
-      "Morfinka kiniinka ah wuxuu <span class='highlight'>jabiyaa soonka</span> haddii la qaato maalinta.",
-      "Haddii aad sooman tahay, la hadal dhakhtarka ka hor Ramadaanka si loo helo <span class='highlight'>qorshe ammaan ah</span> oo xanuunkaaga lagu maareeyo."
-    ],
-
-    foodTitle:"Cunto iyo cabitaan <small>(Mad og drikke)</small>",
-    food:[
-      "Waxaa lagu qaadan karaa cunto la’aan ama cunto la socota; cunto yar waxay yareyn kartaa lalabada.",
-      "<span class='highlight'>Ka fogow khamriga</span> (waxay kordhisaa lulmo iyo khatar).",
-      "Cab biyo badan si loo yareeyo calool-istaagga."
-    ],
-
-    storeTitle:"Kaydinta daawada <small>(Opbevaring)</small>",
-    store:[
-      "Ku kaydi meel ammaan ah oo ka fog carruurta (opioids waa khatar haddii qof kale si qalad ah u qaato).",
-      "Ha wadaagin daawada qof kale.",
-      "Daawooyinka aan loo baahnayn ku celi farmashiyaha si habboon."
-    ],
-
-    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle:"Morfin (tablet) – smertestillende",
-    hdrH1:"Morfin (tablet) – smertestillende",
-    hdrP:"Kort information om lægemidlet til patienter og pårørende.",
-    backText:"Tilbage til medicinlisten",
-    langLabel:"Vælg sprog:",
-    drugName:"Morfin (tablet) – smertestillende",
-    drugForm:"Tablet (til at tage gennem munden)",
-    badgeText:"Kort og let",
-
-    useTitle:"Anvendelse",
-    use:[
-      "Morfin er et stærkt <span class='highlight'>smertestillende</span> middel (opioid).",
-      "Bruges ved <span class='highlight'>stærke smerter</span>, fx efter operation eller ved kræftsmerter."
-    ],
-
-    doseTitle:"Dosering",
-    dose:[
-      "Dosis fastsættes af lægen ud fra dine smerter og øvrige medicin.",
-      "Ændr ikke dosis. <span class='highlight'>Depottabletter må ikke knuses, deles eller tygges</span>.",
-      "Hvis du glemmer en dosis: følg aftalen med læge/apotek (dobbelt dosis bør undgås uden rådgivning)."
-    ],
-
-    sideTitle:"Bivirkninger",
-    side:[
-      "Døsighed, svimmelhed, kvalme og opkast er almindeligt.",
-      "Forstoppelse er meget almindeligt — drik væske, spis fibre og brug evt. afføringsmiddel efter aftale.",
-      "Overdosering: langsom vejrtrækning/udtalt søvnighed — <span class='highlight'>ring 112</span>."
-    ],
-
-    interTitle:"Interaktioner",
-    inter:[
-      "Alkohol, benzodiazepiner (fx diazepam), sovemedicin og andre opioider øger risiko for døsighed og <span class='highlight'>vejrtrækningsproblemer</span>.",
-      "Fortæl altid læge/apotek hvilke lægemidler og naturmidler du bruger."
-    ],
-
-    warnTitle:"Advarsler",
-    warn:[
-      "Kør ikke bil eller brug farlige maskiner hvis du er døsig eller svimmel.",
-      "Lang tids brug kan give <span class='highlight'>afhængighed</span>. Stop ikke pludseligt — udtrapning planlægges af lægen.",
-      "Ved lungesygdom (fx KOL/søvnapnø) eller høj alder kan risikoen være større — tal med lægen."
-    ],
-
-    ramTitle:"Ramadan og faste",
-    ram:[
-      "Tabletter bryder fasten, hvis de tages i dagtimerne.",
-      "Tal med lægen før Ramadan for en <span class='highlight'>sikker plan</span> for smertebehandling."
-    ],
-
-    foodTitle:"Mad og drikke",
-    food:[
-      "Kan tages med eller uden mad; lidt mad kan mindske kvalme.",
-      "<span class='highlight'>Undgå alkohol</span>.",
-      "Drik rigeligt for at forebygge forstoppelse."
-    ],
-
-    storeTitle:"Opbevaring",
-    store:[
-      "Opbevar sikkert og utilgængeligt for børn (opioider kan være farlige ved fejltagelse).",
-      "Del ikke medicinen med andre.",
-      "Aflever rester på apoteket."
-    ],
-
-    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle:"Morphine (tablet) – pain relief",
-    hdrH1:"Morphine (tablet) – pain relief",
-    hdrP:"Brief medicine information for patients and relatives.",
-    backText:"Back to the medicine list",
-    langLabel:"Choose language:",
-    drugName:"Morphine (tablet) – pain relief",
-    drugForm:"Tablet (by mouth)",
-    badgeText:"Short and clear",
-
-    useTitle:"Use",
-    use:[
-      "Morphine is a strong <span class='highlight'>painkiller</span> (opioid).",
-      "Used for <span class='highlight'>severe pain</span>, e.g., after surgery or cancer pain."
-    ],
-
-    doseTitle:"Dose",
-    dose:[
-      "The dose is chosen by your doctor based on your pain and other medicines.",
-      "Do not change the dose. <span class='highlight'>Extended-release (depot) tablets must not be crushed, split or chewed</span>.",
-      "If you miss a dose: follow your plan (avoid doubling without advice)."
-    ],
-
-    sideTitle:"Side effects",
-    side:[
-      "Sleepiness, dizziness, nausea and vomiting are common.",
-      "Constipation is very common — drink fluids, eat fibre and use laxatives if advised.",
-      "Overdose: slow breathing/extreme sleepiness — <span class='highlight'>call emergency services</span>."
-    ],
-
-    interTitle:"Interactions",
-    inter:[
-      "Alcohol, benzodiazepines (e.g., diazepam), sleeping pills and other opioids increase the risk of drowsiness and <span class='highlight'>breathing problems</span>.",
-      "Tell your doctor/pharmacy about all medicines and herbal products you use."
-    ],
-
-    warnTitle:"Warnings",
-    warn:[
-      "Do not drive or use dangerous tools if you feel sleepy or dizzy.",
-      "Long-term use can cause <span class='highlight'>dependence</span>. Do not stop suddenly — tapering should be planned by a doctor.",
-      "Risk can be higher with lung disease (e.g., COPD/sleep apnoea) or older age — ask your doctor."
-    ],
-
-    ramTitle:"Ramadan and fasting",
-    ram:[
-      "Tablets break the fast if taken during daytime.",
-      "Talk to your doctor before Ramadan for a <span class='highlight'>safe pain plan</span>."
-    ],
-
-    foodTitle:"Food and drink",
-    food:[
-      "Can be taken with or without food; a small meal may reduce nausea.",
-      "<span class='highlight'>Avoid alcohol</span>.",
-      "Drink enough water to reduce constipation."
-    ],
-
-    storeTitle:"Storage",
-    store:[
-      "Store safely out of reach of children (opioids can be dangerous if taken by someone else).",
-      "Do not share your medicine.",
-      "Return unused medicine to the pharmacy."
-    ],
-
-    footer1:"If you need more information, contact your pharmacy or doctor.",
-    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  ar: {
-    pageTitle:"المورفين (أقراص) – مسكن ألم",
-    hdrH1:"المورفين (أقراص) – مسكن ألم",
-    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText:"العودة إلى قائمة الأدوية",
-    langLabel:"اختر اللغة:",
-    drugName:"المورفين (أقراص) – مسكن ألم",
-    drugForm:"أقراص (عن طريق الفم)",
-    badgeText:"مختصر وواضح",
-
-    useTitle:"الاستخدام",
-    use:[
-      "المورفين مسكن قوي للألم (أفيوني).",
-      "يُستخدم للألم الشديد مثل ما بعد العمليات أو ألم السرطان."
-    ],
-
-    doseTitle:"الجرعة",
-    dose:[
-      "يحدد الطبيب الجرعة حسب الألم والأدوية الأخرى.",
-      "لا تغيّر الجرعة. <span class='highlight'>أقراص المفعول المديد (depot) لا تُسحق ولا تُقسم ولا تُـمضغ</span>.",
-      "إذا نسيت جرعة: اتبع خطة الطبيب/الصيدلية (تجنّب مضاعفة الجرعة دون نصيحة)."
-    ],
-
-    sideTitle:"الآثار الجانبية",
-    side:[
-      "النعاس، الدوخة، الغثيان والقيء شائعة.",
-      "الإمساك شائع جداً — اشرب سوائل وتناول ألياف وقد تحتاج مُليناً.",
-      "جرعة زائدة: بطء التنفس/نعاس شديد — <span class='highlight'>اتصل بالإسعاف</span>."
-    ],
-
-    interTitle:"التداخلات",
-    inter:[
-      "الكحول، البنزوديازيبينات (مثل ديازيبام)، المنومات، وأفيونات أخرى تزيد خطر النعاس ومشاكل التنفس.",
-      "أخبر الطبيب/الصيدلية بكل الأدوية والمكملات العشبية."
-    ],
-
-    warnTitle:"تحذيرات",
-    warn:[
-      "لا تقد السيارة أو تستخدم أدوات خطرة إذا كنت نعساناً أو تشعر بدوخة.",
-      "الاستخدام الطويل قد يسبب اعتماداً. لا توقفه فجأة — الإيقاف يكون تدريجياً بإشراف طبي.",
-      "يزداد الخطر لدى مرضى الرئة (مثل COPD/انقطاع النفس أثناء النوم) أو كبار السن — استشر الطبيب."
-    ],
-
-    ramTitle:"رمضان والصيام",
-    ram:[
-      "الأقراص تُفطر إذا أُخذت نهاراً.",
-      "ناقش خطة آمنة للألم مع الطبيب قبل رمضان."
-    ],
-
-    foodTitle:"الطعام والشراب",
-    food:[
-      "يمكن تناوله مع الطعام أو بدونه؛ وجبة خفيفة قد تقلل الغثيان.",
-      "<span class='highlight'>تجنب الكحول</span>.",
-      "اشرب ماءً كافياً لتقليل الإمساك."
-    ],
-
-    storeTitle:"الحفظ",
-    store:[
-      "يحفظ بأمان بعيداً عن الأطفال (قد يكون خطيراً إذا تناوله شخص آخر).",
-      "لا تشارك الدواء مع الآخرين.",
-      "أعد البقايا إلى الصيدلية."
-    ],
-
-    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
-  },
-
-  tr: {
-    pageTitle:"Morfin (tablet) – ağrı kesici",
-    hdrH1:"Morfin (tablet) – ağrı kesici",
-    hdrP:"Hasta ve yakınları için kısa bilgi.",
-    backText:"İlaç listesine geri dön",
-    langLabel:"Dil seçin:",
-    drugName:"Morfin (tablet) – ağrı kesici",
-    drugForm:"Tablet (ağızdan)",
-    badgeText:"Kısa ve anlaşılır",
-
-    useTitle:"Kullanım",
-    use:[
-      "Morfin güçlü bir <span class='highlight'>ağrı kesici</span>dir (opioid).",
-      "Şiddetli ağrılarda kullanılır; örn. ameliyat sonrası veya kanser ağrısı."
-    ],
-
-    doseTitle:"Doz",
-    dose:[
-      "Dozu doktor belirler.",
-      "<span class='highlight'>Uzatılmış salımlı (depot) tabletleri ezmeyin, bölmeyin, çiğnemeyin</span>.",
-      "Doz unutursanız: planınıza göre hareket edin (doktor/eczacıya danışmadan çift doz almayın)."
-    ],
-
-    sideTitle:"Yan etkiler",
-    side:[
-      "Uyku hali, baş dönmesi, bulantı ve kusma sık görülür.",
-      "Kabızlık çok yaygındır — sıvı alın, lif tüketin, gerekirse laksatif.",
-      "Aşırı doz: yavaş solunum/aşırı uyku hali — <span class='highlight'>acil yardım</span> alın."
-    ],
-
-    interTitle:"Etkileşimler",
-    inter:[
-      "Alkol, benzodiazepinler (örn. diazepam), uyku ilaçları ve diğer opioidler solunum baskılanması riskini artırır.",
-      "Kullandığınız tüm ilaçları ve bitkisel ürünleri doktor/eczacıya söyleyin."
-    ],
-
-    warnTitle:"Uyarılar",
-    warn:[
-      "Uykulu/sersem hissediyorsanız araç kullanmayın.",
-      "Uzun süreli kullanım <span class='highlight'>bağımlılık</span> yapabilir. Aniden kesmeyin — doktor azaltarak keser.",
-      "KOAH/uyku apnesi veya ileri yaşta risk artabilir — doktorla konuşun."
-    ],
-
-    ramTitle:"Ramazan ve oruç",
-    ram:[
-      "Tabletler gündüz alınırsa orucu bozar.",
-      "Ramazan öncesi doktorla güvenli bir ağrı planı yapın."
-    ],
-
-    foodTitle:"Yemek ve içecek",
-    food:[
-      "Yemekle veya yemeksiz alınabilir; hafif yemek bulantıyı azaltabilir.",
-      "<span class='highlight'>Alkolden kaçının</span>.",
-      "Kabızlığı azaltmak için bol su için."
-    ],
-
-    storeTitle:"Saklama",
-    store:[
-      "Çocuklardan uzak, güvenli yerde saklayın (başkası için tehlikeli olabilir).",
-      "Başkalarıyla paylaşmayın.",
-      "Artanları eczaneye verin."
-    ],
-
-    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    pageTitle:"مورفین (گولی) – درد کم کرنے والی",
-    hdrH1:"مورفین (گولی) – درد کم کرنے والی",
-    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText:"فہرست پر واپس",
-    langLabel:"زبان منتخب کریں:",
-    drugName:"مورفین (گولی) – درد کم کرنے والی",
-    drugForm:"گولی (منہ کے ذریعے)",
-    badgeText:"مختصر اور واضح",
-
-    useTitle:"استعمال",
-    use:[
-      "مورفین ایک طاقتور <span class='highlight'>درد کم کرنے والی</span> دوا ہے (اوپیئڈ).",
-      "شدید درد میں استعمال ہوتی ہے جیسے آپریشن کے بعد یا کینسر کا درد۔"
-    ],
-
-    doseTitle:"خوراک",
-    dose:[
-      "خوراک ڈاکٹر طے کرتے ہیں۔",
-      "<span class='highlight'>ڈیپو/ایکسٹینڈڈ ریلیز گولی کو نہ توڑیں، نہ پیسیں، نہ چبائیں</span>۔",
-      "خوراک بھول جائیں تو اپنے پلان کے مطابق چلیں (ڈاکٹر کے مشورے کے بغیر ڈبل خوراک نہ لیں)."
-    ],
-
-    sideTitle:"مضر اثرات",
-    side:[
-      "غنودگی، چکر، متلی اور قے عام ہیں۔",
-      "قبض بہت عام ہے — پانی، فائبر، اور ضرورت پر ملین۔",
-      "زیادہ خوراک: سانس آہستہ/زیادہ غنودگی — <span class='highlight'>ایمرجنسی</span> سے رابطہ کریں۔"
-    ],
-
-    interTitle:"دواؤں کے باہمی اثرات",
-    inter:[
-      "الکحل، benzodiazepines (مثلاً diazepam)، نیند کی دوائیں اور دیگر اوپیئڈ سانس کے مسائل کا خطرہ بڑھاتے ہیں۔",
-      "تمام ادویات/ہربل چیزیں ڈاکٹر یا فارماسسٹ کو بتائیں۔"
-    ],
-
-    warnTitle:"احتیاطیں",
-    warn:[
-      "غنودگی یا چکر ہو تو گاڑی نہ چلائیں۔",
-      "لمبے عرصے کے استعمال سے <span class='highlight'>انحصار</span> ہو سکتا ہے۔ اچانک بند نہ کریں۔",
-      "پھیپھڑوں کی بیماری یا زیادہ عمر میں خطرہ بڑھ سکتا ہے — ڈاکٹر سے بات کریں۔"
-    ],
-
-    ramTitle:"رمضان اور روزہ",
-    ram:[
-      "دن کے وقت گولی لینے سے روزہ ٹوٹ جاتا ہے۔",
-      "رمضان سے پہلے محفوظ پلان کے لیے ڈاکٹر سے بات کریں۔"
-    ],
-
-    foodTitle:"کھانا پینا",
-    food:[
-      "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے؛ ہلکا کھانا متلی کم کر سکتا ہے۔",
-      "<span class='highlight'>الکحل سے پرہیز کریں</span>۔",
-      "قبض سے بچنے کے لیے پانی زیادہ پئیں۔"
-    ],
-
-    storeTitle:"محفوظ رکھنا",
-    store:[
-      "بچوں سے دور محفوظ جگہ رکھیں (کسی اور کے لیے خطرناک ہو سکتی ہے).",
-      "کسی اور سے شیئر نہ کریں۔",
-      "بچی دوا فارمیسی کو دیں۔"
-    ],
-
-    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    pageTitle:"مورفین (قرص) – مسکن درد",
-    hdrH1:"مورفین (قرص) – مسکن درد",
-    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"مورفین (قرص) – مسکن درد",
-    drugForm:"قرص (خوراکی)",
-    badgeText:"کوتاه و روشن",
-
-    useTitle:"مصرف",
-    use:[
-      "مورفین یک <span class='highlight'>مسکن قوی</span> (اوپیوئید) است.",
-      "برای درد شدید مثل بعد از عمل یا درد سرطان استفاده می‌شود."
-    ],
-
-    doseTitle:"دوز",
-    dose:[
-      "دوز را پزشک تعیین می‌کند.",
-      "<span class='highlight'>قرص‌های آهسته‌رهش/دیپو را خرد، نصف یا نجوید</span>.",
-      "اگر یک نوبت را فراموش کردید طبق برنامه عمل کنید (بدون مشورت، دوز را دو برابر نکنید)."
-    ],
-
-    sideTitle:"عوارض",
-    side:[
-      "خواب‌آلودگی، سرگیجه، تهوع و استفراغ شایع است.",
-      "یبوست بسیار شایع است — مایعات و فیبر و در صورت نیاز ملین با نظر پزشک.",
-      "اوردوز: تنفس کند/خواب‌آلودگی شدید — <span class='highlight'>اورژانس</span>."
-    ],
-
-    interTitle:"تداخلات",
-    inter:[
-      "الکل، بنزودیازپین‌ها (مثل دیازپام)، داروهای خواب‌آور و اوپیوئیدهای دیگر خطر مشکلات تنفسی را افزایش می‌دهند.",
-      "تمام داروها و فرآورده‌های گیاهی را به پزشک/داروساز بگویید."
-    ],
-
-    warnTitle:"هشدارها",
-    warn:[
-      "اگر خواب‌آلود یا سرگیجه دارید رانندگی نکنید.",
-      "مصرف طولانی‌مدت می‌تواند <span class='highlight'>وابستگی</span> ایجاد کند. ناگهانی قطع نکنید.",
-      "در بیماری ریه یا سن بالا خطر بیشتر است — با پزشک صحبت کنید."
-    ],
-
-    ramTitle:"رمضان و روزه",
-    ram:[
-      "اگر در طول روز مصرف شود، روزه را باطل می‌کند.",
-      "قبل از رمضان درباره برنامه امن با پزشک صحبت کنید."
-    ],
-
-    foodTitle:"غذا و نوشیدنی",
-    food:[
-      "با غذا یا بدون غذا قابل مصرف است؛ غذای سبک تهوع را کم می‌کند.",
-      "<span class='highlight'>از الکل پرهیز کنید</span>.",
-      "برای کاهش یبوست آب کافی بنوشید."
-    ],
-
-    storeTitle:"نگهداری",
-    store:[
-      "در جای امن و دور از دسترس کودکان نگهداری شود (برای دیگران خطرناک است).",
-      "دارو را با دیگران شریک نکنید.",
-      "باقی‌مانده را به داروخانه تحویل دهید."
-    ],
-
-    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    pageTitle:"مورفین (قرص) – مسکن درد",
-    hdrH1:"مورفین (قرص) – مسکن درد",
-    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"مورفین (قرص) – مسکن درد",
-    drugForm:"قرص (خوراکی)",
-    badgeText:"کوتاه و واضح",
-
-    useTitle:"استفاده",
-    use:[
-      "مورفین یک <span class='highlight'>مسکن قوی</span> (اوپیوئید) است.",
-      "برای درد شدید مثل بعد از عملیات یا درد سرطان استفاده می‌شود."
-    ],
-
-    doseTitle:"دوز",
-    dose:[
-      "دوز را داکتر تعیین می‌کند.",
-      "<span class='highlight'>قرص‌های آهسته‌رهش/دیپو را خرد، نصف یا نجوید</span>.",
-      "اگر یک نوبت را فراموش کردید طبق پلان عمل کنید (بدون مشوره دوز را دو برابر نکنید)."
-    ],
-
-    sideTitle:"عوارض",
-    side:[
-      "خواب‌آلودگی، سرگیجه، تهوع و استفراغ شایع است.",
-      "یبوست بسیار شایع است — مایعات و فایبر و در صورت نیاز ملین با نظر داکتر.",
-      "اوردوز: تنفس کند/خواب‌آلودگی شدید — <span class='highlight'>کمک عاجل</span>."
-    ],
-
-    interTitle:"تداخلات",
-    inter:[
-      "الکول، بنزودیازپین‌ها (مثل دیازپام)، داروهای خواب‌آور و اوپیوئیدهای دیگر خطر مشکلات تنفسی را زیاد می‌کنند.",
-      "تمام داروها و محصولات گیاهی را به داکتر/دواخانه بگویید."
-    ],
-
-    warnTitle:"هشدارها",
-    warn:[
-      "اگر خواب‌آلود یا سرگیجه دارید رانندگی نکنید.",
-      "مصرف طولانی‌مدت می‌تواند <span class='highlight'>وابستگی</span> ایجاد کند. ناگهانی قطع نکنید.",
-      "در بیماری ریه یا سن بالا خطر بیشتر است — با داکتر صحبت کنید."
-    ],
-
-    ramTitle:"رمضان و روزه",
-    ram:[
-      "اگر در روز گرفته شود، روزه را باطل می‌کند.",
-      "قبل از رمضان با داکتر درباره پلان امن صحبت کنید."
-    ],
-
-    foodTitle:"غذا و نوشیدنی",
-    food:[
-      "با غذا یا بدون غذا گرفته می‌شود؛ غذای سبک تهوع را کم می‌کند.",
-      "<span class='highlight'>از الکول پرهیز کنید</span>.",
-      "برای کاهش یبوست آب کافی بنوشید."
-    ],
-
-    storeTitle:"نگهداری",
-    store:[
-      "در جای امن و دور از دسترس اطفال نگهداری شود (برای دیگران خطرناک است).",
-      "دوا را با دیگران شریک نکنید.",
-      "باقی‌مانده را به دواخانه بسپارید."
-    ],
-
-    footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    pageTitle:"مورفین (ګولۍ) – درد کموونکی",
-    hdrH1:"مورفین (ګولۍ) – درد کموونکی",
-    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText:"لېست ته بېرته",
-    langLabel:"ژبه وټاکئ:",
-    drugName:"مورفین (ګولۍ) – درد کموونکی",
-    drugForm:"ګولۍ (د خولې له لارې)",
-    badgeText:"لنډ او روښانه",
-
-    useTitle:"کارونه",
-    use:[
-      "مورفین یو قوي <span class='highlight'>درد کموونکی</span> (اوپیوئید) دی.",
-      "د شدید درد لپاره کارول کېږي لکه د عملیاتو وروسته یا د سرطان درد."
-    ],
-
-    doseTitle:"دوز",
-    dose:[
-      "دوز ډاکټر ټاکي.",
-      "<span class='highlight'>د ډیپو/اوږدمهاله ګولۍ مه ماتوئ، مه میچوئ او مه ژوئ</span>.",
-      "که یو دوز هېر شي: د خپل پلان مطابق عمل وکړئ (بې له سلا دوه برابره مه اخلئ)."
-    ],
-
-    sideTitle:"اړخیزې اغېزې",
-    side:[
-      "خوبوالی، سرګرځېدل، زړه بدوالی او کانګې عام دي.",
-      "قبض ډېر عام دی — اوبه، فایبر، او د اړتیا پر مهال ملین د ډاکټر په سلا.",
-      "اوردوز: ورو تنفس/ډېر خوبوالی — <span class='highlight'>بیړنۍ مرسته</span>."
-    ],
-
-    interTitle:"تداخلات",
-    inter:[
-      "الکول، بنزودیازپینونه (لکه diazepam)، د خوب درمل او نور اوپیوئیدونه د تنفسي ستونزو خطر زیاتوي.",
-      "ټول درمل او بوټي محصولات ډاکټر/درملتون ته ووایئ."
-    ],
-
-    warnTitle:"خبرداری",
-    warn:[
-      "که خوبوالی یا سرګرځېدل لرئ، موټر مه چلوئ.",
-      "اوږدمهاله استعمال <span class='highlight'>انحصار</span> رامنځته کوي. ناڅاپه مه بندوئ.",
-      "د سږي ناروغۍ یا لوړ عمر کې خطر زیات وي — له ډاکټر سره سلا وکړئ."
-    ],
-
-    ramTitle:"رمضان او روژه",
-    ram:[
-      "که د ورځې واخیستل شي، روژه ماتوي.",
-      "د رمضان نه مخکې د خوندي پلان لپاره له ډاکټر سره سلا وکړئ."
-    ],
-
-    foodTitle:"خواړه او څښاک",
-    food:[
-      "له خوړو سره یا بې له خوړو اخیستل کېدای شي؛ لږ خواړه زړه بدوالی کموي.",
-      "<span class='highlight'>له الکول څخه ډډه وکړئ</span>.",
-      "د قبض د کمولو لپاره کافي اوبه وڅښئ."
-    ],
-
-    storeTitle:"ساتنه",
-    store:[
-      "په خوندي ځای کې، له ماشومانو لرې وساتئ (بل چا ته خطرناک کېدای شي).",
-      "له نورو سره یې مه شریکوئ.",
-      "پاتې درمل درملتون ته وسپارئ."
-    ],
-
-    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
-  }
-};
-
-function stripTags(s){ return String(s||"").replace(/<[^>]*>?/gm, ""); }
-
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
@@ -876,24 +267,24 @@ function applyLang(lang){
   setDirLang(lang);
   applyTheme(lang);
 
-  document.title = stripTags(d.pageTitle);
-  document.getElementById("hdrH1").textContent = stripTags(d.hdrH1);
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
   document.getElementById("hdrP").textContent = d.hdrP;
   document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugName").textContent = d.drugName;
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("useTitle").innerHTML = d.useTitle;
-  document.getElementById("doseTitle").innerHTML = d.doseTitle;
-  document.getElementById("sideTitle").innerHTML = d.sideTitle;
-  document.getElementById("interTitle").innerHTML = d.interTitle;
-  document.getElementById("warnTitle").innerHTML = d.warnTitle;
-  document.getElementById("ramTitle").innerHTML = d.ramTitle;
-  document.getElementById("foodTitle").innerHTML = d.foodTitle;
-  document.getElementById("storeTitle").innerHTML = d.storeTitle;
+  document.getElementById("useTitle").textContent = d.useTitle;
+  document.getElementById("doseTitle").textContent = d.doseTitle;
+  document.getElementById("sideTitle").textContent = d.sideTitle;
+  document.getElementById("interTitle").textContent = d.interTitle;
+  document.getElementById("warnTitle").textContent = d.warnTitle;
+  document.getElementById("ramTitle").textContent = d.ramTitle;
+  document.getElementById("foodTitle").textContent = d.foodTitle;
+  document.getElementById("storeTitle").textContent = d.storeTitle;
 
   fillList("useList", d.use);
   fillList("doseList", d.dose);
@@ -918,17 +309,546 @@ function applyLang(lang){
   window.history.replaceState({}, "", url.toString());
 }
 
+const T = {
+  so: {
+    pageTitle:"Morfin (kiniin) – xanuun baabi'iye",
+    hdrH1:"Morfin (kiniin) – xanuun baabi'iye",
+    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada.",
+    backText:"Ku laabo liiska daawooyinka",
+    langLabel:"Dooro luqadda:",
+    drugName:"Morfin (kiniin)",
+    drugForm:"Kiniin afka ah",
+    badgeText:"Akhris kooban",
+
+    useTitle:"Isticmaalka",
+    use:[
+      "Morfin waa daawo xooggan oo <span class='highlight'>xanuun baabi'iye</span> ah (opioid).",
+      "Waxaa loo isticmaalaa <span class='highlight'>xanuun aad u daran</span>, tusaale: xanuun ka dib qalliin ama xanuunka kansarka."
+    ],
+    doseTitle:"Qiyaasta",
+    dose:[
+      "Qiyaasta waxaa doorta dhakhtarka iyadoo ku xiran xanuunkaaga iyo daawooyinka kale.",
+      "Ha beddelin qiyaasta. Haddii ay tahay <span class='highlight'>depottablet</span> (si tartiib ah u sii daaya), <span class='highlight'>ha jebin, ha ruugin, hana kala qaybin</span>.",
+      "Haddii aad ilowdo qiyaas: raac tilmaanta dhakhtarka/farmashiyaha. <span class='highlight'>Ha laba-laabin</span> adigoon talo helin."
+    ],
+    sideTitle:"Waxyeellooyinka",
+    side:[
+      "Caadi: lulmo, madax-wareer, lalabbo iyo matag.",
+      "Calool-istaag aad u badan — cab biyo, cun fiber; mararka qaarkood waxaa loo baahan yahay <span class='highlight'>laksativ</span>.",
+      "Xad-dhaaf: neefsasho gaabis ah, hurdo aad u badan, ama qofka oo aan si sahal ah loo kicin karin — <span class='highlight'>wac 112</span>."
+    ],
+    interTitle:"Isdhexgalka daawooyinka",
+    inter:[
+      "Khamri, benzodiazepiner (tusaale diazepam), daawooyinka hurdada, iyo opioids kale waxay kordhiyaan lulmada iyo khatarta <span class='highlight'>neefsashada oo yaraata</span>.",
+      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato (sidoo kale daawooyinka dabiiciga ah)."
+    ],
+    warnTitle:"Digniino",
+    warn:[
+      "Ha kaxayn gaari ama ha shaqayn qalab halis ah haddii aad dareento lulmo ama madax-wareer.",
+      "Isticmaalka muddada dheer wuxuu sababi karaa <span class='highlight'>ku-darid</span>. Ha joojin si lama filaan ah — dhakhtar ayaa qorsheeya hoos-u-dhigid.",
+      "Haddii aad qabto dhibaato neefsasho (tusaale COPD/sleep apnoea) ama aad tahay qof da' ah: khatartu way kordhi kartaa — la hadal dhakhtar."
+    ],
+    ramTitle:"Ramadaan iyo soonka",
+    ram:[
+      "Kiniin afka ah wuxuu <span class='highlight'>jabiyaa soonka</span> haddii la qaato maalinta.",
+      "Haddii aad sooman tahay, la hadal dhakhtarka ka hor Ramadaanka si loo helo <span class='highlight'>qorshe ammaan ah</span>."
+    ],
+    foodTitle:"Cunto iyo cabitaan",
+    food:[
+      "Waxaa lagu qaadan karaa cunto la’aan ama cunto la socota; cunto yar waxay yareyn kartaa lalabada.",
+      "<span class='highlight'>Ka fogow khamriga</span>.",
+      "Cab biyo badan si loo yareeyo calool-istaagga."
+    ],
+    storeTitle:"Kaydinta daawada",
+    store:[
+      "Ku kaydi meel ammaan ah oo ka fog carruurta.",
+      "Ha wadaagin daawada qof kale.",
+      "Daawooyinka aan loo baahnayn ku celi farmashiyaha."
+    ],
+    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
+    footer2:"Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
+
+  da: {
+    pageTitle:"Morfin (tablet) – smertestillende",
+    hdrH1:"Morfin (tablet) – smertestillende",
+    hdrP:"Kort information om lægemidlet til patienter og pårørende.",
+    backText:"Tilbage til medicinlisten",
+    langLabel:"Vælg sprog:",
+    drugName:"Morfin (tablet)",
+    drugForm:"Tablet (gennem munden)",
+    badgeText:"Kort og let",
+
+    useTitle:"Anvendelse",
+    use:[
+      "Morfin er et stærkt <span class='highlight'>smertestillende</span> lægemiddel (opioid).",
+      "Bruges ved <span class='highlight'>stærke smerter</span>, fx efter operation eller ved kræftsmerter."
+    ],
+    doseTitle:"Dosering",
+    dose:[
+      "Dosis fastsættes af lægen ud fra dine smerter og øvrige medicin.",
+      "Ændr ikke dosis. Hvis det er <span class='highlight'>depottablet</span>, må den <span class='highlight'>ikke knuses, deles eller tygges</span>.",
+      "Glemt dosis: følg aftalen med læge/apotek. <span class='highlight'>Tag ikke dobbeltdosis</span> uden rådgivning."
+    ],
+    sideTitle:"Bivirkninger",
+    side:[
+      "Døsighed, svimmelhed, kvalme og opkast er almindeligt.",
+      "Forstoppelse er meget almindeligt — drik væske, spis fibre og brug evt. afføringsmiddel efter aftale.",
+      "Overdosering: langsom vejrtrækning/udtalt søvnighed — <span class='highlight'>ring 112</span>."
+    ],
+    interTitle:"Interaktioner",
+    inter:[
+      "Alkohol, benzodiazepiner (fx diazepam), sovemedicin og andre opioider øger risiko for døsighed og <span class='highlight'>vejrtrækningsproblemer</span>.",
+      "Fortæl altid læge/apotek hvilke lægemidler og naturmidler du bruger."
+    ],
+    warnTitle:"Advarsler",
+    warn:[
+      "Kør ikke bil eller brug farlige maskiner hvis du er døsig eller svimmel.",
+      "Lang tids brug kan give <span class='highlight'>afhængighed</span>. Stop ikke pludseligt — udtrapning planlægges af lægen.",
+      "Ved lungesygdom (fx KOL/søvnapnø) eller høj alder kan risikoen være større — tal med lægen."
+    ],
+    ramTitle:"Ramadan og faste",
+    ram:[
+      "Tabletter taget gennem munden bryder fasten, hvis de tages i dagtimerne.",
+      "Tal med lægen før Ramadan for en <span class='highlight'>sikker plan</span> for smertebehandling."
+    ],
+    foodTitle:"Mad og drikke",
+    food:[
+      "Kan tages med eller uden mad; lidt mad kan mindske kvalme.",
+      "<span class='highlight'>Undgå alkohol</span>.",
+      "Drik rigeligt for at forebygge forstoppelse."
+    ],
+    storeTitle:"Opbevaring",
+    store:[
+      "Opbevar sikkert og utilgængeligt for børn.",
+      "Del ikke medicinen med andre.",
+      "Aflever rester på apoteket."
+    ],
+    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
+    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    pageTitle:"Morphine (tablet) – pain relief",
+    hdrH1:"Morphine (tablet) – pain relief",
+    hdrP:"Brief medicine information for patients and relatives.",
+    backText:"Back to the medicine list",
+    langLabel:"Choose language:",
+    drugName:"Morphine (tablet)",
+    drugForm:"Tablet (by mouth)",
+    badgeText:"Short and clear",
+
+    useTitle:"Use",
+    use:[
+      "Morphine is a strong <span class='highlight'>painkiller</span> (opioid).",
+      "Used for <span class='highlight'>severe pain</span>, e.g., after surgery or cancer pain."
+    ],
+    doseTitle:"Dose",
+    dose:[
+      "Your doctor chooses the dose based on your pain and other medicines.",
+      "Do not change the dose. If it is <span class='highlight'>extended-release</span>, <span class='highlight'>do not crush, split or chew</span>.",
+      "Missed dose: follow your plan. <span class='highlight'>Do not double</span> without advice."
+    ],
+    sideTitle:"Side effects",
+    side:[
+      "Sleepiness, dizziness, nausea and vomiting are common.",
+      "Constipation is very common—fluids, fibre and laxatives may be needed.",
+      "Overdose: slow breathing/extreme sleepiness — <span class='highlight'>call emergency services</span>."
+    ],
+    interTitle:"Interactions",
+    inter:[
+      "Alcohol, benzodiazepines (e.g., diazepam), sleeping pills and other opioids increase the risk of <span class='highlight'>respiratory depression</span>.",
+      "Tell your doctor/pharmacy about all medicines and herbal products."
+    ],
+    warnTitle:"Warnings",
+    warn:[
+      "Do not drive or use dangerous tools if you feel sleepy or dizzy.",
+      "Long-term use can cause <span class='highlight'>dependence</span>. Do not stop suddenly—tapering should be planned.",
+      "Higher risk with lung disease or older age—ask your doctor."
+    ],
+    ramTitle:"Ramadan and fasting",
+    ram:[
+      "Oral tablets break the fast if taken during daytime.",
+      "Talk to your doctor before Ramadan for a <span class='highlight'>safe plan</span>."
+    ],
+    foodTitle:"Food and drink",
+    food:[
+      "Can be taken with or without food; a small meal may reduce nausea.",
+      "<span class='highlight'>Avoid alcohol</span>.",
+      "Drink enough water to reduce constipation."
+    ],
+    storeTitle:"Storage",
+    store:[
+      "Store safely out of reach of children.",
+      "Do not share your medicine.",
+      "Return unused medicine to the pharmacy."
+    ],
+    footer1:"If you need more information, contact your pharmacy or doctor.",
+    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    pageTitle:"المورفين (أقراص) – مسكن ألم",
+    hdrH1:"المورفين (أقراص) – مسكن ألم",
+    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
+    backText:"العودة إلى قائمة الأدوية",
+    langLabel:"اختر اللغة:",
+    drugName:"المورفين (أقراص)",
+    drugForm:"أقراص عن طريق الفم",
+    badgeText:"مختصر وواضح",
+
+    useTitle:"الاستخدام",
+    use:[
+      "المورفين مسكن قوي للألم (أفيوني).",
+      "يُستخدم للألم الشديد مثل ما بعد العمليات أو ألم السرطان."
+    ],
+    doseTitle:"الجرعة",
+    dose:[
+      "يحدد الطبيب الجرعة حسب الألم والأدوية الأخرى.",
+      "لا تغيّر الجرعة. إذا كانت الأقراص ممتدة المفعول فلا <span class='highlight'>تسحقها أو تقسمها أو تمضغها</span>.",
+      "إذا نسيت جرعة اتبع الخطة ولا <span class='highlight'>تضاعف الجرعة</span> دون نصيحة."
+    ],
+    sideTitle:"الآثار الجانبية",
+    side:[
+      "النعاس والدوخة والغثيان والقيء شائعة.",
+      "الإمساك شائع جداً وقد تحتاج مُليناً.",
+      "جرعة زائدة: بطء التنفس أو نعاس شديد — <span class='highlight'>اتصل بالإسعاف</span>."
+    ],
+    interTitle:"التداخلات الدوائية",
+    inter:[
+      "الكحول والبنزوديازيبينات والمنومات وأفيونات أخرى تزيد خطر مشاكل التنفس.",
+      "أخبر الطبيب/الصيدلية بكل الأدوية والمكملات."
+    ],
+    warnTitle:"تحذيرات",
+    warn:[
+      "لا تقد السيارة إذا كنت نعساناً أو تشعر بدوخة.",
+      "الاستخدام الطويل قد يسبب اعتماداً. لا توقفه فجأة.",
+      "يزداد الخطر عند مرضى الرئة أو كبار السن."
+    ],
+    ramTitle:"رمضان والصيام",
+    ram:[
+      "الأقراص عن طريق الفم تُفطر إذا أُخذت نهاراً.",
+      "ناقش خطة آمنة مع الطبيب قبل رمضان."
+    ],
+    foodTitle:"الطعام والشراب",
+    food:[
+      "يمكن تناوله مع الطعام أو بدونه؛ وجبة خفيفة قد تقلل الغثيان.",
+      "<span class='highlight'>تجنب الكحول</span>.",
+      "اشرب ماءً كافياً لتقليل الإمساك."
+    ],
+    storeTitle:"الحفظ",
+    store:[
+      "يحفظ بأمان بعيداً عن الأطفال.",
+      "لا تشارك الدواء مع الآخرين.",
+      "أعد البقايا إلى الصيدلية."
+    ],
+    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2:"إعداد: إبراهيم ظاهر حنف"
+  },
+
+  tr: {
+    pageTitle:"Morfin (tablet) – ağrı kesici",
+    hdrH1:"Morfin (tablet) – ağrı kesici",
+    hdrP:"Hasta ve yakınları için kısa bilgi.",
+    backText:"İlaç listesine geri dön",
+    langLabel:"Dil seçin:",
+    drugName:"Morfin (tablet)",
+    drugForm:"Tablet (ağızdan)",
+    badgeText:"Kısa ve anlaşılır",
+
+    useTitle:"Kullanım",
+    use:[
+      "Morfin güçlü bir <span class='highlight'>ağrı kesici</span>dir (opioid).",
+      "Şiddetli ağrılarda kullanılır; örn. ameliyat sonrası veya kanser ağrısı."
+    ],
+    doseTitle:"Doz",
+    dose:[
+      "Dozu doktor belirler.",
+      "Uzatılmış salımlı tabletleri <span class='highlight'>ezmeyin, bölmeyin, çiğnemeyin</span>.",
+      "Doz unutursanız planınıza göre alın, <span class='highlight'>çift doz almayın</span>."
+    ],
+    sideTitle:"Yan etkiler",
+    side:[
+      "Uyku hali, baş dönmesi, bulantı ve kusma sık görülür.",
+      "Kabızlık çok yaygındır; gerekirse laksatif.",
+      "Aşırı doz: yavaş solunum/aşırı uyku hali — <span class='highlight'>acil yardım</span> alın."
+    ],
+    interTitle:"Etkileşimler",
+    inter:[
+      "Alkol, benzodiazepinler, uyku ilaçları ve diğer opioidler solunum baskılanması riskini artırır.",
+      "Tüm ilaçlarınızı doktor/eczacıya söyleyin."
+    ],
+    warnTitle:"Uyarılar",
+    warn:[
+      "Uykulu/sersem hissediyorsanız araç kullanmayın.",
+      "Uzun süreli kullanım <span class='highlight'>bağımlılık</span> yapabilir; aniden bırakmayın.",
+      "Akciğer hastalığı veya ileri yaşta risk artabilir."
+    ],
+    ramTitle:"Ramazan ve oruç",
+    ram:[
+      "Gündüz tablet almak orucu bozar.",
+      "Ramazan öncesi güvenli plan için doktorla konuşun."
+    ],
+    foodTitle:"Yemek ve içecek",
+    food:[
+      "Yemekle veya yemeksiz alınabilir; hafif yemek bulantıyı azaltabilir.",
+      "<span class='highlight'>Alkolden kaçının</span>.",
+      "Kabızlığı azaltmak için bol su için."
+    ],
+    storeTitle:"Saklama",
+    store:[
+      "Çocuklardan uzak, güvenli yerde saklayın.",
+      "Başkalarıyla paylaşmayın.",
+      "Artanları eczaneye verin."
+    ],
+    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
+  },
+
+  ur: {
+    pageTitle:"مورفین (گولی) – درد کم کرنے والی",
+    hdrH1:"مورفین (گولی) – درد کم کرنے والی",
+    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText:"فہرست پر واپس",
+    langLabel:"زبان منتخب کریں:",
+    drugName:"مورفین (گولی)",
+    drugForm:"گولی (منہ کے ذریعے)",
+    badgeText:"مختصر اور واضح",
+
+    useTitle:"استعمال",
+    use:[
+      "مورفین ایک طاقتور درد کم کرنے والی دوا ہے (اوپیئڈ).",
+      "شدید درد میں استعمال ہوتی ہے جیسے آپریشن کے بعد یا کینسر کا درد۔"
+    ],
+    doseTitle:"خوراک",
+    dose:[
+      "خوراک ڈاکٹر طے کرتے ہیں۔",
+      "ایکسٹینڈڈ ریلیز گولی کو <span class='highlight'>نہ توڑیں، نہ پیسیں، نہ چبائیں</span>۔",
+      "بھولی خوراک: پلان کے مطابق لیں، <span class='highlight'>ڈبل خوراک نہ لیں</span>۔"
+    ],
+    sideTitle:"مضر اثرات",
+    side:[
+      "غنودگی، چکر، متلی اور قے عام ہیں۔",
+      "قبض بہت عام ہے؛ ضرورت پر ملین۔",
+      "زیادہ خوراک: سانس آہستہ/زیادہ غنودگی — <span class='highlight'>ایمرجنسی</span> سے رابطہ کریں۔"
+    ],
+    interTitle:"دواؤں کے باہمی اثرات",
+    inter:[
+      "الکحل، benzodiazepines، نیند کی دوائیں اور دیگر اوپیئڈ سانس کے مسائل کا خطرہ بڑھاتے ہیں۔",
+      "تمام ادویات/ہربل چیزیں ڈاکٹر یا فارماسسٹ کو بتائیں۔"
+    ],
+    warnTitle:"احتیاطیں",
+    warn:[
+      "غنودگی یا چکر ہو تو گاڑی نہ چلائیں۔",
+      "لمبے عرصے کے استعمال سے انحصار ہو سکتا ہے؛ اچانک بند نہ کریں۔",
+      "پھیپھڑوں کی بیماری یا زیادہ عمر میں خطرہ بڑھ سکتا ہے۔"
+    ],
+    ramTitle:"رمضان اور روزہ",
+    ram:[
+      "دن کے وقت گولی لینے سے روزہ ٹوٹ جاتا ہے۔",
+      "رمضان سے پہلے محفوظ پلان کے لیے ڈاکٹر سے بات کریں۔"
+    ],
+    foodTitle:"کھانا پینا",
+    food:[
+      "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے؛ ہلکا کھانا متلی کم کر سکتا ہے۔",
+      "<span class='highlight'>الکحل سے پرہیز کریں</span>۔",
+      "قبض سے بچنے کے لیے پانی زیادہ پئیں۔"
+    ],
+    storeTitle:"محفوظ رکھنا",
+    store:[
+      "بچوں سے دور محفوظ جگہ رکھیں۔",
+      "کسی اور سے شیئر نہ کریں۔",
+      "بچی دوا فارمیسی کو دیں۔"
+    ],
+    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
+  },
+
+  fa: {
+    pageTitle:"مورفین (قرص) – مسکن درد",
+    hdrH1:"مورفین (قرص) – مسکن درد",
+    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"مورفین (قرص)",
+    drugForm:"قرص خوراکی",
+    badgeText:"کوتاه و روشن",
+
+    useTitle:"مصرف",
+    use:[
+      "مورفین یک <span class='highlight'>مسکن قوی</span> (اوپیوئید) است.",
+      "برای درد شدید مانند بعد از عمل یا درد سرطان استفاده می‌شود."
+    ],
+    doseTitle:"دوز",
+    dose:[
+      "دوز را پزشک تعیین می‌کند.",
+      "قرص‌های آهسته‌رهش را <span class='highlight'>خرد یا نصف یا نجوید</span>.",
+      "اگر یک نوبت را فراموش کردید طبق برنامه مصرف کنید و <span class='highlight'>دوز را دو برابر نکنید</span>."
+    ],
+    sideTitle:"عوارض",
+    side:[
+      "خواب‌آلودگی، سرگیجه، تهوع و استفراغ شایع است.",
+      "یبوست بسیار شایع است و ممکن است نیاز به ملین باشد.",
+      "اوردوز: تنفس کند/خواب‌آلودگی شدید — <span class='highlight'>اورژانس</span>."
+    ],
+    interTitle:"تداخلات دارویی",
+    inter:[
+      "الکل، بنزودیازپین‌ها، داروهای خواب‌آور و اوپیوئیدهای دیگر خطر مشکلات تنفسی را افزایش می‌دهند.",
+      "تمام داروها و فرآورده‌های گیاهی را به پزشک/داروساز بگویید."
+    ],
+    warnTitle:"هشدارها",
+    warn:[
+      "اگر خواب‌آلود یا سرگیجه دارید رانندگی نکنید.",
+      "مصرف طولانی‌مدت می‌تواند وابستگی ایجاد کند؛ ناگهانی قطع نکنید.",
+      "در بیماری ریه یا سن بالا خطر بیشتر است."
+    ],
+    ramTitle:"رمضان و روزه",
+    ram:[
+      "قرص خوراکی اگر در روز مصرف شود، روزه را باطل می‌کند.",
+      "قبل از رمضان درباره برنامه امن با پزشک صحبت کنید."
+    ],
+    foodTitle:"غذا و نوشیدنی",
+    food:[
+      "با غذا یا بدون غذا قابل مصرف است؛ غذای سبک تهوع را کم می‌کند.",
+      "<span class='highlight'>از الکل پرهیز کنید</span>.",
+      "برای کاهش یبوست آب کافی بنوشید."
+    ],
+    storeTitle:"نگهداری",
+    store:[
+      "در جای امن و دور از دسترس کودکان نگهداری شود.",
+      "دارو را با دیگران شریک نکنید.",
+      "باقی‌مانده را به داروخانه تحویل دهید."
+    ],
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  prs: {
+    pageTitle:"مورفین (قرص) – مسکن درد",
+    hdrH1:"مورفین (قرص) – مسکن درد",
+    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"مورفین (قرص)",
+    drugForm:"قرص خوراکی",
+    badgeText:"کوتاه و واضح",
+
+    useTitle:"استفاده",
+    use:[
+      "مورفین یک <span class='highlight'>مسکن قوی</span> (اوپیوئید) است.",
+      "برای درد شدید مانند بعد از عملیات یا درد سرطان استفاده می‌شود."
+    ],
+    doseTitle:"دوز",
+    dose:[
+      "دوز را داکتر تعیین می‌کند.",
+      "قرص‌های آهسته‌رهش را <span class='highlight'>خرد یا نصف یا نجوید</span>.",
+      "دوز فراموش‌شده را طبق پلان بگیرید و <span class='highlight'>دوز را دو برابر نگیرید</span>."
+    ],
+    sideTitle:"عوارض",
+    side:[
+      "خواب‌آلودگی، سرگیجه، تهوع و استفراغ شایع است.",
+      "یبوست بسیار شایع است و ممکن است نیاز به ملین باشد.",
+      "اوردوز: تنفس کند/خواب‌آلودگی شدید — <span class='highlight'>کمک عاجل</span>."
+    ],
+    interTitle:"تداخلات",
+    inter:[
+      "الکول، بنزودیازپین‌ها، دواهای خواب و اوپیوئیدهای دیگر خطر مشکلات تنفسی را زیاد می‌کنند.",
+      "تمام دواها و محصولات گیاهی را به داکتر/دواخانه بگویید."
+    ],
+    warnTitle:"هشدارها",
+    warn:[
+      "اگر خواب‌آلود یا سرگیجه دارید رانندگی نکنید.",
+      "مصرف طولانی‌مدت می‌تواند وابستگی ایجاد کند؛ ناگهانی قطع نکنید.",
+      "در بیماری ریه یا سن بالا خطر بیشتر است."
+    ],
+    ramTitle:"رمضان و روزه",
+    ram:[
+      "قرص خوراکی اگر در روز گرفته شود، روزه را باطل می‌کند.",
+      "قبل از رمضان با داکتر درباره پلان امن صحبت کنید."
+    ],
+    foodTitle:"غذا و نوشیدنی",
+    food:[
+      "با غذا یا بدون غذا گرفته می‌شود؛ غذای سبک تهوع را کم می‌کند.",
+      "<span class='highlight'>از الکول پرهیز کنید</span>.",
+      "برای کاهش یبوست آب کافی بنوشید."
+    ],
+    storeTitle:"نگهداری",
+    store:[
+      "در جای امن و دور از دسترس اطفال نگهداری شود.",
+      "دوا را با دیگران شریک نکنید.",
+      "باقی‌مانده را به دواخانه بسپارید."
+    ],
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  ps: {
+    pageTitle:"مورفین (ګولۍ) – درد کموونکی",
+    hdrH1:"مورفین (ګولۍ) – درد کموونکی",
+    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText:"لېست ته بېرته",
+    langLabel:"ژبه وټاکئ:",
+    drugName:"مورفین (ګولۍ)",
+    drugForm:"ګولۍ د خولې له لارې",
+    badgeText:"لنډ او روښانه",
+
+    useTitle:"کارونه",
+    use:[
+      "مورفین یو قوي <span class='highlight'>درد کموونکی</span> (اوپیوئید) دی.",
+      "د شدید درد لپاره کارول کېږي لکه د عملیاتو وروسته یا د سرطان درد."
+    ],
+    doseTitle:"دوز",
+    dose:[
+      "دوز ډاکټر ټاکي.",
+      "اوږدمهاله ګولۍ <span class='highlight'>مه ماتوئ، مه میچوئ او مه ژوئ</span>.",
+      "هېر شوی دوز: د پلان مطابق واخلئ او <span class='highlight'>ډبل دوز مه اخلئ</span>."
+    ],
+    sideTitle:"اړخیزې اغېزې",
+    side:[
+      "خوبوالی، سرګرځېدل، زړه بدوالی او کانګې عام دي.",
+      "قبض ډېر عام دی او کېدای شي ملین ته اړتیا وي.",
+      "اوردوز: ورو تنفس/ډېر خوبوالی — <span class='highlight'>بیړنۍ مرسته</span>."
+    ],
+    interTitle:"تداخلات",
+    inter:[
+      "الکول، بنزودیازپینونه، د خوب درمل او نور اوپیوئیدونه د تنفسي ستونزو خطر زیاتوي.",
+      "ټول درمل او بوټي محصولات ډاکټر/درملتون ته ووایئ."
+    ],
+    warnTitle:"خبرداری",
+    warn:[
+      "که خوبوالی یا سرګرځېدل لرئ، موټر مه چلوئ.",
+      "اوږدمهاله استعمال انحصار رامنځته کولی شي؛ ناڅاپه مه بندوئ.",
+      "د سږي ناروغۍ یا لوړ عمر کې خطر زیات وي."
+    ],
+    ramTitle:"رمضان او روژه",
+    ram:[
+      "د خولې ګولۍ که د ورځې واخیستل شي، روژه ماتوي.",
+      "د رمضان نه مخکې د خوندي پلان لپاره له ډاکټر سره سلا وکړئ."
+    ],
+    foodTitle:"خواړه او څښاک",
+    food:[
+      "له خوړو سره یا بې له خوړو اخیستل کېدای شي؛ لږ خواړه زړه بدوالی کموي.",
+      "<span class='highlight'>له الکول څخه ډډه وکړئ</span>.",
+      "د قبض د کمولو لپاره کافي اوبه وڅښئ."
+    ],
+    storeTitle:"ساتنه",
+    store:[
+      "په خوندي ځای کې له ماشومانو لرې وساتئ.",
+      "له نورو سره یې مه شریکوئ.",
+      "پاتې درمل درملتون ته وسپارئ."
+    ],
+    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
+  }
+};
+
 // Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
-
 const select = document.getElementById("langSelect");
 select.value = (T[startLang] ? startLang : "so");
-
 applyLang(select.value);
-select.addEventListener("change", function(){
-  applyLang(this.value);
-});
+select.addEventListener("change", function(){ applyLang(this.value); });
 </script>
 
 </body>
