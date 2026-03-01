@@ -11,15 +11,12 @@
   --c1:#0066cc;
   --c2:#00a676;
 
-  --badgeBg:#d9f6e8;
-  --badgeText:#16634a;
+  /* Badge + icon (will be set by theme JS too) */
+  --badgeBg: rgba(0,166,118,0.16);
+  --badgeText: rgba(0,166,118,0.95);
 
-  --iconBg:#e3f2fd;
-  --iconStroke:#1a73e8;
-
-  /* Zebra/sektion-baggrunde (farveskift uden at ændre tekst/struktur) */
-  --secBg1:#ffffff;
-  --secBg2:#f7fbff;
+  --iconBg: rgba(0,166,118,0.12);
+  --iconStroke:#00a676;
 }
 
 body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
@@ -64,6 +61,7 @@ a.back span{ font-size:1.1rem; }
   width:44px; height:44px; border-radius:12px;
   background:var(--iconBg);
   display:flex; align-items:center; justify-content:center;
+  transition: background 260ms ease;
 }
 .drug-icon svg{ width:30px; height:30px; }
 .drug-labels{ display:flex; flex-direction:column; }
@@ -76,11 +74,15 @@ a.back span{ font-size:1.1rem; }
   padding:4px 10px; border-radius:999px; font-size:0.8rem;
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-
-/* Zebra-farveskift på sektioner (kun visuel forbedring) */
-.section:nth-of-type(odd){ background:var(--secBg1); border-radius:10px; padding:10px 10px 6px; }
-.section:nth-of-type(even){ background:var(--secBg2); border-radius:10px; padding:10px 10px 6px; }
+/* === MATCH PANTOPRAZOL: NO zebra backgrounds === */
+.section{
+  margin-top:8px;
+  padding-top:8px;
+  border-top:1px dashed #d0d7e2;
+  background:transparent;           /* important: remove blue blocks */
+  border-radius:0;                 /* no rounded section boxes */
+  padding-left:0; padding-right:0; /* keep clean edge */
+}
 
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
@@ -150,7 +152,6 @@ a.back span{ font-size:1.1rem; }
       <div class="badge" id="badgeText">Kort og let</div>
     </div>
 
-    <!-- Identiske sektion-ikoner -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
@@ -232,26 +233,36 @@ a.back span{ font-size:1.1rem; }
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" }, /* Dansk = blå */
-  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#3a86ff" },
-  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeText:"#3a1a66", iconBg:"#efe7ff", iconStroke:"#7b2cbf" },
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe8ea", badgeText:"#7a0b14", iconBg:"#ffe8ea", iconStroke:"#c1121f" },
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", badgeBg:"#e6fff6", badgeText:"#0b4f49", iconBg:"#e6fff6", iconStroke:"#0f766e" },
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", badgeBg:"#e6fffb", badgeText:"#0b5b57", iconBg:"#e6fffb", iconStroke:"#14b8a6" },
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", badgeBg:"#ecebff", badgeText:"#1f1a7a", iconBg:"#ecebff", iconStroke:"#4338ca" },
-  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", badgeBg:"#fff3db", badgeText:"#7a4703", iconBg:"#fff3db", iconStroke:"#f59e0b" }
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" },
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" }, /* Dansk = blå */
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
 };
 
+function hexToRgb(hex){
+  const h = (hex || "").replace("#","").trim();
+  if (h.length !== 6) return {r:0,g:0,b:0};
+  return { r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16) };
+}
+
 function applyTheme(lang){
-  const th = THEME[lang] || THEME.so;
+  const th = THEME[lang] || THEME.da;
+  const r = hexToRgb(th.accent);
+
   document.documentElement.style.setProperty("--c1", th.c1);
   document.documentElement.style.setProperty("--c2", th.c2);
   document.documentElement.style.setProperty("--accent", th.accent);
-  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
-  document.documentElement.style.setProperty("--badgeText", th.badgeText);
-  document.documentElement.style.setProperty("--iconBg", th.iconBg);
-  document.documentElement.style.setProperty("--iconStroke", th.iconStroke);
+
+  /* Make badge + icon follow accent (pantoprazol style) */
+  document.documentElement.style.setProperty("--badgeBg", `rgba(${r.r},${r.g},${r.b},0.16)`);
+  document.documentElement.style.setProperty("--badgeText", `rgba(${r.r},${r.g},${r.b},0.95)`);
+  document.documentElement.style.setProperty("--iconBg", `rgba(${r.r},${r.g},${r.b},0.12)`);
+  document.documentElement.style.setProperty("--iconStroke", th.accent);
 }
 
 function setDirLang(lang){
@@ -262,7 +273,7 @@ function setDirLang(lang){
 function fillList(id, arr){
   const ul = document.getElementById(id);
   if(!ul) return;
-  ul.replaceChildren(); /* robust: no leftover nodes / no gentagelser */
+  ul.replaceChildren();
   (arr || []).forEach(txt=>{
     const li = document.createElement("li");
     li.innerHTML = txt;
@@ -287,6 +298,7 @@ function setSectionTitle(elId, title){
   }
 }
 
+/* ---- YOUR EXISTING TEXT OBJECT (unchanged) ---- */
 const T = {
   da:{
     pageTitle:"Hjertemagnyl – blodfortyndende (blodpladehæmmer)",
@@ -480,6 +492,7 @@ const T = {
   }
 };
 
+/* Keep your behavior: other langs fall back to EN if not defined */
 ["ar","tr","ur","fa","prs","ps"].forEach(l=>{ if(!T[l]) T[l]=T.en; });
 
 function applyLang(lang){
