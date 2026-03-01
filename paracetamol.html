@@ -55,7 +55,7 @@ a.back span { font-size:1.1rem; }
 .drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
 .drug-info{ display:flex; align-items:center; gap:10px; }
 
-/* drug icon follows the theme (same idea as other pages) */
+/* drug icon follows the theme */
 .drug-icon{
   width:44px; height:44px; border-radius:12px;
   background:var(--iconBg);
@@ -243,7 +243,7 @@ function applyTheme(lang){
   document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
   document.documentElement.style.setProperty("--badgeFg", th.badgeFg);
 
-  /* drug icon follows theme: background = badgeBg, stroke = accent */
+  /* drug icon follows theme */
   document.documentElement.style.setProperty("--iconBg", th.badgeBg);
   document.documentElement.style.setProperty("--iconStroke", th.accent);
 }
@@ -263,21 +263,28 @@ function fillList(id, arr){
   });
 }
 
-/* Preserve <small>(...)</small> in section headings */
+/* Make section heading robust:
+   - If <small> exists, we ONLY set the main title text
+   - Any "(...)" in provided title will be stripped to avoid duplicates */
 function setSectionTitle(elId, title){
   const el = document.getElementById(elId);
   if (!el) return;
+
   const small = el.querySelector("small");
+  const raw = (title || "").trim();
+
+  // strip any trailing "(...)" or "（...）" from the provided title
+  const cleaned = raw.replace(/\s*[\(\（].*?[\)\）]\s*$/u, "").trim();
+
   if (small){
     const first = el.childNodes[0];
-    const t = (title || "").trim();
     if (first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
+      first.textContent = cleaned + " ";
     } else {
-      el.insertBefore(document.createTextNode(t + " "), small);
+      el.insertBefore(document.createTextNode(cleaned + " "), small);
     }
   } else {
-    el.textContent = title || "";
+    el.textContent = cleaned;
   }
 }
 
@@ -292,51 +299,51 @@ const T = {
     drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
     badgeText: "Akhris fudud oo kooban",
 
-    sec1Title: "Isticmaalka (Anvendelse)",
+    sec1Title: "Isticmaalka",
     sec1: [
-      "Daawadan waxaa loo isticmaalaa <span class='highlight'>xanuun fudud</span> iyo <span class='highlight'>qandho</span> sida madax-xanuun, ilko-xanuun iyo murqo xanuun (muskelsmerter).",
-      "Waa daawo aan xanuunka kaa suulinayn ama kaa qaadayn, laakiin waxay kaa caawineysaa in xanuunku yaraado oo aad ka nasato."
+      "Daawadan waxaa loo isticmaalaa <span class='highlight'>xanuun fudud</span> iyo <span class='highlight'>qandho</span> sida madax-xanuun, ilko-xanuun iyo murqo xanuun.",
+      "Waxay kaa caawisaa in xanuunku yaraado oo aad ka nasato."
     ],
 
-    sec2Title: "Qiyaasta (Dosering)",
+    sec2Title: "Qiyaasta",
     sec2: [
-      "Qofka weyn (voksne): <span class='highlight'>500–1000 mg</span> mar, ugu badnaan 4 jeer maalintii.",
+      "Qofka weyn: <span class='highlight'>500–1000 mg</span> mar, ugu badnaan 4 jeer maalintii.",
       "Ha dhaafin <span class='highlight'>4 gram maalintii</span> (4000 mg).",
-      "Caruurta: qiyaasta waxaa lagu saleeyaa miisaanka (vægt) – raac qoraalka ama talada dhakhtarka iyo farmashiyaha."
+      "Carruurta: qiyaasta waxaa lagu saleeyaa miisaanka – raac qoraalka ama talada dhakhtarka/farmashiyaha."
     ],
 
-    sec3Title: "Waxyeellooyinka (Bivirkninger)",
+    sec3Title: "Waxyeellooyinka",
     sec3: [
-      "Badanaa wuu fiican yahay. Laakiin marar dhif ah, wuxuu keenaa finan, cuncun ama neef-qabatin oo xasaasiyad (allergi) ah.",
-      "Haddii aad qaadato qiyaas aad u badan muddo dheer, beerka (leveren) wuu dhaawici karaa."
+      "Badanaa waa la u dulqaataa. Marar dhif ah: finan, cuncun ama neef-qabatin (xasaasiyad).",
+      "Qiyaas aad u badan ama muddo dheer: waxay dhaawici kartaa beerka (lever)."
     ],
 
-    sec4Title: "Isdhexgalka daawooyinka (Interaktioner)",
+    sec4Title: "Isdhexgalka daawooyinka",
     sec4: [
-      "Ka taxaddar haddii aad qaadato daawooyin kale oo qandho/xanuun ah oo isla paracetamol ku jiro (tusaale daawo hargab).",
-      "Had iyo jeer u sheeg farmashiyaha daawo kasta aad isticmausho."
+      "Ka taxaddar daawooyin kale oo paracetamol ku jiro (tusaale daawo hargab).",
+      "U sheeg farmashiyaha dhamaan daawooyinka aad qaadato."
     ],
 
-    sec5Title: "Digniino (Advarsler)",
+    sec5Title: "Digniino",
     sec5: [
-      "Ha qaadan qiyaas ka badan tan lagu qoray baakadka, ama uu dhakhtarku kuu sheegay.",
-      "Haddii xanuunka ama qandhada aanad ka caafimaadin 3–5 maalmood gudahood, la xiriir dhakhtarka."
+      "Ha qaadan qiyaas ka badan tan ku qoran baakadka ama uu dhakhtarku kuu sheegay.",
+      "Haddii xanuun/qandho aanay ka rayn 3–5 maalmood gudahood, la xiriir dhakhtarka."
     ],
 
-    sec6Title: "Ramadaan iyo soonka (Ramadan og faste)",
+    sec6Title: "Ramadaan iyo soonka",
     sec6: [
-      "Kaniiniga afka (tablet) wuxuu jebinayaa soonka maalinta Ramadaanka.",
-      "Haddii ay suurtagal tahay, qorshee qiyaasta in aad qaadato fiidkii (afurka) ama suxuurta.",
-      "Haddii aad aad u xanuunsan tahay, la hadal dhakhtarka si aad u hesho ogolansho."
+      "Kaniiniga afka (tablet) wuxuu <span class='highlight'>jebiyaa soonka</span>.",
+      "Haddii ay suurtagal tahay, qorshee qiyaasta afurka ama suxuurta.",
+      "Haddii aad aad u xanuunsan tahay, la hadal dhakhtarka."
     ],
 
-    sec7Title: "Cunto iyo cabitaan (Mad og drikke)",
+    sec7Title: "Cunto iyo cabitaan",
     sec7: [
-      "Paracetamol waxaa la qaadan karaa cuntada ka hor ama cuntada ka dib.",
-      "Haddii aad calool xanuun isku ogtahay, cunto yar ka hormari."
+      "Paracetamol waxaa la qaadan karaa cuntada ka hor ama ka dib.",
+      "Haddii calool xanuun kugu bato, cunto yar la qaado."
     ],
 
-    sec8Title: "Kaydinta daawada (Opbevaring)",
+    sec8Title: "Kaydinta daawada",
     sec8: [
       "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
       "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
@@ -360,7 +367,7 @@ const T = {
     sec1Title: "Anvendelse",
     sec1: [
       "Bruges mod <span class='highlight'>lette smerter</span> og <span class='highlight'>feber</span> (fx hovedpine, tandpine og muskelsmerter).",
-      "Det fjerner ikke årsagen til smerterne, men kan hjælpe dig med at få det bedre."
+      "Det behandler ikke årsagen, men kan lindre symptomer."
     ],
     sec2Title: "Dosering",
     sec2: [
@@ -386,8 +393,7 @@ const T = {
     sec6Title: "Ramadan og faste",
     sec6: [
       "Tablet gennem munden bryder fasten.",
-      "Hvis muligt, planlæg dosis til efter iftar eller ved suhoor.",
-      "Ved svær sygdom: tal med lægen om hvad der er bedst."
+      "Hvis muligt, planlæg dosis til efter iftar eller ved suhoor."
     ],
     sec7Title: "Mad og drikke",
     sec7: [
@@ -417,7 +423,7 @@ const T = {
     sec1Title: "Use",
     sec1: [
       "Used for <span class='highlight'>mild pain</span> and <span class='highlight'>fever</span> (e.g., headache, toothache, muscle pain).",
-      "It does not treat the cause, but can reduce symptoms and help you feel better."
+      "It does not treat the cause, but can reduce symptoms."
     ],
     sec2Title: "Dose",
     sec2: [
@@ -443,8 +449,7 @@ const T = {
     sec6Title: "Ramadan and fasting",
     sec6: [
       "Oral tablets break the fast.",
-      "If possible, plan doses after iftar or at suhoor.",
-      "If you are very unwell, talk to a doctor about what is safest."
+      "If possible, plan doses after iftar or at suhoor."
     ],
     sec7Title: "Food and drink",
     sec7: [
@@ -500,8 +505,7 @@ const T = {
     sec6Title: "رمضان والصيام",
     sec6: [
       "الأقراص الفموية تُفطر.",
-      "إن أمكن، خذ الجرعة بعد الإفطار أو وقت السحور.",
-      "إذا كنت مريضاً جداً، استشر الطبيب."
+      "إن أمكن، خذ الجرعة بعد الإفطار أو وقت السحور."
     ],
     sec7Title: "الطعام والشراب",
     sec7: [
@@ -557,8 +561,7 @@ const T = {
     sec6Title: "Ramazan ve oruç",
     sec6: [
       "Ağızdan alınan tablet orucu bozar.",
-      "Mümkünse dozu iftardan sonra veya sahurda planlayın.",
-      "Çok hastaysanız doktorla görüşün."
+      "Mümkünse dozu iftardan sonra veya sahurda planlayın."
     ],
     sec7Title: "Yemek ve içecek",
     sec7: [
@@ -603,7 +606,7 @@ const T = {
     ],
     sec4Title: "دواؤں کے باہمی اثرات",
     sec4: [
-      "دیگر ادویات میں بھی پیراسیٹامول ہو سکتا ہے (زکام کی دوا) — احتیاط کریں۔",
+      "زکام کی کچھ ادویات میں بھی پیراسیٹامول ہو سکتا ہے — احتیاط کریں۔",
       "دوسری ادویات کے بارے میں فارمیسی کو بتائیں۔"
     ],
     sec5Title: "احتیاطیں",
@@ -614,8 +617,7 @@ const T = {
     sec6Title: "رمضان اور روزہ",
     sec6: [
       "منہ کے ذریعے گولی روزہ توڑتی ہے۔",
-      "ممکن ہو تو افطار کے بعد یا سحری میں لیں۔",
-      "اگر بہت بیمار ہیں تو ڈاکٹر سے مشورہ کریں۔"
+      "ممکن ہو تو افطار کے بعد یا سحری میں لیں۔"
     ],
     sec7Title: "کھانا پینا",
     sec7: [
@@ -625,7 +627,7 @@ const T = {
     sec8Title: "محفوظ رکھنا",
     sec8: [
       "بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔",
-      "میعاد ختم ہونے کی تاریخ کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"
+      "میعاد ختم ہونے کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"
     ],
 
     footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
@@ -671,8 +673,7 @@ const T = {
     sec6Title: "رمضان و روزه",
     sec6: [
       "قرص خوراکی روزه را باطل می‌کند.",
-      "در صورت امکان بعد از افطار یا در سحری مصرف شود.",
-      "اگر خیلی بیمار هستید با پزشک مشورت کنید."
+      "در صورت امکان بعد از افطار یا در سحری مصرف شود."
     ],
     sec7Title: "غذا و نوشیدنی",
     sec7: [
@@ -728,8 +729,7 @@ const T = {
     sec6Title: "رمضان و روزه",
     sec6: [
       "قرص خوراکی روزه را باطل می‌کند.",
-      "اگر ممکن باشد بعد از افطار یا در سحری مصرف شود.",
-      "اگر خیلی مریض هستید با داکتر مشوره کنید."
+      "اگر ممکن باشد بعد از افطار یا در سحری مصرف شود."
     ],
     sec7Title: "غذا و نوشیدنی",
     sec7: [
@@ -785,8 +785,7 @@ const T = {
     sec6Title: "رمضان او روژه",
     sec6: [
       "د خولې له لارې ګولۍ روژه ماتوي.",
-      "که ممکن وي، له افطار وروسته یا په سحري کې واخلئ.",
-      "که ډېر ناروغ یاست، له ډاکټر سره مشوره وکړئ."
+      "که ممکن وي، له افطار وروسته یا په سحري کې واخلئ."
     ],
     sec7Title: "خواړه او څښاک",
     sec7: [
@@ -844,16 +843,22 @@ function applyLang(lang){
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  // Update URL without reload (keeps ?lang= in the address bar)
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
 /* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
+const select = document.getElementById("langSelect");
+select.value = (T[startLang] ? startLang : "so");
+applyLang(select.value);
 
-document.getElementById("langSelect").addEventListener("change", function(){
+select.addEventListener("change", function(){
   applyLang(this.value);
 });
 </script>
