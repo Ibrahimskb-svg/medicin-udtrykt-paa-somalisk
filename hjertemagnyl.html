@@ -5,80 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Hjertemagnyl – blodfortyndende (blodpladehæmmer)</title>
 
-<script>
-/* ===== EARLY THEME BOOTSTRAP (prevents blue/green flash) ===== */
-(function(){
-  const THEME = {
-    so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" },
-    da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" },
-    en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
-    ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
-    tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
-    ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e" },
-    fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6" },
-    prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca" },
-    ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
-  };
-
-  function hexToRgb(hex){
-    const h=(hex||"").replace("#","").trim();
-    if(h.length!==6) return {r:0,g:0,b:0};
-    return {r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16)};
-  }
-
-  function setVars(lang){
-    const th = THEME[lang] || THEME.da;
-    const rgb = hexToRgb(th.accent);
-    const root = document.documentElement.style;
-
-    root.setProperty("--c1", th.c1);
-    root.setProperty("--c2", th.c2);
-    root.setProperty("--accent", th.accent);
-
-    /* badge + icon follow accent (no hardcoded colors) */
-    root.setProperty("--badgeBg", `rgba(${rgb.r},${rgb.g},${rgb.b},0.16)`);
-    root.setProperty("--badgeFg", `rgba(${rgb.r},${rgb.g},${rgb.b},0.95)`);
-
-    root.setProperty("--iconBg", `rgba(${rgb.r},${rgb.g},${rgb.b},0.12)`);
-    root.setProperty("--iconStroke", th.accent);
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const startLang = params.get("lang") || "da";
-  setVars(THEME[startLang] ? startLang : "da");
-  window.__THEME__ = THEME;
-})();
-</script>
-
 <style>
 :root{
-  --accent:#0b5ed7;
-  --c1:#0b5ed7;
-  --c2:#0dcaf0;
+  --accent:#00a676;
+  --c1:#0066cc;
+  --c2:#00a676;
 
-  --badgeBg: rgba(11,94,215,0.16);
-  --badgeFg: rgba(11,94,215,0.95);
+  --badgeBg:#d9f6e8;
+  --badgeText:#16634a;
 
-  --iconBg: rgba(11,94,215,0.12);
-  --iconStroke:#0b5ed7;
-
-  --bg:#e6f2f8;
-  --text:#123047;
-  --muted:#607089;
-  --card:#ffffff;
-
-  /* pantoprazol-like separators */
-  --stroke:#d0d7e2;
-  --sep:#e5eaf2; /* solid light separator (no dashed / no blue) */
+  --iconBg:#e3f2fd;
+  --iconStroke:#1a73e8;
 }
 
-body{ font-family:Arial, sans-serif; background:var(--bg); color:var(--text); margin:0; }
-
+body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
 header{
   background:linear-gradient(135deg,var(--c1),var(--c2));
   color:#fff; padding:22px 16px; text-align:center;
   box-shadow:0 2px 8px rgba(0,0,0,0.15);
-  transition: background 260ms ease;
+  transition:background 260ms ease;
 }
 header h1{ margin:0 0 4px; font-size:1.8rem; }
 header p{ margin:0; font-size:0.95rem; }
@@ -97,14 +42,14 @@ a.back span{ font-size:1.1rem; }
   margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
   border-left:4px solid var(--accent);
 }
-.langbar label{ font-size:0.9rem; color:var(--text); font-weight:600; }
+.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid var(--stroke);
-  background:#fff; color:var(--text); font-size:0.9rem; max-width:100%;
+  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
+  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
 }
 
 .card{
-  background:var(--card); border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
+  background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
   box-shadow:0 3px 10px rgba(15,23,42,0.12);
   border-top:4px solid var(--accent);
 }
@@ -117,48 +62,39 @@ a.back span{ font-size:1.1rem; }
   display:flex; align-items:center; justify-content:center;
 }
 .drug-icon svg{ width:30px; height:30px; }
-.drug-icon .pill-ellipse{ fill:#e8f3ff; stroke:var(--iconStroke); stroke-width:3; }
-.drug-icon .pill-line{ stroke:var(--iconStroke); stroke-width:4; }
-
 .drug-labels{ display:flex; flex-direction:column; }
 .drug-name{ font-weight:600; font-size:0.95rem; }
 .drug-form{ font-size:0.82rem; color:#29516e; }
 
 .badge{
   display:inline-flex; align-items:center; gap:6px;
-  background:var(--badgeBg); color:var(--badgeFg);
+  background:var(--badgeBg); color:var(--badgeText);
   padding:4px 10px; border-radius:999px; font-size:0.8rem;
-  border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px solid var(--sep); /* FIX: solid, not dashed */
-  background:transparent;           /* FIX: no zebra backgrounds */
-  border-radius:0;
-  padding-left:0;
-  padding-right:0;
-  padding-bottom:0;
-}
-.section:first-of-type{ border-top:0; padding-top:0; margin-top:6px; }
-
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.section-title{ font-weight:700; color:var(--text); font-size:0.96rem; }
-.section-title small{ font-weight:400; color:var(--muted); }
+.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
 
 .section-icon{
   width:24px; height:24px; border-radius:999px;
   display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:var(--text);
-  background:rgba(15,23,42,0.06);
+  font-size:0.9rem; color:#123047;
 }
+.section-icon.use{ background:#e3f2fd; }
+.section-icon.dose{ background:#e2f5ea; }
+.section-icon.side{ background:#fff3e0; }
+.section-icon.interact{ background:#ede7f6; }
+.section-icon.warn{ background:#ffebee; }
+.section-icon.ramadan{ background:#e0f7fa; }
+.section-icon.food{ background:#f1f8e9; }
+.section-icon.store{ background:#edeff9; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section li{ margin-bottom:4px; }
 .highlight{ font-weight:600; }
 
-.footer-note{ font-size:0.8rem; color:var(--muted); text-align:center; margin:18px 0 10px; }
+.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
 </head>
@@ -192,8 +128,8 @@ a.back span{ font-size:1.1rem; }
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
           <svg viewBox="0 0 64 64">
-            <ellipse class="pill-ellipse" cx="32" cy="32" rx="22" ry="14"/>
-            <line class="pill-line" x1="20" y1="20" x2="44" y2="44"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--iconStroke)" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--iconStroke)" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
@@ -206,72 +142,72 @@ a.back span{ font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er Hjertemagnyl? <small>(What is it?)</small></div>
+        <div class="section-icon use">💊</div>
+        <div class="section-title" id="sec0Title">Hvad er Hjertemagnyl?</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
+        <div class="section-icon use">✔</div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til?</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">⏰</div>
-        <div class="section-title" id="sec2Title">Sådan tages medicinen <small>(How to take)</small></div>
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title" id="sec2Title">Sådan tages medicinen</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title" id="sec3Title">Mad og drikke</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">!</div>
-        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
+        <div class="section-icon warn">!</div>
+        <div class="section-title" id="sec4Title">Advarsler</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title" id="sec5Title">Bivirkninger</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title" id="sec6Title">Interaktioner</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title" id="sec7Title">Ramadan og faste</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
+        <div class="section-icon store">⧉</div>
+        <div class="section-title" id="sec8Title">Opbevaring</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -283,52 +219,49 @@ a.back span{ font-size:1.1rem; }
 
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
-const THEME = window.__THEME__ || {};
 
-function hexToRgb(hex){
-  const h=(hex||"").replace("#","").trim();
-  if(h.length!==6) return {r:0,g:0,b:0};
-  return {r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16)};
-}
+const THEME = {
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" },
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#3a86ff" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeText:"#3a1a66", iconBg:"#efe7ff", iconStroke:"#7b2cbf" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe8ea", badgeText:"#7a0b14", iconBg:"#ffe8ea", iconStroke:"#c1121f" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", badgeBg:"#e6fff6", badgeText:"#0b4f49", iconBg:"#e6fff6", iconStroke:"#0f766e" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", badgeBg:"#e6fffb", badgeText:"#0b5b57", iconBg:"#e6fffb", iconStroke:"#14b8a6" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", badgeBg:"#ecebff", badgeText:"#1f1a7a", iconBg:"#ecebff", iconStroke:"#4338ca" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", badgeBg:"#fff3db", badgeText:"#7a4703", iconBg:"#fff3db", iconStroke:"#f59e0b" }
+};
+
 function applyTheme(lang){
-  const th = THEME[lang] || THEME.da;
-  const rgb = hexToRgb(th.accent);
-  const root = document.documentElement.style;
-
-  root.setProperty("--c1", th.c1);
-  root.setProperty("--c2", th.c2);
-  root.setProperty("--accent", th.accent);
-
-  root.setProperty("--badgeBg", `rgba(${rgb.r},${rgb.g},${rgb.b},0.16)`);
-  root.setProperty("--badgeFg", `rgba(${rgb.r},${rgb.g},${rgb.b},0.95)`);
-
-  root.setProperty("--iconBg", `rgba(${rgb.r},${rgb.g},${rgb.b},0.12)`);
-  root.setProperty("--iconStroke", th.accent);
+  const th = THEME[lang] || THEME.so;
+  document.documentElement.style.setProperty("--c1", th.c1);
+  document.documentElement.style.setProperty("--c2", th.c2);
+  document.documentElement.style.setProperty("--accent", th.accent);
+  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
+  document.documentElement.style.setProperty("--badgeText", th.badgeText);
+  document.documentElement.style.setProperty("--iconBg", th.iconBg);
+  document.documentElement.style.setProperty("--iconStroke", th.iconStroke);
 }
+
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
+
 function fillList(id, arr){
   const ul = document.getElementById(id);
-  if(!ul) return;
-  ul.replaceChildren();
-  (arr||[]).forEach(t=>{
-    const li=document.createElement("li");
-    li.innerHTML=t;
+  ul.innerHTML = "";
+  (arr || []).forEach(txt=>{
+    const li = document.createElement("li");
+    li.innerHTML = txt;
     ul.appendChild(li);
   });
 }
+
 function setSectionTitle(elId, title){
-  const el=document.getElementById(elId);
+  const el = document.getElementById(elId);
   if(!el) return;
-  const small=el.querySelector("small");
-  const t=(title||"").trim();
-  if(small){
-    const first=el.childNodes[0];
-    if(first && first.nodeType===Node.TEXT_NODE) first.textContent=t+" ";
-    else el.insertBefore(document.createTextNode(t+" "), small);
-  } else el.textContent=t;
+  el.textContent = (title || "").trim();
 }
 
 const T = {
@@ -341,6 +274,7 @@ const T = {
     drugName:"Hjertemagnyl (acetylsalicylsyre)",
     drugForm:"Tablet – blodpladehæmmer",
     badgeText:"Kort og let",
+
     sec0Title:"Hvad er Hjertemagnyl?",
     sec0:[
       "Hjertemagnyl indeholder <span class='highlight'>acetylsalicylsyre</span> i lav dosis.",
@@ -348,26 +282,26 @@ const T = {
     ],
     sec1Title:"Hvad bruges det til?",
     sec1:[
-      "Forebyggelse af blodprop i <span class='highlight'>hjertet</span> (fx efter blodprop/angina/PCI-stent) – efter lægens plan.",
-      "Forebyggelse af blodprop i <span class='highlight'>hjernen</span> (fx TCI/apopleksi) – hvis lægen ordinerer det.",
+      "Forebyggelse af blodprop i <span class='highlight'>hjertet</span> efter lægens plan.",
+      "Forebyggelse af blodprop i <span class='highlight'>hjernen</span> hvis lægen ordinerer det.",
       "Nogle gange ved <span class='highlight'>perifer karsygdom</span> efter lægelig vurdering."
     ],
     sec2Title:"Sådan tages medicinen",
     sec2:[
-      "Tages typisk <span class='highlight'>1 gang dagligt</span> på samme tidspunkt (følg din ordination).",
-      "Synkes med vand (følg pakken og apotekets råd).",
+      "Tages typisk <span class='highlight'>1 gang dagligt</span> på samme tidspunkt.",
+      "Synkes med vand. Følg pakken og apotekets råd.",
       "Glemt dosis: tag når du husker det. <span class='highlight'>Tag ikke dobbeltdosis</span>."
     ],
     sec3Title:"Mad og drikke",
     sec3:[
       "Kan tages med eller uden mad.",
-      "Ved mavegener: tag den <span class='highlight'>sammen med mad</span>."
+      "Hvis du får mavegener, kan du tage den <span class='highlight'>sammen med mad</span>."
     ],
     sec4Title:"Advarsler",
     sec4:[
       "Du kan lettere få <span class='highlight'>blå mærker</span> og småblødninger.",
       "Kontakt læge ved tegn på alvorlig blødning: <span class='highlight'>sort afføring</span>, blod i opkast, vedvarende næseblod eller store blå mærker.",
-      "Stop ikke uden aftale – især ved <span class='highlight'>stent</span> eller efter blodprop."
+      "Stop ikke uden aftale, især hvis du har <span class='highlight'>stent</span> eller har haft blodprop."
     ],
     sec5Title:"Bivirkninger",
     sec5:[
@@ -377,14 +311,14 @@ const T = {
     ],
     sec6Title:"Interaktioner",
     sec6:[
-      "Spørg læge/apotek før du kombinerer med <span class='highlight'>NSAID</span> (fx ibuprofen).",
-      "Anden blodfortyndende medicin kræver <span class='highlight'>lægelig plan</span> pga. blødningsrisiko.",
-      "Fortæl altid om al medicin – også håndkøb."
+      "Undgå andre <span class='highlight'>NSAID-smertestillende</span> som ibuprofen uden råd fra læge/apotek.",
+      "Anden blodfortyndende medicin kan øge blødningsrisiko og kræver plan.",
+      "Fortæl altid apotek/læge om al medicin – også håndkøb."
     ],
     sec7Title:"Ramadan og faste",
     sec7:[
-      "Religiøse vurderinger kan variere – spørg imam og læge hvis du er i tvivl.",
-      "Helbred først: spring ikke doser over hvis du er i behandling efter blodprop/stent."
+      "Hvis du er i tvivl, spørg imam og læge.",
+      "Helbred først: hvis du er i behandling efter blodprop/stent, bør du <span class='highlight'>ikke springe doser over</span>."
     ],
     sec8Title:"Opbevaring",
     sec8:[
@@ -396,41 +330,42 @@ const T = {
   },
 
   en:{
-    pageTitle:"Hjertemagnyl (low-dose aspirin) – antiplatelet",
-    hdrH1:"Hjertemagnyl (low-dose aspirin) – antiplatelet",
+    pageTitle:"Hjertemagnyl – antiplatelet",
+    hdrH1:"Hjertemagnyl – antiplatelet",
     hdrP:"Brief medicine information for patients and relatives.",
     backText:"Back to the medicine list",
     langLabel:"Choose language:",
     drugName:"Hjertemagnyl (acetylsalicylic acid)",
     drugForm:"Tablet – antiplatelet",
     badgeText:"Short and clear",
-    sec0Title:"What is it?",
+
+    sec0Title:"What is Hjertemagnyl?",
     sec0:[
-      "Contains low-dose <span class='highlight'>acetylsalicylic acid</span> (aspirin).",
-      "It reduces platelet clotting (<span class='highlight'>antiplatelet</span>) and helps prevent blood clots."
+      "Contains low-dose <span class='highlight'>acetylsalicylic acid</span>.",
+      "It reduces platelet clotting (<span class='highlight'>antiplatelet</span>) and helps prevent clots."
     ],
     sec1Title:"What is it used for?",
     sec1:[
-      "Prevention of clots in the <span class='highlight'>heart</span> (e.g., after heart attack or stent) as prescribed.",
-      "Prevention of clots in the <span class='highlight'>brain</span> after certain events if prescribed.",
-      "Sometimes in peripheral artery disease as advised by a clinician."
+      "Prevention of clots in the <span class='highlight'>heart</span> as prescribed.",
+      "Prevention of clots in the <span class='highlight'>brain</span> in selected patients.",
+      "Sometimes in peripheral artery disease as advised."
     ],
     sec2Title:"How to take",
     sec2:[
-      "Often taken <span class='highlight'>once daily</span> at the same time (follow your prescription).",
-      "Swallow with water.",
+      "Often taken <span class='highlight'>once daily</span> at the same time.",
+      "Swallow with water. Follow the label and pharmacy advice.",
       "Missed dose: take when remembered. <span class='highlight'>Do not double</span>."
     ],
-    sec3Title:"Food & drink",
+    sec3Title:"Food and drink",
     sec3:[
       "Can be taken with or without food.",
-      "If stomach upset occurs, take with food."
+      "If stomach upset occurs, take with <span class='highlight'>food</span>."
     ],
     sec4Title:"Warnings",
     sec4:[
-      "Bleeding risk is increased (bruising, nosebleeds).",
+      "Bleeding risk is increased (bruising, small bleeds).",
       "Seek medical advice for serious bleeding: black stools, vomiting blood, persistent bleeding.",
-      "Do not stop without medical advice, especially after a stent/heart event."
+      "Do not stop without medical advice, especially after a <span class='highlight'>stent</span>."
     ],
     sec5Title:"Side effects",
     sec5:[
@@ -441,12 +376,12 @@ const T = {
     sec6Title:"Interactions",
     sec6:[
       "Avoid combining with other <span class='highlight'>NSAIDs</span> (e.g., ibuprofen) without advice.",
-      "Other blood thinners can increase bleeding risk—requires a plan.",
+      "Other blood thinners increase bleeding risk and require a plan.",
       "Tell your doctor/pharmacy about all medicines."
     ],
-    sec7Title:"Ramadan & fasting",
+    sec7Title:"Ramadan and fasting",
     sec7:[
-      "Religious guidance may differ—ask your imam and doctor if unsure.",
+      "If unsure, ask your imam and doctor.",
       "Health first: do not skip doses if prescribed for clot prevention."
     ],
     sec8Title:"Storage",
@@ -467,6 +402,7 @@ const T = {
     drugName:"Hjertemagnyl (acetylsalicylsyre)",
     drugForm:"Kiniin – dhiig-platelet joojiye",
     badgeText:"Akhris kooban",
+
     sec0Title:"Waa maxay Hjertemagnyl?",
     sec0:[
       "Hjertemagnyl wuxuu leeyahay <span class='highlight'>acetylsalicylsyre</span> qiyaas hoose.",
@@ -474,12 +410,12 @@ const T = {
     ],
     sec1Title:"Maxaa loo isticmaalaa?",
     sec1:[
-      "Ka hortagga dhiig-xinjirta wadnaha (tusaale stent/ dhiig-xinjir hore) sida dhakhtarku qoro.",
+      "Ka hortagga dhiig-xinjirta wadnaha sida dhakhtarku qoro.",
       "Ka hortagga dhiig-xinjirta maskaxda xaalado gaar ah haddii la qoro."
     ],
     sec2Title:"Sida loo qaato",
     sec2:[
-      "Badanaa <span class='highlight'>1 jeer maalintii</span> (raac warqadda qiyaasta).",
+      "Badanaa <span class='highlight'>1 jeer maalintii</span> (raac qorshaha).",
       "Ku liq biyo.",
       "Haddii aad hilmaanto: qaado markaad xasuusato – <span class='highlight'>ha qaadan laba jeer</span>."
     ],
@@ -491,7 +427,7 @@ const T = {
     sec4Title:"Digniino",
     sec4:[
       "Waxay kordhin kartaa dhiig-bax fudud (nabarro, sanka-dhiig).",
-      "Haddii saxaro madow, dhiig matag, ama dhiig-bax joogto ah → la xiriir dhakhtar.",
+      "Haddii saxaro madow ama dhiig matag → la xiriir dhakhtar.",
       "Ha joojin adigoon la tashan, gaar ahaan haddii aad stent leedahay."
     ],
     sec5Title:"Dhibaatooyinka",
@@ -502,13 +438,13 @@ const T = {
     ],
     sec6Title:"Is-dhexgalka daawooyinka",
     sec6:[
-      "Ka taxaddar NSAID (tusaale ibuprofen) – waxay kordhin kartaa dhiig-baxa/minda-caloosha.",
+      "Ka taxaddar NSAID sida ibuprofen – waxay kordhin kartaa dhiig-baxa.",
       "Daawooyin dhiig-fiiqiya kale waxay kordhiyaan khatar; u baahan qorshe dhakhtar."
     ],
     sec7Title:"Ramadaanka iyo soonka",
     sec7:[
-      "Kiniin afka ah soonka wuu jebin karaa (aragtiyo kala duwan). Haddii aad shaki qabto la tasho imam iyo dhakhtar.",
-      "Haddii daawada laguu qoray ka hortag xinjir, ha seegin qiyaasta."
+      "Haddii aad shaki qabto la tasho imam iyo dhakhtar.",
+      "Haddii laguu qoray ka hortag xinjir, <span class='highlight'>ha seegin qiyaasta</span>."
     ],
     sec8Title:"Kaydinta",
     sec8:[
@@ -520,381 +456,375 @@ const T = {
   },
 
   ar:{
-    pageTitle:"هجرتِماغنيل – مضاد لتجمع الصفائح",
-    hdrH1:"هجرتِماغنيل – مضاد لتجمع الصفائح (مُميِّع للدم)",
-    hdrP:"معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    pageTitle:"هيارتماغنيل – مضاد للصفيحات",
+    hdrH1:"هيارتماغنيل – مضاد للصفيحات",
+    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
     backText:"العودة إلى قائمة الأدوية",
     langLabel:"اختر اللغة:",
-    drugName:"Hjertemagnyl (acetylsalicylic acid)",
-    drugForm:"قرص – مضاد لتجمع الصفائح",
+    drugName:"هيارتماغنيل",
+    drugForm:"أقراص – مضاد للصفيحات",
     badgeText:"مختصر وواضح",
+
     sec0Title:"ما هو الدواء؟",
     sec0:[
-      "يحتوي على جرعة منخفضة من <span class='highlight'>حمض أسيتيل ساليسيليك</span> (أسبرين).",
-      "يقلل تجمع الصفائح (<span class='highlight'>مضاد صفائح</span>) ويساعد على الوقاية من الجلطات."
+      "يحتوي على جرعة منخفضة من <span class='highlight'>الأسبرين</span>.",
+      "يقلل تكتل الصفائح ويساعد على الوقاية من الجلطات."
     ],
     sec1Title:"لماذا يُستخدم؟",
     sec1:[
-      "الوقاية من الجلطات في <span class='highlight'>القلب</span> (بعد جلطة/دعامة) حسب وصف الطبيب.",
-      "الوقاية من الجلطات في <span class='highlight'>الدماغ</span> في حالات معينة إذا وُصف.",
-      "أحياناً في مرض الشرايين الطرفية حسب التقييم الطبي."
+      "للوقاية من جلطات القلب حسب خطة الطبيب.",
+      "للوقاية من بعض جلطات الدماغ لدى مرضى محددين."
     ],
     sec2Title:"طريقة الاستعمال",
     sec2:[
-      "عادةً <span class='highlight'>مرة يومياً</span> في نفس الوقت.",
+      "غالباً مرة واحدة يومياً في نفس الوقت.",
       "يُبلع مع الماء.",
-      "جرعة فائتة: خذها عند التذكر. <span class='highlight'>لا تضاعف الجرعة</span>."
+      "عند نسيان الجرعة خذها عند التذكر ولا تضاعف الجرعة."
     ],
     sec3Title:"الطعام والشراب",
     sec3:[
-      "يمكن تناوله مع أو بدون طعام.",
-      "إذا سبب اضطراباً بالمعدة، تناوله مع الطعام."
+      "يمكن تناوله مع الطعام أو بدونه.",
+      "إذا سبب تهيجاً بالمعدة تناوله مع الطعام."
     ],
     sec4Title:"تحذيرات",
     sec4:[
-      "يزيد احتمال النزيف والكدمات.",
-      "اطلب المساعدة الطبية عند نزيف شديد: براز أسود، قيء دموي، نزيف مستمر.",
-      "لا توقفه دون استشارة خاصة بعد دعامة/جلطة."
+      "قد يزيد الكدمات والنزف البسيط.",
+      "راجع الطبيب عند براز أسود أو قيء دموي أو نزف مستمر.",
+      "لا توقفه دون استشارة خاصة بعد تركيب دعامة."
     ],
-    sec5Title:"آثار جانبية",
+    sec5Title:"الآثار الجانبية",
     sec5:[
-      "تهيج المعدة/حرقة.",
-      "كدمات/نزيف.",
-      "نادراً قرحة أو حساسية."
+      "تهيج المعدة أو حرقة.",
+      "سهولة حدوث كدمات أو نزف.",
+      "نادرًا قرحة أو حساسية."
     ],
-    sec6Title:"تداخلات",
+    sec6Title:"التداخلات",
     sec6:[
-      "تجنب الجمع مع <span class='highlight'>NSAIDs</span> مثل الإيبوبروفين دون نصيحة.",
-      "مميعات أخرى تزيد خطر النزيف وتحتاج خطة طبية.",
-      "أخبر الطبيب/الصيدلي بكل الأدوية."
+      "تجنب الجمع مع مسكنات NSAID مثل الإيبوبروفين دون نصيحة.",
+      "مميعات دم أخرى تزيد خطر النزف وتحتاج خطة طبية."
     ],
     sec7Title:"رمضان والصيام",
     sec7:[
-      "قد تختلف الفتاوى—اسأل الإمام والطبيب إذا كنت غير متأكد.",
+      "إذا كنت غير متأكد اسأل طبيبك ومرشدك الديني.",
       "لا تتجاوز الجرعات إذا كان الدواء للوقاية من الجلطات."
     ],
     sec8Title:"الحفظ",
     sec8:[
-      "يُحفظ جافاً في درجة حرارة الغرفة وبعيداً عن الأطفال.",
-      "لا تستخدمه بعد “EXP”. أعد الباقي للصيدلية."
+      "يحفظ جافاً بدرجة الغرفة بعيداً عن الأطفال.",
+      "لا يُستخدم بعد EXP وأعد البقايا للصيدلية."
     ],
     footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
+    footer2:"إعداد: إبراهيم ظاهر حنف"
   },
 
   tr:{
-    pageTitle:"Hjertemagnyl – antiplatelet (kan sulandırıcı)",
-    hdrH1:"Hjertemagnyl – kan sulandırıcı (trombosit baskılayıcı)",
-    hdrP:"Hasta ve yakınları için kısa ilaç bilgisi.",
+    pageTitle:"Hjertemagnyl – antiplatelet",
+    hdrH1:"Hjertemagnyl – antiplatelet",
+    hdrP:"Hasta ve yakınları için kısa bilgi.",
     backText:"İlaç listesine geri dön",
     langLabel:"Dil seçin:",
-    drugName:"Hjertemagnyl (asetilsalisilik asit)",
-    drugForm:"Tablet – antiplatelet",
+    drugName:"Hjertemagnyl",
+    drugForm:"Tablet – trombosit önleyici",
     badgeText:"Kısa ve anlaşılır",
+
     sec0Title:"Bu ilaç nedir?",
     sec0:[
-      "Düşük doz <span class='highlight'>asetilsalisilik asit</span> (aspirin) içerir.",
-      "Trombositlerin pıhtılaşmasını azaltır (<span class='highlight'>antiplatelet</span>) ve pıhtı riskini düşürür."
+      "Düşük doz <span class='highlight'>asetilsalisilik asit</span> içerir.",
+      "Trombositlerin pıhtı oluşturmasını azaltarak pıhtı riskini düşürür."
     ],
     sec1Title:"Ne için kullanılır?",
     sec1:[
-      "<span class='highlight'>Kalpte</span> pıhtı önleme (kalp krizi/stent sonrası) doktor planına göre.",
-      "<span class='highlight'>Beyinde</span> pıhtı önleme bazı durumlarda.",
-      "Bazı hastalarda periferik damar hastalığında hekim önerisiyle."
+      "Doktorun planına göre kalpte pıhtıdan korunma.",
+      "Seçilmiş hastalarda beyinde pıhtıdan korunma."
     ],
-    sec2Title:"Nasıl kullanılır?",
+    sec2Title:"Nasıl alınır?",
     sec2:[
-      "Genellikle <span class='highlight'>günde 1 kez</span> aynı saatte.",
+      "Genellikle günde bir kez aynı saatte.",
       "Su ile yutulur.",
-      "Unutulan doz: hatırlayınca alın. <span class='highlight'>Çift doz almayın</span>."
+      "Unutulan doz: hatırlayınca alın, çift doz almayın."
     ],
-    sec3Title:"Yemek & içecek",
+    sec3Title:"Yemek ve içecek",
     sec3:[
-      "Yemekle birlikte ya da aç alınabilir.",
-      "Mide rahatsızlığı olursa yemekle alın."
+      "Yemekle veya yemeksiz alınabilir.",
+      "Mide şikâyeti olursa yemekle alın."
     ],
     sec4Title:"Uyarılar",
     sec4:[
-      "Kanama/morarma riski artar.",
-      "Ciddi kanama belirtisinde doktora başvurun: siyah dışkı, kan kusma, durmayan kanama.",
-      "Özellikle stent/kalp olayı sonrası doktora danışmadan kesmeyin."
+      "Kolay morarma ve kanama olabilir.",
+      "Siyah dışkı veya kanlı kusma olursa doktora başvurun.",
+      "Özellikle stent sonrası doktora danışmadan bırakmayın."
     ],
     sec5Title:"Yan etkiler",
     sec5:[
-      "Mide tahrişi/yanma.",
-      "Morarma/kanama eğilimi.",
-      "Nadir: ülser veya alerji."
+      "Mide yanması veya ağrı.",
+      "Morarma ve kanama eğilimi.",
+      "Nadiren ülser veya alerji."
     ],
     sec6Title:"Etkileşimler",
     sec6:[
-      "İbuprofen gibi <span class='highlight'>NSAİİ</span> ile birlikte kullanmadan önce danışın.",
-      "Diğer kan sulandırıcılar kanama riskini artırır—tıbbi plan gerekir.",
-      "Tüm ilaçları doktor/eczacıya söyleyin."
+      "İbuprofen gibi NSAİİ’lerle birlikte kullanmadan önce danışın.",
+      "Diğer kan sulandırıcılarla kanama riski artar."
     ],
-    sec7Title:"Ramazan ve oruç",
+    sec7Title:"Ramazan",
     sec7:[
-      "Dini görüşler değişebilir—emin değilseniz imam ve doktorunuza sorun.",
-      "Pıhtı önleme için verildiyse doz atlamayın."
+      "Emin değilseniz doktorunuza ve dinî danışmana sorun.",
+      "Pıhtı önleme için verildiyse dozu atlamayın."
     ],
     sec8Title:"Saklama",
     sec8:[
-      "Kuru, oda sıcaklığında ve çocuklardan uzak saklayın.",
-      "“EXP” sonrası kullanmayın. Artanları eczaneye verin."
+      "Kuru ve oda sıcaklığında, çocuklardan uzak saklayın.",
+      "EXP sonrası kullanmayın, artanları eczaneye verin."
     ],
     footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
   },
 
   ur:{
-    pageTitle:"Hjertemagnyl – اینٹی پلیٹ لیٹ",
-    hdrH1:"Hjertemagnyl – خون پتلا کرنے والی (اینٹی پلیٹ لیٹ)",
+    pageTitle:"Hjertemagnyl – خون جمنے سے بچاؤ",
+    hdrH1:"Hjertemagnyl – خون جمنے سے بچاؤ",
     hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
     backText:"فہرست پر واپس",
     langLabel:"زبان منتخب کریں:",
-    drugName:"Hjertemagnyl (acetylsalicylic acid)",
-    drugForm:"گولی – اینٹی پلیٹ لیٹ",
+    drugName:"Hjertemagnyl",
+    drugForm:"گولی – پلیٹ لیٹ روکنے والی",
     badgeText:"مختصر اور واضح",
+
     sec0Title:"یہ کیا ہے؟",
     sec0:[
-      "کم خوراک <span class='highlight'>acetylsalicylic acid</span> (aspirin) پر مشتمل ہے۔",
-      "پلیٹ لیٹس کے جمنے کو کم کرتا ہے (<span class='highlight'>اینٹی پلیٹ لیٹ</span>) اور خون کے لوتھڑے سے بچاتا ہے۔"
+      "کم مقدار میں <span class='highlight'>ایسپرین</span> پر مشتمل ہے۔",
+      "پلیٹ لیٹس کے جمنے کو کم کر کے لوتھڑے سے بچانے میں مدد دیتی ہے۔"
     ],
-    sec1Title:"کس لیے استعمال ہوتا ہے؟",
+    sec1Title:"کس لیے استعمال ہوتی ہے؟",
     sec1:[
-      "<span class='highlight'>دل</span> میں لوتھڑے سے بچاؤ (ہارٹ اٹیک/اسٹنٹ کے بعد) ڈاکٹر کے مطابق۔",
-      "<span class='highlight'>دماغ</span> میں لوتھڑے سے بچاؤ کچھ حالتوں میں۔",
-      "کبھی کبھار ٹانگوں کی شریانوں کی بیماری میں ڈاکٹر کے مشورے سے۔"
+      "ڈاکٹر کے پلان کے مطابق دل میں لوتھڑا بننے سے بچاؤ۔",
+      "کچھ مریضوں میں دماغی لوتھڑے سے بچاؤ۔"
     ],
     sec2Title:"کیسے لیں؟",
     sec2:[
-      "اکثر <span class='highlight'>روزانہ ایک بار</span> ایک ہی وقت پر۔",
+      "اکثر روزانہ ایک بار ایک ہی وقت پر۔",
       "پانی کے ساتھ نگلیں۔",
-      "خوراک رہ جائے تو یاد آنے پر لیں۔ <span class='highlight'>ڈبل خوراک نہ لیں</span>۔"
+      "بھول جائیں تو یاد آنے پر لیں، ڈبل خوراک نہ لیں۔"
     ],
     sec3Title:"کھانا پینا",
     sec3:[
-      "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
-      "اگر معدہ خراب ہو تو کھانے کے ساتھ لیں۔"
+      "کھانے کے ساتھ یا بغیر لی جا سکتی ہے۔",
+      "معدہ خراب ہو تو کھانے کے ساتھ لیں۔"
     ],
     sec4Title:"احتیاطیں",
     sec4:[
-      "خون بہنے/نیل پڑنے کا امکان بڑھ سکتا ہے۔",
-      "شدید خون بہنے کی علامت پر ڈاکٹر سے رابطہ کریں: کالا پاخانہ، خون کی قے، مسلسل خون۔",
-      "خصوصاً اسٹنٹ/دل کے واقعہ کے بعد ڈاکٹر کے بغیر بند نہ کریں۔"
+      "آسانی سے نیل پڑ سکتے ہیں یا ہلکا خون بہہ سکتا ہے۔",
+      "کالا پاخانہ یا خون کی الٹی ہو تو فوراً رابطہ کریں۔",
+      "خاص طور پر اسٹنٹ کے بعد ڈاکٹر کے بغیر بند نہ کریں۔"
     ],
     sec5Title:"مضر اثرات",
     sec5:[
-      "معدہ میں جلن/تیزابیت۔",
-      "نیل/خون بہنے کا رجحان۔",
-      "کم: السر یا الرجی۔"
+      "معدے کی جلن یا درد۔",
+      "خون بہنے یا نیل پڑنے کا رجحان۔",
+      "کبھی کبھار السر یا الرجی۔"
     ],
-    sec6Title:"ادویاتی تعامل",
+    sec6Title:"تداخلات",
     sec6:[
-      "ibuprofen جیسے <span class='highlight'>NSAIDs</span> کے ساتھ بغیر مشورہ نہ لیں۔",
-      "دیگر خون پتلا کرنے والی ادویات خون بہنے کا خطرہ بڑھاتی ہیں۔",
-      "تمام ادویات ڈاکٹر/فارمیسی کو بتائیں۔"
+      "آئیبوپروفین جیسے NSAID کے ساتھ لینے سے پہلے مشورہ کریں۔",
+      "دیگر خون پتلا کرنے والی ادویات سے خون بہنے کا خطرہ بڑھتا ہے۔"
     ],
-    sec7Title:"رمضان اور روزہ",
+    sec7Title:"رمضان",
     sec7:[
-      "دینی رائے مختلف ہو سکتی ہے—یقین نہ ہو تو امام اور ڈاکٹر سے پوچھیں۔",
-      "اگر لوتھڑا روکنے کے لیے دی گئی ہے تو خوراک مت چھوڑیں۔"
+      "یقین نہ ہو تو ڈاکٹر اور دینی رہنما سے پوچھیں۔",
+      "اگر لوتھڑا سے بچاؤ کے لیے ہے تو خوراک مت چھوڑیں۔"
     ],
     sec8Title:"محفوظ رکھنا",
     sec8:[
-      "خشک جگہ، کمرے کے درجہ حرارت پر، بچوں سے دور۔",
-      "“EXP” کے بعد استعمال نہ کریں۔ باقی دوا فارمیسی واپس کریں۔"
+      "خشک اور کمرہ درجہ حرارت پر بچوں سے دور رکھیں۔",
+      "EXP کے بعد استعمال نہ کریں اور باقی دوا فارمیسی واپس کریں۔"
     ],
     footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
   },
 
   fa:{
-    pageTitle:"Hjertemagnyl – ضد تجمع پلاکت",
-    hdrH1:"Hjertemagnyl – رقیق‌کننده (ضد تجمع پلاکت)",
+    pageTitle:"هیارتماگنیل – ضد پلاکتی",
+    hdrH1:"هیارتماگنیل – ضد پلاکتی",
     hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
     backText:"بازگشت به فهرست",
     langLabel:"انتخاب زبان:",
-    drugName:"Hjertemagnyl (acetylsalicylic acid)",
-    drugForm:"قرص – ضد تجمع پلاکت",
+    drugName:"هیارتماگنیل",
+    drugForm:"قرص – ضد پلاکت",
     badgeText:"کوتاه و روشن",
+
     sec0Title:"این دارو چیست؟",
     sec0:[
-      "حاوی دوز پایین <span class='highlight'>اسید استیل‌سالیسیلیک</span> (آسپرین) است.",
-      "چسبندگی پلاکت‌ها را کم می‌کند (<span class='highlight'>ضد پلاکت</span>) و به پیشگیری از لخته کمک می‌کند."
+      "حاوی دوز کم <span class='highlight'>آسپرین</span> است.",
+      "از چسبیدن پلاکت‌ها جلوگیری می‌کند و خطر لخته را کاهش می‌دهد."
     ],
-    sec1Title:"برای چه استفاده می‌شود؟",
+    sec1Title:"موارد مصرف",
     sec1:[
-      "پیشگیری از لخته در <span class='highlight'>قلب</span> (بعد از سکته/استنت) طبق نسخه.",
-      "پیشگیری از لخته در <span class='highlight'>مغز</span> در برخی موارد.",
-      "گاهی در بیماری عروق محیطی طبق نظر پزشک."
+      "پیشگیری از لخته در قلب طبق نظر پزشک.",
+      "پیشگیری از برخی لخته‌های مغزی در افراد منتخب."
     ],
     sec2Title:"نحوه مصرف",
     sec2:[
-      "معمولاً <span class='highlight'>روزانه یک بار</span> در زمان ثابت.",
-      "با آب بلعیده شود.",
-      "اگر فراموش شد: به محض یادآوری مصرف کنید. <span class='highlight'>دوز را دو برابر نکنید</span>."
+      "معمولاً روزی یک بار در زمان ثابت.",
+      "با آب کامل ببلعید.",
+      "در صورت فراموشی دوز، دوز دو برابر نکنید."
     ],
     sec3Title:"غذا و نوشیدنی",
     sec3:[
-      "با یا بدون غذا قابل مصرف است.",
-      "در صورت ناراحتی معده، همراه غذا مصرف کنید."
+      "با غذا یا بدون غذا قابل مصرف است.",
+      "در صورت ناراحتی معده همراه غذا مصرف شود."
     ],
     sec4Title:"هشدارها",
     sec4:[
-      "خطر خونریزی/کبودی بیشتر می‌شود.",
-      "در خونریزی شدید (مدفوع سیاه، استفراغ خونی، خونریزی مداوم) به پزشک مراجعه کنید.",
-      "بدون نظر پزشک قطع نکنید، مخصوصاً بعد از استنت/سکته."
+      "کبودی و خونریزی خفیف ممکن است بیشتر شود.",
+      "در مدفوع سیاه یا استفراغ خونی با پزشک تماس بگیرید.",
+      "به‌ویژه پس از استنت بدون نظر پزشک قطع نکنید."
     ],
     sec5Title:"عوارض",
     sec5:[
-      "تحریک معده/سوزش سر دل.",
-      "کبودی/خونریزی.",
-      "به ندرت زخم یا حساسیت."
+      "سوزش معده یا درد معده.",
+      "تمایل به خونریزی و کبودی.",
+      "به‌ندرت زخم یا حساسیت."
     ],
     sec6Title:"تداخلات",
     sec6:[
-      "با <span class='highlight'>NSAIDs</span> مثل ایبوپروفن بدون مشورت مصرف نکنید.",
-      "رقیق‌کننده‌های دیگر خطر خونریزی را افزایش می‌دهند.",
-      "همه داروها را به پزشک/داروخانه اطلاع دهید."
+      "بدون مشورت با پزشک با NSAID مانند ایبوپروفن مصرف نشود.",
+      "با رقیق‌کننده‌های خون خطر خونریزی افزایش می‌یابد."
     ],
-    sec7Title:"رمضان و روزه",
+    sec7Title:"رمضان",
     sec7:[
-      "نظر دینی ممکن است متفاوت باشد—در صورت شک با امام و پزشک مشورت کنید.",
-      "اگر برای پیشگیری از لخته تجویز شده، دوز را حذف نکنید."
-    ],
-    sec8Title:"نگهداری",
-    sec8:[
-      "خشک و در دمای اتاق و دور از کودکان نگهداری شود.",
-      "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه برگردانید."
-    ],
-    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs:{
-    pageTitle:"Hjertemagnyl – ضد تجمع پلاکت",
-    hdrH1:"Hjertemagnyl – رقیق‌کننده (ضد تجمع پلاکت)",
-    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"Hjertemagnyl (acetylsalicylic acid)",
-    drugForm:"قرص – ضد تجمع پلاکت",
-    badgeText:"کوتاه و واضح",
-    sec0Title:"این دوا چیست؟",
-    sec0:[
-      "حاوی دوز پایین <span class='highlight'>اسید استیل‌سالیسیلیک</span> (آسپرین) است.",
-      "چسبندگی پلاکت‌ها را کم می‌کند (<span class='highlight'>ضد پلاکت</span>) و به پیشگیری از لخته کمک می‌کند."
-    ],
-    sec1Title:"برای چی استفاده می‌شود؟",
-    sec1:[
-      "پیشگیری از لخته در <span class='highlight'>قلب</span> (بعد از سکته/استنت) طبق نسخه.",
-      "پیشگیری از لخته در <span class='highlight'>مغز</span> در بعضی موارد.",
-      "گاهی در بیماری عروق محیطی طبق نظر داکتر."
-    ],
-    sec2Title:"چگونه مصرف شود؟",
-    sec2:[
-      "معمولاً <span class='highlight'>روزانه یک بار</span> در زمان ثابت.",
-      "با آب بلعیده شود.",
-      "اگر فراموش شد: به محض یادآوری بگیرید. <span class='highlight'>دوز را دو برابر نکنید</span>."
-    ],
-    sec3Title:"غذا و نوشیدنی",
-    sec3:[
-      "با یا بدون غذا قابل استفاده است.",
-      "اگر معده اذیت شد، با غذا مصرف کنید."
-    ],
-    sec4Title:"هشدارها",
-    sec4:[
-      "خطر خونریزی/کبودی بیشتر می‌شود.",
-      "در خونریزی شدید (مدفوع سیاه، استفراغ خونی، خونریزی دوامدار) به داکتر مراجعه کنید.",
-      "بدون مشوره داکتر قطع نکنید، مخصوصاً بعد از استنت/سکته."
-    ],
-    sec5Title:"عوارض",
-    sec5:[
-      "تحریک معده/سوزش سر دل.",
-      "کبودی/خونریزی.",
-      "نادر: زخم یا حساسیت."
-    ],
-    sec6Title:"تداخلات",
-    sec6:[
-      "با <span class='highlight'>NSAIDs</span> مثل ایبوپروفن بدون مشوره استفاده نکنید.",
-      "رقیق‌کننده‌های دیگر خطر خونریزی را زیاد می‌کند.",
-      "همه دواها را به داکتر/دواخانه اطلاع دهید."
-    ],
-    sec7Title:"رمضان و روزه",
-    sec7:[
-      "نظر دینی ممکن فرق کند—در صورت شک با امام و داکتر مشوره کنید.",
+      "اگر مطمئن نیستید از پزشک و راهنمای دینی بپرسید.",
       "اگر برای پیشگیری از لخته است، دوز را حذف نکنید."
     ],
     sec8Title:"نگهداری",
     sec8:[
-      "خشک و در دمای اتاق و دور از اطفال نگهدارید.",
-      "پس از “EXP” استفاده نکنید. باقی را به دواخانه برگردانید."
+      "خشک و در دمای اتاق، دور از دسترس کودکان.",
+      "بعد از EXP مصرف نشود و باقیمانده را به داروخانه بدهید."
     ],
-    footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  prs:{
+    pageTitle:"هیارتماگنیل – ضد پلاکت",
+    hdrH1:"هیارتماگنیل – ضد پلاکت",
+    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"هیارتماگنیل",
+    drugForm:"قرص – ضد پلاکت",
+    badgeText:"کوتاه و واضح",
+
+    sec0Title:"این دوا چیست؟",
+    sec0:[
+      "دارای مقدار کم <span class='highlight'>آسپرین</span> است.",
+      "چسپیدن پلاکت‌ها را کم کرده و خطر لخته را کاهش می‌دهد."
+    ],
+    sec1Title:"برای چی استفاده می‌شود؟",
+    sec1:[
+      "پیشگیری از لخته در قلب طبق پلان داکتر.",
+      "در برخی افراد برای پیشگیری از لخته مغزی."
+    ],
+    sec2Title:"چگونه گرفته شود؟",
+    sec2:[
+      "اکثر روزی یک بار در وقت ثابت.",
+      "با آب قورت دهید.",
+      "اگر فراموش شد، دوز دو برابر نگیرید."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "با غذا یا بدون غذا گرفته می‌شود.",
+      "اگر معده ناراحت شود، با غذا بگیرید."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "کبودی و خونریزی خفیف ممکن زیاد شود.",
+      "مدفوع سیاه یا قی خون، فوراً داکتر را خبر کنید.",
+      "به‌خصوص بعد از استنت، بدون مشوره قطع نکنید."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "سوزش یا درد معده.",
+      "تمایل به خونریزی و کبودی.",
+      "نادر زخم یا حساسیت."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "با NSAID مثل ایبوپروفن بدون مشوره استفاده نشود.",
+      "با رقیق‌کننده‌های خون خطر خونریزی زیاد می‌شود."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "اگر مطمئن نیستید از داکتر و راهنمای دینی بپرسید.",
+      "اگر برای پیشگیری لخته است، دوز را ترک نکنید."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "خشک و در دمای اتاق، دور از اطفال.",
+      "بعد از EXP استفاده نشود و باقی دوا را به دواخانه بسپارید."
+    ],
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
   },
 
   ps:{
-    pageTitle:"Hjertemagnyl – د پلیټلېټ ضد",
-    hdrH1:"Hjertemagnyl – د پلیټلېټ ضد (د لختې مخنیوی)",
+    pageTitle:"Hjertemagnyl – د لختې مخنیوی",
+    hdrH1:"Hjertemagnyl – د لختې مخنیوی",
     hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
     backText:"لېست ته بېرته",
     langLabel:"ژبه وټاکئ:",
-    drugName:"Hjertemagnyl (acetylsalicylic acid)",
-    drugForm:"ګولۍ – د پلیټلېټ ضد",
+    drugName:"Hjertemagnyl",
+    drugForm:"ګولۍ – د پلیټلېټ مخنیوی",
     badgeText:"لنډ او روښانه",
-    sec0Title:"دا څه شی دی؟",
+
+    sec0Title:"دا څه درمل دي؟",
     sec0:[
-      "د <span class='highlight'>acetylsalicylic acid</span> (aspirin) ټیټه اندازه لري.",
-      "د پلیټلېټونو د یوځای کېدو مخه نیسي (<span class='highlight'>antiplatelet</span>) او د لختې خطر کموي."
+      "د <span class='highlight'>اسپرین</span> لږه اندازه لري.",
+      "د پلیټلېټونو تکتل کموي او د لختې خطر راکموي."
     ],
     sec1Title:"د څه لپاره کارېږي؟",
     sec1:[
-      "په <span class='highlight'>زړه</span> کې د لختې مخنیوی (د زړه حمله/سټنټ وروسته) د ډاکټر له مخې.",
-      "په <span class='highlight'>مغز</span> کې د لختې مخنیوی په ځینو حالتونو کې.",
-      "کله ناکله د پښو د رګونو په ناروغۍ کې د ډاکټر په مشوره."
+      "د ډاکټر د پلان له مخې د زړه د لختې مخنیوی.",
+      "په ځینو کسانو کې د دماغ د لختې مخنیوی."
     ],
-    sec2Title:"څنګه یې وخورو؟",
+    sec2Title:"څنګه واخیستل شي؟",
     sec2:[
-      "اکثر <span class='highlight'>ورځ کې یو ځل</span> په ثابت وخت.",
+      "اکثره هره ورځ یو ځل په یو وخت.",
       "له اوبو سره یې تېر کړئ.",
-      "که هېر شي: د یادېدو سره واخلئ. <span class='highlight'>دوهمه اندازه مه زیاتوی</span>."
+      "که هېر شو، ډبل دوز مه اخلئ."
     ],
     sec3Title:"خواړه او څښاک",
     sec3:[
-      "له خوړو سره یا بې خوړو اخیستل کېدای شي.",
-      "که معده تنګوي، له خوړو سره یې واخلئ."
+      "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
+      "که معده خرابوي، له خوړو سره یې واخلئ."
     ],
     sec4Title:"خبرداری",
     sec4:[
-      "د وینې بهېدلو/کبودی خطر زیاتېږي.",
-      "د شدید وینې بهېدو نښې: تور غایطه، د وینې کانګې، دوامدار وینه—ډاکټر ته لاړ شئ.",
-      "بې له مشورې مه بندوئ، په ځانګړي ډول د سټنټ/پیښې وروسته."
+      "کبودی او وینه راتلل زیاتېدای شي.",
+      "تور غایطه یا وینه په کانګې کې وي، ډاکټر ته ورشئ.",
+      "په ځانګړي ډول د سټېنټ وروسته بې له مشورې مه بندوئ."
     ],
     sec5Title:"اړخیزې اغېزې",
     sec5:[
-      "د معدې خارښت/سوزش.",
-      "کبودی/وینه بهېدل.",
+      "د معدې سوځښت یا درد.",
+      "د وینې بهېدو یا کبودۍ تمایل.",
       "نادر: زخم یا حساسیت."
     ],
     sec6Title:"تداخلات",
     sec6:[
-      "له <span class='highlight'>NSAIDs</span> (لکه ibuprofen) سره بې له مشورې مه ګډوئ.",
-      "نور وینه نری کوونکي د وینې بهېدو خطر زیاتوي.",
-      "ټولې درمل ډاکټر/درملتون ته ووایاست."
+      "له NSAID لکه ایبوپروفین سره بې له مشورې مه کاروئ.",
+      "له نورو وینې نری کوونکو سره د وینې بهېدو خطر زیاتېږي."
     ],
-    sec7Title:"رمضان او روژه",
+    sec7Title:"رمضان",
     sec7:[
-      "د دیني نظرونو تر منځ توپير شته—که شک وي له امام او ډاکټر سره مشوره وکړئ.",
-      "که د لختې مخنیوي لپاره وي، دوز مه پرېږدئ."
+      "که مطمئن نه یاست، له ډاکټر او د دیني لارښود څخه پوښتنه وکړئ.",
+      "که د لختې د مخنیوي لپاره وي، دوز مه پرېږدئ."
     ],
     sec8Title:"ساتنه",
     sec8:[
-      "په وچه ځای کې، د خونې په تودوخې کې، له ماشومانو لرې وساتئ.",
-      "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته یوسئ."
+      "وچ او د خونې په تودوخې کې، له ماشومانو لرې وساتئ.",
+      "له EXP وروسته مه کاروئ او پاتې درمل درملتون ته وسپارئ."
     ],
     footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
   }
 };
 
@@ -940,14 +870,11 @@ function applyLang(lang){
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
-
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
-  window.history.replaceState({}, "", url.toString());
 }
 
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "da";
+
 document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
 applyLang(document.getElementById("langSelect").value);
 
@@ -955,5 +882,6 @@ document.getElementById("langSelect").addEventListener("change", function(){
   applyLang(this.value);
 });
 </script>
+
 </body>
 </html>
