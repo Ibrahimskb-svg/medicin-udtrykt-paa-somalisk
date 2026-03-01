@@ -11,11 +11,9 @@
   --c1:#0066cc;
   --c2:#00a676;
 
-  /* badge */
   --badgeBg:#d9f6e8;
   --badgeFg:#16634a;
 
-  /* drug icon follows theme */
   --iconBg: var(--badgeBg);
   --iconFill:#ffffff;
   --iconStroke: var(--accent);
@@ -93,7 +91,6 @@ a.back span{ font-size:1.1rem; }
 .section-icon.store{ background:#edeff9; }
 
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section ul li{ margin-bottom:4px; }
@@ -112,7 +109,7 @@ a.back span{ font-size:1.1rem; }
 
 <main>
 
-  <div class="langbar" aria-label="Vælg sprog">
+  <div class="langbar" aria-label="Choose language">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
@@ -150,7 +147,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Waa maxay Metoprolol? <small>(Hvad er Metoprolol?)</small></div>
+        <div class="section-title" id="sec0Title">Waa maxay Metoprolol?</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
@@ -158,7 +155,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Maxaa loo isticmaalaa? <small>(Hvad bruges det til?)</small></div>
+        <div class="section-title" id="sec1Title">Maxaa loo isticmaalaa?</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
@@ -166,7 +163,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sida loo qaato <small>(Sådan tages medicinen)</small></div>
+        <div class="section-title" id="sec2Title">Sida loo qaato</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
@@ -174,7 +171,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
+        <div class="section-title" id="sec3Title">Cunto iyo cabitaan</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
@@ -182,7 +179,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Digniino <small>(Advarsler)</small></div>
+        <div class="section-title" id="sec4Title">Digniino</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
@@ -190,7 +187,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Dhibaatooyinka <small>(Bivirkninger)</small></div>
+        <div class="section-title" id="sec5Title">Dhibaatooyinka</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
@@ -198,7 +195,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Is-dhexgalka daawooyinka <small>(Interaktioner)</small></div>
+        <div class="section-title" id="sec6Title">Is-dhexgalka daawooyinka</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
@@ -206,7 +203,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadaanka iyo daawada <small>(Fasten og brugen af medicinen)</small></div>
+        <div class="section-title" id="sec7Title">Ramadaanka iyo daawada</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
@@ -214,7 +211,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta <small>(Opbevaring)</small></div>
+        <div class="section-title" id="sec8Title">Kaydinta</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -265,23 +262,6 @@ function fillList(id, arr){
     li.innerHTML = txt;
     ul.appendChild(li);
   });
-}
-
-function setSectionTitle(elId, title){
-  const el = document.getElementById(elId);
-  if (!el) return;
-  const small = el.querySelector("small");
-  const t = (title || "").trim();
-  if (small){
-    const first = el.childNodes[0];
-    if (first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
-    } else {
-      el.insertBefore(document.createTextNode(t + " "), small);
-    }
-  } else {
-    el.textContent = t;
-  }
 }
 
 const T = {
@@ -335,7 +315,7 @@ const T = {
     sec6:[
       "Daawooyin qaar oo wadnaha ah (tusaale verapamil/diltiazem, digoxin) waxay kordhin karaan saameynta garaac-gaabinta.",
       "Daawooyinka dhiig-karka kale waxay hoos u dhigi karaan cadaadiska dhiigga si badan.",
-      "Daawooyinka xanuun baabi’iya ee qaarkood (tusaale ibuprofen) mararka qaar waxay yareyn karaan saameynta dhiig-karka.",
+      "Daawooyinka xanuun baabi’iya qaarkood (tusaale ibuprofen) mararka qaar waxay yareyn karaan saameynta dhiig-karka.",
       "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato."
     ],
     sec7Title:"Ramadaanka iyo daawada",
@@ -489,26 +469,27 @@ const T = {
     footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
+  /* Short blocks (no Danish-in-parentheses anywhere) */
   ar:{ pageTitle:"ميتوبرولول – القلب والضغط", hdrH1:"ميتوبرولول – القلب والضغط", hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.", backText:"العودة إلى قائمة الأدوية", langLabel:"اختر اللغة:", drugName:"ميتوبرولول", drugForm:"أقراص (عن طريق الفم)", badgeText:"مختصر وواضح",
-    sec0Title:"ما هو ميتوبرولول؟", sec0:["دواء من حاصرات بيتا: يقلل النبض وضغط الدم ويخفف عبء القلب."],
-    sec1Title:"لماذا يُستخدم؟", sec1:["ارتفاع الضغط.", "الذبحة الصدرية.", "اضطراب النظم/تسارع النبض.", "أحياناً قصور القلب حسب الخطة."],
-    sec2Title:"طريقة الاستعمال", sec2:["يؤخذ حسب وصف الطبيب مرة أو مرتين يومياً.", "لا توقفه فجأة."],
+    sec0Title:"ما هو ميتوبرولول؟", sec0:["حاصر بيتا يقلل النبض وضغط الدم ويخفف عبء القلب."],
+    sec1Title:"لماذا يُستخدم؟", sec1:["ارتفاع الضغط.", "الذبحة الصدرية.", "اضطراب النظم/تسارع النبض.", "أحياناً قصور القلب."],
+    sec2Title:"طريقة الاستعمال", sec2:["حسب وصف الطبيب مرة أو مرتين يومياً.", "لا توقفه فجأة."],
     sec3Title:"الطعام والشراب", sec3:["يمكن تناوله مع أو بدون طعام."],
-    sec4Title:"تحذيرات", sec4:["راجع الطبيب عند بطء شديد بالنبض أو إغماء أو ضيق نفس.", "أخبر الطبيب إن كنت مصاباً بالربو أو السكري."],
+    sec4Title:"تحذيرات", sec4:["راجع الطبيب عند بطء شديد بالنبض أو إغماء أو ضيق نفس."],
     sec5Title:"الآثار الجانبية", sec5:["تعب/دوخة.", "برودة الأطراف.", "بطء النبض."],
-    sec6Title:"التداخلات", sec6:["بعض أدوية القلب/الضغط قد تزيد التأثير. أخبر الطبيب بكل أدويتك."],
-    sec7Title:"رمضان والصيام", sec7:["استشر الطبيب لتنظيم الجرعات بعد الإفطار/السحور."],
+    sec6Title:"التداخلات", sec6:["بعض أدوية القلب/الضغط قد تزيد التأثير."],
+    sec7Title:"رمضان", sec7:["نظّم الجرعات مع الطبيب حسب الإفطار/السحور."],
     sec8Title:"الحفظ", sec8:["يحفظ تحت 25°م وبعيداً عن الأطفال."],
     footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.", footer2:"إعداد: إبراهيم ظاهر حنف"
   },
   tr:{ pageTitle:"Metoprolol – kalp & tansiyon", hdrH1:"Metoprolol – kalp & tansiyon", hdrP:"Hasta ve yakınları için kısa bilgi.", backText:"İlaç listesine geri dön", langLabel:"Dil seçin:", drugName:"Metoprolol", drugForm:"Tablet (ağızdan)", badgeText:"Kısa ve anlaşılır",
-    sec0Title:"Metoprolol nedir?", sec0:["Beta bloker: nabzı ve tansiyonu düşürür, kalbin yükünü azaltır."],
-    sec1Title:"Ne için kullanılır?", sec1:["Tansiyon.", "Anjina.", "Ritim bozuklukları.", "Bazı hastalarda kalp yetmezliği."],
+    sec0Title:"Metoprolol nedir?", sec0:["Beta bloker: nabzı ve tansiyonu düşürür."],
+    sec1Title:"Ne için kullanılır?", sec1:["Tansiyon.", "Anjina.", "Ritim bozuklukları."],
     sec2Title:"Nasıl alınır?", sec2:["Doktorun söylediği gibi 1–2 kez/gün.", "Aniden bırakmayın."],
     sec3Title:"Yemek ve içecek", sec3:["Yemekle veya yemeksiz alınabilir."],
     sec4Title:"Uyarılar", sec4:["Çok yavaş nabız/ bayılma/ nefes darlığı olursa doktora."],
     sec5Title:"Yan etkiler", sec5:["Yorgunluk, baş dönmesi.", "Soğuk el/ayak.", "Yavaş nabız."],
-    sec6Title:"Etkileşimler", sec6:["Bazı kalp/ tansiyon ilaçları etkiyi artırabilir. Tüm ilaçları söyleyin."],
+    sec6Title:"Etkileşimler", sec6:["Bazı ilaçlar etkiyi artırabilir; tüm ilaçları söyleyin."],
     sec7Title:"Ramazan", sec7:["İftar/sahura göre doktorla planlayın."],
     sec8Title:"Saklama", sec8:["25°C altı, çocuklardan uzak."],
     footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.", footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
@@ -520,19 +501,19 @@ const T = {
     sec3Title:"کھانا پینا", sec3:["کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔"],
     sec4Title:"احتیاطیں", sec4:["بہت کم نبض/بیہوشی/سانس میں دقت ہو تو ڈاکٹر سے رابطہ کریں۔"],
     sec5Title:"مضر اثرات", sec5:["تھکن، چکر.", "ہاتھ پاؤں ٹھنڈے.", "نبض سست."],
-    sec6Title:"تداخلات", sec6:["کچھ دل/بلڈ پریشر کی دوائیں اثر بڑھا سکتی ہیں۔"],
+    sec6Title:"تداخلات", sec6:["کچھ دوائیں اثر بڑھا سکتی ہیں۔"],
     sec7Title:"رمضان", sec7:["افطار/سحری کے مطابق ڈاکٹر سے پلان بنائیں۔"],
     sec8Title:"محفوظ رکھنا", sec8:["25°C سے کم، بچوں سے دور۔"],
     footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔", footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
   },
   fa:{ pageTitle:"متوپرولول – قلب و فشارخون", hdrH1:"متوپرولول – قلب و فشارخون", hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.", backText:"بازگشت به فهرست", langLabel:"انتخاب زبان:", drugName:"متوپرولول", drugForm:"قرص (خوراکی)", badgeText:"کوتاه و روشن",
     sec0Title:"متوپرولول چیست؟", sec0:["بتابلوکر: ضربان و فشارخون را کاهش می‌دهد."],
-    sec1Title:"موارد مصرف", sec1:["فشارخون.", "آنژین.", "آریتمی.", "گاهی نارسایی قلبی طبق نظر پزشک."],
+    sec1Title:"موارد مصرف", sec1:["فشارخون.", "آنژین.", "آریتمی."],
     sec2Title:"نحوه مصرف", sec2:["طبق دستور پزشک ۱–۲ بار در روز.", "ناگهانی قطع نکنید."],
     sec3Title:"غذا و نوشیدنی", sec3:["با غذا یا بدون غذا قابل مصرف است."],
     sec4Title:"هشدارها", sec4:["در ضربان خیلی پایین/غش/تنگی نفس با پزشک تماس بگیرید."],
-    sec5Title:"عوارض", sec5:["خستگی، سرگیجه.", "سردی دست و پا.", "کندی ضربان."],
-    sec6Title:"تداخلات", sec6:["برخی داروهای قلب/فشارخون اثر را افزایش می‌دهند. همه داروها را اعلام کنید."],
+    sec5Title:"عوارض", sec5:["خستگی/سرگیجه.", "کندی ضربان."],
+    sec6Title:"تداخلات", sec6:["برخی داروها اثر را افزایش می‌دهند."],
     sec7Title:"رمضان", sec7:["برای تنظیم ساعت مصرف با پزشک مشورت کنید."],
     sec8Title:"نگهداری", sec8:["زیر ۲۵ درجه و دور از کودکان."],
     footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.", footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
@@ -541,11 +522,11 @@ const T = {
     sec0Title:"متوپرولول چیست؟", sec0:["بتابلاکر: ضربان و فشار را پایین می‌کند."],
     sec1Title:"برای چی؟", sec1:["فشارخون.", "آنژین.", "بی‌نظمی ضربان."],
     sec2Title:"چگونه؟", sec2:["طبق دستور داکتر ۱–۲ بار در روز.", "ناگهانی قطع نکنید."],
-    sec3Title:"غذا", sec3:["با/بی‌غذا."],
+    sec3Title:"غذا", sec3:["با غذا یا بدون غذا."],
     sec4Title:"هشدار", sec4:["نبض خیلی پایین یا تنگی نفس → تماس با داکتر."],
-    sec5Title:"عوارض", sec5:["خستگی/سرگیجه.", "سردی دست و پا."],
-    sec6Title:"تداخلات", sec6:["داروهای قلب/فشار می‌تواند اثر را زیاد کند. همه دواها را بگویید."],
-    sec7Title:"رمضان", sec7:["برای تنظیم وقت با داکتر مشوره کنید."],
+    sec5Title:"عوارض", sec5:["خستگی/سرگیجه."],
+    sec6Title:"تداخلات", sec6:["بعضی دواها اثر را زیاد می‌کند."],
+    sec7Title:"رمضان", sec7:["وقت مصرف را با داکتر تنظیم کنید."],
     sec8Title:"نگهداری", sec8:["زیر ۲۵°C و دور از اطفال."],
     footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.", footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
   },
@@ -555,8 +536,8 @@ const T = {
     sec2Title:"څنګه؟", sec2:["د ډاکټر له مخې ۱–۲ ځله/ورځ.", "ناڅاپه مه بندوئ."],
     sec3Title:"خواړه", sec3:["له خوړو سره یا بې له خوړو."],
     sec4Title:"خبرداری", sec4:["ډېر ورو درزا/بې هوشي/ساه لنډي → ډاکټر."],
-    sec5Title:"اړخیزې اغېزې", sec5:["ستړیا/سر ګرځېدل.", "لاس/پښې یخېدل."],
-    sec6Title:"تداخلات", sec6:["ځینې د زړه/فشار درمل اغېز زیاتوي. ټول درمل ووایئ."],
+    sec5Title:"اړخیزې اغېزې", sec5:["ستړیا/سر ګرځېدل."],
+    sec6Title:"تداخلات", sec6:["ځینې درمل اغېز زیاتوي."],
     sec7Title:"رمضان", sec7:["د وخت تنظیم لپاره له ډاکټر سره سلا وکړئ."],
     sec8Title:"ساتنه", sec8:["تر 25°C لاندې، له ماشومانو لرې."],
     footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.", footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
@@ -579,15 +560,15 @@ function applyLang(lang){
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  setSectionTitle("sec0Title", d.sec0Title);
-  setSectionTitle("sec1Title", d.sec1Title);
-  setSectionTitle("sec2Title", d.sec2Title);
-  setSectionTitle("sec3Title", d.sec3Title);
-  setSectionTitle("sec4Title", d.sec4Title);
-  setSectionTitle("sec5Title", d.sec5Title);
-  setSectionTitle("sec6Title", d.sec6Title);
-  setSectionTitle("sec7Title", d.sec7Title);
-  setSectionTitle("sec8Title", d.sec8Title);
+  document.getElementById("sec0Title").textContent = d.sec0Title;
+  document.getElementById("sec1Title").textContent = d.sec1Title;
+  document.getElementById("sec2Title").textContent = d.sec2Title;
+  document.getElementById("sec3Title").textContent = d.sec3Title;
+  document.getElementById("sec4Title").textContent = d.sec4Title;
+  document.getElementById("sec5Title").textContent = d.sec5Title;
+  document.getElementById("sec6Title").textContent = d.sec6Title;
+  document.getElementById("sec7Title").textContent = d.sec7Title;
+  document.getElementById("sec8Title").textContent = d.sec8Title;
 
   fillList("sec0List", d.sec0);
   fillList("sec1List", d.sec1);
@@ -606,7 +587,6 @@ function applyLang(lang){
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 
-  // Update URL without reload (same as the robust pages)
   const url = new URL(window.location.href);
   url.searchParams.set("lang", lang);
   window.history.replaceState({}, "", url.toString());
@@ -619,10 +599,7 @@ const sel = document.getElementById("langSelect");
 sel.value = (T[startLang] ? startLang : "so");
 
 applyLang(sel.value);
-
-sel.addEventListener("change", function(){
-  applyLang(this.value);
-});
+sel.addEventListener("change", function(){ applyLang(this.value); });
 </script>
 </body>
 </html>
