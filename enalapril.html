@@ -30,9 +30,7 @@
   body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
     transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
   }
-  header{
-    transition: background .45s ease, color .35s ease;
-  }
+  header{ transition: background .45s ease, color .35s ease; }
 }
 
 body{
@@ -48,14 +46,9 @@ header{
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1{
-  margin: 0 0 4px;
-  font-size: 1.8rem;
-}
-header p{
-  margin: 0;
-  font-size: 0.95rem;
-}
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
+
 main{
   max-width: 820px;
   margin: 18px auto 32px;
@@ -71,6 +64,33 @@ a.back{
   font-size: 0.9rem;
 }
 a.back span{ font-size: 1.1rem; }
+
+.langbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
+}
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
+.langbar select{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
+}
 
 .card{
   background: var(--card);
@@ -169,7 +189,6 @@ a.back span{ font-size: 1.1rem; }
   font-size: 0.92rem;
 }
 .section ul li{ margin-bottom: 4px; }
-
 .highlight{ font-weight: 600; }
 
 .footer-note{
@@ -181,34 +200,6 @@ a.back span{ font-size: 1.1rem; }
 
 @media (max-width: 600px){
   header h1 { font-size: 1.5rem; }
-}
-
-/* Dropdown bar */
-.langbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 0 0 14px 0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid var(--accent1);
-}
-.langbar label{
-  font-size:0.9rem;
-  color:var(--text);
-  font-weight:600;
-}
-.langbar select{
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--stroke);
-  background: #fff;
-  color:var(--text);
-  font-size: 0.9rem;
-  max-width: 100%;
 }
 </style>
 </head>
@@ -250,8 +241,8 @@ a.back span{ font-size: 1.1rem; }
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Enalapril – dhiig-karka</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Enalapril</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
       <div class="badge" id="badge">Akhris fudud oo kooban</div>
@@ -261,7 +252,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall"></small></div>
       </div>
       <ul id="useList"></ul>
     </div>
@@ -270,7 +261,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall"></small></div>
       </div>
       <ul id="doseList"></ul>
     </div>
@@ -279,7 +270,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall"></small></div>
       </div>
       <ul id="sideList"></ul>
     </div>
@@ -288,7 +279,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall"></small></div>
       </div>
       <ul id="interactList"></ul>
     </div>
@@ -297,7 +288,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall"></small></div>
       </div>
       <ul id="warnList"></ul>
     </div>
@@ -306,7 +297,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall"></small></div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
@@ -315,7 +306,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall"></small></div>
       </div>
       <ul id="foodList"></ul>
     </div>
@@ -324,7 +315,7 @@ a.back span{ font-size: 1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall"></small></div>
       </div>
       <ul id="storeList"></ul>
     </div>
@@ -339,7 +330,7 @@ a.back span{ font-size: 1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-/* Same 9-language themes */
+/* 9-language themes */
 const THEMES = {
   so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
   da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
@@ -369,41 +360,43 @@ const T = {
     back: "Ku laabo liiska daawooyinka",
     langLabel: "Dooro luqadda:",
     badge: "Akhris fudud oo kooban",
-    drugName: "Enalapril – dhiig-karka",
-    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    drugName: "Enalapril",
+    drugForm: "Kiniin afka ah",
     sections: {
-      use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
-        "Enalapril waa daawo ka tirsan ACE-joojiyaasha (ACE-hæmmer). Waxay yareysaa walax jirka ku jirta oo kordhisa cadaadiska dhiigga (angiotensin II). Taas ayaa ka caawisa hoos u dhigidda dhiig-karka, waxayna fududaysaa shaqada wadnaha marka uu daciifo."
+      use: { title:"Isticmaalka", items:[
+        "Enalapril waa daawo ka tirsan <span class='highlight'>ACE-hæmmer</span> (ACE-joojiye). Waxay caawisaa hoos u dhigista <span class='highlight'>dhiig-karka</span>, waxayna mararka qaarkood ka caawisaa <span class='highlight'>wadne daciif</span> (heart failure)."
       ]},
-      dose: { title:"Qiyaasta", small:"(Dosering)", items:[
-        "Badanaa waxaa lagu bilaabaa qiyaas hoose, 1–2 jeer maalintii.",
-        "Dhakhtarku si tartiib tartiib ah ayuu u kordhiyaa qiyaasta, iyadoo la eegayo cadaadiska dhiigga iyo jawaabta jirka."
+      dose: { title:"Qiyaasta", items:[
+        "Badanaa waxaa lagu bilaabaa qiyaas hoose, waxaana la qaataa <span class='highlight'>1–2 jeer maalintii</span> (sida uu dhakhtarku u qoray).",
+        "Dhakhtarku si tartiib tartiib ah ayuu u kordhin karaa qiyaasta iyadoo la eegayo cadaadiska dhiigga iyo baaritaannada."
       ]},
-      side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
+      side: { title:"Waxyeellooyinka", items:[
         "Qufac qalalan oo joogto ah, madax-wareer, iyo daal.",
-        "Barar wajiga, dibnaha ama cunaha (angioødem) waa xaalad halis ah oo u baahan gargaar degdeg ah."
+        "Haddii ay dhacdo <span class='highlight'>barar wajiga/dibnaha/cunaha</span> (angioødem) → waa xaalad halis ah, raadi gargaar degdeg ah."
       ]},
-      interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
-        "Kiniiniyada potassium (kalium) iyo beddelka cusbada ee potassium ku jirto waa in si taxaddar leh loo isticmaalo.",
-        "Daawooyinka qaar ee kelyaha saameeya, iyo xanuun-joojiyeyaasha NSAID (tusaale ibuprofen), waxay kordhin karaan khatarta dhibaatooyinka kelyaha."
+      interact: { title:"Isdhexgalka daawooyinka", items:[
+        "Ka taxaddar <span class='highlight'>kalium (potassium)</span> iyo beddelka cusbada ee potassium ku jirto.",
+        "NSAID (tusaale ibuprofen/diclofenac) muddo dheer la qaato waxay kordhin karaan khatarta kelyaha oo dhaawacma, gaar ahaan haddii aad fuuqbaxdo."
       ]},
-      warn: { title:"Digniino", small:"(Advarsler)", items:[
-        "Ha isticmaalin haddii aad uur leedahay ama qorshaynayso uur.",
-        "Haddii aad aad u dawakhdo ama kaadidu si muuqata u yaraato, la xiriir dhakhtarkaaga."
+      warn: { title:"Digniino", items:[
+        "Ha isticmaalin haddii aad <span class='highlight'>uur leedahay</span> ama qorshaynayso uur.",
+        "Haddii aad aad u dawakhdo, cadaadis dhiig aad u hooseeyo, ama kaadidu si muuqata u yaraato → la xiriir dhakhtar."
       ]},
-      ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
-        "Qiyaasta waxaa inta badan loo wareejin karaa fiidkii ama <span class='highlight'>cuntada ka hor waaberiga (suhoor)</span>.",
-        "Ha joojin daawada maalmaha soonka adiga oo aan talo ka helin dhakhtarka."
+      ramadan: { title:"Ramadaan iyo soonka", items:[
+        "Haddii aad qaadato hal mar maalintii, badanaa waxaa lagu qaadan karaa <span class='highlight'>ka dib afurka</span>.",
+        "Haddii aad qaadato laba jeer maalintii, badanaa waxaa lagu beegaa <span class='highlight'>afurka</span> iyo <span class='highlight'>suxuurta</span> (sida qorshaha dhakhtarka)."
       ]},
-      food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
-        "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya.",
-        "Cab biyo kugu filan maalintii oo dhan."
+      food: { title:"Cunto iyo cabitaan", items:[
+        "Waxaa la qaadan karaa <span class='highlight'>cunto la jirto ama la’aan</span>.",
+        "Cab biyo kugu filan (gaar ahaan maalmaha kulul ama haddii aad shuban/matag leedahay)."
       ]},
-      store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto <span class='highlight'>taariikhda dhicitaanka</span> (expiry date) ama haddii midabku isbeddelay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      store: { title:"Kaydinta daawada", items:[
+        "Ku hay daawada meel ka fog carruurta, kana hooseysa 25°C.",
+        "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
+        "Ha isticmaalin ka dib “EXP”. Wixii soo haray ku celi farmashiyaha."
       ]}
     },
-    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
     creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
 
@@ -413,42 +406,44 @@ const T = {
     back: "Tilbage til medicinlisten",
     langLabel: "Vælg sprog:",
     badge: "Kort og let at læse",
-    drugName: "Enalapril – forhøjet blodtryk",
-    drugForm: "Tablet til oral brug",
+    drugName: "Enalapril",
+    drugForm: "Tablet (til at tage gennem munden)",
     sections: {
-      use: { title:"Anvendelse", small:"", items:[
+      use: { title:"Anvendelse", items:[
         "Enalapril er en ACE-hæmmer. Den sænker blodtrykket og kan også bruges ved hjertesvigt, fordi den aflaster hjertet."
       ]},
-      dose: { title:"Dosering", small:"", items:[
+      dose: { title:"Dosering", items:[
         "Man starter ofte med en lav dosis 1–2 gange dagligt.",
         "Lægen øger dosis gradvist ud fra blodtryk og effekt."
       ]},
-      side: { title:"Bivirkninger", small:"", items:[
+      side: { title:"Bivirkninger", items:[
         "Tør hoste, svimmelhed og træthed.",
         "Hævelse i ansigt, læber eller hals (angioødem) er sjældent, men alvorligt, og kræver akut hjælp."
       ]},
-      interact: { title:"Interaktioner", small:"", items:[
+      interact: { title:"Interaktioner", items:[
         "Kaliumtilskud og saltsubstitutter med kalium skal bruges med forsigtighed.",
         "Visse nyrepåvirkende lægemidler og NSAID (fx ibuprofen) kan øge risikoen for nyreproblemer."
       ]},
-      warn: { title:"Advarsler", small:"", items:[
+      warn: { title:"Advarsler", items:[
         "Må ikke bruges under graviditet eller hvis du planlægger graviditet.",
         "Kontakt lægen, hvis du bliver meget svimmel, eller hvis du tisser markant mindre."
       ]},
-      ramadan: { title:"Ramadan og faste", small:"", items:[
+      ramadan: { title:"Ramadan og faste", items:[
         "Dosis kan ofte flyttes til aften eller til måltidet før daggry (suhoor).",
         "Stop ikke medicinen i fastedage uden at tale med lægen."
       ]},
-      food: { title:"Mad og drikke", small:"", items:[
+      food: { title:"Mad og drikke", items:[
         "Kan tages med eller uden mad.",
         "Drik tilstrækkeligt med vand i løbet af dagen."
       ]},
-      store: { title:"Opbevaring", small:"", items:[
-        "Opbevar utilgængeligt for børn og under 25 °C. Opbevar i original emballage for at beskytte mod lys og fugt. Brug ikke efter <span class='highlight'>udløbsdatoen</span> eller hvis farven har ændret sig. Spørg apoteket om korrekt bortskaffelse af rester."
+      store: { title:"Opbevaring", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C.",
+        "Opbevar i original emballage for at beskytte mod lys og fugt.",
+        "Brug ikke efter udløbsdato (EXP). Aflever rester på apoteket."
       ]}
     },
     footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
-    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
   en: {
@@ -457,38 +452,40 @@ const T = {
     back: "Back to the medicine list",
     langLabel: "Choose language:",
     badge: "Short and easy to read",
-    drugName: "Enalapril – high blood pressure",
+    drugName: "Enalapril",
     drugForm: "Oral tablet",
     sections: {
-      use: { title:"Use", small:"", items:[
+      use: { title:"Use", items:[
         "Enalapril is an ACE inhibitor. It lowers blood pressure and may also be used in heart failure to reduce strain on the heart."
       ]},
-      dose: { title:"Dosage", small:"", items:[
+      dose: { title:"Dosage", items:[
         "Treatment often starts with a low dose taken 1–2 times daily.",
         "Your doctor increases the dose gradually based on blood pressure and response."
       ]},
-      side: { title:"Side effects", small:"", items:[
+      side: { title:"Side effects", items:[
         "Persistent dry cough, dizziness, and tiredness.",
         "Swelling of the face, lips, or throat (angioedema) is rare but serious and needs urgent medical help."
       ]},
-      interact: { title:"Interactions", small:"", items:[
+      interact: { title:"Interactions", items:[
         "Potassium supplements and salt substitutes containing potassium should be used with caution.",
         "Some kidney-affecting medicines and NSAIDs (e.g., ibuprofen) can increase the risk of kidney problems."
       ]},
-      warn: { title:"Warnings", small:"", items:[
+      warn: { title:"Warnings", items:[
         "Do not use during pregnancy or if you are planning a pregnancy.",
         "Contact your doctor if you feel very dizzy or if you urinate much less than usual."
       ]},
-      ramadan: { title:"Ramadan and fasting", small:"", items:[
+      ramadan: { title:"Ramadan and fasting", items:[
         "The dose can often be moved to the evening or with the pre-dawn meal (suhoor).",
         "Do not stop the medicine for fasting without medical advice."
       ]},
-      food: { title:"Food and drink", small:"", items:[
+      food: { title:"Food and drink", items:[
         "Can be taken with or without food.",
         "Drink enough water throughout the day."
       ]},
-      store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the <span class='highlight'>expiry date</span> or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+      store: { title:"Storage", items:[
+        "Keep out of reach of children and store below 25 °C.",
+        "Keep in the original packaging to protect from light and moisture.",
+        "Do not use after expiry date (EXP). Return leftovers to the pharmacy."
       ]}
     },
     footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
@@ -501,42 +498,43 @@ const T = {
     back: "العودة إلى قائمة الأدوية",
     langLabel: "اختر اللغة:",
     badge: "معلومات مختصرة وسهلة",
-    drugName: "إنالابريل – ارتفاع ضغط الدم",
+    drugName: "إنالابريل",
     drugForm: "أقراص فموية",
     sections: {
-      use: { title:"الاستعمال", small:"", items:[
-        "إنالابريل من مثبطات الإنزيم المحول للأنجيوتنسين (ACE). يُخفض ضغط الدم وقد يُستخدم أيضاً في قصور القلب لتخفيف العبء على القلب."
+      use: { title:"الاستعمال", items:[
+        "إنالابريل من مثبطات ACE. يُخفض ضغط الدم وقد يُستخدم أيضاً في قصور القلب لتخفيف العبء على القلب."
       ]},
-      dose: { title:"الجرعة", small:"", items:[
+      dose: { title:"الجرعة", items:[
         "يبدأ العلاج غالباً بجرعة منخفضة مرة أو مرتين يومياً.",
         "يزيد الطبيب الجرعة تدريجياً حسب ضغط الدم والاستجابة."
       ]},
-      side: { title:"الآثار الجانبية", small:"", items:[
+      side: { title:"الآثار الجانبية", items:[
         "سعال جاف مستمر، دوخة وتعب.",
         "تورم الوجه أو الشفتين أو الحلق (وذمة وعائية) نادر لكنه خطير ويحتاج إلى رعاية عاجلة."
       ]},
-      interact: { title:"التداخلات الدوائية", small:"", items:[
-        "يجب استخدام مكملات البوتاسيوم وبدائل الملح التي تحتوي على بوتاسيوم بحذر.",
-        "قد تزيد بعض الأدوية التي تؤثر على الكلى ومسكنات NSAIDs (مثل إيبوبروفين) من خطر مشاكل الكلى."
+      interact: { title:"التداخلات الدوائية", items:[
+        "الحذر مع مكملات البوتاسيوم وبدائل الملح المحتوية على بوتاسيوم.",
+        "بعض الأدوية المؤثرة على الكلى وNSAIDs قد تزيد خطر مشاكل الكلى."
       ]},
-      warn: { title:"تحذيرات", small:"", items:[
+      warn: { title:"تحذيرات", items:[
         "لا يُستخدم أثناء الحمل أو عند التخطيط للحمل.",
         "اتصل بالطبيب إذا شعرت بدوخة شديدة أو قلّ التبول بشكل واضح."
       ]},
-      ramadan: { title:"رمضان والصيام", small:"", items:[
-        "يمكن غالباً نقل الجرعة إلى المساء أو مع وجبة ما قبل الفجر (السحور).",
+      ramadan: { title:"رمضان والصيام", items:[
+        "يمكن غالباً نقل الجرعة إلى المساء أو مع وجبة السحور.",
         "لا توقف الدواء من أجل الصيام دون استشارة طبية."
       ]},
-      food: { title:"الطعام والشراب", small:"", items:[
+      food: { title:"الطعام والشراب", items:[
         "يمكن تناوله مع الطعام أو بدونه.",
         "اشرب كمية كافية من الماء خلال اليوم."
       ]},
-      store: { title:"الحفظ", small:"", items:[
-        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م، وفي العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد <span class='highlight'>تاريخ الانتهاء</span> أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+      store: { title:"الحفظ", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م وفي العبوة الأصلية.",
+        "لا تستخدمه بعد تاريخ الانتهاء (EXP). أعد البقايا إلى الصيدلية."
       ]}
     },
     footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
-    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+    creditHTML: "إعداد: إبراهيم ظاهر حنف"
   },
 
   tr: {
@@ -545,86 +543,88 @@ const T = {
     back: "İlaç listesine geri dön",
     langLabel: "Dil seçin:",
     badge: "Kısa ve anlaşılır",
-    drugName: "Enalapril – yüksek tansiyon",
+    drugName: "Enalapril",
     drugForm: "Ağızdan alınan tablet",
     sections: {
-      use: { title:"Kullanım", small:"", items:[
+      use: { title:"Kullanım", items:[
         "Enalapril bir ACE inhibitörüdür. Tansiyonu düşürür ve bazı hastalarda kalp yetmezliğinde kalbin yükünü azaltmak için kullanılır."
       ]},
-      dose: { title:"Doz", small:"", items:[
+      dose: { title:"Doz", items:[
         "Genellikle düşük dozla başlanır ve günde 1–2 kez alınır.",
         "Doktor tansiyonunuza göre dozu yavaş yavaş artırır."
       ]},
-      side: { title:"Yan etkiler", small:"", items:[
+      side: { title:"Yan etkiler", items:[
         "Sürekli kuru öksürük, baş dönmesi ve yorgunluk.",
-        "Yüz, dudak veya boğazda şişme (anjiyoödem) nadir ama ciddi olup acil yardım gerektirir."
+        "Yüz/dudak/boğazda şişme (anjiyoödem) nadir ama ciddidir; acil yardım gerekir."
       ]},
-      interact: { title:"Etkileşimler", small:"", items:[
-        "Potasyum takviyeleri ve potasyum içeren tuz ikameleri dikkatle kullanılmalıdır.",
-        "Bazı böbreği etkileyen ilaçlar ve NSAİİ’ler böbrek sorunları riskini artırabilir."
+      interact: { title:"Etkileşimler", items:[
+        "Potasyum takviyeleri ve potasyum içeren tuz ikamelerine dikkat.",
+        "Bazı böbreği etkileyen ilaçlar ve NSAİİ’ler böbrek riskini artırabilir."
       ]},
-      warn: { title:"Uyarılar", small:"", items:[
+      warn: { title:"Uyarılar", items:[
         "Hamilelikte kullanılmaz; hamilelik planlıyorsanız doktorunuza söyleyin.",
         "Çok baş dönmesi olursa veya idrarınız belirgin azalırsa doktorla görüşün."
       ]},
-      ramadan: { title:"Ramazan ve oruç", small:"", items:[
-        "Doz çoğu zaman akşama veya gün doğumundan önceki öğünle (sahur) alınacak şekilde ayarlanabilir.",
+      ramadan: { title:"Ramazan ve oruç", items:[
+        "Doz çoğu zaman akşama veya sahura göre ayarlanabilir.",
         "Doktora danışmadan oruç için ilacı kesmeyin."
       ]},
-      food: { title:"Yiyecek ve içecek", small:"", items:[
+      food: { title:"Yiyecek ve içecek", items:[
         "Yemekle birlikte veya yemeksiz alınabilir.",
         "Gün boyunca yeterli su için."
       ]},
-      store: { title:"Saklama", small:"", items:[
-        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. <span class='highlight'>Son kullanma tarihinden</span> sonra veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
+      store: { title:"Saklama", items:[
+        "Çocuklardan uzak ve 25 °C’nin altında saklayın.",
+        "Orijinal ambalajında saklayın. SKT (EXP) sonrası kullanmayın; artanları eczaneye verin."
       ]}
     },
     footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
-    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+    creditHTML: "Hazırlayan: Ibrahim Dahir Hanaf"
   },
 
   ur: {
-    title: "اینا لاپریل – بلند فشارِ خون",
+    title: "اینالاپرل – بلند فشارِ خون",
     subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
     back: "ادویات کی فہرست پر واپس جائیں",
     langLabel: "زبان منتخب کریں:",
     badge: "مختصر اور آسان",
-    drugName: "اینا لاپریل – بلند فشارِ خون",
+    drugName: "اینالاپرل",
     drugForm: "منہ کے ذریعے لینے والی گولی",
     sections: {
-      use: { title:"استعمال", small:"", items:[
-        "اینا لاپریل ایک ACE inhibitor ہے۔ یہ بلڈ پریشر کم کرتی ہے اور بعض مریضوں میں دل کی کمزوری (heart failure) میں بھی مدد دیتی ہے۔"
+      use: { title:"استعمال", items:[
+        "اینالاپرل ایک ACE inhibitor ہے۔ یہ بلڈ پریشر کم کرتی ہے اور بعض مریضوں میں دل کی کمزوری میں بھی مدد دیتی ہے۔"
       ]},
-      dose: { title:"خوراک", small:"", items:[
+      dose: { title:"خوراک", items:[
         "عام طور پر کم خوراک سے شروع کیا جاتا ہے اور دن میں 1–2 بار لیا جاتا ہے۔",
         "ڈاکٹر بلڈ پریشر دیکھ کر خوراک آہستہ آہستہ بڑھاتا ہے۔"
       ]},
-      side: { title:"مضر اثرات", small:"", items:[
+      side: { title:"مضر اثرات", items:[
         "مسلسل خشک کھانسی، چکر آنا اور تھکن۔",
-        "چہرے، ہونٹوں یا گلے کی سوجن (انجیوایڈیما) کم مگر خطرناک ہے اور فوری علاج ضروری ہے۔"
+        "چہرے/ہونٹوں/گلے کی سوجن (انجیوایڈیما) کم مگر خطرناک ہے؛ فوری علاج ضروری ہے۔"
       ]},
-      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
+      interact: { title:"دواؤں کے باہمی اثرات", items:[
         "پوٹاشیم سپلیمنٹس اور پوٹاشیم والے نمک کے متبادل احتیاط سے استعمال کریں۔",
         "کچھ گردوں پر اثر کرنے والی دوائیں اور NSAIDs گردوں کے مسائل کا خطرہ بڑھا سکتی ہیں۔"
       ]},
-      warn: { title:"احتیاطیں", small:"", items:[
-        "حمل میں استعمال نہ کریں، اور اگر حمل کا ارادہ ہو تو ڈاکٹر کو بتائیں۔",
+      warn: { title:"احتیاطیں", items:[
+        "حمل میں استعمال نہ کریں؛ اگر حمل کا ارادہ ہو تو ڈاکٹر کو بتائیں۔",
         "اگر بہت زیادہ چکر آئیں یا پیشاب واضح طور پر کم ہو جائے تو ڈاکٹر سے رابطہ کریں۔"
       ]},
-      ramadan: { title:"رمضان اور روزہ", small:"", items:[
-        "اکثر خوراک کو شام یا سحر سے پہلے کے کھانے (سحری) کے مطابق کیا جا سکتا ہے۔",
+      ramadan: { title:"رمضان اور روزہ", items:[
+        "اکثر خوراک کو شام یا سحری کے مطابق کیا جا سکتا ہے۔",
         "ڈاکٹر کے مشورے کے بغیر روزے کی وجہ سے دوا نہ روکیں۔"
       ]},
-      food: { title:"کھانا پینا", small:"", items:[
+      food: { title:"کھانا پینا", items:[
         "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
         "دن بھر مناسب مقدار میں پانی پئیں۔"
       ]},
-      store: { title:"محفوظ رکھنا", small:"", items:[
-        "بچوں کی پہنچ سے دور رکھیں اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ <span class='highlight'>میعاد ختم ہونے کی تاریخ</span> کے بعد استعمال نہ کریں، یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
+      store: { title:"محفوظ رکھنا", items:[
+        "بچوں سے دور اور 25°C سے کم درجۂ حرارت پر رکھیں۔",
+        "اصل پیک میں رکھیں۔ EXP کے بعد استعمال نہ کریں؛ بچی دوا فارمیسی کو دیں۔"
       ]}
     },
     footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
-    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+    creditHTML: "مرتب کردہ: ابراہیم ظاہر حنف"
   },
 
   fa: {
@@ -633,42 +633,43 @@ const T = {
     back: "بازگشت به فهرست داروها",
     langLabel: "انتخاب زبان:",
     badge: "کوتاه و قابل‌فهم",
-    drugName: "انالاپریل – فشار خون بالا",
+    drugName: "انالاپریل",
     drugForm: "قرص خوراکی",
     sections: {
-      use: { title:"موارد مصرف", small:"", items:[
-        "انالاپریل یک مهارکننده ACE است. فشار خون را کاهش می‌دهد و گاهی در نارسایی قلبی برای کاهش فشار روی قلب نیز استفاده می‌شود."
+      use: { title:"موارد مصرف", items:[
+        "انالاپریل یک مهارکننده ACE است. فشار خون را کاهش می‌دهد و گاهی در نارسایی قلبی نیز استفاده می‌شود."
       ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
+      dose: { title:"مقدار مصرف", items:[
         "معمولاً با دوز پایین شروع می‌شود و 1–2 بار در روز مصرف می‌گردد.",
         "پزشک با توجه به فشار خون، دوز را به‌تدریج افزایش می‌دهد."
       ]},
-      side: { title:"عوارض جانبی", small:"", items:[
+      side: { title:"عوارض جانبی", items:[
         "سرفه خشک مداوم، سرگیجه و خستگی.",
-        "تورم صورت، لب‌ها یا گلو (آنژیوادم) نادر اما خطرناک است و نیاز به کمک فوری دارد."
+        "تورم صورت/لب‌ها/گلو (آنژیوادم) نادر اما خطرناک است و کمک فوری می‌خواهد."
       ]},
-      interact: { title:"تداخل‌های دارویی", small:"", items:[
-        "مکمل‌های پتاسیم و جایگزین‌های نمکِ حاوی پتاسیم باید با احتیاط مصرف شوند.",
+      interact: { title:"تداخل‌های دارویی", items:[
+        "با مکمل‌های پتاسیم و جایگزین‌های نمکِ حاوی پتاسیم احتیاط کنید.",
         "برخی داروهای مؤثر بر کلیه و NSAIDها می‌توانند خطر مشکلات کلیوی را افزایش دهند."
       ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "در بارداری استفاده نشود، و اگر قصد بارداری دارید به پزشک اطلاع دهید.",
-        "اگر خیلی سرگیجه دارید یا ادرار شما به‌طور واضح کم شد، با پزشک تماس بگیرید."
+      warn: { title:"هشدارها", items:[
+        "در بارداری استفاده نشود؛ اگر قصد بارداری دارید به پزشک اطلاع دهید.",
+        "اگر خیلی سرگیجه دارید یا ادرار شما واضح کم شد، با پزشک تماس بگیرید."
       ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "اغلب می‌توان زمان مصرف را به شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) منتقل کرد.",
+      ramadan: { title:"رمضان و روزه", items:[
+        "اغلب می‌توان زمان مصرف را به شب یا همراه سحری منتقل کرد.",
         "بدون مشورت پزشک، دارو را در روزهای روزه قطع نکنید."
       ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
+      food: { title:"غذا و نوشیدنی", items:[
         "با غذا یا بدون غذا قابل مصرف است.",
         "در طول روز آب کافی بنوشید."
       ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از <span class='highlight'>تاریخ انقضا</span> یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
+      store: { title:"نگهداری", items:[
+        "دور از دسترس کودکان و زیر 25°C نگهداری شود.",
+        "در بسته‌بندی اصلی نگه دارید. بعد از EXP استفاده نشود؛ باقیمانده را به داروخانه تحویل دهید."
       ]}
     },
     footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+    creditHTML: "تهیه‌کننده: ابراهیم ظاهر حنف"
   },
 
   prs: {
@@ -677,42 +678,43 @@ const T = {
     back: "بازگشت به فهرست دواها",
     langLabel: "انتخاب زبان:",
     badge: "کوتاه و قابل‌فهم",
-    drugName: "انالاپریل – فشار خون بلند",
+    drugName: "انالاپریل",
     drugForm: "قرص خوراکی",
     sections: {
-      use: { title:"موارد استعمال", small:"", items:[
-        "انالاپریل یک ACE inhibitor است. فشار خون را پایین می‌آورد و گاهی در نارسایی قلبی برای کم‌کردن فشار بالای قلب هم استفاده می‌شود."
+      use: { title:"موارد استعمال", items:[
+        "انالاپریل یک ACE inhibitor است. فشار خون را پایین می‌آورد و گاهی در نارسایی قلبی هم استفاده می‌شود."
       ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
+      dose: { title:"مقدار مصرف", items:[
         "اکثر با دوز پایین شروع می‌شود و 1–2 بار در روز گرفته می‌شود.",
         "داکتر با توجه به فشار خون، دوز را به‌تدریج زیاد می‌کند."
       ]},
-      side: { title:"عوارض جانبی", small:"", items:[
+      side: { title:"عوارض جانبی", items:[
         "سرفه خشک دوامدار، سرگیجه و خستگی.",
-        "پف‌کردگی صورت، لب‌ها یا گلو (آنژیوادم) نادر اما خطرناک است و کمک فوری می‌خواهد."
+        "پف‌کردگی صورت/لب‌ها/گلو (آنژیوادم) نادر اما خطرناک است و کمک فوری می‌خواهد."
       ]},
-      interact: { title:"تداخلات دوایی", small:"", items:[
-        "مکمل‌های پتاسیم و بدیل‌های نمکِ حاوی پتاسیم باید با احتیاط استفاده شود.",
-        "بعضی دواهای مؤثر بر کلیه و NSAIDها می‌توانند خطر مشکلات کلیوی را زیاد کنند."
+      interact: { title:"تداخلات دوایی", items:[
+        "با مکمل‌های پتاسیم و بدیل‌های نمکِ حاوی پتاسیم احتیاط کنید.",
+        "بعضی دواهای مؤثر بر کلیه و NSAIDها خطر مشکلات کلیوی را زیاد می‌کند."
       ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "در بارداری استفاده نشود، و اگر قصد بارداری دارید به داکتر بگویید.",
+      warn: { title:"هشدارها", items:[
+        "در بارداری استفاده نشود؛ اگر قصد بارداری دارید به داکتر بگویید.",
         "اگر بسیار سرگیجه دارید یا ادرار شما واضح کم شد، با داکتر تماس بگیرید."
       ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "اکثر می‌توان وقت مصرف را به شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) منتقل کرد.",
+      ramadan: { title:"رمضان و روزه", items:[
+        "اکثر می‌توان وقت مصرف را به شب یا همراه سحری منتقل کرد.",
         "بدون مشورهٔ داکتر، دوا را در روزهای روزه قطع نکنید."
       ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
+      food: { title:"غذا و نوشیدنی", items:[
         "با غذا یا بدون غذا گرفته می‌شود.",
         "در طول روز آب کافی بنوشید."
       ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از <span class='highlight'>تاریخ انقضا</span> یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
+      store: { title:"نگهداری", items:[
+        "دور از دسترس اطفال و زیر 25°C نگه‌داری کنید.",
+        "در بسته‌بندی اصلی نگه دارید. بعد از EXP استفاده نکنید؛ باقی‌مانده را به دواخانه بسپارید."
       ]}
     },
     footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+    creditHTML: "تهیه‌کننده: ابراهیم ظاهر حنف"
   },
 
   ps: {
@@ -721,42 +723,43 @@ const T = {
     back: "د درملو لېست ته بېرته",
     langLabel: "ژبه وټاکئ:",
     badge: "لنډ او اسانه",
-    drugName: "اینالاپریل – لوړ د وینې فشار",
+    drugName: "اینالاپریل",
     drugForm: "د خولې ګولۍ",
     sections: {
-      use: { title:"کارونه", small:"", items:[
-        "اینالاپریل د ACE inhibitor له ډلې څخه دی. د وینې فشار کموي او ځینې وخت د زړه د کمزورۍ (heart failure) کې هم د زړه بار کموي."
+      use: { title:"کارونه", items:[
+        "اینالاپریل د ACE inhibitor له ډلې څخه دی. د وینې فشار کموي او ځینې وخت د زړه د کمزورۍ کې هم کارېږي."
       ]},
-      dose: { title:"دوز", small:"", items:[
+      dose: { title:"دوز", items:[
         "اکثره له ټیټ دوز څخه پیل کېږي او په ورځ کې 1–2 ځله اخیستل کېږي.",
         "ډاکټر د وینې فشار له مخې دوز ورو ورو زیاتوي."
       ]},
-      side: { title:"اړخیزې اغېزې", small:"", items:[
+      side: { title:"اړخیزې اغېزې", items:[
         "پرله‌پسې وچ ټوخى، سر ګرځېدل او ستړیا.",
-        "د مخ، شونډو یا ستوني پړسوب (انجیوایډیما) نادر خو خطرناک دی او بیړنۍ مرسته غواړي."
+        "د مخ/شونډو/ستوني پړسوب (انجیوایډیما) نادر خو خطرناک دی؛ بیړنۍ مرسته غواړي."
       ]},
-      interact: { title:"د درملو تعامل", small:"", items:[
+      interact: { title:"د درملو تعامل", items:[
         "د پوټاشیم سپلېمنټونه او د پوټاشیم لرونکي مالګې بدیلونه په احتیاط وکاروئ.",
-        "ځینې د پښتورګو اغېزمن درمل او NSAID درمل کولی شي د پښتورګو ستونزو خطر زیات کړي."
+        "ځینې د پښتورګو اغېزمن درمل او NSAID درمل د پښتورګو ستونزو خطر زیاتولی شي."
       ]},
-      warn: { title:"احتیاط", small:"", items:[
-        "په امیندوارۍ کې مه کاروئ، او که د امیندوارۍ پلان لرئ ډاکټر ته ووایئ.",
+      warn: { title:"احتیاط", items:[
+        "په امیندوارۍ کې مه کاروئ؛ که د امیندوارۍ پلان لرئ ډاکټر ته ووایئ.",
         "که ډېر سر ګرځېږي یا ادرار مو څرګند کم شي، له ډاکټر سره اړیکه ونیسئ."
       ]},
-      ramadan: { title:"رمضان او روژه", small:"", items:[
-        "اکثره دوز ماښام یا د سهار له لمرختو مخکې له خوراک سره (سحري) ته انتقالېدای شي.",
+      ramadan: { title:"رمضان او روژه", items:[
+        "اکثره دوز ماښام یا د سحري له خوراک سره تنظیمېدای شي.",
         "له طبي مشورې پرته د روژې په ورځو کې درمل مه بندوئ."
       ]},
-      food: { title:"خواړه او څښاک", small:"", items:[
+      food: { title:"خواړه او څښاک", items:[
         "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
         "د ورځې په اوږدو کې کافي اوبه وڅښئ."
       ]},
-      store: { title:"ساتنه", small:"", items:[
-        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د <span class='highlight'>ختمېدو نېټې</span> وروسته، یا د رنګ بدلون په صورت کې، مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
+      store: { title:"ساتنه", items:[
+        "له ماشومانو لرې او تر 25°C لاندې وساتئ.",
+        "په اصلي بسته کې وساتئ. د EXP وروسته مه کاروئ؛ پاتې درمل درملتون ته وسپارئ."
       ]}
     },
     footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
-    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+    creditHTML: "چمتو کوونکی: ابراهیم ظاهر حنف"
   }
 };
 
@@ -775,6 +778,14 @@ function fillList(listId, items){
     li.innerHTML = html;
     ul.appendChild(li);
   });
+}
+
+function setSmall(id, text){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (text || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
 }
 
 function render(lang){
@@ -796,28 +807,23 @@ function render(lang){
   document.getElementById("drugForm").textContent = d.drugForm;
 
   document.getElementById("useTitle").textContent = d.sections.use.title;
-  document.getElementById("useSmall").textContent = d.sections.use.small || "";
-
   document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
-
   document.getElementById("sideTitle").textContent = d.sections.side.title;
-  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
-
   document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
-
   document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
-
   document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
-
   document.getElementById("foodTitle").textContent = d.sections.food.title;
-  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
-
   document.getElementById("storeTitle").textContent = d.sections.store.title;
-  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+
+  /* IMPORTANT: no parenthesis translations — keep all <small> empty/hidden */
+  setSmall("useSmall", "");
+  setSmall("doseSmall", "");
+  setSmall("sideSmall", "");
+  setSmall("interactSmall", "");
+  setSmall("warnSmall", "");
+  setSmall("ramadanSmall", "");
+  setSmall("foodSmall", "");
+  setSmall("storeSmall", "");
 
   fillList("useList", d.sections.use.items);
   fillList("doseList", d.sections.dose.items);
