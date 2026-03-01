@@ -6,193 +6,877 @@
 <title>Metformin – sonkorowga (Type 2)</title>
 
 <style>
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-header { background:linear-gradient(135deg,#0066cc,#00a676); color:#fff; padding:22px 16px; text-align:center; }
-main { max-width:820px; margin:18px auto; padding:0 14px; }
-.card{ background:#fff; border-radius:14px; padding:16px; margin-bottom:14px; box-shadow:0 3px 10px rgba(0,0,0,0.12); border-top:4px solid #00a676;}
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2;}
-.section-header{ display:flex; gap:8px; margin-bottom:4px;}
-.section-title{ font-weight:700; }
-.section ul{ margin-left:18px;}
-.footer-note{ font-size:0.8rem; text-align:center; margin:18px 0;}
-.langbar{ display:flex; gap:10px; flex-wrap:wrap; background:#fff; border-radius:12px; padding:10px; margin-bottom:14px;}
+:root{
+  /* Theme variables (changed by JS) */
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
+
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
+
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
+}
+
+/* Smooth theme transitions */
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{
+    transition: background .45s ease, color .35s ease;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
+header {
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+header h1 { margin: 0 0 4px; font-size: 1.8rem; }
+header p { margin: 0; font-size: 0.95rem; }
+
+main { max-width: 820px; margin: 18px auto 32px; padding: 0 14px; }
+
+a.back{
+  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
+  text-decoration:none; color:var(--link); font-size:0.9rem;
+}
+a.back span{ font-size:1.1rem; }
+
+.card{
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid var(--accent1);
+}
+
+.drug-meta{
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  gap:10px; margin-bottom:8px;
+}
+.drug-info{ display:flex; align-items:center; gap:10px; }
+
+.drug-icon{
+  width:44px; height:44px; border-radius:12px;
+  background:#e3f2fd;
+  display:flex; align-items:center; justify-content:center;
+}
+.drug-icon svg{ width:30px; height:30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.drug-icon svg .fill{ fill: #e8f3ff; }
+
+.drug-labels{ display:flex; flex-direction:column; }
+.drug-name{ font-weight:600; font-size:0.95rem; }
+.drug-form{ font-size:0.82rem; color:#29516e; }
+
+.badge{
+  display:inline-flex; align-items:center; gap:4px;
+  background: var(--pillBg);
+  color: var(--pillText);
+  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  border:1px solid rgba(0,0,0,0.04);
+}
+
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--stroke); }
+.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+
+.section-icon{
+  width:24px; height:24px; border-radius:999px;
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:0.9rem; color: var(--text);
+}
+
+.section-icon.use{ background:#e3f2fd; }
+.section-icon.dose{ background:#e2f5ea; }
+.section-icon.side{ background:#fff3e0; }
+.section-icon.interact{ background:#ede7f6; }
+.section-icon.warn{ background:#ffebee; }
+.section-icon.ramadan{ background:#e0f7fa; }
+.section-icon.food{ background:#f1f8e9; }
+.section-icon.store{ background:#edeff9; }
+
+.section-title{ font-weight:700; color:var(--text); font-size:0.96rem; }
+.section-title small{ font-weight:400; color:var(--muted); }
+
+.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
+.section ul li{ margin-bottom:4px; }
+
+.highlight{ font-weight:600; }
+
+.footer-note{ font-size:0.8rem; color:var(--muted); text-align:center; margin:18px 0 10px; }
+
+@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+
+/* Dropdown bar */
+.langbar{
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  background:#ffffff; border-radius:12px; padding:10px 12px;
+  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
+  border-left:4px solid var(--accent1);
+}
+.langbar label{
+  font-size:0.9rem; color:var(--text); font-weight:600;
+}
+.langbar select{
+  padding:7px 10px; border-radius:10px; border:1px solid var(--stroke);
+  background:#fff; color:var(--text); font-size:0.9rem; max-width:100%;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1 id="hdrH1">Metformin – sonkorowga (Type 2)</h1>
-<p id="hdrP">Waa warbixin kooban oo loogu talagalay bukaannada</p>
+  <h1 id="hdrTitle">Metformin – sonkorowga (Type 2)</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
 
-<div class="langbar">
-<label for="langSelect" id="langLabel">Dooro luqadda:</label>
-<select id="langSelect">
-<option value="so" selected>Somalisk</option>
-<option value="da">Dansk</option>
-<option value="en">English</option>
-<option value="ar">العربية</option>
-<option value="tr">Türkçe</option>
-<option value="ur">اردو</option>
-<option value="fa">فارسی</option>
-<option value="prs">دری</option>
-<option value="ps">پښتو</option>
-</select>
-</div>
+  <div class="langbar" aria-label="Vælg sprog">
+    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
+    <select id="langSelect">
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+      <option value="tr">Tyrkisk</option>
+      <option value="ur">Urdu</option>
+      <option value="fa">Persisk</option>
+      <option value="prs">Dari</option>
+      <option value="ps">Pashto</option>
+    </select>
+  </div>
 
-<div class="card">
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec0Title">Waa maxay Metformin?</div>
-</div>
-<ul id="sec0List"></ul>
-</div>
+  <div class="card">
+    <div class="drug-meta">
+      <div class="drug-info">
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" />
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
+          </svg>
+        </div>
+        <div class="drug-labels">
+          <div class="drug-name" id="drugName">Metformin – sonkorowga (Type 2)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
+        </div>
+      </div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec1Title">Maxaa loo isticmaalaa?</div>
-</div>
-<ul id="sec1List"></ul>
-</div>
+    <!-- 1 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon use">1</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall"></small></div>
+      </div>
+      <ul id="useList"></ul>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec2Title">Sida loo qaato</div>
-</div>
-<ul id="sec2List"></ul>
-</div>
+    <!-- 2 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon dose">2</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall"></small></div>
+      </div>
+      <ul id="doseList"></ul>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec3Title">Cunto iyo cabitaan</div>
-</div>
-<ul id="sec3List"></ul>
-</div>
+    <!-- 3 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon side">3</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall"></small></div>
+      </div>
+      <ul id="sideList"></ul>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec4Title">Digniino</div>
-</div>
-<ul id="sec4List"></ul>
-</div>
+    <!-- 4 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon interact">4</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall"></small></div>
+      </div>
+      <ul id="interactList"></ul>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec5Title">Dhibaatooyinka</div>
-</div>
-<ul id="sec5List"></ul>
-</div>
+    <!-- 5 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall"></small></div>
+      </div>
+      <ul id="warnList"></ul>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec6Title">Is-dhexgalka</div>
-</div>
-<ul id="sec6List"></ul>
-</div>
+    <!-- 6 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall"></small></div>
+      </div>
+      <ul id="ramadanList"></ul>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec7Title">Ramadaanka</div>
-</div>
-<ul id="sec7List"></ul>
-</div>
+    <!-- 7 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall"></small></div>
+      </div>
+      <ul id="foodList"></ul>
+    </div>
 
-<div class="section">
-<div class="section-header">
-<div class="section-title" id="sec8Title">Kaydinta</div>
-</div>
-<ul id="sec8List"></ul>
-</div>
+    <!-- 8 -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon store">⧉</div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall"></small></div>
+      </div>
+      <ul id="storeList"></ul>
+    </div>
 
-</div>
+  </div>
 
-<div class="footer-note" id="footer1"></div>
-
+  <div class="footer-note" id="footerNote"></div>
 </main>
 
+<div class="footer-note" id="credit"></div>
+
 <script>
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
+
+/* 9 language themes */
+const THEMES = {
+  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
+  en:  { a1:"#0ea5e9", a2:"#2563eb", link:"#1d4ed8", pillBg:"#e0f2fe", pillText:"#075985" },
+  ar:  { a1:"#7c3aed", a2:"#4f46e5", link:"#4f46e5", pillBg:"#ede9fe", pillText:"#5b21b6" },
+  tr:  { a1:"#ef4444", a2:"#f97316", link:"#b91c1c", pillBg:"#fee2e2", pillText:"#b91c1c" },
+  ur:  { a1:"#16a34a", a2:"#0f766e", link:"#0f766e", pillBg:"#dcfce7", pillText:"#166534" },
+  fa:  { a1:"#0f766e", a2:"#0891b2", link:"#0f766e", pillBg:"#ccfbf1", pillText:"#115e59" },
+  prs: { a1:"#a855f7", a2:"#6d28d9", link:"#6d28d9", pillBg:"#f3e8ff", pillText:"#6b21a8" },
+  ps:  { a1:"#f59e0b", a2:"#d97706", link:"#b45309", pillBg:"#ffedd5", pillText:"#9a3412" }
+};
 
 const T = {
+  so: {
+    langLabel: "Dooro luqadda:",
+    title: "Metformin – sonkorowga (Type 2)",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Metformin – sonkorowga (Type 2)",
+    drugForm: "Kiniin afka ah",
+    sections: {
+      use: { title:"Isticmaalka", small:"", items:[
+        "Metformin waa daawo lagu daweeyo <span class='highlight'>sonkorowga nooca 2</span> (Type 2).",
+        "Waxay ka caawisaa in ay hoos u dhigto sonkorta dhiigga, waxaana badanaa lagu daraa <span class='highlight'>cunto, jimicsi iyo miisaan-dhimis</span>."
+      ]},
+      dose: { title:"Qiyaasta", small:"", items:[
+        "Dadka waaweyn: badanaa waxaa la bilaabaa <span class='highlight'>500 mg 1–2 jeer maalintii</span>, kadibna si tartiib ah ayaa loo kordhiyaa (tusaale 500 mg usbuucii).",
+        "Qiyaasta ugu badan: <span class='highlight'>1000 mg 3 jeer maalintii</span> (wadar 3000 mg/maalin).",
+        "Haddii kelyaha ay daciif yihiin: <span class='highlight'>ha isticmaalin</span> haddii GFR/eGFR &lt; 30. Haddii GFR 30–45, badanaa ugu badnaan <span class='highlight'>500 mg 2 jeer maalintii</span>."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"", items:[
+        "Aad u badan bilowga: <span class='highlight'>shuban, lalabbo, matag, calool-xanuun</span>. Tartiib u kordhinta qiyaasta iyo qaadashada cuntada waxay yareyn kartaa.",
+        "Mararka qaar: <span class='highlight'>dhadhan isbeddel</span>.",
+        "Marar dhif ah: <span class='highlight'>B12 hoos u dhac</span> (gaar ahaan muddo dheer) iyo <span class='highlight'>laktatacidose</span> (xaalad degdeg ah)."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
+        "ACE-horjoogeyaasha (ACE inhibitors) waxay hoos u dhigi karaan sonkorta dhiigga – mararka qaar qiyaasta waa la hagaajiyaa.",
+        "Glukokortikoidyada (steroids) waxay yareyn karaan saameynta daawooyinka sonkorowga.",
+        "Raajo/CT leh <span class='highlight'>kontraas iod</span>: mararka qaar metformin waa la joojiyaa, waxaana dib loo bilaabaa <span class='highlight'>48 saac</span> kadib oo kaliya marka kelyaha la hubiyo.",
+        "Diuretics (gaar ahaan loop-diuretics) iyo khamri badan waxay kordhin karaan khatarta <span class='highlight'>laktatacidose</span>."
+      ]},
+      warn: { title:"Digniino", small:"", items:[
+        "Metformin <span class='highlight'>ha la qaato cuntada</span> si loo yareeyo dhibaatooyinka caloosha.",
+        "Jooji (oo la xiriir dhakhtar) haddii aad leedahay fuuqbax, matag badan, infekshan daran, ama neefsashada oo kugu adkaata – khatar laktatacidose.",
+        "Qalliinka suuxdinta guud/spinal/epidural: badanaa metformin waa la joojiyaa waqtiga qalliinka, waxaana dib loo bilaabaa ugu yaraan <span class='highlight'>48 saac</span> kadib marka kelyaha la hubiyo.",
+        "B12: waxaa badanaa lagu talinayaa in la cabbiro ugu yaraan <span class='highlight'>2 sanoba mar</span> (gaar ahaan daaweyn dheer)."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
+        "Metformin kaniin afka ah wuxuu <span class='highlight'>jebiyaa soonka</span> haddii la qaato maalinta.",
+        "Metformin badanaa <span class='highlight'>ma keeno sonkor-hoos (hypoglycaemia)</span> keligiis, laakiin jadwalka cuntada wuu isbeddelaa Ramadaan.",
+        "Haddii loo baahdo, qiyaasta waxaa badanaa loo qorsheyn karaa <span class='highlight'>afur</span> iyo/ama <span class='highlight'>suxuur</span> – la tasho dhakhtarkaaga haddii aad dareento wareer, tabar-darro ama sonkor-hoos."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
+        "Ku qaado <span class='highlight'>cunto</span> iyo biyo (tusaale koob biyo ah).",
+        "Sii wad cunto leh <span class='highlight'>kala qaybsan karbohaydrayt</span> maalinta oo dhan (talo guud oo sonkorowga ah).",
+        "Khamri: ka taxaddar, gaar ahaan haddii aad cabto wax ka badan talooyinka guud – waxay kordhin kartaa dhibaatooyin caloosha, daal badan iyo neefsashada oo kugu adkaata."
+      ]},
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Ku hay daawada meel ka fog carruurta, kana hooseysa 25 °C, kuna hay baakadka asalka ah si looga ilaaliyo huurka.",
+        "Ha qaadan daawada marka ay dhaafto <span class='highlight'>taariikhda dhicitaanka</span>. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
 
-so:{
-sec0:["Metformin waa daawo loo isticmaalo sonkorowga nooca 2aad."],
-sec1:["Sonkorowga nooca 2aad."],
-sec2:["La qaataa cuntada."],
-sec3:["Ka fogow khamriga badan."],
-sec4:["Ha qaadan haddii kelyahaagu daciif yihiin."],
-sec5:["Shuban ama lalabbo."],
-sec6:["Contrast dye waxay u baahan kartaa joojin."],
-sec7:["Badanaa waa la qaadan karaa inta lagu jiro soonka."],
-sec8:["Ha isticmaalin ka dib taariikhda uu dhacayo."]
-},
+  da: {
+    langLabel: "Vælg sprog:",
+    title: "Metformin – type 2-diabetes",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    badge: "Kort og let at læse",
+    drugName: "Metformin – type 2-diabetes",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Metformin bruges til behandling af <span class='highlight'>type 2-diabetes</span>.",
+        "Det gives typisk sammen med <span class='highlight'>kost, motion og vægttab</span> for bedre blodsukkerkontrol."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Voksne: ofte start <span class='highlight'>500 mg 1–2 gange dagligt</span> og derefter gradvis øgning (fx 500 mg pr. uge).",
+        "Maksimal dosis: <span class='highlight'>1000 mg 3 gange dagligt</span> (i alt 3000 mg/døgn).",
+        "Nedsat nyrefunktion: <span class='highlight'>kontraindiceret</span> ved GFR/eGFR &lt; 30. Ved GFR 30–45 ofte maks <span class='highlight'>500 mg 2 gange dagligt</span>."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Hyppigst i starten: <span class='highlight'>diarré, kvalme, opkastning, mavesmerter</span>. Tages til måltid og langsom optitrering kan hjælpe.",
+        "Nogle gange: <span class='highlight'>smagsforstyrrelser</span>.",
+        "Sjældent/meget sjældent: <span class='highlight'>B12-mangel</span> ved langtidsbehandling og <span class='highlight'>laktatacidose</span> (akut tilstand)."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "ACE-hæmmere kan sænke blodsukkeret – dosisjustering kan være nødvendig.",
+        "Glukokortikoider (steroid) kan nedsætte effekten af antidiabetika.",
+        "Jodholdig kontrast (CT/røntgen): metformin kan skulle pauses og først genoptages <span class='highlight'>48 timer</span> efter, når nyrefunktion er revurderet og fundet normal.",
+        "Diuretika (især loop-diuretika) og større alkoholindtag kan øge risikoen for <span class='highlight'>laktatacidose</span>."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Tag metformin <span class='highlight'>til et måltid</span> for at mindske mave-tarm-bivirkninger.",
+        "Pause behandlingen ved tilstande med risiko for vævshypoksi/dehydrering/alvorlig infektion og påvirket nyrefunktion (fx kraftig opkastning) – for at reducere risiko for laktatacidose.",
+        "Operation med universel/spinal/epidural anæstesi: metformin seponeres ved operation og genoptages tidligst <span class='highlight'>48 timer</span> efter, når nyrefunktionen er vurderet normal.",
+        "B12: bør ofte måles mindst <span class='highlight'>hvert andet år</span> ved langtidsbehandling."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Metformin som tablet bryder fasten, hvis den tages i dagtimerne.",
+        "Metformin giver typisk <span class='highlight'>ikke hypoglykæmi</span> alene, men faste ændrer måltidsrytmen.",
+        "Doser kan ofte planlægges til efter iftar og/eller ved suhoor – tal med læge ved symptomer på lavt blodsukker eller utilpashed."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Tages med et glas vand og <span class='highlight'>til et måltid</span>.",
+        "Fortsæt regelmæssig fordeling af kulhydratindtag i løbet af dagen (diabetesråd).",
+        "Alkohol: forsigtighed – større indtag kan give mavegener, voldsom træthed og vejrtrækningsproblemer."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C i original emballage.",
+        "Brug ikke efter udløbsdatoen. Aflever rester på apoteket."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
 
-da:{
-sec0:["Metformin bruges til behandling af type 2-diabetes."],
-sec1:["Type 2-diabetes."],
-sec2:["Tages med mad."],
-sec3:["Undgå større mængder alkohol."],
-sec4:["Må ikke anvendes ved svær nyresygdom."],
-sec5:["Diarré eller kvalme."],
-sec6:["Kontrastundersøgelser kan kræve pause."],
-sec7:["Kan ofte tages under faste."],
-sec8:["Må ikke anvendes efter udløbsdato."]
-},
+  en: {
+    langLabel: "Choose language:",
+    title: "Metformin – type 2 diabetes",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    badge: "Short and easy to read",
+    drugName: "Metformin – type 2 diabetes",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Metformin is used to treat <span class='highlight'>type 2 diabetes</span>.",
+        "It is typically used together with <span class='highlight'>diet, exercise and weight management</span> to improve blood sugar control."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Adults: often start <span class='highlight'>500 mg 1–2 times daily</span>, then increase gradually (e.g., 500 mg per week).",
+        "Maximum dose: <span class='highlight'>1000 mg 3 times daily</span> (3000 mg/day).",
+        "Reduced kidney function: <span class='highlight'>contraindicated</span> if GFR/eGFR &lt; 30. If GFR 30–45, often max <span class='highlight'>500 mg twice daily</span>."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Most common at the start: <span class='highlight'>diarrhoea, nausea, vomiting, stomach pain</span>. Taking with meals and slow dose increases may help.",
+        "Sometimes: <span class='highlight'>taste changes</span>.",
+        "Rare/very rare: <span class='highlight'>vitamin B12 deficiency</span> with long-term use and <span class='highlight'>lactic acidosis</span> (medical emergency)."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "ACE inhibitors may lower blood glucose – dose adjustment may be needed.",
+        "Glucocorticoids (steroids) can reduce the effect of diabetes medicines.",
+        "Iodinated contrast (CT/X-ray): metformin may need to be paused and restarted <span class='highlight'>48 hours</span> after, only once kidney function is confirmed normal.",
+        "Diuretics (especially loop diuretics) and heavy alcohol intake can increase the risk of <span class='highlight'>lactic acidosis</span>."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "Take metformin <span class='highlight'>with a meal</span> to reduce gastrointestinal side effects.",
+        "Pause treatment during dehydration, severe infection, vomiting, or conditions with hypoxia/poor circulation and reduced kidney function – to reduce lactic acidosis risk.",
+        "Surgery with general/spinal/epidural anaesthesia: metformin is stopped at surgery and restarted no earlier than <span class='highlight'>48 hours</span> after, once kidney function is reassessed as normal.",
+        "Vitamin B12 may be monitored at least <span class='highlight'>every 2 years</span> during long-term treatment."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Metformin tablets break the fast if taken during daytime.",
+        "Metformin usually <span class='highlight'>does not cause hypoglycaemia</span> on its own, but fasting changes meal patterns.",
+        "Doses can often be planned after iftar and/or at suhoor – ask your doctor if you feel unwell or have low blood sugar symptoms."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "Take with water and <span class='highlight'>with a meal</span>.",
+        "Maintain regular carbohydrate distribution across the day (general diabetes advice).",
+        "Alcohol: be cautious – drinking more than recommended may cause GI symptoms, severe tiredness, and breathing problems."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C in the original packaging.",
+        "Do not use after the expiry date. Return leftovers to the pharmacy."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
 
-en:{
-sec8:["Do not use after the expiry date."]
-},
+  ar: {
+    langLabel: "اختر اللغة:",
+    title: "ميتفورمين – السكري من النوع الثاني",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "ميتفورمين – السكري من النوع الثاني",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "يُستخدم الميتفورمين لعلاج <span class='highlight'>السكري من النوع الثاني</span>.",
+        "غالباً يُستخدم مع <span class='highlight'>الحمية والرياضة وخفض الوزن</span> لتحسين سكر الدم."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "للبالغين: غالباً البدء <span class='highlight'>500 ملغ 1–2 مرة يومياً</span> ثم زيادة تدريجية.",
+        "الحد الأقصى: <span class='highlight'>1000 ملغ 3 مرات يومياً</span> (3000 ملغ/يوم).",
+        "ضعف الكلى: <span class='highlight'>مضاد للاستعمال</span> إذا كان eGFR &lt; 30. إذا كان 30–45 فغالباً الحد الأقصى <span class='highlight'>500 ملغ مرتين يومياً</span>."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "الأكثر شيوعاً في البداية: <span class='highlight'>إسهال، غثيان، قيء، ألم معدة</span>. أخذ الدواء مع الطعام وزيادة الجرعة تدريجياً قد يساعد.",
+        "أحياناً: <span class='highlight'>تغيّر في الطعم</span>.",
+        "نادر جداً: <span class='highlight'>نقص فيتامين B12</span> مع الاستعمال الطويل و<span class='highlight'>الحماض اللبني</span> (حالة إسعافية)."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "مثبطات ACE قد تُخفض سكر الدم – قد يلزم تعديل الجرعة.",
+        "الستيرويدات قد تُضعف تأثير أدوية السكري.",
+        "مواد التباين اليودية (CT/أشعة): قد يلزم إيقاف الميتفورمين وإعادة البدء بعد <span class='highlight'>48 ساعة</span> فقط بعد تقييم وظائف الكلى.",
+        "المدرات (خاصة مدرات العروة) والكحول بكميات كبيرة قد يزيدان خطر <span class='highlight'>الحماض اللبني</span>."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "يُفضل تناول الميتفورمين <span class='highlight'>مع الطعام</span> لتقليل اضطرابات المعدة.",
+        "أوقف العلاج عند الجفاف/قيء شديد/عدوى شديدة/نقص أكسجة أو تدهور وظائف الكلى لتقليل خطر الحماض اللبني.",
+        "الجراحة مع تخدير عام/نخاعي/فوق الجافية: يُوقف عند الجراحة ويُعاد بعد <span class='highlight'>48 ساعة</span> فقط بعد التأكد من وظائف الكلى.",
+        "قد تُراقب مستويات فيتامين B12 على الأقل <span class='highlight'>كل سنتين</span> مع العلاج الطويل."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "الأقراص الفموية تُفطر إذا أُخذت نهاراً.",
+        "الميتفورمين غالباً <span class='highlight'>لا يسبب هبوط سكر</span> لوحده، لكن الصيام يغيّر نمط الوجبات.",
+        "يمكن غالباً تنظيم الجرعات بعد الإفطار و/أو وقت السحور – استشر الطبيب عند الشعور بتعب أو أعراض هبوط السكر."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يؤخذ مع الماء و<span class='highlight'>مع وجبة</span>.",
+        "حافظ على توزيع منتظم للكربوهيدرات خلال اليوم (نصيحة عامة للسكري).",
+        "الكحول: الحذر – الزيادة قد تسبب أعراضاً هضمية وتعباً شديداً ومشكلات في التنفس."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م وفي العبوة الأصلية.",
+        "لا يستخدم بعد تاريخ الانتهاء. أعد البقايا إلى الصيدلية."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  },
 
-ar:{
-sec8:["لا تستخدم بعد تاريخ الانتهاء"]
-},
+  tr: {
+    langLabel: "Dil seçin:",
+    title: "Metformin – tip 2 diyabet",
+    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
+    back: "İlaç listesine geri dön",
+    badge: "Kısa ve anlaşılır",
+    drugName: "Metformin – tip 2 diyabet",
+    drugForm: "Ağızdan alınan tablet",
+    sections: {
+      use: { title:"Kullanım", small:"", items:[
+        "Metformin <span class='highlight'>tip 2 diyabet</span> tedavisinde kullanılır.",
+        "Genellikle <span class='highlight'>beslenme, egzersiz ve kilo kontrolü</span> ile birlikte verilir."
+      ]},
+      dose: { title:"Doz", small:"", items:[
+        "Yetişkin: genellikle başlangıç <span class='highlight'>500 mg günde 1–2 kez</span>, sonra kademeli artırılır.",
+        "Maksimum: <span class='highlight'>1000 mg günde 3 kez</span> (3000 mg/gün).",
+        "Böbrek yetmezliği: eGFR &lt; 30 ise <span class='highlight'>kullanılmaz</span>. eGFR 30–45 ise çoğu zaman maks <span class='highlight'>500 mg günde 2 kez</span>."
+      ]},
+      side: { title:"Yan etkiler", small:"", items:[
+        "Başlangıçta en sık: <span class='highlight'>ishal, bulantı, kusma, karın ağrısı</span>. Yemekle almak ve dozu yavaş artırmak yardımcı olur.",
+        "Bazen: <span class='highlight'>tat değişikliği</span>.",
+        "Nadir/çok nadir: uzun kullanımda <span class='highlight'>B12 eksikliği</span> ve <span class='highlight'>laktik asidoz</span> (acil durum)."
+      ]},
+      interact: { title:"Etkileşimler", small:"", items:[
+        "ACE inhibitörleri kan şekerini düşürebilir – doz ayarı gerekebilir.",
+        "Steroidler diyabet ilaçlarının etkisini azaltabilir.",
+        "İyotlu kontrast (BT/röntgen): metformin ara verilebilir ve <span class='highlight'>48 saat</span> sonra böbrek fonksiyonu normalse başlanır.",
+        "Diüretikler (özellikle loop) ve fazla alkol <span class='highlight'>laktik asidoz</span> riskini artırabilir."
+      ]},
+      warn: { title:"Uyarılar", small:"", items:[
+        "Mide yan etkilerini azaltmak için <span class='highlight'>yemekle</span> alın.",
+        "Dehidratasyon, şiddetli enfeksiyon, yoğun kusma veya böbrek fonksiyonunda bozulma/hypoksi durumlarında ara verin – laktik asidoz riskini azaltmak için.",
+        "Genel/spinal/epidural anestezili ameliyat: ameliyat zamanı kesilir ve en erken <span class='highlight'>48 saat</span> sonra, böbrek fonksiyonu değerlendirilince başlanır.",
+        "Uzun kullanımda B12 düzeyi genellikle en az <span class='highlight'>2 yılda bir</span> kontrol edilir."
+      ]},
+      ramadan: { title:"Ramazan ve oruç", small:"", items:[
+        "Gündüz alınan tablet orucu bozar.",
+        "Metformin tek başına genellikle <span class='highlight'>hipoglisemi yapmaz</span>, ancak oruç öğün düzenini değiştirir.",
+        "Dozlar çoğu zaman iftardan sonra ve/veya sahurda planlanabilir – kendinizi kötü hissederseniz doktorunuza danışın."
+      ]},
+      food: { title:"Yiyecek ve içecek", small:"", items:[
+        "Su ile ve <span class='highlight'>yemekle</span> alın.",
+        "Gün boyunca karbonhidrat alımını düzenli dağıtın (genel diyabet önerisi).",
+        "Alkol: dikkat – fazla alım mide şikâyetleri, aşırı yorgunluk ve nefes alma sorunlarına yol açabilir."
+      ]},
+      store: { title:"Saklama", small:"", items:[
+        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında, orijinal ambalajında saklayın.",
+        "Son kullanma tarihinden sonra kullanmayın. Artanları eczaneye verin."
+      ]}
+    },
+    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
+    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+  },
 
-tr:{
-sec8:["Son kullanma tarihinden sonra kullanmayın"]
-},
+  ur: {
+    langLabel: "زبان منتخب کریں:",
+    title: "میٹفارمن – ٹائپ 2 ذیابیطس",
+    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
+    back: "ادویات کی فہرست پر واپس جائیں",
+    badge: "مختصر اور آسان",
+    drugName: "میٹفارمن – ٹائپ 2 ذیابیطس",
+    drugForm: "منہ کے ذریعے لینے والی گولی",
+    sections: {
+      use: { title:"استعمال", small:"", items:[
+        "میٹفارمن <span class='highlight'>ٹائپ 2 ذیابیطس</span> کے علاج کے لیے استعمال ہوتی ہے۔",
+        "اکثر <span class='highlight'>غذا، ورزش اور وزن کم کرنے</span> کے ساتھ دی جاتی ہے۔"
+      ]},
+      dose: { title:"خوراک", small:"", items:[
+        "بالغ: اکثر آغاز <span class='highlight'>500 mg دن میں 1–2 بار</span>، پھر آہستہ آہستہ اضافہ۔",
+        "زیادہ سے زیادہ: <span class='highlight'>1000 mg دن میں 3 بار</span> (3000 mg/روز)۔",
+        "گردوں کی کمزوری: eGFR &lt; 30 میں <span class='highlight'>استعمال نہ کریں</span>۔ eGFR 30–45 میں اکثر زیادہ سے زیادہ <span class='highlight'>500 mg دن میں 2 بار</span>۔"
+      ]},
+      side: { title:"مضر اثرات", small:"", items:[
+        "شروع میں زیادہ: <span class='highlight'>اسہال، متلی، الٹی، پیٹ درد</span>۔ کھانے کے ساتھ لینے اور خوراک آہستہ بڑھانے سے مدد ملتی ہے۔",
+        "کبھی کبھار: <span class='highlight'>ذائقہ میں تبدیلی</span>۔",
+        "نایاب: طویل استعمال میں <span class='highlight'>B12 کی کمی</span> اور <span class='highlight'>لایکٹک ایسیڈوسس</span> (ایمرجنسی)۔"
+      ]},
+      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
+        "ACE inhibitors شوگر کم کر سکتے ہیں – خوراک میں تبدیلی کی ضرورت ہو سکتی ہے۔",
+        "اسٹیرائڈز ذیابیطس کی ادویات کا اثر کم کر سکتے ہیں۔",
+        "آیوڈین کنٹراسٹ (CT/ایکس رے): میٹفارمن کچھ حالات میں روکی جاتی ہے اور <span class='highlight'>48 گھنٹے</span> بعد گردوں کا ٹیسٹ نارمل ہو تو دوبارہ شروع کی جاتی ہے۔",
+        "diuretics (خاص طور پر loop) اور زیادہ الکحل <span class='highlight'>لایکٹک ایسیڈوسس</span> کا خطرہ بڑھا سکتے ہیں۔"
+      ]},
+      warn: { title:"احتیاطیں", small:"", items:[
+        "پیٹ کے مسائل کم کرنے کے لیے <span class='highlight'>کھانے کے ساتھ</span> لیں۔",
+        "ڈی ہائیڈریشن، شدید انفیکشن، بہت زیادہ الٹی، یا گردوں کی خرابی/ہائپوکسیا میں دوا روکیں – لایکٹک ایسیڈوسس کے خطرے کو کم کرنے کے لیے۔",
+        "آپریشن (general/spinal/epidural): آپریشن کے وقت روکی جاتی ہے اور کم از کم <span class='highlight'>48 گھنٹے</span> بعد، گردوں کی جانچ کے بعد شروع کی جاتی ہے۔",
+        "طویل علاج میں B12 اکثر کم از کم <span class='highlight'>ہر 2 سال</span> چیک کیا جاتا ہے۔"
+      ]},
+      ramadan: { title:"رمضان اور روزہ", small:"", items:[
+        "دن کے وقت گولی لینے سے روزہ ٹوٹ جاتا ہے۔",
+        "میٹفارمن عموماً اکیلے <span class='highlight'>ہائپوگلیسیمیا نہیں کرتی</span>، لیکن روزہ کھانے کے اوقات بدل دیتا ہے۔",
+        "خوراک افطار کے بعد اور/یا سحری میں رکھی جا سکتی ہے – اگر طبیعت خراب ہو تو ڈاکٹر سے مشورہ کریں۔"
+      ]},
+      food: { title:"کھانا پینا", small:"", items:[
+        "پانی کے ساتھ اور <span class='highlight'>کھانے کے ساتھ</span> لیں۔",
+        "کاربوہائیڈریٹ کو دن میں باقاعدگی سے تقسیم رکھیں (عمومی ذیابیطس مشورہ)۔",
+        "الکحل: احتیاط – زیادہ مقدار سے معدے کے مسائل، شدید تھکن اور سانس میں مشکلات ہو سکتی ہیں۔"
+      ]},
+      store: { title:"محفوظ رکھنا", small:"", items:[
+        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر، اصل پیک میں رکھیں۔",
+        "میعاد ختم ہونے کی تاریخ کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"
+      ]}
+    },
+    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
+    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+  },
 
-ur:{
-sec8:["میعاد ختم ہونے کے بعد استعمال نہ کریں"]
-},
+  fa: {
+    langLabel: "انتخاب زبان:",
+    title: "متفورمین – دیابت نوع ۲",
+    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
+    back: "بازگشت به فهرست داروها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "متفورمین – دیابت نوع ۲",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد مصرف", small:"", items:[
+        "متفورمین برای درمان <span class='highlight'>دیابت نوع ۲</span> استفاده می‌شود.",
+        "معمولاً همراه با <span class='highlight'>رژیم غذایی، ورزش و کنترل وزن</span> تجویز می‌شود."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "بزرگسالان: اغلب شروع <span class='highlight'>500 mg روزی 1–2 بار</span> و سپس افزایش تدریجی.",
+        "حداکثر: <span class='highlight'>1000 mg روزی 3 بار</span> (3000 mg/روز).",
+        "کاهش عملکرد کلیه: اگر eGFR &lt; 30 باشد <span class='highlight'>ممنوع</span>. اگر eGFR 30–45 باشد معمولاً حداکثر <span class='highlight'>500 mg دو بار در روز</span>."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "در شروع شایع‌تر: <span class='highlight'>اسهال، تهوع، استفراغ، درد شکم</span>. مصرف با غذا و افزایش آهسته دوز کمک می‌کند.",
+        "گاهی: <span class='highlight'>اختلال چشایی</span>.",
+        "نادر/خیلی نادر: <span class='highlight'>کمبود ویتامین B12</span> در مصرف طولانی و <span class='highlight'>اسیدوز لاکتیک</span> (اورژانسی)."
+      ]},
+      interact: { title:"تداخل‌های دارویی", small:"", items:[
+        "ACE inhibitors می‌توانند قند خون را پایین بیاورند – ممکن است تنظیم دوز لازم شود.",
+        "کورتون‌ها می‌توانند اثر داروهای دیابت را کاهش دهند.",
+        "کنتراست یددار (CT/رادیولوژی): ممکن است نیاز به قطع موقت باشد و شروع مجدد <span class='highlight'>48 ساعت</span> بعد فقط پس از ارزیابی کلیه.",
+        "دیورتیک‌ها (به‌ویژه loop) و مصرف زیاد الکل خطر <span class='highlight'>اسیدوز لاکتیک</span> را افزایش می‌دهند."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "برای کاهش عوارض گوارشی، <span class='highlight'>همراه غذا</span> مصرف کنید.",
+        "در کم‌آبی، عفونت شدید، استفراغ شدید، یا کاهش عملکرد کلیه/هیپوکسی درمان را موقتاً قطع کنید – برای کاهش خطر اسیدوز لاکتیک.",
+        "جراحی با بیهوشی عمومی/نخاعی/اپیدورال: در زمان جراحی قطع و حداقل <span class='highlight'>48 ساعت</span> بعد با بررسی کلیه شروع می‌شود.",
+        "در درمان طولانی‌مدت، B12 معمولاً حداقل <span class='highlight'>هر 2 سال</span> پایش می‌شود."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "قرص خوراکی اگر در روز مصرف شود، روزه را باطل می‌کند.",
+        "متفورمین معمولاً به‌تنهایی <span class='highlight'>هیپوگلیسمی ایجاد نمی‌کند</span>، اما روزه الگوی غذا را تغییر می‌دهد.",
+        "دوزها اغلب بعد از افطار و/یا در سحری تنظیم می‌شود – در صورت علائم یا ناخوشی با پزشک مشورت کنید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با آب و <span class='highlight'>همراه غذا</span> مصرف شود.",
+        "توزیع منظم کربوهیدرات در طول روز را حفظ کنید (توصیه عمومی دیابت).",
+        "الکل: احتیاط – مصرف زیاد می‌تواند علائم گوارشی، خستگی شدید و مشکلات تنفسی ایجاد کند."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس کودکان و زیر 25 °C در بسته‌بندی اصلی نگهداری شود.",
+        "پس از تاریخ انقضا مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."
+      ]}
+    },
+    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
 
-fa:{
-sec8:["پس از تاریخ انقضا استفاده نشود"]
-},
+  prs: {
+    langLabel: "انتخاب زبان:",
+    title: "متفورمین – دیابت نوع ۲",
+    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
+    back: "بازگشت به فهرست دواها",
+    badge: "کوتاه و قابل‌فهم",
+    drugName: "متفورمین – دیابت نوع ۲",
+    drugForm: "قرص خوراکی",
+    sections: {
+      use: { title:"موارد استعمال", small:"", items:[
+        "متفورمین برای درمان <span class='highlight'>دیابت نوع ۲</span> استفاده می‌شود.",
+        "معمولاً همراه با <span class='highlight'>رژیم، ورزش و کنترل وزن</span> داده می‌شود."
+      ]},
+      dose: { title:"مقدار مصرف", small:"", items:[
+        "بزرگسالان: اغلب شروع <span class='highlight'>500 mg روزی 1–2 بار</span> و سپس افزایش تدریجی.",
+        "حداکثر: <span class='highlight'>1000 mg روزی 3 بار</span> (3000 mg/روز).",
+        "کاهش کارکرد کلیه: اگر eGFR &lt; 30 باشد <span class='highlight'>استفاده نشود</span>. اگر 30–45 باشد معمولاً حد اکثر <span class='highlight'>500 mg دو بار در روز</span>."
+      ]},
+      side: { title:"عوارض جانبی", small:"", items:[
+        "در شروع بیشتر: <span class='highlight'>اسهال، تهوع، استفراغ، درد شکم</span>. گرفتن با غذا و افزایش آهسته دوز کمک می‌کند.",
+        "گاهی: <span class='highlight'>تغییر ذایقه</span>.",
+        "نادر/خیلی نادر: <span class='highlight'>کمبود B12</span> در استعمال طولانی و <span class='highlight'>اسیدوز لاکتیک</span> (حالت عاجل)."
+      ]},
+      interact: { title:"تداخلات دوایی", small:"", items:[
+        "ACE inhibitors می‌توانند قند خون را پایین بیاورند – ممکن است تنظیم دوز لازم شود.",
+        "کورتون‌ها اثر دواهای دیابت را کم می‌کنند.",
+        "کنتراست یددار: ممکن است متفورمین موقتاً قطع شود و <span class='highlight'>48 ساعت</span> بعد فقط پس از بررسی کلیه دوباره شروع شود.",
+        "دیورتیک‌ها (به‌ویژه loop) و الکل زیاد خطر <span class='highlight'>اسیدوز لاکتیک</span> را بالا می‌برد."
+      ]},
+      warn: { title:"هشدارها", small:"", items:[
+        "برای کاهش عوارض معده، <span class='highlight'>همراه غذا</span> بگیرید.",
+        "در کم‌آبی، عفونت شدید، استفراغ شدید یا مشکل کلیه/هیپوکسی دوا را موقتاً قطع کنید – برای کاهش خطر اسیدوز لاکتیک.",
+        "عملیه با بیهوشی عمومی/نخاعی/اپیدورال: در وقت عمل قطع و حداقل <span class='highlight'>48 ساعت</span> بعد با بررسی کلیه شروع می‌شود.",
+        "در استعمال طولانی، B12 معمولاً حداقل <span class='highlight'>هر 2 سال</span> بررسی می‌شود."
+      ]},
+      ramadan: { title:"رمضان و روزه", small:"", items:[
+        "قرص خوراکی اگر در روز گرفته شود، روزه را باطل می‌کند.",
+        "متفورمین معمولاً به‌تنهایی <span class='highlight'>هیپوگلیسمی نمی‌دهد</span>، اما روزه نظم غذا را تغییر می‌دهد.",
+        "دوزها اکثرآ بعد از افطار و/یا در سحری تنظیم می‌شود – اگر علایم یا ناخوشی دارید با داکتر مشوره کنید."
+      ]},
+      food: { title:"غذا و نوشیدنی", small:"", items:[
+        "با آب و <span class='highlight'>همراه غذا</span> بگیرید.",
+        "توزیع منظم کربوهیدرات در طول روز را حفظ کنید (مشوره عمومی دیابت).",
+        "الکل: احتیاط – مصرف زیاد می‌تواند مشکلات معده، خستگی شدید و مشکل تنفس ایجاد کند."
+      ]},
+      store: { title:"نگهداری", small:"", items:[
+        "دور از دسترس اطفال و زیر 25 °C در بسته‌بندی اصلی نگه‌داری کنید.",
+        "بعد از تاریخ انقضا استفاده نکنید. باقی‌مانده را به دواخانه بسپارید."
+      ]}
+    },
+    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
+    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+  },
 
-prs:{
-sec8:["بعد از تاریخ انقضا استفاده نشود"]
-},
+  ps: {
+    langLabel: "ژبه وټاکئ:",
+    title: "میټفورمین – د دويم ډول شکر",
+    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
+    back: "د درملو لېست ته بېرته",
+    badge: "لنډ او اسانه",
+    drugName: "میټفورمین – د دويم ډول شکر",
+    drugForm: "د خولې ګولۍ",
+    sections: {
+      use: { title:"کارونه", small:"", items:[
+        "میټفورمین د <span class='highlight'>دويم ډول شکر</span> (Type 2) لپاره کارېږي.",
+        "اکثر د <span class='highlight'>رژيم، ورزش او وزن کمولو</span> سره يو ځای کارول کېږي."
+      ]},
+      dose: { title:"دوز", small:"", items:[
+        "لویان: ډېر وخت پيل <span class='highlight'>500 mg 1–2 ځله په ورځ</span>، بيا په تدريجي ډول زياتېږي.",
+        "اعظمي: <span class='highlight'>1000 mg 3 ځله په ورځ</span> (3000 mg/ورځ).",
+        "د پښتورګو کمزوري: که eGFR &lt; 30 وي <span class='highlight'>مه کاروئ</span>. که 30–45 وي، اکثر اعظمي <span class='highlight'>500 mg 2 ځله په ورځ</span>."
+      ]},
+      side: { title:"اړخیزې اغېزې", small:"", items:[
+        "په پيل کې ډېر: <span class='highlight'>نس ناستی، زړه بدوالی، کانګې، د خېټې درد</span>. له خوړو سره اخيستل او دوز ورو زياتول مرسته کوي.",
+        "کله ناکله: <span class='highlight'>د خوند بدلون</span>.",
+        "نادر/ډېر نادر: اوږدمهاله کې <span class='highlight'>B12 کمښت</span> او <span class='highlight'>لکټېک اسيدوسس</span> (بېړنی حالت)."
+      ]},
+      interact: { title:"د درملو تعامل", small:"", items:[
+        "ACE inhibitors کولی شي شکر راکم کړي – دوز بدلول اړين کېدای شي.",
+        "سټېرايډونه د شکر درملو اغېز کموي.",
+        "د يود لرونکی کانتراسټ (CT/X-ray): میټفورمین کېدای شي موقتي بند شي او <span class='highlight'>48 ساعته</span> وروسته یوازې د پښتورګو د ارزونې وروسته بيا پيل شي.",
+        "Diuretics (په ځانګړي ډول loop) او ډېر الکول د <span class='highlight'>لکټېک اسيدوسس</span> خطر زياتوي."
+      ]},
+      warn: { title:"احتیاط", small:"", items:[
+        "د معدې عوارض کمولو لپاره <span class='highlight'>له خوړو سره</span> واخلئ.",
+        "په کم‌آبي، شديده عفونت، ډېرې کانګې، يا د پښتورګو خرابوالی/هایپوکسیا کې درمل موقتي بند کړئ – د لکټېک اسيدوسس خطر کمولو لپاره.",
+        "عمومي/نخاعي/اپيډورال بېهوشي عمليات: د عملياتو پر وخت بندېږي او لږ تر لږه <span class='highlight'>48 ساعته</span> وروسته، د پښتورګو له ارزونې سره بيا پيلېږي.",
+        "په اوږدمهاله درملنه کې B12 اکثر لږ تر لږه <span class='highlight'>هر 2 کاله</span> څارل کېږي."
+      ]},
+      ramadan: { title:"رمضان او روژه", small:"", items:[
+        "که د ورځې واخیستل شي، روژه ماتوي.",
+        "میټفورمین عموماً یوازې <span class='highlight'>هایپوګلیسیمیا نه جوړوي</span>، خو روژه د خوړو وخت بدلوي.",
+        "دوزونه اکثر د افطار وروسته او/يا په سحري کې تنظیمېږي – که ځان بد احساسوئ، له ډاکټر سره سلا وکړئ."
+      ]},
+      food: { title:"خواړه او څښاک", small:"", items:[
+        "له اوبو سره او <span class='highlight'>له خوړو سره</span> واخلئ.",
+        "کاربوهایډرېټ په ورځ کې په منظم ډول ووېشئ (عمومي د شکر مشوره).",
+        "الکول: احتیاط – ډېر استعمال د معدې ستونزې، ډېر ستړیا او د ساه ستونزې رامنځته کولای شي."
+      ]},
+      store: { title:"ساتنه", small:"", items:[
+        "له ماشومانو لرې او تر 25 °C لاندې، په اصلي بسته کې وساتئ.",
+        "له ختمېدو نېټې وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."
+      ]}
+    },
+    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
+    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+  }
+};
 
-ps:{
-sec8:["د پای نېټې وروسته مه کاروئ"]
+function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm,""); }
+
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
 
+function applyTheme(lang){
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
 }
 
-function fill(lang){
-let d=T[lang]||T.so
-for(let i=0;i<=8;i++){
-let ul=document.getElementById("sec"+i+"List")
-ul.innerHTML=""
-if(d["sec"+i]){
-d["sec"+i].forEach(t=>{
-let li=document.createElement("li")
-li.innerHTML=t
-ul.appendChild(li)
-})
-}
-}
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
+  ul.innerHTML = "";
+  (items || []).forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html;
+    ul.appendChild(li);
+  });
 }
 
-fill("so")
+function render(lang){
+  const d = T[lang] || T.so;
 
-document.getElementById("langSelect").addEventListener("change",e=>{
-fill(e.target.value)
-})
+  setDirLang(lang);
+  applyTheme(lang);
 
+  document.title = stripTags(d.title);
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+
+  document.getElementById("langLabel").textContent = d.langLabel;
+
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugForm").textContent = d.drugForm;
+
+  // Section titles
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  document.getElementById("useSmall").textContent = d.sections.use.small || "";
+
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
+
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
+
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
+
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
+
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
+
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
+
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+
+  // Lists
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
+
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
+
+  // Keep language in back link (index.html?lang=xx)
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  // Update URL without reload
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
+}
+
+// Start language from ?lang=
+const params = new URLSearchParams(window.location.search);
+const startLang = params.get("lang") || "so";
+
+const select = document.getElementById("langSelect");
+select.value = (T[startLang] ? startLang : "so");
+render(select.value);
+
+select.addEventListener("change", function(){
+  render(this.value);
+});
 </script>
 
 </body>
