@@ -6,13 +6,11 @@
 <title>Xarelto (rivaroxaban) – blodfortyndende</title>
 
 <style>
-/* ===== Language theme (NO external files) ===== */
 :root{
   --accent:#00a676;
   --c1:#0066cc;
   --c2:#00a676;
 
-  /* derived / component tokens */
   --badgeBg:#d9f6e8;
   --badgeText:#16634a;
 
@@ -21,7 +19,6 @@
 }
 
 body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
-
 header{
   background:linear-gradient(135deg,var(--c1),var(--c2));
   color:#fff; padding:22px 16px; text-align:center;
@@ -96,11 +93,9 @@ a.back span{ font-size:1.1rem; }
 
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section li{ margin-bottom:4px; }
-
 .highlight{ font-weight:600; }
 
 .footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-
 @media (max-width:600px){ header h1{ font-size:1.5rem; } }
 </style>
 </head>
@@ -133,7 +128,7 @@ a.back span{ font-size:1.1rem; }
     <div class="drug-meta">
       <div class="drug-info">
         <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64" role="img" aria-label="">
+          <svg viewBox="0 0 64 64">
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--iconStroke)" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" stroke="var(--iconStroke)" stroke-width="4"/>
           </svg>
@@ -146,87 +141,77 @@ a.back span{ font-size:1.1rem; }
       <div class="badge" id="badgeText">Kort og let</div>
     </div>
 
-    <!-- 1: Hvad er -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er Xarelto? <small>(What is it?)</small></div>
+        <div class="section-title" id="sec0Title">Hvad er Xarelto?</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
 
-    <!-- 2: Brug -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til?</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
 
-    <!-- 3: Dosering -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sådan tages medicinen <small>(How to take)</small></div>
+        <div class="section-title" id="sec2Title">Sådan tages medicinen</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
 
-    <!-- 4: Mad og drikke -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
+        <div class="section-title" id="sec3Title">Mad og drikke</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
 
-    <!-- 5: Advarsler -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
+        <div class="section-title" id="sec4Title">Advarsler</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
 
-    <!-- 6: Bivirkninger -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
+        <div class="section-title" id="sec5Title">Bivirkninger</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
 
-    <!-- 7: Interaktioner -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
+        <div class="section-title" id="sec6Title">Interaktioner</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
 
-    <!-- 8: Ramadan -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
+        <div class="section-title" id="sec7Title">Ramadan og faste</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
 
-    <!-- 9: Opbevaring -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
+        <div class="section-title" id="sec8Title">Opbevaring</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
-
   </div>
 
   <div class="footer-note" id="footer1"></div>
@@ -234,10 +219,8 @@ a.back span{ font-size:1.1rem; }
 </main>
 
 <script>
-/* RTL languages */
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-/* Theme per language (Danish must be BLUE) */
 const THEME = {
   so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
   da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" },
@@ -269,33 +252,21 @@ function setDirLang(lang){
 function fillList(id, arr){
   const ul = document.getElementById(id);
   ul.innerHTML = "";
-  (arr || []).forEach(txt => {
+  (arr || []).forEach(txt=>{
     const li = document.createElement("li");
     li.innerHTML = txt;
     ul.appendChild(li);
   });
 }
 
-/* Preserve <small> in headings */
 function setSectionTitle(elId, title){
   const el = document.getElementById(elId);
-  if (!el) return;
-  const small = el.querySelector("small");
-  const t = (title || "").trim();
-  if (small){
-    const first = el.childNodes[0];
-    if (first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
-    } else {
-      el.insertBefore(document.createTextNode(t + " "), small);
-    }
-  } else {
-    el.textContent = t;
-  }
+  if(!el) return;
+  el.textContent = (title || "").trim();
 }
 
 const T = {
-  da: {
+  da:{
     pageTitle:"Xarelto (rivaroxaban) – blodfortyndende",
     hdrH1:"Xarelto (rivaroxaban) – blodfortyndende",
     hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
@@ -312,8 +283,8 @@ const T = {
     ],
     sec1Title:"Hvad bruges det til?",
     sec1:[
-      "Forebygge blodpropper ved <span class='highlight'>atrieflimren</span> (visse patienter).",
-      "Behandling og forebyggelse af <span class='highlight'>DVT</span> (blodprop i ben) og <span class='highlight'>LE</span> (blodprop i lungen) – efter lægens plan."
+      "Forebyggelse af blodpropper ved <span class='highlight'>atrieflimren</span> (hos nogle patienter).",
+      "Behandling og forebyggelse af <span class='highlight'>blodprop i benet</span> og <span class='highlight'>blodprop i lungen</span> – efter lægens plan."
     ],
     sec2Title:"Sådan tages medicinen",
     sec2:[
@@ -340,7 +311,7 @@ const T = {
     ],
     sec6Title:"Interaktioner",
     sec6:[
-      "Nogle lægemidler kan øge blødningsrisikoen, fx <span class='highlight'>NSAID</span> (ibuprofen/naproxen) og andre blodfortyndende.",
+      "Nogle lægemidler kan øge blødningsrisikoen, fx smertestillende som <span class='highlight'>ibuprofen</span> og <span class='highlight'>naproxen</span> samt andre blodfortyndende.",
       "Visse antibiotika og svampemidler kan påvirke effekten – oplys altid al medicin (inkl. naturmidler)."
     ],
     sec7Title:"Ramadan og faste",
@@ -354,11 +325,12 @@ const T = {
       "Opbevares utilgængeligt for børn og i original emballage.",
       "Brug ikke efter “EXP”. Aflever rester på apoteket."
     ],
+
     footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
     footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
-  en: {
+  en:{
     pageTitle:"Xarelto (rivaroxaban) – blood thinner",
     hdrH1:"Xarelto (rivaroxaban) – blood thinner",
     hdrP:"Brief medicine information for patients and relatives.",
@@ -376,7 +348,7 @@ const T = {
     sec1Title:"What is it used for?",
     sec1:[
       "Preventing clots in some people with <span class='highlight'>atrial fibrillation</span>.",
-      "Treating/preventing <span class='highlight'>DVT</span> and <span class='highlight'>PE</span> as prescribed."
+      "Treating and preventing a <span class='highlight'>blood clot in the leg</span> and a <span class='highlight'>blood clot in the lung</span> as prescribed."
     ],
     sec2Title:"How to take",
     sec2:[
@@ -399,12 +371,12 @@ const T = {
     sec5Title:"Side effects",
     sec5:[
       "Main risk: <span class='highlight'>bleeding</span>.",
-      "Some people get stomach upset or easy bruising."
+      "Some people get stomach upset, nausea or easy bruising."
     ],
     sec6Title:"Interactions",
     sec6:[
-      "NSAIDs (ibuprofen/naproxen) and other blood thinners can increase bleeding risk.",
-      "Some antibiotics/antifungals can change the effect – tell your doctor/pharmacy everything you take."
+      "Painkillers like <span class='highlight'>ibuprofen</span> and <span class='highlight'>naproxen</span> and other blood thinners can increase bleeding risk.",
+      "Some antibiotics/antifungals can change the effect – tell your doctor/pharmacy everything you take (including herbal products)."
     ],
     sec7Title:"Ramadan and fasting",
     sec7:[
@@ -417,11 +389,12 @@ const T = {
       "Keep out of reach of children, in the original package.",
       "Do not use after “EXP”. Return leftovers to the pharmacy."
     ],
+
     footer1:"If you need more information, contact your pharmacy or doctor.",
     footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
-  so: {
+  so:{
     pageTitle:"Xarelto (Rivaroxaban) – dhiig-khafiifiye",
     hdrH1:"Xarelto (Rivaroxaban) – dhiig-khafiifiye",
     hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed.",
@@ -434,12 +407,12 @@ const T = {
     sec0Title:"Waa maxay Xarelto?",
     sec0:[
       "Xarelto waa <span class='highlight'>dhiig-khafiifiye</span> (antikoagulant).",
-      "Waxay yareysaa khatarta <span class='highlight'>xinjirowga dhiigga</span> (blood clots)."
+      "Waxay yareysaa khatarta <span class='highlight'>xinjirowga dhiigga</span>."
     ],
     sec1Title:"Maxaa loo isticmaalaa?",
     sec1:[
       "Qaar ka mid ah dadka qaba <span class='highlight'>atrial fibrillation</span> si looga hortago xinjirow.",
-      "Daaweynta/ka hortagga xinjirowga lugta (<span class='highlight'>DVT</span>) ama sambabada (<span class='highlight'>PE</span>) sida dhakhtarku kuu qoray."
+      "Daaweynta iyo ka hortagga <span class='highlight'>xinjirowga lugta</span> iyo <span class='highlight'>xinjirowga sambabada</span> sida dhakhtarku kuu qoray."
     ],
     sec2Title:"Sida loo qaato",
     sec2:[
@@ -462,12 +435,12 @@ const T = {
     sec5Title:"Dhibaatooyinka",
     sec5:[
       "Khatarta ugu weyn: <span class='highlight'>dhiig-bax</span>.",
-      "Qaar waxay la kulmaan calool-wareem ama nabarro fudud."
+      "Qaar waxay la kulmaan calool-wareem, lallabbo ama nabarro fudud."
     ],
     sec6Title:"Is-dhexgalka daawooyinka",
     sec6:[
-      "Ibuprofen/naproxen (NSAID) iyo dhiig-khafiifiyeyaal kale waxay kordhin karaan dhiig-baxa.",
-      "Antibiotiko/antifungal qaar waxay saameyn karaan – u sheeg dhakhtarka/farmashiyaha wax kasta oo aad qaadato."
+      "Daawo xanuun baabi’iye sida <span class='highlight'>ibuprofen</span> iyo <span class='highlight'>naproxen</span> iyo dhiig-khafiifiyeyaal kale waxay kordhin karaan dhiig-baxa.",
+      "Antibiotiko/antifungal qaar waxay saameyn karaan – u sheeg dhakhtarka/farmashiyaha wax kasta oo aad qaadato (xitaa dhirta)."
     ],
     sec7Title:"Ramadaanka iyo soonka",
     sec7:[
@@ -480,18 +453,399 @@ const T = {
       "Ka fogee carruurta; ku hay baakadka asalka ah.",
       "Ha qaadan haddii ay dhaafto “EXP”. Wixii haray ku celi farmashiyaha."
     ],
+
     footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  ar:{
+    pageTitle:"زاريلتو (ريفاروكسابان) – مميع للدم",
+    hdrH1:"زاريلتو (ريفاروكسابان) – مميع للدم",
+    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
+    backText:"العودة إلى قائمة الأدوية",
+    langLabel:"اختر اللغة:",
+    drugName:"زاريلتو (ريفاروكسابان)",
+    drugForm:"قرص (عن طريق الفم)",
+    badgeText:"مختصر وواضح",
+
+    sec0Title:"ما هو زاريلتو؟",
+    sec0:[
+      "زاريلتو دواء <span class='highlight'>مُميِّع للدم</span> (مضاد للتخثّر).",
+      "يقلّل خطر تكوّن <span class='highlight'>الجلطات</span>."
+    ],
+    sec1Title:"لماذا يُستخدم؟",
+    sec1:[
+      "للوقاية من الجلطات لدى بعض مرضى <span class='highlight'>الرجفان الأذيني</span>.",
+      "لعلاج والوقاية من <span class='highlight'>جلطة في الساق</span> و<span class='highlight'>جلطة في الرئة</span> حسب خطة الطبيب."
+    ],
+    sec2Title:"كيف يؤخذ؟",
+    sec2:[
+      "خذه <span class='highlight'>تماماً كما وصف الطبيب</span> (الجرعة تعتمد على حالتك).",
+      "حاول تناوله <span class='highlight'>في نفس الوقت</span> كل يوم.",
+      "إذا نسيت جرعة: اتبع تعليمات طبيبك/ملصق الصيدلية – <span class='highlight'>لا تضاعف الجرعة</span> إلا إذا طُلب منك ذلك."
+    ],
+    sec3Title:"الطعام والشراب",
+    sec3:[
+      "يُبلع مع <span class='highlight'>كوب ماء</span>.",
+      "بعض الجرعات يجب أن تؤخذ <span class='highlight'>مع الطعام</span> – اتبع دائماً الخطة/ملصق الصيدلية.",
+      "تجنب الكحول بكميات كبيرة لأنها قد تزيد خطر النزف عند بعض الأشخاص."
+    ],
+    sec4Title:"تحذيرات",
+    sec4:[
+      "اتصل بالطبيب فوراً عند علامات <span class='highlight'>النزف</span>: دم في البول/البراز، براز أسود، قيء دموي، كدمات غير معتادة، أو نزيف أنفي طويل.",
+      "أخبر دائماً الطبيب/طبيب الأسنان أنك تتناول مميعاً للدم قبل أي إجراء.",
+      "لا <span class='highlight'>توقف</span> العلاج دون اتفاق (قد يزيد خطر الجلطة)."
+    ],
+    sec5Title:"الآثار الجانبية",
+    sec5:[
+      "أهم عرض جانبي هو <span class='highlight'>النزف</span>.",
+      "قد يحدث اضطراب معدة، غثيان أو كدمات خفيفة."
+    ],
+    sec6Title:"التداخلات",
+    sec6:[
+      "مسكنات مثل <span class='highlight'>إيبوبروفين</span> و<span class='highlight'>نابروكسين</span> ومميعات الدم الأخرى قد تزيد خطر النزف.",
+      "بعض المضادات الحيوية ومضادات الفطريات قد تؤثر على المفعول – أخبر الطبيب/الصيدلي بكل ما تتناوله (بما في ذلك الأعشاب)."
+    ],
+    sec7Title:"رمضان والصيام",
+    sec7:[
+      "ناقش خطة آمنة قبل رمضان مع الطبيب.",
+      "إذا كانت جرعتك يجب أن تؤخذ مع الطعام، فيمكن غالباً وضعها عند <span class='highlight'>الإفطار</span> (حسب خطة الطبيب).",
+      "لا تغيّر الجرعة/الوقت دون اتفاق."
+    ],
+    sec8Title:"الحفظ",
+    sec8:[
+      "يحفظ بعيداً عن الأطفال وفي العبوة الأصلية.",
+      "لا يُستخدم بعد “EXP” وأعد البقايا للصيدلية."
+    ],
+
+    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2:"إعداد: إبراهيم ظاهر حنف"
+  },
+
+  tr:{
+    pageTitle:"Xarelto (rivaroksaban) – kan sulandırıcı",
+    hdrH1:"Xarelto (rivaroksaban) – kan sulandırıcı",
+    hdrP:"Hasta ve yakınları için kısa bilgi.",
+    backText:"İlaç listesine geri dön",
+    langLabel:"Dil seçin:",
+    drugName:"Xarelto (rivaroksaban)",
+    drugForm:"Tablet (ağızdan)",
+    badgeText:"Kısa ve anlaşılır",
+
+    sec0Title:"Xarelto nedir?",
+    sec0:[
+      "Xarelto <span class='highlight'>kan sulandırıcı</span> bir ilaçtır (antikoagülan).",
+      "Kanın <span class='highlight'>pıhtı</span> oluşturma riskini azaltır."
+    ],
+    sec1Title:"Ne için kullanılır?",
+    sec1:[
+      "Bazı <span class='highlight'>atriyal fibrilasyon</span> hastalarında pıhtı oluşumunu önlemek için.",
+      "<span class='highlight'>Bacakta pıhtı</span> ve <span class='highlight'>akciğerde pıhtı</span> tedavisi/korunması için – doktor planına göre."
+    ],
+    sec2Title:"Nasıl alınır?",
+    sec2:[
+      "<span class='highlight'>Doktorun yazdığı şekilde</span> aynen alın (doz hastalığınıza göre değişir).",
+      "Her gün <span class='highlight'>aynı saatte</span> almaya çalışın.",
+      "Doz unutulursa: doktor/eczane etiketini izleyin – size söylenmedikçe <span class='highlight'>çift doz almayın</span>."
+    ],
+    sec3Title:"Yemek ve içecek",
+    sec3:[
+      "<span class='highlight'>Bir bardak su</span> ile yutun.",
+      "Bazı dozlar <span class='highlight'>yemekle birlikte</span> alınmalıdır – planı/etiketi takip edin.",
+      "Aşırı alkol bazı kişilerde kanama riskini artırabilir."
+    ],
+    sec4Title:"Uyarılar",
+    sec4:[
+      "<span class='highlight'>Kanama</span> belirtilerinde acilen doktora başvurun: idrar/dışkıda kan, siyah dışkı, kanlı kusma, olağandışı morarma veya uzun süren burun kanaması.",
+      "Her işlem/ameliyat öncesi doktorunuza/diş hekiminize kan sulandırıcı kullandığınızı söyleyin.",
+      "Doktora danışmadan <span class='highlight'>kesmeyin</span> (pıhtı riski artabilir)."
+    ],
+    sec5Title:"Yan etkiler",
+    sec5:[
+      "En önemli yan etki <span class='highlight'>kanama</span> riskidir.",
+      "Bazılarında mide şikâyeti, bulantı veya kolay morarma olabilir."
+    ],
+    sec6Title:"Etkileşimler",
+    sec6:[
+      "<span class='highlight'>İbuprofen</span> ve <span class='highlight'>naproksen</span> gibi ağrı kesiciler ve diğer kan sulandırıcılar kanama riskini artırabilir.",
+      "Bazı antibiyotikler ve mantar ilaçları etkisini değiştirebilir – kullandığınız tüm ilaçları (bitkisel ürünler dahil) bildirin."
+    ],
+    sec7Title:"Ramazan",
+    sec7:[
+      "Ramazan öncesi güvenli plan için doktorla görüşün.",
+      "Dozunuzun yemekle alınması gerekiyorsa çoğu zaman <span class='highlight'>iftar</span> saatine planlanabilir (doktor planına göre).",
+      "Kendi kendinize doz/saat değişikliği yapmayın."
+    ],
+    sec8Title:"Saklama",
+    sec8:[
+      "Çocuklardan uzak, orijinal ambalajında saklayın.",
+      "EXP sonrası kullanmayın; artanları eczaneye verin."
+    ],
+
+    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
+  },
+
+  ur:{
+    pageTitle:"زاريلٹو (ریواروکسابان) – خون پتلا کرنے والی دوا",
+    hdrH1:"زاريلٹو (ریواروکسابان) – خون پتلا کرنے والی دوا",
+    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText:"فہرست پر واپس",
+    langLabel:"زبان منتخب کریں:",
+    drugName:"زاريلٹو (ریواروکسابان)",
+    drugForm:"گولی (منہ کے ذریعے)",
+    badgeText:"مختصر اور واضح",
+
+    sec0Title:"زاريلٹو کیا ہے؟",
+    sec0:[
+      "زاريلٹو ایک <span class='highlight'>خون پتلا</span> کرنے والی دوا ہے (اینٹی کوایگولنٹ).",
+      "یہ <span class='highlight'>خون کے لوتھڑے</span> بننے کے خطرے کو کم کرتی ہے۔"
+    ],
+    sec1Title:"کس لیے استعمال ہوتی ہے؟",
+    sec1:[
+      "کچھ مریضوں میں <span class='highlight'>ایٹریئل فِبریلیشن</span> کے ساتھ لوتھڑے سے بچاؤ کے لیے۔",
+      "<span class='highlight'>ٹانگ میں خون کا لوتھڑا</span> اور <span class='highlight'>پھیپھڑوں میں خون کا لوتھڑا</span> کے علاج/بچاؤ کے لیے – ڈاکٹر کے پلان کے مطابق۔"
+    ],
+    sec2Title:"کیسے لیں؟",
+    sec2:[
+      "دوا <span class='highlight'>بالکل ڈاکٹر کے کہنے کے مطابق</span> لیں (خوراک آپ کی بیماری پر منحصر ہے).",
+      "ہر دن <span class='highlight'>ایک ہی وقت</span> پر لینے کی کوشش کریں۔",
+      "اگر خوراک رہ جائے: ڈاکٹر/لیبل کی ہدایات پر عمل کریں – <span class='highlight'>ڈبل خوراک نہ لیں</span> جب تک کہا نہ گیا ہو۔"
+    ],
+    sec3Title:"کھانا پینا",
+    sec3:[
+      "<span class='highlight'>ایک گلاس پانی</span> کے ساتھ نگلیں۔",
+      "کچھ خوراکیں <span class='highlight'>کھانے کے ساتھ</span> لینا ضروری ہوتی ہیں – ہمیشہ پلان/فارمیسی لیبل فالو کریں۔",
+      "زیادہ الکحل سے پرہیز کریں کیونکہ کچھ لوگوں میں خون بہنے کا خطرہ بڑھ سکتا ہے۔"
+    ],
+    sec4Title:"احتیاطیں",
+    sec4:[
+      "<span class='highlight'>خون بہنے</span> کی علامات پر فوراً ڈاکٹر سے رابطہ کریں: پیشاب/پاخانہ میں خون، کالا پاخانہ، خون کی الٹی، غیر معمولی نیل، یا لمبا ناک سے خون آنا۔",
+      "کسی بھی عمل سے پہلے ڈاکٹر/دندان ساز کو بتائیں کہ آپ خون پتلا کرنے والی دوا لیتے ہیں۔",
+      "ڈاکٹر کے مشورے کے بغیر <span class='highlight'>بند نہ کریں</span> (لوتھڑے کا خطرہ بڑھ سکتا ہے)۔"
+    ],
+    sec5Title:"مضر اثرات",
+    sec5:[
+      "اہم ترین خطرہ <span class='highlight'>خون بہنا</span> ہے۔",
+      "کچھ لوگوں کو معدے کی تکلیف، متلی یا آسانی سے نیل پڑ سکتا ہے۔"
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "<span class='highlight'>آئیبوپروفین</span> اور <span class='highlight'>نیپروکسین</span> جیسے درد کی دوائیں اور دیگر خون پتلا کرنے والی ادویات خون بہنے کا خطرہ بڑھا سکتی ہیں۔",
+      "کچھ اینٹی بایوٹک اور اینٹی فنگل ادویات اثر بدل سکتی ہیں – ہر دوا (جڑی بوٹیوں سمیت) کے بارے میں بتائیں۔"
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "رمضان سے پہلے محفوظ پلان کے لیے ڈاکٹر سے بات کریں۔",
+      "اگر خوراک کھانے کے ساتھ لینی ہو تو عموماً اسے <span class='highlight'>افطار</span> پر رکھا جا سکتا ہے (ڈاکٹر کے پلان کے مطابق)۔",
+      "اپنی طرف سے وقت/خوراک نہ بدلیں۔"
+    ],
+    sec8Title:"محفوظ رکھنا",
+    sec8:[
+      "بچوں سے دور، اصل پیک میں رکھیں۔",
+      "EXP کے بعد استعمال نہ کریں؛ باقی دوا فارمیسی واپس کریں۔"
+    ],
+
+    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
+  },
+
+  fa:{
+    pageTitle:"زارلتو (ریواروکسابان) – رقیق‌کننده خون",
+    hdrH1:"زارلتو (ریواروکسابان) – رقیق‌کننده خون",
+    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"زارلتو (ریواروکسابان)",
+    drugForm:"قرص (خوراکی)",
+    badgeText:"کوتاه و روشن",
+
+    sec0Title:"زارلتو چیست؟",
+    sec0:[
+      "زارلتو یک داروی <span class='highlight'>رقیق‌کننده خون</span> (ضدانعقاد) است.",
+      "خطر تشکیل <span class='highlight'>لخته خون</span> را کاهش می‌دهد."
+    ],
+    sec1Title:"موارد مصرف",
+    sec1:[
+      "پیشگیری از لخته در برخی افراد با <span class='highlight'>فیبریلاسیون دهلیزی</span>.",
+      "درمان و پیشگیری از <span class='highlight'>لخته در پا</span> و <span class='highlight'>لخته در ریه</span> طبق برنامه پزشک."
+    ],
+    sec2Title:"نحوه مصرف",
+    sec2:[
+      "دقیقاً <span class='highlight'>طبق دستور پزشک</span> مصرف کنید (دوز به بیماری شما بستگی دارد).",
+      "سعی کنید هر روز <span class='highlight'>در یک زمان ثابت</span> مصرف شود.",
+      "اگر یک نوبت را فراموش کردید: طبق دستور پزشک/برچسب عمل کنید – <span class='highlight'>دوز دوبرابر نکنید</span> مگر اینکه گفته شده باشد."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "با <span class='highlight'>یک لیوان آب</span> ببلعید.",
+      "برخی دوزها باید <span class='highlight'>همراه غذا</span> مصرف شوند – برنامه/برچسب داروخانه را دنبال کنید.",
+      "از مصرف زیاد الکل پرهیز کنید چون ممکن است خطر خون‌ریزی را افزایش دهد."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "در علائم <span class='highlight'>خون‌ریزی</span> فوراً تماس بگیرید: خون در ادرار/مدفوع، مدفوع سیاه، استفراغ خونی، کبودی غیرعادی یا خون‌دماغ طولانی.",
+      "قبل از هر اقدام، به پزشک/دندان‌پزشک بگویید رقیق‌کننده خون مصرف می‌کنید.",
+      "بدون مشورت <span class='highlight'>قطع نکنید</span> (خطر لخته ممکن است بیشتر شود)."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "مهم‌ترین عارضه <span class='highlight'>خون‌ریزی</span> است.",
+      "برخی افراد ناراحتی معده، تهوع یا کبودی خفیف دارند."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "مسکن‌هایی مانند <span class='highlight'>ایبوپروفن</span> و <span class='highlight'>ناپروکسن</span> و سایر رقیق‌کننده‌ها می‌توانند خطر خون‌ریزی را افزایش دهند.",
+      "برخی آنتی‌بیوتیک‌ها و ضدقارچ‌ها می‌توانند اثر را تغییر دهند – همه داروها (حتی گیاهی) را اعلام کنید."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "قبل از رمضان برای برنامه ایمن با پزشک مشورت کنید.",
+      "اگر باید همراه غذا مصرف شود، معمولاً می‌توان آن را در زمان <span class='highlight'>افطار</span> قرار داد (طبق برنامه پزشک).",
+      "خودسرانه زمان/دوز را تغییر ندهید."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "دور از دسترس کودکان و در بسته‌بندی اصلی نگهداری شود.",
+      "پس از EXP مصرف نشود؛ باقیمانده را به داروخانه تحویل دهید."
+    ],
+
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  prs:{
+    pageTitle:"زارلتو (ریواروکسابان) – رقیق‌کننده خون",
+    hdrH1:"زارلتو (ریواروکسابان) – رقیق‌کننده خون",
+    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"زارلتو (ریواروکسابان)",
+    drugForm:"قرص (از راه دهان)",
+    badgeText:"کوتاه و واضح",
+
+    sec0Title:"زارلتو چیست؟",
+    sec0:[
+      "زارلتو یک دوا <span class='highlight'>رقیق‌کننده خون</span> (ضدانعقاد) است.",
+      "خطر ساختن <span class='highlight'>لخته خون</span> را کم می‌کند."
+    ],
+    sec1Title:"برای چی استفاده می‌شود؟",
+    sec1:[
+      "پیشگیری از لخته در بعضی اشخاص با <span class='highlight'>فیبریلاسیون دهلیزی</span>.",
+      "تداوی و پیشگیری <span class='highlight'>لخته در پا</span> و <span class='highlight'>لخته در ریه</span> طبق پلان داکتر."
+    ],
+    sec2Title:"چگونه گرفته شود؟",
+    sec2:[
+      "دقیقاً <span class='highlight'>طبق نسخه داکتر</span> بگیرید (دوز به حالت شما بستگی دارد).",
+      "کوشش کنید هر روز <span class='highlight'>در یک وقت ثابت</span> گرفته شود.",
+      "اگر یک نوبت فراموش شد: طبق دستور داکتر/برچسپ دواخانه عمل کنید – <span class='highlight'>دوز دو برابر نگیرید</span> مگر گفته شده باشد."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "با <span class='highlight'>یک گیلاس آب</span> قورت دهید.",
+      "بعضی دوزها باید <span class='highlight'>همراه غذا</span> گرفته شود – همیشه پلان/برچسپ دواخانه را تعقیب کنید.",
+      "از الکول زیاد پرهیز کنید چون خطر خون‌ریزی را زیاد می‌کند."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "در علامت‌های <span class='highlight'>خون‌ریزی</span> فوری تماس بگیرید: خون در ادرار/مدفوع، مدفوع سیاه، قی خون، کبودی غیرمعمول یا خون‌دماغ طولانی.",
+      "قبل از هر اقدام، به داکتر/دندان‌داکتر بگویید رقیق‌کننده خون می‌گیرید.",
+      "بدون مشوره <span class='highlight'>قطع نکنید</span> (خطر لخته ممکن زیاد شود)."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "مهم‌ترین خطر <span class='highlight'>خون‌ریزی</span> است.",
+      "بعضی‌ها ناراحتی معده، دل‌بدی یا کبودی خفیف دارند."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "دواهای درد مانند <span class='highlight'>ایبوپروفن</span> و <span class='highlight'>ناپروکسن</span> و رقیق‌کننده‌های دیگر می‌توانند خطر خون‌ریزی را زیاد کنند.",
+      "برخی انتی‌بیوتیک‌ها و دواهای ضدقارچ اثر را تغییر می‌دهند – تمام دواها (حتی گیاهی) را بگویید."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "قبل از رمضان با داکتر پلان مصؤن بسازید.",
+      "اگر باید همراه غذا گرفته شود، معمولاً می‌توان در وقت <span class='highlight'>افطار</span> تنظیم کرد (طبق پلان).",
+      "خودسرانه وقت/دوز را تغییر ندهید."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "دور از دسترس اطفال و در بسته‌بندی اصلی نگهداری شود.",
+      "بعد از EXP استفاده نشود؛ باقی‌مانده را به دواخانه بسپارید."
+    ],
+
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  ps:{
+    pageTitle:"زارېلتو (ریواروکسابان) – د وینې نری کوونکی",
+    hdrH1:"زارېلتو (ریواروکسابان) – د وینې نری کوونکی",
+    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText:"لېست ته بېرته",
+    langLabel:"ژبه وټاکئ:",
+    drugName:"زارېلتو (ریواروکسابان)",
+    drugForm:"ګولۍ (د خولې له لارې)",
+    badgeText:"لنډ او روښانه",
+
+    sec0Title:"زارېلتو څه شی دی؟",
+    sec0:[
+      "زارېلتو د <span class='highlight'>وینې نری کوونکی</span> درمل دی (ضدانعقاد).",
+      "د <span class='highlight'>وینې د لختو</span> د جوړېدو خطر کموي."
+    ],
+    sec1Title:"د څه لپاره کارېږي؟",
+    sec1:[
+      "د ځینو <span class='highlight'>اتریال فبریلېشن</span> ناروغانو کې د لختو د مخنیوي لپاره.",
+      "د <span class='highlight'>پښې لخته</span> او <span class='highlight'>د سږو لخته</span> درملنه/مخنیوی – د ډاکټر د پلان له مخې."
+    ],
+    sec2Title:"څنګه واخیستل شي؟",
+    sec2:[
+      "درمل <span class='highlight'>بالکل د ډاکټر د نسخې مطابق</span> واخلئ (دوز ستاسو له حالت سره تړاو لري).",
+      "هڅه وکړئ هره ورځ <span class='highlight'>په یو وخت</span> کې یې واخلئ.",
+      "که دوز هېر شو: د ډاکټر/لیبل لارښوونې تعقیب کړئ – تر څو چې درته نه وي ویل شوي <span class='highlight'>ډبل دوز مه اخلئ</span>."
+    ],
+    sec3Title:"خواړه او څښاک",
+    sec3:[
+      "له <span class='highlight'>یو ګیلاس اوبو</span> سره یې تېر کړئ.",
+      "ځینې دوزونه باید <span class='highlight'>له خوړو سره</span> واخیستل شي – تل د پلان/درملتون لیبل تعقیب کړئ.",
+      "له ډېر الکول څخه ډډه وکړئ، ځکه د وینې بهېدلو خطر زیاتولی شي."
+    ],
+    sec4Title:"خبرداری",
+    sec4:[
+      "د <span class='highlight'>وینې بهېدلو</span> نښو کې سمدستي ډاکټر ته زنګ ووهئ: په ادرار/غایطه کې وینه، تور غایطه، د وینې کانګې، نااشنا کبودي، یا اوږد پوزه‌وینه.",
+      "له هرې پروسې مخکې ډاکټر/غاښ‌ډاکټر ته ووایئ چې د وینې نری کوونکی کاروئ.",
+      "بې له مشورې <span class='highlight'>مه بندوئ</span> (د لختې خطر زیاتېدای شي)."
+    ],
+    sec5Title:"اړخیزې اغېزې",
+    sec5:[
+      "تر ټولو مهم خطر <span class='highlight'>وینه بهېدل</span> دي.",
+      "ځینې خلک د معدې تکلیف، زړه بدوالی یا اسانه کبودي لري."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "د درد درمل لکه <span class='highlight'>ایبوپروفین</span> او <span class='highlight'>ناپروکسن</span> او نور وینې نری کوونکي د وینې بهېدلو خطر زیاتولی شي.",
+      "ځینې انټي‌بیوټیکونه او د فنګس ضد درمل اغېزه بدلولای شي – ټول درمل (حتی بوټي) ډاکټر/درملتون ته ووایئ."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "له رمضان مخکې له ډاکټر سره خوندي پلان جوړ کړئ.",
+      "که باید له خوړو سره واخیستل شي، ډېری وخت یې د <span class='highlight'>افطار</span> پر وخت تنظیمولای شئ (د پلان له مخې).",
+      "په خپله دوز/وخت مه بدلوئ."
+    ],
+    sec8Title:"ساتنه",
+    sec8:[
+      "له ماشومانو لرې او په اصلي بسته کې وساتئ.",
+      "له EXP وروسته مه کاروئ؛ پاتې درمل درملتون ته وسپارئ."
+    ],
+
+    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
   }
 };
 
-/* Minimal fallbacks for languages not explicitly filled above */
-["ar","tr","ur","fa","prs","ps"].forEach(lang=>{
-  if(!T[lang]) T[lang] = T.en;
-});
-
 function applyLang(lang){
-  const d = T[lang] || T.so;
+  const d = T[lang] || T.da;
+
   applyTheme(lang);
   setDirLang(lang);
 
@@ -528,18 +882,20 @@ function applyLang(lang){
   document.getElementById("footer1").textContent = d.footer1;
   document.getElementById("footer2").innerHTML = d.footer2;
 
-  /* keep language when going back */
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-/* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "da";
+
 document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
 applyLang(document.getElementById("langSelect").value);
-document.getElementById("langSelect").addEventListener("change", function(){ applyLang(this.value); });
+
+document.getElementById("langSelect").addEventListener("change", function(){
+  applyLang(this.value);
+});
 </script>
 
 </body>
