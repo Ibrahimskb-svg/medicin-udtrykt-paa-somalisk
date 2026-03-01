@@ -200,7 +200,6 @@ function fillList(id, arr){
 function setSectionTitle(elId, title){
   const el = document.getElementById(elId);
   if(!el) return;
-  el.querySelectorAll("small").forEach(s => s.remove());
   el.textContent = (title || "").trim();
 }
 
