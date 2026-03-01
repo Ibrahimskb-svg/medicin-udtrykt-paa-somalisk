@@ -27,7 +27,7 @@
 
 /* Smooth theme transitions */
 @media (prefers-reduced-motion: no-preference){
-  body, header, .langbar, .card, .index-link, .badge, .drug-icon, .section-icon, a.back{
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
     transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
   }
   header{
@@ -182,7 +182,7 @@ a.back span{ font-size:1.1rem; }
         </div>
         <div class="drug-labels">
           <div class="drug-name" id="drugName">Ibuprofen – xanuun, barar &amp; qandho</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
       <div class="badge" id="badge">Akhris fudud oo kooban</div>
@@ -192,7 +192,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall"></small></div>
       </div>
       <ul id="useList"></ul>
     </div>
@@ -201,7 +201,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall"></small></div>
       </div>
       <ul id="doseList"></ul>
     </div>
@@ -210,7 +210,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall"></small></div>
       </div>
       <ul id="sideList"></ul>
     </div>
@@ -219,7 +219,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall"></small></div>
       </div>
       <ul id="interactList"></ul>
     </div>
@@ -228,7 +228,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall"></small></div>
       </div>
       <ul id="warnList"></ul>
     </div>
@@ -237,7 +237,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall"></small></div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
@@ -246,7 +246,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall"></small></div>
       </div>
       <ul id="foodList"></ul>
     </div>
@@ -255,7 +255,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall"></small></div>
       </div>
       <ul id="storeList"></ul>
     </div>
@@ -270,7 +270,7 @@ a.back span{ font-size:1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-/* 9 language themes (you can tweak colors if you want) */
+/* 9 language themes */
 const THEMES = {
   so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
   da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
@@ -291,42 +291,42 @@ const T = {
     back: "Ku laabo liiska daawooyinka",
     badge: "Akhris fudud oo kooban",
     drugName: "Ibuprofen – xanuun, barar & qandho",
-    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    drugForm: "Kiniin afka ah",
     sections: {
-      use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
-        "Ibuprofen waa daawo ka hortagta xanuunka iyo bararka (betændelse), isla markaana yareysa qandhada.",
+      use: { title:"Isticmaalka", small:"", items:[
+        "Ibuprofen waa daawo ka hortagta xanuunka iyo bararka, isla markaana yareysa qandhada.",
         "Waxaa loo isticmaalaa madax-xanuun, xanuunka caadada, murqo xanuun iyo xanuun kala-goysyada."
       ]},
-      dose: { title:"Qiyaasta", small:"(Dosering)", items:[
-        "Dadka waaweyn: 200–600 mg maalintii, waxa aad isticmaali kartaa 1–3 jeer, laakiin waa in ay u dhaxaysaa ugu yaraan 4 saac. Ugu badnaan 1200 mg maalintii adigoon la tashan dhakhtarka.",
-        "Xasuuso in aad wax cunto ka hor ama aad cunno la qaadato si caloosha loo ilaaliyo."
+      dose: { title:"Qiyaasta", small:"", items:[
+        "Dadka waaweyn: 200–600 mg 1–3 jeer maalintii, iyadoo u dhexeysa ugu yaraan 4 saac.",
+        "Ha dhaafin 1200 mg maalintii adigoon la tashan dhakhtar. Ku qaado cunno ama ka dib cunno si caloosha loo ilaaliyo."
       ]},
-      side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
+      side: { title:"Waxyeellooyinka", small:"", items:[
         "Caloosha oo ku xanuunta, lalabo ama shuban.",
-        "Marar dhif ah: boog caloosha ah ama dhiig-bax (saxaro madow, matag dhiig leh) – wac dhakhtarka si degdeg ah."
+        "Marar dhif ah: boog caloosha ah ama dhiig-bax (saxaro madow, matag dhiig leh) – raadi gargaar degdeg ah."
       ]},
-      interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
         "Ha isku darin ibuprofen iyo NSAID kale (tusaale diclofenac, naproxen).",
-        "Ha isla isticmaalin ibuprofen iyo daawooyinka dhiig-khafiifiya (Marevan, Xarelto, Eliquis) ama aspirin, sababtoo ah waxay kordhiyaan khatarta dhiig-baxa."
+        "Ka taxaddar haddii aad qaadato daawooyin dhiig-khafiifiya ama aspirin, sababtoo ah waxay kordhiyaan khatarta dhiig-baxa."
       ]},
-      warn: { title:"Digniino", small:"(Advarsler)", items:[
-        "Ha isticmaalin haddii aad hore u lahayd boogo caloosha ah, dhiig-bax caloosha ama xasaasiyad NSAID.",
+      warn: { title:"Digniino", small:"", items:[
+        "Ha isticmaalin haddii aad hore u lahayd boogo caloosha ah, dhiig-bax caloosha/xiidmaha ama xasaasiyad NSAID.",
         "Uurka 3-da bilood ee ugu dambeeya: guud ahaan looma oggola – la hadal dhakhtarka."
       ]},
-      ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
         "Ibuprofen kaniinku wuxuu jebiyaa soonka haddii la qaato maalinta.",
-        "Haddii aad u baahan tahay, ka fikir in qiyaasta loo wareejiyo fiidkii ama <span class='highlight'>suxuurta</span> – la tasho dhakhtarka."
+        "Haddii loo baahdo, qiyaasta waxaa badanaa loo qorsheyn karaa fiidkii ama <span class='highlight'>suxuurta</span> – la tasho dhakhtarka."
       ]},
-      food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
-        "Had iyo jeer ibuprofen qaado adiga oo wax cunay ama cunno la qaadanaya, si loo ilaaliyo caloosha.",
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
+        "Had iyo jeer ku qaado ibuprofen adigoo wax cunay ama cunno la qaadanaya.",
         "Cab biyo kugu filan markaad daawada qaadanayso."
       ]},
-      store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka, ama haddii midabka isbadalay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto <span class='highlight'>taariikhda dhicitaanka</span> ama haddii midabku isbeddelay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
       ]}
     },
-    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
-    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
   },
 
   da: {
@@ -622,7 +622,7 @@ const T = {
       ]},
       interact: { title:"تداخلات دوایی", small:"", items:[
         "ایبوپروفن را با NSAIDهای دیگر (مثل دیکلوفناک، ناپروکسن) یک‌جا نگیرید.",
-        "گرفتن همزمان با رقیق‌کننده‌های خون (وارفارین، زارلتو، الیکوییس) یا آسپیرین خطر خون‌ریزی را زیاد می‌کند."
+        "گرفتن همزمان با رقیق‌کننده‌های خون یا آسپیرین خطر خون‌ریزی را زیاد می‌کند."
       ]},
       warn: { title:"هشدارها", small:"", items:[
         "اگر زخم معده، خون‌ریزی گوارشی یا حساسیت به NSAID دارید، استفاده نکنید.",
@@ -663,19 +663,19 @@ const T = {
       ]},
       side: { title:"اړخیزې اغېزې", small:"", items:[
         "د معدې درد، زړه بدوالی یا نس ناستی.",
-        "په ندرت سره: د معدې زخم یا وینه‌بهېدل (تورې غایطې، وینې لرونکی کانګې) – بیړنۍ مرسته وغواړئ."
+        "په ندرت سره: د معدې زخم یا وینه‌بهېدل – بیړنۍ مرسته وغواړئ."
       ]},
       interact: { title:"د درملو تعامل", small:"", items:[
-        "ایبوپروفین له نورو NSAID درملو (لکه diclofenac, naproxen) سره یوځای مه کاروئ.",
-        "له وینې نری کوونکو (وارفارین، زارلتو، الیکوییس) یا اسپرین سره یوځای کول د وینه‌بهېدلو خطر زیاتوي."
+        "ایبوپروفین له نورو NSAID درملو سره یوځای مه کاروئ.",
+        "له وینې نری کوونکو یا اسپرین سره یوځای کول د وینه‌بهېدلو خطر زیاتوي."
       ]},
       warn: { title:"احتیاط", small:"", items:[
-        "که د معدې زخم، د هاضمې وینه‌بهېدنه یا د NSAID حساسیت لرئ، مه یې کاروئ.",
+        "که د معدې زخم، د هاضمې وینه‌بهېدل یا د NSAID حساسیت لرئ، مه یې کاروئ.",
         "امیندوارۍ (وروستي 3 میاشتې): عموماً نه سپارل کېږي – له ډاکټر سره خبرې وکړئ."
       ]},
       ramadan: { title:"رمضان او روژه", small:"", items:[
         "که د ورځې واخیستل شي، روژه ماتوي.",
-        "که اړتیا وي، دوزونه ماښام یا د سهار له لمرختو مخکې له خوړو (سحري) سره تنظیمېدای شي – له ډاکټر سره سلا وکړئ."
+        "که اړتیا وي، دوزونه ماښام یا د سحري له خوړو سره تنظیمېدای شي – له ډاکټر سره سلا وکړئ."
       ]},
       food: { title:"خواړه او څښاک", small:"", items:[
         "د معدې د ساتنې لپاره له خوړو سره یا له خوړو وروسته واخلئ.",
@@ -779,7 +779,7 @@ function render(lang){
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 
-  // Update URL without reload (nice-to-have)
+  // Update URL without reload
   const url = new URL(window.location.href);
   url.searchParams.set("lang", lang);
   window.history.replaceState({}, "", url.toString());
