@@ -135,8 +135,8 @@ a.back span { font-size:1.1rem; }
 
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
+        <div class="drug-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" />
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
@@ -144,7 +144,7 @@ a.back span { font-size:1.1rem; }
         </div>
         <div class="drug-labels">
           <div class="drug-name" id="drugName">Losartan</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
       <div class="badge" id="badgeText">Akhris kooban</div>
@@ -227,7 +227,7 @@ const RTL = new Set(["ar","fa","ur","prs","ps"]);
 /* Same 9-language themes */
 const THEMES = {
   so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
+  da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" }, /* Dansk = BLÅ */
   en:  { a1:"#0ea5e9", a2:"#2563eb", link:"#1d4ed8", pillBg:"#e0f2fe", pillText:"#075985" },
   ar:  { a1:"#7c3aed", a2:"#4f46e5", link:"#4f46e5", pillBg:"#ede9fe", pillText:"#5b21b6" },
   tr:  { a1:"#ef4444", a2:"#f97316", link:"#b91c1c", pillBg:"#fee2e2", pillText:"#b91c1c" },
@@ -247,6 +247,39 @@ function applyTheme(lang){
   r.setProperty("--pillText", th.pillText || "#16634a");
 }
 
+function setDirLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+}
+
+function fillList(id, arr){
+  const ul = document.getElementById(id);
+  ul.innerHTML = "";
+  (arr || []).forEach(txt => {
+    const li = document.createElement("li");
+    li.innerHTML = txt;
+    ul.appendChild(li);
+  });
+}
+
+/* Pantoprazol-robust: preserve <small> in headings */
+function setSectionTitle(elId, title){
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const small = el.querySelector("small");
+  const t = (title || "").trim();
+  if (small){
+    const first = el.childNodes[0];
+    if (first && first.nodeType === Node.TEXT_NODE){
+      first.textContent = t + " ";
+    } else {
+      el.insertBefore(document.createTextNode(t + " "), small);
+    }
+  } else {
+    el.textContent = t;
+  }
+}
+
 const T = {
   so:{
     pageTitle:"Losartan – dhiig-karka",
@@ -255,60 +288,60 @@ const T = {
     backText:"Ku laabo liiska daawooyinka",
     langLabel:"Dooro luqadda:",
     drugName:"Losartan",
-    drugForm:"Kiniin afka ah (Tablet til at tage gennem munden)",
+    drugForm:"Kiniin afka ah",
     badgeText:"Akhris kooban",
 
-    useTitle:"Isticmaalka <small>(Anvendelse)</small>",
+    useTitle:"Isticmaalka",
     use:[
-      "Losartan waa daawo ka tirsan kooxda <span class='highlight'>ARB</span> (Angiotensin II-receptorantagonister).",
-      "Waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span>, mararka qaarkoodna ilaalinta kelyaha (gaar ahaan dadka qaarkood ee sonkorow qaba)."
+      "Losartan waa daawo hoos u dhigta <span class='highlight'>cadaadiska dhiigga</span>.",
+      "Waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span>, mararka qaarkoodna waxay ka caawin kartaa <span class='highlight'>kelyaha</span> (tusaale qaar ka mid ah dadka sonkorowga qaba)."
     ],
 
-    doseTitle:"Qiyaasta <small>(Dosering)</small>",
+    doseTitle:"Qiyaasta",
     dose:[
-      "Badanaa <span class='highlight'>50 mg</span> hal mar maalintii; dhakhtarku wuu kordhin karaa haddii loo baahdo.",
-      "Qaado maalin kasta wakhti isku mid ah."
+      "Badanaa dhakhtarku wuxuu qori karaa <span class='highlight'>hal mar maalintii</span> (qiyaastu way kala duwanaan kartaa).",
+      "Qaado maalin kasta <span class='highlight'>wakhti isku mid ah</span>."
     ],
 
-    sideTitle:"Waxyeellooyinka <small>(Bivirkninger)</small>",
+    sideTitle:"Waxyeellooyinka",
     side:[
       "Madax-wareer ama daal fudud (gaar ahaan bilowga).",
-      "Potassium-ka dhiigga wuu kordhi karaa; mararka qaarkood murqo-daciif ayaa dhici kara."
+      "Mararka qaarkood <span class='highlight'>potassium</span> (macdanta dhiigga) wuu kici karaa; haddii murqo-daciif ama garaac wadne aan caadi ahayn dhacaan – la xiriir dhakhtar."
     ],
 
-    interTitle:"Isdhexgalka daawooyinka <small>(Interaktioner)</small>",
+    interTitle:"Isdhexgalka daawooyinka",
     inter:[
-      "Ka taxaddar kaniiniyada potassium iyo beddelka cusbada ee leh potassium.",
-      "NSAID (tusaale ibuprofen/diclofenac) muddo dheer la qaato waxay kordhin karaan khatarta kelyaha oo dhaawacma."
+      "Ka taxaddar <span class='highlight'>kaabis potassium</span> iyo beddelka cusbada ee leh potassium.",
+      "Daawooyinka xanuun baabi’iya ee qaarkood (tusaale <span class='highlight'>ibuprofen</span> ama <span class='highlight'>diclofenac</span>) haddii si joogto ah loo qaato waxay kordhin karaan khatarta kelyaha."
     ],
 
-    warnTitle:"Digniino <small>(Advarsler)</small>",
+    warnTitle:"Digniino",
     warn:[
-      "Ha isticmaalin haddii aad <span class='highlight'>uur leedahay</span>; la xiriir dhakhtarka haddii aad uur yeelato.",
-      "Haddii aad leedahay kelyo xanuun, waxaa loo baahan karaa baaritaanno (shaybaadh)."
+      "Ha isticmaalin haddii aad <span class='highlight'>uur leedahay</span>. Haddii aad uur yeelato – si degdeg ah ula xiriir dhakhtarka.",
+      "Haddii aad leedahay dhibaato kelyaha ama fuuqbax, dhakhtarku wuxuu u baahan karaa baaritaanno."
     ],
 
-    ramTitle:"Ramadaan iyo soonka <small>(Ramadan og faste)</small>",
+    ramTitle:"Ramadaan iyo soonka",
     ram:[
-      "Losartan hal mar maalintii ayaa la qaataa; badanaa waxaa lagu qaadan karaa <span class='highlight'>fiidkii (ka dib afurka)</span> ama <span class='highlight'>suxuurta</span> (cuntada ka hor waaberiga/imsak).",
+      "Badanaa Losartan waxaa la qaataa <span class='highlight'>hal mar maalintii</span> – inta badan waa suurtagal in la qaato <span class='highlight'>ka dib afurka</span> ama <span class='highlight'>xilliga suxuurta</span>.",
       "Ha beddelin qiyaasta ama ha joojin daawada adiga oo aan talo ka helin dhakhtarka."
     ],
 
-    foodTitle:"Cunto iyo cabitaan <small>(Mad og drikke)</small>",
+    foodTitle:"Cunto iyo cabitaan",
     food:[
-      "Daawadan waxaa la qaadan karaa <span class='highlight'>adigoon cunto cunin</span> ama <span class='highlight'>adigoo cunto la qaadanaya</span>."
+      "Daawadan waxaa la qaadan karaa <span class='highlight'>cunto la’aan</span> ama <span class='highlight'>cunto la jirto</span>."
     ],
 
-    storeTitle:"Kaydinta daawada <small>(Opbevaring)</small>",
+    storeTitle:"Kaydinta daawada",
     store:[
-      "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
+      "Ku hay daawada meel ka fog carruurta, kana hooseysa 25 °C.",
       "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
-      "Ha qaadan daawada marka ay dhaafto “EXP” ama haddii midabku isbeddelo.",
-      "Wixii soo haray: weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      "Ha qaadan daawada marka ay dhaafto “EXP”.",
+      "Wixii soo haray: ku celi farmashiyaha."
     ],
 
     footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    footer2:"Qoraalkan waxaa diyaariyay farmakonoom: Ibraahim Daahir Xanaf"
   },
 
   da:{
@@ -323,37 +356,37 @@ const T = {
 
     useTitle:"Anvendelse",
     use:[
-      "Losartan tilhører gruppen <span class='highlight'>ARB</span> (angiotensin II-receptorblokkere).",
-      "Bruges mod forhøjet blodtryk og kan i nogle tilfælde beskytte nyrerne (fx hos nogle med diabetes)."
+      "Losartan bruges mod <span class='highlight'>forhøjet blodtryk</span>.",
+      "Kan i nogle tilfælde også hjælpe med at <span class='highlight'>beskytte nyrerne</span> (fx hos nogle med diabetes)."
     ],
 
     doseTitle:"Dosering",
     dose:[
-      "Ofte <span class='highlight'>50 mg én gang dagligt</span>; lægen kan justere dosis efter behov.",
+      "Ofte <span class='highlight'>én gang dagligt</span> (dosis bestemmes af lægen).",
       "Tag medicinen hver dag på cirka samme tidspunkt."
     ],
 
     sideTitle:"Bivirkninger",
     side:[
       "Svimmelhed eller let træthed (især i starten).",
-      "Kalium i blodet kan stige; sjældent kan der opstå muskelsvaghed."
+      "Kalium i blodet kan stige; kontakt læge ved udtalt muskelsvaghed eller uregelmæssig hjerterytme."
     ],
 
     interTitle:"Interaktioner",
     inter:[
-      "Vær forsigtig med kaliumtilskud og salterstatning med kalium.",
-      "Langvarig brug af NSAID (fx ibuprofen/diclofenac) kan øge risikoen for nyrepåvirkning."
+      "Vær forsigtig med <span class='highlight'>kaliumtilskud</span> og salterstatning med kalium.",
+      "Smertestillende som <span class='highlight'>ibuprofen</span> eller <span class='highlight'>diclofenac</span> brugt ofte/længe kan øge risikoen for nyrepåvirkning."
     ],
 
     warnTitle:"Advarsler",
     warn:[
-      "Må ikke bruges under graviditet – kontakt læge ved graviditet.",
-      "Ved nyresygdom kan der være behov for blodprøver/kontrol."
+      "Må ikke bruges under <span class='highlight'>graviditet</span> – kontakt læge ved graviditet.",
+      "Ved nyresygdom eller væskemangel kan der være behov for kontrol/blodprøver."
     ],
 
     ramTitle:"Ramadan og faste",
     ram:[
-      "Losartan tages én gang dagligt og kan ofte tages <span class='highlight'>om aftenen (efter iftar)</span> eller ved <span class='highlight'>suhur</span> (måltidet før daggry).",
+      "Tages typisk <span class='highlight'>én gang dagligt</span> og kan ofte tages <span class='highlight'>efter iftar</span> eller ved <span class='highlight'>suhur</span>.",
       "Ændr ikke dosis, og stop ikke behandlingen uden aftale med lægen."
     ],
 
@@ -364,7 +397,7 @@ const T = {
     store:[
       "Opbevares utilgængeligt for børn og under 25 °C.",
       "Opbevar i original emballage for at beskytte mod lys og fugt.",
-      "Brug ikke efter “EXP”, eller hvis tabletterne ændrer udseende.",
+      "Brug ikke efter “EXP”.",
       "Aflever rester på apoteket."
     ],
 
@@ -384,37 +417,37 @@ const T = {
 
     useTitle:"Use",
     use:[
-      "Losartan belongs to the <span class='highlight'>ARB</span> group (angiotensin II receptor blockers).",
-      "Used for high blood pressure and may help protect the kidneys in some people (e.g., some with diabetes)."
+      "Losartan is used for <span class='highlight'>high blood pressure</span>.",
+      "It may also help <span class='highlight'>protect the kidneys</span> in some people (e.g., some with diabetes)."
     ],
 
     doseTitle:"Dose",
     dose:[
-      "Often <span class='highlight'>50 mg once daily</span>; your doctor may adjust the dose if needed.",
+      "Often taken <span class='highlight'>once daily</span> (dose decided by your doctor).",
       "Take it every day at about the same time."
     ],
 
     sideTitle:"Side effects",
     side:[
       "Dizziness or mild tiredness (especially at the beginning).",
-      "Blood potassium may increase; rarely, muscle weakness can occur."
+      "Blood potassium may increase; contact a doctor if you get marked muscle weakness or irregular heartbeat."
     ],
 
     interTitle:"Interactions",
     inter:[
-      "Be cautious with potassium supplements and potassium-containing salt substitutes.",
-      "Long-term NSAID use (e.g., ibuprofen/diclofenac) may increase the risk of kidney problems."
+      "Be cautious with <span class='highlight'>potassium supplements</span> and potassium-containing salt substitutes.",
+      "Frequent/long-term use of painkillers like <span class='highlight'>ibuprofen</span> or <span class='highlight'>diclofenac</span> may increase kidney risk."
     ],
 
     warnTitle:"Warnings",
     warn:[
-      "Do not use during pregnancy—contact your doctor if you become pregnant.",
-      "Kidney disease may require blood tests/monitoring."
+      "Do not use during <span class='highlight'>pregnancy</span>—contact your doctor if you become pregnant.",
+      "Kidney disease or dehydration may require monitoring/blood tests."
     ],
 
     ramTitle:"Ramadan and fasting",
     ram:[
-      "Losartan is taken once daily and can often be taken <span class='highlight'>in the evening (after iftar)</span> or at <span class='highlight'>suhur</span> (the pre-dawn meal).",
+      "Usually taken <span class='highlight'>once daily</span> and can often be taken <span class='highlight'>after iftar</span> or at <span class='highlight'>suhur</span>.",
       "Do not change the dose or stop the medicine without medical advice."
     ],
 
@@ -425,7 +458,7 @@ const T = {
     store:[
       "Keep out of reach of children and below 25 °C.",
       "Store in the original pack to protect from light and moisture.",
-      "Do not use after “EXP” or if tablets change appearance.",
+      "Do not use after “EXP”.",
       "Return leftovers to the pharmacy."
     ],
 
@@ -433,7 +466,6 @@ const T = {
     footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
-  /* The 6 missing languages are added here so dropdown never breaks */
   ar:{
     pageTitle:"لوسارتان – ارتفاع ضغط الدم",
     hdrH1:"لوسارتان – ارتفاع ضغط الدم",
@@ -446,53 +478,45 @@ const T = {
 
     useTitle:"الاستخدام",
     use:[
-      "لوسارتان من مجموعة <span class='highlight'>ARB</span> (حاصرات مستقبلات الأنجيوتنسين II).",
-      "يُستخدم لارتفاع ضغط الدم وقد يساعد في حماية الكلى لدى بعض المرضى (مثل بعض مرضى السكري)."
+      "يُستخدم لوسارتان لعلاج <span class='highlight'>ارتفاع ضغط الدم</span>.",
+      "قد يساعد أيضاً في <span class='highlight'>حماية الكلى</span> لدى بعض المرضى (مثل بعض مرضى السكري)."
     ],
-
     doseTitle:"الجرعة",
     dose:[
-      "غالباً <span class='highlight'>50 ملغ مرة يومياً</span>؛ قد يغيّر الطبيب الجرعة عند الحاجة.",
+      "غالباً <span class='highlight'>مرة واحدة يومياً</span> (الجرعة يحددها الطبيب).",
       "تناوله يومياً في نفس الوقت تقريباً."
     ],
-
     sideTitle:"الآثار الجانبية",
     side:[
-      "دوخة أو تعب خفيف (خصوصاً في البداية).",
-      "قد يرتفع البوتاسيوم في الدم؛ ونادراً قد يحدث ضعف في العضلات."
+      "دوخة أو تعب خفيف (خاصة في البداية).",
+      "قد يرتفع البوتاسيوم في الدم؛ راجع الطبيب عند ضعف شديد بالعضلات أو اضطراب ضربات القلب."
     ],
-
     interTitle:"التداخلات",
     inter:[
       "الحذر مع مكملات البوتاسيوم وبدائل الملح المحتوية على بوتاسيوم.",
-      "الاستخدام الطويل لمسكنات NSAID (مثل إيبوبروفين/ديكلوفيناك) قد يزيد خطر مشاكل الكلى."
+      "الاستخدام المتكرر/الطويل لمسكنات مثل <span class='highlight'>إيبوبروفين</span> أو <span class='highlight'>ديكلوفيناك</span> قد يزيد خطر مشاكل الكلى."
     ],
-
     warnTitle:"تحذيرات",
     warn:[
-      "لا يُستخدم أثناء الحمل—اتصل بالطبيب إذا حدث حمل.",
-      "قد تحتاج أمراض الكلى إلى فحوصات/متابعة."
+      "لا يُستخدم أثناء <span class='highlight'>الحمل</span>—اتصل بالطبيب إذا حدث حمل.",
+      "قد تتطلب أمراض الكلى أو الجفاف متابعة/تحاليل."
     ],
-
     ramTitle:"رمضان والصيام",
     ram:[
-      "عادةً يؤخذ مرة يومياً ويمكن تناوله <span class='highlight'>بعد الإفطار</span> أو وقت <span class='highlight'>السحور</span>.",
+      "عادةً يُؤخذ <span class='highlight'>مرة يومياً</span> ويمكن تناوله <span class='highlight'>بعد الإفطار</span> أو وقت <span class='highlight'>السحور</span>.",
       "لا تغيّر الجرعة ولا توقف الدواء دون استشارة طبية."
     ],
-
     foodTitle:"الطعام والشراب",
     food:[ "يمكن تناوله مع الطعام أو بدونه." ],
-
     storeTitle:"الحفظ",
     store:[
       "يحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
       "يحفظ في العبوة الأصلية للحماية من الضوء والرطوبة.",
-      "لا يستخدم بعد “EXP” أو إذا تغيّر شكل الأقراص.",
+      "لا يستخدم بعد “EXP”.",
       "أعد البقايا إلى الصيدلية."
     ],
-
     footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
+    footer2:"إعداد: إبراهيم ظاهر حنف"
   },
 
   tr:{
@@ -507,53 +531,45 @@ const T = {
 
     useTitle:"Kullanım",
     use:[
-      "Losartan <span class='highlight'>ARB</span> grubundandır (anjiyotensin II reseptör blokeri).",
-      "Yüksek tansiyonda kullanılır; bazı kişilerde böbrekleri korumaya da yardımcı olabilir (ör. bazı diyabet hastalarında)."
+      "Losartan <span class='highlight'>yüksek tansiyon</span> için kullanılır.",
+      "Bazı kişilerde <span class='highlight'>böbrekleri korumaya</span> da yardımcı olabilir (ör. bazı diyabet hastalarında)."
     ],
-
     doseTitle:"Doz",
     dose:[
-      "Sıklıkla <span class='highlight'>günde 1 kez 50 mg</span>; doktor gerekirse dozu ayarlayabilir.",
+      "Genellikle <span class='highlight'>günde 1 kez</span> (dozu doktor belirler).",
       "Her gün yaklaşık aynı saatte alın."
     ],
-
     sideTitle:"Yan etkiler",
     side:[
       "Baş dönmesi veya hafif yorgunluk (özellikle başlangıçta).",
-      "Kandaki potasyum artabilir; nadiren kas güçsüzlüğü olabilir."
+      "Kandaki potasyum artabilir; belirgin kas güçsüzlüğü veya ritim bozukluğunda doktora başvurun."
     ],
-
     interTitle:"Etkileşimler",
     inter:[
       "Potasyum takviyeleri ve potasyum içeren tuz ikamelerine dikkat.",
-      "NSAİİ’lerin uzun süreli kullanımı (ibuprofen/diklofenak) böbrek riskini artırabilir."
+      "Sık/uzun süre <span class='highlight'>ibuprofen</span> veya <span class='highlight'>diklofenak</span> kullanımı böbrek riskini artırabilir."
     ],
-
     warnTitle:"Uyarılar",
     warn:[
-      "Hamilelikte kullanılmaz—hamile kalırsanız doktorla görüşün.",
-      "Böbrek hastalığında takip/kan tahlilleri gerekebilir."
+      "<span class='highlight'>Hamilelikte</span> kullanılmaz—hamile kalırsanız doktora başvurun.",
+      "Böbrek hastalığı veya sıvı kaybında takip gerekebilir."
     ],
-
     ramTitle:"Ramazan ve oruç",
     ram:[
-      "Genelde günde bir kez alınır; <span class='highlight'>iftardan sonra</span> veya <span class='highlight'>sahurda</span> alınabilir.",
+      "Genelde <span class='highlight'>günde bir kez</span> alınır; <span class='highlight'>iftardan sonra</span> veya <span class='highlight'>sahurda</span> alınabilir.",
       "Doktora danışmadan dozu değiştirmeyin veya ilacı kesmeyin."
     ],
-
     foodTitle:"Yemek ve içecek",
     food:[ "Yemekle birlikte veya yemeksiz alınabilir." ],
-
     storeTitle:"Saklama",
     store:[
       "Çocuklardan uzak, 25 °C’nin altında saklayın.",
       "Işık ve nemden korumak için orijinal ambalajında tutun.",
-      "“EXP” sonrası veya görünüm değiştiyse kullanmayın.",
+      "“EXP” sonrası kullanmayın.",
       "Artanları eczaneye verin."
     ],
-
     footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
+    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
   },
 
   ur:{
@@ -568,53 +584,45 @@ const T = {
 
     useTitle:"استعمال",
     use:[
-      "لوسارٹن <span class='highlight'>ARB</span> گروپ سے ہے (Angiotensin II receptor blocker).",
-      "بلڈ پریشر کے لیے استعمال ہوتی ہے اور کچھ مریضوں میں گردوں کی حفاظت میں مدد دے سکتی ہے (مثلاً بعض ذیابیطس میں)."
+      "لوسارٹن <span class='highlight'>بلڈ پریشر</span> کے لیے استعمال ہوتی ہے۔",
+      "کچھ مریضوں میں <span class='highlight'>گردوں کی حفاظت</span> میں بھی مدد دے سکتی ہے (مثلاً بعض ذیابیطس میں)۔"
     ],
-
     doseTitle:"خوراک",
     dose:[
-      "اکثر <span class='highlight'>50 mg روزانہ ایک بار</span>؛ ڈاکٹر ضرورت کے مطابق خوراک بدل سکتا ہے۔",
+      "اکثر <span class='highlight'>روزانہ ایک بار</span> (خوراک ڈاکٹر طے کرتا ہے).",
       "ہر روز تقریباً ایک ہی وقت پر لیں۔"
     ],
-
     sideTitle:"مضر اثرات",
     side:[
       "چکر آنا یا ہلکی تھکن (خاص طور پر ابتدا میں).",
-      "خون میں پوٹاشیم بڑھ سکتا ہے؛ شاذونادر پٹھوں کی کمزوری ہو سکتی ہے۔"
+      "خون میں پوٹاشیم بڑھ سکتا ہے؛ شدید پٹھوں کی کمزوری یا دل کی دھڑکن بے قاعدہ ہو تو ڈاکٹر سے رابطہ کریں۔"
     ],
-
     interTitle:"دواؤں کے باہمی اثرات",
     inter:[
       "پوٹاشیم سپلیمنٹس اور پوٹاشیم والے نمک کے متبادل میں احتیاط۔",
-      "NSAIDs کا طویل استعمال (ibuprofen/diclofenac) گردوں کے مسائل کا خطرہ بڑھا سکتا ہے۔"
+      "ibuprofen یا diclofenac جیسی درد کی دوائیں بار بار/لمبے عرصے تک لینے سے گردوں کا خطرہ بڑھ سکتا ہے۔"
     ],
-
     warnTitle:"احتیاطیں",
     warn:[
-      "حمل میں استعمال نہ کریں—حمل ٹھہر جائے تو ڈاکٹر سے رابطہ کریں۔",
-      "گردوں کی بیماری میں ٹیسٹ/مانیٹرنگ کی ضرورت ہو سکتی ہے۔"
+      "<span class='highlight'>حمل</span> میں استعمال نہ کریں—حمل ٹھہر جائے تو ڈاکٹر سے رابطہ کریں۔",
+      "گردوں کی بیماری یا پانی کی کمی میں مانیٹرنگ کی ضرورت ہو سکتی ہے۔"
     ],
-
     ramTitle:"رمضان اور روزہ",
     ram:[
-      "یہ عموماً روزانہ ایک بار لی جاتی ہے؛ <span class='highlight'>افطار کے بعد</span> یا <span class='highlight'>سحری</span> میں لی جا سکتی ہے۔",
+      "عام طور پر <span class='highlight'>روزانہ ایک بار</span> لی جاتی ہے؛ <span class='highlight'>افطار کے بعد</span> یا <span class='highlight'>سحری</span> میں لی جا سکتی ہے۔",
       "ڈاکٹر کے مشورے کے بغیر خوراک نہ بدلیں اور دوا بند نہ کریں۔"
     ],
-
     foodTitle:"کھانا پینا",
     food:[ "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔" ],
-
     storeTitle:"محفوظ رکھنا",
     store:[
-      "بچوں سے دور، 25°C سے کم درجۂ حرارت پر رکھیں۔",
-      "اصل پیک میں رکھیں تاکہ روشنی/نمی سے بچ سکے۔",
-      "“EXP” کے بعد یا شکل بدل جائے تو استعمال نہ کریں۔",
+      "بچوں سے دور، 25°C سے کم پر رکھیں۔",
+      "روشنی/نمی سے بچانے کے لیے اصل پیک میں رکھیں۔",
+      "“EXP” کے بعد استعمال نہ کریں۔",
       "بچی دوا فارمیسی کو دیں۔"
     ],
-
     footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
+    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
   },
 
   fa:{
@@ -629,53 +637,45 @@ const T = {
 
     useTitle:"مصرف",
     use:[
-      "لوزارتان از گروه <span class='highlight'>ARB</span> است (مسدودکننده گیرنده آنژیوتانسین II).",
-      "برای فشار خون بالا استفاده می‌شود و در برخی افراد ممکن است به محافظت از کلیه کمک کند (مثلاً در برخی بیماران دیابتی)."
+      "لوزارتان برای <span class='highlight'>فشار خون بالا</span> استفاده می‌شود.",
+      "در برخی افراد ممکن است به <span class='highlight'>محافظت از کلیه</span> کمک کند (مثلاً در برخی بیماران دیابتی)."
     ],
-
     doseTitle:"دوز",
     dose:[
-      "معمولاً <span class='highlight'>50 میلی‌گرم روزی یک‌بار</span>؛ پزشک در صورت نیاز دوز را تغییر می‌دهد.",
+      "معمولاً <span class='highlight'>روزی یک بار</span> (دوز را پزشک تعیین می‌کند).",
       "هر روز تقریباً در یک زمان ثابت مصرف کنید."
     ],
-
     sideTitle:"عوارض",
     side:[
-      "سرگیجه یا خستگی خفیف (خصوصاً در شروع).",
-      "ممکن است پتاسیم خون بالا برود؛ به‌ندرت ضعف عضلانی رخ می‌دهد."
+      "سرگیجه یا خستگی خفیف (به‌خصوص در شروع).",
+      "ممکن است پتاسیم خون بالا برود؛ در صورت ضعف شدید عضلانی یا ضربان نامنظم به پزشک مراجعه کنید."
     ],
-
     interTitle:"تداخلات",
     inter:[
       "با مکمل پتاسیم و جایگزین‌های نمکِ حاوی پتاسیم احتیاط کنید.",
-      "مصرف طولانی NSAIDها (مثل ایبوپروفن/دیکلوفناک) می‌تواند خطر مشکلات کلیوی را افزایش دهد."
+      "مصرف مکرر/طولانی مسکن‌هایی مثل ibuprofen یا diclofenac می‌تواند خطر مشکلات کلیوی را افزایش دهد."
     ],
-
     warnTitle:"هشدارها",
     warn:[
-      "در بارداری استفاده نشود—در صورت بارداری با پزشک تماس بگیرید.",
-      "در بیماری کلیه ممکن است نیاز به آزمایش/پایش باشد."
+      "در <span class='highlight'>بارداری</span> استفاده نشود—در صورت بارداری با پزشک تماس بگیرید.",
+      "در بیماری کلیه یا کم‌آبی ممکن است پایش لازم باشد."
     ],
-
     ramTitle:"رمضان و روزه",
     ram:[
-      "معمولاً روزی یک‌بار مصرف می‌شود و می‌تواند <span class='highlight'>بعد از افطار</span> یا در <span class='highlight'>سحری</span> مصرف شود.",
+      "معمولاً <span class='highlight'>روزی یک‌بار</span> مصرف می‌شود؛ می‌تواند <span class='highlight'>بعد از افطار</span> یا در <span class='highlight'>سحری</span> مصرف شود.",
       "بدون مشورت پزشک دوز را تغییر ندهید و دارو را قطع نکنید."
     ],
-
     foodTitle:"غذا و نوشیدنی",
     food:[ "با غذا یا بدون غذا قابل مصرف است." ],
-
     storeTitle:"نگهداری",
     store:[
       "دور از دسترس کودکان و زیر 25°C نگهداری شود.",
       "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه دارید.",
-      "پس از “EXP” یا در صورت تغییر ظاهر مصرف نکنید.",
+      "پس از “EXP” مصرف نکنید.",
       "باقی‌مانده را به داروخانه تحویل دهید."
     ],
-
     footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
   },
 
   prs:{
@@ -690,53 +690,45 @@ const T = {
 
     useTitle:"استفاده",
     use:[
-      "لوزارتان از گروه <span class='highlight'>ARB</span> است (مسدودکننده گیرنده آنژیوتانسین II).",
-      "برای فشار خون بلند استفاده می‌شود و در برخی افراد ممکن است به محافظت از کلیه کمک کند (مثلاً در برخی بیماران دیابتی)."
+      "لوزارتان برای <span class='highlight'>فشار خون بلند</span> استفاده می‌شود.",
+      "در بعضی اشخاص ممکن است به <span class='highlight'>محافظت از کلیه</span> کمک کند (مثلاً در برخی مریضان دیابتی)."
     ],
-
     doseTitle:"دوز",
     dose:[
-      "معمولاً <span class='highlight'>50 mg روزانه یک بار</span>؛ داکتر در صورت نیاز دوز را تغییر می‌دهد.",
+      "معمولاً <span class='highlight'>روزی یک بار</span> (دوز را داکتر تعیین می‌کند).",
       "هر روز تقریباً در یک وقت ثابت بگیرید."
     ],
-
     sideTitle:"عوارض",
     side:[
       "سرگیجه یا خستگی خفیف (خصوصاً در شروع).",
-      "ممکن است پتاسیم خون بالا برود؛ به‌ندرت ضعف عضلانی رخ می‌دهد."
+      "ممکن است پتاسیم خون بالا برود؛ در صورت ضعف شدید عضلانی یا ضربان نامنظم به داکتر مراجعه کنید."
     ],
-
     interTitle:"تداخلات",
     inter:[
       "با مکمل پتاسیم و بدیل‌های نمکِ حاوی پتاسیم احتیاط کنید.",
-      "مصرف طولانی NSAIDها (مثل ایبوپروفن/دیکلوفناک) می‌تواند خطر مشکلات کلیوی را افزایش دهد."
+      "مصرف مکرر/طولانی مسکن‌هایی مثل ibuprofen یا diclofenac می‌تواند خطر مشکلات کلیوی را افزایش دهد."
     ],
-
     warnTitle:"هشدارها",
     warn:[
-      "در بارداری استفاده نشود—در صورت بارداری با داکتر تماس بگیرید.",
-      "در بیماری کلیه ممکن است نیاز به آزمایش/پایش باشد."
+      "در <span class='highlight'>بارداری</span> استفاده نشود—در صورت بارداری با داکتر تماس بگیرید.",
+      "در بیماری کلیه یا کم‌آبی ممکن است پایش لازم باشد."
     ],
-
     ramTitle:"رمضان و روزه",
     ram:[
-      "معمولاً روزانه یک بار گرفته می‌شود و می‌تواند <span class='highlight'>بعد از افطار</span> یا در <span class='highlight'>سحری</span> گرفته شود.",
+      "معمولاً <span class='highlight'>روزی یک‌بار</span> گرفته می‌شود؛ می‌تواند <span class='highlight'>بعد از افطار</span> یا در <span class='highlight'>سحری</span> گرفته شود.",
       "بدون مشوره داکتر دوز را تغییر ندهید و دوا را قطع نکنید."
     ],
-
     foodTitle:"غذا و نوشیدنی",
     food:[ "با غذا یا بدون غذا گرفته می‌شود." ],
-
     storeTitle:"نگهداری",
     store:[
       "دور از دسترس اطفال و زیر 25°C نگهداری شود.",
       "در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه دارید.",
-      "پس از “EXP” یا در صورت تغییر ظاهر استفاده نکنید.",
+      "پس از “EXP” استفاده نکنید.",
       "باقی‌مانده را به دواخانه بسپارید."
     ],
-
     footer1:"برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
   },
 
   ps:{
@@ -751,72 +743,47 @@ const T = {
 
     useTitle:"کارونه",
     use:[
-      "لوسارتان د <span class='highlight'>ARB</span> ډلې څخه دی (Angiotensin II receptor blocker).",
-      "د لوړ وینې فشار لپاره کارېږي او ځینو کسانو کې د پښتورګو ساتنه کې مرسته کولای شي (لکه د ځینو شکر ناروغانو کې)."
+      "لوسارتان د <span class='highlight'>لوړ وینې فشار</span> لپاره کارېږي.",
+      "ځینو کسانو کې د <span class='highlight'>پښتورګو ساتنه</span> کې مرسته کولای شي (لکه د ځینو شکر ناروغانو کې)."
     ],
-
     doseTitle:"دوز",
     dose:[
-      "اکثر <span class='highlight'>50 mg په ورځ کې یو ځل</span>؛ ډاکټر که اړتیا وي بدلوي.",
+      "اکثر <span class='highlight'>په ورځ کې یو ځل</span> (دوز ډاکټر ټاکي).",
       "هره ورځ نږدې په یو ثابت وخت یې واخلئ."
     ],
-
     sideTitle:"اړخیزې اغېزې",
     side:[
       "سر ګرځېدل یا لږ ستړیا (په پیل کې).",
-      "د وینې پوټاشیم لوړېدای شي؛ نادره د عضلو کمزوري رامنځته کېدای شي."
+      "د وینې پوټاشیم لوړېدای شي؛ د شدید عضلي کمزورۍ یا نامنظم ضربان په صورت کې ډاکټر ته ورشئ."
     ],
-
     interTitle:"تداخلات",
     inter:[
       "د پوټاشیم سپلېمنټونو او د پوټاشیم لرونکي مالګې بدیلونو سره احتیاط وکړئ.",
-      "د NSAID درملو اوږدمهاله استعمال (ibuprofen/diclofenac) د پښتورګو ستونزو خطر زیاتوي."
+      "ibuprofen یا diclofenac په څېر دردکمونکي ډېر/اوږدمهاله کارول د پښتورګو خطر زیاتوي."
     ],
-
     warnTitle:"احتیاط",
     warn:[
-      "په امیندوارۍ کې مه کاروئ—که امیندواره شئ، ډاکټر ته مراجعه وکړئ.",
-      "د پښتورګو ناروغي کې ممکن ازموینې/څارنه پکار وي."
+      "په <span class='highlight'>امیندوارۍ</span> کې مه کاروئ—که امیندواره شئ، ډاکټر ته مراجعه وکړئ.",
+      "د پښتورګو ناروغي یا د بدن د اوبو کمښت کې ممکن څارنه پکار وي."
     ],
-
     ramTitle:"رمضان او روژه",
     ram:[
-      "اکثره په ورځ کې یو ځل اخېستل کېږي؛ <span class='highlight'>له افطار وروسته</span> یا د <span class='highlight'>سحري</span> سره اخیستل کېدای شي.",
+      "اکثره <span class='highlight'>په ورځ کې یو ځل</span> اخېستل کېږي؛ <span class='highlight'>له افطار وروسته</span> یا د <span class='highlight'>سحري</span> سره اخیستل کېدای شي.",
       "له طبي مشورې پرته دوز مه بدلوئ او درمل مه بندوئ."
     ],
-
     foodTitle:"خواړه او څښاک",
     food:[ "له خوړو سره یا بې له خوړو اخیستل کېدای شي." ],
-
     storeTitle:"ساتنه",
     store:[
       "له ماشومانو لرې او تر 25°C لاندې وساتئ.",
       "په اصلي بسته کې وساتئ څو له رڼا/نمی خوندي وي.",
-      "د “EXP” وروسته یا د بڼې بدلون په صورت کې مه کاروئ.",
+      "د “EXP” وروسته مه کاروئ.",
       "پاتې درمل درملتون ته وسپارئ."
     ],
-
     footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
+    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
   }
 };
-
-function stripTags(s){ return String(s||"").replace(/<[^>]*>?/gm, ""); }
-
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
-
-function fillList(id, arr){
-  const ul = document.getElementById(id);
-  ul.innerHTML = "";
-  (arr || []).forEach(txt => {
-    const li = document.createElement("li");
-    li.innerHTML = txt;
-    ul.appendChild(li);
-  });
-}
 
 function applyLang(lang){
   const d = T[lang] || T.so;
@@ -824,24 +791,24 @@ function applyLang(lang){
   setDirLang(lang);
   applyTheme(lang);
 
-  document.title = stripTags(d.pageTitle);
-  document.getElementById("hdrH1").textContent = stripTags(d.hdrH1);
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
   document.getElementById("hdrP").textContent = d.hdrP;
   document.getElementById("backText").textContent = d.backText;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugName").textContent = d.drugName;
   document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("badgeText").textContent = d.badgeText;
 
-  document.getElementById("useTitle").innerHTML = d.useTitle;
-  document.getElementById("doseTitle").innerHTML = d.doseTitle;
-  document.getElementById("sideTitle").innerHTML = d.sideTitle;
-  document.getElementById("interTitle").innerHTML = d.interTitle;
-  document.getElementById("warnTitle").innerHTML = d.warnTitle;
-  document.getElementById("ramTitle").innerHTML = d.ramTitle;
-  document.getElementById("foodTitle").innerHTML = d.foodTitle;
-  document.getElementById("storeTitle").innerHTML = d.storeTitle;
+  setSectionTitle("useTitle", d.useTitle);
+  setSectionTitle("doseTitle", d.doseTitle);
+  setSectionTitle("sideTitle", d.sideTitle);
+  setSectionTitle("interTitle", d.interTitle);
+  setSectionTitle("warnTitle", d.warnTitle);
+  setSectionTitle("ramTitle", d.ramTitle);
+  setSectionTitle("foodTitle", d.foodTitle);
+  setSectionTitle("storeTitle", d.storeTitle);
 
   fillList("useList", d.use);
   fillList("doseList", d.dose);
