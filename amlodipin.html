@@ -7,7 +7,6 @@
 
 <style>
 :root{
-  /* Theme variables (set by JS) */
   --accent1:#00a676;
   --accent2:#0066cc;
   --accentText:#ffffff;
@@ -25,14 +24,11 @@
   --link:#00509e;
 }
 
-/* Smooth theme transitions */
 @media (prefers-reduced-motion: no-preference){
   body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
     transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
   }
-  header{
-    transition: background .45s ease, color .35s ease;
-  }
+  header{ transition: background .45s ease, color .35s ease; }
 }
 
 body{
@@ -49,14 +45,8 @@ header{
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1{
-  margin: 0 0 4px;
-  font-size: 1.8rem;
-}
-header p{
-  margin: 0;
-  font-size: 0.95rem;
-}
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
 main{
   max-width: 820px;
@@ -74,6 +64,33 @@ a.back{
   font-size: 0.9rem;
 }
 a.back span{ font-size: 1.1rem; }
+
+.langbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
+}
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
+.langbar select{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
+}
 
 .card{
   background: var(--card);
@@ -164,7 +181,9 @@ a.back span{ font-size: 1.1rem; }
 .section-title small{
   font-weight: 400;
   color: var(--muted);
+  margin-left: 6px;
 }
+
 .section ul{
   margin: 0 0 4px 18px;
   padding-left: 0;
@@ -184,34 +203,6 @@ a.back span{ font-size: 1.1rem; }
 @media (max-width: 600px){
   header h1 { font-size: 1.5rem; }
 }
-
-/* Dropdown bar */
-.langbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 0 0 14px 0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid var(--accent1);
-}
-.langbar label{
-  font-size:0.9rem;
-  color:var(--text);
-  font-weight:600;
-}
-.langbar select{
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--stroke);
-  background: #fff;
-  color:var(--text);
-  font-size: 0.9rem;
-  max-width: 100%;
-}
 </style>
 </head>
 
@@ -224,7 +215,7 @@ a.back span{ font-size: 1.1rem; }
 
 <main>
 
-  <div class="langbar" aria-label="Vælg sprog">
+  <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
@@ -246,87 +237,79 @@ a.back span{ font-size: 1.1rem; }
       <div class="drug-info">
         <div class="drug-icon">
           <svg viewBox="0 0 64 64" aria-hidden="true">
-            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff"/>
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
           <div class="drug-name" id="drugName">Amlodipin – dhiig-karka</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah (Tablet til at tage gennem munden)</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
       <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
 
-    <!-- 1 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">1</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall">(Anvendelse)</small></div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
       <ul id="useList"></ul>
     </div>
 
-    <!-- 2 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">2</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall">(Dosering)</small></div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
       <ul id="doseList"></ul>
     </div>
 
-    <!-- 3 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">3</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall">(Bivirkninger)</small></div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
       <ul id="sideList"></ul>
     </div>
 
-    <!-- 4 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">4</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall">(Interaktioner)</small></div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
       <ul id="interactList"></ul>
     </div>
 
-    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall">(Advarsler)</small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
       </div>
       <ul id="warnList"></ul>
     </div>
 
-    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall">(Ramadan og faste)</small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
 
-    <!-- 7 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall">(Mad og drikke)</small></div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
       </div>
       <ul id="foodList"></ul>
     </div>
 
-    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall">(Opbevaring)</small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
       </div>
       <ul id="storeList"></ul>
     </div>
@@ -341,7 +324,6 @@ a.back span{ font-size: 1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-/* Same 9-language themes */
 const THEMES = {
   so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
   da:  { a1:"#0066cc", a2:"#003f8c", link:"#004aa3", pillBg:"#e6f0ff", pillText:"#1d4ed8" },
@@ -350,7 +332,7 @@ const THEMES = {
   tr:  { a1:"#ef4444", a2:"#f97316", link:"#b91c1c", pillBg:"#fee2e2", pillText:"#b91c1c" },
   ur:  { a1:"#16a34a", a2:"#0f766e", link:"#0f766e", pillBg:"#dcfce7", pillText:"#166534" },
   fa:  { a1:"#0f766e", a2:"#0891b2", link:"#0f766e", pillBg:"#ccfbf1", pillText:"#115e59" },
-  prs: { a1:"#a855f7", a2:"#6d28d9", link:"#6d28d9", pillBg:"#f3e8ff", pillText:"#6b21a8" },
+  prs: { a1:"#a855f7", a2:"#6d28d9", link:"#6d28d9", pillBg:"#f3e8ff", pillText:"#6b21b6" },
   ps:  { a1:"#f59e0b", a2:"#d97706", link:"#b45309", pillBg:"#ffedd5", pillText:"#9a3412" }
 };
 
@@ -372,42 +354,42 @@ const T = {
     langLabel: "Dooro luqadda:",
     badge: "Akhris fudud oo kooban",
     drugName: "Amlodipin – dhiig-karka",
-    drugForm: "Kiniin afka ah (Tablet til at tage gennem munden)",
+    drugForm: "Kiniin afka ah",
     sections: {
-      use: { title:"Isticmaalka", small:"(Anvendelse)", items:[
-        "Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunnada wadnaha (hjerte-kar-lidelser).",
+      use: { title:"Isticmaalka", small:"", items:[
+        "Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunnada wadnaha.",
         "Waxay nasisaa xididdada dhiigga, si cadaadisku u yaraado."
       ]},
-      dose: { title:"Qiyaasta", small:"(Dosering)", items:[
+      dose: { title:"Qiyaasta", small:"", items:[
         "Badanaa 5 mg <span class='highlight'>hal mar maalintii</span> (subax ama fiid). Qaar waxay u baahan karaan 10 mg, taas oo dhakhtarku go’aamiyo.",
         "Qaado maalin kasta waqti isku mid ah. Waxaa la qaadan karaa adigoon wax cunin ama adigoo cunno la qaadanaya."
       ]},
-      side: { title:"Waxyeellooyinka", small:"(Bivirkninger)", items:[
+      side: { title:"Waxyeellooyinka", small:"", items:[
         "Barar anqawyada ama lugaha hoose, madax-wareer iyo daal.",
         "Haddii bararku bato ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga."
       ]},
-      interact: { title:"Isdhexgalka daawooyinka", small:"(Interaktioner)", items:[
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
         "Daawooyinka kale ee dhiig-karka hoos u dhiga waxay xoojin karaan saameynta.",
-        "Cabitaanka badan ee liin bambeelmo (grapefrugt) waxay kordhin kartaa saameynta amlodipin; sidaas darteed xaddid."
+        "Cabitaanka badan ee liin bambeelmo waxay kordhin kartaa saameynta; sidaas darteed xaddid."
       ]},
-      warn: { title:"Digniino", small:"(Advarsler)", items:[
+      warn: { title:"Digniino", small:"", items:[
         "Ha joojin si lama filaan ah; dhiig-karku wuu kugu kici karaa.",
         "Uur ama nuujin: dhakhtarka kala hadal si uu kuu doorto daawada kugu habboon."
       ]},
-      ramadan: { title:"Ramadaan iyo soonka", small:"(Ramadan og faste)", items:[
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
         "Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama <span class='highlight'>suxuurta</span>.",
         "Ha joojin daawada si aad u soonto adiga oo aan talo ka helin dhakhtarka."
       ]},
-      food: { title:"Cunto iyo cabitaan", small:"(Mad og drikke)", items:[
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
         "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya.",
         "Isku day in aad ku qaadato waqti isku mid ah maalin kasta."
       ]},
-      store: { title:"Kaydinta daawada", small:"(Opbevaring)", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka (expiry date) ama haddii midabku isbeddelay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka ama haddii midabku isbeddelay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
       ]}
     },
-    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.<br/>(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)",
-    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
   },
 
   da: {
@@ -440,7 +422,7 @@ const T = {
         "Graviditet eller amning: Tal med lægen om, hvilken behandling der er bedst for dig."
       ]},
       ramadan: { title:"Ramadan og faste", small:"", items:[
-        "Amlodipin tages én gang dagligt og kan tages om aftenen eller ved måltidet før daggry (suhoor).",
+        "Amlodipin tages én gang dagligt og kan ofte tages om aftenen eller ved suhoor.",
         "Stop ikke medicinen for at faste uden at tale med lægen."
       ]},
       food: { title:"Mad og drikke", small:"", items:[
@@ -452,7 +434,7 @@ const T = {
       ]}
     },
     footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
-    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
   en: {
@@ -485,7 +467,7 @@ const T = {
         "Pregnancy or breastfeeding: talk to your doctor about the most suitable treatment."
       ]},
       ramadan: { title:"Ramadan and fasting", small:"", items:[
-        "Amlodipine is taken once daily and can be taken in the evening or with the pre-dawn meal (suhoor).",
+        "Amlodipine is taken once daily and can often be taken in the evening or at suhoor.",
         "Do not stop the medicine for fasting without medical advice."
       ]},
       food: { title:"Food and drink", small:"", items:[
@@ -530,7 +512,7 @@ const T = {
         "الحمل أو الرضاعة: ناقش الأمر مع الطبيب لاختيار العلاج الأنسب."
       ]},
       ramadan: { title:"رمضان والصيام", small:"", items:[
-        "يؤخذ أملوديبين مرة واحدة يومياً ويمكن تناوله مساءً أو مع وجبة ما قبل الفجر (السحور).",
+        "يؤخذ مرة واحدة يومياً ويمكن تناوله مساءً أو وقت السحور.",
         "لا توقف الدواء من أجل الصيام دون استشارة طبية."
       ]},
       food: { title:"الطعام والشراب", small:"", items:[
@@ -575,8 +557,8 @@ const T = {
         "Hamilelik veya emzirme: uygun tedavi için doktorunuza danışın."
       ]},
       ramadan: { title:"Ramazan ve oruç", small:"", items:[
-        "Amlodipin günde bir kez alınır ve akşam veya gün doğumundan önceki öğünle (sahur) alınabilir.",
-        "Oruç tutmak için ilacı doktorunuza danışmadan bırakmayın."
+        "Günde bir kez alınır ve akşam ya da sahur vaktinde alınabilir.",
+        "Doktora danışmadan oruç için ilacı bırakmayın."
       ]},
       food: { title:"Yiyecek ve içecek", small:"", items:[
         "Yemekle birlikte veya yemeksiz alınabilir.",
@@ -620,7 +602,7 @@ const T = {
         "حمل یا دودھ پلانا: مناسب علاج کے لیے ڈاکٹر سے مشورہ کریں۔"
       ]},
       ramadan: { title:"رمضان اور روزہ", small:"", items:[
-        "ایملوڈیپین روزانہ ایک بار لیا جاتا ہے اور شام میں یا سحر سے پہلے کے کھانے کے ساتھ (سحری) لیا جا سکتا ہے۔",
+        "روزانہ ایک بار لیا جاتا ہے اور شام یا سحری کے وقت لیا جا سکتا ہے۔",
         "ڈاکٹر کے مشورے کے بغیر روزے کی وجہ سے دوا نہ روکیں۔"
       ]},
       food: { title:"کھانا پینا", small:"", items:[
@@ -665,7 +647,7 @@ const T = {
         "بارداری یا شیردهی: دربارهٔ درمان مناسب با پزشک صحبت کنید."
       ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
-        "آملودیپین روزی یک‌بار مصرف می‌شود و می‌تواند شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) مصرف شود.",
+        "روزی یک‌بار مصرف می‌شود و می‌تواند شب یا هنگام سحری مصرف شود.",
         "بدون مشورت پزشک، دارو را برای روزه قطع نکنید."
       ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
@@ -710,7 +692,7 @@ const T = {
         "حمل یا شیردهی: در مورد درمان مناسب با داکتر صحبت کنید."
       ]},
       ramadan: { title:"رمضان و روزه", small:"", items:[
-        "آملودیپین روزانه یک بار گرفته می‌شود و می‌توان آن را شب یا همراه وعدهٔ پیش از سپیده‌دم (سحری) گرفت.",
+        "روزانه یک بار گرفته می‌شود و می‌تواند شب یا وقت سحری گرفته شود.",
         "بدون مشورهٔ داکتر برای روزه دوا را قطع نکنید."
       ]},
       food: { title:"غذا و نوشیدنی", small:"", items:[
@@ -755,7 +737,7 @@ const T = {
         "د امیندوارۍ یا شیدو ورکولو پر مهال: له ډاکټر سره مشوره وکړئ."
       ]},
       ramadan: { title:"رمضان او روژه", small:"", items:[
-        "دا درمل په ورځ کې یو ځل اخېستل کېږي او ماښام یا د سهار له لمرختو مخکې له خوراک سره (سحري) اخیستل کېدای شي.",
+        "په ورځ کې یو ځل اخېستل کېږي او ماښام یا د سحري پر وخت اخیستل کېدای شي.",
         "له طبي مشورې پرته د روژې لپاره درمل مه بندوئ."
       ]},
       food: { title:"خواړه او څښاک", small:"", items:[
@@ -788,6 +770,14 @@ function fillList(listId, items){
   });
 }
 
+function setSmall(id, txt){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (txt || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
+}
+
 function render(lang){
   const d = T[lang] || T.so;
 
@@ -808,28 +798,28 @@ function render(lang){
   document.getElementById("langLabel").textContent = d.langLabel;
 
   document.getElementById("useTitle").textContent = d.sections.use.title;
-  document.getElementById("useSmall").textContent = d.sections.use.small || "";
+  setSmall("useSmall", d.sections.use.small);
 
   document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
+  setSmall("doseSmall", d.sections.dose.small);
 
   document.getElementById("sideTitle").textContent = d.sections.side.title;
-  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
+  setSmall("sideSmall", d.sections.side.small);
 
   document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
+  setSmall("interactSmall", d.sections.interact.small);
 
   document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
+  setSmall("warnSmall", d.sections.warn.small);
 
   document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
+  setSmall("ramadanSmall", d.sections.ramadan.small);
 
   document.getElementById("foodTitle").textContent = d.sections.food.title;
-  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
+  setSmall("foodSmall", d.sections.food.small);
 
   document.getElementById("storeTitle").textContent = d.sections.store.title;
-  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+  setSmall("storeSmall", d.sections.store.small);
 
   fillList("useList", d.sections.use.items);
   fillList("doseList", d.sections.dose.items);
@@ -843,18 +833,15 @@ function render(lang){
   document.getElementById("footerNote").innerHTML = d.footerHTML;
   document.getElementById("credit").innerHTML = d.creditHTML;
 
-  // keep language when going back
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 
-  // Update URL without reload
   const url = new URL(window.location.href);
   url.searchParams.set("lang", lang);
   window.history.replaceState({}, "", url.toString());
 }
 
-// Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "so";
 
