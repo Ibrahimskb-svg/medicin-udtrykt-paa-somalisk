@@ -75,7 +75,6 @@ a.back span{ font-size:1.1rem; }
 .section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
 
 .section-icon{
   width:24px; height:24px; border-radius:999px;
@@ -144,7 +143,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er insulin? <small>(What is it?)</small></div>
+        <div class="section-title" id="sec0Title">Hvad er insulin?</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
@@ -152,7 +151,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til?</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
@@ -160,7 +159,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sådan bruges insulin <small>(How to use)</small></div>
+        <div class="section-title" id="sec2Title">Sådan bruges insulin</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
@@ -168,7 +167,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
+        <div class="section-title" id="sec3Title">Mad og drikke</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
@@ -176,7 +175,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
+        <div class="section-title" id="sec4Title">Advarsler</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
@@ -184,7 +183,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
+        <div class="section-title" id="sec5Title">Bivirkninger</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
@@ -192,7 +191,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
+        <div class="section-title" id="sec6Title">Interaktioner</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
@@ -200,7 +199,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
+        <div class="section-title" id="sec7Title">Ramadan og faste</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
@@ -208,7 +207,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
+        <div class="section-title" id="sec8Title">Opbevaring</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -260,24 +259,12 @@ function fillList(id, arr){
 }
 
 function setSectionTitle(elId, title){
-  const el=document.getElementById(elId);
+  const el = document.getElementById(elId);
   if(!el) return;
-  const small=el.querySelector("small");
-  const t=(title||"").trim();
-  if(small){
-    const first=el.childNodes[0];
-    if(first && first.nodeType===Node.TEXT_NODE){
-      first.textContent=t+" ";
-    }else{
-      el.insertBefore(document.createTextNode(t+" "), small);
-    }
-  }else{
-    el.textContent=t;
-  }
+  el.textContent = (title || "").trim();
 }
 
 const T = {
-  /* ======= DANSK (DIN TEKST – BEVARET) ======= */
   da:{
     pageTitle:"Insulin – behandling af diabetes",
     hdrH1:"Insulin – behandling af diabetes",
@@ -344,7 +331,6 @@ const T = {
     footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
-  /* ======= ENGLISH (DIN TEKST – BEVARET) ======= */
   en:{
     pageTitle:"Insulin – diabetes treatment",
     hdrH1:"Insulin – diabetes treatment",
@@ -411,7 +397,6 @@ const T = {
     footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
-  /* ======= SOMALI (DIN TEKST – BEVARET) ======= */
   so:{
     pageTitle:"Insulin – daaweynta sonkorowga",
     hdrH1:"Insulin – daaweynta sonkorowga",
@@ -478,7 +463,6 @@ const T = {
     footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
 
-  /* ======= ARABIC (kort men komplet) ======= */
   ar:{
     pageTitle:"الإنسولين – علاج السكري",
     hdrH1:"الإنسولين – علاج السكري",
@@ -511,7 +495,6 @@ const T = {
     footer2:"إعداد: إبراهيم ظاهر حنف"
   },
 
-  /* ======= TURKISH ======= */
   tr:{
     pageTitle:"İnsülin – diyabet tedavisi",
     hdrH1:"İnsülin – diyabet tedavisi",
@@ -544,7 +527,6 @@ const T = {
     footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
   },
 
-  /* ======= URDU ======= */
   ur:{
     pageTitle:"انسولین – ذیابیطس کا علاج",
     hdrH1:"انسولین – ذیابیطس کا علاج",
@@ -577,7 +559,6 @@ const T = {
     footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
   },
 
-  /* ======= FARSI ======= */
   fa:{
     pageTitle:"انسولین – درمان دیابت",
     hdrH1:"انسولین – درمان دیابت",
@@ -610,7 +591,6 @@ const T = {
     footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
   },
 
-  /* ======= DARI ======= */
   prs:{
     pageTitle:"انسولین – تداوی شکر",
     hdrH1:"انسولین – تداوی شکر",
@@ -643,7 +623,6 @@ const T = {
     footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
   },
 
-  /* ======= PASHTO ======= */
   ps:{
     pageTitle:"انسولین – د شکر درملنه",
     hdrH1:"انسولین – د شکر درملنه",
@@ -678,19 +657,20 @@ const T = {
 };
 
 function applyLang(lang){
-  const d=T[lang] || T.da;
+  const d = T[lang] || T.da;
+
   applyTheme(lang);
   setDirLang(lang);
 
-  document.title=d.pageTitle;
-  document.getElementById("hdrH1").textContent=d.hdrH1;
-  document.getElementById("hdrP").textContent=d.hdrP;
-  document.getElementById("backText").textContent=d.backText;
-  document.getElementById("langLabel").textContent=d.langLabel;
+  document.title = d.pageTitle;
+  document.getElementById("hdrH1").textContent = d.hdrH1;
+  document.getElementById("hdrP").textContent = d.hdrP;
+  document.getElementById("backText").textContent = d.backText;
+  document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent=d.drugName;
-  document.getElementById("drugForm").textContent=d.drugForm;
-  document.getElementById("badgeText").textContent=d.badgeText;
+  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("badgeText").textContent = d.badgeText;
 
   setSectionTitle("sec0Title", d.sec0Title);
   setSectionTitle("sec1Title", d.sec1Title);
@@ -712,19 +692,23 @@ function applyLang(lang){
   fillList("sec7List", d.sec7);
   fillList("sec8List", d.sec8);
 
-  document.getElementById("footer1").textContent=d.footer1;
-  document.getElementById("footer2").innerHTML=d.footer2;
+  document.getElementById("footer1").textContent = d.footer1;
+  document.getElementById("footer2").innerHTML = d.footer2;
 
-  const backA=document.querySelector("a.back");
-  const base=backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base+"?lang="+encodeURIComponent(lang));
+  const backA = document.querySelector("a.back");
+  const base = backA.getAttribute("href").split("?")[0];
+  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-const params=new URLSearchParams(window.location.search);
-const startLang=params.get("lang") || "da";
-document.getElementById("langSelect").value=(T[startLang]?startLang:"da");
+const params = new URLSearchParams(window.location.search);
+const startLang = params.get("lang") || "da";
+
+document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
 applyLang(document.getElementById("langSelect").value);
-document.getElementById("langSelect").addEventListener("change", function(){ applyLang(this.value); });
+
+document.getElementById("langSelect").addEventListener("change", function(){
+  applyLang(this.value);
+});
 </script>
 
 </body>
