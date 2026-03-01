@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Hjertemagnyl – blodfortyndende (blodpladehæmmer)</title>
+<title>Pantoprazol – mavesyre og refluks</title>
 
 <style>
 :root{
@@ -11,12 +11,11 @@
   --c1:#0066cc;
   --c2:#00a676;
 
-  /* Badge + icon (will be set by theme JS too) */
-  --badgeBg: rgba(0,166,118,0.16);
-  --badgeText: rgba(0,166,118,0.95);
+  --badgeBg:#d9f6e8;
+  --badgeText:#16634a;
 
-  --iconBg: rgba(0,166,118,0.12);
-  --iconStroke:#00a676;
+  --iconBg:#e3f2fd;
+  --iconStroke:#1a73e8;
 }
 
 body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
@@ -61,7 +60,6 @@ a.back span{ font-size:1.1rem; }
   width:44px; height:44px; border-radius:12px;
   background:var(--iconBg);
   display:flex; align-items:center; justify-content:center;
-  transition: background 260ms ease;
 }
 .drug-icon svg{ width:30px; height:30px; }
 .drug-labels{ display:flex; flex-direction:column; }
@@ -74,16 +72,7 @@ a.back span{ font-size:1.1rem; }
   padding:4px 10px; border-radius:999px; font-size:0.8rem;
 }
 
-/* === MATCH PANTOPRAZOL: NO zebra backgrounds === */
-.section{
-  margin-top:8px;
-  padding-top:8px;
-  border-top:1px dashed #d0d7e2;
-  background:transparent;           /* important: remove blue blocks */
-  border-radius:0;                 /* no rounded section boxes */
-  padding-left:0; padding-right:0; /* keep clean edge */
-}
-
+.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
 .section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
 .section-title small{ font-weight:400; color:#607089; }
@@ -113,7 +102,7 @@ a.back span{ font-size:1.1rem; }
 
 <body>
 <header>
-  <h1 id="hdrH1">Hjertemagnyl – blodfortyndende (blodpladehæmmer)</h1>
+  <h1 id="hdrH1">Pantoprazol – mavesyre og refluks</h1>
   <p id="hdrP">Kort og let information om lægemidlet – til patienter og pårørende.</p>
 </header>
 
@@ -145,8 +134,8 @@ a.back span{ font-size:1.1rem; }
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Hjertemagnyl (acetylsalicylsyre)</div>
-          <div class="drug-form" id="drugForm">Tablet – blodpladehæmmer</div>
+          <div class="drug-name" id="drugName">Pantoprazol</div>
+          <div class="drug-form" id="drugForm">Enterotablet / tablet (mod mavesyre)</div>
         </div>
       </div>
       <div class="badge" id="badgeText">Kort og let</div>
@@ -155,7 +144,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er Hjertemagnyl? <small>(What is it?)</small></div>
+        <div class="section-title" id="sec0Title">Hvad er Pantoprazol?</div>
       </div>
       <ul id="sec0List"></ul>
     </div>
@@ -163,7 +152,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til? <small>(Use)</small></div>
+        <div class="section-title" id="sec1Title">Hvad bruges det til?</div>
       </div>
       <ul id="sec1List"></ul>
     </div>
@@ -171,7 +160,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sådan tages medicinen <small>(How to take)</small></div>
+        <div class="section-title" id="sec2Title">Sådan tages medicinen</div>
       </div>
       <ul id="sec2List"></ul>
     </div>
@@ -179,7 +168,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke <small>(Food & drink)</small></div>
+        <div class="section-title" id="sec3Title">Mad og drikke</div>
       </div>
       <ul id="sec3List"></ul>
     </div>
@@ -187,7 +176,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Advarsler <small>(Warnings)</small></div>
+        <div class="section-title" id="sec4Title">Advarsler</div>
       </div>
       <ul id="sec4List"></ul>
     </div>
@@ -195,7 +184,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger <small>(Side effects)</small></div>
+        <div class="section-title" id="sec5Title">Bivirkninger</div>
       </div>
       <ul id="sec5List"></ul>
     </div>
@@ -203,7 +192,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner <small>(Interactions)</small></div>
+        <div class="section-title" id="sec6Title">Interaktioner</div>
       </div>
       <ul id="sec6List"></ul>
     </div>
@@ -211,7 +200,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste <small>(Fasting)</small></div>
+        <div class="section-title" id="sec7Title">Ramadan og faste</div>
       </div>
       <ul id="sec7List"></ul>
     </div>
@@ -219,7 +208,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring <small>(Storage)</small></div>
+        <div class="section-title" id="sec8Title">Opbevaring</div>
       </div>
       <ul id="sec8List"></ul>
     </div>
@@ -233,36 +222,26 @@ a.back span{ font-size:1.1rem; }
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676" },
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7" }, /* Dansk = blå */
-  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff" },
-  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf" },
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f" },
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e" },
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6" },
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca" },
-  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b" }
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" },
+  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#3a86ff" },
+  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeText:"#3a1a66", iconBg:"#efe7ff", iconStroke:"#7b2cbf" },
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe8ea", badgeText:"#7a0b14", iconBg:"#ffe8ea", iconStroke:"#c1121f" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", badgeBg:"#e6fff6", badgeText:"#0b4f49", iconBg:"#e6fff6", iconStroke:"#0f766e" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", badgeBg:"#e6fffb", badgeText:"#0b5b57", iconBg:"#e6fffb", iconStroke:"#14b8a6" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", badgeBg:"#ecebff", badgeText:"#1f1a7a", iconBg:"#ecebff", iconStroke:"#4338ca" },
+  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", badgeBg:"#fff3db", badgeText:"#7a4703", iconBg:"#fff3db", iconStroke:"#f59e0b" }
 };
 
-function hexToRgb(hex){
-  const h = (hex || "").replace("#","").trim();
-  if (h.length !== 6) return {r:0,g:0,b:0};
-  return { r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16) };
-}
-
 function applyTheme(lang){
-  const th = THEME[lang] || THEME.da;
-  const r = hexToRgb(th.accent);
-
+  const th = THEME[lang] || THEME.so;
   document.documentElement.style.setProperty("--c1", th.c1);
   document.documentElement.style.setProperty("--c2", th.c2);
   document.documentElement.style.setProperty("--accent", th.accent);
-
-  /* Make badge + icon follow accent (pantoprazol style) */
-  document.documentElement.style.setProperty("--badgeBg", `rgba(${r.r},${r.g},${r.b},0.16)`);
-  document.documentElement.style.setProperty("--badgeText", `rgba(${r.r},${r.g},${r.b},0.95)`);
-  document.documentElement.style.setProperty("--iconBg", `rgba(${r.r},${r.g},${r.b},0.12)`);
-  document.documentElement.style.setProperty("--iconStroke", th.accent);
+  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
+  document.documentElement.style.setProperty("--badgeText", th.badgeText);
+  document.documentElement.style.setProperty("--iconBg", th.iconBg);
+  document.documentElement.style.setProperty("--iconStroke", th.iconStroke);
 }
 
 function setDirLang(lang){
@@ -272,8 +251,7 @@ function setDirLang(lang){
 
 function fillList(id, arr){
   const ul = document.getElementById(id);
-  if(!ul) return;
-  ul.replaceChildren();
+  ul.innerHTML = "";
   (arr || []).forEach(txt=>{
     const li = document.createElement("li");
     li.innerHTML = txt;
@@ -284,80 +262,69 @@ function fillList(id, arr){
 function setSectionTitle(elId, title){
   const el = document.getElementById(elId);
   if(!el) return;
-  const small = el.querySelector("small");
-  const t = (title || "").trim();
-  if(small){
-    const first = el.childNodes[0];
-    if(first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
-    }else{
-      el.insertBefore(document.createTextNode(t + " "), small);
-    }
-  }else{
-    el.textContent = t;
-  }
+  el.textContent = (title || "").trim();
 }
 
-/* ---- YOUR EXISTING TEXT OBJECT (unchanged) ---- */
 const T = {
   da:{
-    pageTitle:"Hjertemagnyl – blodfortyndende (blodpladehæmmer)",
-    hdrH1:"Hjertemagnyl – blodfortyndende (blodpladehæmmer)",
+    pageTitle:"Pantoprazol – mavesyre og refluks",
+    hdrH1:"Pantoprazol – mavesyre og refluks",
     hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
     backText:"Tilbage til medicinlisten",
     langLabel:"Vælg sprog:",
-    drugName:"Hjertemagnyl (acetylsalicylsyre)",
-    drugForm:"Tablet – blodpladehæmmer",
+    drugName:"Pantoprazol",
+    drugForm:"Enterotablet / tablet (mod mavesyre)",
     badgeText:"Kort og let",
 
-    sec0Title:"Hvad er Hjertemagnyl?",
+    sec0Title:"Hvad er Pantoprazol?",
     sec0:[
-      "Hjertemagnyl indeholder <span class='highlight'>acetylsalicylsyre</span> i lav dosis.",
-      "Det er <span class='highlight'>blodpladehæmmende</span> (forhindrer blodplader i at klumpe sig sammen) og kan derfor mindske risikoen for blodpropper."
+      "Pantoprazol er et lægemiddel, der <span class='highlight'>nedsætter produktionen af mavesyre</span> (protonpumpehæmmer/PPI).",
+      "Det virker ikke som et hurtigt ‘neutraliserende’ middel, men <span class='highlight'>bygger effekten op over timer til dage</span>."
     ],
     sec1Title:"Hvad bruges det til?",
     sec1:[
-      "Forebyggelse af blodprop i <span class='highlight'>hjertet</span> (fx efter blodprop/angina/PCI-stent) – efter lægens plan.",
-      "Forebyggelse af blodprop i <span class='highlight'>hjernen</span> (fx TCI/apopleksi) – hvis lægen ordinerer det.",
-      "Nogle gange ved <span class='highlight'>perifer karsygdom</span> (åreforsnævring i ben) efter lægelig vurdering."
+      "Sure opstød og <span class='highlight'>refluks</span> (halsbrand).",
+      "Mavesår/duodenalsår og forebyggelse af sår ved særlig risiko (efter lægens plan).",
+      "Som del af behandling mod <span class='highlight'>Helicobacter pylori</span> (sammen med antibiotika) – hvis lægen ordinerer det."
     ],
     sec2Title:"Sådan tages medicinen",
     sec2:[
-      "Tages typisk <span class='highlight'>1 gang dagligt</span> på samme tidspunkt (følg din ordination).",
-      "Synkes med vand. Nogle præparater kan evt. tygges – følg pakken og apotekets råd.",
-      "Hvis du glemmer en dosis: tag den, når du husker det. <span class='highlight'>Tag ikke dobbeltdosis</span>."
+      "Tages ofte <span class='highlight'>1 gang dagligt</span> – nogle får 2 gange dagligt (lægens plan).",
+      "Synkes hel med vand. <span class='highlight'>Tabletten må normalt ikke tygges eller knuses</span> (enterotablet).",
+      "Hvis du glemmer en dosis: tag den, når du husker det – <span class='highlight'>tag ikke dobbeltdosis</span>."
     ],
     sec3Title:"Mad og drikke",
     sec3:[
-      "Kan tages med eller uden mad.",
-      "Hvis du får mavegener, kan du tage den <span class='highlight'>sammen med mad</span>."
+      "For mange virker det bedst at tage pantoprazol <span class='highlight'>før et måltid</span> (ofte om morgenen). Følg din ordination.",
+      "Kan tages med et glas vand. Undgå store mængder alkohol, hvis det forværrer mavesymptomer."
     ],
     sec4Title:"Advarsler",
     sec4:[
-      "Da medicinen hæmmer blodplader, kan du lettere få <span class='highlight'>blå mærker</span> og småblødninger.",
-      "Kontakt læge ved tegn på alvorlig blødning: <span class='highlight'>sort afføring</span>, blod i opkast, vedvarende næseblod eller usædvanligt store blå mærker.",
-      "Stop ikke Hjertemagnyl uden aftale – især hvis du har fået <span class='highlight'>stent</span> eller har haft blodprop."
+      "Kontakt læge ved <span class='highlight'>alarmtegn</span>: blod i opkast/afføring, sort afføring, uforklarligt vægttab, synkebesvær, stærke vedvarende mavesmerter.",
+      "Langtidsbrug bør vurderes af lægen: nogle kan få mangel på <span class='highlight'>magnesium</span> eller <span class='highlight'>B12</span> og øget risiko for visse infektioner i mave/tarm (sjældent).",
+      "Stop ikke pludseligt uden aftale, hvis du har taget det længe – nogle får <span class='highlight'>rebound-syre</span> (mere syre i en periode)."
     ],
     sec5Title:"Bivirkninger",
     sec5:[
-      "Maveirritation, halsbrand eller mavesmerter.",
-      "Øget tendens til blødning/blå mærker.",
-      "Sjældent: mavesår eller allergiske reaktioner (fx vejrtrækningsbesvær)."
+      "Hovedpine, kvalme, mavesmerter eller diarré/forstoppelse.",
+      "Oppustethed/luft i maven.",
+      "Udslæt forekommer sjældent – kontakt læge ved kraftig reaktion."
     ],
     sec6Title:"Interaktioner",
     sec6:[
-      "Undgå at kombinere med andre <span class='highlight'>NSAID-smertestillende</span> (fx ibuprofen) uden at spørge læge/apotek – kan øge blødningsrisiko og mavegener.",
-      "Samtidig brug med anden blodfortyndende medicin (fx warfarin, DOAK) kræver <span class='highlight'>lægelig plan</span> pga. blødningsrisiko.",
-      "Fortæl altid apotek/læge om al medicin – også håndkøb."
+      "Pantoprazol kan påvirke optagelsen af lægemidler, der kræver mavesyre (fx nogle svampemidler).",
+      "Fortæl lægen/apoteket hvis du får <span class='highlight'>blodfortyndende</span> medicin eller anden fast medicin – så vurderes det samlet.",
+      "Hvis du er i tvivl: spørg apoteket, før du starter nye håndkøbsprodukter."
     ],
     sec7Title:"Ramadan og faste",
     sec7:[
-      "Tablet gennem munden bryder fasten efter nogle religiøse vurderinger. Hvis du er i tvivl, spørg imam og læge.",
-      "Helbred først: hvis du er i behandling efter blodprop/stent, bør du <span class='highlight'>ikke springe doser over</span>."
+      "Tal med lægen om bedste plan før Ramadan.",
+      "Kan ofte planlægges til <span class='highlight'>suhoor</span> eller <span class='highlight'>iftar</span>. Mange tager den før et måltid – aftal tidspunkt der passer til din ordination.",
+      "Hvis du får stærke symptomer under faste, søg rådgivning."
     ],
     sec8Title:"Opbevaring",
     sec8:[
-      "Opbevares tørt, ved stuetemperatur og utilgængeligt for børn.",
+      "Opbevares utilgængeligt for børn og i original emballage.",
       "Brug ikke efter “EXP”. Aflever rester på apoteket."
     ],
 
@@ -366,134 +333,509 @@ const T = {
   },
 
   en:{
-    pageTitle:"Hjertemagnyl (low-dose aspirin) – antiplatelet",
-    hdrH1:"Hjertemagnyl (low-dose aspirin) – antiplatelet",
+    pageTitle:"Pantoprazole – acid reflux",
+    hdrH1:"Pantoprazole – acid reflux",
     hdrP:"Brief medicine information for patients and relatives.",
     backText:"Back to the medicine list",
     langLabel:"Choose language:",
-    drugName:"Hjertemagnyl (acetylsalicylic acid)",
-    drugForm:"Tablet – antiplatelet",
+    drugName:"Pantoprazole",
+    drugForm:"Gastro-resistant tablet (acid reducer)",
     badgeText:"Short and clear",
 
-    sec0Title:"What is it?",
+    sec0Title:"What is pantoprazole?",
     sec0:[
-      "Contains low-dose <span class='highlight'>acetylsalicylic acid</span> (aspirin).",
-      "It reduces the ability of platelets to clot (<span class='highlight'>antiplatelet</span>), helping prevent blood clots."
+      "Pantoprazole reduces <span class='highlight'>stomach acid production</span> (a PPI).",
+      "It is not an instant antacid—effect often improves over hours to days."
     ],
     sec1Title:"What is it used for?",
     sec1:[
-      "Prevention of clots in the <span class='highlight'>heart</span> (e.g., after heart attack or stent) as prescribed.",
-      "Prevention of clots in the <span class='highlight'>brain</span> after certain events if prescribed.",
-      "Sometimes in peripheral artery disease as advised by a clinician."
+      "Heartburn and <span class='highlight'>reflux</span>.",
+      "Stomach/duodenal ulcers and prevention in selected patients (doctor’s plan).",
+      "Part of <span class='highlight'>H. pylori</span> eradication therapy with antibiotics when prescribed."
     ],
     sec2Title:"How to take",
     sec2:[
-      "Often taken <span class='highlight'>once daily</span> at the same time (follow your prescription).",
-      "Swallow with water.",
-      "Missed dose: take when remembered. <span class='highlight'>Do not double</span>."
+      "Often taken <span class='highlight'>once daily</span>; some take it twice daily (as prescribed).",
+      "Swallow whole with water—do <span class='highlight'>not chew or crush</span> gastro-resistant tablets.",
+      "Missed dose: take when remembered—<span class='highlight'>do not double</span>."
     ],
-    sec3Title:"Food & drink",
+    sec3Title:"Food and drink",
     sec3:[
-      "Can be taken with or without food.",
-      "If stomach upset occurs, take with food."
+      "Often works best <span class='highlight'>before a meal</span> (commonly in the morning). Follow your prescription.",
+      "Take with a glass of water."
     ],
     sec4Title:"Warnings",
     sec4:[
-      "Bleeding risk is increased (bruising, nosebleeds).",
-      "Seek medical advice for serious bleeding: black stools, vomiting blood, persistent bleeding.",
-      "Do not stop without medical advice, especially after a stent/heart event."
+      "Seek medical help for alarm symptoms: vomiting blood, black stools, unexplained weight loss, trouble swallowing, severe persistent pain.",
+      "Long-term use should be reviewed by a doctor (possible low magnesium/B12, rarely infections).",
+      "Stopping suddenly after long use may cause rebound symptoms—discuss with your doctor."
     ],
     sec5Title:"Side effects",
     sec5:[
-      "Stomach irritation/heartburn.",
-      "Bruising/bleeding tendency.",
-      "Rarely ulcers or allergic reactions."
+      "Headache, nausea, abdominal pain, diarrhea or constipation.",
+      "Bloating/flatulence.",
+      "Rash is uncommon—seek advice if severe."
     ],
     sec6Title:"Interactions",
     sec6:[
-      "Avoid combining with other <span class='highlight'>NSAIDs</span> (e.g., ibuprofen) without advice.",
-      "Other blood thinners can increase bleeding risk—requires a plan.",
-      "Tell your doctor/pharmacy about all medicines."
+      "May affect absorption of medicines that need stomach acid (e.g., some antifungals).",
+      "Tell your doctor/pharmacy about blood thinners and all regular medicines."
     ],
-    sec7Title:"Ramadan & fasting",
+    sec7Title:"Ramadan and fasting",
     sec7:[
-      "Religious guidance may differ—ask your imam and doctor if unsure.",
-      "Health first: do not skip doses if prescribed for clot prevention."
+      "Discuss a safe plan before Ramadan.",
+      "Often scheduled at <span class='highlight'>suhoor</span> or <span class='highlight'>iftar</span>. Many take it before a meal—follow your plan."
     ],
     sec8Title:"Storage",
     sec8:[
-      "Store dry at room temperature, out of reach of children.",
-      "Do not use after “EXP”. Return leftovers to a pharmacy."
+      "Keep out of reach of children, in original package.",
+      "Do not use after “EXP”. Return leftovers to the pharmacy."
     ],
     footer1:"If you need more information, contact your pharmacy or doctor.",
     footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
   },
 
   so:{
-    pageTitle:"Hjertemagnyl – dhiig-xinjir ka hortag",
-    hdrH1:"Hjertemagnyl – dhiig-xinjir ka hortag",
+    pageTitle:"Pantoprazol – laabjeex/refluks",
+    hdrH1:"Pantoprazol – laabjeex/refluks",
     hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed.",
     backText:"Ku laabo liiska daawooyinka",
     langLabel:"Dooro luqadda:",
-    drugName:"Hjertemagnyl (acetylsalicylsyre)",
-    drugForm:"Kiniin – dhiig-platelet joojiye",
+    drugName:"Pantoprazol",
+    drugForm:"Kiniin ka hortaga aashitada caloosha",
     badgeText:"Akhris kooban",
 
-    sec0Title:"Waa maxay Hjertemagnyl?",
+    sec0Title:"Waa maxay Pantoprazol?",
     sec0:[
-      "Hjertemagnyl wuxuu leeyahay <span class='highlight'>acetylsalicylsyre</span> qiyaas hoose.",
-      "Waxay <span class='highlight'>yaraysaa isku-dhegganaanta platelet-ka</span> si loo yareeyo khatarta dhiig-xinjir."
+      "Pantoprazol wuxuu <span class='highlight'>yareeyaa aashitada caloosha</span> (PPI).",
+      "Ma aha daawo degdeg u joojisa aashitada isla markiiba—saameyntu waxay hagaagtaa maalmo gudahood."
     ],
     sec1Title:"Maxaa loo isticmaalaa?",
     sec1:[
-      "Ka hortagga dhiig-xinjirta wadnaha (tusaale stent/ dhiig-xinjir hore) sida dhakhtarku qoro.",
-      "Ka hortagga dhiig-xinjirta maskaxda xaalado gaar ah haddii la qoro."
+      "Laabjeex iyo <span class='highlight'>refluks</span> (halsano).",
+      "Boog caloosha/xiidanka iyo ka hortag boog (qorshaha dhakhtarka).",
+      "Qayb ka mid ah daaweynta <span class='highlight'>H. pylori</span> (antibiotic la socota) haddii la qoro."
     ],
     sec2Title:"Sida loo qaato",
     sec2:[
-      "Badanaa <span class='highlight'>1 jeer maalintii</span> (raac warqadda qiyaasta).",
-      "Ku liq biyo.",
+      "Badanaa <span class='highlight'>1 jeer maalintii</span>; mararka qaar 2 jeer (sida dhakhtarku qoro).",
+      "Ku liq biyo – <span class='highlight'>ha calalin/ha burburin</span> kiniinka enteric.",
       "Haddii aad hilmaanto: qaado markaad xasuusato – <span class='highlight'>ha qaadan laba jeer</span>."
     ],
     sec3Title:"Cunto iyo cabitaan",
     sec3:[
-      "Cunto la’aan ama cunto la socota waa la qaadan karaa.",
-      "Haddii calool kugu xanuunto, ku qaado <span class='highlight'>cunto la socota</span>."
+      "Badanaa waxaa fiican in la qaato <span class='highlight'>ka hor cuntada</span> (badanaa subax). Raac warqadda qiyaasta.",
+      "Ku qaado hal koob biyo ah."
     ],
     sec4Title:"Digniino",
     sec4:[
-      "Waxay kordhin kartaa dhiig-bax fudud (nabarro, sanka-dhiig).",
-      "Haddii saxaro madow, dhiig matag, ama dhiig-bax joogto ah → la xiriir dhakhtar.",
-      "Ha joojin adigoon la tashan, gaar ahaan haddii aad stent leedahay."
+      "La xiriir dhakhtar haddii aad aragto: dhiig matag/ saxaro madow, miisaan dhimis aan la fasiri karin, liqid dhib, xanuun daran oo joogto ah.",
+      "Isticmaal dheer waa in dhakhtarku qiimeeyaa (magnesium/B12 hoose mararka qaar; infekshan dhif ah).",
+      "Haddii aad muddo dheer qaadatay, ha joojin si kedis ah adigoon la tashan."
     ],
     sec5Title:"Dhibaatooyinka",
     sec5:[
-      "Calool xanuun/halsano.",
-      "Dhiig-bax ama nabarro fudud.",
-      "Dhif: boog caloosha ama xasaasiyad."
+      "Madax-xanuun, lallabbo, calool xanuun, shuban ama calool-istaag.",
+      "Barar/gaas.",
+      "Finan waa dhif – haddii ay daran tahay la xiriir dhakhtar."
     ],
     sec6Title:"Is-dhexgalka daawooyinka",
     sec6:[
-      "Ka taxaddar NSAID (tusaale ibuprofen) – waxay kordhin kartaa dhiig-baxa/minda-caloosha.",
-      "Daawooyin dhiig-fiiqiya kale waxay kordhiyaan khatar; u baahan qorshe dhakhtar."
+      "Waxay saameyn kartaa nuugista daawooyin u baahan aashito (tusaale daawo fangas qaarkood).",
+      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo joogto ah, gaar ahaan kuwa dhiig-fiiqiya."
     ],
     sec7Title:"Ramadaanka iyo soonka",
     sec7:[
-      "Kiniin afka ah soonka wuu jebin karaa (aragtiyo kala duwan). Haddii aad shaki qabto la tasho imam iyo dhakhtar.",
-      "Haddii daawada laguu qoray ka hortag xinjir, ha seegin qiyaasta."
+      "Ka hor Ramadaan la hadal dhakhtarka qorshe ammaan ah.",
+      "Badanaa waxaa lagu beegaa <span class='highlight'>suxuur</span> ama <span class='highlight'>afur</span> – raac qorshaha."
     ],
     sec8Title:"Kaydinta",
     sec8:[
-      "Ku hay meel qalalan, heerkulka qolka, kana fog carruurta.",
+      "Ka fogee carruurta; ku hay baakadka asalka ah.",
       "Ha qaadan haddii ay dhaafto “EXP”. Wixii haray ku celi farmashiyaha."
     ],
     footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
+  },
+
+  ar:{
+    pageTitle:"بانتوبرازول – الحموضة والارتجاع",
+    hdrH1:"بانتوبرازول – الحموضة والارتجاع",
+    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
+    backText:"العودة إلى قائمة الأدوية",
+    langLabel:"اختر اللغة:",
+    drugName:"بانتوبرازول",
+    drugForm:"أقراص مغلّفة معوياً لعلاج الحموضة",
+    badgeText:"مختصر وواضح",
+
+    sec0Title:"ما هو بانتوبرازول؟",
+    sec0:[
+      "دواء يقلل <span class='highlight'>إنتاج حمض المعدة</span> (مثبط مضخة البروتون).",
+      "ليس مضاد حموضة فوري—تتحسن الفعالية خلال ساعات إلى أيام."
+    ],
+    sec1Title:"لماذا يُستخدم؟",
+    sec1:[
+      "حرقة المعدة و<span class='highlight'>الارتجاع</span>.",
+      "قرحة المعدة/الاثني عشر والوقاية عند الحاجة حسب الخطة.",
+      "جزء من علاج <span class='highlight'>جرثومة المعدة H. pylori</span> مع المضادات عند وصف الطبيب."
+    ],
+    sec2Title:"كيف يؤخذ؟",
+    sec2:[
+      "غالباً مرة يومياً، وأحياناً مرتين حسب وصف الطبيب.",
+      "يُبلع كاملاً مع الماء—<span class='highlight'>لا يُمضغ ولا يُسحق</span>.",
+      "عند نسيان الجرعة: خذها عند التذكر—<span class='highlight'>لا تضاعف الجرعة</span>."
+    ],
+    sec3Title:"الطعام والشراب",
+    sec3:[
+      "غالباً الأفضل قبل وجبة (كثيراً صباحاً) حسب الوصفة.",
+      "يؤخذ مع كوب ماء."
+    ],
+    sec4Title:"تحذيرات",
+    sec4:[
+      "راجع الطبيب عند علامات خطورة: قيء دموي، براز أسود، نقص وزن غير مفسر، صعوبة بلع، ألم شديد مستمر.",
+      "يجب تقييم الاستخدام الطويل (نقص مغنيسيوم/B12 ونادراً عدوى).",
+      "لا توقفه فجأة بعد استعمال طويل دون استشارة."
+    ],
+    sec5Title:"الآثار الجانبية",
+    sec5:[
+      "صداع، غثيان، ألم بطني، إسهال أو إمساك.",
+      "انتفاخ/غازات.",
+      "طفح جلدي نادر—استشر عند شدة."
+    ],
+    sec6Title:"التداخلات",
+    sec6:[
+      "قد يؤثر على امتصاص أدوية تحتاج حمض المعدة (بعض مضادات الفطريات).",
+      "أخبر طبيبك/صيدليك عن جميع الأدوية خاصة مميعات الدم."
+    ],
+    sec7Title:"رمضان والصيام",
+    sec7:[
+      "ناقش خطة آمنة قبل رمضان.",
+      "يمكن غالباً أخذه عند <span class='highlight'>السحور</span> أو <span class='highlight'>الإفطار</span> حسب الوصفة."
+    ],
+    sec8Title:"الحفظ",
+    sec8:[
+      "يحفظ بعيداً عن الأطفال وفي العبوة الأصلية.",
+      "لا يُستخدم بعد EXP وأعد البقايا للصيدلية."
+    ],
+    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
+    footer2:"إعداد: إبراهيم ظاهر حنف"
+  },
+
+  tr:{
+    pageTitle:"Pantoprazol – mide asidi ve reflü",
+    hdrH1:"Pantoprazol – mide asidi ve reflü",
+    hdrP:"Hasta ve yakınları için kısa bilgi.",
+    backText:"İlaç listesine geri dön",
+    langLabel:"Dil seçin:",
+    drugName:"Pantoprazol",
+    drugForm:"Enterik kaplı tablet (mide asidi için)",
+    badgeText:"Kısa ve anlaşılır",
+
+    sec0Title:"Pantoprazol nedir?",
+    sec0:[
+      "Mide asidi üretimini <span class='highlight'>azaltan</span> bir ilaçtır (PPI).",
+      "Anında etki eden antiasit değildir; etki saatler-günler içinde artar."
+    ],
+    sec1Title:"Ne için kullanılır?",
+    sec1:[
+      "Mide yanması ve <span class='highlight'>reflü</span>.",
+      "Mide/onikiparmak bağırsağı ülseri ve bazı kişilerde koruma (doktor planı).",
+      "<span class='highlight'>H. pylori</span> tedavisinin bir parçası olarak antibiyotiklerle birlikte (doktor yazarsa)."
+    ],
+    sec2Title:"Nasıl alınır?",
+    sec2:[
+      "Genellikle günde <span class='highlight'>1 kez</span>; bazıları 2 kez alır (reçeteye göre).",
+      "Su ile bütün yutun—<span class='highlight'>çiğnemeyin/ezmeyin</span>.",
+      "Doz unutulursa: hatırlayınca alın—<span class='highlight'>çift doz almayın</span>."
+    ],
+    sec3Title:"Yemek ve içecek",
+    sec3:[
+      "Çoğu kişide <span class='highlight'>yemekten önce</span> (sıklıkla sabah) daha iyi çalışır; reçeteyi takip edin.",
+      "Bir bardak su ile alın."
+    ],
+    sec4Title:"Uyarılar",
+    sec4:[
+      "Alarm belirtilerinde doktora başvurun: kanlı kusma, siyah dışkı, açıklanamayan kilo kaybı, yutma güçlüğü, şiddetli kalıcı ağrı.",
+      "Uzun süreli kullanım doktor tarafından değerlendirilmelidir (magnezyum/B12 düşüklüğü, nadiren enfeksiyonlar).",
+      "Uzun kullanım sonrası aniden bırakmayın; rebound şikayet olabilir."
+    ],
+    sec5Title:"Yan etkiler",
+    sec5:[
+      "Baş ağrısı, bulantı, karın ağrısı, ishal veya kabızlık.",
+      "Şişkinlik/gaz.",
+      "Döküntü nadirdir—şiddetliyse danışın."
+    ],
+    sec6Title:"Etkileşimler",
+    sec6:[
+      "Mide asidine ihtiyaç duyan bazı ilaçların emilimini etkileyebilir (bazı mantar ilaçları).",
+      "Kan sulandırıcılar ve tüm düzenli ilaçlar hakkında doktor/eczacıya bilgi verin."
+    ],
+    sec7Title:"Ramazan",
+    sec7:[
+      "Ramazan öncesi güvenli plan için doktorla görüşün.",
+      "Genellikle <span class='highlight'>sahur</span> veya <span class='highlight'>iftar</span> zamanına planlanabilir."
+    ],
+    sec8Title:"Saklama",
+    sec8:[
+      "Çocuklardan uzak, orijinal ambalajında saklayın.",
+      "EXP sonrası kullanmayın; artanları eczaneye verin."
+    ],
+    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
+    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
+  },
+
+  ur:{
+    pageTitle:"پینٹوپرازول – معدے کی تیزابیت اور ریفلکس",
+    hdrH1:"پینٹوپرازول – معدے کی تیزابیت اور ریفلکس",
+    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
+    backText:"فہرست پر واپس",
+    langLabel:"زبان منتخب کریں:",
+    drugName:"پینٹوپرازول",
+    drugForm:"انٹیرک کوٹڈ گولی (تیزابیت کیلئے)",
+    badgeText:"مختصر اور واضح",
+
+    sec0Title:"پینٹوپرازول کیا ہے؟",
+    sec0:[
+      "یہ دوا <span class='highlight'>معدے کا تیزاب کم</span> کرتی ہے (PPI).",
+      "یہ فوری اینٹاسیڈ نہیں؛ اثر چند گھنٹوں سے دنوں میں بہتر ہوتا ہے۔"
+    ],
+    sec1Title:"کس لیے استعمال ہوتی ہے؟",
+    sec1:[
+      "سینے کی جلن اور <span class='highlight'>ریفلکس</span>.",
+      "معدہ/اثناعشر کا السر اور کچھ مریضوں میں بچاؤ (ڈاکٹر کے پلان کے مطابق).",
+      "<span class='highlight'>H. pylori</span> کے علاج میں اینٹی بایوٹک کے ساتھ حصہ (اگر ڈاکٹر لکھے)."
+    ],
+    sec2Title:"کیسے لیں؟",
+    sec2:[
+      "اکثر روزانہ <span class='highlight'>1 بار</span>؛ کچھ میں 2 بار (نسخے کے مطابق).",
+      "پانی کے ساتھ پوری نگلیں—<span class='highlight'>چبائیں/کچلیں نہیں</span>.",
+      "بھول جائیں تو یاد آنے پر لے لیں—<span class='highlight'>ڈبل خوراک نہ لیں</span>."
+    ],
+    sec3Title:"کھانا پینا",
+    sec3:[
+      "اکثر <span class='highlight'>کھانے سے پہلے</span> (عموماً صبح) بہتر کام کرتی ہے؛ نسخہ فالو کریں.",
+      "ایک گلاس پانی کے ساتھ لیں."
+    ],
+    sec4Title:"احتیاطیں",
+    sec4:[
+      "خطرے کی علامات پر فوراً ڈاکٹر سے رابطہ کریں: خون کی الٹی، کالا پاخانہ، بلا وجہ وزن کم ہونا، نگلنے میں مشکل، شدید مسلسل درد.",
+      "لمبے عرصے کا استعمال ڈاکٹر دیکھے (میگنیشیم/B12 کمی، شاذونادر انفیکشن).",
+      "لمبے استعمال کے بعد اچانک بند نہ کریں؛ علامات بڑھ سکتی ہیں."
+    ],
+    sec5Title:"مضر اثرات",
+    sec5:[
+      "سر درد، متلی، پیٹ درد، اسہال یا قبض.",
+      "پیٹ پھولنا/گیس.",
+      "دانے کم ہوتے ہیں—شدید ہوں تو مشورہ کریں."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "کچھ دواؤں کے جذب پر اثر ہو سکتا ہے جنہیں تیزاب چاہیے (کچھ اینٹی فنگل).",
+      "خون پتلا کرنے والی ادویات اور تمام مستقل دواؤں کے بارے میں بتائیں."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "رمضان سے پہلے محفوظ پلان کیلئے ڈاکٹر سے بات کریں.",
+      "اکثر <span class='highlight'>سحری</span> یا <span class='highlight'>افطار</span> پر ترتیب دی جا سکتی ہے."
+    ],
+    sec8Title:"محفوظ رکھنا",
+    sec8:[
+      "بچوں سے دور، اصل پیک میں رکھیں.",
+      "EXP کے بعد استعمال نہ کریں؛ باقی دوا فارمیسی واپس کریں."
+    ],
+    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
+    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
+  },
+
+  fa:{
+    pageTitle:"پانتوپرازول – رفلاکس و اسید معده",
+    hdrH1:"پانتوپرازول – رفلاکس و اسید معده",
+    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"پانتوپرازول",
+    drugForm:"قرص روکش‌دار روده‌ای (کاهش اسید)",
+    badgeText:"کوتاه و روشن",
+
+    sec0Title:"پانتوپرازول چیست؟",
+    sec0:[
+      "دارویی است که <span class='highlight'>تولید اسید معده را کم</span> می‌کند (PPI).",
+      "اثر فوری مانند آنتی‌اسید ندارد و طی ساعت‌ها تا چند روز بهتر می‌شود."
+    ],
+    sec1Title:"موارد مصرف",
+    sec1:[
+      "سوزش سر دل و <span class='highlight'>رفلاکس</span>.",
+      "زخم معده/دوازدهه و پیشگیری در برخی افراد طبق برنامه پزشک.",
+      "بخشی از درمان <span class='highlight'>H. pylori</span> همراه آنتی‌بیوتیک در صورت تجویز."
+    ],
+    sec2Title:"نحوه مصرف",
+    sec2:[
+      "معمولاً روزی <span class='highlight'>۱ بار</span> و گاهی ۲ بار طبق نسخه.",
+      "با آب کامل ببلعید—<span class='highlight'>نجوید/خرد نکنید</span>.",
+      "در صورت فراموشی: به محض یادآوری مصرف کنید—<span class='highlight'>دوز دوبرابر نکنید</span>."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "اغلب <span class='highlight'>قبل از غذا</span> (معمولاً صبح) بهتر است؛ طبق نسخه عمل کنید.",
+      "با یک لیوان آب مصرف شود."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "در علائم هشدار مراجعه کنید: استفراغ خونی، مدفوع سیاه، کاهش وزن بی‌دلیل، مشکل بلع، درد شدید و مداوم.",
+      "مصرف طولانی‌مدت باید توسط پزشک بررسی شود (کمبود منیزیم/B12 و به‌ندرت عفونت‌ها).",
+      "بعد از مصرف طولانی ناگهانی قطع نکنید."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "سردرد، تهوع، درد شکم، اسهال یا یبوست.",
+      "نفخ/گاز.",
+      "راش پوستی نادر است—در صورت شدت مشورت کنید."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "ممکن است جذب برخی داروهای نیازمند اسید معده را تغییر دهد (برخی ضدقارچ‌ها).",
+      "همه داروها به‌ویژه رقیق‌کننده‌های خون را اطلاع دهید."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "قبل از رمضان برای برنامه ایمن با پزشک مشورت کنید.",
+      "اغلب در <span class='highlight'>سحری</span> یا <span class='highlight'>افطار</span> قابل تنظیم است."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "دور از دسترس کودکان و در بسته‌بندی اصلی نگهداری شود.",
+      "پس از EXP مصرف نشود؛ باقیمانده را به داروخانه تحویل دهید."
+    ],
+    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  prs:{
+    pageTitle:"پانتوپرازول – رفلاکس و تیزاب معده",
+    hdrH1:"پانتوپرازول – رفلاکس و تیزاب معده",
+    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
+    backText:"بازگشت به فهرست",
+    langLabel:"انتخاب زبان:",
+    drugName:"پانتوپرازول",
+    drugForm:"قرص روکش‌دار روده‌ای",
+    badgeText:"کوتاه و واضح",
+
+    sec0Title:"پانتوپرازول چیست؟",
+    sec0:[
+      "تولید تیزاب معده را <span class='highlight'>کم</span> می‌کند (PPI).",
+      "اثر فوری ندارد و طی ساعت‌ها تا روزها بهتر می‌شود."
+    ],
+    sec1Title:"برای چی استفاده می‌شود؟",
+    sec1:[
+      "سوزش سر دل و <span class='highlight'>رفلاکس</span>.",
+      "زخم معده/دوازدهه و پیشگیری در بعضی‌ها طبق پلان داکتر.",
+      "بخشی از تداوی <span class='highlight'>H. pylori</span> با انتی‌بیوتیک اگر تجویز شود."
+    ],
+    sec2Title:"چگونه گرفته شود؟",
+    sec2:[
+      "اکثر روزی <span class='highlight'>۱ بار</span>؛ گاهی ۲ بار طبق نسخه.",
+      "با آب کامل قورت دهید—<span class='highlight'>نجوید/خرد نکنید</span>.",
+      "در فراموشی: به یاد آمد، بگیرید—<span class='highlight'>دوز دو برابر نگیرید</span>."
+    ],
+    sec3Title:"غذا و نوشیدنی",
+    sec3:[
+      "اکثر <span class='highlight'>قبل از غذا</span> بهتر است؛ طبق نسخه عمل کنید.",
+      "با یک گیلاس آب بگیرید."
+    ],
+    sec4Title:"هشدارها",
+    sec4:[
+      "در علایم هشدار مراجعه کنید: قی خون، مدفوع سیاه، کاهش وزن بی‌دلیل، مشکل بلع، درد شدید و دوامدار.",
+      "استفاده طولانی باید توسط داکتر بررسی شود.",
+      "بعد از استفاده طولانی ناگهانی قطع نکنید."
+    ],
+    sec5Title:"عوارض",
+    sec5:[
+      "سردرد، دل‌بدی، درد شکم، اسهال یا قبض.",
+      "نفخ/گاز.",
+      "دانۀ جلدی نادر است."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "ممکن است جذب بعضی دواها را تغییر دهد (برخی ضدقارچ‌ها).",
+      "تمام دواها به‌خصوص رقیق‌کننده‌های خون را اطلاع دهید."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "قبل از رمضان با داکتر پلان بسازید.",
+      "اکثر در <span class='highlight'>سحری</span> یا <span class='highlight'>افطار</span> تنظیم می‌شود."
+    ],
+    sec8Title:"نگهداری",
+    sec8:[
+      "دور از دسترس اطفال و در بسته‌بندی اصلی نگهداری شود.",
+      "بعد از EXP استفاده نشود؛ باقی‌مانده را به دواخانه بسپارید."
+    ],
+    footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.",
+    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
+  },
+
+  ps:{
+    pageTitle:"پانتوپرازول – د معدې تیزاب او رفلوکس",
+    hdrH1:"پانتوپrazol – د معدې تیزاب او رفلوکس",
+    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
+    backText:"لېست ته بېرته",
+    langLabel:"ژبه وټاکئ:",
+    drugName:"پانتوپرازول",
+    drugForm:"انتریک ګولۍ (د معدې تیزاب کموي)",
+    badgeText:"لنډ او روښانه",
+
+    sec0Title:"پانتوپرازول څه شی دی؟",
+    sec0:[
+      "دا درمل د معدې تیزاب <span class='highlight'>کموي</span> (PPI).",
+      "سمدستي انټي‌اسید نه دی؛ اغېزه یې په ساعتونو تر ورځو کې ښه کېږي."
+    ],
+    sec1Title:"د څه لپاره کارېږي؟",
+    sec1:[
+      "سینه‌سوځېدنه او <span class='highlight'>رفلوکس</span>.",
+      "د معدې/دولس‌ګونې کولمو زخم او د ځینو لپاره مخنیوی (د ډاکټر پلان).",
+      "د <span class='highlight'>H. pylori</span> د درملنې برخه د انټي‌بیوټیک سره که ډاکټر یې ولیکي."
+    ],
+    sec2Title:"څنګه واخیستل شي؟",
+    sec2:[
+      "اکثره ورځ کې <span class='highlight'>۱ ځل</span>؛ ځینې ۲ ځله (د نسخې له مخې).",
+      "له اوبو سره یې بشپړ تېر کړئ—<span class='highlight'>مه ژوئ/مه ماتوئ</span>.",
+      "هېر شو: چې یاد مو شو واخلئ—<span class='highlight'>ډبل دوز مه اخلئ</span>."
+    ],
+    sec3Title:"خواړه او څښاک",
+    sec3:[
+      "ډېری وخت <span class='highlight'>له خوړو مخکې</span> ښه کار کوي؛ خپل پلان تعقیب کړئ.",
+      "له یو ګیلاس اوبو سره واخلئ."
+    ],
+    sec4Title:"خبرداری",
+    sec4:[
+      "د خطر نښې: وینه په کانګې/تور غایطه، بې‌دلیله وزن کموالی، د تېرولو ستونزه، شدید دوامدار درد—ډاکټر ته ورشئ.",
+      "اوږدمهاله استعمال باید ډاکټر وارزوي.",
+      "له اوږدې مودې وروسته ناڅاپه مه بندوئ."
+    ],
+    sec5Title:"اړخیزې اغېزې",
+    sec5:[
+      "سر درد، زړه بدوالی، د نس درد، اسهال یا قبض.",
+      "پړسوب/ګاز.",
+      "د پوستکي دانې نادرې دي."
+    ],
+    sec6Title:"تداخلات",
+    sec6:[
+      "د ځینو درملو جذب بدلولای شي (ځینې د فنګس ضد درمل).",
+      "د وینې نری کوونکي او ټول منظم درمل ډاکټر/درملتون ته ووایئ."
+    ],
+    sec7Title:"رمضان",
+    sec7:[
+      "له رمضان مخکې له ډاکټر سره خوندي پلان جوړ کړئ.",
+      "اکثر <span class='highlight'>سحور</span> یا <span class='highlight'>افطار</span> کې تنظیمېږي."
+    ],
+    sec8Title:"ساتنه",
+    sec8:[
+      "له ماشومانو لرې او په اصلي بسته کې وساتئ.",
+      "له EXP وروسته مه کاروئ؛ پاتې درمل درملتون ته وسپارئ."
+    ],
+    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
+    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
   }
 };
-
-/* Keep your behavior: other langs fall back to EN if not defined */
-["ar","tr","ur","fa","prs","ps"].forEach(l=>{ if(!T[l]) T[l]=T.en; });
 
 function applyLang(lang){
   const d = T[lang] || T.da;
@@ -539,7 +881,6 @@ function applyLang(lang){
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 }
 
-/* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
 const startLang = params.get("lang") || "da";
 
