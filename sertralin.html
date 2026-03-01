@@ -84,8 +84,6 @@ a.back span{ font-size:1.1rem; }
 .section-icon.drink{ background:#e0f7fa; }
 
 .section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
-
 .section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
 .section li{ margin-bottom:4px; }
 
@@ -136,77 +134,15 @@ a.back span{ font-size:1.1rem; }
       <div class="badge" id="badgeText">Akhris kooban</div>
     </div>
 
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Waa maxay Sertralin? <small>(Hvad er Sertralin?)</small></div>
-      </div>
-      <ul id="sec0List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Maxaa loo isticmaalaa? <small>(Hvad bruges det til?)</small></div>
-      </div>
-      <ul id="sec1List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sida loo qaato <small>(Sådan tages medicinen)</small></div>
-      </div>
-      <ul id="sec2List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon drink">💧</div>
-        <div class="section-title" id="sec3Title">Cunto iyo cabitaan <small>(Mad og drikke)</small></div>
-      </div>
-      <ul id="sec3List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Digniino <small>(Advarsler)</small></div>
-      </div>
-      <ul id="sec4List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Dhibaatooyinka <small>(Bivirkninger)</small></div>
-      </div>
-      <ul id="sec5List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Is-dhexgalka daawooyinka <small>(Interaktioner)</small></div>
-      </div>
-      <ul id="sec6List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadaanka iyo daawada <small>(Fasten og brugen af medicinen)</small></div>
-      </div>
-      <ul id="sec7List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta <small>(Opbevaring)</small></div>
-      </div>
-      <ul id="sec8List"></ul>
-    </div>
+    <div class="section"><div class="section-header"><div class="section-icon use">💊</div><div class="section-title" id="sec0Title"></div></div><ul id="sec0List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon use">✔</div><div class="section-title" id="sec1Title"></div></div><ul id="sec1List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon dose">⏰</div><div class="section-title" id="sec2Title"></div></div><ul id="sec2List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon drink">💧</div><div class="section-title" id="sec3Title"></div></div><ul id="sec3List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon warn">!</div><div class="section-title" id="sec4Title"></div></div><ul id="sec4List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon side">⚠️</div><div class="section-title" id="sec5Title"></div></div><ul id="sec5List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon interact">⇆</div><div class="section-title" id="sec6Title"></div></div><ul id="sec6List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon ramadan">☾</div><div class="section-title" id="sec7Title"></div></div><ul id="sec7List"></ul></div>
+    <div class="section"><div class="section-header"><div class="section-icon store">⧉</div><div class="section-title" id="sec8Title"></div></div><ul id="sec8List"></ul></div>
   </div>
 
   <div class="footer-note" id="footer1"></div>
@@ -263,19 +199,9 @@ function fillList(id, arr){
 
 function setSectionTitle(elId, title){
   const el = document.getElementById(elId);
-  if (!el) return;
-  const small = el.querySelector("small");
-  const t = (title || "").trim();
-  if (small){
-    const first = el.childNodes[0];
-    if (first && first.nodeType === Node.TEXT_NODE){
-      first.textContent = t + " ";
-    } else {
-      el.insertBefore(document.createTextNode(t + " "), small);
-    }
-  } else {
-    el.textContent = t;
-  }
+  if(!el) return;
+  el.querySelectorAll("small").forEach(s => s.remove());
+  el.textContent = (title || "").trim();
 }
 
 const T = {
@@ -288,14 +214,14 @@ const T = {
     drugName: "Sertralin",
     drugForm: "Kiniin afka ah",
     badgeText: "Akhris kooban",
-    sec0Title: "Waa maxay Sertralin? (Hvad er Sertralin?)",
+    sec0Title: "Waa maxay Sertralin?",
     sec0: [
       "Sertralin waa daawo lid ku ah niyad-jabka, oo ka tirsan <span class='highlight'>SSRI</span>.",
       "Waxay hagaajisaa niyadda, yareysaa walbahaarka iyo welwelka."
     ],
-    sec1Title: "Maxaa loo isticmaalaa? (Hvad bruges det til?)",
+    sec1Title: "Maxaa loo isticmaalaa?",
     sec1: ["Niyad-jabka (depression).", "Walbahaarka iyo welwelka (stress & angst)."],
-    sec2Title: "Sida loo qaato (Sådan tages medicinen)",
+    sec2Title: "Sida loo qaato",
     sec2: [
       "Dadka waaweyn: <span class='highlight'>50 mg</span> maalintii marka hore.",
       "Waxaa la kordhin karaa <span class='highlight'>50 mg toddobaad kasta</span> haddii dhakhtarku ku yiraahdo.",
@@ -303,28 +229,28 @@ const T = {
       "Badanaa waxay bilaabataa inay shaqeyso <span class='highlight'>2–4 toddobaad</span> gudahood; saameyn buuxda <span class='highlight'>6–8 toddobaad</span>.",
       "Liq biyo. Qaado cunto la jirta/ka dib haddii calool-xanuun jiro."
     ],
-    sec3Title: "Cunto iyo cabitaan (Mad og drikke)",
+    sec3Title: "Cunto iyo cabitaan",
     sec3: [
       "Liq <span class='highlight'>hal koob biyo ah (1.5–2 dl)</span>.",
       "Haddii calool-xanuun ama lalabo, qaado <span class='highlight'>cunto ka dib</span>."
     ],
-    sec4Title: "Digniino (Advarsler)",
+    sec4Title: "Digniino",
     sec4: [
       "Isbeddel niyadeed ama fikir isdil → <span class='highlight'>la xiriir dhakhtarka</span> isla markiiba.",
       "Ha joojin daawada si kedis ah."
     ],
-    sec5Title: "Dhibaatooyinka (Bivirkninger)",
+    sec5Title: "Dhibaatooyinka",
     sec5: ["Lalabo ama calool-xanuun.", "Madax-xanuun ama wareer.", "Hurdo badan ama hurdo la’aan.", "Miisaanka ama rabitaanka cuntada oo is beddela (qaarkood)."],
-    sec6Title: "Is-dhexgalka daawooyinka (Interaktioner)",
+    sec6Title: "Is-dhexgalka daawooyinka",
     sec6: [
       "Ha isku darin daawooyin kale oo hurdo-dejiya adigoon la tashan.",
       "Daawooyinka dhiig-khafiifinta/NSAID qaar waxay kordhin karaan khatarta dhiig-bax (la-talin).",
       "Antibiotiko & antifungal qaarkood waxay kordhin karaan saamayn — u sheeg dhakhtarka/farmashiyaha."
     ],
-    sec7Title: "Ramadaanka iyo daawada (Fasten og brugen af medicinen)",
+    sec7Title: "Ramadaanka iyo daawada",
     sec7: ["La hadal dhakhtar ka hor Ramadaan.", "Badanaa waxaa la qaadan karaa <span class='highlight'>fiidkii (afurka ka dib)</span> haddii qorshaha la oggol yahay."],
-    sec8Title: "Kaydinta (Opbevaring)",
-    sec8: ["Ka fog carruurta, <span class='highlight'>< 25°C</span>, baakadka asalka ah.", "Ha qaadan haddii “EXP” dhaafto. Rester → farmashiye."],
+    sec8Title: "Kaydinta",
+    sec8: ["Ka fog carruurta, <span class='highlight'>&lt; 25°C</span>, baakadka asalka ah.", "Ha qaadan haddii “EXP” dhaafto. Rester → farmashiye."],
     footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
     footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
   },
