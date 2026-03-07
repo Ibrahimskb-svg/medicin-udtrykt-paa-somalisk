@@ -125,11 +125,6 @@ footer{
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
@@ -138,8 +133,6 @@ footer{
   </h3>
 
   <ul class="index-list">
-
-    <!-- ✅ Alphabetical order (A–Z) -->
 
     <li><a class="index-link" data-med="amlodipin" href="amlodipin.html"><div class="index-left"><span class="index-title">Amlodipin</span><span class="index-sub" data-role="sub">dhiig-karka</span></div><span class="index-icon">➜</span></a></li>
     <li><a class="index-link" data-med="atorvastatin" href="atorvastatin.html"><div class="index-left"><span class="index-title">Atorvastatin</span><span class="index-sub" data-role="sub">kolestarool</span></div><span class="index-icon">➜</span></a></li>
@@ -192,22 +185,24 @@ footer{
 </footer>
 
 <script>
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 /*
-  ✅ Forskellige farver pr. sprog (tydeligt forskellige – inkl. pink/brun osv.)
-  Bruges til: header gradient (c1/c2), accent (venstrekant + pil) og flash (kort highlight).
+  ✅ Forskellige farver pr. sprog
 */
 const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", flash:"#eef9f3" }, // blå→grøn (som før)
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", flash:"#edf4ff" }, // blå (DK)
-  en:  { c1:"#111827", c2:"#ec4899", accent:"#ec4899", flash:"#fff1f7" }, // sort→pink
-  ar:  { c1:"#7c2d12", c2:"#f97316", accent:"#b45309", flash:"#fff7ed" }, // brun→orange
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", flash:"#fff0f0" }, // rød
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", flash:"#eefaf4" }, // teal→grøn
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", flash:"#e9fbff" }, // cyan→teal
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", flash:"#eef2ff" }, // indigo→cyan
-  ps:  { c1:"#7c3aed", c2:"#a78bfa", accent:"#7c3aed", flash:"#f5f3ff" }  // lilla (anderledes end de andre)
+  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", flash:"#eef9f3" },
+  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", flash:"#edf4ff" },
+  en:  { c1:"#111827", c2:"#ec4899", accent:"#ec4899", flash:"#fff1f7" },
+  ar:  { c1:"#7c2d12", c2:"#f97316", accent:"#b45309", flash:"#fff7ed" },
+
+  /* gemt, men deaktiveret */
+  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", flash:"#fff0f0" },
+  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", flash:"#eefaf4" },
+  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", flash:"#e9fbff" },
+  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", flash:"#eef2ff" },
+  ps:  { c1:"#7c3aed", c2:"#a78bfa", accent:"#7c3aed", flash:"#f5f3ff" }
 };
 
 /* Undertekster per medicin per sprog */
@@ -301,6 +296,8 @@ const T = {
     footerStrong:"إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)",
     footer3:""
   },
+
+  /* gemt, men ikke aktive */
   tr: {
     pageTitle:"Somalice ilaç bilgileri",
     hdrTitle:"Somalice ilaç bilgileri",
@@ -367,11 +364,13 @@ function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
+
 function setLangInUrl(lang){
   const url = new URL(window.location.href);
   url.searchParams.set("lang", lang);
   history.replaceState({}, "", url.toString());
 }
+
 function applyTheme(lang){
   const th = THEME[lang] || THEME.so;
   document.documentElement.style.setProperty("--accent", th.accent);
@@ -394,12 +393,14 @@ function animateSwap(el, newText){
     setTimeout(() => el.classList.remove("fade-in"), 200);
   }, 140);
 }
+
 function flashCards(){
   document.querySelectorAll("a.index-link").forEach(a => {
     a.classList.add("lang-flash");
     setTimeout(() => a.classList.remove("lang-flash"), 220);
   });
 }
+
 function updateIndexSubs(lang){
   document.querySelectorAll('a.index-link[data-med]').forEach(a => {
     const key = a.getAttribute('data-med');
@@ -410,6 +411,10 @@ function updateIndexSubs(lang){
 }
 
 function applyLang(lang){
+  if (!ENABLED_LANGS.has(lang)) {
+    lang = "so";
+  }
+
   const d = T[lang] || T.so;
 
   applyTheme(lang);
@@ -434,20 +439,30 @@ function applyLang(lang){
   updateIndexSubs(lang);
   flashCards();
 
-  // keep language when opening a medicine page
+  /* keep language when opening a medicine page */
   document.querySelectorAll('a.index-link').forEach(a => {
     const base = a.getAttribute('href').split('?')[0];
     a.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
   });
 
+  const select = document.getElementById("langSelect");
+  if (select) {
+    select.value = lang;
+  }
+
   setLangInUrl(lang);
 }
 
-// Start language from ?lang=
+/* Start language from ?lang= */
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get('lang') || 'so';
-document.getElementById("langSelect").value = (T[startLang] ? startLang : 'so');
-applyLang(document.getElementById("langSelect").value);
+let startLang = params.get('lang') || 'so';
+
+if (!ENABLED_LANGS.has(startLang)) {
+  startLang = 'so';
+}
+
+document.getElementById("langSelect").value = startLang;
+applyLang(startLang);
 
 document.getElementById("langSelect").addEventListener("change", function(){
   applyLang(this.value);
