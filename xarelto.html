@@ -221,16 +221,11 @@ a.back span{ font-size:1.1rem; }
 <script>
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", badgeBg:"#d9f6e8", badgeText:"#16634a", iconBg:"#e3f2fd", iconStroke:"#1a73e8" },
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#0b5ed7" },
-  en:  { c1:"#0b3d91", c2:"#3a86ff", accent:"#3a86ff", badgeBg:"#e7f0ff", badgeText:"#0b2f6b", iconBg:"#e7f0ff", iconStroke:"#3a86ff" },
-  ar:  { c1:"#5b2a86", c2:"#9b5de5", accent:"#7b2cbf", badgeBg:"#efe7ff", badgeText:"#3a1a66", iconBg:"#efe7ff", iconStroke:"#7b2cbf" },
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", badgeBg:"#ffe8ea", badgeText:"#7a0b14", iconBg:"#ffe8ea", iconStroke:"#c1121f" },
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", badgeBg:"#e6fff6", badgeText:"#0b4f49", iconBg:"#e6fff6", iconStroke:"#0f766e" },
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", badgeBg:"#e6fffb", badgeText:"#0b5b57", iconBg:"#e6fffb", iconStroke:"#14b8a6" },
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", badgeBg:"#ecebff", badgeText:"#1f1a7a", iconBg:"#ecebff", iconStroke:"#4338ca" },
-  ps:  { c1:"#f59e0b", c2:"#f97316", accent:"#f59e0b", badgeBg:"#fff3db", badgeText:"#7a4703", iconBg:"#fff3db", iconStroke:"#f59e0b" }
+const THEMES = {
+  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
 };
 
 function applyTheme(lang){
