@@ -195,15 +195,19 @@ const RTL = new Set(["ar","fa","ur","prs","ps"]);
   Bruges til: header gradient (c1/c2), accent (venstrekant + pil) og flash (kort highlight).
 */
 const THEME = {
-  so:  { c1:"#0066cc", c2:"#00a676", accent:"#00a676", flash:"#eef9f3" }, // blå→grøn (som før)
-  da:  { c1:"#0b5ed7", c2:"#0dcaf0", accent:"#0b5ed7", flash:"#edf4ff" }, // blå (DK)
-  en:  { c1:"#111827", c2:"#ec4899", accent:"#ec4899", flash:"#fff1f7" }, // sort→pink
-  ar:  { c1:"#7c2d12", c2:"#f97316", accent:"#b45309", flash:"#fff7ed" }, // brun→orange
-  tr:  { c1:"#c1121f", c2:"#ff6b6b", accent:"#c1121f", flash:"#fff0f0" }, // rød
-  ur:  { c1:"#0f766e", c2:"#22c55e", accent:"#0f766e", flash:"#eefaf4" }, // teal→grøn
-  fa:  { c1:"#0ea5e9", c2:"#14b8a6", accent:"#14b8a6", flash:"#e9fbff" }, // cyan→teal
-  prs: { c1:"#4338ca", c2:"#06b6d4", accent:"#4338ca", flash:"#eef2ff" }, // indigo→cyan
-  ps:  { c1:"#7c3aed", c2:"#a78bfa", accent:"#7c3aed", flash:"#f5f3ff" }  // lilla (anderledes end de andre)
+
+  // SOMALISK (grøn/blå)
+  so:  { c1:"#00a676", c2:"#0066cc", accent:"#00a676", flash:"#d9f6e8" },
+
+  // DANSK (lyseblå)
+  da:  { c1:"#0ea5e9", c2:"#60a5fa", accent:"#0ea5e9", flash:"#e0f2fe" },
+
+  // ENGELSK (rød/brun)
+  en:  { c1:"#7c2d12", c2:"#b91c1c", accent:"#991b1b", flash:"#fef2f2" },
+
+  // ARABISK (orange)
+  ar:  { c1:"#c2410c", c2:"#fb923c", accent:"#c2410c", flash:"#fff7ed" }
+
 };
 
 /* Undertekster per medicin per sprog */
