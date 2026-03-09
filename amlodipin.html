@@ -218,11 +218,11 @@ a.back span{ font-size: 1.1rem; }
   <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
-  <option value="so" selected>Somalisk</option>
-  <option value="da">Dansk</option>
-  <option value="en">Engelsk</option>
-  <option value="ar">Arabisk</option>
-</select>
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
+      <option value="en">Engelsk</option>
+      <option value="ar">Arabisk</option>
+    </select>
   </div>
 
   <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
@@ -317,6 +317,7 @@ a.back span{ font-size: 1.1rem; }
 <div class="footer-note" id="credit"></div>
 
 <script>
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
 const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 const THEMES = {
@@ -742,11 +743,10 @@ const T = {
     creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
-<script>
-const ENABLED_LANGS = new Set(["so","da","en","ar"]);
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
-function stripTags(s){ return (s||"").replace(/<[^>]*>?/gm, ""); }
+function stripTags(s){
+  return (s || "").replace(/<[^>]*>?/gm, "");
+}
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
