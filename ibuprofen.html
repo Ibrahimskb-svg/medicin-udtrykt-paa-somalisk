@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ibuprofen – xanuun, barar &amp; qandho</title>
+<title>Ibuprofen – xanuun, barar & qandho</title>
 
 <style>
 :root{
-  /* Theme variables (changed by JS) */
   --accent1:#00a676;
   --accent2:#0066cc;
   --accentText:#ffffff;
@@ -25,41 +24,73 @@
   --link:#00509e;
 }
 
-/* Smooth theme transitions */
 @media (prefers-reduced-motion: no-preference){
   body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
     transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
   }
-  header{
-    transition: background .45s ease, color .35s ease;
-  }
+  header{ transition: background .45s ease, color .35s ease; }
 }
 
-body {
+body{
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   margin: 0;
 }
 
-header {
+header{
   background: linear-gradient(135deg, var(--accent1), var(--accent2));
   color: var(--accentText);
   padding: 22px 16px;
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-header h1 { margin: 0 0 4px; font-size: 1.8rem; }
-header p { margin: 0; font-size: 0.95rem; }
-
-main { max-width: 820px; margin: 18px auto 32px; padding: 0 14px; }
+main{
+  max-width: 820px;
+  margin: 18px auto 32px;
+  padding: 0 14px;
+}
 
 a.back{
-  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
-  text-decoration:none; color:var(--link); font-size:0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
 }
-a.back span{ font-size:1.1rem; }
+a.back span{ font-size: 1.1rem; }
+
+.langbar{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
+}
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
+.langbar select{
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
+}
 
 .card{
   background: var(--card);
@@ -71,75 +102,106 @@ a.back span{ font-size:1.1rem; }
 }
 
 .drug-meta{
-  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
-  gap:10px; margin-bottom:8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-
+.drug-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .drug-icon{
-  width:44px; height:44px; border-radius:12px;
-  background:#e3f2fd;
-  display:flex; align-items:center; justify-content:center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.drug-icon svg{ width:30px; height:30px; }
+.drug-icon svg{ width: 30px; height: 30px; }
 .drug-icon svg .stroke{ stroke: var(--accent2); }
-.drug-icon svg .fill{ fill: #e8f3ff; }
+.drug-icon svg .fill{ fill:#e8f3ff; }
 
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
 
 .badge{
-  display:inline-flex; align-items:center; gap:4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   background: var(--pillBg);
   color: var(--pillText);
-  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
   border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--stroke); }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-
+.section{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
+}
+.section-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
 .section-icon{
-  width:24px; height:24px; border-radius:999px;
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color: var(--text);
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
+
+.section-title{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.section-title small{
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
 }
 
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
-
-.section-title{ font-weight:700; color:var(--text); font-size:0.96rem; }
-.section-title small{ font-weight:400; color:var(--muted); }
-
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
-
-.highlight{ font-weight:600; }
-
-.footer-note{ font-size:0.8rem; color:var(--muted); text-align:center; margin:18px 0 10px; }
-
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
-
-/* Dropdown bar */
-.langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#ffffff; border-radius:12px; padding:10px 12px;
-  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent1);
+.section ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
 }
-.langbar label{
-  font-size:0.9rem; color:var(--text); font-weight:600;
+.section ul li{ margin-bottom: 4px; }
+
+.highlight{ font-weight: 600; }
+
+.footer-note{
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
 }
-.langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid var(--stroke);
-  background:#fff; color:var(--text); font-size:0.9rem; max-width:100%;
+
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
 }
 </style>
 </head>
@@ -147,24 +209,19 @@ a.back span{ font-size:1.1rem; }
 <body>
 
 <header>
-  <h1 id="hdrTitle">Ibuprofen – xanuun, barar &amp; qandho</h1>
+  <h1 id="hdrTitle">Ibuprofen – xanuun, barar & qandho</h1>
   <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
 
-  <div class="langbar" aria-label="Vælg sprog">
+  <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
@@ -175,91 +232,82 @@ a.back span{ font-size:1.1rem; }
       <div class="drug-info">
         <div class="drug-icon">
           <svg viewBox="0 0 64 64" aria-hidden="true">
-            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" />
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
             <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
             <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Ibuprofen – xanuun, barar &amp; qandho</div>
+          <div class="drug-name" id="drugName">Ibuprofen – xanuun, barar & qandho</div>
           <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
       <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
 
-    <!-- 1 -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">1</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall"></small></div>
+        <div class="section-icon use">💊</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
       <ul id="useList"></ul>
     </div>
 
-    <!-- 2 -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">2</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall"></small></div>
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
       <ul id="doseList"></ul>
     </div>
 
-    <!-- 3 -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">3</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall"></small></div>
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
       <ul id="sideList"></ul>
     </div>
 
-    <!-- 4 -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">4</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall"></small></div>
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
       <ul id="interactList"></ul>
     </div>
 
-    <!-- 5 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall"></small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
       </div>
       <ul id="warnList"></ul>
     </div>
 
-    <!-- 6 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall"></small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
 
-    <!-- 7 -->
     <div class="section">
       <div class="section-header">
-        <div class="section-icon food">🍽</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall"></small></div>
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
       </div>
       <ul id="foodList"></ul>
     </div>
 
-    <!-- 8 -->
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall"></small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
       </div>
       <ul id="storeList"></ul>
     </div>
-
   </div>
 
   <div class="footer-note" id="footerNote"></div>
@@ -268,55 +316,68 @@ a.back span{ font-size:1.1rem; }
 <div class="footer-note" id="credit"></div>
 
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
 
-/* 9 language themes */
 const THEMES = {
-  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
+  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
 };
+
+function applyTheme(lang){
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
+}
+
 const T = {
   so: {
-    langLabel: "Dooro luqadda:",
     title: "Ibuprofen – xanuun, barar & qandho",
     subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
     back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
     badge: "Akhris fudud oo kooban",
     drugName: "Ibuprofen – xanuun, barar & qandho",
     drugForm: "Kiniin afka ah",
     sections: {
       use: { title:"Isticmaalka", small:"", items:[
-        "Ibuprofen waa daawo ka hortagta xanuunka iyo bararka, isla markaana yareysa qandhada.",
-        "Waxaa loo isticmaalaa madax-xanuun, xanuunka caadada, murqo xanuun iyo xanuun kala-goysyada."
+        "Ibuprofen waa daawo loo isticmaalo <span class='highlight'>xanuun, barar iyo qandho</span>.",
+        "Waxaa loo isticmaalaa madax-xanuun, murqo xanuun, xanuunka caadada iyo xanuunka kala-goysyada."
       ]},
       dose: { title:"Qiyaasta", small:"", items:[
-        "Dadka waaweyn: 200–600 mg 1–3 jeer maalintii, iyadoo u dhexeysa ugu yaraan 4 saac.",
-        "Ha dhaafin 1200 mg maalintii adigoon la tashan dhakhtar. Ku qaado cunno ama ka dib cunno si caloosha loo ilaaliyo."
+        "Dadka waaweyn badanaa waxay qaataan 200–400 mg mar kasta, iyadoo u dhexeysa ugu yaraan 4 ilaa 6 saac sida loo baahdo.",
+        "Ha dhaafin qiyaasta maalinlaha ah ee lagu faray. Ku qaado cunno ama ka dib cunno si caloosha loo ilaaliyo."
       ]},
       side: { title:"Waxyeellooyinka", small:"", items:[
-        "Caloosha oo ku xanuunta, lalabo ama shuban.",
-        "Marar dhif ah: boog caloosha ah ama dhiig-bax (saxaro madow, matag dhiig leh) – raadi gargaar degdeg ah."
+        "Caloosha oo ku xanuunta, lalabo, laab-jeex ama shuban.",
+        "Marar dhif ah waxay sababi kartaa boog caloosha ah ama dhiig-bax, sida saxaro madow ama matag dhiig leh, taas oo u baahan gargaar degdeg ah."
       ]},
       interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
-        "Ha isku darin ibuprofen iyo NSAID kale (tusaale diclofenac, naproxen).",
-        "Ka taxaddar haddii aad qaadato daawooyin dhiig-khafiifiya ama aspirin, sababtoo ah waxay kordhiyaan khatarta dhiig-baxa."
+        "Ha isku darin ibuprofen iyo NSAID kale sida diclofenac ama naproxen adiga oo aan talo ka helin dhakhtar.",
+        "Ka taxaddar haddii aad qaadato aspirin ama daawooyin dhiig-khafiifiya, sababtoo ah waxay kordhin karaan halista dhiig-baxa."
       ]},
       warn: { title:"Digniino", small:"", items:[
-        "Ha isticmaalin haddii aad hore u lahayd boogo caloosha ah, dhiig-bax caloosha/xiidmaha ama xasaasiyad NSAID.",
-        "Uurka 3-da bilood ee ugu dambeeya: guud ahaan looma oggola – la hadal dhakhtarka."
+        "Ha isticmaalin haddii aad hore u lahayd boogo caloosha ah, dhiig-bax caloosha ama xasaasiyad NSAID.",
+        "Uurka saddexda bilood ee ugu dambeeya guud ahaan laguma talinayo. La hadal dhakhtarka haddii aad uur leedahay ama qorshaynayso uur."
       ]},
       ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
-        "Ibuprofen kaniinku wuxuu jebiyaa soonka haddii la qaato maalinta.",
-        "Haddii loo baahdo, qiyaasta waxaa badanaa loo qorsheyn karaa fiidkii ama <span class='highlight'>suxuurta</span> – la tasho dhakhtarka."
+        "Kiniinka ibuprofen wuxuu jebiyaa soonka haddii la qaato maalintii.",
+        "Haddii loo baahdo, qiyaasta waxaa badanaa loo qorsheyn karaa fiidkii ama <span class='highlight'>suxuurta</span> iyadoo talo caafimaad la raacayo."
       ]},
       food: { title:"Cunto iyo cabitaan", small:"", items:[
-        "Had iyo jeer ku qaado ibuprofen adigoo wax cunay ama cunno la qaadanaya.",
+        "Waxaa fiican in lagu qaato cunto ama isla markiiba cuntada ka dib si caloosha loo ilaaliyo.",
         "Cab biyo kugu filan markaad daawada qaadanayso."
       ]},
       store: { title:"Kaydinta daawada", small:"", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto <span class='highlight'>taariikhda dhicitaanka</span> ama haddii midabku isbeddelay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
+        "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
+        "Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka."
       ]}
     },
     footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
@@ -324,89 +385,93 @@ const T = {
   },
 
   da: {
-    langLabel: "Vælg sprog:",
     title: "Ibuprofen – smerter, betændelse og feber",
     subtitle: "Kort information om lægemidlet til patienter og pårørende.",
     back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
     badge: "Kort og let at læse",
     drugName: "Ibuprofen – smerter, betændelse og feber",
     drugForm: "Tablet til oral brug",
     sections: {
       use: { title:"Anvendelse", small:"", items:[
-        "Ibuprofen er et smertestillende og betændelseshæmmende middel (NSAID), som også kan sænke feber.",
-        "Det bruges fx ved hovedpine, menstruationssmerter, muskelsmerter og ledsmerter."
+        "Ibuprofen bruges mod <span class='highlight'>smerter, betændelse og feber</span>.",
+        "Det kan bruges ved hovedpine, muskelsmerter, menstruationssmerter og ledsmerter."
       ]},
       dose: { title:"Dosering", small:"", items:[
-        "Voksne: 200–600 mg 1–3 gange dagligt. Der bør gå mindst 4 timer mellem doser.",
-        "Tag højst 1200 mg i døgnet uden at tale med læge."
+        "Voksne tager ofte 200–400 mg ad gangen med mindst 4 til 6 timers mellemrum efter behov.",
+        "Overskrid ikke den anbefalede døgndosis. Tag gerne medicinen sammen med eller lige efter mad for at beskytte maven."
       ]},
       side: { title:"Bivirkninger", small:"", items:[
-        "Mavesmerter, kvalme eller diarré.",
-        "Sjældent: mavesår eller blødning (sort afføring, blodigt opkast) – kontakt læge akut."
+        "Mavesmerter, kvalme, halsbrand eller diarré.",
+        "Sjældent kan ibuprofen give mavesår eller blødning, for eksempel sort afføring eller blodigt opkast, som kræver akut lægehjælp."
       ]},
       interact: { title:"Interaktioner", small:"", items:[
-        "Undgå at kombinere ibuprofen med andre NSAID (fx diclofenac, naproxen).",
-        "Samtidig brug med blodfortyndende (Marevan, Xarelto, Eliquis) eller aspirin øger risikoen for blødning."
+        "Undgå at kombinere ibuprofen med andre NSAID’er som diclofenac eller naproxen uden lægens råd.",
+        "Vær forsigtig ved samtidig brug af aspirin eller blodfortyndende medicin, fordi det kan øge risikoen for blødning."
       ]},
       warn: { title:"Advarsler", small:"", items:[
-        "Brug ikke ibuprofen hvis du har mavesår, mave-tarm-blødning eller NSAID-allergi.",
-        "Graviditet (sidste 3 måneder): normalt ikke anbefalet – tal med læge."
+        "Brug ikke ibuprofen, hvis du tidligere har haft mavesår, mave-tarm-blødning eller allergi over for NSAID.",
+        "Ibuprofen anbefales som udgangspunkt ikke i de sidste 3 måneder af graviditeten. Tal med lægen ved graviditet eller graviditetsønske."
       ]},
       ramadan: { title:"Ramadan og faste", small:"", items:[
         "Ibuprofen som tablet bryder fasten, hvis den tages i dagtimerne.",
-        "Hvis du har behov, kan dosis ofte planlægges til aften eller til måltidet før daggry (suhoor) – tal med lægen."
+        "Hvis der er behov, kan dosis ofte planlægges til om aftenen eller ved <span class='highlight'>suhoor</span> efter aftale med lægen."
       ]},
       food: { title:"Mad og drikke", small:"", items:[
-        "Tag ibuprofen sammen med mad eller lige efter mad for at beskytte maven.",
-        "Drik tilstrækkeligt med vand."
+        "Det er bedst at tage ibuprofen sammen med mad eller lige efter mad for at beskytte maven.",
+        "Drik tilstrækkeligt med vand, når du tager medicinen."
       ]},
       store: { title:"Opbevaring", small:"", items:[
-        "Opbevar utilgængeligt for børn og under 25 °C. Opbevar i original emballage for at beskytte mod lys og fugt. Brug ikke efter udløbsdatoen, eller hvis farven har ændret sig. Spørg apoteket om korrekt bortskaffelse af rester."
+        "Opbevar medicinen utilgængeligt for børn og under 25 °C.",
+        "Opbevar den i original emballage for at beskytte mod lys og fugt.",
+        "Brug ikke medicinen efter udløbsdatoen."
       ]}
     },
     footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
-    creditHTML: "Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf"
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
   },
 
   en: {
-    langLabel: "Choose language:",
     title: "Ibuprofen – pain, inflammation and fever",
     subtitle: "Brief information about the medicine for patients and relatives.",
     back: "Back to the medicine list",
+    langLabel: "Choose language:",
     badge: "Short and easy to read",
     drugName: "Ibuprofen – pain, inflammation and fever",
     drugForm: "Oral tablet",
     sections: {
       use: { title:"Use", small:"", items:[
-        "Ibuprofen is a pain reliever and anti-inflammatory medicine (an NSAID) that can also reduce fever.",
-        "It is used for headaches, period pain, muscle pain, and joint pain."
+        "Ibuprofen is used for <span class='highlight'>pain, inflammation and fever</span>.",
+        "It may be used for headaches, muscle pain, period pain, and joint pain."
       ]},
       dose: { title:"Dosage", small:"", items:[
-        "Adults: 200–600 mg 1–3 times daily, with at least 4 hours between doses.",
-        "Do not exceed 1200 mg per day without medical advice."
+        "Adults often take 200–400 mg at a time with at least 4 to 6 hours between doses as needed.",
+        "Do not exceed the recommended daily dose. It is best taken with food or just after food to protect the stomach."
       ]},
       side: { title:"Side effects", small:"", items:[
-        "Stomach pain, nausea, or diarrhoea.",
-        "Rarely: stomach ulcer or bleeding (black stools, vomiting blood) – seek urgent medical help."
+        "Stomach pain, nausea, heartburn, or diarrhoea.",
+        "Rarely, ibuprofen may cause stomach ulcers or bleeding, such as black stools or vomiting blood, which needs urgent medical help."
       ]},
       interact: { title:"Interactions", small:"", items:[
-        "Do not combine ibuprofen with other NSAIDs (e.g., diclofenac, naproxen).",
-        "Using it with blood thinners (warfarin, Xarelto, Eliquis) or aspirin increases bleeding risk."
+        "Do not combine ibuprofen with other NSAIDs such as diclofenac or naproxen unless advised by a doctor.",
+        "Be careful if you use aspirin or blood thinners at the same time, because this may increase bleeding risk."
       ]},
       warn: { title:"Warnings", small:"", items:[
-        "Do not use if you have stomach ulcers, gastrointestinal bleeding, or an NSAID allergy.",
-        "Pregnancy (last 3 months): generally not recommended – talk to a doctor."
+        "Do not use ibuprofen if you have had stomach ulcers, gastrointestinal bleeding, or an allergy to NSAIDs.",
+        "Ibuprofen is generally not recommended in the last 3 months of pregnancy. Speak with a doctor if you are pregnant or planning pregnancy."
       ]},
       ramadan: { title:"Ramadan and fasting", small:"", items:[
-        "Ibuprofen tablets break the fast if taken during daytime.",
-        "If needed, doses can often be planned for the evening or the pre-dawn meal (suhoor) – ask your doctor."
+        "Ibuprofen tablets break the fast if taken during the daytime.",
+        "If needed, the dose can often be planned for the evening or at <span class='highlight'>suhoor</span> with medical advice."
       ]},
       food: { title:"Food and drink", small:"", items:[
-        "Take ibuprofen with food or right after food to protect your stomach.",
-        "Drink enough water."
+        "It is best taken with food or just after food to protect the stomach.",
+        "Drink enough water when taking the medicine."
       ]},
       store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date, or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+        "Keep out of reach of children and store below 25 °C.",
+        "Keep in the original packaging to protect from light and moisture.",
+        "Do not use after the expiry date."
       ]}
     },
     footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
@@ -414,292 +479,58 @@ const T = {
   },
 
   ar: {
-    langLabel: "اختر اللغة:",
     title: "إيبوبروفين – ألم والتهاب وحمى",
     subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
     back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
     badge: "معلومات مختصرة وسهلة",
     drugName: "إيبوبروفين – ألم والتهاب وحمى",
     drugForm: "أقراص فموية",
     sections: {
       use: { title:"الاستعمال", small:"", items:[
-        "الإيبوبروفين مسكن ومضاد للالتهاب (NSAID) ويمكنه أيضاً خفض الحمى.",
-        "يُستخدم للصداع، وآلام الدورة الشهرية، وآلام العضلات والمفاصل."
+        "يُستخدم الإيبوبروفين لعلاج <span class='highlight'>الألم والالتهاب والحمى</span>.",
+        "يمكن استخدامه للصداع وآلام العضلات وآلام الدورة الشهرية وآلام المفاصل."
       ]},
       dose: { title:"الجرعة", small:"", items:[
-        "للبالغين: 200–600 ملغ 1–3 مرات يومياً مع ترك 4 ساعات على الأقل بين الجرعات.",
-        "لا تتجاوز 1200 ملغ يومياً دون استشارة طبية."
+        "غالباً ما يتناول البالغون 200–400 ملغ في المرة الواحدة مع ترك 4 إلى 6 ساعات بين الجرعات حسب الحاجة.",
+        "لا تتجاوز الجرعة اليومية الموصى بها. يفضل تناوله مع الطعام أو بعد الطعام مباشرة لحماية المعدة."
       ]},
       side: { title:"الآثار الجانبية", small:"", items:[
-        "ألم معدة، غثيان أو إسهال.",
-        "نادراً: قرحة أو نزيف (براز أسود، قيء دموي) – اطلب مساعدة طبية عاجلة."
+        "ألم المعدة أو الغثيان أو حرقة المعدة أو الإسهال.",
+        "نادراً ما قد يسبب الإيبوبروفين قرحة أو نزيفاً في المعدة، مثل البراز الأسود أو التقيؤ الدموي، وهذا يحتاج إلى مساعدة طبية عاجلة."
       ]},
       interact: { title:"التداخلات الدوائية", small:"", items:[
-        "لا تجمع الإيبوبروفين مع NSAIDs أخرى (مثل ديكلوفيناك أو نابروكسين).",
-        "استخدامه مع مميعات الدم (وارفارين، زارلتو، إليكوس) أو الأسبرين يزيد خطر النزيف."
+        "لا تجمع الإيبوبروفين مع أدوية NSAIDs أخرى مثل الديكلوفيناك أو النابروكسين دون استشارة الطبيب.",
+        "يجب الحذر عند استخدامه مع الأسبرين أو مميعات الدم لأن ذلك قد يزيد خطر النزيف."
       ]},
       warn: { title:"تحذيرات", small:"", items:[
-        "لا تستخدمه إذا لديك قرحة معدة/نزيف هضمي أو حساسية من NSAIDs.",
-        "الحمل (آخر 3 أشهر): غالباً غير مُوصى به – استشر الطبيب."
+        "لا تستخدم الإيبوبروفين إذا كنت قد أصبت سابقاً بقرحة المعدة أو نزيف هضمي أو حساسية من NSAIDs.",
+        "لا يُنصح عادة باستخدام الإيبوبروفين في آخر 3 أشهر من الحمل. تحدث مع الطبيب إذا كنت حاملاً أو تخططين للحمل."
       ]},
       ramadan: { title:"رمضان والصيام", small:"", items:[
-        "الأقراص تُفطر إذا أُخذت نهاراً.",
-        "عند الحاجة يمكن تنظيم الجرعات مساءً أو مع وجبة ما قبل الفجر (السحور) – استشر الطبيب."
+        "أقراص الإيبوبروفين تُفطر إذا أُخذت نهاراً.",
+        "عند الحاجة، يمكن غالباً تنظيم الجرعة مساءً أو عند <span class='highlight'>السحور</span> بعد استشارة طبية."
       ]},
       food: { title:"الطعام والشراب", small:"", items:[
-        "يُفضّل تناوله مع الطعام أو بعده مباشرة لحماية المعدة.",
-        "اشرب كمية كافية من الماء."
+        "يفضل تناوله مع الطعام أو بعد الطعام مباشرة لحماية المعدة.",
+        "اشرب كمية كافية من الماء عند تناول الدواء."
       ]},
       store: { title:"الحفظ", small:"", items:[
-        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء، أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
+        "احفظه في العبوة الأصلية للحماية من الضوء والرطوبة.",
+        "لا تستخدمه بعد تاريخ الانتهاء."
       ]}
     },
     footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
     creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
-  },
-
-  tr: {
-    langLabel: "Dil seçin:",
-    title: "İbuprofen – ağrı, iltihap ve ateş",
-    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
-    back: "İlaç listesine geri dön",
-    badge: "Kısa ve anlaşılır",
-    drugName: "İbuprofen – ağrı, iltihap ve ateş",
-    drugForm: "Ağızdan alınan tablet",
-    sections: {
-      use: { title:"Kullanım", small:"", items:[
-        "İbuprofen ağrı kesici ve iltihap giderici (NSAİİ) bir ilaçtır; ateşi de düşürebilir.",
-        "Baş ağrısı, adet sancısı, kas ve eklem ağrılarında kullanılır."
-      ]},
-      dose: { title:"Doz", small:"", items:[
-        "Yetişkinler: 200–600 mg günde 1–3 kez; dozlar arasında en az 4 saat olmalıdır.",
-        "Doktor önerisi olmadan günde 1200 mg’ı aşmayın."
-      ]},
-      side: { title:"Yan etkiler", small:"", items:[
-        "Mide ağrısı, bulantı veya ishal.",
-        "Nadiren: mide ülseri/kanama (siyah dışkı, kanlı kusma) – acil tıbbi yardım alın."
-      ]},
-      interact: { title:"Etkileşimler", small:"", items:[
-        "İbuprofeni diğer NSAİİ’lerle (diklofenak, naproksen) birlikte kullanmayın.",
-        "Kan sulandırıcılar (warfarin/Marevan, Xarelto, Eliquis) veya aspirin ile birlikte kullanım kanama riskini artırır."
-      ]},
-      warn: { title:"Uyarılar", small:"", items:[
-        "Mide ülseri, mide-bağırsak kanaması veya NSAİİ alerjiniz varsa kullanmayın.",
-        "Gebelik (son 3 ay): genellikle önerilmez – doktorla görüşün."
-      ]},
-      ramadan: { title:"Ramazan ve oruç", small:"", items:[
-        "Gündüz alınan tablet orucu bozar.",
-        "Gerekirse dozlar akşama veya gün doğumundan önceki öğüne (sahur) planlanabilir – doktorunuza danışın."
-      ]},
-      food: { title:"Yiyecek ve içecek", small:"", items:[
-        "Mideyi korumak için yemekle birlikte veya yemekten sonra alın.",
-        "Yeterli su için."
-      ]},
-      store: { title:"Saklama", small:"", items:[
-        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
-      ]}
-    },
-    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
-    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    langLabel: "زبان منتخب کریں:",
-    title: "آئیبوپروفین – درد، سوزش اور بخار",
-    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
-    back: "ادویات کی فہرست پر واپس جائیں",
-    badge: "مختصر اور آسان",
-    drugName: "آئیبوپروفین – درد، سوزش اور بخار",
-    drugForm: "منہ کے ذریعے لینے والی گولی",
-    sections: {
-      use: { title:"استعمال", small:"", items:[
-        "آئیبوپروفین درد کم کرتی ہے، سوزش کم کرتی ہے (NSAID) اور بخار بھی کم کر سکتی ہے۔",
-        "یہ سر درد، ماہواری کے درد، پٹھوں اور جوڑوں کے درد میں استعمال ہوتی ہے۔"
-      ]},
-      dose: { title:"خوراک", small:"", items:[
-        "بالغ: 200–600 mg دن میں 1–3 بار، اور خوراکوں کے درمیان کم از کم 4 گھنٹے کا وقفہ رکھیں۔",
-        "ڈاکٹر کے مشورے کے بغیر 1200 mg روزانہ سے زیادہ نہ لیں۔"
-      ]},
-      side: { title:"مضر اثرات", small:"", items:[
-        "پیٹ درد، متلی یا دست۔",
-        "کبھی کبھار: معدے کا السر یا خون بہنا (کالا پاخانہ، خون والی الٹی) – فوری طبی مدد لیں۔"
-      ]},
-      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
-        "آئیبوپروفین کو دیگر NSAIDs (diclofenac, naproxen) کے ساتھ نہ لیں۔",
-        "خون پتلا کرنے والی ادویات (warfarin/Marevan, Xarelto, Eliquis) یا aspirin کے ساتھ لینے سے خون بہنے کا خطرہ بڑھتا ہے۔"
-      ]},
-      warn: { title:"احتیاطیں", small:"", items:[
-        "اگر معدے کا السر، معدے/آنتوں سے خون بہنا یا NSAID الرجی ہو تو استعمال نہ کریں۔",
-        "حمل (آخری 3 ماہ): عموماً مناسب نہیں – ڈاکٹر سے بات کریں۔"
-      ]},
-      ramadan: { title:"رمضان اور روزہ", small:"", items:[
-        "دن کے وقت گولی لینے سے روزہ ٹوٹ جاتا ہے۔",
-        "ضرورت ہو تو خوراک شام یا سحر سے پہلے کے کھانے (سحری) کے مطابق رکھی جا سکتی ہے – ڈاکٹر سے مشورہ کریں۔"
-      ]},
-      food: { title:"کھانا پینا", small:"", items:[
-        "پیٹ کی حفاظت کے لیے کھانے کے ساتھ یا کھانے کے بعد لیں۔",
-        "کافی پانی پئیں۔"
-      ]},
-      store: { title:"محفوظ رکھنا", small:"", items:[
-        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے کی تاریخ کے بعد استعمال نہ کریں، یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
-      ]}
-    },
-    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
-    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    langLabel: "انتخاب زبان:",
-    title: "ایبوپروفن – درد، التهاب و تب",
-    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
-    back: "بازگشت به فهرست داروها",
-    badge: "کوتاه و قابل‌فهم",
-    drugName: "ایبوپروفن – درد، التهاب و تب",
-    drugForm: "قرص خوراکی",
-    sections: {
-      use: { title:"موارد مصرف", small:"", items:[
-        "ایبوپروفن یک مسکن و ضدالتهاب (NSAID) است و می‌تواند تب را هم کاهش دهد.",
-        "برای سردرد، درد قاعدگی، درد عضلات و مفاصل استفاده می‌شود."
-      ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
-        "بزرگسالان: 200–600 mg، روزی 1–3 بار با فاصله حداقل 4 ساعت بین دوزها.",
-        "بدون مشورت پزشک از 1200 mg در روز بیشتر مصرف نکنید."
-      ]},
-      side: { title:"عوارض جانبی", small:"", items:[
-        "درد معده، تهوع یا اسهال.",
-        "به‌ندرت: زخم یا خونریزی معده (مدفوع سیاه، استفراغ خونی) – فوراً کمک پزشکی بگیرید."
-      ]},
-      interact: { title:"تداخل‌های دارویی", small:"", items:[
-        "ایبوپروفن را با NSAIDهای دیگر (مثل دیکلوفناک، ناپروکسن) همزمان مصرف نکنید.",
-        "مصرف همزمان با رقیق‌کننده‌های خون (وارفارین، زارلتو، الیکوییس) یا آسپیرین خطر خونریزی را افزایش می‌دهد."
-      ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "اگر زخم معده، خونریزی گوارشی یا حساسیت به NSAID دارید، مصرف نکنید.",
-        "بارداری (سه ماهه آخر): معمولاً توصیه نمی‌شود – با پزشک مشورت کنید."
-      ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "اگر در طول روز مصرف شود، روزه را باطل می‌کند.",
-        "در صورت نیاز می‌توان دوزها را برای شب یا وعدهٔ پیش از سپیده‌دم (سحری) تنظیم کرد – با پزشک مشورت کنید."
-      ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
-        "برای محافظت از معده، همراه غذا یا بعد از غذا مصرف کنید.",
-        "آب کافی بنوشید."
-      ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا، یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
-      ]}
-    },
-    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    langLabel: "انتخاب زبان:",
-    title: "ایبوپروفن – درد، التهاب و تبه",
-    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
-    back: "بازگشت به فهرست دواها",
-    badge: "کوتاه و قابل‌فهم",
-    drugName: "ایبوپروفن – درد، التهاب و تبه",
-    drugForm: "قرص خوراکی",
-    sections: {
-      use: { title:"موارد استعمال", small:"", items:[
-        "ایبوپروفن یک دواى مسکن و ضدالتهاب (NSAID) است و تبه را هم پایین می‌آورد.",
-        "برای سردرد، درد حیض، درد عضلات و مفاصل استفاده می‌شود."
-      ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
-        "بزرگسالان: 200–600 mg، روزی 1–3 بار با فاصله حداقل 4 ساعت بین دوزها.",
-        "بدون مشورهٔ داکتر از 1200 mg در روز بیشتر نگیرید."
-      ]},
-      side: { title:"عوارض جانبی", small:"", items:[
-        "درد معده، تهوع یا اسهال.",
-        "به‌ندرت: زخم یا خون‌ریزی معده (مدفوع سیاه، قی خونی) – عاجل کمک طبی بگیرید."
-      ]},
-      interact: { title:"تداخلات دوایی", small:"", items:[
-        "ایبوپروفن را با NSAIDهای دیگر (مثل دیکلوفناک، ناپروکسن) یک‌جا نگیرید.",
-        "گرفتن همزمان با رقیق‌کننده‌های خون یا آسپیرین خطر خون‌ریزی را زیاد می‌کند."
-      ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "اگر زخم معده، خون‌ریزی گوارشی یا حساسیت به NSAID دارید، استفاده نکنید.",
-        "حمل (سه ماه آخر): معمولاً توصیه نمی‌شود – با داکتر مشوره کنید."
-      ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "اگر در روز گرفته شود، روزه را باطل می‌کند.",
-        "در صورت ضرورت می‌توان دوزها را به شب یا وعدهٔ پیش از سپیده‌دم (سحری) تنظیم کرد – با داکتر مشوره کنید."
-      ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
-        "برای محافظت معده، با غذا یا بعد از غذا بگیرید.",
-        "آب کافی بنوشید."
-      ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا، یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
-      ]}
-    },
-    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    langLabel: "ژبه وټاکئ:",
-    title: "ایبوپروفین – درد، التهاب او تبه",
-    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
-    back: "د درملو لېست ته بېرته",
-    badge: "لنډ او اسانه",
-    drugName: "ایبوپروفین – درد، التهاب او تبه",
-    drugForm: "د خولې ګولۍ",
-    sections: {
-      use: { title:"کارونه", small:"", items:[
-        "ایبوپروفین د درد ضد او التهاب ضد (NSAID) درمل دی او تبه هم کمولای شي.",
-        "د سر درد، د حیض درد، د عضلو او مفصلونو د درد لپاره کارېږي."
-      ]},
-      dose: { title:"دوز", small:"", items:[
-        "لویان: 200–600 mg په ورځ کې 1–3 ځله، او دوزونو تر منځ لږ تر لږه 4 ساعته واټن وساتئ.",
-        "له طبي مشورې پرته په ورځ کې له 1200 mg څخه زیات مه کاروئ."
-      ]},
-      side: { title:"اړخیزې اغېزې", small:"", items:[
-        "د معدې درد، زړه بدوالی یا نس ناستی.",
-        "په ندرت سره: د معدې زخم یا وینه‌بهېدل – بیړنۍ مرسته وغواړئ."
-      ]},
-      interact: { title:"د درملو تعامل", small:"", items:[
-        "ایبوپروفین له نورو NSAID درملو سره یوځای مه کاروئ.",
-        "له وینې نری کوونکو یا اسپرین سره یوځای کول د وینه‌بهېدلو خطر زیاتوي."
-      ]},
-      warn: { title:"احتیاط", small:"", items:[
-        "که د معدې زخم، د هاضمې وینه‌بهېدل یا د NSAID حساسیت لرئ، مه یې کاروئ.",
-        "امیندوارۍ (وروستي 3 میاشتې): عموماً نه سپارل کېږي – له ډاکټر سره خبرې وکړئ."
-      ]},
-      ramadan: { title:"رمضان او روژه", small:"", items:[
-        "که د ورځې واخیستل شي، روژه ماتوي.",
-        "که اړتیا وي، دوزونه ماښام یا د سحري له خوړو سره تنظیمېدای شي – له ډاکټر سره سلا وکړئ."
-      ]},
-      food: { title:"خواړه او څښاک", small:"", items:[
-        "د معدې د ساتنې لپاره له خوړو سره یا له خوړو وروسته واخلئ.",
-        "کافي اوبه وڅښئ."
-      ]},
-      store: { title:"ساتنه", small:"", items:[
-        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې وروسته، یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
-      ]}
-    },
-    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
-    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
 
-function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm,""); }
+function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
-
-function applyTheme(lang){
-  const th = THEMES[lang] || THEMES.so;
-  const r = document.documentElement.style;
-
-  r.setProperty("--accent1", th.a1);
-  r.setProperty("--accent2", th.a2);
-  r.setProperty("--link", th.link || "#00509e");
-  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
-  r.setProperty("--pillText", th.pillText || "#16634a");
 }
 
 function fillList(listId, items){
@@ -712,7 +543,16 @@ function fillList(listId, items){
   });
 }
 
+function setSmall(id, txt){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (txt || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
+}
+
 function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
 
   setDirLang(lang);
@@ -721,41 +561,29 @@ function render(lang){
   document.title = stripTags(d.title);
   document.getElementById("hdrTitle").textContent = stripTags(d.title);
   document.getElementById("hdrSubtitle").textContent = d.subtitle;
-
-  document.getElementById("langLabel").textContent = d.langLabel;
-
   document.getElementById("backLabel").textContent = d.back;
   document.getElementById("badge").textContent = d.badge;
-
   document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("langLabel").textContent = d.langLabel;
 
-  // Section titles
   document.getElementById("useTitle").textContent = d.sections.use.title;
-  document.getElementById("useSmall").textContent = d.sections.use.small || "";
-
+  setSmall("useSmall", d.sections.use.small);
   document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  document.getElementById("doseSmall").textContent = d.sections.dose.small || "";
-
+  setSmall("doseSmall", d.sections.dose.small);
   document.getElementById("sideTitle").textContent = d.sections.side.title;
-  document.getElementById("sideSmall").textContent = d.sections.side.small || "";
-
+  setSmall("sideSmall", d.sections.side.small);
   document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  document.getElementById("interactSmall").textContent = d.sections.interact.small || "";
-
+  setSmall("interactSmall", d.sections.interact.small);
   document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  document.getElementById("warnSmall").textContent = d.sections.warn.small || "";
-
+  setSmall("warnSmall", d.sections.warn.small);
   document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  document.getElementById("ramadanSmall").textContent = d.sections.ramadan.small || "";
-
+  setSmall("ramadanSmall", d.sections.ramadan.small);
   document.getElementById("foodTitle").textContent = d.sections.food.title;
-  document.getElementById("foodSmall").textContent = d.sections.food.small || "";
-
+  setSmall("foodSmall", d.sections.food.small);
   document.getElementById("storeTitle").textContent = d.sections.store.title;
-  document.getElementById("storeSmall").textContent = d.sections.store.small || "";
+  setSmall("storeSmall", d.sections.store.small);
 
-  // Lists
   fillList("useList", d.sections.use.items);
   fillList("doseList", d.sections.dose.items);
   fillList("sideList", d.sections.side.items);
@@ -768,28 +596,23 @@ function render(lang){
   document.getElementById("footerNote").innerHTML = d.footerHTML;
   document.getElementById("credit").innerHTML = d.creditHTML;
 
-  // Keep language in back link (index.html?lang=xx)
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
 
-  // Update URL without reload
   const url = new URL(window.location.href);
   url.searchParams.set("lang", lang);
   window.history.replaceState({}, "", url.toString());
 }
 
-// Start language from ?lang=
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
 const select = document.getElementById("langSelect");
-select.value = (T[startLang] ? startLang : "so");
+select.value = startLang;
 render(select.value);
-
-select.addEventListener("change", function(){
-  render(this.value);
-});
+select.addEventListener("change", function(){ render(this.value); });
 </script>
 
 </body>
