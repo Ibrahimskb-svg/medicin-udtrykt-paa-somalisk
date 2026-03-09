@@ -28,9 +28,7 @@
   body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
     transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
   }
-  header{
-    transition: background .45s ease, color .35s ease;
-  }
+  header{ transition: background .45s ease, color .35s ease; }
 }
 
 body{
@@ -47,7 +45,6 @@ header{
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-
 header h1{ margin: 0 0 4px; font-size: 1.8rem; }
 header p{ margin: 0; font-size: 0.95rem; }
 
@@ -58,15 +55,15 @@ main{
 }
 
 a.back{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  margin-bottom:14px;
-  text-decoration:none;
-  color:var(--link);
-  font-size:0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
 }
-a.back span{ font-size:1.1rem; }
+a.back span{ font-size: 1.1rem; }
 
 .langbar{
   display:flex;
@@ -74,11 +71,11 @@ a.back span{ font-size:1.1rem; }
   gap:10px;
   flex-wrap:wrap;
   background:#ffffff;
-  border-radius:12px;
-  padding:10px 12px;
-  margin:0 0 14px 0;
-  box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent1);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
 }
 .langbar label{
   font-size:0.9rem;
@@ -86,13 +83,13 @@ a.back span{ font-size:1.1rem; }
   font-weight:600;
 }
 .langbar select{
-  padding:7px 10px;
-  border-radius:10px;
-  border:1px solid var(--stroke);
-  background:#fff;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
   color:var(--text);
-  font-size:0.9rem;
-  max-width:100%;
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 .card{
@@ -105,108 +102,106 @@ a.back span{ font-size:1.1rem; }
 }
 
 .drug-meta{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
 }
 .drug-info{
-  display:flex;
-  align-items:center;
-  gap:10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
-
 .drug-icon{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  background:#e3f2fd;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.drug-icon svg{ width:30px; height:30px; }
+.drug-icon svg{ width: 30px; height: 30px; }
 .drug-icon svg .stroke{ stroke: var(--accent2); }
 .drug-icon svg .fill{ fill:#e8f3ff; }
 
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
 
 .badge{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   background: var(--pillBg);
   color: var(--pillText);
-  padding:4px 10px;
-  border-radius:999px;
-  font-size:0.8rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
   border:1px solid rgba(0,0,0,0.04);
 }
 
 .section{
-  margin-top:8px;
-  padding-top:8px;
-  border-top:1px dashed var(--stroke);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
 }
 .section-header{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
 }
-
 .section-icon{
-  width:24px;
-  height:24px;
-  border-radius:999px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:0.9rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
   color: var(--text);
 }
-
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
 .section-title{
-  font-weight:700;
-  color:var(--text);
-  font-size:0.96rem;
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
 }
 .section-title small{
-  font-weight:400;
-  color:var(--muted);
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
 }
 
 .section ul{
-  margin:0 0 4px 18px;
-  padding-left:0;
-  font-size:0.92rem;
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
 }
-.section ul li{ margin-bottom:4px; }
+.section ul li{ margin-bottom: 4px; }
 
-.highlight{ font-weight:600; }
+.highlight{ font-weight: 600; }
 
 .footer-note{
-  font-size:0.8rem;
-  color:var(--muted);
-  text-align:center;
-  margin:18px 0 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
 }
 
-@media (max-width:600px){
-  header h1{ font-size:1.5rem; }
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
 }
 </style>
 </head>
@@ -220,18 +215,13 @@ a.back span{ font-size:1.1rem; }
 
 <main>
 
-  <div class="langbar" aria-label="Vælg sprog">
+  <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
@@ -242,9 +232,9 @@ a.back span{ font-size:1.1rem; }
       <div class="drug-info">
         <div class="drug-icon">
           <svg viewBox="0 0 64 64" aria-hidden="true">
-            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"></ellipse>
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"></ellipse>
-            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"></line>
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
@@ -257,32 +247,32 @@ a.back span{ font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">1</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span> <small id="useSmall"></small></div>
+        <div class="section-icon use">💊</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
       <ul id="useList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">2</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span> <small id="doseSmall"></small></div>
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
       <ul id="doseList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">3</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span> <small id="sideSmall"></small></div>
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
       <ul id="sideList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">4</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span> <small id="interactSmall"></small></div>
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
       <ul id="interactList"></ul>
     </div>
@@ -290,7 +280,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span> <small id="warnSmall"></small></div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
       </div>
       <ul id="warnList"></ul>
     </div>
@@ -298,15 +288,15 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span> <small id="ramadanSmall"></small></div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon food">🍽</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span> <small id="foodSmall"></small></div>
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
       </div>
       <ul id="foodList"></ul>
     </div>
@@ -314,7 +304,7 @@ a.back span{ font-size:1.1rem; }
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span> <small id="storeSmall"></small></div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
       </div>
       <ul id="storeList"></ul>
     </div>
@@ -326,21 +316,32 @@ a.back span{ font-size:1.1rem; }
 <div class="footer-note" id="credit"></div>
 
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
 
 const THEMES = {
-  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
+  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
 };
+
+function applyTheme(lang){
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
+}
 
 const T = {
   so: {
-    langLabel: "Dooro luqadda:",
     title: "Metformin – sonkorowga nooca 2",
     subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
     back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
     badge: "Akhris fudud oo kooban",
     drugName: "Metformin – sonkorowga nooca 2",
     drugForm: "Kiniin afka ah",
@@ -391,10 +392,10 @@ const T = {
   },
 
   da: {
-    langLabel: "Vælg sprog:",
     title: "Metformin – type 2-diabetes",
     subtitle: "Kort information om lægemidlet til patienter og pårørende.",
     back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
     badge: "Kort og let at læse",
     drugName: "Metformin – type 2-diabetes",
     drugForm: "Tablet til oral brug",
@@ -414,7 +415,7 @@ const T = {
         "Ved længere tids brug kan nogle udvikle <span class='highlight'>B12-mangel</span>."
       ]},
       interact: { title:"Interaktioner", small:"", items:[
-        "Nogle lægemidler som <span class='highlight'>steroid</span> kan påvirke blodsukkeret.",
+        "Nogle lægemidler som <span class='highlight'>steroider</span> kan påvirke blodsukkeret.",
         "Ved <span class='highlight'>CT eller røntgen med kontrast</span> kan metformin nogle gange skulle pauses midlertidigt.",
         "Større alkoholindtag og visse lægemidler, som påvirker nyrerne, kan øge risikoen for komplikationer."
       ]},
@@ -445,10 +446,10 @@ const T = {
   },
 
   en: {
-    langLabel: "Choose language:",
     title: "Metformin – type 2 diabetes",
     subtitle: "Brief information about the medicine for patients and relatives.",
     back: "Back to the medicine list",
+    langLabel: "Choose language:",
     badge: "Short and easy to read",
     drugName: "Metformin – type 2 diabetes",
     drugForm: "Oral tablet",
@@ -499,10 +500,10 @@ const T = {
   },
 
   ar: {
-    langLabel: "اختر اللغة:",
     title: "ميتفورمين – السكري من النوع الثاني",
     subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
     back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
     badge: "معلومات مختصرة وسهلة",
     drugName: "ميتفورمين – السكري من النوع الثاني",
     drugForm: "أقراص فموية",
@@ -550,296 +551,14 @@ const T = {
     },
     footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
     creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
-  },
-
-  tr: {
-    langLabel: "Dil seçin:",
-    title: "Metformin – tip 2 diyabet",
-    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
-    back: "İlaç listesine geri dön",
-    badge: "Kısa ve anlaşılır",
-    drugName: "Metformin – tip 2 diyabet",
-    drugForm: "Ağızdan alınan tablet",
-    sections: {
-      use: { title:"Kullanım", small:"", items:[
-        "Metformin <span class='highlight'>tip 2 diyabet</span> tedavisinde kullanılır.",
-        "Kan şekerini düzenlemeye yardımcı olur ve genellikle <span class='highlight'>beslenme, egzersiz ve kilo kontrolü</span> ile birlikte verilir."
-      ]},
-      dose: { title:"Doz", small:"", items:[
-        "Tedavi çoğu zaman <span class='highlight'>düşük dozla</span> başlar ve sonra yavaşça artırılır.",
-        "Genellikle <span class='highlight'>günde 1–2 kez</span> alınır.",
-        "Böbrekler zayıf çalışıyorsa doz değişebilir veya ilaç uygun olmayabilir."
-      ]},
-      side: { title:"Yan etkiler", small:"", items:[
-        "Başlangıçta en sık: <span class='highlight'>ishal, bulantı, kusma veya karın ağrısı</span>.",
-        "Bazen <span class='highlight'>tat değişikliği</span> olabilir.",
-        "Uzun süre kullanımda bazı kişilerde <span class='highlight'>B12 eksikliği</span> gelişebilir."
-      ]},
-      interact: { title:"Etkileşimler", small:"", items:[
-        "Bazı ilaçlar, örneğin <span class='highlight'>steroidler</span>, kan şekerini etkileyebilir.",
-        "<span class='highlight'>Kontrastlı BT/röntgen</span> sırasında metformin bazen geçici olarak durdurulabilir.",
-        "Fazla alkol ve böbreği etkileyen bazı ilaçlar komplikasyon riskini artırabilir."
-      ]},
-      warn: { title:"Uyarılar", small:"", items:[
-        "Mide yan etkilerini azaltmak için <span class='highlight'>yemekle</span> alın.",
-        "Susuz kalma, şiddetli kusma, ciddi enfeksiyon veya nefes darlığında doktorla görüşün.",
-        "Ameliyat veya kontrastlı görüntüleme öncesinde özel talimat verilebilir."
-      ]},
-      ramadan: { title:"Ramazan ve oruç", small:"", items:[
-        "Gündüz alınan tablet orucu bozar.",
-        "Metformin tek başına genellikle <span class='highlight'>hipoglisemi yapmaz</span>, ancak oruç öğün düzenini değiştirir.",
-        "Dozlar çoğu zaman <span class='highlight'>iftar</span> ve/veya <span class='highlight'>sahur</span> ile planlanabilir."
-      ]},
-      food: { title:"Yiyecek ve içecek", small:"", items:[
-        "<span class='highlight'>Yemekle</span> ve su ile alın.",
-        "Diyabet için genel beslenme önerilerine uyun.",
-        "<span class='highlight'>Alkol</span> konusunda dikkatli olun."
-      ]},
-      store: { title:"Saklama", small:"", items:[
-        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın.",
-        "Nemden korumak için orijinal ambalajında tutun.",
-        "Son kullanma tarihinden sonra kullanmayın.",
-        "Artanları eczaneye verin."
-      ]}
-    },
-    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
-    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    langLabel: "زبان منتخب کریں:",
-    title: "میٹفارمن – ٹائپ 2 ذیابیطس",
-    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
-    back: "ادویات کی فہرست پر واپس جائیں",
-    badge: "مختصر اور آسان",
-    drugName: "میٹفارمن – ٹائپ 2 ذیابیطس",
-    drugForm: "منہ کے ذریعے لینے والی گولی",
-    sections: {
-      use: { title:"استعمال", small:"", items:[
-        "میٹفارمن <span class='highlight'>ٹائپ 2 ذیابیطس</span> کے علاج کے لیے استعمال ہوتی ہے۔",
-        "یہ بلڈ شوگر کنٹرول میں مدد دیتی ہے اور اکثر <span class='highlight'>غذا، ورزش اور وزن کنٹرول</span> کے ساتھ دی جاتی ہے۔"
-      ]},
-      dose: { title:"خوراک", small:"", items:[
-        "علاج اکثر <span class='highlight'>کم خوراک</span> سے شروع ہوتا ہے اور پھر آہستہ آہستہ بڑھایا جاتا ہے۔",
-        "عام طور پر <span class='highlight'>دن میں 1–2 بار</span> لی جاتی ہے۔",
-        "اگر گردے کمزور ہوں تو خوراک بدل سکتی ہے یا دوا مناسب نہیں ہوتی۔"
-      ]},
-      side: { title:"مضر اثرات", small:"", items:[
-        "شروع میں زیادہ: <span class='highlight'>اسہال، متلی، الٹی یا پیٹ درد</span>۔",
-        "کبھی کبھی <span class='highlight'>ذائقہ بدل سکتا ہے</span>۔",
-        "طویل استعمال میں کچھ لوگوں میں <span class='highlight'>B12 کی کمی</span> ہو سکتی ہے۔"
-      ]},
-      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
-        "بعض ادویات، مثلاً <span class='highlight'>اسٹیرائڈز</span>، شوگر پر اثر ڈال سکتی ہیں۔",
-        "<span class='highlight'>کنٹراسٹ والے CT/ایکس رے</span> کے دوران کبھی دوا عارضی طور پر روکی جا سکتی ہے۔",
-        "زیادہ الکحل اور گردوں پر اثر کرنے والی بعض ادویات پیچیدگیوں کا خطرہ بڑھا سکتی ہیں۔"
-      ]},
-      warn: { title:"احتیاطیں", small:"", items:[
-        "پیٹ کے مسائل کم کرنے کے لیے <span class='highlight'>کھانے کے ساتھ</span> لیں۔",
-        "پانی کی کمی، شدید الٹی، شدید انفیکشن یا سانس میں مشکل ہو تو ڈاکٹر سے رابطہ کریں۔",
-        "آپریشن یا کنٹراسٹ ٹیسٹ سے پہلے خاص ہدایات دی جا سکتی ہیں۔"
-      ]},
-      ramadan: { title:"رمضان اور روزہ", small:"", items:[
-        "دن کے وقت گولی لینے سے روزہ ٹوٹ جاتا ہے۔",
-        "میٹفارمن اکیلے عام طور پر <span class='highlight'>ہائپوگلیسیمیا نہیں کرتی</span>، لیکن روزہ کھانے کے اوقات بدل دیتا ہے۔",
-        "خوراک اکثر <span class='highlight'>افطار</span> اور/یا <span class='highlight'>سحری</span> میں رکھی جا سکتی ہے۔"
-      ]},
-      food: { title:"کھانا پینا", small:"", items:[
-        "<span class='highlight'>کھانے کے ساتھ</span> اور پانی کے ساتھ لیں۔",
-        "ذیابیطس کی عمومی غذائی ہدایات پر عمل کریں۔",
-        "<span class='highlight'>الکحل</span> میں احتیاط کریں۔"
-      ]},
-      store: { title:"محفوظ رکھنا", small:"", items:[
-        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔",
-        "نمی سے بچانے کے لیے اصل پیک میں رکھیں۔",
-        "میعاد ختم ہونے کے بعد استعمال نہ کریں۔",
-        "بچی دوا فارمیسی کو دیں۔"
-      ]}
-    },
-    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
-    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    langLabel: "انتخاب زبان:",
-    title: "متفورمین – دیابت نوع ۲",
-    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
-    back: "بازگشت به فهرست داروها",
-    badge: "کوتاه و قابل‌فهم",
-    drugName: "متفورمین – دیابت نوع ۲",
-    drugForm: "قرص خوراکی",
-    sections: {
-      use: { title:"موارد مصرف", small:"", items:[
-        "متفورمین برای درمان <span class='highlight'>دیابت نوع ۲</span> استفاده می‌شود.",
-        "به کنترل قند خون کمک می‌کند و معمولاً همراه با <span class='highlight'>رژیم غذایی، ورزش و کنترل وزن</span> مصرف می‌شود."
-      ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
-        "درمان اغلب با <span class='highlight'>دوز پایین</span> شروع می‌شود و سپس به‌آهستگی افزایش می‌یابد.",
-        "معمولاً <span class='highlight'>روزی ۱–۲ بار</span> مصرف می‌شود.",
-        "اگر کلیه‌ها ضعیف باشند، ممکن است دوز تغییر کند یا دارو مناسب نباشد."
-      ]},
-      side: { title:"عوارض جانبی", small:"", items:[
-        "در شروع شایع‌تر: <span class='highlight'>اسهال، تهوع، استفراغ یا درد شکم</span>.",
-        "گاهی <span class='highlight'>تغییر در طعم</span> ایجاد می‌شود.",
-        "در مصرف طولانی‌مدت، بعضی افراد ممکن است <span class='highlight'>کمبود ویتامین B12</span> پیدا کنند."
-      ]},
-      interact: { title:"تداخل‌های دارویی", small:"", items:[
-        "بعضی داروها مثل <span class='highlight'>کورتون‌ها</span> می‌توانند قند خون را تغییر دهند.",
-        "در <span class='highlight'>CT یا رادیولوژی با ماده حاجب</span> ممکن است لازم باشد متفورمین موقتاً قطع شود.",
-        "الکل زیاد و بعضی داروهای مؤثر بر کلیه ممکن است خطر عوارض را بیشتر کنند."
-      ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "برای کاهش عوارض معده، <span class='highlight'>همراه غذا</span> مصرف شود.",
-        "در کم‌آبی، استفراغ شدید، عفونت شدید یا مشکل تنفس با پزشک تماس بگیرید.",
-        "قبل از عمل جراحی یا بررسی با ماده حاجب، ممکن است دستور خاصی دربارهٔ دارو داده شود."
-      ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "اگر در روز مصرف شود، روزه را باطل می‌کند.",
-        "متفورمین به‌تنهایی معمولاً <span class='highlight'>افت قند ایجاد نمی‌کند</span>، اما روزه زمان غذا را تغییر می‌دهد.",
-        "دوزها اغلب با <span class='highlight'>افطار</span> و/یا <span class='highlight'>سحری</span> تنظیم می‌شوند."
-      ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
-        "با <span class='highlight'>غذا</span> و آب مصرف شود.",
-        "توصیه‌های عمومی تغذیه در دیابت را دنبال کنید.",
-        "در مصرف <span class='highlight'>الکل</span> احتیاط کنید."
-      ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس کودکان و زیر 25 °C نگهداری شود.",
-        "برای محافظت از رطوبت در بسته‌بندی اصلی نگه دارید.",
-        "پس از تاریخ انقضا مصرف نشود.",
-        "باقی‌مانده را به داروخانه تحویل دهید."
-      ]}
-    },
-    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    langLabel: "انتخاب زبان:",
-    title: "متفورمین – دیابت نوع ۲",
-    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
-    back: "بازگشت به فهرست دواها",
-    badge: "کوتاه و قابل‌فهم",
-    drugName: "متفورمین – دیابت نوع ۲",
-    drugForm: "قرص خوراکی",
-    sections: {
-      use: { title:"موارد استعمال", small:"", items:[
-        "متفورمین برای درمان <span class='highlight'>دیابت نوع ۲</span> استفاده می‌شود.",
-        "به کنترول قند خون کمک می‌کند و معمولاً همراه با <span class='highlight'>رژیم، ورزش و کنترول وزن</span> داده می‌شود."
-      ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
-        "درمان اکثر با <span class='highlight'>دوز پایین</span> شروع می‌شود و بعد آهسته افزایش می‌یابد.",
-        "معمولاً <span class='highlight'>روزی ۱–۲ بار</span> گرفته می‌شود.",
-        "اگر کارکرد کلیه ضعیف باشد، ممکن است دوز تغییر کند یا دوا مناسب نباشد."
-      ]},
-      side: { title:"عوارض جانبی", small:"", items:[
-        "در شروع بیشتر: <span class='highlight'>اسهال، تهوع، استفراغ یا درد شکم</span>.",
-        "گاهی <span class='highlight'>تغییر در مزه</span> پیدا می‌شود.",
-        "در استعمال طولانی‌مدت بعضی‌ها ممکن است <span class='highlight'>کمبود ویتامین B12</span> پیدا کنند."
-      ]},
-      interact: { title:"تداخلات دوایی", small:"", items:[
-        "بعضی دواها مثل <span class='highlight'>کورتون‌ها</span> می‌توانند قند خون را تغییر دهند.",
-        "در <span class='highlight'>CT یا رادیولوژی با ماده حاجب</span> ممکن است لازم باشد متفورمین موقتاً قطع شود.",
-        "الکل زیاد و بعضی دواهای مؤثر بر کلیه خطر عوارض را بیشتر می‌کند."
-      ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "برای کم‌کردن عوارض معده، <span class='highlight'>همراه غذا</span> بگیرید.",
-        "در کم‌آبی، استفراغ شدید، عفونت شدید یا مشکل تنفس با داکتر تماس بگیرید.",
-        "قبل از عملیات یا معاینه با ماده حاجب، ممکن است هدایت خاص داده شود."
-      ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "اگر در روز گرفته شود، روزه را باطل می‌کند.",
-        "متفورمین به‌تنهایی معمولاً <span class='highlight'>افت قند نمی‌دهد</span>، اما روزه وقت غذا را تغییر می‌دهد.",
-        "دوزها اکثر با <span class='highlight'>افطار</span> و/یا <span class='highlight'>سحری</span> تنظیم می‌شود."
-      ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
-        "با <span class='highlight'>غذا</span> و آب بگیرید.",
-        "توصیه‌های عمومی غذایی برای دیابت را دنبال کنید.",
-        "در مصرف <span class='highlight'>الکل</span> احتیاط کنید."
-      ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس اطفال و زیر 25 °C نگه‌داری شود.",
-        "برای محافظت از رطوبت در بسته‌بندی اصلی نگه دارید.",
-        "بعد از تاریخ انقضا استفاده نکنید.",
-        "باقی‌مانده را به دواخانه بسپارید."
-      ]}
-    },
-    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    langLabel: "ژبه وټاکئ:",
-    title: "میټفورمین – د دويم ډول شکر",
-    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
-    back: "د درملو لېست ته بېرته",
-    badge: "لنډ او اسانه",
-    drugName: "میټفورمین – د دويم ډول شکر",
-    drugForm: "د خولې ګولۍ",
-    sections: {
-      use: { title:"کارونه", small:"", items:[
-        "میټفورمین د <span class='highlight'>دويم ډول شکر</span> لپاره کارېږي.",
-        "دا د شکر په کنټرول کې مرسته کوي او اکثر د <span class='highlight'>رژيم، ورزش او وزن کنټرول</span> سره یو ځای کارول کېږي."
-      ]},
-      dose: { title:"دوز", small:"", items:[
-        "درملنه اکثر له <span class='highlight'>کم دوز</span> پیلېږي او بیا ورو ورو زیاتېږي.",
-        "معمولاً <span class='highlight'>په ورځ کې ۱–۲ ځله</span> اخیستل کېږي.",
-        "که پښتورګي کمزوري وي، دوز بدلېدای شي یا درمل مناسب نه وي."
-      ]},
-      side: { title:"اړخیزې اغېزې", small:"", items:[
-        "په پیل کې ډېر: <span class='highlight'>نس ناستی، زړه بدوالی، کانګې یا د خېټې درد</span>.",
-        "کله ناکله <span class='highlight'>د خوند بدلون</span> راځي.",
-        "په اوږدمهاله کارولو کې ځینو ته <span class='highlight'>B12 کمښت</span> پیدا کېدای شي."
-      ]},
-      interact: { title:"د درملو تعامل", small:"", items:[
-        "ځینې درمل لکه <span class='highlight'>سټېرايډونه</span> د شکر کچه بدلولی شي.",
-        "په <span class='highlight'>کنټراسټ لرونکي CT یا رادیولوژۍ</span> کې کېدای شي درمل موقتي بند شي.",
-        "ډېر الکول او ځینې د پښتورګو اغېزمن درمل د ستونزو خطر زیاتوي."
-      ]},
-      warn: { title:"احتیاط", small:"", items:[
-        "د معدې ستونزو د کمولو لپاره <span class='highlight'>له خوړو سره</span> واخلئ.",
-        "که کم‌آبي، ډېرې کانګې، شدید عفونت یا د ساه ستونزه لرئ، له ډاکټر سره اړیکه ونیسئ.",
-        "له عملیاتو یا کنټراسټ معاینې مخکې ښايي ځانګړې لارښوونې درکړل شي."
-      ]},
-      ramadan: { title:"رمضان او روژه", small:"", items:[
-        "که د ورځې واخیستل شي، روژه ماتوي.",
-        "میټفورمین یوازې عموماً <span class='highlight'>د شکر ټیټوالی نه جوړوي</span>، خو روژه د خوړو وخت بدلوي.",
-        "دوزونه اکثر له <span class='highlight'>افطار</span> او/یا <span class='highlight'>سحري</span> سره برابرېږي."
-      ]},
-      food: { title:"خواړه او څښاک", small:"", items:[
-        "له <span class='highlight'>خوړو</span> او اوبو سره واخلئ.",
-        "د شکر لپاره عمومي غذایي سپارښتنې تعقیب کړئ.",
-        "په <span class='highlight'>الکولو</span> کې احتیاط وکړئ."
-      ]},
-      store: { title:"ساتنه", small:"", items:[
-        "له ماشومانو لرې او تر 25 °C لاندې وساتئ.",
-        "د رطوبت څخه د ساتنې لپاره یې په اصلي بسته کې وساتئ.",
-        "له ختمېدو نېټې وروسته مه کاروئ.",
-        "پاتې درمل درملتون ته وسپارئ."
-      ]}
-    },
-    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
-    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
 
-function stripTags(s){
-  return (s || "").replace(/<[^>]*>?/gm, "");
-}
+function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
-
-function applyTheme(lang){
-  const th = THEMES[lang] || THEMES.so;
-  const r = document.documentElement.style;
-  r.setProperty("--accent1", th.a1);
-  r.setProperty("--accent2", th.a2);
-  r.setProperty("--link", th.link || "#00509e");
-  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
-  r.setProperty("--pillText", th.pillText || "#16634a");
 }
 
 function fillList(listId, items){
@@ -852,15 +571,16 @@ function fillList(listId, items){
   });
 }
 
-function setSmall(id, text){
+function setSmall(id, txt){
   const el = document.getElementById(id);
-  if(!el) return;
-  const t = (text || "").trim();
+  if (!el) return;
+  const t = (txt || "").trim();
   el.textContent = t;
   el.style.display = t ? "inline" : "none";
 }
 
 function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
 
   setDirLang(lang);
@@ -869,30 +589,27 @@ function render(lang){
   document.title = stripTags(d.title);
   document.getElementById("hdrTitle").textContent = stripTags(d.title);
   document.getElementById("hdrSubtitle").textContent = d.subtitle;
-
-  document.getElementById("langLabel").textContent = d.langLabel;
   document.getElementById("backLabel").textContent = d.back;
   document.getElementById("badge").textContent = d.badge;
-
   document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
+  document.getElementById("langLabel").textContent = d.langLabel;
 
   document.getElementById("useTitle").textContent = d.sections.use.title;
-  document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  document.getElementById("sideTitle").textContent = d.sections.side.title;
-  document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  document.getElementById("foodTitle").textContent = d.sections.food.title;
-  document.getElementById("storeTitle").textContent = d.sections.store.title;
-
   setSmall("useSmall", d.sections.use.small);
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
   setSmall("doseSmall", d.sections.dose.small);
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
   setSmall("sideSmall", d.sections.side.small);
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
   setSmall("interactSmall", d.sections.interact.small);
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
   setSmall("warnSmall", d.sections.warn.small);
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
   setSmall("ramadanSmall", d.sections.ramadan.small);
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
   setSmall("foodSmall", d.sections.food.small);
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
   setSmall("storeSmall", d.sections.store.small);
 
   fillList("useList", d.sections.use.items);
@@ -917,15 +634,13 @@ function render(lang){
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
 const select = document.getElementById("langSelect");
-select.value = (T[startLang] ? startLang : "so");
+select.value = startLang;
 render(select.value);
-
-select.addEventListener("change", function(){
-  render(this.value);
-});
+select.addEventListener("change", function(){ render(this.value); });
 </script>
 
 </body>
