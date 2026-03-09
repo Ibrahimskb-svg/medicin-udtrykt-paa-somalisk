@@ -1,709 +1,626 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="so">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Insulin – behandling af diabetes</title>
+<title>Insulin – daaweynta sonkorowga</title>
 
 <style>
 :root{
-  --accent:#00a676;
-  --c1:#0066cc;
-  --c2:#00a676;
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
 
-  --badgeBg:#d9f6e8;
-  --badgeText:#16634a;
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
 
-  --iconBg:#e3f2fd;
-  --iconStroke:#1a73e8;
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
 }
 
-body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{ transition: background .45s ease, color .35s ease; }
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
 header{
-  background:linear-gradient(135deg,var(--c1),var(--c2));
-  color:#fff; padding:22px 16px; text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
-  transition:background 260ms ease;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1{ margin:0 0 4px; font-size:1.8rem; }
-header p{ margin:0; font-size:0.95rem; }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{
+  max-width: 820px;
+  margin: 18px auto 32px;
+  padding: 0 14px;
+}
 
 a.back{
-  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
-  text-decoration:none; color:var(--accent); font-size:0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
 }
-a.back span{ font-size:1.1rem; }
+a.back span{ font-size: 1.1rem; }
 
 .langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#fff; border-radius:12px; padding:10px 12px;
-  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 .card{
-  background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12);
-  border-top:4px solid var(--accent);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid var(--accent1);
 }
 
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{
-  width:44px; height:44px; border-radius:12px;
-  background:var(--iconBg);
-  display:flex; align-items:center; justify-content:center;
+.drug-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.drug-icon svg{ width:30px; height:30px; }
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drug-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drug-icon svg{ width: 30px; height: 30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.drug-icon svg .fill{ fill:#e8f3ff; }
+
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
 
 .badge{
-  display:inline-flex; align-items:center; gap:6px;
-  background:var(--badgeBg); color:var(--badgeText);
-  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--pillBg);
+  color: var(--pillText);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-
+.section{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
+}
+.section-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
 .section-icon{
-  width:24px; height:24px; border-radius:999px;
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
 }
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section li{ margin-bottom:4px; }
+.section-title{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.section-title small{
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
 
-.highlight{ font-weight:600; }
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.section ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
+}
+.section ul li{ margin-bottom: 4px; }
+
+.highlight{ font-weight: 600; }
+
+.footer-note{
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
+}
+
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
+}
 </style>
 </head>
 
 <body>
+
 <header>
-  <h1 id="hdrH1">Insulin – behandling af diabetes</h1>
-  <p id="hdrP">Kort og let information om lægemidlet – til patienter og pårørende.</p>
+  <h1 id="hdrTitle">Insulin – daaweynta sonkorowga</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
-  <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect" id="langLabel">Vælg sprog:</label>
+
+  <div class="langbar" aria-label="Language selector">
+    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
-      <option value="so">Somalisk</option>
-      <option value="da" selected>Dansk</option>
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Tilbage til medicinlisten</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--iconStroke)" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--iconStroke)" stroke-width="4"/>
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Insulin</div>
-          <div class="drug-form" id="drugForm">Injektion (pen eller sprøjte)</div>
+          <div class="drug-name" id="drugName">Insulin – daaweynta sonkorowga</div>
+          <div class="drug-form" id="drugForm">Cirbad hoosta maqaarka ah</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Kort og let</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er insulin?</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
-      <ul id="sec0List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til?</div>
-      </div>
-      <ul id="sec1List"></ul>
+      <ul id="useList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sådan bruges insulin</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
-      <ul id="sec2List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke</div>
-      </div>
-      <ul id="sec3List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Advarsler</div>
-      </div>
-      <ul id="sec4List"></ul>
+      <ul id="doseList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
-      <ul id="sec5List"></ul>
+      <ul id="sideList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
-      <ul id="sec6List"></ul>
+      <ul id="interactList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+      </div>
+      <ul id="warnList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste</div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
       </div>
-      <ul id="sec7List"></ul>
+      <ul id="ramadanList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+      </div>
+      <ul id="foodList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring</div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
       </div>
-      <ul id="sec8List"></ul>
+      <ul id="storeList"></ul>
     </div>
   </div>
 
-  <div class="footer-note" id="footer1"></div>
-  <div class="footer-note" id="footer2"></div>
+  <div class="footer-note" id="footerNote"></div>
 </main>
 
+<div class="footer-note" id="credit"></div>
+
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
 
 const THEMES = {
-  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
+  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
 };
 
 function applyTheme(lang){
-  const th = THEME[lang] || THEME.so;
-  document.documentElement.style.setProperty("--c1", th.c1);
-  document.documentElement.style.setProperty("--c2", th.c2);
-  document.documentElement.style.setProperty("--accent", th.accent);
-  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
-  document.documentElement.style.setProperty("--badgeText", th.badgeText);
-  document.documentElement.style.setProperty("--iconBg", th.iconBg);
-  document.documentElement.style.setProperty("--iconStroke", th.iconStroke);
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
 }
+
+const T = {
+  so: {
+    title: "Insulin – daaweynta sonkorowga",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Insulin – daaweynta sonkorowga",
+    drugForm: "Cirbad hoosta maqaarka ah",
+    sections: {
+      use: { title:"Isticmaalka", small:"", items:[
+        "Insulin waxaa loo isticmaalaa daaweynta <span class='highlight'>sonkorowga</span>.",
+        "Waxay ka caawisaa sonkorta dhiigga inay gasho unugyada jirka si loo helo tamar, taasoo hoos u dhigta sonkorta dhiigga."
+      ]},
+      dose: { title:"Qiyaasta", small:"", items:[
+        "Qiyaasta insulin waa mid <span class='highlight'>qof walba gaar u ah</span> oo ku xiran nooca insulin, cunto, iyo sonkorta dhiigga.",
+        "Raac qorshaha dhakhtarka ama kalkaalisada sonkorowga. Beddel meesha cirbadda lagu duro si looga fogaado burooyin maqaarka ah."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"", items:[
+        "Waxyeellada ugu muhiimsan waa <span class='highlight'>sonkor hoose</span> (hypoglycemia).",
+        "Qaar waxay yeelan karaan miisaan kordha ama casaan iyo cuncun meesha lagu duro."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
+        "Daawooyin qaar sida steroids, diuretics qaarkood, iyo beta blockers waxay beddeli karaan baahida insulin.",
+        "U sheeg dhakhtarka dhammaan daawooyinka aad qaadato, oo cabbir sonkorta dhiigga sida lagu faray."
+      ]},
+      warn: { title:"Digniino", small:"", items:[
+        "Calaamadaha sonkor hoose waxaa ka mid noqon kara dhidid, gariir, gaajo, wadne garaac, wareer, ama madax wareer.",
+        "Haddii sonkortu hoos u dhacdo, qaado sonkor degdeg ah sida laguugu sheegay.",
+        "Ha wadin gaari haddii aad dareemayso sonkor hoose."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
+        "Insulin badanaa waa la isticmaali karaa inta lagu jiro Ramadaan, laakiin qorshaha waa in la hagaajiyaa ka hor.",
+        "La hadal dhakhtarka ama kooxda sonkorowga <span class='highlight'>ka hor Ramadaan</span>.",
+        "Haddii sonkorta dhiigga si khatar ah u hoos u dhacdo, waa in aad <span class='highlight'>jebisaa soonka</span> si aad u badbaado."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
+        "Haddii aad isticmaasho insulin degdeg u shaqeeya, waqtiga cuntadu waa muhiim.",
+        "Had iyo jeer hayso sonkor degdeg ah sida glucose tablets ama casiir yar haddii sonkortu hoos u dhacdo."
+      ]},
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Insulin aan la furin badanaa waxaa lagu hayaa <span class='highlight'>qaboojiyaha</span>, laakiin lama barafeeyo.",
+        "Pen-ka ama insulin-ka la isticmaalayo mararka qaar waxaa lagu hayn karaa heerkulka qolka muddo xadidan sida ku qoran baakadka.",
+        "Ka ilaali kulaylka iyo qorraxda tooska ah."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
+
+  da: {
+    title: "Insulin – behandling af diabetes",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    badge: "Kort og let at læse",
+    drugName: "Insulin – behandling af diabetes",
+    drugForm: "Injektion under huden",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Insulin bruges til behandling af <span class='highlight'>diabetes</span>.",
+        "Det hjælper sukker fra blodet ind i kroppens celler, så blodsukkeret kan falde."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Insulindosis er <span class='highlight'>individuel</span> og afhænger af insulintype, mad og blodsukker.",
+        "Følg altid den plan, du har fået af lægen eller diabetessygeplejersken. Skift stiksted for at undgå knuder i huden."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Den vigtigste bivirkning er <span class='highlight'>lavt blodsukker</span> (hypoglykæmi).",
+        "Nogle kan tage på i vægt eller få rødme og kløe ved stikstedet."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Nogle lægemidler, som steroidbehandling, visse vanddrivende og beta-blokkere, kan ændre behovet for insulin.",
+        "Fortæl lægen om al medicin, du tager, og mål blodsukker efter aftale."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Tegn på lavt blodsukker kan være sved, rysten, sult, hjertebanken, forvirring eller svimmelhed.",
+        "Ved lavt blodsukker skal du tage hurtig sukker efter den plan, du har fået.",
+        "Kør ikke bil, hvis du føler dig påvirket af lavt blodsukker."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Insulin kan som regel bruges under Ramadan, men behandlingsplanen skal tilpasses på forhånd.",
+        "Tal med lægen eller diabetesteamet <span class='highlight'>før Ramadan</span>.",
+        "Hvis blodsukkeret falder for meget, bør du <span class='highlight'>afbryde fasten</span> af hensyn til din sikkerhed."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Hvis du bruger hurtigtvirkende insulin, er tidspunktet for måltidet vigtigt.",
+        "Hav altid hurtig sukker ved hånden, fx druesukker eller lidt juice, hvis blodsukkeret falder."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Uåbnet insulin opbevares som regel i <span class='highlight'>køleskab</span>, men må ikke fryses.",
+        "Insulin eller pen i brug kan ofte opbevares ved stuetemperatur i en begrænset periode som angivet på pakningen.",
+        "Beskyt mod varme og direkte sollys."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Insulin – treatment of diabetes",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    langLabel: "Choose language:",
+    badge: "Short and easy to read",
+    drugName: "Insulin – treatment of diabetes",
+    drugForm: "Injection under the skin",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Insulin is used to treat <span class='highlight'>diabetes</span>.",
+        "It helps sugar move from the blood into the body's cells so blood sugar can go down."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Insulin dose is <span class='highlight'>individual</span> and depends on the type of insulin, food, and blood sugar level.",
+        "Always follow the plan from your doctor or diabetes nurse. Change injection site to avoid lumps in the skin."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "The most important side effect is <span class='highlight'>low blood sugar</span> (hypoglycaemia).",
+        "Some people may gain weight or notice redness and itching at the injection site."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Some medicines, such as steroid treatment, certain diuretics, and beta blockers, may change the need for insulin.",
+        "Tell your doctor about all medicines you use, and check blood sugar as advised."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "Signs of low blood sugar may include sweating, shaking, hunger, palpitations, confusion, or dizziness.",
+        "If blood sugar drops too low, take fast sugar according to your treatment plan.",
+        "Do not drive if you feel affected by low blood sugar."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Insulin can usually be used during Ramadan, but the treatment plan should be adjusted beforehand.",
+        "Talk with your doctor or diabetes team <span class='highlight'>before Ramadan</span>.",
+        "If blood sugar falls too low, you should <span class='highlight'>break the fast</span> for safety."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "If you use rapid-acting insulin, meal timing is important.",
+        "Always keep fast sugar nearby, such as glucose tablets or some juice, in case blood sugar drops."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Unopened insulin is usually stored in the <span class='highlight'>refrigerator</span>, but must not be frozen.",
+        "Insulin or pens in use can often be stored at room temperature for a limited time as stated on the package.",
+        "Protect from heat and direct sunlight."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "الإنسولين – علاج السكري",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "الإنسولين – علاج السكري",
+    drugForm: "حقن تحت الجلد",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "يُستخدم الإنسولين لعلاج <span class='highlight'>السكري</span>.",
+        "يساعد السكر على الانتقال من الدم إلى خلايا الجسم مما يؤدي إلى خفض مستوى السكر في الدم."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "جرعة الإنسولين <span class='highlight'>تختلف من شخص لآخر</span> بحسب نوع الإنسولين والطعام ومستوى السكر في الدم.",
+        "اتبع دائماً الخطة التي وضعها الطبيب أو ممرضة السكري. غيّر مكان الحقن لتجنب ظهور كتل في الجلد."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "أهم أثر جانبي هو <span class='highlight'>انخفاض السكر في الدم</span>.",
+        "قد يزداد الوزن عند بعض الأشخاص أو يحدث احمرار وحكة في مكان الحقن."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "بعض الأدوية مثل العلاج بالكورتيزون وبعض المدرات وحاصرات بيتا قد تغيّر الحاجة إلى الإنسولين.",
+        "أخبر الطبيب بكل الأدوية التي تستخدمها، وافحص مستوى السكر حسب التعليمات."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "من علامات انخفاض السكر: التعرق، الرجفة، الجوع، خفقان القلب، الارتباك أو الدوخة.",
+        "إذا انخفض السكر كثيراً، تناول سكراً سريع المفعول حسب خطتك العلاجية.",
+        "لا تقد السيارة إذا كنت تشعر بتأثر بسبب انخفاض السكر."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "يمكن عادة استخدام الإنسولين خلال رمضان، لكن يجب تعديل الخطة العلاجية مسبقاً.",
+        "تحدث مع الطبيب أو فريق السكري <span class='highlight'>قبل رمضان</span>.",
+        "إذا انخفض السكر بشكل خطير، فيجب <span class='highlight'>قطع الصيام</span> حفاظاً على السلامة."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "إذا كنت تستخدم إنسولين سريع المفعول، فإن توقيت الوجبة مهم.",
+        "احرص دائماً على وجود سكر سريع المفعول مثل أقراص الجلوكوز أو القليل من العصير إذا انخفض السكر."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "عادة ما يُحفظ الإنسولين غير المفتوح في <span class='highlight'>الثلاجة</span>، لكن لا يجوز تجميده.",
+        "يمكن غالباً حفظ قلم الإنسولين أو الإنسولين المستخدم في درجة حرارة الغرفة لمدة محدودة حسب ما هو مكتوب على العبوة.",
+        "احمه من الحرارة وأشعة الشمس المباشرة."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  }
+};
+
+function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
 
-function fillList(id, arr){
-  const ul = document.getElementById(id);
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
   ul.innerHTML = "";
-  (arr || []).forEach(txt=>{
-    const li=document.createElement("li");
-    li.innerHTML=txt;
+  (items || []).forEach(html => {
+    const li = document.createElement("li");
+    li.innerHTML = html;
     ul.appendChild(li);
   });
 }
 
-function setSectionTitle(elId, title){
-  const el = document.getElementById(elId);
-  if(!el) return;
-  el.textContent = (title || "").trim();
+function setSmall(id, txt){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (txt || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
 }
 
-const T = {
-  da:{
-    pageTitle:"Insulin – behandling af diabetes",
-    hdrH1:"Insulin – behandling af diabetes",
-    hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
-    backText:"Tilbage til medicinlisten",
-    langLabel:"Vælg sprog:",
-    drugName:"Insulin",
-    drugForm:"Injektion (pen eller sprøjte)",
-    badgeText:"Kort og let",
+function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
+  const d = T[lang] || T.so;
 
-    sec0Title:"Hvad er insulin?",
-    sec0:[
-      "Insulin er et hormon, som kroppen normalt selv laver i bugspytkirtlen.",
-      "Insulin hjælper sukker (glukose) fra blodet ind i kroppens celler, så det kan bruges som energi."
-    ],
-    sec1Title:"Hvad bruges det til?",
-    sec1:[
-      "Behandling af <span class='highlight'>type 1-diabetes</span> (altid insulin).",
-      "Behandling af <span class='highlight'>type 2-diabetes</span>, hvis tabletbehandling ikke er nok eller ved særlige behov."
-    ],
-    sec2Title:"Sådan bruges insulin",
-    sec2:[
-      "Insulin gives som <span class='highlight'>injektion under huden</span> (subkutant) – ofte med pen.",
-      "Der findes forskellige typer: <span class='highlight'>hurtigtvirkende</span>, <span class='highlight'>mellemlangtvirkende</span> og <span class='highlight'>langtidsvirkende</span> insulin.",
-      "Din dosis og tidspunkt er individuel – følg altid din plan fra læge/diabetessygeplejerske.",
-      "Skift injektionssted (mave, lår, balde, overarm) for at undgå knuder i huden."
-    ],
-    sec3Title:"Mad og drikke",
-    sec3:[
-      "Hvis du bruger <span class='highlight'>hurtigtvirkende insulin</span>, er timing i forhold til måltid vigtigt (følg din plan).",
-      "Spis regelmæssigt efter aftale og hav altid hurtig sukker ved hånden (fx druesukker)."
-    ],
-    sec4Title:"Advarsler",
-    sec4:[
-      "Den vigtigste risiko er <span class='highlight'>lavt blodsukker (hypoglykæmi)</span>.",
-      "Tegn kan være sved, rysten, hjertebanken, sult, forvirring eller svimmelhed.",
-      "Ved lavt blodsukker: tag hurtig sukker og følg din behandlingsplan.",
-      "Kør ikke bil, hvis du føler dig påvirket af lavt blodsukker."
-    ],
-    sec5Title:"Bivirkninger",
-    sec5:[
-      "Lavt blodsukker (hypoglykæmi).",
-      "Vægtøgning kan forekomme hos nogle.",
-      "Lokale reaktioner ved stikstedet (rødme, kløe)."
-    ],
-    sec6Title:"Interaktioner",
-    sec6:[
-      "Nogle lægemidler kan ændre blodsukker og insulinbehov (fx binyrebarkhormon, visse vanddrivende, betablokkere).",
-      "Fortæl lægen om al medicin – og mål blodsukker efter aftale."
-    ],
-    sec7Title:"Ramadan og faste",
-    sec7:[
-      "Insulin kan normalt bruges under Ramadan, men planen skal tilpasses.",
-      "Tal med læge/diabetesteam <span class='highlight'>før Ramadan</span> om dosis, måltider og blodsukkermåling.",
-      "Hvis du får lavt blodsukker, bør du <span class='highlight'>afbryde fasten</span> for din sikkerhed."
-    ],
-    sec8Title:"Opbevaring",
-    sec8:[
-      "Uåbnede insulinpenne/ampuller opbevares typisk i <span class='highlight'>køleskab</span> (ikke fryses).",
-      "Den pen du bruger kan ofte opbevares ved stuetemperatur i en begrænset periode – følg pakningen.",
-      "Beskyt mod varme og direkte sollys."
-    ],
-    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en:{
-    pageTitle:"Insulin – diabetes treatment",
-    hdrH1:"Insulin – diabetes treatment",
-    hdrP:"Brief medicine information for patients and relatives.",
-    backText:"Back to the medicine list",
-    langLabel:"Choose language:",
-    drugName:"Insulin",
-    drugForm:"Injection (pen or syringe)",
-    badgeText:"Short and clear",
-
-    sec0Title:"What is insulin?",
-    sec0:[
-      "Insulin is a hormone normally produced by the pancreas.",
-      "It helps glucose move from the blood into cells for energy."
-    ],
-    sec1Title:"What is it used for?",
-    sec1:[
-      "Treatment of <span class='highlight'>type 1 diabetes</span> (always insulin).",
-      "Treatment of <span class='highlight'>type 2 diabetes</span> when needed."
-    ],
-    sec2Title:"How to use insulin",
-    sec2:[
-      "Injected <span class='highlight'>under the skin</span>, often using a pen.",
-      "Different types exist: <span class='highlight'>rapid</span>, <span class='highlight'>intermediate</span>, and <span class='highlight'>long-acting</span>.",
-      "Dose and timing are individual—follow your plan.",
-      "Rotate injection sites to avoid lumps."
-    ],
-    sec3Title:"Food and drink",
-    sec3:[
-      "With <span class='highlight'>rapid-acting insulin</span>, meal timing matters—follow your plan.",
-      "Keep fast sugar available (e.g., glucose tablets)."
-    ],
-    sec4Title:"Warnings",
-    sec4:[
-      "Main risk: <span class='highlight'>low blood sugar (hypoglycemia)</span>.",
-      "Symptoms: sweating, shaking, palpitations, hunger, confusion, dizziness.",
-      "Treat low sugar quickly as instructed.",
-      "Avoid driving if affected."
-    ],
-    sec5Title:"Side effects",
-    sec5:[
-      "Hypoglycemia.",
-      "Weight gain in some people.",
-      "Local injection-site reactions."
-    ],
-    sec6Title:"Interactions",
-    sec6:[
-      "Some medicines can change blood sugar and insulin needs (e.g., steroids, some diuretics, beta-blockers).",
-      "Tell your healthcare provider about all medicines and monitor as advised."
-    ],
-    sec7Title:"Ramadan and fasting",
-    sec7:[
-      "Insulin can usually be used during Ramadan but needs a tailored plan.",
-      "Discuss dose, meals and monitoring <span class='highlight'>before Ramadan</span>.",
-      "If you develop hypoglycemia you should <span class='highlight'>break the fast</span> for safety."
-    ],
-    sec8Title:"Storage",
-    sec8:[
-      "Unopened insulin is typically stored in the <span class='highlight'>refrigerator</span> (do not freeze).",
-      "In-use pens may be stored at room temperature for a limited time—follow the label.",
-      "Protect from heat and direct sunlight."
-    ],
-    footer1:"If you need more information, contact your pharmacy or doctor.",
-    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  so:{
-    pageTitle:"Insulin – daaweynta sonkorowga",
-    hdrH1:"Insulin – daaweynta sonkorowga",
-    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed.",
-    backText:"Ku laabo liiska daawooyinka",
-    langLabel:"Dooro luqadda:",
-    drugName:"Insulin",
-    drugForm:"Cirbad (pen ama irbad)",
-    badgeText:"Akhris kooban",
-
-    sec0Title:"Waa maxay insulin?",
-    sec0:[
-      "Insulin waa hormoon uu jirku caadi ahaan ka sameeyo ganaca (pancreas).",
-      "Waxay ka caawisaa sonkorta (glucose) inay ka gasho dhiigga una gasho unugyada si loo helo tamar."
-    ],
-    sec1Title:"Maxaa loo isticmaalaa?",
-    sec1:[
-      "Daaweynta <span class='highlight'>sonkorowga nooca 1aad</span> (had iyo jeer insulin).",
-      "Daaweynta <span class='highlight'>sonkorowga nooca 2aad</span> marka loo baahdo."
-    ],
-    sec2Title:"Sida insulin loo isticmaalo",
-    sec2:[
-      "Insulin waxaa lagu duro <span class='highlight'>hoosta maqaarka</span> (subkutaan) – badanaa pen.",
-      "Waxaa jira noocyo: <span class='highlight'>degdeg u shaqeeya</span>, <span class='highlight'>dhexdhexaad</span> iyo <span class='highlight'>waqti dheer</span>.",
-      "Qiyaasta iyo waqtigu waa shaqsi – raac qorshaha dhakhtarka/kalkaalisada sonkorowga.",
-      "Beddel goobta durista si looga hortago burooyin maqaarka."
-    ],
-    sec3Title:"Cunto iyo cabitaan",
-    sec3:[
-      "Haddii aad isticmaasho insulin degdeg ah, waqtiga cuntada waa muhiim (raac qorshaha).",
-      "Had iyo jeer hayso sonkor degdeg ah (tusaale: glucose tablets)."
-    ],
-    sec4Title:"Digniino",
-    sec4:[
-      "Khatarta ugu weyn waa <span class='highlight'>sonkor hoose (hypoglycemia)</span>.",
-      "Calaamado: dhidid, gariir, wadne garaac, gaajo, wareer, madax wareer.",
-      "Haddii sonkor hoos u dhacdo: qaado sonkor degdeg ah sida qorshaha.",
-      "Ha wadin gaari haddii aad dareento hypoglycemia."
-    ],
-    sec5Title:"Dhibaatooyinka",
-    sec5:[
-      "Hypoglycemia.",
-      "Miisaan kordhis (qaar).",
-      "Falcelin goobta durista (casaan, cuncun)."
-    ],
-    sec6Title:"Is-dhexgalka daawooyinka",
-    sec6:[
-      "Daawooyin qaar waxay beddeli karaan sonkorta iyo baahida insulin (tusaale steroids, diuretics qaar, betablokker).",
-      "U sheeg dhakhtarka daawo kasta oo aad qaadato, oo cabbir sonkorta sida lagu heshiiyo."
-    ],
-    sec7Title:"Ramadaanka iyo soonka",
-    sec7:[
-      "Insulin badanaa waa la isticmaali karaa Ramadaan, laakiin qorshe gaar ah ayaa loo baahan yahay.",
-      "La hadal dhakhtar/diabetes team <span class='highlight'>ka hor Ramadaan</span>.",
-      "Haddii sonkorta hoos u dhacdo waa in aad <span class='highlight'>jebisaa soonka</span> si aad u badbaado."
-    ],
-    sec8Title:"Kaydinta",
-    sec8:[
-      "Insulin aan la furin badanaa waxaa lagu hayaa <span class='highlight'>qaboojiye</span> (ha la barafin).",
-      "Pen-ka la isticmaalayo mararka qaar waa lagu hayn karaa heerkulka qolka muddo xadidan – raac baakadka.",
-      "Ka ilaali kulayl iyo qorrax toos ah."
-    ],
-    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  ar:{
-    pageTitle:"الإنسولين – علاج السكري",
-    hdrH1:"الإنسولين – علاج السكري",
-    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText:"العودة إلى قائمة الأدوية",
-    langLabel:"اختر اللغة:",
-    drugName:"الإنسولين",
-    drugForm:"حقن (قلم أو محقنة)",
-    badgeText:"مختصر وواضح",
-
-    sec0Title:"ما هو الإنسولين؟",
-    sec0:["هرمون يصنعه البنكرياس عادةً، ويساعد الجلوكوز على دخول الخلايا لإنتاج الطاقة."],
-    sec1Title:"لماذا يُستخدم؟",
-    sec1:["سكري النوع 1 (دائماً يحتاج إنسولين).","سكري النوع 2 عند الحاجة أو إذا لم تكفِ الأقراص."],
-    sec2Title:"كيفية الاستخدام",
-    sec2:["يُحقن تحت الجلد غالباً بقلم.","أنواع: سريع/متوسط/طويل المفعول.","اتبع خطة الطبيب وبدّل مواضع الحقن لتجنب التكتلات."],
-    sec3Title:"الطعام والشراب",
-    sec3:["مع الإنسولين سريع المفعول، توقيت الوجبة مهم.","احتفظ بسكر سريع (أقراص جلوكوز)."],
-    sec4Title:"تحذيرات",
-    sec4:["الخطر الأهم: انخفاض سكر الدم.","أعراض: تعرّق، رجفة، خفقان، جوع، ارتباك، دوخة.","عالج الانخفاض سريعاً واتبع خطتك.","تجنب القيادة إذا كنت متأثراً."],
-    sec5Title:"الآثار الجانبية",
-    sec5:["انخفاض سكر الدم.","زيادة وزن لدى بعض الأشخاص.","احمرار/حكة في موضع الحقن."],
-    sec6Title:"التداخلات",
-    sec6:["بعض الأدوية تغيّر سكر الدم واحتياج الإنسولين (مثل الستيرويدات وبعض المدرات وحاصرات بيتا)."],
-    sec7Title:"رمضان والصيام",
-    sec7:["يمكن استخدام الإنسولين لكن يجب تعديل الخطة قبل رمضان.","إذا حدث انخفاض سكر يجب الإفطار للسلامة."],
-    sec8Title:"الحفظ",
-    sec8:["غير المفتوح عادةً في الثلاجة (لا يُجمّد).","قلم الاستخدام قد يُحفظ بدرجة الغرفة مدة محدودة حسب النشرة.","احمِه من الحرارة والشمس."],
-    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2:"إعداد: إبراهيم ظاهر حنف"
-  },
-
-  tr:{
-    pageTitle:"İnsülin – diyabet tedavisi",
-    hdrH1:"İnsülin – diyabet tedavisi",
-    hdrP:"Hasta ve yakınları için kısa bilgi.",
-    backText:"İlaç listesine geri dön",
-    langLabel:"Dil seçin:",
-    drugName:"İnsülin",
-    drugForm:"Enjeksiyon (kalem veya şırınga)",
-    badgeText:"Kısa ve anlaşılır",
-
-    sec0Title:"İnsülin nedir?",
-    sec0:["Pankreasın ürettiği bir hormondur; glukozun hücrelere girip enerjiye dönüşmesine yardımcı olur."],
-    sec1Title:"Ne için kullanılır?",
-    sec1:["Tip 1 diyabet (her zaman insülin).","Tip 2 diyabet (gerektiğinde)."],
-    sec2Title:"Nasıl kullanılır?",
-    sec2:["Cilt altına enjeksiyon (çoğunlukla kalem).","Hızlı/orta/uzun etkili türleri vardır.","Doz ve saat kişiye özeldir; enjeksiyon bölgelerini değiştirin."],
-    sec3Title:"Yemek ve içecek",
-    sec3:["Hızlı etkili insülinde öğün zamanı önemlidir.","Yanınızda hızlı şeker bulundurun (glukoz tableti)."],
-    sec4Title:"Uyarılar",
-    sec4:["En önemli risk: hipoglisemi.","Belirti: terleme, titreme, çarpıntı, açlık, sersemlik.","Hızlı şeker alın ve plana uyun.","Etkilenmişken araç kullanmayın."],
-    sec5Title:"Yan etkiler",
-    sec5:["Hipoglisemi.","Bazılarında kilo artışı.","Enjeksiyon yerinde kızarıklık/kaşıntı."],
-    sec6Title:"Etkileşimler",
-    sec6:["Bazı ilaçlar insülin ihtiyacını değiştirebilir (steroidler, bazı diüretikler, beta blokerler)."],
-    sec7Title:"Ramazan",
-    sec7:["Ramazan’da kullanılabilir ama plan ayarlanmalı.","Düşük şeker olursa oruç bozulmalıdır."],
-    sec8Title:"Saklama",
-    sec8:["Açılmamış insülin genelde buzdolabında (dondurmayın).","Kullanılan kalem oda ısısında sınırlı süre kalabilir (etikete bakın).","Sıcak ve güneşten koruyun."],
-    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
-  },
-
-  ur:{
-    pageTitle:"انسولین – ذیابیطس کا علاج",
-    hdrH1:"انسولین – ذیابیطس کا علاج",
-    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText:"فہرست پر واپس",
-    langLabel:"زبان منتخب کریں:",
-    drugName:"انسولین",
-    drugForm:"انجیکشن (پین یا سرنج)",
-    badgeText:"مختصر اور واضح",
-
-    sec0Title:"انسولین کیا ہے؟",
-    sec0:["یہ ہارمون لبلبہ بناتا ہے؛ گلوکوز کو خون سے خلیوں میں لے جا کر توانائی بنانے میں مدد دیتا ہے۔"],
-    sec1Title:"کس لیے استعمال ہوتی ہے؟",
-    sec1:["ٹائپ 1 ذیابیطس (ہمیشہ انسولین).","ٹائپ 2 ذیابیطس (ضرورت کے وقت)."],
-    sec2Title:"استعمال کا طریقہ",
-    sec2:["جلد کے نیچے انجیکشن (اکثر پین سے).","تیز/درمیانی/لمبے اثر والی اقسام.","ڈوز اور وقت فرد کے مطابق؛ جگہ بدلتے رہیں۔"],
-    sec3Title:"کھانا پینا",
-    sec3:["تیز اثر والی انسولین میں کھانے کا وقت اہم ہے.","فوری شوگر ساتھ رکھیں (گلوکوز ٹیبلٹس)."],
-    sec4Title:"احتیاطیں",
-    sec4:["اہم خطرہ: کم شوگر (ہائپوگلیسیمیا).","علامات: پسینہ، کپکپی، دل کی دھڑکن، چکر.","فوری شوگر لیں اور پلان پر عمل کریں.","متاثر ہوں تو گاڑی نہ چلائیں۔"],
-    sec5Title:"مضر اثرات",
-    sec5:["کم شوگر.","کچھ لوگوں میں وزن بڑھنا.","انجیکشن کی جگہ پر لالی/خارش."],
-    sec6Title:"تداخلات",
-    sec6:["کچھ ادویات شوگر/انسولین کی ضرورت بدل سکتی ہیں (اسٹیرائڈز، کچھ ڈائیوریٹکس، بیٹا بلاکرز)."],
-    sec7Title:"رمضان",
-    sec7:["رمضان میں ممکن ہے مگر پلان ایڈجسٹ ضروری ہے.","کم شوگر ہو تو روزہ توڑنا چاہیے۔"],
-    sec8Title:"محفوظ رکھنا",
-    sec8:["بند انسولین عموماً فریج میں (منجمد نہ کریں).","استعمال والی پین محدود وقت کمرہ درجہ حرارت پر رہ سکتی ہے.","گرمی اور دھوپ سے بچائیں۔"],
-    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
-  },
-
-  fa:{
-    pageTitle:"انسولین – درمان دیابت",
-    hdrH1:"انسولین – درمان دیابت",
-    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"انسولین",
-    drugForm:"تزریق (قلم یا سرنگ)",
-    badgeText:"کوتاه و روشن",
-
-    sec0Title:"انسولین چیست؟",
-    sec0:["هورمونی است که معمولاً توسط پانکراس ساخته می‌شود و به ورود گلوکز به سلول‌ها برای تولید انرژی کمک می‌کند."],
-    sec1Title:"موارد مصرف",
-    sec1:["دیابت نوع ۱ (همیشه نیاز به انسولین).","دیابت نوع ۲ در صورت نیاز."],
-    sec2Title:"نحوه استفاده",
-    sec2:["تزریق زیرجلدی، اغلب با قلم.","انواع سریع/متوسط/طولانی‌اثر.","دوز و زمان فردی است؛ محل تزریق را بچرخانید."],
-    sec3Title:"غذا و نوشیدنی",
-    sec3:["در انسولین سریع‌اثر، زمان‌بندی وعده مهم است.","قند سریع همراه داشته باشید (قرص گلوکز)."],
-    sec4Title:"هشدارها",
-    sec4:["خطر اصلی: افت قند خون.","علائم: تعریق، لرزش، تپش قلب، گیجی، سرگیجه.","طبق برنامه سریع درمان کنید.","در صورت تاثیر افت قند، رانندگی نکنید."],
-    sec5Title:"عوارض",
-    sec5:["افت قند.","افزایش وزن در برخی.","قرمزی/خارش محل تزریق."],
-    sec6Title:"تداخلات",
-    sec6:["برخی داروها نیاز به انسولین را تغییر می‌دهند (استروئیدها، برخی مدرها، بتابلوکرها)."],
-    sec7Title:"رمضان",
-    sec7:["قابل استفاده است ولی نیاز به تنظیم برنامه قبل از رمضان دارد.","در افت قند، برای ایمنی باید روزه را شکست."],
-    sec8Title:"نگهداری",
-    sec8:["انسولینِ بازنشده معمولاً در یخچال (یخ‌زدگی ممنوع).","قلمِ در حال استفاده ممکن است مدت محدودی در دمای اتاق بماند.","از گرما و آفتاب محافظت شود."],
-    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-
-  prs:{
-    pageTitle:"انسولین – تداوی شکر",
-    hdrH1:"انسولین – تداوی شکر",
-    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"انسولین",
-    drugForm:"تزریق (قلم یا سرنگ)",
-    badgeText:"کوتاه و واضح",
-
-    sec0Title:"انسولین چیست؟",
-    sec0:["هورمونِ پانکراس است و کمک می‌کند گلوکوز به سلول‌ها رفته انرژی بسازد."],
-    sec1Title:"برای چی استفاده می‌شود؟",
-    sec1:["دیابت نوع ۱ (همیشه).","دیابت نوع ۲ در صورت ضرورت."],
-    sec2Title:"چگونه استفاده شود؟",
-    sec2:["تزریق زیر پوست (اکثر با قلم).","انواع سریع/متوسط/طولانی‌اثر.","دوز و وقت فردی است؛ جای تزریق را تغییر دهید."],
-    sec3Title:"غذا و نوشیدنی",
-    sec3:["با انسولین سریع‌اثر، وقت غذا مهم است.","قند فوری همراه داشته باشید."],
-    sec4Title:"هشدارها",
-    sec4:["خطر اصلی: پایین رفتن قند.","علایم: عرق، لرزش، تپش، گیجی، سرگیجه.","طبق پلان فوری تداوی کنید.","در حالت تاثیر، موتر نرانید."],
-    sec5Title:"عوارض",
-    sec5:["قند پایین.","وزن‌گیری در بعضی‌ها.","سرخی/خارش محل تزریق."],
-    sec6Title:"تداخلات",
-    sec6:["برخی دواها ضرورت انسولین را تغییر می‌دهد (استروئیدها، بعضی مدرها، بتابلوکرها)."],
-    sec7Title:"رمضان",
-    sec7:["ممکن است ولی پلان باید قبل از رمضان تنظیم شود.","در قند پایین، باید روزه را بشکنید."],
-    sec8Title:"نگهداری",
-    sec8:["انسولین بازنشده در یخچال (یخ نزنید).","قلم استفاده‌شده ممکن است مدت محدود در دمای اتاق بماند.","از گرما و آفتاب محافظت کنید."],
-    footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.",
-    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-
-  ps:{
-    pageTitle:"انسولین – د شکر درملنه",
-    hdrH1:"انسولین – د شکر درملنه",
-    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText:"لېست ته بېرته",
-    langLabel:"ژبه وټاکئ:",
-    drugName:"انسولین",
-    drugForm:"پیچکاري (قلم یا سرنج)",
-    badgeText:"لنډ او روښانه",
-
-    sec0Title:"انسولین څه شی دی؟",
-    sec0:["هورمون دی چې پانقراس یې جوړوي او ګلوکوز حجرو ته وړي څو انرژي جوړ شي."],
-    sec1Title:"د څه لپاره؟",
-    sec1:["د ۱ ډول شکر (تل انسولین).","د ۲ ډول شکر کله چې اړتیا وي."],
-    sec2Title:"څنګه وکارول شي؟",
-    sec2:["د پوست لاندې پیچکاري، ډېر وخت د قلم په وسیله.","ډولونه: چټک/منځنی/اوږد اثر.","دوز او وخت شخصي وي؛ د پیچکارۍ ځای بدل کړئ."],
-    sec3Title:"خواړه او څښاک",
-    sec3:["د چټک انسولین سره د خوړو وخت مهم دی.","چټک بوره له ځان سره ولرئ (ګلوکوز ټابلیټ)."],
-    sec4Title:"خبرداری",
-    sec4:["اصلي خطر: ټیټه بوره (هایپوګلیسیمیا).","نښې: خولې، رېږدېدل، د زړه درزا، ګډوډي، سر ګرځېدل.","ژر درملنه وکړئ.","که اغېزمن یاست، موټر مه چلوئ."],
-    sec5Title:"اړخیزې اغېزې",
-    sec5:["ټیټه بوره.","ځینو کې وزن زیاتېدل.","د پیچکارۍ ځای کې سوروالی/خارښ."],
-    sec6Title:"تداخلات",
-    sec6:["ځینې درمل د انسولین اړتیا بدلوي (سټېروېډونه، ځینې ادرار زیاتونکي، بتابلاکرونه)."],
-    sec7Title:"رمضان",
-    sec7:["کارېدلی شي خو پلان باید مخکې تنظیم شي.","که بوره ټیټه شي، روژه ماتول اړین دي."],
-    sec8Title:"ساتنه",
-    sec8:["نه‌پرانیستل شوی انسولین په یخچال کې (یخ مه کوئ).","کارېدونکی قلم ممکن محدود وخت په خونې تودوخې کې وي.","له تودوخې او لمره یې وساتئ."],
-    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
-  }
-};
-
-function applyLang(lang){
-  const d = T[lang] || T.da;
-
-  applyTheme(lang);
   setDirLang(lang);
+  applyTheme(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
+  document.title = stripTags(d.title);
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName;
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  setSmall("useSmall", d.sections.use.small);
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  setSmall("doseSmall", d.sections.dose.small);
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  setSmall("sideSmall", d.sections.side.small);
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  setSmall("interactSmall", d.sections.interact.small);
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  setSmall("warnSmall", d.sections.warn.small);
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  setSmall("ramadanSmall", d.sections.ramadan.small);
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  setSmall("foodSmall", d.sections.food.small);
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  setSmall("storeSmall", d.sections.store.small);
 
-  setSectionTitle("sec0Title", d.sec0Title);
-  setSectionTitle("sec1Title", d.sec1Title);
-  setSectionTitle("sec2Title", d.sec2Title);
-  setSectionTitle("sec3Title", d.sec3Title);
-  setSectionTitle("sec4Title", d.sec4Title);
-  setSectionTitle("sec5Title", d.sec5Title);
-  setSectionTitle("sec6Title", d.sec6Title);
-  setSectionTitle("sec7Title", d.sec7Title);
-  setSectionTitle("sec8Title", d.sec8Title);
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
 
-  fillList("sec0List", d.sec0);
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
-
-  document.getElementById("footer1").textContent = d.footer1;
-  document.getElementById("footer2").innerHTML = d.footer2;
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
 
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "da";
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
-applyLang(document.getElementById("langSelect").value);
-
-document.getElementById("langSelect").addEventListener("change", function(){
-  applyLang(this.value);
-});
+const select = document.getElementById("langSelect");
+select.value = startLang;
+render(select.value);
+select.addEventListener("change", function(){ render(this.value); });
 </script>
 
 </body>
