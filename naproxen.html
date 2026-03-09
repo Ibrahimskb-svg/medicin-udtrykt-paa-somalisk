@@ -31,92 +31,178 @@
   header{ transition: background .45s ease, color .35s ease; }
 }
 
-body { font-family: Arial, sans-serif; background:var(--bg); color:var(--text); margin:0; }
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
 
 header{
-  background:linear-gradient(135deg, var(--accent1), var(--accent2));
-  color:var(--accentText);
-  padding:22px 16px;
-  text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1 { margin:0 0 4px; font-size:1.8rem; }
-header p { margin:0; font-size:0.95rem; }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{
+  max-width: 820px;
+  margin: 18px auto 32px;
+  padding: 0 14px;
+}
 
 a.back{
-  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
-  text-decoration:none; color:var(--link); font-size:0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
 }
-a.back span { font-size:1.1rem; }
+a.back span{ font-size: 1.1rem; }
 
 .langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#ffffff; border-radius:12px; padding:10px 12px;
-  margin:0 0 14px 0;
-  box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent1);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:var(--text); font-weight:600; }
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid var(--stroke);
-  background:#fff; color:var(--text); font-size:0.9rem; max-width:100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 .card{
-  background:var(--card); border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12);
-  border-top:4px solid var(--accent1);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid var(--accent1);
 }
 
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-
+.drug-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.drug-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .drug-icon{
-  width:44px; height:44px; border-radius:12px;
-  background:#e3f2fd; display:flex; align-items:center; justify-content:center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.drug-icon svg{ width:30px; height:30px; }
+.drug-icon svg{ width: 30px; height: 30px; }
 .drug-icon svg .stroke{ stroke: var(--accent2); }
 .drug-icon svg .fill{ fill:#e8f3ff; }
 
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
 
 .badge{
-  display:inline-flex; align-items:center; gap:4px;
-  background:var(--pillBg); color:var(--pillText);
-  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--pillBg);
+  color: var(--pillText);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
   border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed var(--stroke); }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:var(--text);
+.section{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
 }
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
+.section-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.section-icon{
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
-.section-title{ font-weight:700; color:var(--text); font-size:0.96rem; }
-.section-title small{ font-weight:400; color:var(--muted); margin-left:6px; }
+.section-title{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.section-title small{
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
 
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
+.section ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
+}
+.section ul li{ margin-bottom: 4px; }
 
-.highlight{ font-weight:600; }
+.highlight{ font-weight: 600; }
 
-.footer-note{ font-size:0.8rem; color:var(--muted); text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.footer-note{
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
+}
+
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
+}
 </style>
 </head>
 
@@ -135,11 +221,6 @@ a.back span { font-size:1.1rem; }
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
@@ -166,7 +247,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">1</div>
+        <div class="section-icon use">💊</div>
         <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
       <ul id="useList"></ul>
@@ -174,7 +255,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">2</div>
+        <div class="section-icon dose">⏰</div>
         <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
       <ul id="doseList"></ul>
@@ -182,7 +263,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">3</div>
+        <div class="section-icon side">⚠️</div>
         <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
       <ul id="sideList"></ul>
@@ -190,7 +271,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">4</div>
+        <div class="section-icon interact">⇆</div>
         <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
       <ul id="interactList"></ul>
@@ -214,7 +295,7 @@ a.back span { font-size:1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon food">🍽</div>
+        <div class="section-icon food">🍽️</div>
         <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
       </div>
       <ul id="foodList"></ul>
@@ -236,13 +317,14 @@ a.back span { font-size:1.1rem; }
 <div class="footer-note" id="credit"></div>
 
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
 
 const THEMES = {
-  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
+  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
 };
 
 function applyTheme(lang){
@@ -266,29 +348,30 @@ const T = {
     drugForm:"Kiniin afka ah",
     sections:{
       use:{ title:"Isticmaalka", small:"", items:[
-        "Naproxen waa daawo ka tirsan NSAID oo yareysa <span class='highlight'>xanuun iyo barar</span>.",
+        "Naproxen waa daawo ka tirsan <span class='highlight'>NSAID</span> oo yareysa xanuunka iyo bararka.",
         "Waxay caawin kartaa xanuunka kala-goysyada, murqaha, dhabarka, iyo xanuunka caadada."
       ]},
       dose:{ title:"Qiyaasta", small:"", items:[
         "Qaado <span class='highlight'>sida dhakhtarku kuu qoray</span>. Qiyaasta waxay ku xiran tahay xaaladdaada iyo nooca kiniinka.",
-        "Badanaa dadka waaweyn: <span class='highlight'>250–500 mg</span> <span class='highlight'>1–2 jeer maalintii</span>.",
+        "Dadka waaweyn badanaa waxay qaataan <span class='highlight'>250–500 mg</span> mar ama laba jeer maalintii, iyadoo ku xiran sababta loo qaatay.",
         "Ku qaado <span class='highlight'>cunto</span> ama caano si caloosha loo ilaaliyo. Ha laba-jibbaarin qiyaasta haddii aad hilmaanto."
       ]},
       side:{ title:"Waxyeellooyinka", small:"", items:[
         "Calool-xanuun, laab-jeex, lalabo, iyo madax-xanuun.",
-        "Dhibaatooyin daran oo dhif ah: boogo caloosha/dhiig-bax, iyo khataro wadne ama istaroog (gaar ahaan qiyaas sare ama muddo dheer)."
+        "Dhibaatooyin daran oo dhif ah waxaa ka mid ah boogo caloosha ama dhiig-bax.",
+        "Muddo dheer ama qiyaaso sare waxay kordhin karaan khatarta dhibaatooyinka wadnaha iyo xididdada dhiigga."
       ]},
       interact:{ title:"Isdhexgalka daawooyinka", small:"", items:[
-        "Ha isku darin NSAID kale (tusaale ibuprofen ama diclofenac) adiga oo aan talo ka helin dhakhtar.",
-        "Ka taxaddar haddii aad qaadato daawo dhiig-khafiifisa, steroids, ama daawooyin kelyaha/dhiig-karka saameeya."
+        "Ha isku darin <span class='highlight'>NSAID</span> kale sida ibuprofen ama diclofenac adiga oo aan talo ka helin dhakhtar.",
+        "Ka taxaddar haddii aad qaadato daawo dhiig-khafiifiya, steroids, ama daawooyin saameeya kelyaha ama dhiig-karka."
       ]},
       warn:{ title:"Digniino", small:"", items:[
-        "Haddii aad leedahay boogo caloosha, dhiig-bax hore, kelyo/beer dhibaato, ama wadne-xanuun: la tasho dhakhtar ka hor.",
-        "Jooji oo raadi gargaar degdeg ah haddii aad aragto saxaro madow, matag dhiig, neef-qabatin, ama xanuun laab."
+        "Haddii aad leedahay boogo caloosha, dhiig-bax hore, dhibaato kelyo ama beer, ama cudur wadne, la tasho dhakhtar ka hor.",
+        "Jooji daawada oo raadi gargaar degdeg ah haddii aad aragto saxaro madow, matag dhiig leh, neef-qabatin, ama xanuun laab."
       ]},
       ramadan:{ title:"Ramadaan iyo soonka", small:"", items:[
-        "Kiniinka afka laga qaato wuxuu <span class='highlight'>jebinayaa soonka</span>.",
-        "Haddii loo baahdo, dhakhtarka kala hadal in lagu qaato fiidkii (ka dib afurka) ama suxuurta."
+        "Kiniinka afka laga qaato wuxuu <span class='highlight'>jebinayaa soonka</span> haddii la qaato maalintii.",
+        "Haddii loo baahdo, dhakhtarka kala hadal in lagu qaato fiidkii ka dib afurka ama suxuurta."
       ]},
       food:{ title:"Cunto iyo cabitaan", small:"", items:[
         "Had iyo jeer ku qaado <span class='highlight'>cunto</span> ama caano.",
@@ -313,28 +396,29 @@ const T = {
     drugForm:"Tablet til oral brug",
     sections:{
       use:{ title:"Anvendelse", small:"", items:[
-        "Naproxen er et NSAID, der dæmper <span class='highlight'>smerter og betændelse</span>.",
-        "Kan bruges ved fx led-/muskelsmerter, rygsmerter og menstruationssmerter."
+        "Naproxen er et <span class='highlight'>NSAID</span>, som dæmper smerter og betændelse.",
+        "Det kan bruges ved fx led- og muskelsmerter, rygsmerter og menstruationssmerter."
       ]},
       dose:{ title:"Dosering", small:"", items:[
-        "Tag <span class='highlight'>som aftalt</span>. Dosis afhænger af din situation og præparattypen.",
-        "Voksne ofte: <span class='highlight'>250–500 mg</span> <span class='highlight'>1–2 gange dagligt</span>.",
-        "Tag sammen med <span class='highlight'>mad</span> eller mælk. Tag ikke dobbeltdosis ved glemt dosis."
+        "Tag medicinen <span class='highlight'>som aftalt</span>. Dosis afhænger af din situation og præparattypen.",
+        "Voksne bruger ofte <span class='highlight'>250–500 mg</span> én til to gange dagligt, afhængigt af årsagen.",
+        "Tag naproxen sammen med <span class='highlight'>mad</span> eller mælk. Tag ikke dobbeltdosis ved glemt dosis."
       ]},
       side:{ title:"Bivirkninger", small:"", items:[
         "Mavesmerter, halsbrand, kvalme og hovedpine.",
-        "Sjældne men alvorlige: mavesår/blødning og øget risiko for hjerte-kar-hændelser, især ved høj dosis eller langvarig brug."
+        "Sjældne men alvorlige bivirkninger omfatter mavesår og blødning.",
+        "Høj dosis eller langvarig brug kan øge risikoen for hjerte-kar-problemer."
       ]},
       interact:{ title:"Interaktioner", small:"", items:[
-        "Undgå at kombinere med andre NSAID (fx ibuprofen/diclofenac) uden lægens råd.",
-        "Forsigtighed ved blodfortyndende medicin, binyrebarkhormon og visse blodtryks-/nyremidler."
+        "Undgå at kombinere med andre <span class='highlight'>NSAID</span> som ibuprofen eller diclofenac uden lægens råd.",
+        "Vær forsigtig ved blodfortyndende medicin, binyrebarkhormon og visse blodtryks- eller nyremidler."
       ]},
       warn:{ title:"Advarsler", small:"", items:[
-        "Tal med lægen ved tidligere mavesår/blødning, nyre-/leversygdom eller hjertesygdom.",
+        "Tal med lægen ved tidligere mavesår eller blødning, nyre- eller leversygdom eller hjertesygdom.",
         "Søg akut hjælp ved sort afføring, blodig opkast, åndenød eller brystsmerter."
       ]},
       ramadan:{ title:"Ramadan og faste", small:"", items:[
-        "Tabletter gennem munden bryder fasten.",
+        "Tabletter, der tages gennem munden, bryder fasten.",
         "Tal med lægen om plan for dosis efter iftar eller ved suhoor."
       ]},
       food:{ title:"Mad og drikke", small:"", items:[
@@ -360,24 +444,25 @@ const T = {
     drugForm:"Oral tablet",
     sections:{
       use:{ title:"Use", small:"", items:[
-        "Naproxen is an NSAID that reduces <span class='highlight'>pain and inflammation</span>.",
-        "It may be used for joint/muscle pain, back pain, and menstrual pain."
+        "Naproxen is an <span class='highlight'>NSAID</span> that reduces pain and inflammation.",
+        "It may be used for joint pain, muscle pain, back pain, and menstrual pain."
       ]},
       dose:{ title:"Dosage", small:"", items:[
-        "Take <span class='highlight'>as prescribed</span>. The dose depends on your condition and the product type.",
-        "Adults often: <span class='highlight'>250–500 mg</span> <span class='highlight'>1–2 times daily</span>.",
-        "Take with <span class='highlight'>food</span> or milk. Do not double a missed dose."
+        "Take it <span class='highlight'>as prescribed</span>. The dose depends on your condition and the product type.",
+        "Adults often use <span class='highlight'>250–500 mg</span> one to two times daily, depending on the reason for treatment.",
+        "Take it with <span class='highlight'>food</span> or milk. Do not double a missed dose."
       ]},
       side:{ title:"Side effects", small:"", items:[
         "Stomach pain, heartburn, nausea, and headache.",
-        "Rare but serious: ulcers/bleeding and increased cardiovascular risk, especially with higher doses or long-term use."
+        "Rare but serious side effects include stomach ulcers and bleeding.",
+        "Higher doses or long-term use may increase the risk of cardiovascular problems."
       ]},
       interact:{ title:"Interactions", small:"", items:[
-        "Avoid combining with other NSAIDs (e.g., ibuprofen/diclofenac) unless advised.",
-        "Use caution with blood thinners, steroids, and some blood pressure/kidney medicines."
+        "Avoid combining naproxen with other <span class='highlight'>NSAIDs</span> such as ibuprofen or diclofenac unless advised.",
+        "Use caution with blood thinners, steroids, and some blood pressure or kidney medicines."
       ]},
       warn:{ title:"Warnings", small:"", items:[
-        "Talk to a doctor if you have a history of ulcers/bleeding, kidney/liver disease, or heart disease.",
+        "Talk to a doctor if you have a history of ulcers or bleeding, kidney or liver disease, or heart disease.",
         "Seek urgent help for black stools, vomiting blood, shortness of breath, or chest pain."
       ]},
       ramadan:{ title:"Ramadan and fasting", small:"", items:[
@@ -386,7 +471,7 @@ const T = {
       ]},
       food:{ title:"Food and drink", small:"", items:[
         "Take naproxen <span class='highlight'>with food</span> or milk.",
-        "Avoid alcohol as it can increase bleeding risk."
+        "Avoid alcohol because it can increase the risk of stomach bleeding."
       ]},
       store:{ title:"Storage", small:"", items:[
         "Keep out of reach of children and store below 25 °C in the original packaging.",
@@ -398,34 +483,35 @@ const T = {
   },
 
   ar: {
-    title:"نابروكسين – ألم والتهاب",
+    title:"نابروكسين – الألم والالتهاب",
     subtitle:"معلومات مختصرة للمرضى وأفراد الأسرة.",
     back:"العودة إلى قائمة الأدوية",
     langLabel:"اختر اللغة:",
     badge:"معلومات مختصرة وسهلة",
-    drugName:"نابروكسين – ألم والتهاب",
+    drugName:"نابروكسين – الألم والالتهاب",
     drugForm:"أقراص فموية",
     sections:{
       use:{ title:"الاستعمال", small:"", items:[
-        "نابروكسين من مضادات الالتهاب غير الستيرويدية ويخفف <span class='highlight'>الألم والالتهاب</span>.",
-        "يستخدم لآلام المفاصل والعضلات والظهر وآلام الدورة الشهرية."
+        "نابروكسين من مجموعة <span class='highlight'>مضادات الالتهاب غير الستيرويدية</span> ويخفف الألم والالتهاب.",
+        "يُستخدم لآلام المفاصل والعضلات والظهر وآلام الدورة الشهرية."
       ]},
       dose:{ title:"الجرعة", small:"", items:[
         "يؤخذ حسب وصف الطبيب. تختلف الجرعة حسب الحالة ونوع المستحضر.",
-        "غالباً للبالغين: <span class='highlight'>250–500 ملغ</span> <span class='highlight'>مرة إلى مرتين يومياً</span>.",
+        "غالباً للبالغين: <span class='highlight'>250–500 ملغ</span> مرة إلى مرتين يومياً حسب سبب الاستعمال.",
         "يفضل تناوله مع <span class='highlight'>الطعام</span> أو الحليب. لا تضاعف الجرعة عند نسيانها."
       ]},
       side:{ title:"الآثار الجانبية", small:"", items:[
-        "ألم معدة، حرقة، غثيان، صداع.",
-        "نادر لكن خطير: قرحة/نزيف معدي وزيادة خطر مشاكل القلب والأوعية خاصة مع الجرعات العالية أو الاستعمال الطويل."
+        "ألم المعدة، الحرقة، الغثيان، والصداع.",
+        "من الأعراض النادرة لكن الخطيرة: قرحة المعدة أو النزيف.",
+        "الجرعات العالية أو الاستعمال الطويل قد تزيد خطر مشاكل القلب والأوعية."
       ]},
-      interact:{ title:"التداخلات", small:"", items:[
-        "تجنب استخدامه مع NSAID أخرى إلا بتوجيه طبي.",
-        "الحذر مع مميعات الدم والستيرويدات وبعض أدوية الضغط/الكلى."
+      interact:{ title:"التداخلات الدوائية", small:"", items:[
+        "تجنب استخدامه مع أدوية <span class='highlight'>NSAID</span> أخرى مثل إيبوبروفين أو ديكلوفيناك إلا بتوجيه طبي.",
+        "يجب الحذر مع مميعات الدم والستيرويدات وبعض أدوية الضغط أو الكلى."
       ]},
       warn:{ title:"تحذيرات", small:"", items:[
-        "استشر الطبيب إذا كان لديك قرحة/نزيف سابق أو مرض كلى/كبد أو مرض قلبي.",
-        "اطلب مساعدة عاجلة عند براز أسود أو تقيؤ دم أو ضيق نفس أو ألم صدر."
+        "استشر الطبيب إذا كان لديك قرحة أو نزيف سابق أو مرض كلى أو كبد أو مرض قلبي.",
+        "اطلب مساعدة عاجلة عند براز أسود أو تقيؤ دم أو ضيق نفس أو ألم في الصدر."
       ]},
       ramadan:{ title:"رمضان والصيام", small:"", items:[
         "الأقراص الفموية تُفطر.",
@@ -433,250 +519,15 @@ const T = {
       ]},
       food:{ title:"الطعام والشراب", small:"", items:[
         "تناوله <span class='highlight'>مع الطعام</span> أو الحليب.",
-        "تجنب الكحول لأنه قد يزيد خطر النزيف."
+        "تجنب الكحول لأنه قد يزيد خطر نزيف المعدة."
       ]},
       store:{ title:"الحفظ", small:"", items:[
-        "يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.",
+        "يُحفظ بعيداً عن الأطفال، تحت 25°م، وفي العبوة الأصلية.",
         "لا يستخدم بعد تاريخ الانتهاء. أعد البقايا إلى الصيدلية."
       ]}
     },
     footerHTML:"للمزيد من المعلومات تواصل مع <span class='highlight'>الصيدلية</span> أو طبيبك.",
     creditHTML:"إعداد: إبراهيم ظاهر حنف"
-  },
-
-  tr: {
-    title:"Naproksen – ağrı ve iltihap",
-    subtitle:"Hasta ve yakınları için kısa bilgi.",
-    back:"İlaç listesine geri dön",
-    langLabel:"Dil seçin:",
-    badge:"Kısa ve anlaşılır",
-    drugName:"Naproksen – ağrı ve iltihap",
-    drugForm:"Ağızdan alınan tablet",
-    sections:{
-      use:{ title:"Kullanım", small:"", items:[
-        "Naproksen bir NSAİİ’dir ve <span class='highlight'>ağrı ile iltihabı</span> azaltır.",
-        "Eklem/kas ağrıları, bel ağrısı ve adet sancısında kullanılabilir."
-      ]},
-      dose:{ title:"Doz", small:"", items:[
-        "Doktorun söylediği şekilde alın. Doz, duruma ve ürün tipine göre değişir.",
-        "Yetişkinlerde sık: <span class='highlight'>250–500 mg</span> <span class='highlight'>günde 1–2 kez</span>.",
-        "<span class='highlight'>Yemekle</span> veya sütle alın. Unutulan dozu iki kat almayın."
-      ]},
-      side:{ title:"Yan etkiler", small:"", items:[
-        "Mide ağrısı, mide yanması, bulantı, baş ağrısı.",
-        "Nadir ama ciddi: mide ülseri/kanama ve özellikle uzun kullanımda veya yüksek dozda kalp-damar riskinde artış."
-      ]},
-      interact:{ title:"Etkileşimler", small:"", items:[
-        "Diğer NSAİİ’lerle birlikte kullanmayın (doktor önermedikçe).",
-        "Kan sulandırıcılar, steroidler ve bazı tansiyon/böbrek ilaçlarıyla dikkat."
-      ]},
-      warn:{ title:"Uyarılar", small:"", items:[
-        "Ülser/kanama öyküsü, böbrek/karaciğer veya kalp hastalığınız varsa doktora danışın.",
-        "Siyah dışkı, kanlı kusma, nefes darlığı veya göğüs ağrısında acil yardım alın."
-      ]},
-      ramadan:{ title:"Ramazan ve oruç", small:"", items:[
-        "Tablet orucu bozar.",
-        "İftar sonrası veya sahurda kullanım planı için doktorla görüşün."
-      ]},
-      food:{ title:"Yiyecek ve içecek", small:"", items:[
-        "<span class='highlight'>Yemekle</span> veya sütle alın.",
-        "Alkolü kaçının çünkü kanama riskini artırabilir."
-      ]},
-      store:{ title:"Saklama", small:"", items:[
-        "Çocuklardan uzak, 25 °C’nin altında, orijinal ambalajında saklayın.",
-        "Son kullanma tarihinden sonra kullanmayın. Artanları eczaneye verin."
-      ]}
-    },
-    footerHTML:"Daha fazla bilgi için <span class='highlight'>eczane</span> veya doktorunuza başvurun.",
-    creditHTML:"Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    title:"نیپروکسن – درد اور سوزش",
-    subtitle:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    back:"فہرست پر واپس جائیں",
-    langLabel:"زبان منتخب کریں:",
-    badge:"مختصر اور آسان",
-    drugName:"نیپروکسن – درد اور سوزش",
-    drugForm:"منہ کے ذریعے لینے والی گولی",
-    sections:{
-      use:{ title:"استعمال", small:"", items:[
-        "نیپروکسن ایک NSAID ہے جو <span class='highlight'>درد اور سوزش</span> کم کرتی ہے۔",
-        "جوڑوں/پٹھوں کے درد، کمر درد اور ماہواری کے درد میں استعمال ہو سکتی ہے۔"
-      ]},
-      dose:{ title:"خوراک", small:"", items:[
-        "ڈاکٹر کے مطابق لیں۔ خوراک حالت اور دوا کی قسم پر منحصر ہے۔",
-        "بالغ: اکثر <span class='highlight'>250–500 mg</span> <span class='highlight'>دن میں 1–2 بار</span>۔",
-        "<span class='highlight'>کھانے</span> یا دودھ کے ساتھ لیں۔ بھولی ہوئی خوراک دوگنی نہ کریں۔"
-      ]},
-      side:{ title:"مضر اثرات", small:"", items:[
-        "پیٹ درد، تیزابیت، متلی، سر درد۔",
-        "کم مگر سنگین: معدے کا السر/خون بہنا اور خاص طور پر زیادہ خوراک یا طویل استعمال میں دل کے خطرات بڑھ سکتے ہیں۔"
-      ]},
-      interact:{ title:"دواؤں کے باہمی اثرات", small:"", items:[
-        "دیگر NSAIDs کے ساتھ نہ لیں (جب تک ڈاکٹر نہ کہیں)۔",
-        "خون پتلا کرنے والی دوائیں، سٹیرائڈز اور کچھ بلڈ پریشر/گردوں کی دوائیں خطرہ بڑھا سکتی ہیں۔"
-      ]},
-      warn:{ title:"احتیاطیں", small:"", items:[
-        "اگر پہلے السر/خون بہنا ہوا ہو، گردے/جگر یا دل کی بیماری ہو تو ڈاکٹر سے مشورہ کریں۔",
-        "کالا پاخانہ، خون کی الٹی، سانس میں تکلیف یا سینے کے درد پر فوری مدد لیں۔"
-      ]},
-      ramadan:{ title:"رمضان اور روزہ", small:"", items:[
-        "گولی روزہ توڑتی ہے۔",
-        "افطار کے بعد یا سحری میں خوراک کے لیے ڈاکٹر سے مشورہ کریں۔"
-      ]},
-      food:{ title:"کھانا پینا", small:"", items:[
-        "<span class='highlight'>کھانے</span> یا دودھ کے ساتھ لیں۔",
-        "الکحل سے پرہیز کریں کیونکہ خون بہنے کا خطرہ بڑھ سکتا ہے۔"
-      ]},
-      store:{ title:"محفوظ رکھنا", small:"", items:[
-        "بچوں کی پہنچ سے دور، 25 °C سے کم اور اصل پیک میں رکھیں۔",
-        "میعاد ختم ہونے کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"
-      ]}
-    },
-    footerHTML:"مزید معلومات کے لیے <span class='highlight'>فارمیسی</span> یا ڈاکٹر سے رابطہ کریں۔",
-    creditHTML:"مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    title:"ناپروکسن – درد و التهاب",
-    subtitle:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    back:"بازگشت به فهرست داروها",
-    langLabel:"انتخاب زبان:",
-    badge:"کوتاه و قابل‌فهم",
-    drugName:"ناپروکسن – درد و التهاب",
-    drugForm:"قرص خوراکی",
-    sections:{
-      use:{ title:"موارد مصرف", small:"", items:[
-        "ناپروکسن یک NSAID است و <span class='highlight'>درد و التهاب</span> را کاهش می‌دهد.",
-        "برای درد مفاصل/عضلات، کمردرد و درد قاعدگی استفاده می‌شود."
-      ]},
-      dose:{ title:"مقدار مصرف", small:"", items:[
-        "طبق دستور پزشک مصرف کنید. مقدار مصرف به شرایط و نوع فرآورده بستگی دارد.",
-        "بزرگسالان: اغلب <span class='highlight'>250–500 میلی‌گرم</span> <span class='highlight'>۱–۲ بار در روز</span>.",
-        "با <span class='highlight'>غذا</span> یا شیر مصرف کنید. دوز فراموش‌شده را دو برابر نکنید."
-      ]},
-      side:{ title:"عوارض جانبی", small:"", items:[
-        "درد معده، سوزش معده، تهوع و سردرد.",
-        "نادر اما جدی: زخم/خونریزی معده و افزایش خطر مشکلات قلبی-عروقی به‌ویژه در دوز بالا یا مصرف طولانی."
-      ]},
-      interact:{ title:"تداخل‌های دارویی", small:"", items:[
-        "همزمان با NSAID دیگر مصرف نکنید مگر با نظر پزشک.",
-        "با رقیق‌کننده‌های خون، استروئیدها و برخی داروهای فشار خون/کلیه احتیاط کنید."
-      ]},
-      warn:{ title:"هشدارها", small:"", items:[
-        "اگر سابقه زخم/خونریزی معده، بیماری کلیه/کبد یا بیماری قلبی دارید با پزشک مشورت کنید.",
-        "مدفوع سیاه، استفراغ خونی، تنگی نفس یا درد قفسه سینه نیاز به کمک فوری دارد."
-      ]},
-      ramadan:{ title:"رمضان و روزه", small:"", items:[
-        "قرص خوراکی روزه را باطل می‌کند.",
-        "برای برنامه مصرف بعد از افطار یا سحری با پزشک مشورت کنید."
-      ]},
-      food:{ title:"غذا و نوشیدنی", small:"", items:[
-        "با <span class='highlight'>غذا</span> یا شیر مصرف کنید.",
-        "از الکل پرهیز کنید چون خطر خونریزی را افزایش می‌دهد."
-      ]},
-      store:{ title:"نگهداری", small:"", items:[
-        "دور از دسترس کودکان، زیر 25 °C و در بسته‌بندی اصلی نگهداری شود.",
-        "پس از تاریخ انقضا مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."
-      ]}
-    },
-    footerHTML:"برای اطلاعات بیشتر با <span class='highlight'>داروخانه</span> یا پزشک خود تماس بگیرید.",
-    creditHTML:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    title:"ناپروکسن – درد و التهاب",
-    subtitle:"معلومات کوتاه برای مریضان و خانواده‌ها.",
-    back:"بازگشت به فهرست دواها",
-    langLabel:"انتخاب زبان:",
-    badge:"کوتاه و واضح",
-    drugName:"ناپروکسن – درد و التهاب",
-    drugForm:"قرص خوراکی",
-    sections:{
-      use:{ title:"موارد استعمال", small:"", items:[
-        "ناپروکسن یک NSAID است و <span class='highlight'>درد و التهاب</span> را کم می‌کند.",
-        "برای درد مفاصل/عضلات، کمردرد و درد عادت ماهانه استفاده می‌شود."
-      ]},
-      dose:{ title:"مقدار مصرف", small:"", items:[
-        "طبق مشوره داکتر بگیرید. مقدار مصرف به حالت و نوع دوا بستگی دارد.",
-        "بزرگسالان: اغلب <span class='highlight'>250–500 mg</span> <span class='highlight'>۱–۲ بار در روز</span>.",
-        "با <span class='highlight'>غذا</span> یا شیر بگیرید. دوز فراموش‌شده را دو برابر نکنید."
-      ]},
-      side:{ title:"عوارض جانبی", small:"", items:[
-        "درد معده، سوزش معده، تهوع و سردرد.",
-        "نادر اما جدی: زخم/خون‌ریزی معده و افزایش خطر مشکلات قلبی-عروقی، مخصوصاً در دوز بالا یا استفاده طولانی."
-      ]},
-      interact:{ title:"تداخلات دوایی", small:"", items:[
-        "با NSAID دیگر همزمان نگیرید مگر با نظر داکتر.",
-        "با رقیق‌کننده‌های خون، استروئیدها و برخی دواهای فشار خون/کلیه احتیاط کنید."
-      ]},
-      warn:{ title:"هشدارها", small:"", items:[
-        "اگر سابقه زخم/خون‌ریزی معده، بیماری کلیه/کبد یا بیماری قلبی دارید، با داکتر مشوره کنید.",
-        "مدفوع سیاه، قی خونی، نفس‌تنگی یا درد قفسه سینه نیاز به کمک فوری دارد."
-      ]},
-      ramadan:{ title:"رمضان و روزه", small:"", items:[
-        "قرص خوراکی روزه را می‌شکند.",
-        "برای تنظیم مصرف بعد از افطار یا سحری با داکتر مشوره کنید."
-      ]},
-      food:{ title:"غذا و نوشیدنی", small:"", items:[
-        "با <span class='highlight'>غذا</span> یا شیر بگیرید.",
-        "از الکول دوری کنید چون خطر خون‌ریزی را زیاد می‌کند."
-      ]},
-      store:{ title:"نگهداری", small:"", items:[
-        "دور از دسترس اطفال، زیر 25 °C و در بسته‌بندی اصلی نگه‌داری کنید.",
-        "بعد از تاریخ انقضا استفاده نکنید. باقی‌مانده را به دواخانه بسپارید."
-      ]}
-    },
-    footerHTML:"برای معلومات بیشتر با <span class='highlight'>دواخانه</span> یا داکتر خود تماس بگیرید.",
-    creditHTML:"تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    title:"ناپروکسن – درد او التهاب",
-    subtitle:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    back:"د درملو لېست ته بېرته",
-    langLabel:"ژبه وټاکئ:",
-    badge:"لنډ او اسانه",
-    drugName:"ناپروکسن – درد او التهاب",
-    drugForm:"د خولې ګولۍ",
-    sections:{
-      use:{ title:"کارونه", small:"", items:[
-        "ناپروکسن NSAID دی او <span class='highlight'>درد او التهاب</span> کموي.",
-        "د مفصلونو/عضلو درد، د ملا درد او د میاشتني درد لپاره کارېږي."
-      ]},
-      dose:{ title:"دوز", small:"", items:[
-        "د ډاکټر له سپارښتنې سره سم واخلئ. دوز د حالت او درمل ډول پورې تړاو لري.",
-        "لویان: اکثر <span class='highlight'>250–500 mg</span> <span class='highlight'>په ورځ کې ۱–۲ ځله</span>.",
-        "له <span class='highlight'>خوړو</span> یا شیدو سره واخلئ. هېر شوی دوز دوه چنده مه اخلئ."
-      ]},
-      side:{ title:"اړخیزې اغېزې", small:"", items:[
-        "د معدې درد، سوځښت، زړه بدوالی او سر درد.",
-        "نادر خو جدي: د معدې زخم/وینه‌بهېدل او په لوړ دوز یا اوږده موده کې د زړه-رګونو خطر زیاتېدای شي."
-      ]},
-      interact:{ title:"تداخلات", small:"", items:[
-        "له نورو NSAID درملو سره مه ګډوئ (پرته له طبي مشورې).",
-        "له وینې نری کوونکو، سټېروېډونو او ځینو د فشار/پښتورګو درملو سره احتیاط وکړئ."
-      ]},
-      warn:{ title:"خبرداری", small:"", items:[
-        "که د معدې زخم/وینه‌بهېدل، د پښتورګو/ځیګر یا د زړه ناروغي لرئ له ډاکټر سره مشوره وکړئ.",
-        "تور غایطه، وینه‌دار کانګې، ساه لنډي یا د سینې درد بیړنۍ پاملرنه غواړي."
-      ]},
-      ramadan:{ title:"رمضان او روژه", small:"", items:[
-        "د خولې له لارې ګولۍ روژه ماتوي.",
-        "له ډاکټر سره د افطار وروسته یا سحري دوز په اړه سلا وکړئ."
-      ]},
-      food:{ title:"خواړه او څښاک", small:"", items:[
-        "له <span class='highlight'>خوړو</span> یا شیدو سره یې واخلئ.",
-        "له الکول څخه ډډه وکړئ ځکه د وینې بهېدو خطر زیاتوي."
-      ]},
-      store:{ title:"ساتنه", small:"", items:[
-        "له ماشومانو لرې، تر 25 °C لاندې او په اصلي بسته کې وساتئ.",
-        "د ختمېدو نېټې وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."
-      ]}
-    },
-    footerHTML:"د نورو معلوماتو لپاره له <span class='highlight'>درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
-    creditHTML:"چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
 
@@ -706,6 +557,7 @@ function setSmall(id, txt){
 }
 
 function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
 
   setDirLang(lang);
@@ -769,10 +621,11 @@ function render(lang){
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
 const select = document.getElementById("langSelect");
-select.value = (T[startLang] ? startLang : "so");
+select.value = startLang;
 
 render(select.value);
 select.addEventListener("change", function(){
