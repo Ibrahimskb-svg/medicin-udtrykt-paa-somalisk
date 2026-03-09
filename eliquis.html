@@ -1,225 +1,323 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="so">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Eliquis (apixaban) – blodfortyndende</title>
+<title>Eliquis (apixaban) – dhiig-khafiifiye</title>
 
 <style>
 :root{
-  --accent:#00a676;
-  --c1:#0066cc;
-  --c2:#00a676;
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
 
-  --badgeBg:#d9f6e8;
-  --badgeText:#16634a;
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
 
-  --iconBg:#e3f2fd;
-  --iconStroke:#1a73e8;
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
 }
 
-body{ font-family:Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{ transition: background .45s ease, color .35s ease; }
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
 header{
-  background:linear-gradient(135deg,var(--c1),var(--c2));
-  color:#fff; padding:22px 16px; text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
-  transition:background 260ms ease;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1{ margin:0 0 4px; font-size:1.8rem; }
-header p{ margin:0; font-size:0.95rem; }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{
+  max-width: 820px;
+  margin: 18px auto 32px;
+  padding: 0 14px;
+}
 
 a.back{
-  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
-  text-decoration:none; color:var(--accent); font-size:0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
 }
-a.back span{ font-size:1.1rem; }
+a.back span{ font-size: 1.1rem; }
 
 .langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#fff; border-radius:12px; padding:10px 12px;
-  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 .card{
-  background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12);
-  border-top:4px solid var(--accent);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid var(--accent1);
 }
 
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{
-  width:44px; height:44px; border-radius:12px;
-  background:var(--iconBg);
-  display:flex; align-items:center; justify-content:center;
+.drug-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.drug-icon svg{ width:30px; height:30px; }
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drug-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drug-icon svg{ width: 30px; height: 30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.drug-icon svg .fill{ fill:#e8f3ff; }
+
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
 
 .badge{
-  display:inline-flex; align-items:center; gap:6px;
-  background:var(--badgeBg); color:var(--badgeText);
-  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--pillBg);
+  color: var(--pillText);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section-title small{ font-weight:400; color:#607089; }
-
+.section{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
+}
+.section-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
 .section-icon{
-  width:24px; height:24px; border-radius:999px;
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
 }
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section li{ margin-bottom:4px; }
+.section-title{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.section-title small{
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
 
-.highlight{ font-weight:600; }
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.section ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
+}
+.section ul li{ margin-bottom: 4px; }
+
+.highlight{ font-weight: 600; }
+
+.footer-note{
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
+}
+
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
+}
 </style>
 </head>
 
 <body>
+
 <header>
-  <h1 id="hdrH1">Eliquis (apixaban) – blodfortyndende</h1>
-  <p id="hdrP">Kort og let information om lægemidlet – til patienter og pårørende.</p>
+  <h1 id="hdrTitle">Eliquis (apixaban) – dhiig-khafiifiye</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
-  <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect" id="langLabel">Vælg sprog:</label>
+
+  <div class="langbar" aria-label="Language selector">
+    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
-      <option value="so">Somalisk</option>
-      <option value="da" selected>Dansk</option>
+      <option value="so" selected>Somalisk</option>
+      <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Tilbage til medicinlisten</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--iconStroke)" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--iconStroke)" stroke-width="4"/>
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Eliquis (apixaban)</div>
-          <div class="drug-form" id="drugForm">Tablet (til at tage gennem munden)</div>
+          <div class="drug-name" id="drugName">Eliquis (apixaban) – dhiig-khafiifiye</div>
+          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Kort og let</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Hvad er Eliquis?</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
-      <ul id="sec0List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Hvad bruges det til?</div>
-      </div>
-      <ul id="sec1List"></ul>
+      <ul id="useList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sådan tages medicinen</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
-      <ul id="sec2List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Mad og drikke</div>
-      </div>
-      <ul id="sec3List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Advarsler</div>
-      </div>
-      <ul id="sec4List"></ul>
+      <ul id="doseList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Bivirkninger</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
-      <ul id="sec5List"></ul>
+      <ul id="sideList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Interaktioner</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
-      <ul id="sec6List"></ul>
+      <ul id="interactList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+      </div>
+      <ul id="warnList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadan og faste</div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
       </div>
-      <ul id="sec7List"></ul>
+      <ul id="ramadanList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+      </div>
+      <ul id="foodList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Opbevaring</div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
       </div>
-      <ul id="sec8List"></ul>
+      <ul id="storeList"></ul>
     </div>
   </div>
 
-  <div class="footer-note" id="footer1"></div>
-  <div class="footer-note" id="footer2"></div>
+  <div class="footer-note" id="footerNote"></div>
 </main>
 
+<div class="footer-note" id="credit"></div>
+
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
 
 const THEMES = {
   so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
@@ -229,666 +327,304 @@ const THEMES = {
 };
 
 function applyTheme(lang){
-  const th = THEME[lang] || THEME.so;
-  document.documentElement.style.setProperty("--c1", th.c1);
-  document.documentElement.style.setProperty("--c2", th.c2);
-  document.documentElement.style.setProperty("--accent", th.accent);
-  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
-  document.documentElement.style.setProperty("--badgeText", th.badgeText);
-  document.documentElement.style.setProperty("--iconBg", th.iconBg);
-  document.documentElement.style.setProperty("--iconStroke", th.iconStroke);
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
 }
+
+const T = {
+  so: {
+    title: "Eliquis (apixaban) – dhiig-khafiifiye",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Eliquis (apixaban) – dhiig-khafiifiye",
+    drugForm: "Kiniin afka ah",
+    sections: {
+      use: { title:"Isticmaalka", small:"", items:[
+        "Eliquis (apixaban) waa <span class='highlight'>dhiig-khafiifiye</span> loo isticmaalo si loo yareeyo khatarta xinjirowga dhiigga.",
+        "Waxaa loo isticmaalaa dadka qaarkood ee qaba <span class='highlight'>atrial fibrillation</span> iyo daaweynta ama ka hortagga DVT iyo PE."
+      ]},
+      dose: { title:"Qiyaasta", small:"", items:[
+        "Qaado daawada <span class='highlight'>sida dhakhtarku kuu qoray</span>. Dad badan waxay qaataan 2 jeer maalintii, laakiin raac qorshahaaga gaarka ah.",
+        "Haddii aad hilmaanto qiyaas, qaado markaad xasuusato isla maalintaas. <span class='highlight'>Ha qaadan laba qiyaas mar keliya</span>."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"", items:[
+        "Waxyeellada ugu muhiimsan waa <span class='highlight'>dhiig-bax</span>.",
+        "Qaar waxay yeelan karaan nabarro fudud, sanka dhiig, ama dhiig-bax dheer haddii ay dhaawacmaan."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
+        "NSAID sida ibuprofen ama naproxen iyo dhiig-khafiifiyeyaal kale waxay kordhin karaan halista dhiig-baxa.",
+        "Qaar ka mid ah antibiyootikada, daawooyinka fangaska, iyo dawooyinka dhirta waxay beddeli karaan saameynta Eliquis. U sheeg dhakhtarka ama farmashiistaha dhammaan daawooyinka aad qaadato."
+      ]},
+      warn: { title:"Digniino", small:"", items:[
+        "La xiriir dhakhtar degdeg ah haddii aad aragto calaamado dhiig-bax sida dhiig ku jira kaadida ama saxarada, saxaro madow, matag dhiig, ama nabarro badan oo aan caadi ahayn.",
+        "U sheeg dhakhtar ama ilko-dhakhtar ka hor qalliin ama daaweyn ilko.",
+        "Ha joojin daawada adiga oo aan la tashan dhakhtar, sababtoo ah khatarta xinjirowga dhiigga way kordhi kartaa."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
+        "La hadal dhakhtarka ka hor Ramadaan si loo sameeyo qorshe ammaan ah.",
+        "Haddii daawadu tahay 2 jeer maalintii, badanaa waxaa lagu habeyn karaa <span class='highlight'>afurka</span> iyo <span class='highlight'>suxuurta</span> sida dhakhtarku ku faro.",
+        "Ha beddelin waqtiga ama qiyaasta adiga oo aan talo caafimaad helin."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
+        "Daawadan waxaa la qaadan karaa adigoon wax cunin ama adigoo cunno la qaadanaya.",
+        "Ku qaado biyo.",
+        "Ka fogow cabbitaanka khamriga badan, maadaama uu kordhin karo halista dhiig-baxa."
+      ]},
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Ku hay meel ka fog carruurta yar yar, kuna hay baakadka asalka ah.",
+        "Ha isticmaalin ka dib taariikhda dhicitaanka.",
+        "Daawooyinka soo hara ku celi farmashiyaha."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
+
+  da: {
+    title: "Eliquis (apixaban) – blodfortyndende",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    badge: "Kort og let at læse",
+    drugName: "Eliquis (apixaban) – blodfortyndende",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Eliquis (apixaban) er et <span class='highlight'>blodfortyndende</span> lægemiddel, som mindsker risikoen for blodpropper.",
+        "Det bruges hos nogle patienter med <span class='highlight'>atrieflimren</span> samt til behandling og forebyggelse af DVT og lungeemboli."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Tag medicinen <span class='highlight'>præcis som ordineret</span>. Mange tager den 2 gange dagligt, men du skal altid følge din egen behandlingsplan.",
+        "Glemt dosis: tag den, så snart du husker det samme dag. <span class='highlight'>Tag ikke dobbeltdosis</span>."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Den vigtigste bivirkning er <span class='highlight'>blødning</span>.",
+        "Nogle får lettere blå mærker, næseblod eller længere blødningstid ved sår."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "NSAID som ibuprofen og naproxen samt anden blodfortyndende medicin kan øge risikoen for blødning.",
+        "Visse antibiotika, svampemidler og naturmidler kan ændre virkningen af Eliquis. Fortæl altid lægen eller apoteket om al medicin, du bruger."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Kontakt straks læge ved tegn på blødning som blod i urin eller afføring, sort afføring, blodigt opkast eller mange uforklarlige blå mærker.",
+        "Fortæl altid læge eller tandlæge, at du tager Eliquis, før operation eller indgreb.",
+        "Stop <span class='highlight'>ikke</span> behandlingen uden aftale med lægen, da risikoen for blodprop kan stige."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Tal med lægen før Ramadan om en sikker plan.",
+        "Hvis medicinen tages 2 gange dagligt, kan den ofte lægges ved <span class='highlight'>iftar</span> og <span class='highlight'>suhoor</span> efter lægens plan.",
+        "Ændr ikke dosis eller tidspunkt uden aftale."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Medicinen kan tages med eller uden mad.",
+        "Synk tabletten med vand.",
+        "Undgå større alkoholindtag, da det kan øge risikoen for blødning."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar medicinen utilgængeligt for børn og i original emballage.",
+        "Brug ikke medicinen efter udløbsdatoen.",
+        "Aflever rester på apoteket."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Eliquis (apixaban) – blood thinner",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    langLabel: "Choose language:",
+    badge: "Short and easy to read",
+    drugName: "Eliquis (apixaban) – blood thinner",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Eliquis (apixaban) is a <span class='highlight'>blood thinner</span> that lowers the risk of blood clots.",
+        "It is used in some people with <span class='highlight'>atrial fibrillation</span> and for treatment or prevention of DVT and pulmonary embolism."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Take it <span class='highlight'>exactly as prescribed</span>. Many people take it twice daily, but always follow your own treatment plan.",
+        "If you miss a dose, take it as soon as you remember on the same day. <span class='highlight'>Do not double the dose</span>."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "The main side effect is <span class='highlight'>bleeding</span>.",
+        "Some people may notice easy bruising, nosebleeds, or longer bleeding time after cuts."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "NSAIDs such as ibuprofen and naproxen and other blood thinners can increase bleeding risk.",
+        "Some antibiotics, antifungal medicines, and herbal products can change the effect of Eliquis. Tell your doctor or pharmacy about all medicines you use."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "Seek medical help quickly if you notice signs of bleeding such as blood in urine or stool, black stools, vomiting blood, or unusual bruising.",
+        "Always tell doctors or dentists that you take Eliquis before an operation or procedure.",
+        "Do <span class='highlight'>not</span> stop treatment without medical advice, because the risk of blood clots may increase."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Talk to your doctor before Ramadan to make a safe plan.",
+        "If the medicine is taken twice daily, it can often be scheduled at <span class='highlight'>iftar</span> and <span class='highlight'>suhoor</span> as advised by the doctor.",
+        "Do not change the dose or timing on your own."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "This medicine can be taken with or without food.",
+        "Swallow the tablet with water.",
+        "Avoid heavy alcohol use because it may increase bleeding risk."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store in the original packaging.",
+        "Do not use after the expiry date.",
+        "Return leftover medicine to the pharmacy."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "إليكويس (أبيكسابان) – مميع للدم",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "إليكويس (أبيكسابان) – مميع للدم",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "إليكويس (أبيكسابان) هو <span class='highlight'>مميع للدم</span> يقلل خطر تكوّن الجلطات.",
+        "يُستخدم لدى بعض المرضى المصابين <span class='highlight'>بالرجفان الأذيني</span> وكذلك لعلاج أو الوقاية من الخثار الوريدي العميق والانصمام الرئوي."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "يُؤخذ <span class='highlight'>تماماً حسب وصف الطبيب</span>. كثير من المرضى يتناولونه مرتين يومياً، لكن يجب اتباع خطتك العلاجية الخاصة.",
+        "إذا نسيت جرعة، خذها عندما تتذكر في نفس اليوم. <span class='highlight'>لا تضاعف الجرعة</span>."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "أهم أثر جانبي هو <span class='highlight'>النزيف</span>.",
+        "قد يحدث ظهور كدمات بسهولة أو نزيف من الأنف أو استمرار النزيف مدة أطول بعد الجروح."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "مضادات الالتهاب مثل الإيبوبروفين والنابروكسين ومميعات الدم الأخرى قد تزيد خطر النزيف.",
+        "بعض المضادات الحيوية ومضادات الفطريات والأدوية العشبية قد تغيّر تأثير إليكويس. أخبر الطبيب أو الصيدلية بكل الأدوية التي تستعملها."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "اطلب المساعدة الطبية بسرعة إذا ظهرت علامات نزيف مثل دم في البول أو البراز، براز أسود، تقيؤ دم، أو كدمات غير معتادة.",
+        "أخبر الطبيب أو طبيب الأسنان دائماً أنك تستخدم إليكويس قبل أي عملية أو إجراء.",
+        "لا <span class='highlight'>توقف</span> العلاج دون استشارة طبية لأن خطر الجلطات قد يزداد."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "ناقش مع الطبيب خطة آمنة قبل رمضان.",
+        "إذا كان الدواء يؤخذ مرتين يومياً، فيمكن غالباً تنظيمه عند <span class='highlight'>الإفطار</span> و<span class='highlight'>السحور</span> حسب تعليمات الطبيب.",
+        "لا تغيّر الجرعة أو التوقيت بنفسك."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يمكن تناول الدواء مع الطعام أو بدونه.",
+        "ابتلع القرص مع الماء.",
+        "تجنب الإفراط في الكحول لأنه قد يزيد خطر النزيف."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وفي العبوة الأصلية.",
+        "لا تستخدمه بعد تاريخ الانتهاء.",
+        "أعد الأدوية المتبقية إلى الصيدلية."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  }
+};
+
+function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
 
-function fillList(id, arr){
-  const ul = document.getElementById(id);
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
   ul.innerHTML = "";
-  (arr || []).forEach(txt => {
+  (items || []).forEach(html => {
     const li = document.createElement("li");
-    li.innerHTML = txt;
+    li.innerHTML = html;
     ul.appendChild(li);
   });
 }
 
-function setSectionTitle(elId, title){
-  const el = document.getElementById(elId);
-  if(!el) return;
-  el.textContent = (title || "").trim();
+function setSmall(id, txt){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (txt || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
 }
 
-const T = {
-  da:{
-    pageTitle:"Eliquis (apixaban) – blodfortyndende",
-    hdrH1:"Eliquis (apixaban) – blodfortyndende",
-    hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
-    backText:"Tilbage til medicinlisten",
-    langLabel:"Vælg sprog:",
-    drugName:"Eliquis (apixaban)",
-    drugForm:"Tablet (til at tage gennem munden)",
-    badgeText:"Kort og let",
+function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
+  const d = T[lang] || T.so;
 
-    sec0Title:"Hvad er Eliquis?",
-    sec0:[
-      "Eliquis er et <span class='highlight'>blodfortyndende</span> lægemiddel.",
-      "Det mindsker risikoen for <span class='highlight'>blodpropper</span>."
-    ],
-    sec1Title:"Hvad bruges det til?",
-    sec1:[
-      "Forebyggelse af blodpropper ved <span class='highlight'>atrieflimren</span> hos nogle patienter.",
-      "Behandling og forebyggelse af <span class='highlight'>DVT</span> og <span class='highlight'>LE</span> efter lægens plan."
-    ],
-    sec2Title:"Sådan tages medicinen",
-    sec2:[
-      "Tag medicinen <span class='highlight'>præcis som ordineret</span>.",
-      "Tages ofte <span class='highlight'>2 gange dagligt</span> hos mange, men følg altid din egen plan.",
-      "Glemt dosis: tag den så snart du husker det og fortsæt derefter normalt. <span class='highlight'>Tag ikke dobbeltdosis</span>."
-    ],
-    sec3Title:"Mad og drikke",
-    sec3:[
-      "Kan tages <span class='highlight'>med eller uden mad</span>.",
-      "Synkes med <span class='highlight'>et glas vand</span>.",
-      "Undgå større alkoholindtag, da det kan øge risikoen for blødning hos nogle."
-    ],
-    sec4Title:"Advarsler",
-    sec4:[
-      "Kontakt læge straks ved tegn på <span class='highlight'>blødning</span> som blod i urin eller afføring, sort afføring, opkast med blod eller usædvanlige blå mærker.",
-      "Fortæl altid læge eller tandlæge om Eliquis før operation eller indgreb.",
-      "Stop <span class='highlight'>ikke</span> behandlingen uden aftale, da risikoen for blodprop kan stige."
-    ],
-    sec5Title:"Bivirkninger",
-    sec5:[
-      "Den vigtigste bivirkning er <span class='highlight'>blødning</span>.",
-      "Nogle får lette blå mærker eller næseblod."
-    ],
-    sec6Title:"Interaktioner",
-    sec6:[
-      "NSAID som ibuprofen og naproxen samt anden blodfortyndende medicin kan øge blødningsrisikoen.",
-      "Visse antibiotika, svampemidler og naturmidler kan påvirke effekten. Fortæl altid om al medicin du tager."
-    ],
-    sec7Title:"Ramadan og faste",
-    sec7:[
-      "Tal med lægen før Ramadan om en sikker plan.",
-      "Ved 2 doser dagligt kan det ofte planlægges ved <span class='highlight'>iftar</span> og <span class='highlight'>suhoor</span> efter lægens plan.",
-      "Ændr ikke dosis eller tidspunkt uden aftale."
-    ],
-    sec8Title:"Opbevaring",
-    sec8:[
-      "Opbevares utilgængeligt for børn og i original emballage.",
-      "Brug ikke efter “EXP”. Aflever rester på apoteket."
-    ],
-
-    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en:{
-    pageTitle:"Eliquis (apixaban) – blood thinner",
-    hdrH1:"Eliquis (apixaban) – blood thinner",
-    hdrP:"Brief medicine information for patients and relatives.",
-    backText:"Back to the medicine list",
-    langLabel:"Choose language:",
-    drugName:"Eliquis (apixaban)",
-    drugForm:"Tablet (by mouth)",
-    badgeText:"Short and clear",
-
-    sec0Title:"What is Eliquis?",
-    sec0:[
-      "Eliquis is a <span class='highlight'>blood thinner</span>.",
-      "It reduces the risk of <span class='highlight'>blood clots</span>."
-    ],
-    sec1Title:"What is it used for?",
-    sec1:[
-      "Preventing clots in some people with <span class='highlight'>atrial fibrillation</span>.",
-      "Treating and preventing <span class='highlight'>DVT</span> and <span class='highlight'>PE</span> as prescribed."
-    ],
-    sec2Title:"How to take",
-    sec2:[
-      "Take <span class='highlight'>exactly as prescribed</span>.",
-      "Often taken <span class='highlight'>twice daily</span> for many people, but follow your own plan.",
-      "Missed dose: take it when remembered and continue as usual. <span class='highlight'>Do not double dose</span>."
-    ],
-    sec3Title:"Food and drink",
-    sec3:[
-      "Can be taken <span class='highlight'>with or without food</span>.",
-      "Swallow with <span class='highlight'>a glass of water</span>.",
-      "Avoid heavy alcohol use as it may increase bleeding risk."
-    ],
-    sec4Title:"Warnings",
-    sec4:[
-      "Seek medical help for signs of <span class='highlight'>bleeding</span> such as blood in urine or stool, black stools, vomiting blood or unusual bruising.",
-      "Tell doctors and dentists before procedures.",
-      "Do <span class='highlight'>not</span> stop treatment without medical advice."
-    ],
-    sec5Title:"Side effects",
-    sec5:[
-      "Main side effect: <span class='highlight'>bleeding</span>.",
-      "Easy bruising or nosebleeds may occur."
-    ],
-    sec6Title:"Interactions",
-    sec6:[
-      "NSAIDs such as ibuprofen and naproxen and other blood thinners can increase bleeding risk.",
-      "Some antibiotics, antifungals and herbal products can affect it. Tell your healthcare provider what you take."
-    ],
-    sec7Title:"Ramadan and fasting",
-    sec7:[
-      "Talk to your doctor before Ramadan.",
-      "If taken twice daily, it can often be scheduled at <span class='highlight'>iftar</span> and <span class='highlight'>suhoor</span> as prescribed.",
-      "Do not change timing or dose on your own."
-    ],
-    sec8Title:"Storage",
-    sec8:[
-      "Keep out of reach of children and in the original package.",
-      "Do not use after “EXP”. Return leftovers to the pharmacy."
-    ],
-
-    footer1:"If you need more information, contact your pharmacy or doctor.",
-    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  so:{
-    pageTitle:"Eliquis (Apixaban) – dhiig-khafiifiye",
-    hdrH1:"Eliquis (Apixaban) – dhiig-khafiifiye",
-    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed.",
-    backText:"Ku laabo liiska daawooyinka",
-    langLabel:"Dooro luqadda:",
-    drugName:"Eliquis (Apixaban)",
-    drugForm:"Kiniin afka ah",
-    badgeText:"Akhris kooban",
-
-    sec0Title:"Waa maxay Eliquis?",
-    sec0:[
-      "Eliquis waa <span class='highlight'>dhiig-khafiifiye</span>.",
-      "Waxay yareysaa khatarta <span class='highlight'>xinjirowga dhiigga</span>."
-    ],
-    sec1Title:"Maxaa loo isticmaalaa?",
-    sec1:[
-      "Qaar ka mid ah dadka qaba <span class='highlight'>atrial fibrillation</span> si looga hortago xinjirow.",
-      "Daaweynta iyo ka hortagga <span class='highlight'>DVT</span> iyo <span class='highlight'>PE</span> sida dhakhtarku qoray."
-    ],
-    sec2Title:"Sida loo qaato",
-    sec2:[
-      "Qaado <span class='highlight'>sida laguugu qoray</span>.",
-      "Badanaa <span class='highlight'>2 jeer maalintii</span> dad badan, laakiin raac qorshahaaga.",
-      "Haddii aad hilmaanto, qaado markaad xasuusato oo sii wad. <span class='highlight'>Ha qaadan laba jeer</span>."
-    ],
-    sec3Title:"Cunto iyo cabitaan",
-    sec3:[
-      "Waxaa la qaadan karaa <span class='highlight'>cunto la’aan ama cunto la jirto</span>.",
-      "Ku liq <span class='highlight'>biyo</span>.",
-      "Ka fogow khamri badan."
-    ],
-    sec4Title:"Digniino",
-    sec4:[
-      "Haddii aad aragto calaamado <span class='highlight'>dhiig-bax</span> sida dhiig kaadi ama saxaro, saxaro madow, matag dhiig ama nabarro badan, la xiriir dhakhtar.",
-      "U sheeg dhakhtar ama ilko-dhakhtar ka hor faragelin.",
-      "Ha joojin adigoon dhakhtar la tashan."
-    ],
-    sec5Title:"Dhibaatooyinka",
-    sec5:[
-      "Khatarta ugu weyn waa <span class='highlight'>dhiig-bax</span>.",
-      "Nabarro fudud ama sanka-dhiig bax."
-    ],
-    sec6Title:"Is-dhexgalka daawooyinka",
-    sec6:[
-      "NSAID sida ibuprofen iyo naproxen iyo dhiig-khafiifiyeyaal kale waxay kordhiyaan dhiig-baxa.",
-      "Qaar ka mid ah antibiyootikada, daawooyinka fangaska iyo daawooyinka dhirta waxay saameyn karaan. U sheeg farmashiye ama dhakhtar."
-    ],
-    sec7Title:"Ramadaanka iyo soonka",
-    sec7:[
-      "La hadal dhakhtarka ka hor Ramadaan.",
-      "Haddii 2 jeer maalintii, badanaa waxaa lagu beegaa <span class='highlight'>afurka</span> iyo <span class='highlight'>suxuurta</span> sida qorshaha.",
-      "Ha beddelin waqtiga ama qiyaasta adigoon talo helin."
-    ],
-    sec8Title:"Kaydinta",
-    sec8:[
-      "Ka fogee carruurta; ku hay baakadka asalka ah.",
-      "Ha qaadan haddii ay dhaafto “EXP”. Wixii haray ku celi farmashiyaha."
-    ],
-
-    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Hanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  ar:{
-    pageTitle:"إليكوس – مميع للدم",
-    hdrH1:"إليكوس – مميع للدم",
-    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText:"العودة إلى قائمة الأدوية",
-    langLabel:"اختر اللغة:",
-    drugName:"إليكوس",
-    drugForm:"أقراص تؤخذ عن طريق الفم",
-    badgeText:"مختصر وواضح",
-
-    sec0Title:"ما هو إليكوس؟",
-    sec0:[
-      "إليكوس دواء <span class='highlight'>مميع للدم</span>.",
-      "يقلل خطر <span class='highlight'>تكوّن الجلطات</span>."
-    ],
-    sec1Title:"لماذا يُستخدم؟",
-    sec1:[
-      "للوقاية من الجلطات لدى بعض مرضى <span class='highlight'>الرجفان الأذيني</span>.",
-      "لعلاج والوقاية من <span class='highlight'>الخثار الوريدي العميق</span> و<span class='highlight'>الانصمام الرئوي</span> حسب خطة الطبيب."
-    ],
-    sec2Title:"كيف يؤخذ الدواء",
-    sec2:[
-      "يؤخذ <span class='highlight'>تماماً حسب الوصفة</span>.",
-      "غالباً يؤخذ <span class='highlight'>مرتين يومياً</span> لدى كثيرين لكن اتبع خطتك.",
-      "عند نسيان الجرعة خذها عند التذكر ثم تابع كالمعتاد. <span class='highlight'>لا تضاعف الجرعة</span>."
-    ],
-    sec3Title:"الطعام والشراب",
-    sec3:[
-      "يمكن تناوله <span class='highlight'>مع الطعام أو بدونه</span>.",
-      "يُبلع مع <span class='highlight'>كوب ماء</span>.",
-      "تجنب الإفراط في الكحول لأنه قد يزيد خطر النزف."
-    ],
-    sec4Title:"تحذيرات",
-    sec4:[
-      "راجع الطبيب فوراً عند علامات <span class='highlight'>النزف</span> مثل دم في البول أو البراز أو براز أسود أو تقيؤ دم أو كدمات غير معتادة.",
-      "أخبر الطبيب أو طبيب الأسنان قبل أي إجراء.",
-      "لا توقف العلاج دون استشارة لأنه قد يزيد خطر الجلطة."
-    ],
-    sec5Title:"الآثار الجانبية",
-    sec5:[
-      "أهم أثر جانبي هو <span class='highlight'>النزف</span>.",
-      "قد يحدث نزف أنفي أو كدمات بسهولة."
-    ],
-    sec6Title:"التداخلات",
-    sec6:[
-      "مضادات الالتهاب مثل الإيبوبروفين والنابروكسين وأدوية مميعة أخرى قد تزيد خطر النزف.",
-      "بعض المضادات الحيوية ومضادات الفطريات والأعشاب قد تؤثر على الدواء. أخبر مقدم الرعاية بكل ما تتناول."
-    ],
-    sec7Title:"رمضان والصيام",
-    sec7:[
-      "ناقش خطة آمنة قبل رمضان مع الطبيب.",
-      "إذا كان يؤخذ مرتين يومياً يمكن غالباً تنظيمه عند <span class='highlight'>الإفطار</span> و<span class='highlight'>السحور</span> حسب خطة الطبيب.",
-      "لا تغيّر الجرعة أو التوقيت بنفسك."
-    ],
-    sec8Title:"الحفظ",
-    sec8:[
-      "يحفظ بعيداً عن الأطفال وفي العبوة الأصلية.",
-      "لا يُستخدم بعد EXP وأعد البقايا للصيدلية."
-    ],
-
-    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2:"إعداد: إبراهيم ظاهر حنف"
-  },
-
-  tr:{
-    pageTitle:"Eliquis – kan sulandırıcı",
-    hdrH1:"Eliquis – kan sulandırıcı",
-    hdrP:"Hasta ve yakınları için kısa bilgi.",
-    backText:"İlaç listesine geri dön",
-    langLabel:"Dil seçin:",
-    drugName:"Eliquis",
-    drugForm:"Ağızdan alınan tablet",
-    badgeText:"Kısa ve anlaşılır",
-
-    sec0Title:"Eliquis nedir?",
-    sec0:[
-      "Eliquis <span class='highlight'>kan sulandırıcı</span> bir ilaçtır.",
-      "<span class='highlight'>Pıhtı</span> oluşma riskini azaltır."
-    ],
-    sec1Title:"Ne için kullanılır?",
-    sec1:[
-      "Bazı <span class='highlight'>atriyal fibrilasyon</span> hastalarında pıhtı önleme.",
-      "<span class='highlight'>DVT</span> ve <span class='highlight'>akciğer embolisi</span> tedavisi ve korunma amaçlı kullanım."
-    ],
-    sec2Title:"Nasıl alınır",
-    sec2:[
-      "İlacı <span class='highlight'>reçete edildiği gibi</span> alın.",
-      "Birçok kişide <span class='highlight'>günde 2 kez</span> kullanılır ancak kendi planınızı izleyin.",
-      "Doz unutulursa hatırlayınca alın ve normal devam edin. <span class='highlight'>Çift doz almayın</span>."
-    ],
-    sec3Title:"Yemek ve içecek",
-    sec3:[
-      "<span class='highlight'>Yemekle veya yemeksiz</span> alınabilir.",
-      "<span class='highlight'>Bir bardak su</span> ile yutun.",
-      "Aşırı alkol kanama riskini artırabilir."
-    ],
-    sec4Title:"Uyarılar",
-    sec4:[
-      "<span class='highlight'>Kanama</span> belirtilerinde hemen sağlık kuruluşuna başvurun.",
-      "İşlem ve ameliyat öncesi doktorunuza ve diş hekiminize söyleyin.",
-      "Doktora danışmadan bırakmayın."
-    ],
-    sec5Title:"Yan etkiler",
-    sec5:[
-      "En önemli yan etki <span class='highlight'>kanama</span>dır.",
-      "Kolay morarma veya burun kanaması olabilir."
-    ],
-    sec6Title:"Etkileşimler",
-    sec6:[
-      "İbuprofen ve naproksen gibi NSAİİ'ler ve diğer kan sulandırıcılar kanama riskini artırır.",
-      "Bazı antibiyotikler, mantar ilaçları ve bitkisel ürünler etkileyebilir. Kullandıklarınızı bildirin."
-    ],
-    sec7Title:"Ramazan",
-    sec7:[
-      "Ramazan öncesi doktorla güvenli plan yapın.",
-      "Günde iki doz kullanılıyorsa çoğu zaman <span class='highlight'>iftar</span> ve <span class='highlight'>sahur</span> saatlerine ayarlanabilir.",
-      "Kendi kendinize saat veya doz değiştirmeyin."
-    ],
-    sec8Title:"Saklama",
-    sec8:[
-      "Çocuklardan uzak, orijinal ambalajında saklayın.",
-      "EXP sonrası kullanmayın, kalanları eczaneye verin."
-    ],
-
-    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
-  },
-
-  ur:{
-    pageTitle:"ایلیکوس – خون پتلا کرنے والی دوا",
-    hdrH1:"ایلیکوس – خون پتلا کرنے والی دوا",
-    hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText:"فہرست پر واپس",
-    langLabel:"زبان منتخب کریں:",
-    drugName:"ایلیکوس",
-    drugForm:"گولی منہ کے ذریعے",
-    badgeText:"مختصر اور واضح",
-
-    sec0Title:"ایلیکوس کیا ہے؟",
-    sec0:[
-      "ایلیکوس <span class='highlight'>خون پتلا</span> کرنے والی دوا ہے۔",
-      "یہ <span class='highlight'>خون کے لوتھڑے</span> بننے کا خطرہ کم کرتی ہے۔"
-    ],
-    sec1Title:"کس لیے استعمال ہوتی ہے؟",
-    sec1:[
-      "کچھ مریضوں میں <span class='highlight'>ایٹریئل فبریلیشن</span> کے ساتھ لوتھڑا روکنے کے لیے۔",
-      "<span class='highlight'>ڈی وی ٹی</span> اور <span class='highlight'>پلمونری ایمبولزم</span> کے علاج اور بچاؤ کے لیے۔"
-    ],
-    sec2Title:"کیسے لیں",
-    sec2:[
-      "دوا <span class='highlight'>نسخے کے مطابق</span> لیں۔",
-      "اکثر <span class='highlight'>دن میں دو بار</span> لی جاتی ہے مگر اپنا پلان فالو کریں۔",
-      "خوراک بھول جائیں تو یاد آنے پر لے لیں اور معمول کے مطابق جاری رکھیں۔ <span class='highlight'>ڈبل خوراک نہ لیں</span>۔"
-    ],
-    sec3Title:"کھانا پینا",
-    sec3:[
-      "<span class='highlight'>کھانے کے ساتھ یا بغیر</span> لی جا سکتی ہے۔",
-      "<span class='highlight'>ایک گلاس پانی</span> کے ساتھ نگلیں۔",
-      "زیادہ الکحل خون بہنے کے خطرے کو بڑھا سکتی ہے۔"
-    ],
-    sec4Title:"احتیاطیں",
-    sec4:[
-      "<span class='highlight'>خون بہنے</span> کی علامات پر فوراً ڈاکٹر سے رابطہ کریں۔",
-      "کسی بھی آپریشن یا دندان سازی سے پہلے بتائیں۔",
-      "بغیر مشورے کے دوا بند نہ کریں۔"
-    ],
-    sec5Title:"مضر اثرات",
-    sec5:[
-      "اہم خطرہ <span class='highlight'>خون بہنا</span> ہے۔",
-      "آسانی سے نیل پڑنا یا ناک سے خون آ سکتا ہے۔"
-    ],
-    sec6Title:"تداخلات",
-    sec6:[
-      "آئیبوپروفین اور نیپروکسین جیسے NSAIDs اور دوسری خون پتلا کرنے والی ادویات خون بہنے کا خطرہ بڑھا سکتی ہیں۔",
-      "کچھ اینٹی بایوٹک، اینٹی فنگل اور ہربل مصنوعات اثر بدل سکتی ہیں۔ سب کچھ بتائیں۔"
-    ],
-    sec7Title:"رمضان",
-    sec7:[
-      "رمضان سے پہلے ڈاکٹر سے محفوظ پلان بنائیں۔",
-      "اگر دن میں دو بار لینی ہو تو اکثر <span class='highlight'>افطار</span> اور <span class='highlight'>سحری</span> پر ترتیب دی جا سکتی ہے۔",
-      "اپنی طرف سے وقت یا خوراک نہ بدلیں۔"
-    ],
-    sec8Title:"محفوظ رکھنا",
-    sec8:[
-      "بچوں سے دور اور اصل پیک میں رکھیں۔",
-      "EXP کے بعد استعمال نہ کریں، باقی دوا فارمیسی واپس کریں۔"
-    ],
-
-    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
-  },
-
-  fa:{
-    pageTitle:"الیکویس – رقیق‌کننده خون",
-    hdrH1:"الیکویس – رقیق‌کننده خون",
-    hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"الیکویس",
-    drugForm:"قرص خوراکی",
-    badgeText:"کوتاه و روشن",
-
-    sec0Title:"الیکویس چیست؟",
-    sec0:[
-      "الیکویس داروی <span class='highlight'>رقیق‌کننده خون</span> است.",
-      "خطر <span class='highlight'>لخته خون</span> را کاهش می‌دهد."
-    ],
-    sec1Title:"موارد مصرف",
-    sec1:[
-      "پیشگیری از لخته در برخی بیماران با <span class='highlight'>فیبریلاسیون دهلیزی</span>.",
-      "درمان و پیشگیری از <span class='highlight'>ترومبوز ورید عمقی</span> و <span class='highlight'>آمبولی ریه</span> طبق برنامه پزشک."
-    ],
-    sec2Title:"نحوه مصرف",
-    sec2:[
-      "دارو را <span class='highlight'>دقیقاً طبق نسخه</span> مصرف کنید.",
-      "در بسیاری از افراد <span class='highlight'>روزی دو بار</span> است، اما برنامه خودتان را دنبال کنید.",
-      "در صورت فراموشی، به محض یادآوری مصرف کنید و سپس طبق روال ادامه دهید. <span class='highlight'>دوز دوبرابر نکنید</span>."
-    ],
-    sec3Title:"غذا و نوشیدنی",
-    sec3:[
-      "می‌توان <span class='highlight'>با غذا یا بدون غذا</span> مصرف کرد.",
-      "با <span class='highlight'>یک لیوان آب</span> ببلعید.",
-      "مصرف زیاد الکل می‌تواند خطر خونریزی را افزایش دهد."
-    ],
-    sec4Title:"هشدارها",
-    sec4:[
-      "در صورت علائم <span class='highlight'>خونریزی</span> مانند خون در ادرار یا مدفوع، مدفوع سیاه، استفراغ خونی یا کبودی غیرعادی فوراً مراجعه کنید.",
-      "قبل از هر اقدام پزشکی یا دندانپزشکی اطلاع دهید.",
-      "بدون مشورت پزشک دارو را قطع نکنید."
-    ],
-    sec5Title:"عوارض",
-    sec5:[
-      "مهم‌ترین عارضه <span class='highlight'>خونریزی</span> است.",
-      "کبودی آسان یا خون دماغ ممکن است رخ دهد."
-    ],
-    sec6Title:"تداخلات",
-    sec6:[
-      "NSAID مانند ایبوپروفن و ناپروکسن و سایر رقیق‌کننده‌ها خطر خونریزی را بالا می‌برند.",
-      "برخی آنتی‌بیوتیک‌ها، ضدقارچ‌ها و محصولات گیاهی می‌توانند اثر را تغییر دهند. همه را اطلاع دهید."
-    ],
-    sec7Title:"رمضان",
-    sec7:[
-      "قبل از رمضان با پزشک برنامه ایمن تنظیم کنید.",
-      "اگر روزی دو بار مصرف می‌شود، معمولاً می‌توان آن را در <span class='highlight'>افطار</span> و <span class='highlight'>سحری</span> تنظیم کرد.",
-      "خودسرانه زمان یا دوز را تغییر ندهید."
-    ],
-    sec8Title:"نگهداری",
-    sec8:[
-      "دور از دسترس کودکان و در بسته‌بندی اصلی نگهداری شود.",
-      "پس از EXP مصرف نشود و باقی‌مانده به داروخانه تحویل داده شود."
-    ],
-
-    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-
-  prs:{
-    pageTitle:"الیکویس – رقیق‌کننده خون",
-    hdrH1:"الیکویس – رقیق‌کننده خون",
-    hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText:"بازگشت به فهرست",
-    langLabel:"انتخاب زبان:",
-    drugName:"الیکویس",
-    drugForm:"قرص خوراکی",
-    badgeText:"کوتاه و واضح",
-
-    sec0Title:"الیکویس چیست؟",
-    sec0:[
-      "الیکویس دواى <span class='highlight'>رقیق‌کننده خون</span> است.",
-      "خطر <span class='highlight'>لخته</span> را کم می‌کند."
-    ],
-    sec1Title:"برای چی استفاده می‌شود؟",
-    sec1:[
-      "پیشگیری از لخته در بعضی بیماران با <span class='highlight'>آتریال فبریلیشن</span>.",
-      "تداوی و پیشگیری از <span class='highlight'>دی وی تی</span> و <span class='highlight'>آمبولی ریه</span> طبق پلان داکتر."
-    ],
-    sec2Title:"چگونه گرفته شود؟",
-    sec2:[
-      "دوا را <span class='highlight'>دقیق طبق نسخه</span> بگیرید.",
-      "در بسیاری موارد <span class='highlight'>روزی دو بار</span> است، اما پلان خود را دنبال کنید.",
-      "اگر فراموش شد، به یاد آمد بگیرید و بعد طبق روال ادامه دهید. <span class='highlight'>دوز دو برابر نگیرید</span>."
-    ],
-    sec3Title:"غذا و نوشیدنی",
-    sec3:[
-      "با غذا یا بدون غذا می‌شود.",
-      "با <span class='highlight'>یک گیلاس آب</span> قورت دهید.",
-      "الکل زیاد می‌تواند خطر خونریزی را زیاد کند."
-    ],
-    sec4Title:"هشدارها",
-    sec4:[
-      "در علایم <span class='highlight'>خونریزی</span> مثل خون در ادرار یا مدفوع، مدفوع سیاه، قی خون یا کبودی غیرعادی فوراً مراجعه کنید.",
-      "قبل از هر اقدام صحی یا دندانپزشکی اطلاع دهید.",
-      "بدون مشوره داکتر قطع نکنید."
-    ],
-    sec5Title:"عوارض",
-    sec5:[
-      "مهم‌ترین عارضه <span class='highlight'>خونریزی</span> است.",
-      "کبودی آسان یا خون دماغ ممکن است."
-    ],
-    sec6Title:"تداخلات",
-    sec6:[
-      "NSAID مثل ایبوپروفن و ناپروکسن و رقیق‌کننده‌های دیگر خطر خونریزی را بالا می‌برند.",
-      "برخی انتی‌بیوتیک‌ها، ضدقارچ‌ها و محصولات گیاهی اثر را تغییر می‌دهند. همه را بگویید."
-    ],
-    sec7Title:"رمضان",
-    sec7:[
-      "قبل از رمضان با داکتر پلان امن بسازید.",
-      "اگر روزی دو بار است، معمولاً در <span class='highlight'>افطار</span> و <span class='highlight'>سحری</span> تنظیم می‌شود.",
-      "خودسرانه وقت یا دوز را تغییر ندهید."
-    ],
-    sec8Title:"نگهداری",
-    sec8:[
-      "دور از دسترس اطفال و در بسته‌بندی اصلی نگهداری شود.",
-      "بعد از EXP استفاده نشود و باقی‌مانده را به دواخانه بسپارید."
-    ],
-
-    footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.",
-    footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-
-  ps:{
-    pageTitle:"ایلیکویس – د وینې نری کوونکی",
-    hdrH1:"ایلیکویس – د وینې نری کوونکی",
-    hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText:"لېست ته بېرته",
-    langLabel:"ژبه وټاکئ:",
-    drugName:"ایلیکویس",
-    drugForm:"د خولې ګولۍ",
-    badgeText:"لنډ او روښانه",
-
-    sec0Title:"ایلیکویس څه شی دی؟",
-    sec0:[
-      "ایلیکویس د <span class='highlight'>وینې نری کوونکی</span> درمل دی.",
-      "د <span class='highlight'>وینې د ټوټې</span> کېدو خطر کموي."
-    ],
-    sec1Title:"د څه لپاره کارېږي؟",
-    sec1:[
-      "د ځینو خلکو لپاره د <span class='highlight'>اتریال فبریلیشن</span> سره د ټوټو مخنیوی.",
-      "د <span class='highlight'>ډي وي ټي</span> او <span class='highlight'>د سږو امبولیزم</span> درملنه او مخنیوی د ډاکټر د پلان له مخې."
-    ],
-    sec2Title:"څنګه واخیستل شي؟",
-    sec2:[
-      "درمل <span class='highlight'>د نسخې مطابق</span> واخلئ.",
-      "ډېری وخت <span class='highlight'>په ورځ کې دوه ځله</span> وي، خو خپل پلان تعقیب کړئ.",
-      "که هېر شو، چې یاد شو واخلئ او بیا نورمال دوام ورکړئ. <span class='highlight'>ډبل دوز مه اخلئ</span>."
-    ],
-    sec3Title:"خواړه او څښاک",
-    sec3:[
-      "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
-      "له <span class='highlight'>یو ګیلاس اوبو</span> سره یې تېر کړئ.",
-      "ډېر الکول د وینې بهېدلو خطر زیاتوي."
-    ],
-    sec4Title:"خبرداری",
-    sec4:[
-      "که د <span class='highlight'>وینې بهېدلو</span> نښې وي لکه په ادرار یا غایطه کې وینه، تور غایطه، وینې کانګې یا ډېر کبودوالی، ژر ډاکټر ته ورشئ.",
-      "له هر اقدام یا عملیاتو مخکې ډاکټر او د غاښونو ډاکټر ته ووایئ.",
-      "بې له مشورې مه بندوئ."
-    ],
-    sec5Title:"اړخیزې اغېزې",
-    sec5:[
-      "تر ټولو مهمه ستونزه <span class='highlight'>وینه بهېدل</span> دي.",
-      "کبودوالی یا د پوزې وینه راتلل کېدای شي."
-    ],
-    sec6Title:"تداخلات",
-    sec6:[
-      "NSAID لکه ایبوپروفن او ناپروکسن او نور د وینې نری کوونکي د وینې بهېدلو خطر زیاتوي.",
-      "ځینې انټي‌بیوټیکونه، د فنګس ضد درمل او بوټي مواد اغېزه بدلولای شي. ټول درمل ووایئ."
-    ],
-    sec7Title:"رمضان",
-    sec7:[
-      "له رمضان مخکې له ډاکټر سره خوندي پلان جوړ کړئ.",
-      "که په ورځ کې دوه ځله وي، ډېر وخت په <span class='highlight'>افطار</span> او <span class='highlight'>سحور</span> کې تنظیمېږي.",
-      "خپله له ځانه وخت یا دوز مه بدلوئ."
-    ],
-    sec8Title:"ساتنه",
-    sec8:[
-      "له ماشومانو لرې او په اصلي بسته کې وساتئ.",
-      "له EXP وروسته مه کاروئ او پاتې درمل درملتون ته وسپارئ."
-    ],
-
-    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
-  }
-};
-
-function applyLang(lang){
-  const d = T[lang] || T.da;
-
-  applyTheme(lang);
   setDirLang(lang);
+  applyTheme(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
+  document.title = stripTags(d.title);
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName;
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  setSmall("useSmall", d.sections.use.small);
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  setSmall("doseSmall", d.sections.dose.small);
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  setSmall("sideSmall", d.sections.side.small);
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  setSmall("interactSmall", d.sections.interact.small);
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  setSmall("warnSmall", d.sections.warn.small);
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  setSmall("ramadanSmall", d.sections.ramadan.small);
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  setSmall("foodSmall", d.sections.food.small);
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  setSmall("storeSmall", d.sections.store.small);
 
-  setSectionTitle("sec0Title", d.sec0Title);
-  setSectionTitle("sec1Title", d.sec1Title);
-  setSectionTitle("sec2Title", d.sec2Title);
-  setSectionTitle("sec3Title", d.sec3Title);
-  setSectionTitle("sec4Title", d.sec4Title);
-  setSectionTitle("sec5Title", d.sec5Title);
-  setSectionTitle("sec6Title", d.sec6Title);
-  setSectionTitle("sec7Title", d.sec7Title);
-  setSectionTitle("sec8Title", d.sec8Title);
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
 
-  fillList("sec0List", d.sec0);
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
-
-  document.getElementById("footer1").textContent = d.footer1;
-  document.getElementById("footer2").innerHTML = d.footer2;
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
 
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "da";
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "da");
-applyLang(document.getElementById("langSelect").value);
-
-document.getElementById("langSelect").addEventListener("change", function(){ applyLang(this.value); });
+const select = document.getElementById("langSelect");
+select.value = startLang;
+render(select.value);
+select.addEventListener("change", function(){ render(this.value); });
 </script>
 
 </body>
