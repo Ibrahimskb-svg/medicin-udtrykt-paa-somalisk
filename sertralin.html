@@ -3,178 +3,551 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sertralin – niyad-jab & welwel</title>
+<title>Sertralin – niyad-jab &amp; welwel</title>
 
 <style>
 :root{
-  --accent:#00a676;
-  --c1:#0066cc;
-  --c2:#00a676;
-  --accent-soft: rgba(0,166,118,0.16);
-  --accent-soft2: rgba(0,166,118,0.10);
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
+
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
+
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
 }
 
-body{ font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{ transition: background .45s ease, color .35s ease; }
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
 header{
-  background:linear-gradient(135deg,var(--c1),var(--c2));
-  color:#fff; padding:22px 16px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.15);
-  transition: background 260ms ease;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1{ margin:0 0 4px; font-size:1.8rem; }
-header p{ margin:0; font-size:0.95rem; }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{
+  max-width: 820px;
+  margin: 18px auto 32px;
+  padding: 0 14px;
+}
 
 a.back{
-  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
-  text-decoration:none; color:var(--accent); font-size:0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
 }
-a.back span{ font-size:1.1rem; }
+a.back span{ font-size: 1.1rem; }
 
 .langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#ffffff; border-radius:12px; padding:10px 12px;
-  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 .card{
-  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid var(--accent1);
 }
 
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{
-  width:44px; height:44px; border-radius:12px; background:var(--accent-soft2);
-  display:flex; align-items:center; justify-content:center;
+.drug-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.drug-icon svg{ width:30px; height:30px; }
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drug-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drug-icon svg{ width: 30px; height: 30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.drug-icon svg .fill{ fill:#e8f3ff; }
+
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
 
 .badge{
-  display:inline-flex; align-items:center; gap:4px;
-  background:var(--accent-soft);
-  color:#123047; border:1px solid rgba(0,0,0,0.06);
-  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--pillBg);
+  color: var(--pillText);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
-
+.section{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
+}
+.section-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
 .section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex;
-  align-items:center; justify-content:center; font-size:0.9rem; color:#123047;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
 }
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
-.section-icon.drink{ background:#e0f7fa; }
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section li{ margin-bottom:4px; }
+.section-title{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.section-title small{
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
 
-.highlight{ font-weight:600; }
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.section ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
+}
+.section ul li{ margin-bottom: 4px; }
+
+.highlight{ font-weight: 600; }
+
+.footer-note{
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
+}
+
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
+}
 </style>
 </head>
 
 <body>
+
 <header>
-  <h1 id="hdrH1">Sertralin – niyad-jab & welwel</h1>
-  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed</p>
+  <h1 id="hdrTitle">Sertralin – niyad-jab &amp; welwel</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
-  <div class="langbar" aria-label="Vælg sprog">
+
+  <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" stroke="var(--accent)" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--accent)" stroke-width="4"/>
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Sertralin</div>
+          <div class="drug-name" id="drugName">Sertralin – niyad-jab &amp; welwel</div>
           <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Akhris kooban</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
 
-    <div class="section"><div class="section-header"><div class="section-icon use">💊</div><div class="section-title" id="sec0Title"></div></div><ul id="sec0List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon use">✔</div><div class="section-title" id="sec1Title"></div></div><ul id="sec1List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon dose">⏰</div><div class="section-title" id="sec2Title"></div></div><ul id="sec2List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon drink">💧</div><div class="section-title" id="sec3Title"></div></div><ul id="sec3List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon warn">!</div><div class="section-title" id="sec4Title"></div></div><ul id="sec4List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon side">⚠️</div><div class="section-title" id="sec5Title"></div></div><ul id="sec5List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon interact">⇆</div><div class="section-title" id="sec6Title"></div></div><ul id="sec6List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon ramadan">☾</div><div class="section-title" id="sec7Title"></div></div><ul id="sec7List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon store">⧉</div><div class="section-title" id="sec8Title"></div></div><ul id="sec8List"></ul></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon use">💊</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
+      </div>
+      <ul id="useList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
+      </div>
+      <ul id="doseList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
+      </div>
+      <ul id="sideList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
+      </div>
+      <ul id="interactList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+      </div>
+      <ul id="warnList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
+      </div>
+      <ul id="ramadanList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+      </div>
+      <ul id="foodList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon store">⧉</div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
+      </div>
+      <ul id="storeList"></ul>
+    </div>
   </div>
 
-  <div class="footer-note" id="footer1"></div>
-  <div class="footer-note" id="footer2"></div>
+  <div class="footer-note" id="footerNote"></div>
 </main>
 
+<div class="footer-note" id="credit"></div>
+
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
 
 const THEMES = {
-  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
+  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
 };
 
-function hexToRgba(hex, a){
-  const h = (hex || "").replace("#","").trim();
-  if (h.length !== 6) return `rgba(0,0,0,${a})`;
-  const r = parseInt(h.slice(0,2),16);
-  const g = parseInt(h.slice(2,4),16);
-  const b = parseInt(h.slice(4,6),16);
-  return `rgba(${r},${g},${b},${a})`;
+function applyTheme(lang){
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
 }
 
-function applyTheme(lang){
-  const th = THEME[lang] || THEME.so;
-  document.documentElement.style.setProperty("--c1", th.c1);
-  document.documentElement.style.setProperty("--c2", th.c2);
-  document.documentElement.style.setProperty("--accent", th.accent);
-  document.documentElement.style.setProperty("--accent-soft", hexToRgba(th.accent, 0.16));
-  document.documentElement.style.setProperty("--accent-soft2", hexToRgba(th.accent, 0.10));
+const T = {
+  so: {
+    title: "Sertralin – niyad-jab & welwel",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Sertralin – niyad-jab & welwel",
+    drugForm: "Kiniin afka ah",
+    sections: {
+      use: { title:"Isticmaalka", small:"", items:[
+        "Sertralin waa daawo ka tirsan kooxda <span class='highlight'>SSRI</span> oo loo isticmaalo niyad-jabka iyo welwelka.",
+        "Waxay caawin kartaa hagaajinta niyadda, yareynta walbahaarka, iyo welwelka."
+      ]},
+      dose: { title:"Qiyaasta", small:"", items:[
+        "Dadka waaweyn badanaa waxay ku bilaabaan <span class='highlight'>50 mg hal mar maalintii</span>, laakiin dhakhtarka ayaa go’aamiya qiyaasta saxda ah.",
+        "Qiyaasta waxaa mararka qaar loo kordhiyaa si tartiib ah haddii loo baahdo.",
+        "Saameynta buuxda badanaa waxay qaadan kartaa <span class='highlight'>dhowr toddobaad</span>, sidaas darteed ha ka niyad jabin haddii aan isla markiiba isbeddel muuqan."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"", items:[
+        "Lalabbo, madax-xanuun, ama wareer.",
+        "Hurdo la’aan ama hurdo badan.",
+        "Qaar waxay yeeshaan af qallalan, shuban, ama rabitaan cunto oo isbeddela."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
+        "Sertralin wuxuu la falgali karaa daawooyin kale, gaar ahaan qaar ka mid ah daawooyinka niyadda, xanuun-joojiyeyaasha qaarkood, iyo daawooyinka dhiigga khafiifiya.",
+        "U sheeg dhakhtarka ama farmashiyaha dhammaan daawooyinka aad isticmaasho."
+      ]},
+      warn: { title:"Digniino", small:"", items:[
+        "Bilowga daawada ama marka qiyaasta la beddelo, dadka qaarkood waxay dareemi karaan welwel kordha ama isbeddel niyadeed.",
+        "Haddii aad yeelato fikirro isdil ama niyad-jab si xun u sii dara, isla markiiba la xiriir dhakhtar.",
+        "Ha joojin daawada si kedis ah adiga oo aan la tashan dhakhtar."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
+        "Kiniinka afka laga qaato wuxuu <span class='highlight'>jebinayaa soonka</span> haddii la qaato maalintii.",
+        "Badanaa waxaa la qaadan karaa fiidkii ama ka dib afurka haddii taasi kugu habboon tahay.",
+        "Ka hor Ramadaan, kala hadal dhakhtarka haddii loo baahan yahay in wakhtiga daawada la habeeyo."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
+        "Sertralin waxaa la qaadan karaa cunto la jirto ama la’aan.",
+        "Haddii ay kaa keento lalabbo ama calool-xanuun, qaado <span class='highlight'>cunto ka dib</span>.",
+        "Liq daawada adigoo raacinaya biyo."
+      ]},
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Ku hay meel ka fog carruurta, kana hooseysa 25 °C.",
+        "Ku hay baakadka asalka ah si looga ilaaliyo huurka.",
+        "Ha qaadan daawada marka ay dhaafto <span class='highlight'>taariikhda dhicitaanka</span>."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
+
+  da: {
+    title: "Sertralin – depression og angst",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    badge: "Kort og let at læse",
+    drugName: "Sertralin – depression og angst",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Sertralin er et lægemiddel i gruppen <span class='highlight'>SSRI</span>, som bruges mod depression og angst.",
+        "Det kan forbedre humøret og mindske uro og bekymring."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Voksne starter ofte med <span class='highlight'>50 mg én gang dagligt</span>, men lægen beslutter den rigtige dosis.",
+        "Dosis kan i nogle tilfælde øges gradvist, hvis det er nødvendigt.",
+        "Fuld virkning kommer ofte først efter <span class='highlight'>flere uger</span>, så det er vigtigt at være tålmodig."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Kvalme, hovedpine eller svimmelhed.",
+        "Søvnløshed eller søvnighed.",
+        "Nogle får tør mund, diarré eller ændret appetit."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Sertralin kan påvirkes af andre lægemidler, især anden medicin mod humør, visse smertestillende midler og blodfortyndende medicin.",
+        "Fortæl altid lægen eller apoteket om al medicin, du bruger."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "I starten af behandlingen eller ved dosisændringer kan nogle føle mere uro eller få ændringer i humøret.",
+        "Kontakt straks læge ved selvmordstanker eller hvis depressionen forværres.",
+        "Stop ikke behandlingen pludseligt uden aftale med lægen."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Tabletter, der tages gennem munden, bryder fasten, hvis de tages i dagtimerne.",
+        "Medicinen kan ofte tages om aftenen eller efter iftar, hvis det passer med behandlingsplanen.",
+        "Tal med lægen før Ramadan, hvis tidspunktet skal ændres."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Sertralin kan tages med eller uden mad.",
+        "Hvis du får kvalme eller mavegener, så tag den <span class='highlight'>efter mad</span>.",
+        "Synkes med vand."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C.",
+        "Opbevar i original emballage for at beskytte mod fugt.",
+        "Brug ikke efter udløbsdatoen."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Sertraline – depression and anxiety",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    langLabel: "Choose language:",
+    badge: "Short and easy to read",
+    drugName: "Sertraline – depression and anxiety",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Sertraline is a medicine from the <span class='highlight'>SSRI</span> group used for depression and anxiety.",
+        "It can improve mood and reduce worry and tension."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Adults often start with <span class='highlight'>50 mg once daily</span>, but the doctor decides the right dose.",
+        "The dose may sometimes be increased gradually if needed.",
+        "Full effect often takes <span class='highlight'>several weeks</span>, so it is important to be patient."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Nausea, headache, or dizziness.",
+        "Insomnia or sleepiness.",
+        "Some people get dry mouth, diarrhoea, or changes in appetite."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Sertraline can interact with other medicines, especially some mood medicines, certain painkillers, and blood thinners.",
+        "Always tell your doctor or pharmacy about all medicines you use."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "At the start of treatment or after dose changes, some people may feel more anxious or notice mood changes.",
+        "Seek medical help straight away if you have suicidal thoughts or if depression gets worse.",
+        "Do not stop treatment suddenly without medical advice."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Oral tablets break the fast if taken during daytime.",
+        "The medicine can often be taken in the evening or after iftar if that fits your treatment plan.",
+        "Talk to your doctor before Ramadan if timing needs to be adjusted."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "Sertraline can be taken with or without food.",
+        "If it causes nausea or stomach upset, take it <span class='highlight'>after food</span>.",
+        "Swallow it with water."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C.",
+        "Keep in the original packaging to protect from moisture.",
+        "Do not use after the expiry date."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "سيرترالين – الاكتئاب والقلق",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "سيرترالين – الاكتئاب والقلق",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "سيرترالين دواء من مجموعة <span class='highlight'>SSRI</span> يُستخدم لعلاج الاكتئاب والقلق.",
+        "يمكن أن يحسن المزاج ويقلل التوتر والقلق."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "غالباً يبدأ البالغون بـ <span class='highlight'>50 ملغ مرة واحدة يومياً</span>، لكن الطبيب يحدد الجرعة المناسبة.",
+        "قد تُزاد الجرعة تدريجياً عند الحاجة.",
+        "غالباً يحتاج الدواء إلى <span class='highlight'>عدة أسابيع</span> حتى يظهر تأثيره الكامل، لذلك يجب التحلي بالصبر."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "غثيان، صداع، أو دوخة.",
+        "أرق أو نعاس.",
+        "قد يحدث جفاف الفم أو إسهال أو تغير في الشهية عند بعض الأشخاص."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "قد يتداخل سيرترالين مع أدوية أخرى، خاصة بعض أدوية المزاج وبعض المسكنات ومميعات الدم.",
+        "أخبر الطبيب أو الصيدلية دائماً بكل الأدوية التي تستعملها."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "في بداية العلاج أو بعد تغيير الجرعة قد يشعر بعض الأشخاص بزيادة القلق أو تغيرات في المزاج.",
+        "اطلب المساعدة الطبية فوراً إذا ظهرت أفكار انتحارية أو إذا ساء الاكتئاب.",
+        "لا توقف العلاج فجأة دون استشارة الطبيب."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "الأقراص الفموية تُفطر إذا أُخذت نهاراً.",
+        "غالباً يمكن تناول الدواء مساءً أو بعد الإفطار إذا كان ذلك مناسباً لخطة العلاج.",
+        "تحدث مع الطبيب قبل رمضان إذا كان وقت الجرعة يحتاج إلى تعديل."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يمكن تناول سيرترالين مع الطعام أو بدونه.",
+        "إذا سبب غثياناً أو إزعاجاً للمعدة فخذه <span class='highlight'>بعد الطعام</span>.",
+        "يُبلع مع الماء."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
+        "يُحفظ في العبوة الأصلية للحماية من الرطوبة.",
+        "لا يُستخدم بعد تاريخ الانتهاء."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  }
+};
+
+function stripTags(s){
+  return (s || "").replace(/<[^>]*>?/gm, "");
 }
 
 function setDirLang(lang){
@@ -182,374 +555,99 @@ function setDirLang(lang){
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
 
-function fillList(id, arr){
-  const ul = document.getElementById(id);
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
   ul.innerHTML = "";
-  (arr || []).forEach(txt => {
+  (items || []).forEach(html => {
     const li = document.createElement("li");
-    li.innerHTML = txt;
+    li.innerHTML = html;
     ul.appendChild(li);
   });
 }
 
-function setSectionTitle(elId, title){
-  const el = document.getElementById(elId);
-  if(!el) return;
-  el.textContent = (title || "").trim();
+function setSmall(id, text){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (text || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
 }
 
-const T = {
-  so: {
-    pageTitle: "Sertralin – niyad-jab & welwel",
-    hdrH1: "Sertralin – niyad-jab & welwel",
-    hdrP: "Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed",
-    backText: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    drugName: "Sertralin",
-    drugForm: "Kiniin afka ah",
-    badgeText: "Akhris kooban",
-    sec0Title: "Waa maxay Sertralin?",
-    sec0: [
-      "Sertralin waa daawo lid ku ah niyad-jabka, oo ka tirsan <span class='highlight'>SSRI</span>.",
-      "Waxay hagaajisaa niyadda, yareysaa walbahaarka iyo welwelka."
-    ],
-    sec1Title: "Maxaa loo isticmaalaa?",
-    sec1: ["Niyad-jabka (depression).", "Walbahaarka iyo welwelka (stress & angst)."],
-    sec2Title: "Sida loo qaato",
-    sec2: [
-      "Dadka waaweyn: <span class='highlight'>50 mg</span> maalintii marka hore.",
-      "Waxaa la kordhin karaa <span class='highlight'>50 mg toddobaad kasta</span> haddii dhakhtarku ku yiraahdo.",
-      "Qiyaasta ugu badan waa <span class='highlight'>200 mg</span> maalintii.",
-      "Badanaa waxay bilaabataa inay shaqeyso <span class='highlight'>2–4 toddobaad</span> gudahood; saameyn buuxda <span class='highlight'>6–8 toddobaad</span>.",
-      "Liq biyo. Qaado cunto la jirta/ka dib haddii calool-xanuun jiro."
-    ],
-    sec3Title: "Cunto iyo cabitaan",
-    sec3: [
-      "Liq <span class='highlight'>hal koob biyo ah (1.5–2 dl)</span>.",
-      "Haddii calool-xanuun ama lalabo, qaado <span class='highlight'>cunto ka dib</span>."
-    ],
-    sec4Title: "Digniino",
-    sec4: [
-      "Isbeddel niyadeed ama fikir isdil → <span class='highlight'>la xiriir dhakhtarka</span> isla markiiba.",
-      "Ha joojin daawada si kedis ah."
-    ],
-    sec5Title: "Dhibaatooyinka",
-    sec5: ["Lalabo ama calool-xanuun.", "Madax-xanuun ama wareer.", "Hurdo badan ama hurdo la’aan.", "Miisaanka ama rabitaanka cuntada oo is beddela (qaarkood)."],
-    sec6Title: "Is-dhexgalka daawooyinka",
-    sec6: [
-      "Ha isku darin daawooyin kale oo hurdo-dejiya adigoon la tashan.",
-      "Daawooyinka dhiig-khafiifinta/NSAID qaar waxay kordhin karaan khatarta dhiig-bax (la-talin).",
-      "Antibiotiko & antifungal qaarkood waxay kordhin karaan saamayn — u sheeg dhakhtarka/farmashiyaha."
-    ],
-    sec7Title: "Ramadaanka iyo daawada",
-    sec7: ["La hadal dhakhtar ka hor Ramadaan.", "Badanaa waxaa la qaadan karaa <span class='highlight'>fiidkii (afurka ka dib)</span> haddii qorshaha la oggol yahay."],
-    sec8Title: "Kaydinta",
-    sec8: ["Ka fog carruurta, <span class='highlight'>&lt; 25°C</span>, baakadka asalka ah.", "Ha qaadan haddii “EXP” dhaafto. Rester → farmashiye."],
-    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle: "Sertralin – depression & angst",
-    hdrH1: "Sertralin – depression & angst",
-    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
-    backText: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    drugName: "Sertralin",
-    drugForm: "Tablet (til at tage gennem munden)",
-    badgeText: "Kort og let",
-    sec0Title: "Hvad er Sertralin?",
-    sec0: ["Sertralin er et antidepressivt lægemiddel i gruppen <span class='highlight'>SSRI</span>.", "Det kan forbedre humør og mindske angst/uro."],
-    sec1Title: "Hvad bruges det til?",
-    sec1: ["Depression.", "Angst og uro (stress/angst)."],
-    sec2Title: "Sådan tages medicinen",
-    sec2: ["Voksne: ofte start med <span class='highlight'>50 mg én gang dagligt</span>.", "Dosis kan øges med <span class='highlight'>50 mg pr. uge</span> efter aftale.", "Maksimal dosis er ofte <span class='highlight'>200 mg dagligt</span>.", "Effekt ses ofte efter <span class='highlight'>2–4 uger</span>; fuld effekt kan tage <span class='highlight'>6–8 uger</span>.", "Synkes med vand. Tag gerne med/efter mad ved mavegener."],
-    sec3Title: "Mad og drikke",
-    sec3: ["Synkes med <span class='highlight'>et glas vand</span>.", "Tag den <span class='highlight'>efter mad</span> ved kvalme/mavegener."],
-    sec4Title: "Advarsler",
-    sec4: ["Kontakt læge ved forværring eller <span class='highlight'>selvmordstanker</span>.", "Stop ikke pludseligt uden aftale."],
-    sec5Title: "Bivirkninger",
-    sec5: ["Kvalme/mavegener.", "Hovedpine eller svimmelhed.", "Søvnighed eller søvnløshed.", "Vægt-/appetitændring hos nogle."],
-    sec6Title: "Interaktioner",
-    sec6: ["Vær forsigtig med andre sløvende midler.", "Blodfortyndende/NSAID kan øge blødningsrisiko – tal med læge/apotek.", "Nogle antibiotika/svampemidler kan påvirke sertralin – oplys altid al medicin."],
-    sec7Title: "Ramadan og faste",
-    sec7: ["Tal med lægen før Ramadan.", "Kan ofte tages <span class='highlight'>efter iftar</span> (efter plan)."],
-    sec8Title: "Opbevaring",
-    sec8: ["Opbevares utilgængeligt for børn, under 25°C og i original emballage.", "Brug ikke efter “EXP”. Aflever rester på apoteket."],
-    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle: "Sertraline – depression & anxiety",
-    hdrH1: "Sertraline – depression & anxiety",
-    hdrP: "Brief medicine information for patients and relatives.",
-    backText: "Back to the medicine list",
-    langLabel: "Choose language:",
-    drugName: "Sertraline",
-    drugForm: "Tablet (by mouth)",
-    badgeText: "Short and clear",
-    sec0Title: "What is Sertraline?",
-    sec0: ["Sertraline is an antidepressant in the <span class='highlight'>SSRI</span> group.", "It can improve mood and reduce anxiety/stress."],
-    sec1Title: "What is it used for?",
-    sec1: ["Depression.", "Anxiety/stress."],
-    sec2Title: "How to take",
-    sec2: ["Adults: often start with <span class='highlight'>50 mg once daily</span>.", "Dose may increase by <span class='highlight'>50 mg per week</span> as prescribed.", "Max often <span class='highlight'>200 mg daily</span>.", "Effect often after <span class='highlight'>2–4 weeks</span>; full effect <span class='highlight'>6–8 weeks</span>.", "Swallow with water; take with food if stomach upset."],
-    sec3Title: "Food and drink",
-    sec3: ["Swallow with <span class='highlight'>a glass of water</span>.", "Take <span class='highlight'>after food</span> if nausea/stomach upset."],
-    sec4Title: "Warnings",
-    sec4: ["Seek help if mood worsens or <span class='highlight'>suicidal thoughts</span> occur.", "Do not stop suddenly."],
-    sec5Title: "Side effects",
-    sec5: ["Nausea/stomach upset.", "Headache/dizziness.", "Sleepiness or insomnia.", "Weight/appetite changes in some."],
-    sec6Title: "Interactions",
-    sec6: ["Be careful with other sedatives.", "Blood thinners/NSAIDs may increase bleeding risk (ask doctor).", "Some antibiotics/antifungals may affect sertraline."],
-    sec7Title: "Ramadan and fasting",
-    sec7: ["Talk to your doctor before Ramadan.", "Often taken <span class='highlight'>after iftar</span> if appropriate."],
-    sec8Title: "Storage",
-    sec8: ["Keep out of reach of children, below 25°C, in original package.", "Do not use after “EXP”. Return leftovers to the pharmacy."],
-    footer1: "If you need more information, contact your pharmacy or doctor.",
-    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  ar: {
-    pageTitle: "سيرترالين – الاكتئاب والقلق",
-    hdrH1: "سيرترالين – الاكتئاب والقلق",
-    hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    drugName: "سيرترالين",
-    drugForm: "أقراص (عن طريق الفم)",
-    badgeText: "مختصر وواضح",
-    sec0Title: "ما هو سيرترالين؟",
-    sec0: ["سيرترالين دواء مضاد للاكتئاب من مجموعة <span class='highlight'>SSRI</span>.", "يمكن أن يحسّن المزاج ويقلل القلق."],
-    sec1Title: "لماذا يُستخدم؟",
-    sec1: ["الاكتئاب.", "القلق/التوتر."],
-    sec2Title: "طريقة الاستعمال",
-    sec2: ["للبالغين: غالباً يبدأ بـ <span class='highlight'>50 ملغ مرة يومياً</span>.", "قد تُزاد الجرعة <span class='highlight'>50 ملغ أسبوعياً</span> حسب الطبيب.", "الحد الأقصى غالباً <span class='highlight'>200 ملغ يومياً</span>.", "قد يظهر التحسن بعد <span class='highlight'>2–4 أسابيع</span>؛ الكامل <span class='highlight'>6–8 أسابيع</span>.", "يُبلع مع الماء ويفضل بعد الطعام إذا سبب غثياناً."],
-    sec3Title: "الطعام والشراب",
-    sec3: ["يُبلع مع <span class='highlight'>كوب ماء</span>.", "يفضّل <span class='highlight'>بعد الطعام</span> عند الغثيان."],
-    sec4Title: "تحذيرات",
-    sec4: ["اتصل بالطبيب إذا ساء المزاج أو ظهرت <span class='highlight'>أفكار انتحارية</span>.", "لا توقفه فجأة."],
-    sec5Title: "الآثار الجانبية",
-    sec5: ["غثيان/اضطراب معدة.", "صداع أو دوخة.", "نعاس أو أرق.", "تغير وزن/شهية لدى بعض الأشخاص."],
-    sec6Title: "التداخلات",
-    sec6: ["الحذر مع المهدئات.", "مميعات الدم/NSAID قد تزيد النزف.", "بعض المضادات الحيوية/الفطريات قد تؤثر — أخبر الطبيب بكل الأدوية."],
-    sec7Title: "رمضان والصيام",
-    sec7: ["استشر الطبيب قبل رمضان.", "يمكن غالباً تناوله <span class='highlight'>بعد الإفطار</span> حسب الخطة."],
-    sec8Title: "الحفظ",
-    sec8: ["يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.", "لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."],
-    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2: "إعداد: إبراهيم ظاهر حنف (اختصاصي صيدلة)"
-  },
-
-  tr: {
-    pageTitle: "Sertralin – depresyon & anksiyete",
-    hdrH1: "Sertralin – depresyon & anksiyete",
-    hdrP: "Hasta ve yakınları için kısa bilgi.",
-    backText: "İlaç listesine geri dön",
-    langLabel: "Dil seçin:",
-    drugName: "Sertralin",
-    drugForm: "Tablet (ağızdan)",
-    badgeText: "Kısa ve anlaşılır",
-    sec0Title: "Sertralin nedir?",
-    sec0: ["Sertralin <span class='highlight'>SSRI</span> grubunda bir antidepresandır.", "Ruh halini iyileştirip kaygıyı azaltabilir."],
-    sec1Title: "Ne için kullanılır?",
-    sec1: ["Depresyon.", "Anksiyete/stres."],
-    sec2Title: "Nasıl alınır?",
-    sec2: ["Genelde başlangıç <span class='highlight'>50 mg günde 1 kez</span>.", "Haftada <span class='highlight'>50 mg</span> artırılabilir (doktorla).", "Maks genelde <span class='highlight'>200 mg/gün</span>.", "Etkisi <span class='highlight'>2–4 hafta</span>; tam etki <span class='highlight'>6–8 hafta</span>.", "Su ile yutun; mide şikayeti varsa yemekten sonra."],
-    sec3Title: "Yemek ve içecek",
-    sec3: ["<span class='highlight'>Bir bardak su</span> ile yutun.", "Bulantı varsa <span class='highlight'>yemekten sonra</span> alın."],
-    sec4Title: "Uyarılar",
-    sec4: ["Kötüleşme veya <span class='highlight'>intihar düşüncesi</span> olursa doktora başvurun.", "Aniden bırakmayın."],
-    sec5Title: "Yan etkiler",
-    sec5: ["Bulantı/mide şikayeti.", "Baş ağrısı/baş dönmesi.", "Uyku hali veya uykusuzluk.", "Bazılarında kilo/iştah değişikliği."],
-    sec6Title: "Etkileşimler",
-    sec6: ["Diğer sakinleştiricilerle dikkat.", "Kan sulandırıcı/NSAİİ kanama riskini artırabilir.", "Bazı antibiyotik/mantar ilaçları etkileyebilir."],
-    sec7Title: "Ramazan ve oruç",
-    sec7: ["Ramazan öncesi doktorla plan yapın.", "Uygunsa <span class='highlight'>iftardan sonra</span> alınabilir."],
-    sec8Title: "Saklama",
-    sec8: ["Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.", "“EXP” sonrası kullanmayın. Artanları eczaneye verin."],
-    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    pageTitle: "سرٹرالین – ڈپریشن اور بے چینی",
-    hdrH1: "سرٹرالین – ڈپریشن اور بے چینی",
-    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText: "فہرست پر واپس",
-    langLabel: "زبان منتخب کریں:",
-    drugName: "سرٹرالین",
-    drugForm: "گولی (منہ کے ذریعے)",
-    badgeText: "مختصر اور واضح",
-    sec0Title: "سرٹرالین کیا ہے؟",
-    sec0: ["سرٹرالین <span class='highlight'>SSRI</span> گروپ کی اینٹی ڈپریسنٹ دوا ہے۔", "موڈ بہتر اور بے چینی کم کر سکتی ہے۔"],
-    sec1Title: "کس لیے استعمال ہوتی ہے؟",
-    sec1: ["ڈپریشن۔", "بے چینی/اینزائٹی۔"],
-    sec2Title: "طریقہ استعمال",
-    sec2: ["عموماً آغاز <span class='highlight'>50 mg روزانہ</span>۔", "<span class='highlight'>50 mg فی ہفتہ</span> بڑھ سکتی ہے (ڈاکٹر کے مطابق)۔", "زیادہ سے زیادہ <span class='highlight'>200 mg روزانہ</span>۔", "اثر <span class='highlight'>2–4 ہفتے</span>؛ مکمل <span class='highlight'>6–8 ہفتے</span>۔", "پانی کے ساتھ نگلیں؛ متلی ہو تو کھانے کے بعد۔"],
-    sec3Title: "کھانا پینا",
-    sec3: ["<span class='highlight'>ایک گلاس پانی</span> کے ساتھ لیں۔", "متلی ہو تو <span class='highlight'>کھانے کے بعد</span> لیں۔"],
-    sec4Title: "احتیاطیں",
-    sec4: ["موڈ خراب ہو یا <span class='highlight'>خودکشی کے خیالات</span> ہوں تو فوراً ڈاکٹر۔", "اچانک بند نہ کریں۔"],
-    sec5Title: "مضر اثرات",
-    sec5: ["متلی/پیٹ کی خرابی۔", "سر درد/چکر۔", "نیند یا بے خوابی۔", "کچھ میں وزن/بھوک میں تبدیلی۔"],
-    sec6Title: "دواؤں کے باہمی اثرات",
-    sec6: ["سکون آور ادویات کے ساتھ احتیاط۔", "خون پتلا کرنے والی/NSAID خون بہنے کا خطرہ بڑھا سکتی ہیں۔", "کچھ اینٹی بایوٹک/فنگس کی ادویات اثر بدل سکتی ہیں۔"],
-    sec7Title: "رمضان اور روزہ",
-    sec7: ["رمضان سے پہلے ڈاکٹر سے پلان۔", "اکثر <span class='highlight'>افطار کے بعد</span> لیا جا سکتا ہے (اگر مناسب ہو)۔"],
-    sec8Title: "محفوظ رکھنا",
-    sec8: ["بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔", "“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"],
-    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    pageTitle: "سرترالین – افسردگی و اضطراب",
-    hdrH1: "سرترالین – افسردگی و اضطراب",
-    hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "سرترالین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و روشن",
-    sec0Title: "سرترالین چیست؟",
-    sec0: ["سرترالین یک داروی ضد افسردگی از گروه <span class='highlight'>SSRI</span> است.", "می‌تواند خلق را بهتر و اضطراب را کمتر کند."],
-    sec1Title: "موارد مصرف",
-    sec1: ["افسردگی.", "اضطراب/استرس."],
-    sec2Title: "نحوه مصرف",
-    sec2: ["معمولاً شروع <span class='highlight'>50 mg روزی یک‌بار</span>.", "افزایش <span class='highlight'>هفتگی 50 mg</span> با نظر پزشک.", "حداکثر معمولاً <span class='highlight'>200 mg در روز</span>.", "اثر <span class='highlight'>2–4 هفته</span>؛ کامل <span class='highlight'>6–8 هفته</span>.", "با آب قورت دهید؛ در صورت ناراحتی معده بعد از غذا."],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["با <span class='highlight'>یک لیوان آب</span>.", "در صورت تهوع <span class='highlight'>بعد از غذا</span>."],
-    sec4Title: "هشدارها",
-    sec4: ["بدتر شدن خلق یا <span class='highlight'>افکار خودکشی</span> → تماس با پزشک.", "ناگهانی قطع نکنید."],
-    sec5Title: "عوارض",
-    sec5: ["تهوع/ناراحتی معده.", "سردرد/سرگیجه.", "خواب‌آلودگی یا بی‌خوابی.", "تغییر وزن/اشتها در برخی."],
-    sec6Title: "تداخلات",
-    sec6: ["با آرام‌بخش‌ها احتیاط.", "رقیق‌کننده خون/NSAID خطر خونریزی را افزایش می‌دهد.", "برخی آنتی‌بیوتیک/ضدقارچ اثر را تغییر می‌دهند."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["قبل از رمضان با پزشک برنامه‌ریزی کنید.", "اغلب <span class='highlight'>بعد از افطار</span> قابل مصرف است."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس کودکان، زیر 25°C و در بسته‌بندی اصلی.", "پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."],
-    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    pageTitle: "سرترالین – افسردگی و اضطراب",
-    hdrH1: "سرترالین – افسردگی و اضطراب",
-    hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "سرترالین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و واضح",
-    sec0Title: "سرترالین چیست؟",
-    sec0: ["سرترالین از گروه <span class='highlight'>SSRI</span> است.", "می‌تواند خلق را بهتر و اضطراب را کمتر کند."],
-    sec1Title: "برای چی استفاده می‌شود؟",
-    sec1: ["افسردگی.", "اضطراب/استرس."],
-    sec2Title: "چگونه گرفته شود؟",
-    sec2: ["معمولاً شروع <span class='highlight'>50 mg روزی یک‌بار</span>.", "هفته‌وار <span class='highlight'>50 mg</span> زیاد می‌شود (با نظر داکتر).", "حداکثر <span class='highlight'>200 mg</span>.", "اثر <span class='highlight'>2–4 هفته</span>؛ کامل <span class='highlight'>6–8 هفته</span>.", "با آب؛ اگر معده اذیت می‌کند بعد از غذا."],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["با <span class='highlight'>یک گلاس آب</span>.", "در صورت تهوع <span class='highlight'>بعد از غذا</span>."],
-    sec4Title: "هشدارها",
-    sec4: ["بدتر شدن خلق یا <span class='highlight'>فکر خودکشی</span> → تماس با داکتر.", "ناگهانی قطع نکنید."],
-    sec5Title: "عوارض",
-    sec5: ["تهوع/معده.", "سردرد/سرگیجه.", "خواب‌آلودگی یا بی‌خوابی.", "تغییر وزن/اشتها در بعضی."],
-    sec6Title: "تداخلات",
-    sec6: ["با آرام‌بخش‌ها احتیاط.", "رقیق‌کننده خون/NSAID خطر خونریزی را زیاد می‌کند.", "برخی انتی‌بیوتیک/ضدقارچ اثر را تغییر می‌دهد."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["قبل از رمضان با داکتر پلان بسازید.", "اکثر <span class='highlight'>بعد از افطار</span> قابل گرفتن است."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس اطفال، زیر 25°C و در بسته‌بندی اصلی.", "بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."],
-    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    pageTitle: "سېرټرالین – خپګان او اضطراب",
-    hdrH1: "سېرټرالین – خپګان او اضطراب",
-    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText: "لېست ته بېرته",
-    langLabel: "ژبه وټاکئ:",
-    drugName: "سېرټرالین",
-    drugForm: "ګولۍ (د خولې له لارې)",
-    badgeText: "لنډ او روښانه",
-    sec0Title: "سېرټرالین څه شی دی؟",
-    sec0: ["سېرټرالین د <span class='highlight'>SSRI</span> ډلې ضد خپګان درمل دي.", "مزاج ښه او اضطراب کموي."],
-    sec1Title: "د څه لپاره کارېږي؟",
-    sec1: ["خپګان.", "اضطراب/اندېښنه."],
-    sec2Title: "څنګه واخیستل شي؟",
-    sec2: ["اکثر پیل <span class='highlight'>50 mg ورځ کې 1 ځل</span>.", "هره اونۍ <span class='highlight'>50 mg</span> زیاتېدای شي.", "اعظمي <span class='highlight'>200 mg</span>.", "اغېز <span class='highlight'>2–4 اونۍ</span>؛ بشپړ <span class='highlight'>6–8 اونۍ</span>.", "له اوبو سره؛ که معده خرابوي له خوړو وروسته."],
-    sec3Title: "خواړه او څښاک",
-    sec3: ["له <span class='highlight'>یو ګیلاس اوبو</span> سره.", "که زړه بدوالی وي <span class='highlight'>له خوړو وروسته</span>."],
-    sec4Title: "خبرداری",
-    sec4: ["که <span class='highlight'>د ځان وژنې فکرونه</span> وي، ژر ډاکټر.", "ناڅاپه مه بندوئ."],
-    sec5Title: "اړخیزې اغېزې",
-    sec5: ["زړه بدوالی/معده.", "سر درد/سر ګرځېدل.", "خوبولي یا بې خوبي.", "په ځینو کې وزن/اشتها بدلون."],
-    sec6Title: "تداخلات",
-    sec6: ["له اراموونکو درملو سره احتیاط.", "د وینې نری کوونکي/NSAID د وینې بهېدو خطر زیاتوي.", "ځینې انټي‌بیوتیک/فنګس درمل اغېز بدلوي."],
-    sec7Title: "رمضان او روژه",
-    sec7: ["له رمضان مخکې له ډاکټر سره پلان.", "اکثر <span class='highlight'>له افطار وروسته</span> اخیستل کېږي."],
-    sec8Title: "ساتنه",
-    sec8: ["له ماشومانو لرې، تر 25°C لاندې او په اصلي بسته کې.", "له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."],
-    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
-  }
-};
-
-function applyLang(lang){
+function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
 
-  applyTheme(lang);
   setDirLang(lang);
+  applyTheme(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
+  document.title = stripTags(d.title);
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+
   document.getElementById("langLabel").textContent = d.langLabel;
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
 
-  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
 
-  setSectionTitle("sec0Title", d.sec0Title);
-  setSectionTitle("sec1Title", d.sec1Title);
-  setSectionTitle("sec2Title", d.sec2Title);
-  setSectionTitle("sec3Title", d.sec3Title);
-  setSectionTitle("sec4Title", d.sec4Title);
-  setSectionTitle("sec5Title", d.sec5Title);
-  setSectionTitle("sec6Title", d.sec6Title);
-  setSectionTitle("sec7Title", d.sec7Title);
-  setSectionTitle("sec8Title", d.sec8Title);
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  setSmall("useSmall", d.sections.use.small);
 
-  fillList("sec0List", d.sec0);
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  setSmall("doseSmall", d.sections.dose.small);
 
-  document.getElementById("footer1").textContent = d.footer1;
-  document.getElementById("footer2").innerHTML = d.footer2;
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  setSmall("sideSmall", d.sections.side.small);
+
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  setSmall("interactSmall", d.sections.interact.small);
+
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  setSmall("warnSmall", d.sections.warn.small);
+
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  setSmall("ramadanSmall", d.sections.ramadan.small);
+
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  setSmall("foodSmall", d.sections.food.small);
+
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  setSmall("storeSmall", d.sections.store.small);
+
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
+
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
 
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
-document.getElementById("langSelect").addEventListener("change", function(){
-  applyLang(this.value);
+const select = document.getElementById("langSelect");
+select.value = startLang;
+render(select.value);
+
+select.addEventListener("change", function(){
+  render(this.value);
 });
 </script>
+
 </body>
 </html>
