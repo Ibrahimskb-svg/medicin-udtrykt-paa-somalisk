@@ -5,225 +5,549 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Quetiapin – cilad dhimir &amp; laba-cirifood</title>
 
-<script>
-/* ===== EARLY THEME BOOTSTRAP (prevents green flash) ===== */
-(function(){
-  const THEMES = {
-  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
-};
-  function hexToRgb(hex){
-    const h = (hex || "").replace("#","").trim();
-    if (h.length !== 6) return {r:0,g:0,b:0};
-    return {
-      r: parseInt(h.slice(0,2),16),
-      g: parseInt(h.slice(2,4),16),
-      b: parseInt(h.slice(4,6),16)
-    };
-  }
-
-  function setVars(lang){
-    const th = THEME[lang] || THEME.so;
-    const r = hexToRgb(th.accent);
-    const root = document.documentElement.style;
-
-    root.setProperty("--c1", th.c1);
-    root.setProperty("--c2", th.c2);
-    root.setProperty("--accent", th.accent);
-
-    root.setProperty("--badgeBg", `rgba(${r.r},${r.g},${r.b},0.16)`);
-    root.setProperty("--badgeFg", `rgba(${r.r},${r.g},${r.b},0.95)`);
-
-    root.setProperty("--iconBg", `rgba(${r.r},${r.g},${r.b},0.12)`);
-    root.setProperty("--iconStroke", th.accent);
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const startLang = params.get("lang") || "so";
-  setVars(THEME[startLang] ? startLang : "so");
-
-  window.__THEME__ = THEME;
-})();
-</script>
-
 <style>
 :root{
-  --accent:#00a676;
-  --c1:#0066cc;
-  --c2:#00a676;
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
 
-  --badgeBg: rgba(0,166,118,0.16);
-  --badgeFg: rgba(0,166,118,0.95);
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
 
-  --iconBg: rgba(0,166,118,0.12);
-  --iconStroke:#00a676;
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
 }
 
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{ transition: background .45s ease, color .35s ease; }
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
 
 header{
-  background:linear-gradient(135deg,var(--c1),var(--c2));
-  color:#fff; padding:22px 16px; text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
-  transition: background 260ms ease;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1 { margin:0 0 4px; font-size:1.8rem; }
-header p { margin:0; font-size:0.95rem; }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-main { max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{
+  max-width: 820px;
+  margin: 18px auto 32px;
+  padding: 0 14px;
+}
 
-a.back { display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; text-decoration:none; color:var(--accent); font-size:0.9rem; }
-a.back span { font-size:1.1rem; }
+a.back{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
+}
+a.back span{ font-size: 1.1rem; }
 
 .langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#ffffff; border-radius:12px; padding:10px 12px;
-  margin:0 0 14px 0; box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 .card{
-  background:#ffffff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12); border-top:4px solid var(--accent);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid var(--accent1);
 }
 
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
+.drug-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.drug-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .drug-icon{
-  width:44px; height:44px; border-radius:12px;
-  background:var(--iconBg);
-  display:flex; align-items:center; justify-content:center;
-  transition: background 260ms ease;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.drug-icon svg{ width:30px; height:30px; }
-.drug-icon .pill-ellipse{ fill:#e8f3ff; stroke:var(--iconStroke); stroke-width:3; transition: stroke 260ms ease; }
-.drug-icon .pill-line{ stroke:var(--iconStroke); stroke-width:4; transition: stroke 260ms ease; }
+.drug-icon svg{ width: 30px; height: 30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.drug-icon svg .fill{ fill:#e8f3ff; }
 
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
+
 .badge{
-  display:inline-flex; align-items:center; gap:4px;
-  background:var(--badgeBg);
-  color:var(--badgeFg);
-  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--pillBg);
+  color: var(--pillText);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
+}
+.section-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
 .section-icon{
-  width:24px; height:24px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
 }
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
+.section-title{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.section-title small{
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
 
-.highlight{ font-weight:600; }
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.section ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
+}
+.section ul li{ margin-bottom: 4px; }
+
+.highlight{ font-weight: 600; }
+
+.footer-note{
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
+}
+
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
+}
 </style>
 </head>
 
 <body>
+
 <header>
-  <h1 id="hdrH1">Quetiapin – cilad dhimir &amp; laba-cirifood</h1>
-  <p id="hdrP">Waa warbixin kooban oo loogu talagalay waalidiinta &amp; bukaannada Soomaaliyeed</p>
+  <h1 id="hdrTitle">Quetiapin – cilad dhimir &amp; laba-cirifood</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
 
-  <div class="langbar" aria-label="Vælg sprog">
+  <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
-
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <ellipse class="pill-ellipse" cx="32" cy="32" rx="22" ry="14"/>
-            <line class="pill-line" x1="20" y1="20" x2="44" y2="44"/>
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Quetiapin</div>
+          <div class="drug-name" id="drugName">Quetiapin – cilad dhimir &amp; laba-cirifood</div>
           <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Akhris kooban</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
 
-    <div class="section"><div class="section-header"><div class="section-icon use">💊</div><div class="section-title" id="sec0Title"></div></div><ul id="sec0List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon use">✔</div><div class="section-title" id="sec1Title"></div></div><ul id="sec1List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon dose">⏰</div><div class="section-title" id="sec2Title"></div></div><ul id="sec2List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon food">🍽️</div><div class="section-title" id="sec3Title"></div></div><ul id="sec3List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon warn">!</div><div class="section-title" id="sec4Title"></div></div><ul id="sec4List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon side">⚠️</div><div class="section-title" id="sec5Title"></div></div><ul id="sec5List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon interact">⇆</div><div class="section-title" id="sec6Title"></div></div><ul id="sec6List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon ramadan">☾</div><div class="section-title" id="sec7Title"></div></div><ul id="sec7List"></ul></div>
-    <div class="section"><div class="section-header"><div class="section-icon store">⧉</div><div class="section-title" id="sec8Title"></div></div><ul id="sec8List"></ul></div>
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon use">💊</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
+      </div>
+      <ul id="useList"></ul>
+    </div>
 
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon dose">⏰</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
+      </div>
+      <ul id="doseList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon side">⚠️</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
+      </div>
+      <ul id="sideList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon interact">⇆</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
+      </div>
+      <ul id="interactList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+      </div>
+      <ul id="warnList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon ramadan">☾</div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
+      </div>
+      <ul id="ramadanList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+      </div>
+      <ul id="foodList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon store">⧉</div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
+      </div>
+      <ul id="storeList"></ul>
+    </div>
   </div>
 
-  <div class="footer-note" id="footer1"></div>
-  <div class="footer-note" id="footer2"></div>
-
+  <div class="footer-note" id="footerNote"></div>
 </main>
 
-<script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
-const THEME = window.__THEME__ || {};
+<div class="footer-note" id="credit"></div>
 
-function hexToRgb(hex){
-  const h = (hex || "").replace("#","").trim();
-  if (h.length !== 6) return {r:0,g:0,b:0};
-  return { r:parseInt(h.slice(0,2),16), g:parseInt(h.slice(2,4),16), b:parseInt(h.slice(4,6),16) };
-}
+<script>
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
+
+const THEMES = {
+  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
+};
 
 function applyTheme(lang){
-  const th = THEME[lang] || THEME.so;
-  const r = hexToRgb(th.accent);
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
+}
 
-  document.documentElement.style.setProperty("--c1", th.c1);
-  document.documentElement.style.setProperty("--c2", th.c2);
-  document.documentElement.style.setProperty("--accent", th.accent);
+const T = {
+  so: {
+    title: "Quetiapin – cilad dhimir & laba-cirifood",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Quetiapin – cilad dhimir & laba-cirifood",
+    drugForm: "Kiniin afka ah",
+    sections: {
+      use: { title:"Isticmaalka", small:"", items:[
+        "Quetiapin waxaa loo isticmaalaa daaweynta <span class='highlight'>skizofreni</span> iyo <span class='highlight'>xanuunka laba-cirifoodka</span>.",
+        "Waxay ka caawin kartaa calaamado sida fikir isku dhex yaacsan, shaki badan, maqalka wax aan jirin, ama isbeddel xooggan oo niyadda ah."
+      ]},
+      dose: { title:"Qiyaasta", small:"", items:[
+        "Qiyaasta waxaa go’aamiya dhakhtarka, waxaana badanaa si tartiib ah loo kordhiyaa maalmaha hore.",
+        "Kiniinnada caadiga ah waxaa la qaadan karaa <span class='highlight'>cunto la jirto ama la’aan</span>.",
+        "Kiniinnada <span class='highlight'>depot/extended-release</span> badanaa waxaa la qaataa <span class='highlight'>cunto la’aan</span>, ugu yaraan hal saac ka hor cuntada, waana in aan la jebin ama la calalin."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"", items:[
+        "Hurdo badan, daal, ama wareer.",
+        "Miisaan kordhis ama rabitaan cunto oo badan.",
+        "Calool-istaag, madax-xanuun, ama af qallalan."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
+        "Quetiapin wuxuu la falgali karaa daawooyin kale, gaar ahaan kuwa hurdada keena ama saameeya maskaxda.",
+        "U sheeg dhakhtarka ama farmashiyaha dhammaan daawooyinka aad qaadato."
+      ]},
+      warn: { title:"Digniino", small:"", items:[
+        "Daawadani waxay keeni kartaa hurdo iyo dawakh; taxaddar marka aad socoto, shaqaynayso ama gaari waddo.",
+        "Qaar ka mid ah dadka waxay yeelan karaan sonkor dhiig oo kacda ama miisaan kordha, sidaas darteed mararka qaar waxaa loo baahan karaa kormeer.",
+        "Ha joojin quetiapin si kedis ah adiga oo aan la tashan dhakhtar."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
+        "Kiniinka afka laga qaato wuxuu <span class='highlight'>jebinayaa soonka</span> haddii la qaato maalintii.",
+        "Ka hor Ramadaan, la hadal dhakhtarka si loo sameeyo qorshe ammaan ah oo ku saabsan waqtiga qiyaasta.",
+        "Ha beddelin qiyaasta ama waqtiga qaadashada adiga oo aan talo caafimaad helin."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
+        "Kiniinnada caadiga ah waxaa lagu qaadan karaa cunto la jirto ama la’aan.",
+        "Kiniinnada depot-ka badanaa waxaa lagu qaataa <span class='highlight'>cunto la’aan</span>.",
+        "Haddii daawadu kordhiso rabitaanka cuntada, isku day cunto dheellitiran si miisaanka loo xakameeyo."
+      ]},
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Ku hay meel ka fog carruurta, kana hooseysa 25 °C.",
+        "Ku hay baakadka asalka ah.",
+        "Ha qaadan daawada marka ay dhaafto <span class='highlight'>taariikhda dhicitaanka</span>."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
 
-  document.documentElement.style.setProperty("--badgeBg", `rgba(${r.r},${r.g},${r.b},0.16)`);
-  document.documentElement.style.setProperty("--badgeFg", `rgba(${r.r},${r.g},${r.b},0.95)`);
+  da: {
+    title: "Quetiapin – psykose og bipolar lidelse",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    badge: "Kort og let at læse",
+    drugName: "Quetiapin – psykose og bipolar lidelse",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Quetiapin bruges til behandling af <span class='highlight'>skizofreni</span> og <span class='highlight'>bipolar lidelse</span>.",
+        "Det kan hjælpe mod symptomer som hallucinationer, stærk mistænksomhed, tankeforstyrrelser eller store udsving i humøret."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Dosis bestemmes af lægen og trappes ofte langsomt op i starten.",
+        "Almindelige tabletter kan tages <span class='highlight'>med eller uden mad</span>.",
+        "<span class='highlight'>Depot-tabletter</span> tages typisk <span class='highlight'>uden mad</span>, mindst 1 time før et måltid, og de må ikke tygges, knuses eller deles."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Søvnighed, træthed eller svimmelhed.",
+        "Vægtøgning eller øget appetit.",
+        "Forstoppelse, hovedpine eller mundtørhed."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Quetiapin kan påvirkes af andre lægemidler, især medicin der også virker sløvende eller påvirker hjernen.",
+        "Fortæl altid lægen eller apoteket om al medicin, du tager."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Medicinen kan gøre dig søvnig eller svimmel; vær forsigtig med bilkørsel og maskiner.",
+        "Hos nogle kan blodsukker og vægt stige, så der kan være behov for kontrol hos lægen.",
+        "Stop ikke behandlingen pludseligt uden aftale med lægen."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Tabletter, der tages gennem munden, bryder fasten, hvis de tages i dagtimerne.",
+        "Tal med lægen før Ramadan om en sikker plan for tidspunktet for dine doser.",
+        "Ændr ikke selv dosis eller tidspunkt uden lægens råd."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Almindelige tabletter kan tages med eller uden mad.",
+        "Depot-tabletter tages typisk <span class='highlight'>på tom mave</span>.",
+        "Hvis du får øget appetit, kan sund kost hjælpe med at begrænse vægtøgning."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C.",
+        "Opbevar i original emballage.",
+        "Brug ikke efter udløbsdatoen."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
 
-  document.documentElement.style.setProperty("--iconBg", `rgba(${r.r},${r.g},${r.b},0.12)`);
-  document.documentElement.style.setProperty("--iconStroke", th.accent);
+  en: {
+    title: "Quetiapine – psychosis and bipolar disorder",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    langLabel: "Choose language:",
+    badge: "Short and easy to read",
+    drugName: "Quetiapine – psychosis and bipolar disorder",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Quetiapine is used to treat <span class='highlight'>schizophrenia</span> and <span class='highlight'>bipolar disorder</span>.",
+        "It can help with symptoms such as hallucinations, strong suspiciousness, disorganised thinking, or major mood changes."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "The dose is decided by your doctor and is often increased gradually at the start.",
+        "Regular tablets can be taken <span class='highlight'>with or without food</span>.",
+        "<span class='highlight'>Extended-release tablets</span> are usually taken <span class='highlight'>without food</span>, at least 1 hour before a meal, and should not be chewed, crushed, or split."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Sleepiness, tiredness, or dizziness.",
+        "Weight gain or increased appetite.",
+        "Constipation, headache, or dry mouth."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Quetiapine can interact with other medicines, especially medicines that also cause drowsiness or affect the brain.",
+        "Always tell your doctor or pharmacy about all medicines you use."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "This medicine can make you sleepy or dizzy; be careful with driving and machinery.",
+        "In some people, blood sugar and weight may increase, so medical follow-up may be needed.",
+        "Do not stop treatment suddenly without speaking to your doctor."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Oral tablets break the fast if taken during daytime.",
+        "Talk to your doctor before Ramadan to make a safe plan for dose timing.",
+        "Do not change the dose or timing on your own."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "Regular tablets can be taken with or without food.",
+        "Extended-release tablets are usually taken <span class='highlight'>on an empty stomach</span>.",
+        "If your appetite increases, healthy eating may help reduce weight gain."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C.",
+        "Keep in the original packaging.",
+        "Do not use after the expiry date."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "كويتيابين – الذهان والاضطراب ثنائي القطب",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "كويتيابين – الذهان والاضطراب ثنائي القطب",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "يُستخدم كويتيابين لعلاج <span class='highlight'>الفصام</span> و<span class='highlight'>الاضطراب ثنائي القطب</span>.",
+        "قد يساعد في أعراض مثل الهلاوس، والشك الشديد، واضطراب التفكير، أو التغيرات الكبيرة في المزاج."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "يحدد الطبيب الجرعة، وغالباً تُزاد تدريجياً في البداية.",
+        "يمكن تناول الأقراص العادية <span class='highlight'>مع الطعام أو بدونه</span>.",
+        "أما <span class='highlight'>الأقراص ممتدة المفعول</span> فعادة تؤخذ <span class='highlight'>من دون طعام</span>، قبل الطعام بساعة على الأقل، ولا يجب مضغها أو سحقها أو تقسيمها."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "النعاس، التعب، أو الدوخة.",
+        "زيادة الوزن أو زيادة الشهية.",
+        "الإمساك، الصداع، أو جفاف الفم."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "قد يتداخل كويتيابين مع أدوية أخرى، خصوصاً الأدوية التي تسبب النعاس أو تؤثر على الدماغ.",
+        "أخبر الطبيب أو الصيدلية دائماً بكل الأدوية التي تستعملها."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "قد يجعلك الدواء تشعر بالنعاس أو الدوخة، لذلك يجب الحذر عند القيادة أو استخدام الآلات.",
+        "عند بعض الأشخاص قد يرتفع السكر أو الوزن، لذلك قد يلزم المتابعة الطبية.",
+        "لا توقف العلاج فجأة دون استشارة الطبيب."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "الأقراص الفموية تُفطر إذا أُخذت نهاراً.",
+        "تحدث مع الطبيب قبل رمضان لوضع خطة آمنة لتوقيت الجرعات.",
+        "لا تغيّر الجرعة أو وقت الاستعمال بنفسك."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يمكن تناول الأقراص العادية مع الطعام أو بدونه.",
+        "الأقراص ممتدة المفعول تؤخذ عادة <span class='highlight'>على معدة فارغة</span>.",
+        "إذا زادت الشهية، فقد يساعد الطعام الصحي في تقليل زيادة الوزن."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
+        "يُحفظ في العبوة الأصلية.",
+        "لا يُستخدم بعد تاريخ الانتهاء."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  }
+};
+
+function stripTags(s){
+  return (s || "").replace(/<[^>]*>?/gm,"");
 }
 
 function setDirLang(lang){
@@ -231,433 +555,97 @@ function setDirLang(lang){
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
 
-function fillList(id, arr){
-  const ul = document.getElementById(id);
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
   ul.innerHTML = "";
-  (arr || []).forEach(txt => {
+  (items || []).forEach(html => {
     const li = document.createElement("li");
-    li.innerHTML = txt;
+    li.innerHTML = html;
     ul.appendChild(li);
   });
 }
 
-function setSectionTitle(elId, title){
-  const el = document.getElementById(elId);
-  if(!el) return;
-  el.textContent = (title || "").trim();
+function setSmall(id, text){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (text || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
 }
 
-/* === CONTENT (UNCHANGED TEXT, ONLY STRUCTURE FIXED) === */
-const T = {
-  so: {
-    pageTitle: "Quetiapin – cilad dhimir & laba-cirifood",
-    hdrH1: "Quetiapin – cilad dhimir & laba-cirifood",
-    hdrP: "Waa warbixin kooban oo loogu talagalay waalidiinta & bukaannada Soomaaliyeed",
-    backText: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    drugName: "Quetiapin",
-    drugForm: "Kiniin afka ah",
-    badgeText: "Akhris kooban",
-    sec0Title: "Waa maxay Quetiapin?",
-    sec0: [
-      "🧠 <strong>Quetiapin waxaa loo isticmaalaa daaweynta ciladda dhimirka ee “skizofreni”</strong> – xaalad qofka ku keenta fikir qaldan, shaki badan, iyo in uu maqlo wax aan jirin (hallucinationer) iyo fikir isku dhex yaacsan.",
-      "🌀 Waxaa kale oo loo isticmaalaa <strong>xanuunka laba-cirifoodka (bipolar)</strong>."
-    ],
-    sec1Title: "Maxaa loo isticmaalaa?",
-    sec1: ["Skizofreni (cilad dhimirka).","Bipolar (laba-cirifood)."],
-    sec2Title: "Sida loo qaato",
-    sec2: [
-      "<strong>Almindelige tabletter</strong>: dosis trappes ofte op over de første dage. Vedligeholdelsesdosis kan være ca. 300–750 mg/døgn fordelt på 2 doser (alt efter lægens plan).",
-      "<strong>Depot-tabletter</strong>: tages typisk 1 gang dagligt. Vedligeholdelse kan være ca. 400–800 mg 1 gang dagligt."
-    ],
-    sec3Title: "Cunto iyo cabitaan",
-    sec3: [
-      "Depot-tabletter tages typisk <strong>mindst 1 time før mad</strong> (følg lægens plan).",
-      "Almindelige tabletter: synkes med <strong>et glas vand</strong>."
-    ],
-    sec4Title: "Digniino",
-    sec4: [
-      "Hurdo badan iyo dawakh.",
-      "Waxay kordhin kartaa sonkorta iyo miisaanka (dadka halista u leh)."
-    ],
-    sec5Title: "Dhibaatooyinka",
-    sec5: ["Hurdo badan iyo daal.","Miisaan kordhis ama gaajo badan.","Wareer ama madax-xanuun.","Calool-istaag (forstoppelse)."],
-    sec6Title: "Is-dhexgalka daawooyinka",
-    sec6: ["Quetiapin waxa uu la falgali karaa daawooyin kale. Had iyo jeer u sheeg dhakhtarkaaga daawo kasta oo aad qaadanayso."],
-    sec7Title: "Ramadaanka iyo daawada",
-    sec7: [
-      "Ka hor Ramadaanka, la hadal dhakhtarkaaga si loo hubiyo in daawadaadu ku habboon tahay inta lagu jiro soonka.",
-      "Ha beddelin wakhtiga ama qiyaasta adiga oo aan dhakhtar la tashan.",
-      "Halaba jeer ha qaadan daawada, hana joojin daawada adiga oo aan dhakhtar la tashan."
-    ],
-    sec8Title: "Kaydinta",
-    sec8: [
-      "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
-      "Ku hay baakadka asalka ah.",
-      "Ha qaadan daawada marka ay dhaafto “EXP”.",
-      "Wixii soo haray → u gee farmashiyaha."
-    ],
-    footer1: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2: "(Hvis du har brug for mere information, kontakt apoteket ama dhakhtarkaaga.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle: "Quetiapin – psykose & bipolar",
-    hdrH1: "Quetiapin – psykose & bipolar",
-    hdrP: "Kort information om lægemidlet til patienter og pårørende.",
-    backText: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    drugName: "Quetiapin",
-    drugForm: "Tablet (til at tage gennem munden)",
-    badgeText: "Kort og let",
-    sec0Title: "Hvad er Quetiapin?",
-    sec0: [
-      "Quetiapin bruges til behandling af <strong>skizofreni</strong> – fx vrangforestillinger, stærk mistænksomhed, hallucinationer og tankeforstyrrelser.",
-      "Det bruges også ved <strong>bipolar lidelse</strong>."
-    ],
-    sec1Title: "Hvad bruges det til?",
-    sec1: ["Skizofreni.","Bipolar lidelse."],
-    sec2Title: "Sådan tages medicinen",
-    sec2: [
-      "<strong>Almindelige tabletter</strong>: dosis trappes ofte op over de første dage. Vedligeholdelsesdosis kan være ca. 300–750 mg/døgn fordelt på 2 doser (alt efter lægens plan).",
-      "<strong>Depot-tabletter</strong>: tages typisk 1 gang dagligt. Vedligeholdelse kan være ca. 400–800 mg 1 gang dagligt."
-    ],
-    sec3Title: "Mad og drikke",
-    sec3: [
-      "Depot-tabletter tages typisk <strong>mindst 1 time før mad</strong>.",
-      "Almindelige tabletter: synkes med <strong>et glas vand</strong>."
-    ],
-    sec4Title: "Advarsler",
-    sec4: ["Kan give søvnighed og svimmelhed.","Kan øge blodsukker og vægt hos nogle."],
-    sec5Title: "Bivirkninger",
-    sec5: ["Søvnighed og træthed.","Vægtøgning/øget appetit.","Svimmelhed eller hovedpine.","Forstoppelse."],
-    sec6Title: "Interaktioner",
-    sec6: ["Kan påvirkes af andre lægemidler. Fortæl altid lægen om alt du tager."],
-    sec7Title: "Ramadan og faste",
-    sec7: ["Tal med lægen før Ramadan om en sikker plan.","Ændr ikke selv tidspunkt/dosis.","Tag ikke dobbeltdosis og stop ikke pludseligt uden læge."],
-    sec8Title: "Opbevaring",
-    sec8: ["Opbevares utilgængeligt for børn, under 25°C og i original emballage.","Brug ikke efter “EXP”. Aflever rester på apoteket."],
-    footer1: "Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle: "Quetiapine – psychosis & bipolar disorder",
-    hdrH1: "Quetiapine – psychosis & bipolar disorder",
-    hdrP: "Brief medicine information for patients and relatives.",
-    backText: "Back to the medicine list",
-    langLabel: "Choose language:",
-    drugName: "Quetiapine",
-    drugForm: "Tablet (by mouth)",
-    badgeText: "Short and clear",
-    sec0Title: "What is Quetiapine?",
-    sec0: [
-      "Quetiapine is used to treat <strong>schizophrenia</strong>—for example delusions, strong suspiciousness, hallucinations, and disorganized thinking.",
-      "It is also used in <strong>bipolar disorder</strong>."
-    ],
-    sec1Title: "What is it used for?",
-    sec1: ["Schizophrenia.","Bipolar disorder."],
-    sec2Title: "How to take",
-    sec2: [
-      "<strong>Immediate-release tablets</strong>: dose is often increased over the first days. Maintenance may be about 300–750 mg/day in 2 doses (as prescribed).",
-      "<strong>Extended-release (depot)</strong>: typically taken once daily. Maintenance may be about 400–800 mg once daily."
-    ],
-    sec3Title: "Food and drink",
-    sec3: [
-      "Extended-release tablets are often taken <strong>at least 1 hour before food</strong> (follow your plan).",
-      "Immediate-release tablets: swallow with <strong>a glass of water</strong>."
-    ],
-    sec4Title: "Warnings",
-    sec4: ["Can cause sleepiness and dizziness.","May increase blood sugar and weight in some people."],
-    sec5Title: "Side effects",
-    sec5: ["Sleepiness and fatigue.","Weight gain or increased appetite.","Dizziness or headache.","Constipation."],
-    sec6Title: "Interactions",
-    sec6: ["Quetiapine can interact with other medicines. Always tell your doctor about all medicines you take."],
-    sec7Title: "Ramadan and fasting",
-    sec7: ["Talk to your doctor before Ramadan to plan safely.","Do not change timing/dose on your own.","Do not take double doses and do not stop suddenly without medical advice."],
-    sec8Title: "Storage",
-    sec8: ["Keep out of reach of children, below 25°C, in original package.","Do not use after “EXP”. Return leftovers to the pharmacy."],
-    footer1: "If you need more information, contact your pharmacy or doctor.",
-    footer2: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  ar: {
-    pageTitle: "كويتيابين – ذهان واضطراب ثنائي القطب",
-    hdrH1: "كويتيابين – ذهان واضطراب ثنائي القطب",
-    hdrP: "معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    drugName: "كويتيابين",
-    drugForm: "أقراص (عن طريق الفم)",
-    badgeText: "مختصر وواضح",
-    sec0Title: "ما هو كويتيابين؟",
-    sec0: [
-      "يُستخدم كويتيابين لعلاج <strong>الفصام</strong> مثل الأوهام والشك الشديد والهلوسة واضطراب التفكير.",
-      "ويُستخدم أيضاً في <strong>الاضطراب ثنائي القطب</strong>."
-    ],
-    sec1Title: "لماذا يُستخدم؟",
-    sec1: ["الفصام.","الاضطراب ثنائي القطب."],
-    sec2Title: "طريقة الاستعمال",
-    sec2: [
-      "<strong>الأقراص العادية</strong>: غالباً تُزاد الجرعة خلال الأيام الأولى. قد تكون جرعة المداومة 300–750 ملغ/يوم على جرعتين (حسب الخطة).",
-      "<strong>الممتدة المفعول (ديبوت)</strong>: عادة مرة يومياً. قد تكون المداومة 400–800 ملغ مرة يومياً."
-    ],
-    sec3Title: "الطعام والشراب",
-    sec3: [
-      "الأقراص ممتدة المفعول غالباً تؤخذ <strong>قبل الطعام بساعة على الأقل</strong> (حسب الخطة).",
-      "الأقراص العادية: تُبلع مع <strong>كوب ماء</strong>."
-    ],
-    sec4Title: "تحذيرات",
-    sec4: ["قد يسبب النعاس والدوخة.","قد يزيد السكر والوزن لدى بعض الأشخاص."],
-    sec5Title: "الآثار الجانبية",
-    sec5: ["نعاس وتعب.","زيادة وزن أو زيادة شهية.","دوخة أو صداع.","إمساك."],
-    sec6Title: "التداخلات",
-    sec6: ["قد يتداخل مع أدوية أخرى. أخبر طبيبك دائماً بكل ما تتناوله."],
-    sec7Title: "رمضان والصيام",
-    sec7: ["تحدث مع طبيبك قبل رمضان لوضع خطة آمنة.","لا تغيّر الوقت/الجرعة بنفسك.","لا تأخذ جرعة مضاعفة ولا توقف الدواء فجأة دون استشارة."],
-    sec8Title: "الحفظ",
-    sec8: ["يحفظ بعيداً عن الأطفال، تحت 25°م وفي العبوة الأصلية.","لا يستخدم بعد “EXP”. أعد البقايا إلى الصيدلية."],
-    footer1: "للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2: "إعداد: إبراهيم ظاهر حنف"
-  },
-
-  tr: {
-    pageTitle: "Ketiapin – psikoz & bipolar bozukluk",
-    hdrH1: "Ketiapin – psikoz & bipolar bozukluk",
-    hdrP: "Hasta ve yakınları için kısa bilgi.",
-    backText: "İlaç listesine geri dön",
-    langLabel: "Dil seçin:",
-    drugName: "Ketiapin",
-    drugForm: "Tablet (ağızdan)",
-    badgeText: "Kısa ve anlaşılır",
-    sec0Title: "Ketiapin nedir?",
-    sec0: [
-      "Ketiapin <strong>şizofreni</strong> tedavisinde kullanılır: sanrılar, aşırı şüphe, halüsinasyonlar ve düşünce bozukluğu gibi.",
-      "<strong>Bipolar bozukluk</strong>ta da kullanılır."
-    ],
-    sec1Title: "Ne için kullanılır?",
-    sec1: ["Şizofreni.","Bipolar bozukluk."],
-    sec2Title: "Nasıl alınır?",
-    sec2: [
-      "<strong>Normal tablet</strong>: ilk günlerde doz artırılır. İdame dozu 300–750 mg/gün (2 doza bölünmüş) olabilir (plana göre).",
-      "<strong>Depo/uzatılmış salım</strong>: genelde günde 1 kez. İdame 400–800 mg günde 1 kez olabilir."
-    ],
-    sec3Title: "Yemek ve içecek",
-    sec3: ["Depo tabletler çoğunlukla <strong>yemekten en az 1 saat önce</strong> alınır.","Normal tablet: <strong>bir bardak su</strong> ile yutulur."],
-    sec4Title: "Uyarılar",
-    sec4: ["Uyku hali ve baş dönmesi yapabilir.","Bazılarında kan şekeri ve kilo artışı olabilir."],
-    sec5Title: "Yan etkiler",
-    sec5: ["Uyku hali ve yorgunluk.","Kilo alma/iştah artışı.","Baş dönmesi veya baş ağrısı.","Kabızlık."],
-    sec6Title: "Etkileşimler",
-    sec6: ["Diğer ilaçlarla etkileşebilir. Tüm ilaçlarınızı doktorunuza söyleyin."],
-    sec7Title: "Ramazan",
-    sec7: ["Ramazandan önce doktorla güvenli plan yapın.","Zaman/dozu kendiniz değiştirmeyin.","Çift doz almayın ve aniden bırakmayın."],
-    sec8Title: "Saklama",
-    sec8: ["Çocuklardan uzak, 25°C’nin altında, orijinal ambalajında saklayın.","“EXP” sonrası kullanmayın. Artanları eczaneye verin."],
-    footer1: "Daha fazla bilgi için eczane veya doktorunuza başvurun.",
-    footer2: "Hazırlayan: Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    pageTitle: "کوئٹیپین – سائیکوسس اور بائپولر",
-    hdrH1: "کوئٹیپین – سائیکوسس اور بائپولر",
-    hdrP: "مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔",
-    backText: "فہرست پر واپس",
-    langLabel: "زبان منتخب کریں:",
-    drugName: "کوئٹیپین",
-    drugForm: "گولی (منہ کے ذریعے)",
-    badgeText: "مختصر اور واضح",
-    sec0Title: "کوئٹیپین کیا ہے؟",
-    sec0: [
-      "کوئٹیپین <strong>شیزوفرینیا</strong> میں استعمال ہوتی ہے: وہم، شدید شک، ہیلوسینیشن اور سوچ کی خرابی وغیرہ۔",
-      "<strong>بائپولر</strong> میں بھی استعمال ہوتی ہے۔"
-    ],
-    sec1Title: "کس لیے استعمال ہوتی ہے؟",
-    sec1: ["شیزوفرینیا۔","بائپولر ڈس آرڈر۔"],
-    sec2Title: "طریقہ استعمال",
-    sec2: [
-      "<strong>عام گولیاں</strong>: پہلے دنوں میں خوراک بڑھائی جاتی ہے۔ برقرار رکھنے کی خوراک 300–750 mg/دن (2 حصوں میں) ہو سکتی ہے۔",
-      "<strong>ڈپو/ایکسٹینڈڈ ریلیز</strong>: عموماً روزانہ 1 بار۔ برقرار رکھنے کی خوراک 400–800 mg روزانہ 1 بار ہو سکتی ہے۔"
-    ],
-    sec3Title: "کھانا پینا",
-    sec3: ["ڈپو گولیاں اکثر <strong>کھانے سے کم از کم 1 گھنٹہ پہلے</strong> لی جاتی ہیں۔","عام گولیاں: <strong>ایک گلاس پانی</strong> کے ساتھ نگلیں۔"],
-    sec4Title: "احتیاطیں",
-    sec4: ["نیند اور چکر آ سکتے ہیں۔","کچھ میں شوگر اور وزن بڑھ سکتا ہے۔"],
-    sec5Title: "مضر اثرات",
-    sec5: ["نیند/تھکن۔","وزن بڑھنا یا بھوک بڑھنا۔","چکر یا سر درد۔","قبض۔"],
-    sec6Title: "دواؤں کے باہمی اثرات",
-    sec6: ["دوسری دواؤں کے ساتھ اثر انداز ہو سکتی ہے۔ اپنی تمام ادویات بتائیں۔"],
-    sec7Title: "رمضان",
-    sec7: ["رمضان سے پہلے ڈاکٹر سے محفوظ پلان بنائیں۔","وقت/خوراک خود نہ بدلیں۔","دوہری خوراک نہ لیں اور اچانک بند نہ کریں۔"],
-    sec8Title: "محفوظ رکھنا",
-    sec8: ["بچوں سے دور، 25°C سے کم، اصل پیک میں رکھیں۔","“EXP” کے بعد استعمال نہ کریں۔ بچی دوا فارمیسی کو دیں۔"],
-    footer1: "مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔",
-    footer2: "مرتب کردہ: ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    pageTitle: "کوتیاپین – روان‌پریشی و اختلال دوقطبی",
-    hdrH1: "کوتیاپین – روان‌پریشی و اختلال دوقطبی",
-    hdrP: "اطلاعات کوتاه برای بیماران و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "کوتیاپین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و روشن",
-    sec0Title: "کوتیاپین چیست؟",
-    sec0: [
-      "کوتیاپین برای درمان <strong>اسکیزوفرنی</strong> استفاده می‌شود: هذیان، بدگمانی شدید، توهم و آشفتگی فکر.",
-      "همچنین در <strong>اختلال دوقطبی</strong> استفاده می‌شود."
-    ],
-    sec1Title: "موارد مصرف",
-    sec1: ["اسکیزوفرنی.","اختلال دوقطبی."],
-    sec2Title: "نحوه مصرف",
-    sec2: [
-      "<strong>قرص معمولی</strong>: دوز در روزهای اول بالا می‌رود. نگهدارنده ممکن است 300–750 میلی‌گرم/روز در 2 نوبت باشد.",
-      "<strong>آهسته‌رهش (دیپو)</strong>: معمولاً روزی 1 بار. نگهدارنده ممکن است 400–800 میلی‌گرم روزی 1 بار باشد."
-    ],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["قرص آهسته‌رهش اغلب <strong>حداقل 1 ساعت قبل از غذا</strong> مصرف می‌شود.","قرص معمولی: با <strong>یک لیوان آب</strong>."],
-    sec4Title: "هشدارها",
-    sec4: ["می‌تواند خواب‌آلودگی و سرگیجه بدهد.","در برخی افراد قند خون و وزن را بالا می‌برد."],
-    sec5Title: "عوارض",
-    sec5: ["خواب‌آلودگی و خستگی.","افزایش وزن یا اشتهای بیشتر.","سرگیجه یا سردرد.","یبوست."],
-    sec6Title: "تداخلات",
-    sec6: ["می‌تواند با داروهای دیگر تداخل داشته باشد. همه داروهای خود را اعلام کنید."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["قبل از رمضان با پزشک برنامه‌ریزی کنید.","زمان/دوز را خودسرانه تغییر ندهید.","دوز دو برابر نخورید و ناگهانی قطع نکنید."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس کودکان، زیر 25°C، در بسته‌بندی اصلی.","پس از “EXP” مصرف نشود. باقی‌مانده را به داروخانه تحویل دهید."],
-    footer1: "برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    pageTitle: "کوتیاپین – روان‌پریشی و اختلال دوقطبی",
-    hdrH1: "کوتیاپین – روان‌پریشی و اختلال دوقطبی",
-    hdrP: "معلومات کوتاه برای مریضان و خانواده‌ها.",
-    backText: "بازگشت به فهرست",
-    langLabel: "انتخاب زبان:",
-    drugName: "کوتیاپین",
-    drugForm: "قرص (خوراکی)",
-    badgeText: "کوتاه و واضح",
-    sec0Title: "کوتیاپین چیست؟",
-    sec0: [
-      "کوتیاپین برای درمان <strong>اسکیزوفرنی</strong> استفاده می‌شود: هذیان، شک شدید، توهم و آشفتگی فکر.",
-      "همچنان در <strong>اختلال دوقطبی</strong> استفاده می‌شود."
-    ],
-    sec1Title: "برای چی استفاده می‌شود؟",
-    sec1: ["اسکیزوفرنی.","اختلال دوقطبی."],
-    sec2Title: "چگونه گرفته شود؟",
-    sec2: [
-      "<strong>قرص معمولی</strong>: دوز در روزهای اول بالا می‌رود. نگهدارنده ممکن است 300–750 mg/روز در 2 نوبت باشد.",
-      "<strong>آهسته‌رهش</strong>: معمولاً روزی 1 بار. نگهدارنده ممکن است 400–800 mg روزی 1 بار باشد."
-    ],
-    sec3Title: "غذا و نوشیدنی",
-    sec3: ["آهسته‌رهش اغلب <strong>حداقل 1 ساعت قبل از غذا</strong> گرفته می‌شود.","قرص معمولی: با <strong>یک گلاس آب</strong>."],
-    sec4Title: "هشدارها",
-    sec4: ["خواب‌آلودگی و سرگیجه می‌دهد.","در برخی قند خون و وزن را بالا می‌برد."],
-    sec5Title: "عوارض",
-    sec5: ["خواب‌آلودگی و خستگی.","افزایش وزن/اشتها.","سرگیجه یا سردرد.","قبض."],
-    sec6Title: "تداخلات",
-    sec6: ["با دواهای دیگر تداخل می‌کند. همه دواها را بگویید."],
-    sec7Title: "رمضان و روزه",
-    sec7: ["قبل از رمضان با داکتر پلان کنید.","خودتان وقت/دوز را تغییر ندهید.","دوز دو برابر نخورید و ناگهانی قطع نکنید."],
-    sec8Title: "نگهداری",
-    sec8: ["دور از دسترس اطفال، زیر 25°C، در بسته‌بندی اصلی.","بعد از “EXP” استفاده نشود. باقی‌مانده را به دواخانه بسپارید."],
-    footer1: "برای معلومات بیشتر با دواخانه یا داکتر خود تماس بگیرید.",
-    footer2: "تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    pageTitle: "کوېټیاپین – رواني ستونزې او دوه-قطبي",
-    hdrH1: "کوېټیاپین – رواني ستونزې او دوه-قطبي",
-    hdrP: "د ناروغانو او کورنۍ لپاره لنډ معلومات.",
-    backText: "لېست ته بېرته",
-    langLabel: "ژبه وټاکئ:",
-    drugName: "کوېټیاپین",
-    drugForm: "ګولۍ (د خولې له لارې)",
-    badgeText: "لنډ او روښانه",
-    sec0Title: "کوېټیاپین څه شی دی؟",
-    sec0: [
-      "کوېټیاپین د <strong>شیزوفرینیا</strong> لپاره کارېږي: وهم، ډېر شک، توهم او ګډوډ فکر.",
-      "همدارنګه د <strong>دوه-قطبي</strong> اختلال کې هم کارېږي."
-    ],
-    sec1Title: "د څه لپاره کارېږي؟",
-    sec1: ["شیزوفرینیا.","دوه-قطبي اختلال."],
-    sec2Title: "څنګه واخیستل شي؟",
-    sec2: [
-      "<strong>عادي ګولۍ</strong>: په لومړیو ورځو کې اندازه زیاتېږي. ساتونکې اندازه 300–750 mg/ورځ په 2 ځل کېدای شي.",
-      "<strong>ډیپو/ورو خوشې کېدونکې</strong>: عموماً ورځ کې 1 ځل. ساتونکې اندازه 400–800 mg ورځ کې 1 ځل کېدای شي."
-    ],
-    sec3Title: "خواړه او څښاک",
-    sec3: ["ورو خوشې کېدونکې ګولۍ اکثر <strong>له خوړو 1 ساعت مخکې</strong> اخیستل کېږي.","عادي ګولۍ: له <strong>یو ګیلاس اوبو</strong> سره."],
-    sec4Title: "خبرداری",
-    sec4: ["خوبولي او سر ګرځېدل کېدای شي.","په ځینو کې شکر او وزن زیاتوي."],
-    sec5Title: "اړخیزې اغېزې",
-    sec5: ["خوبولي او ستړیا.","وزن زیاتوالی یا اشتها زیاتېدل.","سر ګرځېدل یا سر درد.","قبض."],
-    sec6Title: "تداخلات",
-    sec6: ["له نورو درملو سره تداخل لري. خپل ټول درمل ووایئ."],
-    sec7Title: "رمضان او روژه",
-    sec7: ["له رمضان مخکې له ډاکټر سره پلان وکړئ.","وخت/اندازه په خپله مه بدلوئ.","دوچنده اندازه مه اخلئ او ناڅاپه مه بندوئ."],
-    sec8Title: "ساتنه",
-    sec8: ["له ماشومانو لرې، تر 25°C لاندې، په اصلي بسته کې وساتئ.","له “EXP” وروسته مه کاروئ. پاتې درمل درملتون ته وسپارئ."],
-    footer1: "د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.",
-    footer2: "چمتو کوونکی: ابراهیم ظاهر حنف"
-  }
-};
-
-function applyLang(lang){
+function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
 
-  applyTheme(lang);
   setDirLang(lang);
+  applyTheme(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
+  document.title = stripTags(d.title);
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+
   document.getElementById("langLabel").textContent = d.langLabel;
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
 
-  document.getElementById("drugName").textContent = d.drugName;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
 
-  setSectionTitle("sec0Title", d.sec0Title);
-  setSectionTitle("sec1Title", d.sec1Title);
-  setSectionTitle("sec2Title", d.sec2Title);
-  setSectionTitle("sec3Title", d.sec3Title);
-  setSectionTitle("sec4Title", d.sec4Title);
-  setSectionTitle("sec5Title", d.sec5Title);
-  setSectionTitle("sec6Title", d.sec6Title);
-  setSectionTitle("sec7Title", d.sec7Title);
-  setSectionTitle("sec8Title", d.sec8Title);
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  setSmall("useSmall", d.sections.use.small);
 
-  fillList("sec0List", d.sec0);
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  setSmall("doseSmall", d.sections.dose.small);
 
-  document.getElementById("footer1").textContent = d.footer1;
-  document.getElementById("footer2").innerHTML = d.footer2;
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  setSmall("sideSmall", d.sections.side.small);
+
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  setSmall("interactSmall", d.sections.interact.small);
+
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  setSmall("warnSmall", d.sections.warn.small);
+
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  setSmall("ramadanSmall", d.sections.ramadan.small);
+
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  setSmall("foodSmall", d.sections.food.small);
+
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  setSmall("storeSmall", d.sections.store.small);
+
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
+
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
 
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
   backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("lang", lang);
+  window.history.replaceState({}, "", url.toString());
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
-document.getElementById("langSelect").value = (T[startLang] ? startLang : "so");
-applyLang(document.getElementById("langSelect").value);
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
-document.getElementById("langSelect").addEventListener("change", function(){
-  applyLang(this.value);
+const select = document.getElementById("langSelect");
+select.value = startLang;
+render(select.value);
+
+select.addEventListener("change", function(){
+  render(this.value);
 });
 </script>
 
