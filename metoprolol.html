@@ -7,576 +7,626 @@
 
 <style>
 :root{
-  --accent:#00a676;
-  --c1:#0066cc;
-  --c2:#00a676;
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
 
-  --badgeBg:#d9f6e8;
-  --badgeFg:#16634a;
+  --bg:#e6f2f8;
+  --text:#123047;
+  --muted:#607089;
 
-  --iconBg: var(--badgeBg);
-  --iconFill:#ffffff;
-  --iconStroke: var(--accent);
+  --card:#ffffff;
+  --stroke:#d0d7e2;
+
+  --pillBg:#d9f6e8;
+  --pillText:#16634a;
+
+  --link:#00509e;
 }
 
-body { font-family: Arial, sans-serif; background:#e6f2f8; color:#123047; margin:0; }
+@media (prefers-reduced-motion: no-preference){
+  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+  }
+  header{ transition: background .45s ease, color .35s ease; }
+}
+
+body{
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
 header{
-  background:linear-gradient(135deg,var(--c1),var(--c2));
-  color:#fff; padding:22px 16px; text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
-  transition: background 260ms ease;
+  background: linear-gradient(135deg, var(--accent1), var(--accent2));
+  color: var(--accentText);
+  padding: 22px 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
-header h1{ margin:0 0 4px; font-size:1.8rem; }
-header p{ margin:0; font-size:0.95rem; }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-main{ max-width:820px; margin:18px auto 32px; padding:0 14px; }
+main{
+  max-width: 820px;
+  margin: 18px auto 32px;
+  padding: 0 14px;
+}
 
 a.back{
-  display:inline-flex; align-items:center; gap:6px; margin-bottom:14px;
-  text-decoration:none; color:var(--accent); font-size:0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  text-decoration: none;
+  color: var(--link);
+  font-size: 0.9rem;
 }
-a.back span{ font-size:1.1rem; }
+a.back span{ font-size: 1.1rem; }
 
 .langbar{
-  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-  background:#fff; border-radius:12px; padding:10px 12px; margin:0 0 14px 0;
-  box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+  background:#ffffff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin: 0 0 14px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
+  border-left: 4px solid var(--accent1);
 }
-.langbar label{ font-size:0.9rem; color:#123047; font-weight:600; }
+.langbar label{
+  font-size:0.9rem;
+  color:var(--text);
+  font-weight:600;
+}
 .langbar select{
-  padding:7px 10px; border-radius:10px; border:1px solid #d0d7e2;
-  background:#fff; color:#123047; font-size:0.9rem; max-width:100%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--stroke);
+  background: #fff;
+  color:var(--text);
+  font-size: 0.9rem;
+  max-width: 100%;
 }
 
 .card{
-  background:#fff; border-radius:14px; padding:16px 16px 10px; margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12);
-  border-top:4px solid var(--accent);
+  background: var(--card);
+  border-radius: 14px;
+  padding: 16px 16px 10px;
+  margin-bottom: 14px;
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+  border-top: 4px solid var(--accent1);
 }
 
-.drug-meta{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px; }
-.drug-info{ display:flex; align-items:center; gap:10px; }
-.drug-icon{
-  width:44px; height:44px; border-radius:12px;
-  background:var(--iconBg);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--iconStroke);
+.drug-meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.drug-icon svg{ width:30px; height:30px; }
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+.drug-info{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.drug-icon{
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #e3f2fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drug-icon svg{ width: 30px; height: 30px; }
+.drug-icon svg .stroke{ stroke: var(--accent2); }
+.drug-icon svg .fill{ fill:#e8f3ff; }
+
+.drug-labels{ display: flex; flex-direction: column; }
+.drug-name{ font-weight: 600; font-size: 0.95rem; }
+.drug-form{ font-size: 0.82rem; color: #29516e; }
 
 .badge{
-  display:inline-flex; align-items:center; gap:4px;
-  background:var(--badgeBg); color:var(--badgeFg);
-  padding:4px 10px; border-radius:999px; font-size:0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--pillBg);
+  color: var(--pillText);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border:1px solid rgba(0,0,0,0.04);
 }
 
-.section{ margin-top:8px; padding-top:8px; border-top:1px dashed #d0d7e2; }
-.section-header{ display:flex; align-items:center; gap:8px; margin-bottom:4px; }
+.section{
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--stroke);
+}
+.section-header{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
 .section-icon{
-  width:24px; height:24px; border-radius:999px;
-  display:inline-flex; align-items:center; justify-content:center;
-  font-size:0.9rem; color:#123047;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text);
 }
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
+.section-icon.use { background:#e3f2fd; }
+.section-icon.dose { background:#e2f5ea; }
+.section-icon.side { background:#fff3e0; }
+.section-icon.interact { background:#ede7f6; }
+.section-icon.warn { background:#ffebee; }
+.section-icon.ramadan { background:#e0f7fa; }
+.section-icon.food { background:#f1f8e9; }
+.section-icon.store { background:#edeff9; }
 
-.section-title{ font-weight:700; color:#123047; font-size:0.96rem; }
+.section-title{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 0.96rem;
+}
+.section-title small{
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 6px;
+}
 
-.section ul{ margin:0 0 4px 18px; padding-left:0; font-size:0.92rem; }
-.section ul li{ margin-bottom:4px; }
+.section ul{
+  margin: 0 0 4px 18px;
+  padding-left: 0;
+  font-size: 0.92rem;
+}
+.section ul li{ margin-bottom: 4px; }
 
-.highlight{ font-weight:600; }
-.footer-note{ font-size:0.8rem; color:#607089; text-align:center; margin:18px 0 10px; }
-@media (max-width:600px){ header h1{ font-size:1.5rem; } }
+.highlight{ font-weight: 600; }
+
+.footer-note{
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 18px 0 10px;
+}
+
+@media (max-width: 600px){
+  header h1 { font-size: 1.5rem; }
+}
 </style>
 </head>
 
 <body>
+
 <header>
-  <h1 id="hdrH1">Metoprolol – wadne &amp; dhiig-kar</h1>
-  <p id="hdrP">Waa warbixin kooban oo ku saabsan daawada – waalidiinta &amp; bukaannada Soomaaliyeed</p>
+  <h1 id="hdrTitle">Metoprolol – wadne &amp; dhiig-kar</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
 
-  <div class="langbar" aria-label="Choose language">
+  <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
     </select>
   </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Ku laabo liiska daawooyinka</span></a>
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
 
   <div class="card">
-
     <div class="drug-meta">
       <div class="drug-info">
-        <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="var(--iconFill)" stroke="currentColor" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="currentColor" stroke-width="4"/>
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
+            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
+            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
           </svg>
         </div>
         <div class="drug-labels">
-          <div class="drug-name" id="drugName">Metoprolol</div>
+          <div class="drug-name" id="drugName">Metoprolol – wadne &amp; dhiig-kar</div>
           <div class="drug-form" id="drugForm">Kiniin afka ah</div>
         </div>
       </div>
-      <div class="badge" id="badgeText">Akhris kooban</div>
+      <div class="badge" id="badge">Akhris fudud oo kooban</div>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon use">💊</div>
-        <div class="section-title" id="sec0Title">Waa maxay Metoprolol?</div>
+        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
-      <ul id="sec0List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon use">✔</div>
-        <div class="section-title" id="sec1Title">Maxaa loo isticmaalaa?</div>
-      </div>
-      <ul id="sec1List"></ul>
+      <ul id="useList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon dose">⏰</div>
-        <div class="section-title" id="sec2Title">Sida loo qaato</div>
+        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
-      <ul id="sec2List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title" id="sec3Title">Cunto iyo cabitaan</div>
-      </div>
-      <ul id="sec3List"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title" id="sec4Title">Digniino</div>
-      </div>
-      <ul id="sec4List"></ul>
+      <ul id="doseList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon side">⚠️</div>
-        <div class="section-title" id="sec5Title">Dhibaatooyinka</div>
+        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
-      <ul id="sec5List"></ul>
+      <ul id="sideList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon interact">⇆</div>
-        <div class="section-title" id="sec6Title">Is-dhexgalka daawooyinka</div>
+        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
-      <ul id="sec6List"></ul>
+      <ul id="interactList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon warn">!</div>
+        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+      </div>
+      <ul id="warnList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon ramadan">☾</div>
-        <div class="section-title" id="sec7Title">Ramadaanka iyo daawada</div>
+        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
       </div>
-      <ul id="sec7List"></ul>
+      <ul id="ramadanList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon food">🍽️</div>
+        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+      </div>
+      <ul id="foodList"></ul>
     </div>
 
     <div class="section">
       <div class="section-header">
         <div class="section-icon store">⧉</div>
-        <div class="section-title" id="sec8Title">Kaydinta</div>
+        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
       </div>
-      <ul id="sec8List"></ul>
+      <ul id="storeList"></ul>
     </div>
-
   </div>
 
-  <div class="footer-note" id="footer1"></div>
-  <div class="footer-note" id="footer2"></div>
-
+  <div class="footer-note" id="footerNote"></div>
 </main>
 
+<div class="footer-note" id="credit"></div>
+
 <script>
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar"]);
 
 const THEMES = {
-  so:  { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da:  { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en:  { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar:  { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
+  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
+  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
+  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
+  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
 };
 
 function applyTheme(lang){
-  const th = THEME[lang] || THEME.so;
-  document.documentElement.style.setProperty("--c1", th.c1);
-  document.documentElement.style.setProperty("--c2", th.c2);
-  document.documentElement.style.setProperty("--accent", th.accent);
-  document.documentElement.style.setProperty("--badgeBg", th.badgeBg);
-  document.documentElement.style.setProperty("--badgeFg", th.badgeFg);
-  document.documentElement.style.setProperty("--iconBg", th.badgeBg);
-  document.documentElement.style.setProperty("--iconStroke", th.accent);
+  const th = THEMES[lang] || THEMES.so;
+  const r = document.documentElement.style;
+  r.setProperty("--accent1", th.a1);
+  r.setProperty("--accent2", th.a2);
+  r.setProperty("--link", th.link || "#00509e");
+  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
+  r.setProperty("--pillText", th.pillText || "#16634a");
 }
+
+const T = {
+  so: {
+    title: "Metoprolol – wadne & dhiig-kar",
+    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    back: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
+    badge: "Akhris fudud oo kooban",
+    drugName: "Metoprolol – wadne & dhiig-kar",
+    drugForm: "Kiniin afka ah",
+    sections: {
+      use: { title:"Isticmaalka", small:"", items:[
+        "Metoprolol waa daawo <span class='highlight'>yaraysa garaaca wadnaha</span> isla markaana <span class='highlight'>hoos u dhigta cadaadiska dhiigga</span>.",
+        "Waxaa loo isticmaalaa dhiig-kar, xanuunno wadne, garaac wadne oo aan caadi ahayn, iyo mararka qaarkood <span class='highlight'>wadne-daciifnimo</span>."
+      ]},
+      dose: { title:"Qiyaasta", small:"", items:[
+        "Qaado daawada <span class='highlight'>sida dhakhtarku kuu qoray</span>, badanaa hal mar ama laba mar maalintii.",
+        "Qaado <span class='highlight'>waqti isku mid ah</span> maalin kasta.",
+        "Ha joojin si kedis ah; haddii la joojinayo waa in si tartiib ah loo dhimaa iyadoo talo caafimaad la helayo."
+      ]},
+      side: { title:"Waxyeellooyinka", small:"", items:[
+        "Daal, hurdo, madax-wareer ama tabar-darro.",
+        "Gacmo ama lugo qabow.",
+        "Cadaadis dhiig oo hooseeya ama garaac wadne oo gaabis noqda.",
+        "Mararka qaarkood madax-xanuun ama calool-xanuun khafiif ah."
+      ]},
+      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
+        "Daawooyin qaar oo wadnaha ah sida <span class='highlight'>verapamil, diltiazem ama digoxin</span> waxay kordhin karaan saameynta metoprolol.",
+        "Daawooyinka kale ee dhiig-karka waxay hoos u dhigi karaan cadaadiska dhiigga si badan.",
+        "Daawooyinka xanuun-baabi’iya qaarkood sida <span class='highlight'>ibuprofen</span> mararka qaar waxay yareyn karaan saameynta daawada."
+      ]},
+      warn: { title:"Digniino", small:"", items:[
+        "La xiriir dhakhtar haddii garaaca wadnahaagu aad u gaabiyo, aad suuxdo, kugu adkaato neefsashadu ama aad laab-xanuun cusub yeelato.",
+        "U sheeg dhakhtarka haddii aad qabto <span class='highlight'>neef, COPD, sonkorow ama dhibaato wareegga dhiigga</span>.",
+        "Daawadu waxay qarin kartaa calaamadaha sonkorta dhiigga oo hoos u dhacda dadka sonkorowga qaba."
+      ]},
+      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
+        "La hadal dhakhtarka ka hor Ramadaan si jadwal ammaan ah loo sameeyo.",
+        "Haddii daawada la qaato laba jeer maalintii, badanaa waxaa lagu qorsheyn karaa <span class='highlight'>afur</span> iyo <span class='highlight'>suxuur</span>.",
+        "Ha beddelin ama ha joojin daawada adiga oo aan talo caafimaad helin."
+      ]},
+      food: { title:"Cunto iyo cabitaan", small:"", items:[
+        "Daawada badanaa waa la qaadan karaa <span class='highlight'>cunto la jirto ama la’aan</span>.",
+        "Haddii calool-xanuun kugu yimaado, ku qaado cunto.",
+        "Waxaa fiican in laga taxaddaro khamriga haddii uu kuu keeno madax-wareer ama cadaadis dhiig oo hooseeya."
+      ]},
+      store: { title:"Kaydinta daawada", small:"", items:[
+        "Ku hay meel ka fog carruurta, kana hooseysa 25 °C.",
+        "Ku hay baakadka asalka ah si looga ilaaliyo huurka iyo iftiinka.",
+        "Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka.",
+        "Wixii soo haray ku celi farmashiyaha."
+      ]}
+    },
+    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
+    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+  },
+
+  da: {
+    title: "Metoprolol – hjerte & blodtryk",
+    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
+    back: "Tilbage til medicinlisten",
+    langLabel: "Vælg sprog:",
+    badge: "Kort og let at læse",
+    drugName: "Metoprolol – hjerte & blodtryk",
+    drugForm: "Tablet til oral brug",
+    sections: {
+      use: { title:"Anvendelse", small:"", items:[
+        "Metoprolol er et lægemiddel, der <span class='highlight'>sænker puls og blodtryk</span>.",
+        "Det bruges ved forhøjet blodtryk, visse hjertesygdomme, rytmeforstyrrelser og i nogle tilfælde <span class='highlight'>hjertesvigt</span>."
+      ]},
+      dose: { title:"Dosering", small:"", items:[
+        "Tag medicinen <span class='highlight'>som aftalt med lægen</span>, ofte én eller to gange dagligt.",
+        "Tag den på <span class='highlight'>samme tidspunkt</span> hver dag.",
+        "Stop ikke pludseligt; nedtrapning bør ske i samråd med lægen."
+      ]},
+      side: { title:"Bivirkninger", small:"", items:[
+        "Træthed, døsighed, svimmelhed eller kraftesløshed.",
+        "Kolde hænder eller fødder.",
+        "Lavt blodtryk eller langsom puls.",
+        "Nogle får hovedpine eller lette mavegener."
+      ]},
+      interact: { title:"Interaktioner", small:"", items:[
+        "Visse hjertelægemidler som <span class='highlight'>verapamil, diltiazem eller digoxin</span> kan forstærke effekten.",
+        "Andre blodtrykssænkende lægemidler kan sænke blodtrykket yderligere.",
+        "Visse smertestillende lægemidler som <span class='highlight'>ibuprofen</span> kan hos nogle mindske blodtrykseffekten."
+      ]},
+      warn: { title:"Advarsler", small:"", items:[
+        "Kontakt lægen ved meget langsom puls, besvimelse, åndenød eller nye brystsmerter.",
+        "Fortæl lægen hvis du har <span class='highlight'>astma, COPD, diabetes eller kredsløbsproblemer</span>.",
+        "Medicinen kan skjule symptomer på lavt blodsukker hos personer med diabetes."
+      ]},
+      ramadan: { title:"Ramadan og faste", small:"", items:[
+        "Tal med lægen før Ramadan for at lave en sikker plan.",
+        "Ved dosering to gange dagligt kan den ofte tilpasses til <span class='highlight'>iftar</span> og <span class='highlight'>suhoor</span>.",
+        "Ændr ikke eller stop ikke behandlingen uden lægens råd."
+      ]},
+      food: { title:"Mad og drikke", small:"", items:[
+        "Kan som regel tages <span class='highlight'>med eller uden mad</span>.",
+        "Hvis du får mavegener, kan du tage den sammen med mad.",
+        "Vær forsigtig med alkohol, hvis du bliver mere svimmel eller får lavt blodtryk."
+      ]},
+      store: { title:"Opbevaring", small:"", items:[
+        "Opbevar utilgængeligt for børn og under 25 °C.",
+        "Opbevar i original emballage for at beskytte mod fugt og lys.",
+        "Brug ikke medicinen efter udløbsdatoen.",
+        "Aflever rester på apoteket."
+      ]}
+    },
+    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
+    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+  },
+
+  en: {
+    title: "Metoprolol – heart & blood pressure",
+    subtitle: "Brief information about the medicine for patients and relatives.",
+    back: "Back to the medicine list",
+    langLabel: "Choose language:",
+    badge: "Short and easy to read",
+    drugName: "Metoprolol – heart & blood pressure",
+    drugForm: "Oral tablet",
+    sections: {
+      use: { title:"Use", small:"", items:[
+        "Metoprolol is a medicine that <span class='highlight'>lowers heart rate and blood pressure</span>.",
+        "It is used for high blood pressure, certain heart conditions, abnormal heart rhythm, and in some cases <span class='highlight'>heart failure</span>."
+      ]},
+      dose: { title:"Dosage", small:"", items:[
+        "Take the medicine <span class='highlight'>as prescribed by your doctor</span>, often once or twice daily.",
+        "Take it at the <span class='highlight'>same time</span> each day.",
+        "Do not stop suddenly; dose reduction should be done gradually with medical advice."
+      ]},
+      side: { title:"Side effects", small:"", items:[
+        "Tiredness, drowsiness, dizziness, or weakness.",
+        "Cold hands or feet.",
+        "Low blood pressure or slow pulse.",
+        "Sometimes headache or mild stomach upset."
+      ]},
+      interact: { title:"Interactions", small:"", items:[
+        "Some heart medicines such as <span class='highlight'>verapamil, diltiazem or digoxin</span> may increase the effect of metoprolol.",
+        "Other blood-pressure-lowering medicines may lower blood pressure further.",
+        "Some painkillers such as <span class='highlight'>ibuprofen</span> may reduce the blood pressure effect in some people."
+      ]},
+      warn: { title:"Warnings", small:"", items:[
+        "Contact a doctor if your heart rate becomes very slow, you faint, develop shortness of breath, or get new chest pain.",
+        "Tell your doctor if you have <span class='highlight'>asthma, COPD, diabetes, or circulation problems</span>.",
+        "This medicine may hide symptoms of low blood sugar in people with diabetes."
+      ]},
+      ramadan: { title:"Ramadan and fasting", small:"", items:[
+        "Talk to your doctor before Ramadan to make a safe plan.",
+        "If taken twice daily, doses can often be planned for <span class='highlight'>iftar</span> and <span class='highlight'>suhoor</span>.",
+        "Do not change or stop the medicine without medical advice."
+      ]},
+      food: { title:"Food and drink", small:"", items:[
+        "It can usually be taken <span class='highlight'>with or without food</span>.",
+        "If it causes stomach upset, take it with food.",
+        "Be careful with alcohol if it makes you more dizzy or lowers your blood pressure."
+      ]},
+      store: { title:"Storage", small:"", items:[
+        "Keep out of reach of children and store below 25 °C.",
+        "Keep in the original packaging to protect from moisture and light.",
+        "Do not use after the expiry date.",
+        "Return leftovers to the pharmacy."
+      ]}
+    },
+    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
+    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+  },
+
+  ar: {
+    title: "ميتوبرولول – القلب وضغط الدم",
+    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
+    back: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    badge: "معلومات مختصرة وسهلة",
+    drugName: "ميتوبرولول – القلب وضغط الدم",
+    drugForm: "أقراص فموية",
+    sections: {
+      use: { title:"الاستعمال", small:"", items:[
+        "ميتوبرولول دواء <span class='highlight'>يخفض نبض القلب وضغط الدم</span>.",
+        "يُستخدم لعلاج ارتفاع ضغط الدم وبعض أمراض القلب واضطراب النبض، وأحياناً في حالات <span class='highlight'>قصور القلب</span>."
+      ]},
+      dose: { title:"الجرعة", small:"", items:[
+        "تناول الدواء <span class='highlight'>حسب وصف الطبيب</span>، وغالباً مرة أو مرتين يومياً.",
+        "يفضل تناوله في <span class='highlight'>نفس الوقت</span> كل يوم.",
+        "لا توقفه فجأة؛ يجب تخفيف الجرعة تدريجياً بعد استشارة الطبيب."
+      ]},
+      side: { title:"الآثار الجانبية", small:"", items:[
+        "تعب، نعاس، دوخة أو ضعف.",
+        "برودة اليدين أو القدمين.",
+        "انخفاض ضغط الدم أو بطء النبض.",
+        "أحياناً صداع أو اضطراب خفيف في المعدة."
+      ]},
+      interact: { title:"التداخلات الدوائية", small:"", items:[
+        "بعض أدوية القلب مثل <span class='highlight'>فيراباميل، ديلتيازيم أو ديجوكسين</span> قد تزيد من تأثير ميتوبرولول.",
+        "قد تزيد أدوية ضغط الدم الأخرى من انخفاض الضغط.",
+        "بعض المسكنات مثل <span class='highlight'>إيبوبروفين</span> قد تقلل من تأثير خفض الضغط عند بعض الأشخاص."
+      ]},
+      warn: { title:"تحذيرات", small:"", items:[
+        "اتصل بالطبيب إذا أصبح النبض بطيئاً جداً، أو حدث إغماء، أو صعوبة في التنفس، أو ألم جديد في الصدر.",
+        "أخبر الطبيب إذا كنت تعاني من <span class='highlight'>الربو، COPD، السكري أو مشاكل في الدورة الدموية</span>.",
+        "قد يُخفي الدواء أعراض انخفاض سكر الدم لدى مرضى السكري."
+      ]},
+      ramadan: { title:"رمضان والصيام", small:"", items:[
+        "تحدث مع الطبيب قبل رمضان لوضع خطة آمنة.",
+        "إذا كان الدواء يؤخذ مرتين يومياً، فيمكن غالباً تنظيمه مع <span class='highlight'>الإفطار</span> و<span class='highlight'>السحور</span>.",
+        "لا تغيّر العلاج أو توقفه دون استشارة طبية."
+      ]},
+      food: { title:"الطعام والشراب", small:"", items:[
+        "يمكن غالباً تناوله <span class='highlight'>مع الطعام أو بدونه</span>.",
+        "إذا سبب اضطراباً في المعدة، فيفضل تناوله مع الطعام.",
+        "ينبغي الحذر مع الكحول إذا سبب لك زيادة في الدوخة أو انخفاض الضغط."
+      ]},
+      store: { title:"الحفظ", small:"", items:[
+        "يُحفظ بعيداً عن الأطفال وتحت 25°م.",
+        "يُحفظ في العبوة الأصلية للحماية من الرطوبة والضوء.",
+        "لا يُستخدم بعد تاريخ الانتهاء.",
+        "أعد البقايا إلى الصيدلية."
+      ]}
+    },
+    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
+    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+  }
+};
+
+function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
   document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
 }
 
-function fillList(id, arr){
-  const ul = document.getElementById(id);
+function fillList(listId, items){
+  const ul = document.getElementById(listId);
   ul.innerHTML = "";
-  (arr || []).forEach(txt => {
+  (items || []).forEach(html => {
     const li = document.createElement("li");
-    li.innerHTML = txt;
+    li.innerHTML = html;
     ul.appendChild(li);
   });
 }
 
-const T = {
-  so: {
-    pageTitle:"Metoprolol – wadne & dhiig-kar",
-    hdrH1:"Metoprolol – wadne & dhiig-kar",
-    hdrP:"Waa warbixin kooban oo ku saabsan daawada – waalidiinta & bukaannada Soomaaliyeed",
-    backText:"Ku laabo liiska daawooyinka",
-    langLabel:"Dooro luqadda:",
-    drugName:"Metoprolol",
-    drugForm:"Kiniin afka ah",
-    badgeText:"Akhris kooban",
+function setSmall(id, txt){
+  const el = document.getElementById(id);
+  if (!el) return;
+  const t = (txt || "").trim();
+  el.textContent = t;
+  el.style.display = t ? "inline" : "none";
+}
 
-    sec0Title:"Waa maxay Metoprolol?",
-    sec0:[
-      "Metoprolol waa daawo <span class='highlight'>yaraysa garaaca wadnaha</span> oo sidoo kale <span class='highlight'>hoos u dhigta cadaadiska dhiigga</span> (beta-blocker).",
-      "Waxay yareysaa culayska wadnaha, waxayna ka caawisaa wadnaha inuu si deggan u shaqeeyo."
-    ],
-    sec1Title:"Maxaa loo isticmaalaa?",
-    sec1:[
-      "Dhiig-kar (cadaadis dhiig oo sare).",
-      "Laab-xanuun (xanuun ka yimaada wadnaha).",
-      "Garaac aan caadi ahayn ama garaac degdeg ah.",
-      "Qaar ka mid ah dadka: wadne daciif (sida dhakhtarku u qorsheeyo)."
-    ],
-    sec2Title:"Sida loo qaato",
-    sec2:[
-      "Qaado daawada <span class='highlight'>sida dhakhtarku kuu qoray</span> (hal mar ama laba mar maalintii).",
-      "Qaado <span class='highlight'>waqti isku mid ah</span> maalin kasta.",
-      "Ha joojin si kedis ah. La tasho dhakhtar haddii la joojinayo (waa in tartiib loo dhimaa)."
-    ],
-    sec3Title:"Cunto iyo cabitaan",
-    sec3:[
-      "Badanaa waa la qaadan karaa <span class='highlight'>cunto la jirto ama la’aan</span>.",
-      "Haddii calool-xanuun kugu timaado, qaado cunto la jirto."
-    ],
-    sec4Title:"Digniino",
-    sec4:[
-      "Haddii garaaca wadnaha aad u gaabiyo, suuxdin, neef-qabatin ama laab-xanuun cusub: <span class='highlight'>la xiriir dhakhtar</span>.",
-      "Haddii aad qabto neef (asthma/COPD), sonkorow, ama dhibaato wareegga dhiigga: dhakhtarka u sheeg.",
-      "Daawadu waxay qarin kartaa calaamadaha sonkorta hoos u dhacda ee dadka sonkorowga qaba."
-    ],
-    sec5Title:"Dhibaatooyinka",
-    sec5:[
-      "Daal, hurdo, ama wareer.",
-      "Gacmo/lugo qabow.",
-      "Cadaadis dhiig hooseeya ama garaac gaabis ah.",
-      "Mararka qaar: madax-xanuun ama calool-xanuun khafiif ah."
-    ],
-    sec6Title:"Is-dhexgalka daawooyinka",
-    sec6:[
-      "Daawooyin qaar oo wadnaha ah (tusaale verapamil/diltiazem, digoxin) waxay kordhin karaan saameynta garaac-gaabinta.",
-      "Daawooyinka dhiig-karka kale waxay hoos u dhigi karaan cadaadiska dhiigga si badan.",
-      "Daawooyinka xanuun baabi’iya qaarkood (tusaale ibuprofen) mararka qaar waxay yareyn karaan saameynta dhiig-karka.",
-      "U sheeg dhakhtarka/farmashiyaha daawo kasta oo aad qaadato."
-    ],
-    sec7Title:"Ramadaanka iyo daawada",
-    sec7:[
-      "La hadal dhakhtarka ka hor Ramadan si loo sameeyo qorshe ammaan ah.",
-      "Haddii aad qaadato 2 jeer maalintii, badanaa waxaa lagu beegaa <span class='highlight'>afurka</span> iyo <span class='highlight'>suxuurta</span>."
-    ],
-    sec8Title:"Kaydinta",
-    sec8:[
-      "Ku hay meel ka fog carruurta, kana hooseeya 25°C, oo ku hay baakadka asalka ah.",
-      "Ha isticmaalin ka dib taariikhda dhicitaanka (EXP).",
-      "Wixii soo haray ku celi farmashiyaha."
-    ],
-    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"(Hvis du har brug for mere information, kontakt dit lokale apotek eller din egen læge.)<br/><br/>Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf<br/>(Dette materiale er udviklet af farmakonomen: Ibrahim Dahir Hanaf)"
-  },
-
-  da: {
-    pageTitle:"Metoprolol – hjerte & blodtryk",
-    hdrH1:"Metoprolol – hjerte & blodtryk",
-    hdrP:"Kort information om lægemidlet til patienter og pårørende.",
-    backText:"Tilbage til medicinlisten",
-    langLabel:"Vælg sprog:",
-    drugName:"Metoprolol",
-    drugForm:"Tablet (til at tage gennem munden)",
-    badgeText:"Kort og let at læse",
-
-    sec0Title:"Hvad er Metoprolol?",
-    sec0:[
-      "Metoprolol er en <span class='highlight'>beta-blokker</span> (sænker puls og blodtryk).",
-      "Det mindsker hjertets arbejdsbelastning og kan stabilisere hjerterytmen."
-    ],
-    sec1Title:"Hvad bruges det til?",
-    sec1:[
-      "Forhøjet blodtryk.",
-      "Angina (brystsmerter pga. hjertet).",
-      "Hjerterytmeforstyrrelser/hurtig puls.",
-      "Hos nogle: hjertesvigt (efter lægens plan)."
-    ],
-    sec2Title:"Sådan tages medicinen",
-    sec2:[
-      "Tag medicinen <span class='highlight'>som aftalt</span> (1 eller 2 gange dagligt).",
-      "Tag den på <span class='highlight'>samme tidspunkt</span> hver dag.",
-      "Stop ikke pludseligt. Nedtrapning bør ske i samråd med lægen."
-    ],
-    sec3Title:"Mad og drikke",
-    sec3:[
-      "Kan typisk tages <span class='highlight'>med eller uden mad</span>.",
-      "Hvis du får mavegener, kan du tage den sammen med mad."
-    ],
-    sec4Title:"Advarsler",
-    sec4:[
-      "Kontakt læge ved meget lav puls, besvimelse, åndenød eller nye/brystsmerter.",
-      "Fortæl lægen hvis du har astma/COPD, diabetes eller problemer med blodcirkulationen.",
-      "Kan maskere symptomer på lavt blodsukker hos personer med diabetes."
-    ],
-    sec5Title:"Bivirkninger",
-    sec5:[
-      "Træthed, døsighed eller svimmelhed.",
-      "Kolde hænder/fødder.",
-      "Lavt blodtryk eller langsom puls.",
-      "Nogle får hovedpine eller lette mavegener."
-    ],
-    sec6Title:"Interaktioner",
-    sec6:[
-      "Visse hjertemidler (fx verapamil/diltiazem, digoxin) kan øge puls-sænkende effekt.",
-      "Andre blodtryksmidler kan forstærke blodtrykssænkning.",
-      "Smertestillende som ibuprofen kan hos nogle mindske blodtrykseffekt.",
-      "Oplys altid al medicin til læge/apotek."
-    ],
-    sec7Title:"Ramadan og faste",
-    sec7:[
-      "Tal med lægen før Ramadan om en sikker plan.",
-      "Ved 2 doser dagligt kan det ofte planlægges ved <span class='highlight'>iftar</span> og <span class='highlight'>suhoor</span>."
-    ],
-    sec8Title:"Opbevaring",
-    sec8:[
-      "Opbevares utilgængeligt for børn, under 25°C og i original emballage.",
-      "Brug ikke efter udløbsdato (EXP).",
-      "Aflever rester på apoteket."
-    ],
-    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en: {
-    pageTitle:"Metoprolol – heart & blood pressure",
-    hdrH1:"Metoprolol – heart & blood pressure",
-    hdrP:"Brief medicine information for patients and relatives.",
-    backText:"Back to the medicine list",
-    langLabel:"Choose language:",
-    drugName:"Metoprolol",
-    drugForm:"Tablet (by mouth)",
-    badgeText:"Short and clear",
-
-    sec0Title:"What is Metoprolol?",
-    sec0:[
-      "Metoprolol is a <span class='highlight'>beta-blocker</span> (lowers heart rate and blood pressure).",
-      "It reduces the workload of the heart and can help stabilize heart rhythm."
-    ],
-    sec1Title:"What is it used for?",
-    sec1:[
-      "High blood pressure.",
-      "Angina (chest pain from the heart).",
-      "Abnormal/fast heart rhythm.",
-      "In some people: heart failure (as prescribed)."
-    ],
-    sec2Title:"How to take",
-    sec2:[
-      "Take <span class='highlight'>as prescribed</span> (once or twice daily).",
-      "Take it at the <span class='highlight'>same time</span> each day.",
-      "Do not stop suddenly. Reduce gradually with medical advice."
-    ],
-    sec3Title:"Food and drink",
-    sec3:[
-      "Usually can be taken <span class='highlight'>with or without food</span>.",
-      "If stomach upset occurs, take with food."
-    ],
-    sec4Title:"Warnings",
-    sec4:[
-      "Seek medical advice if very low pulse, fainting, shortness of breath, or new chest pain.",
-      "Tell your doctor if you have asthma/COPD, diabetes, or circulation problems.",
-      "May mask symptoms of low blood sugar in diabetes."
-    ],
-    sec5Title:"Side effects",
-    sec5:[
-      "Tiredness/drowsiness or dizziness.",
-      "Cold hands/feet.",
-      "Low blood pressure or slow pulse.",
-      "Sometimes headache or mild stomach upset."
-    ],
-    sec6Title:"Interactions",
-    sec6:[
-      "Some heart medicines (e.g., verapamil/diltiazem, digoxin) can increase heart-rate lowering effects.",
-      "Other blood pressure medicines may enhance blood pressure lowering.",
-      "Painkillers like ibuprofen may reduce blood pressure effect in some people.",
-      "Always tell your doctor/pharmacy what you take."
-    ],
-    sec7Title:"Ramadan and fasting",
-    sec7:[
-      "Talk to your doctor before Ramadan for a safe plan.",
-      "If taken twice daily, it can often be scheduled at <span class='highlight'>iftar</span> and <span class='highlight'>suhoor</span>."
-    ],
-    sec8Title:"Storage",
-    sec8:[
-      "Keep out of reach of children, below 25°C, in original packaging.",
-      "Do not use after expiry date (EXP).",
-      "Return leftovers to the pharmacy."
-    ],
-    footer1:"If you need more information, contact your pharmacy or doctor.",
-    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  /* Short blocks (no Danish-in-parentheses anywhere) */
-  ar:{ pageTitle:"ميتوبرولول – القلب والضغط", hdrH1:"ميتوبرولول – القلب والضغط", hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.", backText:"العودة إلى قائمة الأدوية", langLabel:"اختر اللغة:", drugName:"ميتوبرولول", drugForm:"أقراص (عن طريق الفم)", badgeText:"مختصر وواضح",
-    sec0Title:"ما هو ميتوبرولول؟", sec0:["حاصر بيتا يقلل النبض وضغط الدم ويخفف عبء القلب."],
-    sec1Title:"لماذا يُستخدم؟", sec1:["ارتفاع الضغط.", "الذبحة الصدرية.", "اضطراب النظم/تسارع النبض.", "أحياناً قصور القلب."],
-    sec2Title:"طريقة الاستعمال", sec2:["حسب وصف الطبيب مرة أو مرتين يومياً.", "لا توقفه فجأة."],
-    sec3Title:"الطعام والشراب", sec3:["يمكن تناوله مع أو بدون طعام."],
-    sec4Title:"تحذيرات", sec4:["راجع الطبيب عند بطء شديد بالنبض أو إغماء أو ضيق نفس."],
-    sec5Title:"الآثار الجانبية", sec5:["تعب/دوخة.", "برودة الأطراف.", "بطء النبض."],
-    sec6Title:"التداخلات", sec6:["بعض أدوية القلب/الضغط قد تزيد التأثير."],
-    sec7Title:"رمضان", sec7:["نظّم الجرعات مع الطبيب حسب الإفطار/السحور."],
-    sec8Title:"الحفظ", sec8:["يحفظ تحت 25°م وبعيداً عن الأطفال."],
-    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.", footer2:"إعداد: إبراهيم ظاهر حنف"
-  },
-  tr:{ pageTitle:"Metoprolol – kalp & tansiyon", hdrH1:"Metoprolol – kalp & tansiyon", hdrP:"Hasta ve yakınları için kısa bilgi.", backText:"İlaç listesine geri dön", langLabel:"Dil seçin:", drugName:"Metoprolol", drugForm:"Tablet (ağızdan)", badgeText:"Kısa ve anlaşılır",
-    sec0Title:"Metoprolol nedir?", sec0:["Beta bloker: nabzı ve tansiyonu düşürür."],
-    sec1Title:"Ne için kullanılır?", sec1:["Tansiyon.", "Anjina.", "Ritim bozuklukları."],
-    sec2Title:"Nasıl alınır?", sec2:["Doktorun söylediği gibi 1–2 kez/gün.", "Aniden bırakmayın."],
-    sec3Title:"Yemek ve içecek", sec3:["Yemekle veya yemeksiz alınabilir."],
-    sec4Title:"Uyarılar", sec4:["Çok yavaş nabız/ bayılma/ nefes darlığı olursa doktora."],
-    sec5Title:"Yan etkiler", sec5:["Yorgunluk, baş dönmesi.", "Soğuk el/ayak.", "Yavaş nabız."],
-    sec6Title:"Etkileşimler", sec6:["Bazı ilaçlar etkiyi artırabilir; tüm ilaçları söyleyin."],
-    sec7Title:"Ramazan", sec7:["İftar/sahura göre doktorla planlayın."],
-    sec8Title:"Saklama", sec8:["25°C altı, çocuklardan uzak."],
-    footer1:"Daha fazla bilgi için eczane veya doktorunuza başvurun.", footer2:"Hazırlayan: Ibrahim Dahir Hanaf"
-  },
-  ur:{ pageTitle:"میٹوپرولول – دل اور بلڈ پریشر", hdrH1:"میٹوپرولول – دل اور بلڈ پریشر", hdrP:"مریضوں اور اہلِ خانہ کے لیے مختصر معلومات۔", backText:"فہرست پر واپس", langLabel:"زبان منتخب کریں:", drugName:"میٹوپرولول", drugForm:"گولی (منہ کے ذریعے)", badgeText:"مختصر اور واضح",
-    sec0Title:"میٹوپرولول کیا ہے؟", sec0:["بیٹا بلاکر: نبض اور بلڈ پریشر کم کرتا ہے۔"],
-    sec1Title:"کس لیے؟", sec1:["ہائی بلڈ پریشر.", "انجائنا.", "دل کی دھڑکن کی خرابی."],
-    sec2Title:"کیسے لیں؟", sec2:["ڈاکٹر کے مطابق 1–2 بار روزانہ.", "اچانک بند نہ کریں۔"],
-    sec3Title:"کھانا پینا", sec3:["کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔"],
-    sec4Title:"احتیاطیں", sec4:["بہت کم نبض/بیہوشی/سانس میں دقت ہو تو ڈاکٹر سے رابطہ کریں۔"],
-    sec5Title:"مضر اثرات", sec5:["تھکن، چکر.", "ہاتھ پاؤں ٹھنڈے.", "نبض سست."],
-    sec6Title:"تداخلات", sec6:["کچھ دوائیں اثر بڑھا سکتی ہیں۔"],
-    sec7Title:"رمضان", sec7:["افطار/سحری کے مطابق ڈاکٹر سے پلان بنائیں۔"],
-    sec8Title:"محفوظ رکھنا", sec8:["25°C سے کم، بچوں سے دور۔"],
-    footer1:"مزید معلومات کے لیے فارمیسی یا ڈاکٹر سے رابطہ کریں۔", footer2:"مرتب کردہ: ابراہیم ظاہر حنف"
-  },
-  fa:{ pageTitle:"متوپرولول – قلب و فشارخون", hdrH1:"متوپرولول – قلب و فشارخون", hdrP:"اطلاعات کوتاه برای بیماران و خانواده‌ها.", backText:"بازگشت به فهرست", langLabel:"انتخاب زبان:", drugName:"متوپرولول", drugForm:"قرص (خوراکی)", badgeText:"کوتاه و روشن",
-    sec0Title:"متوپرولول چیست؟", sec0:["بتابلوکر: ضربان و فشارخون را کاهش می‌دهد."],
-    sec1Title:"موارد مصرف", sec1:["فشارخون.", "آنژین.", "آریتمی."],
-    sec2Title:"نحوه مصرف", sec2:["طبق دستور پزشک ۱–۲ بار در روز.", "ناگهانی قطع نکنید."],
-    sec3Title:"غذا و نوشیدنی", sec3:["با غذا یا بدون غذا قابل مصرف است."],
-    sec4Title:"هشدارها", sec4:["در ضربان خیلی پایین/غش/تنگی نفس با پزشک تماس بگیرید."],
-    sec5Title:"عوارض", sec5:["خستگی/سرگیجه.", "کندی ضربان."],
-    sec6Title:"تداخلات", sec6:["برخی داروها اثر را افزایش می‌دهند."],
-    sec7Title:"رمضان", sec7:["برای تنظیم ساعت مصرف با پزشک مشورت کنید."],
-    sec8Title:"نگهداری", sec8:["زیر ۲۵ درجه و دور از کودکان."],
-    footer1:"برای اطلاعات بیشتر با داروخانه یا پزشک خود تماس بگیرید.", footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-  prs:{ pageTitle:"متوپرولول – قلب و فشارخون", hdrH1:"متوپرولول – قلب و فشارخون", hdrP:"معلومات کوتاه برای مریضان و خانواده‌ها.", backText:"بازگشت به فهرست", langLabel:"انتخاب زبان:", drugName:"متوپرولول", drugForm:"قرص (خوراکی)", badgeText:"کوتاه و واضح",
-    sec0Title:"متوپرولول چیست؟", sec0:["بتابلاکر: ضربان و فشار را پایین می‌کند."],
-    sec1Title:"برای چی؟", sec1:["فشارخون.", "آنژین.", "بی‌نظمی ضربان."],
-    sec2Title:"چگونه؟", sec2:["طبق دستور داکتر ۱–۲ بار در روز.", "ناگهانی قطع نکنید."],
-    sec3Title:"غذا", sec3:["با غذا یا بدون غذا."],
-    sec4Title:"هشدار", sec4:["نبض خیلی پایین یا تنگی نفس → تماس با داکتر."],
-    sec5Title:"عوارض", sec5:["خستگی/سرگیجه."],
-    sec6Title:"تداخلات", sec6:["بعضی دواها اثر را زیاد می‌کند."],
-    sec7Title:"رمضان", sec7:["وقت مصرف را با داکتر تنظیم کنید."],
-    sec8Title:"نگهداری", sec8:["زیر ۲۵°C و دور از اطفال."],
-    footer1:"برای معلومات بیشتر با دواخانه یا داکتر تماس بگیرید.", footer2:"تهیه‌کننده: ابراهیم ظاهر حنف"
-  },
-  ps:{ pageTitle:"میټوپرولول – زړه او فشار", hdrH1:"میټوپرولول – زړه او فشار", hdrP:"د ناروغانو او کورنۍ لپاره لنډ معلومات.", backText:"لېست ته بېرته", langLabel:"ژبه وټاکئ:", drugName:"میټوپرولول", drugForm:"ګولۍ (د خولې له لارې)", badgeText:"لنډ او روښانه",
-    sec0Title:"میټوپرولول څه شی دی؟", sec0:["Beta-blocker: د زړه درزا او فشار کموي."],
-    sec1Title:"د څه لپاره؟", sec1:["لوړ فشار.", "انجینا.", "د زړه د ضربان ګډوډي."],
-    sec2Title:"څنګه؟", sec2:["د ډاکټر له مخې ۱–۲ ځله/ورځ.", "ناڅاپه مه بندوئ."],
-    sec3Title:"خواړه", sec3:["له خوړو سره یا بې له خوړو."],
-    sec4Title:"خبرداری", sec4:["ډېر ورو درزا/بې هوشي/ساه لنډي → ډاکټر."],
-    sec5Title:"اړخیزې اغېزې", sec5:["ستړیا/سر ګرځېدل."],
-    sec6Title:"تداخلات", sec6:["ځینې درمل اغېز زیاتوي."],
-    sec7Title:"رمضان", sec7:["د وخت تنظیم لپاره له ډاکټر سره سلا وکړئ."],
-    sec8Title:"ساتنه", sec8:["تر 25°C لاندې، له ماشومانو لرې."],
-    footer1:"د نورو معلوماتو لپاره له درملتون یا خپل ډاکټر سره اړیکه ونیسئ.", footer2:"چمتو کوونکی: ابراهیم ظاهر حنف"
-  }
-};
-
-function applyLang(lang){
+function render(lang){
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
 
-  applyTheme(lang);
   setDirLang(lang);
+  applyTheme(lang);
 
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
+  document.title = stripTags(d.title);
+  document.getElementById("hdrTitle").textContent = stripTags(d.title);
+  document.getElementById("hdrSubtitle").textContent = d.subtitle;
+  document.getElementById("backLabel").textContent = d.back;
+  document.getElementById("badge").textContent = d.badge;
+  document.getElementById("drugName").textContent = stripTags(d.drugName);
+  document.getElementById("drugForm").textContent = d.drugForm;
   document.getElementById("langLabel").textContent = d.langLabel;
 
-  document.getElementById("drugName").textContent = d.drugName;
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
+  document.getElementById("useTitle").textContent = d.sections.use.title;
+  setSmall("useSmall", d.sections.use.small);
+  document.getElementById("doseTitle").textContent = d.sections.dose.title;
+  setSmall("doseSmall", d.sections.dose.small);
+  document.getElementById("sideTitle").textContent = d.sections.side.title;
+  setSmall("sideSmall", d.sections.side.small);
+  document.getElementById("interactTitle").textContent = d.sections.interact.title;
+  setSmall("interactSmall", d.sections.interact.small);
+  document.getElementById("warnTitle").textContent = d.sections.warn.title;
+  setSmall("warnSmall", d.sections.warn.small);
+  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
+  setSmall("ramadanSmall", d.sections.ramadan.small);
+  document.getElementById("foodTitle").textContent = d.sections.food.title;
+  setSmall("foodSmall", d.sections.food.small);
+  document.getElementById("storeTitle").textContent = d.sections.store.title;
+  setSmall("storeSmall", d.sections.store.small);
 
-  document.getElementById("sec0Title").textContent = d.sec0Title;
-  document.getElementById("sec1Title").textContent = d.sec1Title;
-  document.getElementById("sec2Title").textContent = d.sec2Title;
-  document.getElementById("sec3Title").textContent = d.sec3Title;
-  document.getElementById("sec4Title").textContent = d.sec4Title;
-  document.getElementById("sec5Title").textContent = d.sec5Title;
-  document.getElementById("sec6Title").textContent = d.sec6Title;
-  document.getElementById("sec7Title").textContent = d.sec7Title;
-  document.getElementById("sec8Title").textContent = d.sec8Title;
+  fillList("useList", d.sections.use.items);
+  fillList("doseList", d.sections.dose.items);
+  fillList("sideList", d.sections.side.items);
+  fillList("interactList", d.sections.interact.items);
+  fillList("warnList", d.sections.warn.items);
+  fillList("ramadanList", d.sections.ramadan.items);
+  fillList("foodList", d.sections.food.items);
+  fillList("storeList", d.sections.store.items);
 
-  fillList("sec0List", d.sec0);
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
-
-  document.getElementById("footer1").textContent = d.footer1;
-  document.getElementById("footer2").innerHTML = d.footer2;
+  document.getElementById("footerNote").innerHTML = d.footerHTML;
+  document.getElementById("credit").innerHTML = d.creditHTML;
 
   const backA = document.querySelector("a.back");
   const base = backA.getAttribute("href").split("?")[0];
@@ -588,13 +638,14 @@ function applyLang(lang){
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
+let startLang = params.get("lang") || "so";
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
-const sel = document.getElementById("langSelect");
-sel.value = (T[startLang] ? startLang : "so");
-
-applyLang(sel.value);
-sel.addEventListener("change", function(){ applyLang(this.value); });
+const select = document.getElementById("langSelect");
+select.value = startLang;
+render(select.value);
+select.addEventListener("change", function(){ render(this.value); });
 </script>
+
 </body>
 </html>
