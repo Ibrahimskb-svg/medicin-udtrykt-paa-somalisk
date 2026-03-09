@@ -218,16 +218,11 @@ a.back span{ font-size: 1.1rem; }
   <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
-      <option value="en">Engelsk</option>
-      <option value="ar">Arabisk</option>
-      <option value="tr">Tyrkisk</option>
-      <option value="ur">Urdu</option>
-      <option value="fa">Persisk</option>
-      <option value="prs">Dari</option>
-      <option value="ps">Pashto</option>
-    </select>
+  <option value="so" selected>Somalisk</option>
+  <option value="da">Dansk</option>
+  <option value="en">Engelsk</option>
+  <option value="ar">Arabisk</option>
+</select>
   </div>
 
   <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
@@ -747,6 +742,9 @@ const T = {
     creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
+<script>
+const ENABLED_LANGS = new Set(["so","da","en","ar"]);
+const RTL = new Set(["ar","fa","ur","prs","ps"]);
 
 function stripTags(s){ return (s||"").replace(/<[^>]*>?/gm, ""); }
 
@@ -774,6 +772,10 @@ function setSmall(id, txt){
 }
 
 function render(lang){
+  if (!ENABLED_LANGS.has(lang)) {
+    lang = "so";
+  }
+
   const d = T[lang] || T.so;
 
   setDirLang(lang);
@@ -838,10 +840,14 @@ function render(lang){
 }
 
 const params = new URLSearchParams(window.location.search);
-const startLang = params.get("lang") || "so";
+let startLang = params.get("lang") || "so";
+
+if (!ENABLED_LANGS.has(startLang)) {
+  startLang = "so";
+}
 
 const select = document.getElementById("langSelect");
-select.value = (T[startLang] ? startLang : "so");
+select.value = startLang;
 
 render(select.value);
 select.addEventListener("change", function(){
