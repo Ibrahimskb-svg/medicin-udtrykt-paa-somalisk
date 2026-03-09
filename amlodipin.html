@@ -247,7 +247,7 @@ a.back span{ font-size: 1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">1</div>
+        <div class="section-icon use">💊</div>
         <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
       </div>
       <ul id="useList"></ul>
@@ -255,7 +255,7 @@ a.back span{ font-size: 1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">2</div>
+        <div class="section-icon dose">⏰</div>
         <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
       </div>
       <ul id="doseList"></ul>
@@ -263,7 +263,7 @@ a.back span{ font-size: 1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">3</div>
+        <div class="section-icon side">⚠️</div>
         <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
       </div>
       <ul id="sideList"></ul>
@@ -271,7 +271,7 @@ a.back span{ font-size: 1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">4</div>
+        <div class="section-icon interact">⇆</div>
         <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
       </div>
       <ul id="interactList"></ul>
@@ -295,7 +295,7 @@ a.back span{ font-size: 1.1rem; }
 
     <div class="section">
       <div class="section-header">
-        <div class="section-icon food">🍽</div>
+        <div class="section-icon food">🍽️</div>
         <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
       </div>
       <ul id="foodList"></ul>
@@ -308,7 +308,6 @@ a.back span{ font-size: 1.1rem; }
       </div>
       <ul id="storeList"></ul>
     </div>
-
   </div>
 
   <div class="footer-note" id="footerNote"></div>
@@ -318,7 +317,7 @@ a.back span{ font-size: 1.1rem; }
 
 <script>
 const ENABLED_LANGS = new Set(["so","da","en","ar"]);
-const RTL = new Set(["ar","fa","ur","prs","ps"]);
+const RTL = new Set(["ar"]);
 
 const THEMES = {
   so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
@@ -376,7 +375,9 @@ const T = {
         "Isku day in aad ku qaadato waqti isku mid ah maalin kasta."
       ]},
       store: { title:"Kaydinta daawada", small:"", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C. Ku hay baakadka asalka ah, si looga ilaaliyo iftiinka iyo huurka. Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka ama haddii midabku isbeddelay. Wixii soo haray, weydii farmashiyaha si loogu tuuro meesha ku habboon."
+        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
+        "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
+        "Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka."
       ]}
     },
     footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
@@ -421,7 +422,9 @@ const T = {
         "Prøv at tage den på samme tidspunkt hver dag."
       ]},
       store: { title:"Opbevaring", small:"", items:[
-        "Opbevar medicinen utilgængeligt for små børn og under 25 °C. Opbevar den i original emballage for at beskytte mod lys og fugt. Brug ikke medicinen efter udløbsdatoen, eller hvis den har ændret farve. Spørg apoteket om korrekt bortskaffelse af rester."
+        "Opbevar medicinen utilgængeligt for små børn og under 25 °C.",
+        "Opbevar den i original emballage for at beskytte mod lys og fugt.",
+        "Brug ikke medicinen efter udløbsdatoen."
       ]}
     },
     footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
@@ -466,7 +469,9 @@ const T = {
         "Try to take it at the same time every day."
       ]},
       store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children and store below 25 °C. Keep in the original packaging to protect from light and moisture. Do not use after the expiry date, or if the colour has changed. Ask the pharmacy how to dispose of leftovers properly."
+        "Keep out of reach of children and store below 25 °C.",
+        "Keep in the original packaging to protect from light and moisture.",
+        "Do not use after the expiry date."
       ]}
     },
     footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
@@ -511,242 +516,17 @@ const T = {
         "حاول تناوله في نفس الوقت كل يوم."
       ]},
       store: { title:"الحفظ", small:"", items:[
-        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م. احفظه في العبوة الأصلية للحماية من الضوء والرطوبة. لا تستخدمه بعد تاريخ الانتهاء، أو إذا تغيّر اللون. اسأل الصيدلية عن طريقة التخلص من البقايا."
+        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
+        "احفظه في العبوة الأصلية للحماية من الضوء والرطوبة.",
+        "لا تستخدمه بعد تاريخ الانتهاء."
       ]}
     },
     footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
     creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
-  },
-
-  tr: {
-    title: "Amlodipin – yüksek tansiyon",
-    subtitle: "Hasta ve yakınları için ilaca dair kısa bilgi.",
-    back: "İlaç listesine geri dön",
-    langLabel: "Dil seçin:",
-    badge: "Kısa ve anlaşılır",
-    drugName: "Amlodipin – yüksek tansiyon",
-    drugForm: "Ağızdan alınan tablet",
-    sections: {
-      use: { title:"Kullanım", small:"", items:[
-        "Amlodipin, yüksek tansiyon ve bazı kalp hastalıklarının tedavisinde kullanılır.",
-        "Damarları gevşeterek kan basıncının düşmesine yardımcı olur."
-      ]},
-      dose: { title:"Doz", small:"", items:[
-        "Genellikle günde 1 kez 5 mg; bazı kişiler doktorla görüşerek 10 mg’a ihtiyaç duyabilir.",
-        "Her gün aynı saatte alın. Yemekle birlikte veya aç karnına alınabilir."
-      ]},
-      side: { title:"Yan etkiler", small:"", items:[
-        "Ayak bileklerinde veya alt bacaklarda şişlik, baş dönmesi ve yorgunluk.",
-        "Şişlik belirginleşirse veya nefes darlığı olursa doktorunuza başvurun."
-      ]},
-      interact: { title:"Etkileşimler", small:"", items:[
-        "Diğer tansiyon ilaçları etkiyi artırabilir.",
-        "Fazla miktarda greyfurt tüketimi amlodipinin etkisini artırabilir."
-      ]},
-      warn: { title:"Uyarılar", small:"", items:[
-        "İlacı aniden kesmeyin; tansiyon yükselebilir.",
-        "Hamilelik veya emzirme: uygun tedavi için doktorunuza danışın."
-      ]},
-      ramadan: { title:"Ramazan ve oruç", small:"", items:[
-        "Günde bir kez alınır ve akşam ya da sahur vaktinde alınabilir.",
-        "Doktora danışmadan oruç için ilacı bırakmayın."
-      ]},
-      food: { title:"Yiyecek ve içecek", small:"", items:[
-        "Yemekle birlikte veya yemeksiz alınabilir.",
-        "Her gün aynı saatte almaya çalışın."
-      ]},
-      store: { title:"Saklama", small:"", items:[
-        "Çocukların erişemeyeceği yerde ve 25 °C’nin altında saklayın. Işık ve nemden korumak için orijinal ambalajında tutun. Son kullanma tarihinden sonra kullanmayın veya renk değişikliği varsa kullanmayın. Artan ilaçların imhası için eczaneye danışın."
-      ]}
-    },
-    footerHTML: "Daha fazla bilgi için <span class=\"highlight\">eczane</span> veya doktorunuzla iletişime geçin.",
-    creditHTML: "Hazırlayan: farmakonomist Ibrahim Dahir Hanaf"
-  },
-
-  ur: {
-    title: "ایملوڈیپین – بلند فشارِ خون",
-    subtitle: "مریضوں اور اہلِ خانہ کے لیے دوا کے بارے میں مختصر معلومات۔",
-    back: "ادویات کی فہرست پر واپس جائیں",
-    langLabel: "زبان منتخب کریں:",
-    badge: "مختصر اور آسان",
-    drugName: "ایملوڈیپین – بلند فشارِ خون",
-    drugForm: "منہ کے ذریعے لینے والی گولی",
-    sections: {
-      use: { title:"استعمال", small:"", items:[
-        "ایملوڈیپین بلند فشارِ خون اور بعض دل کی بیماریوں کے لیے استعمال ہوتی ہے۔",
-        "یہ خون کی نالیوں کو ڈھیلا کر کے بلڈ پریشر کم کرنے میں مدد دیتی ہے۔"
-      ]},
-      dose: { title:"خوراک", small:"", items:[
-        "عام طور پر 5 mg روزانہ ایک بار؛ کچھ افراد کو ڈاکٹر کے مشورے سے 10 mg کی ضرورت ہو سکتی ہے۔",
-        "روزانہ ایک ہی وقت پر لیں۔ کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔"
-      ]},
-      side: { title:"مضر اثرات", small:"", items:[
-        "ٹخنوں یا نچلی ٹانگوں میں سوجن، چکر آنا اور تھکن۔",
-        "اگر سوجن بڑھ جائے یا سانس لینے میں مشکل ہو تو ڈاکٹر سے رابطہ کریں۔"
-      ]},
-      interact: { title:"دواؤں کے باہمی اثرات", small:"", items:[
-        "بلڈ پریشر کم کرنے والی دوسری دوائیں اثر بڑھا سکتی ہیں۔",
-        "گریپ فروٹ کا زیادہ استعمال ایملوڈیپین کے اثر میں اضافہ کر سکتا ہے۔"
-      ]},
-      warn: { title:"احتیاطیں", small:"", items:[
-        "دوا اچانک بند نہ کریں؛ بلڈ پریشر بڑھ سکتا ہے۔",
-        "حمل یا دودھ پلانا: مناسب علاج کے لیے ڈاکٹر سے مشورہ کریں۔"
-      ]},
-      ramadan: { title:"رمضان اور روزہ", small:"", items:[
-        "روزانہ ایک بار لیا جاتا ہے اور شام یا سحری کے وقت لیا جا سکتا ہے۔",
-        "ڈاکٹر کے مشورے کے بغیر روزے کی وجہ سے دوا نہ روکیں۔"
-      ]},
-      food: { title:"کھانا پینا", small:"", items:[
-        "کھانے کے ساتھ یا بغیر لیا جا سکتا ہے۔",
-        "کوشش کریں کہ ہر روز ایک ہی وقت پر لیں۔"
-      ]},
-      store: { title:"محفوظ رکھنا", small:"", items:[
-        "بچوں کی پہنچ سے دور اور 25 °C سے کم درجۂ حرارت پر رکھیں۔ روشنی اور نمی سے بچانے کے لیے اصل پیک میں رکھیں۔ میعاد ختم ہونے کی تاریخ کے بعد استعمال نہ کریں یا اگر رنگ بدل گیا ہو۔ باقی ادویات تلف کرنے کے لیے فارمیسی سے پوچھیں۔"
-      ]}
-    },
-    footerHTML: "مزید معلومات کے لیے <span class=\"highlight\">فارمیسی</span> یا اپنے ڈاکٹر سے رابطہ کریں۔",
-    creditHTML: "مرتب کردہ: فارماکونومسٹ ابراہیم ظاہر حنف"
-  },
-
-  fa: {
-    title: "آملودیپین – فشار خون بالا",
-    subtitle: "اطلاعات کوتاه دربارهٔ دارو برای بیماران و خانواده‌ها.",
-    back: "بازگشت به فهرست داروها",
-    langLabel: "انتخاب زبان:",
-    badge: "کوتاه و قابل‌فهم",
-    drugName: "آملودیپین – فشار خون بالا",
-    drugForm: "قرص خوراکی",
-    sections: {
-      use: { title:"موارد مصرف", small:"", items:[
-        "آملودیپین برای درمان فشار خون بالا و برخی بیماری‌های قلبی استفاده می‌شود.",
-        "این دارو رگ‌های خونی را شل می‌کند تا فشار خون کاهش یابد."
-      ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
-        "معمولاً 5 mg یک‌بار در روز؛ برخی افراد طبق نظر پزشک به 10 mg نیاز دارند.",
-        "هر روز در یک زمان ثابت مصرف کنید. با غذا یا بدون غذا قابل مصرف است."
-      ]},
-      side: { title:"عوارض جانبی", small:"", items:[
-        "تورم مچ پا یا ساق پا، سرگیجه و خستگی.",
-        "اگر تورم زیاد شد یا دچار تنگی نفس شدید، با پزشک تماس بگیرید."
-      ]},
-      interact: { title:"تداخل‌های دارویی", small:"", items:[
-        "داروهای دیگرِ کاهندهٔ فشار خون می‌توانند اثر را بیشتر کنند.",
-        "مصرف زیاد گریپ‌فروت می‌تواند اثر آملودیپین را افزایش دهد."
-      ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "دارو را ناگهانی قطع نکنید؛ ممکن است فشار خون بالا برود.",
-        "بارداری یا شیردهی: دربارهٔ درمان مناسب با پزشک صحبت کنید."
-      ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "روزی یک‌بار مصرف می‌شود و می‌تواند شب یا هنگام سحری مصرف شود.",
-        "بدون مشورت پزشک، دارو را برای روزه قطع نکنید."
-      ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
-        "با غذا یا بدون غذا قابل مصرف است.",
-        "سعی کنید هر روز در یک زمان ثابت مصرف کنید."
-      ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس کودکان و در دمای زیر 25 °C نگهداری شود. برای محافظت از نور و رطوبت در بسته‌بندی اصلی نگه دارید. پس از تاریخ انقضا یا در صورت تغییر رنگ مصرف نکنید. برای دورریز مناسب باقی‌مانده‌ها از داروخانه راهنمایی بگیرید."
-      ]}
-    },
-    footerHTML: "برای اطلاعات بیشتر با <span class=\"highlight\">داروخانه</span> یا پزشک خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  prs: {
-    title: "آملودیپین – فشار خون بلند",
-    subtitle: "معلومات کوتاه در مورد دوا برای مریضان و خانواده‌ها.",
-    back: "بازگشت به فهرست دواها",
-    langLabel: "انتخاب زبان:",
-    badge: "کوتاه و قابل‌فهم",
-    drugName: "آملودیپین – فشار خون بلند",
-    drugForm: "قرص خوراکی",
-    sections: {
-      use: { title:"موارد استعمال", small:"", items:[
-        "آملودیپین برای تداوی فشار خون بلند و بعضی بیماری‌های قلبی استفاده می‌شود.",
-        "این دوا رگ‌های خون را آرام می‌کند تا فشار خون پایین بیاید."
-      ]},
-      dose: { title:"مقدار مصرف", small:"", items:[
-        "معمولاً 5 mg یک بار در روز؛ بعضی‌ها مطابق مشوره داکتر به 10 mg ضرورت دارند.",
-        "هر روز در یک وقت معین بگیرید. با غذا یا بدون غذا گرفته می‌شود."
-      ]},
-      side: { title:"عوارض جانبی", small:"", items:[
-        "پف‌کردگی قوزک پا یا پایین پا، سرگیجه و خستگی.",
-        "اگر پف‌کردگی زیاد شد یا نفس‌تنگی پیدا کردید، با داکتر تماس بگیرید."
-      ]},
-      interact: { title:"تداخلات دوایی", small:"", items:[
-        "دواهای دیگرِ پایین‌کنندهٔ فشار خون می‌تواند اثر را بیشتر کند.",
-        "مصرف زیاد گریپ‌فروت می‌تواند اثر آملودیپین را افزایش بدهد."
-      ]},
-      warn: { title:"هشدارها", small:"", items:[
-        "دوا را ناگهانی قطع نکنید؛ ممکن فشار خون بالا برود.",
-        "حمل یا شیردهی: در مورد درمان مناسب با داکتر صحبت کنید."
-      ]},
-      ramadan: { title:"رمضان و روزه", small:"", items:[
-        "روزانه یک بار گرفته می‌شود و می‌تواند شب یا وقت سحری گرفته شود.",
-        "بدون مشورهٔ داکتر برای روزه دوا را قطع نکنید."
-      ]},
-      food: { title:"غذا و نوشیدنی", small:"", items:[
-        "با غذا یا بدون غذا گرفته می‌شود.",
-        "کوشش کنید هر روز در یک وقت معین بگیرید."
-      ]},
-      store: { title:"نگهداری", small:"", items:[
-        "دور از دسترس اطفال و در درجهٔ حرارت زیر 25 °C نگه‌داری کنید. در بسته‌بندی اصلی برای محافظت از نور و رطوبت نگه‌دارید. بعد از تاریخ انقضا یا در صورت تغییر رنگ استفاده نکنید. برای دور انداختن باقی‌مانده‌ها از دواخانه راهنمایی بگیرید."
-      ]}
-    },
-    footerHTML: "برای معلومات بیشتر با <span class=\"highlight\">دواخانه</span> یا داکتر خود تماس بگیرید.",
-    creditHTML: "تهیه‌کننده: فارماکونومیست ابراهیم ظاهر حنف"
-  },
-
-  ps: {
-    title: "املوډیپین – لوړ د وینې فشار",
-    subtitle: "د ناروغانو او کورنۍ لپاره د درملو لنډ معلومات.",
-    back: "د درملو لېست ته بېرته",
-    langLabel: "ژبه وټاکئ:",
-    badge: "لنډ او اسانه",
-    drugName: "املوډیپین – لوړ د وینې فشار",
-    drugForm: "د خولې ګولۍ",
-    sections: {
-      use: { title:"کارونه", small:"", items:[
-        "املوډیپین د لوړ وینې فشار او د ځینو د زړه ناروغیو لپاره کارېږي.",
-        "دا د وینې رګونه اراموي او د وینې فشار کمولو کې مرسته کوي."
-      ]},
-      dose: { title:"دوز", small:"", items:[
-        "اکثره 5 mg په ورځ کې یو ځل؛ ځینې کسانو ته د ډاکټر په سلا 10 mg پکار وي.",
-        "هره ورځ په یو ثابت وخت واخلئ. له خوړو سره یا بې له خوړو اخیستل کېدای شي."
-      ]},
-      side: { title:"اړخیزې اغېزې", small:"", items:[
-        "د پښو د مړوند یا ښکته پښو پړسوب، سر ګرځېدل او ستړیا.",
-        "که پړسوب ډېر شي یا د ساه اخیستو ستونزه پیدا شي، له ډاکټر سره اړیکه ونیسئ."
-      ]},
-      interact: { title:"د درملو تعامل", small:"", items:[
-        "نور د فشار ضد درمل د دې اغېزه زیاتولای شي.",
-        "د ګریپ فروټ ډېر استعمال د املوډیپین اغېزه زیاتولای شي."
-      ]},
-      warn: { title:"احتیاط", small:"", items:[
-        "درمل ناڅاپه مه بندوئ؛ وینې فشار لوړېدای شي.",
-        "د امیندوارۍ یا شیدو ورکولو پر مهال: له ډاکټر سره مشوره وکړئ."
-      ]},
-      ramadan: { title:"رمضان او روژه", small:"", items:[
-        "په ورځ کې یو ځل اخېستل کېږي او ماښام یا د سحري پر وخت اخیستل کېدای شي.",
-        "له طبي مشورې پرته د روژې لپاره درمل مه بندوئ."
-      ]},
-      food: { title:"خواړه او څښاک", small:"", items:[
-        "له خوړو سره یا بې له خوړو اخیستل کېدای شي.",
-        "هڅه وکړئ هره ورځ په یو ثابت وخت یې واخلئ."
-      ]},
-      store: { title:"ساتنه", small:"", items:[
-        "له ماشومانو لرې او تر 25 °C لاندې وساتئ. د رڼا او رطوبت څخه د ساتنې لپاره په اصلي بکس/بسته کې وساتئ. د ختمېدو نېټې وروسته یا د رنګ بدلون په صورت کې مه کاروئ. د پاتې درملو د مناسبې ضایع کولو لپاره له درملتون څخه پوښتنه وکړئ."
-      ]}
-    },
-    footerHTML: "د نورو معلوماتو لپاره له <span class=\"highlight\">درملتون</span> یا خپل ډاکټر سره اړیکه ونیسئ.",
-    creditHTML: "چمتو کوونکی: فارمکونومېسټ ابراهیم ظاهر حنف"
   }
 };
 
-function stripTags(s){
-  return (s || "").replace(/<[^>]*>?/gm, "");
-}
+function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
 
 function setDirLang(lang){
   document.documentElement.lang = lang;
@@ -772,49 +552,35 @@ function setSmall(id, txt){
 }
 
 function render(lang){
-  if (!ENABLED_LANGS.has(lang)) {
-    lang = "so";
-  }
-
+  if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
 
   setDirLang(lang);
   applyTheme(lang);
 
   document.title = stripTags(d.title);
-
   document.getElementById("hdrTitle").textContent = stripTags(d.title);
   document.getElementById("hdrSubtitle").textContent = d.subtitle;
-
   document.getElementById("backLabel").textContent = d.back;
   document.getElementById("badge").textContent = d.badge;
-
   document.getElementById("drugName").textContent = stripTags(d.drugName);
   document.getElementById("drugForm").textContent = d.drugForm;
-
   document.getElementById("langLabel").textContent = d.langLabel;
 
   document.getElementById("useTitle").textContent = d.sections.use.title;
   setSmall("useSmall", d.sections.use.small);
-
   document.getElementById("doseTitle").textContent = d.sections.dose.title;
   setSmall("doseSmall", d.sections.dose.small);
-
   document.getElementById("sideTitle").textContent = d.sections.side.title;
   setSmall("sideSmall", d.sections.side.small);
-
   document.getElementById("interactTitle").textContent = d.sections.interact.title;
   setSmall("interactSmall", d.sections.interact.small);
-
   document.getElementById("warnTitle").textContent = d.sections.warn.title;
   setSmall("warnSmall", d.sections.warn.small);
-
   document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
   setSmall("ramadanSmall", d.sections.ramadan.small);
-
   document.getElementById("foodTitle").textContent = d.sections.food.title;
   setSmall("foodSmall", d.sections.food.small);
-
   document.getElementById("storeTitle").textContent = d.sections.store.title;
   setSmall("storeSmall", d.sections.store.small);
 
@@ -841,18 +607,12 @@ function render(lang){
 
 const params = new URLSearchParams(window.location.search);
 let startLang = params.get("lang") || "so";
-
-if (!ENABLED_LANGS.has(startLang)) {
-  startLang = "so";
-}
+if (!ENABLED_LANGS.has(startLang)) startLang = "so";
 
 const select = document.getElementById("langSelect");
 select.value = startLang;
-
 render(select.value);
-select.addEventListener("change", function(){
-  render(this.value);
-});
+select.addEventListener("change", function(){ render(this.value); });
 </script>
 
 </body>
