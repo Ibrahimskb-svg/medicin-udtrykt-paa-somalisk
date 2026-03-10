@@ -127,7 +127,7 @@
 
   async function audioExists(src) {
     try {
-      const res = await fetch(src, { method: "HEAD", cache: "no-store" });
+      const res = await fetch(src, { cache: "no-store" });
       return res.ok;
     } catch (e) {
       return false;
