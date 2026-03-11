@@ -7,19 +7,32 @@
   <style>
     :root{
       --accent1:#00a676;
-      --accent2:#0066cc;
+      --accent2:#0b6b57;
       --accentText:#ffffff;
       --bg:#ffffff;
       --text:#123047;
       --muted:#607089;
       --stroke:#d0d7e2;
+
       --badgeBg:#d9f6e8;
       --badgeText:#16634a;
-      --soft:#f7fbff;
+
+      --soft:#eefaf5;
+      --softBorder:#b7ead3;
+
+      --link:#0b6b57;
+
+      --drugIconBg:#e8f8f1;
+      --drugIconBorder:#bde8d4;
+
+      --langBarAccent:#00a676;
+
       --ibrahimBg:#fff8e8;
       --ibrahimBorder:#f0c36d;
       --ibrahimTitle:#8a5a00;
+
       --sourceBg:#f8fafc;
+      --sourceBorderAccent:#00a676;
 
       --useBg:#eefaf5;
       --useIcon:#00a676;
@@ -80,6 +93,11 @@
       gap: 10px;
       margin: 16px 0 14px;
       flex-wrap: wrap;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 12px;
+      border-left: 4px solid var(--langBarAccent);
+      box-shadow: 0 2px 8px rgba(15,23,42,0.08);
     }
 
     .lang-selector label{
@@ -102,7 +120,7 @@
       gap: 6px;
       margin-bottom: 16px;
       text-decoration: none;
-      color: var(--accent2);
+      color: var(--link);
       font-size: 0.92rem;
       font-weight: bold;
     }
@@ -124,12 +142,12 @@
     .drug-icon{
       width: 52px;
       height: 52px;
-      background: #f0f7ff;
+      background: var(--drugIconBg);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #e0e8f0;
+      border: 1px solid var(--drugIconBorder);
       flex-shrink: 0;
     }
 
@@ -173,7 +191,7 @@
 
     .intro-box{
       background: var(--soft);
-      border: 1px solid #dbeafe;
+      border: 1px solid var(--softBorder);
       border-radius: 12px;
       padding: 13px 15px;
       color: #24445e;
@@ -276,6 +294,7 @@
       margin-top: 28px;
       background: var(--sourceBg);
       border: 1px solid var(--stroke);
+      border-left: 4px solid var(--sourceBorderAccent);
       border-radius: 12px;
       padding: 16px;
     }
@@ -305,7 +324,7 @@
     }
 
     .sources a{
-      color: var(--accent2);
+      color: var(--link);
       text-decoration: none;
       font-weight: 600;
     }
@@ -360,9 +379,10 @@
       <div class="drug-main-info">
         <div class="drug-icon">
           <svg viewBox="0 0 24 24" id="drugSvg" aria-hidden="true">
-            <path d="M8.5 15.5L15.5 8.5"></path>
-            <path d="M7.75 16.25a3.182 3.182 0 0 1 0-4.5l4-4a3.182 3.182 0 0 1 4.5 4.5l-4 4a3.182 3.182 0 0 1-4.5 0z"></path>
-            <path d="M10.2 9.8l4 4"></path>
+            <path d="M7 17a4 4 0 0 1 0-6l4-4a4 4 0 1 1 6 6l-4 4a4 4 0 0 1-6 0z"></path>
+            <line x1="9" y1="15" x2="15" y2="9"></line>
+            <circle cx="7" cy="7" r="2.2"></circle>
+            <line x1="5.6" y1="7" x2="8.4" y2="7"></line>
           </svg>
         </div>
         <div class="drug-title-block">
@@ -465,10 +485,30 @@
 
   <script>
     const themes = {
-      so: { accent1:"#00a676", accent2:"#0066cc", badgeBg:"#d9f6e8", badgeText:"#16634a" },
-      da: { accent1:"#0ea5e9", accent2:"#60a5fa", badgeBg:"#e0f2fe", badgeText:"#075985" },
-      en: { accent1:"#7f1d1d", accent2:"#b91c1c", badgeBg:"#fef2f2", badgeText:"#7f1d1d" },
-      ar: { accent1:"#c2410c", accent2:"#fb923c", badgeBg:"#fff7ed", badgeText:"#9a3412" }
+      so: {
+        accent1:"#00a676", accent2:"#0b6b57", badgeBg:"#d9f6e8", badgeText:"#16634a",
+        soft:"#eefaf5", softBorder:"#b7ead3", link:"#0b6b57",
+        drugIconBg:"#e8f8f1", drugIconBorder:"#bde8d4", langBarAccent:"#00a676",
+        sourceBorderAccent:"#00a676"
+      },
+      da: {
+        accent1:"#0ea5e9", accent2:"#60a5fa", badgeBg:"#e0f2fe", badgeText:"#075985",
+        soft:"#eff8ff", softBorder:"#bfdbfe", link:"#0ea5e9",
+        drugIconBg:"#eef7ff", drugIconBorder:"#cfe7ff", langBarAccent:"#0ea5e9",
+        sourceBorderAccent:"#0ea5e9"
+      },
+      en: {
+        accent1:"#7f1d1d", accent2:"#b91c1c", badgeBg:"#fef2f2", badgeText:"#7f1d1d",
+        soft:"#fff5f5", softBorder:"#fecaca", link:"#991b1b",
+        drugIconBg:"#fff1f1", drugIconBorder:"#f7caca", langBarAccent:"#991b1b",
+        sourceBorderAccent:"#991b1b"
+      },
+      ar: {
+        accent1:"#c2410c", accent2:"#fb923c", badgeBg:"#fff7ed", badgeText:"#9a3412",
+        soft:"#fff7ed", softBorder:"#fed7aa", link:"#c2410c",
+        drugIconBg:"#fff2e8", drugIconBorder:"#f8d1b0", langBarAccent:"#c2410c",
+        sourceBorderAccent:"#c2410c"
+      }
     };
 
     const content = {
@@ -781,10 +821,18 @@
 
     function applyTheme(lang){
       const t = themes[lang] || themes.so;
-      document.documentElement.style.setProperty("--accent1", t.accent1);
-      document.documentElement.style.setProperty("--accent2", t.accent2);
-      document.documentElement.style.setProperty("--badgeBg", t.badgeBg);
-      document.documentElement.style.setProperty("--badgeText", t.badgeText);
+      const r = document.documentElement.style;
+      r.setProperty("--accent1", t.accent1);
+      r.setProperty("--accent2", t.accent2);
+      r.setProperty("--badgeBg", t.badgeBg);
+      r.setProperty("--badgeText", t.badgeText);
+      r.setProperty("--soft", t.soft);
+      r.setProperty("--softBorder", t.softBorder);
+      r.setProperty("--link", t.link);
+      r.setProperty("--drugIconBg", t.drugIconBg);
+      r.setProperty("--drugIconBorder", t.drugIconBorder);
+      r.setProperty("--langBarAccent", t.langBarAccent);
+      r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
     }
 
     function updateLanguage() {
