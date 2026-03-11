@@ -4,616 +4,175 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Amlodipin – dhiig-karka</title>
-
 <style>
-:root{
-  --accent1:#00a676;
-  --accent2:#0066cc;
-  --accentText:#ffffff;
-
-  --bg:#e6f2f8;
-  --text:#123047;
-  --muted:#607089;
-
-  --card:#ffffff;
-  --stroke:#d0d7e2;
-
-  --pillBg:#d9f6e8;
-  --pillText:#16634a;
-
-  --link:#00509e;
-}
-
-@media (prefers-reduced-motion: no-preference){
-  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
-    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
-  }
-  header{ transition: background .45s ease, color .35s ease; }
-}
-
-body{
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  margin: 0;
-}
-
-header{
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: var(--accentText);
-  padding: 22px 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
+:root{ --accent1:#00a676; --accent2:#0066cc; --accentText:#ffffff; --bg:#e6f2f8; --text:#123047; --muted:#607089; --card:#ffffff; --stroke:#d0d7e2; --pillBg:#d9f6e8; --pillText:#16634a; --link:#00509e; }
+body{ font-family: Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.5; }
+header{ background: linear-gradient(135deg, var(--accent1), var(--accent2)); color: var(--accentText); padding: 22px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 header h1{ margin: 0 0 4px; font-size: 1.8rem; }
 header p{ margin: 0; font-size: 0.95rem; }
-
-main{
-  max-width: 820px;
-  margin: 18px auto 32px;
-  padding: 0 14px;
-}
-
-a.back{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
-  text-decoration: none;
-  color: var(--link);
-  font-size: 0.9rem;
-}
-a.back span{ font-size: 1.1rem; }
-
-.langbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 0 0 14px 0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid var(--accent1);
-}
-.langbar label{
-  font-size:0.9rem;
-  color:var(--text);
-  font-weight:600;
-}
-.langbar select{
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--stroke);
-  background: #fff;
-  color:var(--text);
-  font-size: 0.9rem;
-  max-width: 100%;
-}
-
-.card{
-  background: var(--card);
-  border-radius: 14px;
-  padding: 16px 16px 10px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-  border-top: 4px solid var(--accent1);
-}
-
-.drug-meta{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.drug-info{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.drug-icon{
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #e3f2fd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.drug-icon svg{ width: 30px; height: 30px; }
-.drug-icon svg .stroke{ stroke: var(--accent2); }
-.drug-icon svg .fill{ fill:#e8f3ff; }
-
-.drug-labels{ display: flex; flex-direction: column; }
-.drug-name{ font-weight: 600; font-size: 0.95rem; }
-.drug-form{ font-size: 0.82rem; color: #29516e; }
-
-.badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--pillBg);
-  color: var(--pillText);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  border:1px solid rgba(0,0,0,0.04);
-}
-
-.section{
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--stroke);
-}
-.section-header{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-.section-icon{
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: var(--text);
-}
-.section-icon.use { background:#e3f2fd; }
-.section-icon.dose { background:#e2f5ea; }
-.section-icon.side { background:#fff3e0; }
-.section-icon.interact { background:#ede7f6; }
-.section-icon.warn { background:#ffebee; }
-.section-icon.ramadan { background:#e0f7fa; }
-.section-icon.food { background:#f1f8e9; }
-.section-icon.store { background:#edeff9; }
-
-.section-title{
-  font-weight: 700;
-  color: var(--text);
-  font-size: 0.96rem;
-}
-.section-title small{
-  font-weight: 400;
-  color: var(--muted);
-  margin-left: 6px;
-}
-
-.section ul{
-  margin: 0 0 4px 18px;
-  padding-left: 0;
-  font-size: 0.92rem;
-}
-.section ul li{ margin-bottom: 4px; }
-
-.highlight{ font-weight: 600; }
-
-.footer-note{
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-align: center;
-  margin: 18px 0 10px;
-}
-
-@media (max-width: 600px){
-  header h1 { font-size: 1.5rem; }
-}
+main{ max-width: 820px; margin: 18px auto 32px; padding: 0 14px; }
+a.back{ display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; text-decoration: none; color: var(--link); font-size: 0.9rem; font-weight: bold; }
+.langbar{ display:flex; align-items:center; gap:10px; background:#ffffff; border-radius: 12px; padding: 10px 12px; margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid var(--accent1); }
+.langbar label{ font-size:0.9rem; font-weight:600; }
+.langbar select{ padding: 7px 10px; border-radius: 10px; border: 1px solid var(--stroke); font-size: 0.9rem; }
+.card{ background: var(--card); border-radius: 14px; padding: 20px; margin-bottom: 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 4px solid var(--accent1); }
+.drug-name{ font-weight: 800; font-size: 1.4rem; color: var(--accent2); margin-bottom: 5px; }
+.drug-form{ font-size: 0.9rem; color: var(--muted); margin-bottom: 20px; }
+.section{ margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--stroke); }
+.section-header{ display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.section-icon{ font-size: 1.4rem; }
+.section-title{ font-weight: 700; color: var(--text); font-size: 1.05rem; }
+.section ul{ margin: 0 0 10px 20px; padding-left: 0; font-size: 0.95rem; color: #334155; }
+.section ul li{ margin-bottom: 8px; }
+.footer-note{ font-size: 0.9rem; color: var(--text); text-align: center; margin-top: 30px; padding: 20px; background: #fff; border-radius: 10px; border: 1px solid var(--stroke); }
+@media (max-width: 600px){ header h1 { font-size: 1.5rem; } }
 </style>
 </head>
-
 <body>
-
 <header>
   <h1 id="hdrTitle">Amlodipin – dhiig-karka</h1>
   <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
-
 <main>
-
-  <div class="langbar" aria-label="Language selector">
+  <div class="langbar">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-    <select id="langSelect">
+    <select id="langSelect" onchange="updateLanguage()">
       <option value="so" selected>Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
     </select>
   </div>
-
   <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
-
   <div class="card">
-    <div class="drug-meta">
-      <div class="drug-info">
-        <div class="drug-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
-          </svg>
-        </div>
-        <div class="drug-labels">
-          <div class="drug-name" id="drugName">Amlodipin – dhiig-karka</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
-        </div>
-      </div>
-      <div class="badge" id="badge">Akhris fudud oo kooban</div>
-    </div>
-
+    <div class="drug-name" id="drugName">Amlodipin – dhiig-karka</div>
+    <div class="drug-form" id="drugForm">Kiniin afka ah</div>
     <div class="section">
       <div class="section-header">
-        <div class="section-icon use">💊</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
+        <div class="section-icon">💊</div>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
       </div>
       <ul id="useList"></ul>
     </div>
-
     <div class="section">
       <div class="section-header">
-        <div class="section-icon dose">⏰</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
+        <div class="section-icon">⏰</div>
+        <div class="section-title" id="doseTitle">Qiyaasta iyo Talooyinka Ibrahim</div>
       </div>
       <ul id="doseList"></ul>
     </div>
-
     <div class="section">
       <div class="section-header">
-        <div class="section-icon side">⚠️</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
+        <div class="section-icon">⚠️</div>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka (2-3 muhiim ah)</div>
       </div>
       <ul id="sideList"></ul>
     </div>
-
     <div class="section">
       <div class="section-header">
-        <div class="section-icon interact">⇆</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
-      </div>
-      <ul id="interactList"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
-      </div>
-      <ul id="warnList"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
+        <div class="section-icon">☾</div>
+        <div class="section-title" id="ramadanTitle">Ramadaan og soonka</div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
-      </div>
-      <ul id="foodList"></ul>
-    </div>
-
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
-      </div>
-      <ul id="storeList"></ul>
-    </div>
   </div>
-
-  <div class="footer-note" id="footerNote"></div>
+  <div class="footer-note" id="footerNote">Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf</div>
 </main>
-
-<div class="footer-note" id="credit"></div>
-
 <script>
-const ENABLED_LANGS = new Set(["so","da","en","ar"]);
-const RTL = new Set(["ar"]);
-
-const THEMES = {
-  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
-};
-
-function applyTheme(lang){
-  const th = THEMES[lang] || THEMES.so;
-  const r = document.documentElement.style;
-  r.setProperty("--accent1", th.a1);
-  r.setProperty("--accent2", th.a2);
-  r.setProperty("--link", th.link || "#00509e");
-  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
-  r.setProperty("--pillText", th.pillText || "#16634a");
-}
-
-const T = {
+const content = {
   so: {
-    title: "Amlodipin – dhiig-karka",
-    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    back: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    badge: "Akhris fudud oo kooban",
+    hdrTitle: "Amlodipin – dhiig-karka",
+    hdrSubtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    backLabel: "Ku laabo liiska daawooyinka",
     drugName: "Amlodipin – dhiig-karka",
     drugForm: "Kiniin afka ah",
-    sections: {
-      use: { title:"Isticmaalka", small:"", items:[
-        "Amlodipin waxaa loo isticmaalaa <span class='highlight'>dhiig-karka</span> iyo xanuunnada wadnaha.",
-        "Waxay nasisaa xididdada dhiigga, si cadaadisku u yaraado."
-      ]},
-      dose: { title:"Qiyaasta", small:"", items:[
-        "Badanaa 5 mg <span class='highlight'>hal mar maalintii</span> (subax ama fiid). Qaar waxay u baahan karaan 10 mg, taas oo dhakhtarku go’aamiyo.",
-        "Qaado maalin kasta waqti isku mid ah. Waxaa la qaadan karaa adigoon wax cunin ama adigoo cunno la qaadanaya."
-      ]},
-      side: { title:"Waxyeellooyinka", small:"", items:[
-        "Barar anqawyada ama lugaha hoose, madax-wareer iyo daal.",
-        "Haddii bararku bato ama neefsashadu kugu adkaato, la xiriir dhakhtarkaaga."
-      ]},
-      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
-        "Daawooyinka kale ee dhiig-karka hoos u dhiga waxay xoojin karaan saameynta.",
-        "Cabitaanka badan ee liin bambeelmo waxay kordhin kartaa saameynta; sidaas darteed xaddid."
-      ]},
-      warn: { title:"Digniino", small:"", items:[
-        "Ha joojin si lama filaan ah; dhiig-karku wuu kugu kici karaa.",
-        "Uur ama nuujin: dhakhtarka kala hadal si uu kuu doorto daawada kugu habboon."
-      ]},
-      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
-        "Amlodipin hal mar maalintii waxaa lagu qaadan karaa fiidkii ama <span class='highlight'>suxuurta</span>.",
-        "Ha joojin daawada si aad u soonto adiga oo aan talo ka helin dhakhtarka."
-      ]},
-      food: { title:"Cunto iyo cabitaan", small:"", items:[
-        "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunno la qaadanaya.",
-        "Isku day in aad ku qaadato waqti isku mid ah maalin kasta."
-      ]},
-      store: { title:"Kaydinta daawada", small:"", items:[
-        "Ku hay daawada meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
-        "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
-        "Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka."
-      ]}
-    },
-    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
-    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
+    useTitle: "Isticmaalka",
+    useList: ["Amlodipin waxay ballaarisaa xididdada dhiigga si dhiig-karku u hoos ugu dhaco.","Waxay ka hortagtaa xanuunka xabadka (angina).","Dhiig-karku waa 'cadaw aamusan' (silent killer) – qaado dawada xataa haddii aad caafimaad dareemayso."],
+    doseTitle: "Qiyaasta iyo Talooyinka Ibrahim",
+    doseList: ["Qaado hal kaniini maalin kasta, doorbidid subaxdii isku wakhti.","Haddii caguhu ku bararaan: Tani waa waxyeello caadi ah. Lugaha kor u qaad markaad fadhido.","Ha joojin dawada adigoon dhakhtarka la tashan."],
+    sideTitle: "Waxyeellooyinka muhiimka ah",
+    sideList: ["Bararka canqowga (kuraanta) iyo cagaha.","Madax-xanuun ama weji guduudasho (badanaa bilowga).","Wareer yar markaad si degdeg ah u istaagto."],
+    ramadanTitle: "Ramadaan og soonka",
+    ramadanList: ["Waxaa la qaadan karaa Afurka ama Suxuurta maadaama la qaato hal mar maalintii.","La tasho dhakhtarkaaga ka hor intaan bisha Ramadaan bilaaban."],
+    footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
   },
-
   da: {
-    title: "Amlodipin – forhøjet blodtryk",
-    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
-    back: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    badge: "Kort og let at læse",
-    drugName: "Amlodipin – forhøjet blodtryk",
-    drugForm: "Tablet til oral brug",
-    sections: {
-      use: { title:"Anvendelse", small:"", items:[
-        "Amlodipin bruges til behandling af forhøjet blodtryk og visse hjertesygdomme.",
-        "Det afslapper blodkarrene, så blodtrykket kan falde."
-      ]},
-      dose: { title:"Dosering", small:"", items:[
-        "Typisk 5 mg én gang dagligt; nogle har behov for 10 mg efter aftale med lægen.",
-        "Tag medicinen på samme tidspunkt hver dag. Den kan tages med eller uden mad."
-      ]},
-      side: { title:"Bivirkninger", small:"", items:[
-        "Hævelse af ankler eller underben, svimmelhed og træthed.",
-        "Kontakt lægen, hvis du får udtalt hævelse eller hvis vejrtrækningen bliver besværet."
-      ]},
-      interact: { title:"Interaktioner", small:"", items:[
-        "Andre blodtrykssænkende lægemidler kan forstærke virkningen.",
-        "Stort indtag af grapefrugt kan øge virkningen af amlodipin."
-      ]},
-      warn: { title:"Advarsler", small:"", items:[
-        "Stop ikke behandlingen pludseligt, da blodtrykket kan stige.",
-        "Graviditet eller amning: Tal med lægen om, hvilken behandling der er bedst for dig."
-      ]},
-      ramadan: { title:"Ramadan og faste", small:"", items:[
-        "Amlodipin tages én gang dagligt og kan ofte tages om aftenen eller ved suhoor.",
-        "Stop ikke medicinen for at faste uden at tale med lægen."
-      ]},
-      food: { title:"Mad og drikke", small:"", items:[
-        "Medicinen kan tages med eller uden mad.",
-        "Prøv at tage den på samme tidspunkt hver dag."
-      ]},
-      store: { title:"Opbevaring", small:"", items:[
-        "Opbevar medicinen utilgængeligt for små børn og under 25 °C.",
-        "Opbevar den i original emballage for at beskytte mod lys og fugt.",
-        "Brug ikke medicinen efter udløbsdatoen."
-      ]}
-    },
-    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
-    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
+    hdrTitle: "Amlodipin – mod dhiig-karka",
+    hdrSubtitle: "Kort information om medicinen – henvendt til forældre og patienter.",
+    backLabel: "Tilbage til oversigten",
+    drugName: "Amlodipin – mod forhøjet blodtryk",
+    drugForm: "Tabletter",
+    useTitle: "Anvendelse",
+    useList: ["Amlodipin får blodkarrene til at slappe af, så trykket falder.","Det forebygger brystsmerter og aflaster hjertet.","Husk: Højt blodtryk er en 'stille dræber' – tag medicinen, selvom du føler dig rask."],
+    doseTitle: "Dosering og Ibrahims råd",
+    doseList: ["Tag 1 tablet dagligt, helst om morgenen på samme tidspunkt.","Ved hævede ankler: Læg benene højt, når du sidder. Det er en almindelig bivirkning.","Stop aldrig behandlingen uden at tale med din læge."],
+    sideTitle: "Vigtige bivirkninger",
+    sideList: ["Hævede ankler og fødder.","Hovedpine eller rødmen (især i starten).","Svimmelhed, når du rejser dig hurtigt."],
+    ramadanTitle: "Ramadan og faste",
+    ramadanList: ["Kan tages ved Iftar eller Suhoor, da den kun tages én gang dagligt.","Rådfør dig med din læge før fasten."],
+    footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf"
   },
-
   en: {
-    title: "Amlodipine – high blood pressure",
-    subtitle: "Brief information about the medicine for patients and relatives.",
-    back: "Back to the medicine list",
-    langLabel: "Choose language:",
-    badge: "Short and easy to read",
-    drugName: "Amlodipine – high blood pressure",
-    drugForm: "Oral tablet",
-    sections: {
-      use: { title:"Use", small:"", items:[
-        "Amlodipine is used to treat high blood pressure and certain heart conditions.",
-        "It relaxes blood vessels, which can lower blood pressure."
-      ]},
-      dose: { title:"Dosage", small:"", items:[
-        "Typically 5 mg once daily; some people need 10 mg as agreed with the doctor.",
-        "Take it at the same time every day. It can be taken with or without food."
-      ]},
-      side: { title:"Side effects", small:"", items:[
-        "Swelling of the ankles or lower legs, dizziness, and tiredness.",
-        "Contact your doctor if swelling becomes significant or if you develop breathing difficulties."
-      ]},
-      interact: { title:"Interactions", small:"", items:[
-        "Other blood-pressure-lowering medicines may increase the effect.",
-        "Large amounts of grapefruit can increase the effect of amlodipine."
-      ]},
-      warn: { title:"Warnings", small:"", items:[
-        "Do not stop suddenly; your blood pressure may rise.",
-        "Pregnancy or breastfeeding: talk to your doctor about the most suitable treatment."
-      ]},
-      ramadan: { title:"Ramadan and fasting", small:"", items:[
-        "Amlodipine is taken once daily and can often be taken in the evening or at suhoor.",
-        "Do not stop the medicine for fasting without medical advice."
-      ]},
-      food: { title:"Food and drink", small:"", items:[
-        "It can be taken with or without food.",
-        "Try to take it at the same time every day."
-      ]},
-      store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children and store below 25 °C.",
-        "Keep in the original packaging to protect from light and moisture.",
-        "Do not use after the expiry date."
-      ]}
-    },
-    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
-    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
+    hdrTitle: "Amlodipine – High blood pressure",
+    hdrSubtitle: "Brief information about the medicine – for parents and patients.",
+    backLabel: "Back to medication list",
+    drugName: "Amlodipine – High blood pressure",
+    drugForm: "Oral tablets",
+    useTitle: "Usage",
+    useList: ["Amlodipine relaxes blood vessels to lower blood pressure.","It prevents chest pain and reduces the heart's workload.","Remember: High blood pressure is a 'silent killer' – take your medicine even if you feel fine."],
+    doseTitle: "Dosage and Ibrahim's Advice",
+    doseList: ["Take one tablet daily, preferably in the morning at the same time.","Swollen ankles: A common side effect. Elevate your legs when sitting.","Do not stop taking the medication without consulting your doctor."],
+    sideTitle: "Key Side Effects",
+    sideList: ["Swollen ankles or feet.","Headaches or flushing (especially at the start).","Dizziness when standing up quickly."],
+    ramadanTitle: "Ramadan and Fasting",
+    ramadanList: ["Can be taken at Iftar or Suhoor as it is a once-daily dose.","Consult your doctor before fasting."],
+    footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf"
   },
-
   ar: {
-    title: "أملوديبين – ارتفاع ضغط الدم",
-    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
-    back: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    badge: "معلومات مختصرة وسهلة",
-    drugName: "أملوديبين – ارتفاع ضغط الدم",
-    drugForm: "أقراص فموية",
-    sections: {
-      use: { title:"الاستعمال", small:"", items:[
-        "يُستخدم أملوديبين لعلاج ارتفاع ضغط الدم وبعض أمراض القلب.",
-        "يساعد على إرخاء الأوعية الدموية مما يؤدي إلى خفض ضغط الدم."
-      ]},
-      dose: { title:"الجرعة", small:"", items:[
-        "عادةً 5 ملغ مرة واحدة يومياً؛ وقد يحتاج بعض الأشخاص إلى 10 ملغ حسب قرار الطبيب.",
-        "تناوله يومياً في نفس الوقت. يمكن تناوله مع الطعام أو بدونه."
-      ]},
-      side: { title:"الآثار الجانبية", small:"", items:[
-        "تورم الكاحلين أو أسفل الساقين، دوخة وتعب.",
-        "اتصل بالطبيب إذا كان التورم شديداً أو إذا أصبحت لديك صعوبة في التنفس."
-      ]},
-      interact: { title:"التداخلات الدوائية", small:"", items:[
-        "قد تزيد أدوية أخرى لخفض ضغط الدم من تأثير الدواء.",
-        "قد يزيد تناول كميات كبيرة من الجريب فروت من تأثير أملوديبين."
-      ]},
-      warn: { title:"تحذيرات", small:"", items:[
-        "لا توقف الدواء فجأة لأن ضغط الدم قد يرتفع.",
-        "الحمل أو الرضاعة: ناقش الأمر مع الطبيب لاختيار العلاج الأنسب."
-      ]},
-      ramadan: { title:"رمضان والصيام", small:"", items:[
-        "يؤخذ مرة واحدة يومياً ويمكن تناوله مساءً أو وقت السحور.",
-        "لا توقف الدواء من أجل الصيام دون استشارة طبية."
-      ]},
-      food: { title:"الطعام والشراب", small:"", items:[
-        "يمكن تناوله مع الطعام أو بدونه.",
-        "حاول تناوله في نفس الوقت كل يوم."
-      ]},
-      store: { title:"الحفظ", small:"", items:[
-        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
-        "احفظه في العبوة الأصلية للحماية من الضوء والرطوبة.",
-        "لا تستخدمه بعد تاريخ الانتهاء."
-      ]}
-    },
-    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
-    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
+    hdrTitle: "أملوديبين – ضغط الدم",
+    hdrSubtitle: "معلومات مختصرة عن الدواء - موجهة للآباء والمرضى.",
+    backLabel: "العودة إلى قائمة الأدوية",
+    drugName: "أملوديبين – ضغط الدم المرتفع",
+    drugForm: "أقراص",
+    useTitle: "الاستخدام",
+    useList: ["يعمل أملوديبين على إرخاء الأوعية الدموية مما يخفض ضغط الدم.","يمنع آلام الصدر ويقلل الجهد على القلب.","تذكر: ضغط الدم المرتفع 'قاتل صامت'، لذا تناول دواءك حتى لو كنت تشعر بالتحسن."],
+    doseTitle: "الجرعة ونصائح إبراهيم",
+    doseList: ["تناول قرصاً واحداً يومياً، ويفضل صباحاً في نفس الوقت.","تورم الكاحلين: عرض جانبي شائع. ارفع قدميك عند الجلوس.","لا تتوقف عن تناول الدواء دون استشارة الطبيب."],
+    sideTitle: "أهم الأعراض الجانبية",
+    sideList: ["تورم في الكاحلين أو القدمين.","صداع أو احمرار في الوجه (خاصة في البداية).","دوار عند الوقوف بسرعة."],
+    ramadanTitle: "رمضان والصيام",
+    ramadanList: ["يمكن تناوله عند الإفطار أو السحور لأنه يؤخذ مرة واحدة فقط.","استشر طبيبك قبل البدء بالصيام."],
+    footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف"
   }
 };
-
-function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
-
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+function updateLanguage() {
+  const lang = document.getElementById('langSelect').value;
+  const data = content[lang];
+  document.getElementById('hdrTitle').innerText = data.hdrTitle;
+  document.getElementById('hdrSubtitle').innerText = data.hdrSubtitle;
+  document.getElementById('backLabel').innerText = data.backLabel;
+  document.getElementById('drugName').innerText = data.drugName;
+  document.getElementById('drugForm').innerText = data.drugForm;
+  document.getElementById('useTitle').innerText = data.useTitle;
+  document.getElementById('doseTitle').innerText = data.doseTitle;
+  document.getElementById('sideTitle').innerText = data.sideTitle;
+  document.getElementById('ramadanTitle').innerText = data.ramadanTitle;
+  document.getElementById('footerNote').innerText = data.footerNote;
+  const updateList = (id, list) => {
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    list.forEach(item => {
+      const li = document.createElement('li');
+      li.innerText = item;
+      el.appendChild(li);
+    });
+  };
+  updateList('useList', data.useList);
+  updateList('doseList', data.doseList);
+  updateList('sideList', data.sideList);
+  updateList('ramadanList', data.ramadanList);
 }
-
-function fillList(listId, items){
-  const ul = document.getElementById(listId);
-  ul.innerHTML = "";
-  (items || []).forEach(html => {
-    const li = document.createElement("li");
-    li.innerHTML = html;
-    ul.appendChild(li);
-  });
-}
-
-function setSmall(id, txt){
-  const el = document.getElementById(id);
-  if (!el) return;
-  const t = (txt || "").trim();
-  el.textContent = t;
-  el.style.display = t ? "inline" : "none";
-}
-
-function render(lang){
-  if (!ENABLED_LANGS.has(lang)) lang = "so";
-  const d = T[lang] || T.so;
-
-  setDirLang(lang);
-  applyTheme(lang);
-
-  document.title = stripTags(d.title);
-  document.getElementById("hdrTitle").textContent = stripTags(d.title);
-  document.getElementById("hdrSubtitle").textContent = d.subtitle;
-  document.getElementById("backLabel").textContent = d.back;
-  document.getElementById("badge").textContent = d.badge;
-  document.getElementById("drugName").textContent = stripTags(d.drugName);
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("langLabel").textContent = d.langLabel;
-
-  document.getElementById("useTitle").textContent = d.sections.use.title;
-  setSmall("useSmall", d.sections.use.small);
-  document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  setSmall("doseSmall", d.sections.dose.small);
-  document.getElementById("sideTitle").textContent = d.sections.side.title;
-  setSmall("sideSmall", d.sections.side.small);
-  document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  setSmall("interactSmall", d.sections.interact.small);
-  document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  setSmall("warnSmall", d.sections.warn.small);
-  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  setSmall("ramadanSmall", d.sections.ramadan.small);
-  document.getElementById("foodTitle").textContent = d.sections.food.title;
-  setSmall("foodSmall", d.sections.food.small);
-  document.getElementById("storeTitle").textContent = d.sections.store.title;
-  setSmall("storeSmall", d.sections.store.small);
-
-  fillList("useList", d.sections.use.items);
-  fillList("doseList", d.sections.dose.items);
-  fillList("sideList", d.sections.side.items);
-  fillList("interactList", d.sections.interact.items);
-  fillList("warnList", d.sections.warn.items);
-  fillList("ramadanList", d.sections.ramadan.items);
-  fillList("foodList", d.sections.food.items);
-  fillList("storeList", d.sections.store.items);
-
-  document.getElementById("footerNote").innerHTML = d.footerHTML;
-  document.getElementById("credit").innerHTML = d.creditHTML;
-
-  const backA = document.querySelector("a.back");
-  const base = backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
-
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
-  window.history.replaceState({}, "", url.toString());
-}
-
-const params = new URLSearchParams(window.location.search);
-let startLang = params.get("lang") || "so";
-if (!ENABLED_LANGS.has(startLang)) startLang = "so";
-
-const select = document.getElementById("langSelect");
-select.value = startLang;
-render(select.value);
-select.addEventListener("change", function(){ render(this.value); });
+updateLanguage();
 </script>
-
 </body>
 </html>
