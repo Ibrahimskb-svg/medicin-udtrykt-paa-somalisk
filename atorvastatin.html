@@ -154,11 +154,8 @@
     .drug-icon svg{
       width: 30px;
       height: 30px;
-      fill: none;
-      stroke: var(--accent2);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      display: block;
+      overflow: visible;
     }
 
     .drug-title-block h1{
@@ -378,11 +375,38 @@
     <div class="drug-header-container">
       <div class="drug-main-info">
         <div class="drug-icon">
-          <svg viewBox="0 0 24 24" id="drugSvg" aria-hidden="true">
-            <path d="M7 17a4 4 0 0 1 0-6l4-4a4 4 0 1 1 6 6l-4 4a4 4 0 0 1-6 0z"></path>
-            <line x1="9" y1="15" x2="15" y2="9"></line>
-            <circle cx="7" cy="7" r="2.2"></circle>
-            <line x1="5.6" y1="7" x2="8.4" y2="7"></line>
+          <svg viewBox="0 0 64 64" id="drugSvg" aria-hidden="true">
+            <defs>
+              <linearGradient id="pillRed" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ff8a7a"></stop>
+                <stop offset="100%" stop-color="#d63b2e"></stop>
+              </linearGradient>
+              <linearGradient id="pillYellow" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f8df7a"></stop>
+                <stop offset="100%" stop-color="#caa61a"></stop>
+              </linearGradient>
+              <linearGradient id="pillShine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.95)"></stop>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
+              </linearGradient>
+              <clipPath id="pillClip">
+                <rect x="14" y="22" width="36" height="20" rx="10"></rect>
+              </clipPath>
+            </defs>
+
+            <g transform="rotate(-45 32 32)">
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
+
+              <g clip-path="url(#pillClip)">
+                <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
+                <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
+                <rect x="30.8" y="22" width="2.4" height="20" fill="#ffffff" opacity="0.9"></rect>
+                <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
+                <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
+              </g>
+
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
+            </g>
           </svg>
         </div>
         <div class="drug-title-block">
