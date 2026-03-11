@@ -1,679 +1,830 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="so">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Atorvastatin – kolesterol</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atorvastatin – kolestarool</title>
+  <style>
+    :root{
+      --accent1:#00a676;
+      --accent2:#0066cc;
+      --accentText:#ffffff;
+      --bg:#ffffff;
+      --text:#123047;
+      --muted:#607089;
+      --stroke:#d0d7e2;
+      --badgeBg:#d9f6e8;
+      --badgeText:#16634a;
+      --soft:#f7fbff;
+      --ibrahimBg:#fff8e8;
+      --ibrahimBorder:#f0c36d;
+      --ibrahimTitle:#8a5a00;
+      --sourceBg:#f8fafc;
 
-<style>
-:root{
-  --accent1:#0ea5e9;
-  --accent2:#60a5fa;
-  --accentText:#ffffff;
+      --useBg:#eefaf5;
+      --useIcon:#00a676;
+      --doseBg:#eef6ff;
+      --doseIcon:#0066cc;
+      --sideBg:#fff7ed;
+      --sideIcon:#f59e0b;
+      --interactBg:#f5f3ff;
+      --interactIcon:#7c3aed;
+      --warnBg:#fef2f2;
+      --warnIcon:#dc2626;
+      --ramadanBg:#f5f3ff;
+      --ramadanIcon:#6d28d9;
+      --foodBg:#effcf6;
+      --foodIcon:#059669;
+      --storeBg:#f8fafc;
+      --storeIcon:#475569;
+    }
 
-  --bg:#e6f2f8;
-  --text:#123047;
-  --muted:#607089;
+    *{ box-sizing:border-box; }
 
-  --card:#ffffff;
-  --stroke:#d0d7e2;
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.55;
+    }
 
-  --pillBg:#e0f2fe;
-  --pillText:#075985;
+    main{
+      max-width: 820px;
+      margin: 22px auto;
+      padding: 0 18px 30px;
+    }
 
-  --link:#0ea5e9;
-}
+    header{
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: var(--accentText);
+      padding: 20px 14px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
 
-@media (prefers-reduced-motion: no-preference){
-  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
-    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
-  }
-  header{ transition: background .45s ease, color .35s ease; }
-}
+    header h1{
+      margin: 0 0 4px;
+      font-size: 1.7rem;
+    }
 
-body{
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  margin: 0;
-}
-header{
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: var(--accentText);
-  padding: 22px 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header h1{ margin: 0 0 4px; font-size: 1.8rem; }
-header p{ margin: 0; font-size: 0.95rem; }
+    header p{
+      margin: 0 auto;
+      font-size: 0.92rem;
+      max-width: 720px;
+    }
 
-main{
-  max-width: 820px;
-  margin: 18px auto 32px;
-  padding: 0 14px;
-}
+    .lang-selector{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 14px;
+      flex-wrap: wrap;
+    }
 
-a.back{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
-  text-decoration: none;
-  color: var(--link);
-  font-size: 0.9rem;
-}
-a.back span{ font-size: 1.1rem; }
+    .lang-selector label{
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.94rem;
+    }
 
-.langbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#fff;
-  border-radius:12px;
-  padding:10px 12px;
-  margin:0 0 14px 0;
-  box-shadow:0 2px 8px rgba(15,23,42,0.10);
-  border-left:4px solid var(--accent1);
-}
-.langbar label{
-  font-size:0.9rem;
-  color:var(--text);
-  font-weight:600;
-}
-.langbar select{
-  padding:7px 10px;
-  border-radius:10px;
-  border:1px solid var(--stroke);
-  background:#fff;
-  color:var(--text);
-  font-size:0.9rem;
-  max-width:100%;
-}
+    .lang-selector select{
+      padding: 7px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      font-size: 0.92rem;
+    }
 
-.card{
-  background:#fff;
-  border-radius:14px;
-  padding:16px 16px 10px;
-  margin-bottom:14px;
-  box-shadow:0 3px 10px rgba(15,23,42,0.12);
-  border-top:4px solid var(--accent1);
-}
+    a.back{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      color: var(--accent2);
+      font-size: 0.92rem;
+      font-weight: bold;
+    }
 
-.drug-meta{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:8px;
-}
-.drug-info{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.drug-icon{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  background:#e3f2fd;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.drug-icon svg{ width:30px; height:30px; }
-.drug-labels{ display:flex; flex-direction:column; }
-.drug-name{ font-weight:600; font-size:0.95rem; }
-.drug-form{ font-size:0.82rem; color:#29516e; }
+    .drug-header-container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 14px 0 8px;
+    }
 
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:var(--pillBg);
-  color:var(--pillText);
-  padding:4px 10px;
-  border-radius:999px;
-  font-size:0.8rem;
-}
+    .drug-main-info{
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-.section{
-  margin-top:8px;
-  padding-top:8px;
-  border-top:1px dashed var(--stroke);
-}
-.section-header{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-bottom:4px;
-}
-.section-title{
-  font-weight:700;
-  color:var(--text);
-  font-size:0.96rem;
-}
-.section-title small{
-  font-weight:400;
-  color:var(--muted);
-  margin-left:6px;
-}
+    .drug-icon{
+      width: 52px;
+      height: 52px;
+      background: #f0f7ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e0e8f0;
+      flex-shrink: 0;
+    }
 
-.section-icon{
-  width:24px;
-  height:24px;
-  border-radius:999px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:0.9rem;
-  color:var(--text);
-}
-.section-icon.use{ background:#e3f2fd; }
-.section-icon.dose{ background:#e2f5ea; }
-.section-icon.side{ background:#fff3e0; }
-.section-icon.interact{ background:#ede7f6; }
-.section-icon.warn{ background:#ffebee; }
-.section-icon.ramadan{ background:#e0f7fa; }
-.section-icon.food{ background:#f1f8e9; }
-.section-icon.store{ background:#edeff9; }
+    .drug-icon svg{
+      width: 30px;
+      height: 30px;
+      fill: none;
+      stroke: var(--accent2);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
-.section ul{
-  margin:0 0 4px 18px;
-  padding-left:0;
-  font-size:0.92rem;
-}
-.section li{ margin-bottom:4px; }
-.highlight{ font-weight:600; }
+    .drug-title-block h1{
+      font-size: 1.3rem;
+      color: var(--accent2);
+      margin: 0;
+      font-weight: 800;
+    }
 
-.footer-note{
-  font-size:0.8rem;
-  color:#607089;
-  text-align:center;
-  margin:18px 0 10px;
-}
-@media (max-width:600px){
-  header h1{ font-size:1.5rem; }
-}
-</style>
+    .drug-title-block p{
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 3px 0 0;
+    }
+
+    .badge{
+      background: var(--badgeBg);
+      color: var(--badgeText);
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .divider{
+      border-bottom: 1px dashed var(--stroke);
+      margin: 14px 0 18px;
+    }
+
+    .intro-box{
+      background: var(--soft);
+      border: 1px solid #dbeafe;
+      border-radius: 12px;
+      padding: 13px 15px;
+      color: #24445e;
+      margin-bottom: 16px;
+      font-size: 0.96rem;
+    }
+
+    .ibrahim-box{
+      background: var(--ibrahimBg);
+      border: 1px solid var(--ibrahimBorder);
+      border-left: 5px solid var(--ibrahimBorder);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0 18px;
+    }
+
+    .ibrahim-box-title{
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--ibrahimTitle);
+      margin-bottom: 6px;
+    }
+
+    .ibrahim-box p{
+      margin: 0;
+      color: #5f4300;
+      font-size: 0.95rem;
+    }
+
+    .section{
+      margin-top: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      padding: 12px 14px 10px;
+      background: #fff;
+    }
+
+    .section-header{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-icon{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .section-title{
+      font-weight: 800;
+      color: #123047;
+      font-size: 1rem;
+    }
+
+    .section ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .section ul li{
+      margin-bottom: 7px;
+      color: #334155;
+      font-size: 0.96rem;
+    }
+
+    .use-section{ background: var(--useBg); }
+    .use-section .section-icon{ background: rgba(0,166,118,0.14); color: var(--useIcon); }
+
+    .dose-section{ background: var(--doseBg); }
+    .dose-section .section-icon{ background: rgba(0,102,204,0.14); color: var(--doseIcon); }
+
+    .side-section{ background: var(--sideBg); }
+    .side-section .section-icon{ background: rgba(245,158,11,0.15); color: var(--sideIcon); }
+
+    .interact-section{ background: var(--interactBg); }
+    .interact-section .section-icon{ background: rgba(124,58,237,0.14); color: var(--interactIcon); }
+
+    .warn-section{ background: var(--warnBg); }
+    .warn-section .section-icon{ background: rgba(220,38,38,0.12); color: var(--warnIcon); }
+
+    .ramadan-section{ background: var(--ramadanBg); }
+    .ramadan-section .section-icon{ background: rgba(109,40,217,0.12); color: var(--ramadanIcon); }
+
+    .food-section{ background: var(--foodBg); }
+    .food-section .section-icon{ background: rgba(5,150,105,0.12); color: var(--foodIcon); }
+
+    .store-section{ background: var(--storeBg); }
+    .store-section .section-icon{ background: rgba(71,85,105,0.12); color: var(--storeIcon); }
+
+    .sources{
+      margin-top: 28px;
+      background: var(--sourceBg);
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .sources h3{
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .sources p{
+      margin: 0 0 8px;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+
+    .sources ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .sources li{
+      margin-bottom: 7px;
+      color: #334155;
+      word-break: break-word;
+      font-size: 0.93rem;
+    }
+
+    .sources a{
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sources a:hover{
+      text-decoration: underline;
+    }
+
+    .footer-note{
+      font-size: 0.86rem;
+      color: var(--text);
+      text-align: center;
+      margin-top: 20px;
+      padding: 18px 8px 0;
+      border-top: 1px solid var(--stroke);
+    }
+
+    @media (max-width: 600px){
+      body{ line-height: 1.5; }
+      main{ padding: 0 14px 24px; }
+      .drug-header-container{ flex-direction: column; align-items: flex-start; }
+      .badge{ align-self: flex-end; }
+      .drug-title-block h1{ font-size: 1.15rem; }
+      header h1{ font-size: 1.45rem; }
+      .section{ padding: 11px 12px 9px; }
+    }
+  </style>
 </head>
-
 <body>
-<header>
-  <h1 id="hdrH1">Atorvastatin – kolesterol</h1>
-  <p id="hdrP">Kort og let information om lægemidlet – til patienter og pårørende.</p>
-</header>
+  <header id="mainHeader">
+    <h1 id="hdrTitle">Atorvastatin – kolestarool</h1>
+    <p id="hdrSubtitle">Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
+  </header>
 
-<main>
-  <div class="langbar" aria-label="Vælg sprog">
-    <label for="langSelect" id="langLabel">Vælg sprog:</label>
-    <select id="langSelect">
-      <option value="so">Somalisk</option>
-      <option value="da" selected>Dansk</option>
-      <option value="en">Engelsk</option>
-      <option value="ar">Arabisk</option>
-    </select>
-  </div>
+  <main>
+    <div class="lang-selector">
+      <label id="langLabel" for="langSelect">Dooro luqadda:</label>
+      <select id="langSelect" onchange="updateLanguage()">
+        <option value="so" selected>Somalisk</option>
+        <option value="da">Dansk</option>
+        <option value="en">Engelsk</option>
+        <option value="ar">Arabisk</option>
+      </select>
+    </div>
 
-  <a href="index.html" class="back"><span>←</span><span id="backText">Tilbage til medicinlisten</span></a>
+    <a href="index.html" class="back">
+      <span>←</span>
+      <span id="backLabel">Ku laabo liiska daawooyinka</span>
+    </a>
 
-  <div class="card">
-    <div class="drug-meta">
-      <div class="drug-info">
-        <div class="drug-icon" aria-hidden="true">
-          <svg viewBox="0 0 64 64">
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="#e8f3ff" stroke="var(--accent2)" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" stroke="var(--accent2)" stroke-width="4"/>
+    <div class="drug-header-container">
+      <div class="drug-main-info">
+        <div class="drug-icon">
+          <svg viewBox="0 0 24 24" id="drugSvg" aria-hidden="true">
+            <path d="M8.5 15.5L15.5 8.5"></path>
+            <path d="M7.75 16.25a3.182 3.182 0 0 1 0-4.5l4-4a3.182 3.182 0 0 1 4.5 4.5l-4 4a3.182 3.182 0 0 1-4.5 0z"></path>
+            <path d="M10.2 9.8l4 4"></path>
           </svg>
         </div>
-        <div class="drug-labels">
-          <div class="drug-name" id="drugName">Atorvastatin</div>
-          <div class="drug-form" id="drugForm">Tablet (kolesterolsænkende)</div>
+        <div class="drug-title-block">
+          <h1 id="drugName">Atorvastatin – kolestarool</h1>
+          <p id="drugForm">Kiniin afka ah</p>
         </div>
       </div>
-      <div class="badge" id="badgeText">Kort og let</div>
+      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
     </div>
 
-    <div class="section">
+    <div class="divider"></div>
+
+    <div class="intro-box" id="introBox">
+      Kolestaroolka xun marar badan lama dareemo, laakiin si aamusnaan ah ayuu xididdada dhiigga ugu ururi karaa dufan. Atorvastatin waxay ka caawisaa jirka inuu yareeyo kolestaroolkaas, si waddada dhiiggu u ahaato mid ka sii nadiifsan oo khatartu u yaraato.
+    </div>
+
+    <div class="ibrahim-box">
+      <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
+      <p id="ibrahimText">
+        Waxaan dadka ugu sharxaa sidan: haddii dufan yar-yar uu si tartiib ah ugu dhego gudaha xididdada dhiigga, marinku wuu cidhiidhi noqon karaa sida tuubo wasakh ku uruurtay. Atorvastatin ma aha daawo aad isla markiiba dareemayso, balse waa daawo si deggan u ilaalisa wadnaha iyo maskaxda mustaqbalka.
+      </p>
+    </div>
+
+    <div class="section use-section">
       <div class="section-header">
-        <div class="section-icon use">💊</div>
-        <div class="section-title"><span id="sec0Title">Hvad er Atorvastatin?</span><small id="sec0Small"></small></div>
+        <span class="section-icon">💊</span>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
       </div>
-      <ul id="sec0List"></ul>
+      <ul id="useList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section dose-section">
       <div class="section-header">
-        <div class="section-icon use">✔</div>
-        <div class="section-title"><span id="sec1Title">Hvad bruges det til?</span><small id="sec1Small"></small></div>
+        <span class="section-icon">⏰</span>
+        <div class="section-title" id="doseTitle">Qiyaasta iyo talooyinka Ibraahim</div>
       </div>
-      <ul id="sec1List"></ul>
+      <ul id="doseList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section side-section">
       <div class="section-header">
-        <div class="section-icon dose">⏰</div>
-        <div class="section-title"><span id="sec2Title">Sådan tages medicinen</span><small id="sec2Small"></small></div>
+        <span class="section-icon">⚠</span>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
       </div>
-      <ul id="sec2List"></ul>
+      <ul id="sideList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section interact-section">
       <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title"><span id="sec3Title">Mad og drikke</span><small id="sec3Small"></small></div>
+        <span class="section-icon">⇄</span>
+        <div class="section-title" id="interactTitle">Isdhexgalka daawooyinka</div>
       </div>
-      <ul id="sec3List"></ul>
+      <ul id="interactList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section warn-section">
       <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="sec4Title">Advarsler</span><small id="sec4Small"></small></div>
+        <span class="section-icon">!</span>
+        <div class="section-title" id="warnTitle">Digniino muhiim ah</div>
       </div>
-      <ul id="sec4List"></ul>
+      <ul id="warnList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section ramadan-section">
       <div class="section-header">
-        <div class="section-icon side">⚠️</div>
-        <div class="section-title"><span id="sec5Title">Bivirkninger</span><small id="sec5Small"></small></div>
+        <span class="section-icon">☾</span>
+        <div class="section-title" id="ramadanTitle">Ramadaan iyo soonka</div>
       </div>
-      <ul id="sec5List"></ul>
+      <ul id="ramadanList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section food-section">
       <div class="section-header">
-        <div class="section-icon interact">⇆</div>
-        <div class="section-title"><span id="sec6Title">Interaktioner</span><small id="sec6Small"></small></div>
+        <span class="section-icon">🍽</span>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan</div>
       </div>
-      <ul id="sec6List"></ul>
+      <ul id="foodList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section store-section">
       <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="sec7Title">Ramadan og faste</span><small id="sec7Small"></small></div>
+        <span class="section-icon">⧉</span>
+        <div class="section-title" id="storeTitle">Kaydinta daawada</div>
       </div>
-      <ul id="sec7List"></ul>
+      <ul id="storeList"></ul>
     </div>
 
-    <div class="section">
-      <div class="section-header">
-        <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="sec8Title">Opbevaring</span><small id="sec8Small"></small></div>
-      </div>
-      <ul id="sec8List"></ul>
+    <div class="sources">
+      <h3 id="sourcesTitle">Ilaha xogta</h3>
+      <p id="sourcesText">
+        Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
+      </p>
+      <ul id="sourcesList"></ul>
     </div>
-  </div>
 
-  <div class="footer-note" id="footer1"></div>
-  <div class="footer-note" id="footer2"></div>
-</main>
+    <div class="footer-note" id="footerNote">
+      Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
+    </div>
+  </main>
 
-<script>
-const ENABLED_LANGS = new Set(["so","da","en","ar"]);
-const RTL = new Set(["ar"]);
+  <script>
+    const themes = {
+      so: { accent1:"#00a676", accent2:"#0066cc", badgeBg:"#d9f6e8", badgeText:"#16634a" },
+      da: { accent1:"#0ea5e9", accent2:"#60a5fa", badgeBg:"#e0f2fe", badgeText:"#075985" },
+      en: { accent1:"#7f1d1d", accent2:"#b91c1c", badgeBg:"#fef2f2", badgeText:"#7f1d1d" },
+      ar: { accent1:"#c2410c", accent2:"#fb923c", badgeBg:"#fff7ed", badgeText:"#9a3412" }
+    };
 
-const THEMES = {
-  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
-};
+    const content = {
+      so: {
+        hdrTitle: "Atorvastatin – kolestarool",
+        hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+        backLabel: "Ku laabo liiska daawooyinka",
+        langLabel: "Dooro luqadda:",
+        drugName: "Atorvastatin – kolestarool",
+        drugForm: "Kiniin afka ah",
+        badgeText: "Akhris fudud oo kooban",
+        introBox: "Kolestaroolka xun marar badan lama dareemo, laakiin si aamusnaan ah ayuu xididdada dhiigga ugu ururi karaa dufan. Atorvastatin waxay ka caawisaa jirka inuu yareeyo kolestaroolkaas, si waddada dhiiggu u ahaato mid ka sii nadiifsan oo khatartu u yaraato.",
+        ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
+        ibrahimText: "Waxaan dadka ugu sharxaa sidan: haddii dufan yar-yar uu si tartiib ah ugu dhego gudaha xididdada dhiigga, marinku wuu cidhiidhi noqon karaa sida tuubo wasakh ku uruurtay. Atorvastatin ma aha daawo aad isla markiiba dareemayso, balse waa daawo si deggan u ilaalisa wadnaha iyo maskaxda mustaqbalka.",
+        useTitle: "Isticmaalka",
+        useList: [
+          "Atorvastatin waxaa loo isticmaalaa in lagu yareeyo kolestaroolka xun ee dhiigga ku badan.",
+          "Waxay ka tirsan tahay dawooyinka statin-ka ah oo ka shaqeeya beerka si ay u yareeyaan samaysanka kolestaroolka.",
+          "Waxaa kale oo loo isticmaalaa in lagu yareeyo khatarta cudurrada wadnaha iyo xididdada dhiigga dadka halistu ku badan tahay."
+        ],
+        doseTitle: "Qiyaasta iyo talooyinka Ibraahim",
+        doseList: [
+          "Badanaa waxaa la qaataa hal mar maalintii, isla saacad u dhow maalin kasta.",
+          "Waxaad qaadan kartaa subax ama fiid, laakiin joogteyntu waa waxa ugu muhiimsan.",
+          "Kiniinka waxaa lagu qaadan karaa cunto la'aan ama cunto ka dib.",
+          "Ha joojin daawada adigoon la tashan dhakhtar, xataa haddii aadan wax calaamado ah dareemayn."
+        ],
+        sideTitle: "Waxyeellooyinka",
+        sideList: [
+          "Dadka qaar waxay dareemi karaan murqo xanuun, murqo daal ama tabardarri.",
+          "Calool-xanuun, lallabbo ama madax-xanuun mararka qaar way dhici karaan.",
+          "Haddii murqo xanuunku noqdo mid daran ama aad aragto kaadi madow, si degdeg ah ula xiriir dhakhtar."
+        ],
+        interactTitle: "Isdhexgalka daawooyinka",
+        interactList: [
+          "Daawooyin qaar waxay kordhin karaan khatarta murqo-dhibaatooyinka marka lala qaato atorvastatin.",
+          "Gaar ahaan waa muhiim in la sheego haddii aad qaadato antibiyootik gaar ah, dawooyin fangas, dawooyin HIV ah ama daawooyin kale oo kolestaroolka loo qaato.",
+          "U sheeg dhakhtarka ama farmashiistaha dhammaan daawooyinka aad isticmaalayso, xataa kuwa aan warqad dhakhtar lahayn."
+        ],
+        warnTitle: "Digniino muhiim ah",
+        warnList: [
+          "Haddii aad qabto xanuun beerka ah ama aad cabto khamri badan, dhakhtarku wuxuu rabaa inuu si gaar ah kuu la socdo.",
+          "Haddii aad yeelato murqo xanuun daran, murqo daciifnimo ama kaadi madow, ha sugin ee la xiriir dhakhtar.",
+          "Mararka qaar waxaa la sameeyaa baaritaan dhiig si loo eego sida beerku uga jawaabayo daawada."
+        ],
+        ramadanTitle: "Ramadaan iyo soonka",
+        ramadanList: [
+          "Maadaama daawadan badanaa la qaato hal mar maalintii, waxaa lagu qaadan karaa Afur ama Suxuur.",
+          "Dooro wakhti kuu fudud oo aad maalin walba ku celin karto.",
+          "Waxa ugu muhiimsan waa in daawadu noqoto qayb joogto ah oo ka mid ah jadwalkaaga."
+        ],
+        foodTitle: "Cunto iyo cabitaan",
+        foodList: [
+          "Waxaad ku qaadan kartaa cunto la'aan ama cunto ka dib.",
+          "Ka taxaddar liin bambeelmo ama casiir liin bambeelmo badan, sababtoo ah waxay beddeli karaan saamaynta daawada.",
+          "Cunto caafimaad leh iyo dhaqdhaqaaq jidheed ayaa weli muhiim ah, xitaa marka aad qaadanayso atorvastatin."
+        ],
+        storeTitle: "Kaydinta daawada",
+        storeList: [
+          "Ku hay meel qalalan oo ka fog carruurta.",
+          "Ha ku ridin meel aad u kulul ama qoyaan badan leh.",
+          "Ha isticmaalin haddii taariikhda dhicitaanku dhaaftay."
+        ],
+        sourcesTitle: "Ilaha xogta",
+        sourcesText: "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
+          { text: "sundhed.dk – Højt kolesterol (dyslipidæmi)", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
+          { text: "sundhed.dk – Kolesterolsænkende behandling med statiner", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+        ],
+        footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+      },
+      da: {
+        hdrTitle: "Atorvastatin – kolesterol",
+        hdrSubtitle: "En let og personlig forklaring på medicinen, så patienter og familier bedre kan forstå behandlingen.",
+        backLabel: "Tilbage til medicinlisten",
+        langLabel: "Vælg sprog:",
+        drugName: "Atorvastatin",
+        drugForm: "Tabletter",
+        badgeText: "Kort og letlæselig",
+        introBox: "Forhøjet kolesterol kan ikke mærkes i hverdagen, men over tid kan fedtstoffer sætte sig i blodkarrene. Atorvastatin hjælper kroppen med at sænke det skadelige kolesterol, så blodet får bedre passage og risikoen mindskes.",
+        ibrahimTitle: "Ibrahims forklaring fra apoteket",
+        ibrahimText: "Jeg plejer at forklare det sådan: hvis der langsomt sætter sig fedt inde i blodkarrene, bliver passagen mere snæver, lidt som et rør der bliver mere og mere belagt indvendigt. Atorvastatin er ikke en medicin man nødvendigvis kan mærke med det samme, men den arbejder stille og roligt for at beskytte hjerte og hjerne på længere sigt.",
+        useTitle: "Anvendelse",
+        useList: [
+          "Atorvastatin bruges til at sænke det dårlige kolesterol i blodet.",
+          "Det er et statin, som hjælper leveren med at danne mindre kolesterol.",
+          "Medicinen bruges også til at forebygge hjerte-kar-sygdom hos personer med øget risiko."
+        ],
+        doseTitle: "Dosering og Ibrahims råd",
+        doseList: [
+          "Den tages som regel én gang dagligt, gerne på samme tidspunkt hver dag.",
+          "Du kan tage den morgen eller aften, men det vigtigste er faste vaner.",
+          "Tabletten kan tages med eller uden mad.",
+          "Stop ikke behandlingen uden at tale med din læge, også selv om du ikke mærker noget."
+        ],
+        sideTitle: "Bivirkninger",
+        sideList: [
+          "Nogle oplever muskelsmerter, muskelømhed eller træthed i musklerne.",
+          "Mavegener, kvalme eller hovedpine kan også forekomme.",
+          "Kontakt læge hurtigt, hvis du får kraftige muskelsmerter eller mørk urin."
+        ],
+        interactTitle: "Interaktioner",
+        interactList: [
+          "Nogle lægemidler kan øge risikoen for muskelbivirkninger, når de tages sammen med atorvastatin.",
+          "Det er især vigtigt at nævne visse antibiotika, svampemidler, HIV-lægemidler og andre kolesterolsænkende midler.",
+          "Fortæl altid lægen eller apoteket om al den medicin, du bruger, også håndkøbsmedicin."
+        ],
+        warnTitle: "Vigtige advarsler",
+        warnList: [
+          "Ved leversygdom eller stort alkoholforbrug kan der være behov for ekstra kontrol.",
+          "Hvis du får kraftige muskelsmerter, tydelig svaghed eller mørk urin, skal du kontakte læge.",
+          "Der kan blive taget blodprøver for at kontrollere, hvordan kroppen tåler behandlingen."
+        ],
+        ramadanTitle: "Ramadan og faste",
+        ramadanList: [
+          "Da medicinen ofte tages én gang dagligt, kan den som regel tages ved Iftar eller Suhoor.",
+          "Vælg et tidspunkt du realistisk kan holde fast i hver dag.",
+          "Det vigtigste er en stabil daglig rutine."
+        ],
+        foodTitle: "Mad og drikke",
+        foodList: [
+          "Kan tages med eller uden mad.",
+          "Vær forsigtig med store mængder grapefrugt eller grapefrugtjuice.",
+          "Sund kost og motion er stadig vigtige, selv om du tager atorvastatin."
+        ],
+        storeTitle: "Opbevaring",
+        storeList: [
+          "Opbevar medicinen tørt og utilgængeligt for børn.",
+          "Undgå meget varme og fugtige steder.",
+          "Brug ikke medicinen efter udløbsdato."
+        ],
+        sourcesTitle: "Kilder",
+        sourcesText: "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
+          { text: "sundhed.dk – Højt kolesterol (dyslipidæmi)", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
+          { text: "sundhed.dk – Kolesterolsænkende behandling med statiner", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+        ],
+        footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+      },
+      en: {
+        hdrTitle: "Atorvastatin – cholesterol",
+        hdrSubtitle: "A simple and personal explanation of the medicine for patients and families.",
+        backLabel: "Back to medication list",
+        langLabel: "Select language:",
+        drugName: "Atorvastatin",
+        drugForm: "Tablets",
+        badgeText: "Short and easy to read",
+        introBox: "High cholesterol often stays silent, but over time fatty material can build up inside the blood vessels. Atorvastatin helps the body lower harmful cholesterol so the blood can move more freely and the long-term risk becomes lower.",
+        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimText: "I often explain it like this: if fat slowly sticks inside the blood vessels, the path becomes narrower, like a pipe that gets more and more coated on the inside. Atorvastatin is not a medicine you always feel straight away, but it works quietly in the background to protect the heart and brain over time.",
+        useTitle: "Use",
+        useList: [
+          "Atorvastatin is used to lower harmful cholesterol in the blood.",
+          "It is a statin that helps the liver make less cholesterol.",
+          "It is also used to reduce the risk of cardiovascular disease in people with increased risk."
+        ],
+        doseTitle: "Dosage and Ibrahim’s advice",
+        doseList: [
+          "It is usually taken once daily, preferably around the same time each day.",
+          "Morning or evening can both work; the key is consistency.",
+          "The tablet can be taken with or without food.",
+          "Do not stop the medicine without medical advice, even if you feel fine."
+        ],
+        sideTitle: "Side effects",
+        sideList: [
+          "Some people get muscle pain, muscle soreness, or tired muscles.",
+          "Stomach upset, nausea, or headache may also occur.",
+          "Seek medical advice quickly if you get severe muscle pain or dark urine."
+        ],
+        interactTitle: "Drug interactions",
+        interactList: [
+          "Some medicines can increase the risk of muscle side effects when taken with atorvastatin.",
+          "This is especially important with certain antibiotics, antifungals, HIV medicines, and other cholesterol medicines.",
+          "Always tell your doctor or pharmacist about all the medicines you use, including non-prescription medicines."
+        ],
+        warnTitle: "Important warnings",
+        warnList: [
+          "Extra monitoring may be needed if you have liver disease or drink a lot of alcohol.",
+          "If you develop severe muscle pain, marked weakness, or dark urine, contact a doctor.",
+          "Blood tests may sometimes be used to check how your body is tolerating the treatment."
+        ],
+        ramadanTitle: "Ramadan and fasting",
+        ramadanList: [
+          "Because this medicine is often taken once daily, it can usually be taken at Iftar or Suhoor.",
+          "Choose a time you can keep every day.",
+          "The most important thing is a stable daily routine."
+        ],
+        foodTitle: "Food and drink",
+        foodList: [
+          "It can be taken with or without food.",
+          "Be careful with large amounts of grapefruit or grapefruit juice.",
+          "Healthy eating and physical activity still matter, even when you take atorvastatin."
+        ],
+        storeTitle: "Storage",
+        storeList: [
+          "Keep in a dry place and out of reach of children.",
+          "Avoid very hot or humid places.",
+          "Do not use after the expiry date."
+        ],
+        sourcesTitle: "Sources",
+        sourcesText: "This text is written in a personal and simple style, but the medical information is based on official sources.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
+          { text: "sundhed.dk – High cholesterol (dyslipidaemia)", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
+          { text: "sundhed.dk – Cholesterol-lowering treatment with statins", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+        ],
+        footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+      },
+      ar: {
+        hdrTitle: "أتورفاستاتين – الكوليسترول",
+        hdrSubtitle: "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+        backLabel: "العودة إلى قائمة الأدوية",
+        langLabel: "اختر اللغة:",
+        drugName: "أتورفاستاتين",
+        drugForm: "أقراص",
+        badgeText: "سهل ومختصر",
+        introBox: "ارتفاع الكوليسترول قد لا يُشعر الإنسان بشيء، لكن مع الوقت قد تتراكم الدهون داخل الأوعية الدموية. يساعد أتورفاستاتين الجسم على خفض الكوليسترول الضار حتى يتحرك الدم بسهولة أكبر وتقل المخاطر على المدى البعيد.",
+        ibrahimTitle: "نصيحة إبراهيم من الصيدلية",
+        ibrahimText: "أنا أشرحها لكثير من المرضى بهذه الصورة: عندما تتراكم الدهون ببطء داخل الأوعية الدموية، يصبح الطريق أضيق، مثل أنبوب تتكوّن فيه طبقة من الداخل. أتورفاستاتين ليس دواءً تشعر به فوراً، لكنه يعمل بهدوء في الخلفية لحماية القلب والدماغ مع الوقت.",
+        useTitle: "الاستخدام",
+        useList: [
+          "يُستخدم أتورفاستاتين لخفض الكوليسترول الضار في الدم.",
+          "وهو من أدوية الستاتين التي تساعد الكبد على تصنيع كمية أقل من الكوليسترول.",
+          "كما يُستخدم لتقليل خطر أمراض القلب والأوعية الدموية عند الأشخاص الأكثر عرضة للخطر."
+        ],
+        doseTitle: "الجرعة ونصائح إبراهيم",
+        doseList: [
+          "غالباً يؤخذ مرة واحدة يومياً وفي وقت متقارب كل يوم.",
+          "يمكن تناوله صباحاً أو مساءً، والأهم هو الانتظام.",
+          "يمكن تناول القرص مع الطعام أو بدونه.",
+          "لا توقف الدواء من نفسك دون استشارة طبية حتى لو كنت تشعر أنك بخير."
+        ],
+        sideTitle: "الآثار الجانبية",
+        sideList: [
+          "قد يشعر بعض الناس بألم في العضلات أو تعب أو إرهاق عضلي.",
+          "قد يحدث أيضاً اضطراب في المعدة أو غثيان أو صداع.",
+          "راجع الطبيب بسرعة إذا ظهر ألم شديد في العضلات أو بول داكن."
+        ],
+        interactTitle: "التداخلات الدوائية",
+        interactList: [
+          "بعض الأدوية قد تزيد من خطر مشاكل العضلات عند استعمالها مع أتورفاستاتين.",
+          "من المهم بشكل خاص ذكر بعض المضادات الحيوية وبعض أدوية الفطريات وأدوية HIV وبعض أدوية الكوليسترول الأخرى.",
+          "أخبر الطبيب أو الصيدلي بكل الأدوية التي تستخدمها، حتى الأدوية التي تُصرف دون وصفة."
+        ],
+        warnTitle: "تحذيرات مهمة",
+        warnList: [
+          "قد تحتاج إلى متابعة إضافية إذا كان لديك مرض في الكبد أو كنت تشرب الكحول بكثرة.",
+          "إذا حدث ألم شديد في العضلات أو ضعف واضح أو بول داكن، فاتصل بالطبيب.",
+          "قد تُستخدم تحاليل الدم أحياناً لمتابعة مدى تحمّل الجسم للعلاج."
+        ],
+        ramadanTitle: "رمضان والصيام",
+        ramadanList: [
+          "لأن الدواء يؤخذ غالباً مرة واحدة يومياً، فيمكن أخذه عند الإفطار أو السحور.",
+          "اختر وقتاً تستطيع الالتزام به كل يوم.",
+          "الأهم هو الاستمرار على روتين يومي ثابت."
+        ],
+        foodTitle: "الطعام والشراب",
+        foodList: [
+          "يمكن تناوله مع الطعام أو بدونه.",
+          "تجنب الكميات الكبيرة من جريب فروت أو عصيره.",
+          "الطعام الصحي والنشاط البدني يبقيان مهمين حتى مع استعمال أتورفاستاتين."
+        ],
+        storeTitle: "تخزين الدواء",
+        storeList: [
+          "يُحفظ في مكان جاف وبعيد عن متناول الأطفال.",
+          "تجنب الأماكن شديدة الحرارة أو الرطوبة.",
+          "لا يُستخدم بعد تاريخ الانتهاء."
+        ],
+        sourcesTitle: "المصادر",
+        sourcesText: "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
+          { text: "sundhed.dk – ارتفاع الكوليسترول", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
+          { text: "sundhed.dk – العلاج الخافض للكوليسترول بالستاتين", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+        ],
+        footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+      }
+    };
 
-function applyTheme(lang){
-  const th = THEMES[lang] || THEMES.so;
-  const r = document.documentElement.style;
-  r.setProperty("--accent1", th.a1);
-  r.setProperty("--accent2", th.a2);
-  r.setProperty("--link", th.link || "#00509e");
-  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
-  r.setProperty("--pillText", th.pillText || "#16634a");
-}
+    function updateList(id, list) {
+      const el = document.getElementById(id);
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        el.appendChild(li);
+      });
+    }
 
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
+    function updateSources(list) {
+      const el = document.getElementById("sourcesList");
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerText = item.text;
+        li.appendChild(a);
+        el.appendChild(li);
+      });
+    }
 
-function fillList(id, arr){
-  const ul = document.getElementById(id);
-  ul.innerHTML = "";
-  (arr || []).forEach(txt=>{
-    const li = document.createElement("li");
-    li.innerHTML = txt;
-    ul.appendChild(li);
-  });
-}
+    function applyTheme(lang){
+      const t = themes[lang] || themes.so;
+      document.documentElement.style.setProperty("--accent1", t.accent1);
+      document.documentElement.style.setProperty("--accent2", t.accent2);
+      document.documentElement.style.setProperty("--badgeBg", t.badgeBg);
+      document.documentElement.style.setProperty("--badgeText", t.badgeText);
+    }
 
-function setSmall(id, txt){
-  const el = document.getElementById(id);
-  if (!el) return;
-  const t = (txt || "").trim();
-  el.textContent = t;
-  el.style.display = t ? "inline" : "none";
-}
+    function updateLanguage() {
+      const lang = document.getElementById("langSelect").value;
+      const data = content[lang];
+      applyTheme(lang);
 
-const T = {
-  so:{
-    pageTitle:"Atorvastatin – kolestarool",
-    hdrH1:"Atorvastatin – kolestarool",
-    hdrP:"Waa warbixin kooban oo loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    backText:"Ku laabo liiska daawooyinka",
-    langLabel:"Dooro luqadda:",
-    drugName:"Atorvastatin",
-    drugForm:"Kiniin (kolestaroolka hoos u dhiga)",
-    badgeText:"Akhris kooban",
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
 
-    sec0Title:"Waa maxay Atorvastatin?",
-    sec0:[
-      "Atorvastatin waa daawo ka tirsan <span class='highlight'>statin</span>.",
-      "Waxay hoos u dhigtaa <span class='highlight'>LDL-kolestaroolka</span> waxayna yareyn kartaa halista dhiig-kar wadne ama maskax."
-    ],
-    sec1Title:"Maxaa loo isticmaalaa?",
-    sec1:[
-      "Kolestarool sare.",
-      "Ka hortagga cudurrada wadnaha iyo xididdada dhiigga haddii halistu sareyso."
-    ],
-    sec2Title:"Sida loo qaato",
-    sec2:[
-      "Badanaa <span class='highlight'>hal mar maalintii</span>.",
-      "Waxaa lagu qaadan karaa cunto la’aan ama cunto la socota, biyo ayaad ku liqaysaa.",
-      "Ha joojin daawada adigoon dhakhtar la tashan.",
-      "Haddii aad hilmaanto qiyaasta: qaado markaad xasuusato, laakiin <span class='highlight'>ha qaadan labo qiyaas</span>."
-    ],
-    sec3Title:"Cunto iyo cabitaan",
-    sec3:[
-      "Waxaa la qaadan karaa cunto la’aan ama cunto la socota.",
-      "Ka taxaddar <span class='highlight'>grapefruit</span> iyo casiirkiisa."
-    ],
-    sec4Title:"Digniino",
-    sec4:[
-      "La xiriir dhakhtar haddii aad yeelato <span class='highlight'>murqo xanuun daran</span>, murqo daciifnimo ama kaadi madow.",
-      "Cudurka beerka ama cabbid khamri badan waxay u baahan karaan kormeer."
-    ],
-    sec5Title:"Dhibaatooyinka",
-    sec5:[
-      "Murqo xanuun ama murqo daal.",
-      "Calool xanuun, lalabo ama calool fadhiyo.",
-      "Madax xanuun."
-    ],
-    sec6Title:"Is-dhexgalka daawooyinka",
-    sec6:[
-      "Qaar ka mid ah antibiotika, daawooyinka fungal-ka iyo daawooyin kale waxay kordhin karaan halista murqo-dhibaato.",
-      "U sheeg dhakhtarka ama farmashiistaha dhammaan daawooyinka aad qaadato."
-    ],
-    sec7Title:"Ramadaanka iyo daawada",
-    sec7:[
-      "Badanaa waxaa lagu qaadan karaa afurka kadib ama suxuurta.",
-      "Waxa ugu muhiimsan waa in si joogto ah loo qaato <span class='highlight'>hal mar maalintii</span>."
-    ],
-    sec8Title:"Kaydinta",
-    sec8:[
-      "Ka fogee carruurta, kana hooseeya 25°C, kuna hay baakadka asalka ah.",
-      "Ha isticmaalin haddii ay dhaafto taariikhda dhicitaanka."
-    ],
-    footer1:"Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir farmashiyaha ama dhakhtarkaaga.",
-    footer2:"Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
-  },
+      document.getElementById("hdrTitle").innerText = data.hdrTitle;
+      document.getElementById("hdrSubtitle").innerText = data.hdrSubtitle;
+      document.getElementById("backLabel").innerText = data.backLabel;
+      document.getElementById("langLabel").innerText = data.langLabel;
+      document.getElementById("drugName").innerText = data.drugName;
+      document.getElementById("drugForm").innerText = data.drugForm;
+      document.getElementById("badgeText").innerText = data.badgeText;
+      document.getElementById("introBox").innerText = data.introBox;
+      document.getElementById("ibrahimTitle").innerText = data.ibrahimTitle;
+      document.getElementById("ibrahimText").innerText = data.ibrahimText;
+      document.getElementById("useTitle").innerText = data.useTitle;
+      document.getElementById("doseTitle").innerText = data.doseTitle;
+      document.getElementById("sideTitle").innerText = data.sideTitle;
+      document.getElementById("interactTitle").innerText = data.interactTitle;
+      document.getElementById("warnTitle").innerText = data.warnTitle;
+      document.getElementById("ramadanTitle").innerText = data.ramadanTitle;
+      document.getElementById("foodTitle").innerText = data.foodTitle;
+      document.getElementById("storeTitle").innerText = data.storeTitle;
+      document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
+      document.getElementById("sourcesText").innerText = data.sourcesText;
+      document.getElementById("footerNote").innerText = data.footerNote;
 
-  da:{
-    pageTitle:"Atorvastatin – kolesterol",
-    hdrH1:"Atorvastatin – kolesterol",
-    hdrP:"Kort og let information om lægemidlet – til patienter og pårørende.",
-    backText:"Tilbage til medicinlisten",
-    langLabel:"Vælg sprog:",
-    drugName:"Atorvastatin",
-    drugForm:"Tablet (kolesterolsænkende)",
-    badgeText:"Kort og let",
+      updateList("useList", data.useList);
+      updateList("doseList", data.doseList);
+      updateList("sideList", data.sideList);
+      updateList("interactList", data.interactList);
+      updateList("warnList", data.warnList);
+      updateList("ramadanList", data.ramadanList);
+      updateList("foodList", data.foodList);
+      updateList("storeList", data.storeList);
+      updateSources(data.sourcesList);
+    }
 
-    sec0Title:"Hvad er Atorvastatin?",
-    sec0:[
-      "Atorvastatin er et <span class='highlight'>statin</span>.",
-      "Det sænker især <span class='highlight'>LDL-kolesterol</span> og kan mindske risikoen for blodprop i hjerte eller hjerne."
-    ],
-    sec1Title:"Hvad bruges det til?",
-    sec1:[
-      "Forhøjet kolesterol.",
-      "Forebyggelse af hjerte-kar-sygdom ved øget risiko."
-    ],
-    sec2Title:"Sådan tages medicinen",
-    sec2:[
-      "Tages typisk <span class='highlight'>1 gang dagligt</span>.",
-      "Kan tages med eller uden mad og synkes med vand.",
-      "Stop ikke uden aftale med lægen.",
-      "Glemt dosis: tag den når du husker det, men <span class='highlight'>ingen dobbeltdosis</span>."
-    ],
-    sec3Title:"Mad og drikke",
-    sec3:[
-      "Kan tages med eller uden mad.",
-      "Vær forsigtig med <span class='highlight'>grapefrugt</span> og grapefrugtjuice."
-    ],
-    sec4Title:"Advarsler",
-    sec4:[
-      "Kontakt læge ved <span class='highlight'>kraftige muskelsmerter</span>, svaghed eller mørk urin.",
-      "Leversygdom eller stort alkoholforbrug kan kræve kontrol."
-    ],
-    sec5Title:"Bivirkninger",
-    sec5:[
-      "Muskelsmerter eller muskeltræthed.",
-      "Mavegener, kvalme eller forstoppelse.",
-      "Hovedpine."
-    ],
-    sec6Title:"Interaktioner",
-    sec6:[
-      "Nogle antibiotika, svampemidler og andre lægemidler kan øge risikoen for muskelbivirkninger.",
-      "Oplys altid al medicin til læge og apotek."
-    ],
-    sec7Title:"Ramadan og faste",
-    sec7:[
-      "Kan ofte tages efter iftar eller ved suhoor.",
-      "Vigtigst er en fast daglig rytme <span class='highlight'>1 gang dagligt</span>."
-    ],
-    sec8Title:"Opbevaring",
-    sec8:[
-      "Opbevares utilgængeligt for børn, under 25°C og i original emballage.",
-      "Brug ikke efter udløbsdato. Aflevér din medicin til destruktion på apoteket."
-    ],
-    footer1:"Hvis du har brug for mere information, kontakt apoteket eller din læge.",
-    footer2:"Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
-
-  en:{
-    pageTitle:"Atorvastatin – cholesterol",
-    hdrH1:"Atorvastatin – cholesterol",
-    hdrP:"Brief medicine information for patients and relatives.",
-    backText:"Back to the medicine list",
-    langLabel:"Choose language:",
-    drugName:"Atorvastatin",
-    drugForm:"Tablet (by mouth)",
-    badgeText:"Short and clear",
-
-    sec0Title:"What is Atorvastatin?",
-    sec0:[
-      "Atorvastatin is a <span class='highlight'>statin</span>.",
-      "It lowers <span class='highlight'>LDL cholesterol</span> and can reduce the risk of heart attack and stroke."
-    ],
-    sec1Title:"What is it used for?",
-    sec1:[
-      "High cholesterol.",
-      "Prevention of cardiovascular disease in people at increased risk."
-    ],
-    sec2Title:"How to take",
-    sec2:[
-      "Usually taken <span class='highlight'>once daily</span>.",
-      "Can be taken with or without food; swallow with water.",
-      "Do not stop without medical advice.",
-      "Missed dose: take it when remembered, but <span class='highlight'>do not double dose</span>."
-    ],
-    sec3Title:"Food and drink",
-    sec3:[
-      "Can be taken with or without food.",
-      "Be careful with <span class='highlight'>grapefruit</span> and grapefruit juice."
-    ],
-    sec4Title:"Warnings",
-    sec4:[
-      "Seek medical advice if you get <span class='highlight'>severe muscle pain</span>, weakness, or dark urine.",
-      "Liver disease or heavy alcohol use may require monitoring."
-    ],
-    sec5Title:"Side effects",
-    sec5:[
-      "Muscle pain or tiredness.",
-      "Stomach upset, nausea, or constipation.",
-      "Headache."
-    ],
-    sec6Title:"Interactions",
-    sec6:[
-      "Some antibiotics, antifungals, and other medicines can increase the risk of muscle side effects.",
-      "Tell your doctor or pharmacy what medicines you take."
-    ],
-    sec7Title:"Ramadan and fasting",
-    sec7:[
-      "It can often be taken after iftar or at suhoor.",
-      "The most important thing is to keep a <span class='highlight'>once-daily</span> routine."
-    ],
-    sec8Title:"Storage",
-    sec8:[
-      "Keep out of reach of children, below 25°C, and in the original package.",
-      "Do not use after expiry date. Return leftovers to the pharmacy."
-    ],
-    footer1:"If you need more information, contact your pharmacy or doctor.",
-    footer2:"Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
-
-  ar:{
-    pageTitle:"أتورفاستاتين – الكوليسترول",
-    hdrH1:"أتورفاستاتين – الكوليسترول",
-    hdrP:"معلومات مختصرة للمرضى وأفراد الأسرة.",
-    backText:"العودة إلى قائمة الأدوية",
-    langLabel:"اختر اللغة:",
-    drugName:"أتورفاستاتين",
-    drugForm:"أقراص",
-    badgeText:"مختصر وواضح",
-
-    sec0Title:"ما هو أتورفاستاتين؟",
-    sec0:[
-      "أتورفاستاتين من أدوية <span class='highlight'>الستاتين</span>.",
-      "يخفض كوليسترول <span class='highlight'>LDL</span> ويساعد على تقليل خطر أمراض القلب والسكتة الدماغية."
-    ],
-    sec1Title:"لماذا يُستخدم؟",
-    sec1:[
-      "ارتفاع الكوليسترول.",
-      "الوقاية من أمراض القلب والأوعية الدموية لدى الأشخاص الأكثر عرضة للخطر."
-    ],
-    sec2Title:"كيفية تناول الدواء",
-    sec2:[
-      "عادةً يُؤخذ <span class='highlight'>مرة واحدة يومياً</span>.",
-      "يمكن تناوله مع الطعام أو بدونه ويُبلع مع الماء.",
-      "لا توقفه دون استشارة الطبيب.",
-      "إذا نسيت الجرعة فلا تضاعف الجرعة."
-    ],
-    sec3Title:"الطعام والشراب",
-    sec3:[
-      "يمكن تناوله مع الطعام أو بدونه.",
-      "يجب الحذر مع <span class='highlight'>الجريب فروت</span> وعصيره."
-    ],
-    sec4Title:"تحذيرات",
-    sec4:[
-      "راجع الطبيب إذا حدث <span class='highlight'>ألم شديد في العضلات</span> أو ضعف أو بول داكن.",
-      "أمراض الكبد أو شرب الكحول بكثرة قد يتطلبان متابعة."
-    ],
-    sec5Title:"الآثار الجانبية",
-    sec5:[
-      "ألم أو تعب في العضلات.",
-      "اضطراب المعدة أو الغثيان أو الإمساك.",
-      "صداع."
-    ],
-    sec6Title:"التداخلات",
-    sec6:[
-      "بعض المضادات الحيوية ومضادات الفطريات وأدوية أخرى قد تزيد خطر مشاكل العضلات.",
-      "أخبر الطبيب أو الصيدلية بكل الأدوية التي تستخدمها."
-    ],
-    sec7Title:"رمضان والصيام",
-    sec7:[
-      "يمكن غالباً تناوله بعد الإفطار أو عند السحور.",
-      "المهم هو الالتزام بجرعة يومية منتظمة."
-    ],
-    sec8Title:"الحفظ",
-    sec8:[
-      "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م وفي العبوة الأصلية.",
-      "لا يُستخدم بعد تاريخ الانتهاء."
-    ],
-    footer1:"للمزيد من المعلومات تواصل مع الصيدلية أو طبيبك.",
-    footer2:"إعداد: إبراهيم ظاهر حنف"
-  }
-};
-
-function applyLang(lang){
-  if (!ENABLED_LANGS.has(lang)) lang = "so";
-  const d = T[lang] || T.so;
-
-  applyTheme(lang);
-  setDirLang(lang);
-
-  document.title = d.pageTitle;
-  document.getElementById("hdrH1").textContent = d.hdrH1;
-  document.getElementById("hdrP").textContent = d.hdrP;
-  document.getElementById("backText").textContent = d.backText;
-  document.getElementById("langLabel").textContent = d.langLabel;
-  document.getElementById("drugName").textContent = d.drugName;
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("badgeText").textContent = d.badgeText;
-
-  document.getElementById("sec0Title").textContent = d.sec0Title;
-  setSmall("sec0Small", "");
-  document.getElementById("sec1Title").textContent = d.sec1Title;
-  setSmall("sec1Small", "");
-  document.getElementById("sec2Title").textContent = d.sec2Title;
-  setSmall("sec2Small", "");
-  document.getElementById("sec3Title").textContent = d.sec3Title;
-  setSmall("sec3Small", "");
-  document.getElementById("sec4Title").textContent = d.sec4Title;
-  setSmall("sec4Small", "");
-  document.getElementById("sec5Title").textContent = d.sec5Title;
-  setSmall("sec5Small", "");
-  document.getElementById("sec6Title").textContent = d.sec6Title;
-  setSmall("sec6Small", "");
-  document.getElementById("sec7Title").textContent = d.sec7Title;
-  setSmall("sec7Small", "");
-  document.getElementById("sec8Title").textContent = d.sec8Title;
-  setSmall("sec8Small", "");
-
-  fillList("sec0List", d.sec0);
-  fillList("sec1List", d.sec1);
-  fillList("sec2List", d.sec2);
-  fillList("sec3List", d.sec3);
-  fillList("sec4List", d.sec4);
-  fillList("sec5List", d.sec5);
-  fillList("sec6List", d.sec6);
-  fillList("sec7List", d.sec7);
-  fillList("sec8List", d.sec8);
-
-  document.getElementById("footer1").textContent = d.footer1;
-  document.getElementById("footer2").textContent = d.footer2;
-
-  const backA = document.querySelector("a.back");
-  const base = backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
-
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
-  window.history.replaceState({}, "", url.toString());
-}
-
-const params = new URLSearchParams(window.location.search);
-let startLang = params.get("lang") || "da";
-if (!ENABLED_LANGS.has(startLang)) startLang = "so";
-
-document.getElementById("langSelect").value = startLang;
-applyLang(startLang);
-
-document.getElementById("langSelect").addEventListener("change", function(){
-  applyLang(this.value);
-});
-</script>
-
+    updateLanguage();
+  </script>
 </body>
 </html>
