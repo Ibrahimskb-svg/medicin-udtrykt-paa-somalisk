@@ -6,69 +6,64 @@
 <title>Amlodipin – dhiig-karka</title>
 <style>
 :root{
-  --accent1:#0066cc; /* Den blå farve fra din overskrift */
-  --accent2:#00509e;
-  --bg:#ffffff;
+  --accent1:#00a676;
+  --accent2:#0066cc;
+  --accentText:#ffffff;
+  --bg:#e6f2f8;
   --text:#123047;
   --muted:#607089;
+  --card:#ffffff;
   --stroke:#d0d7e2;
   --pillBg:#d9f6e8;
   --pillText:#16634a;
+  --link:#00509e;
 }
 
-body{ font-family: Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.6; }
+body{ font-family: Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.5; }
+header{ background: linear-gradient(135deg, var(--accent1), var(--accent2)); color: var(--accentText); padding: 22px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+header h1{ margin: 0 0 4px; font-size: 1.8rem; }
+header p{ margin: 0; font-size: 0.95rem; }
 
-/* HEADER FRA BILLEDE */
-header{ background: #ffffff; padding: 30px 20px 10px; max-width: 820px; margin: 0 auto; }
-.drug-header-row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px dashed var(--stroke); padding-bottom: 20px; flex-wrap: wrap; gap: 10px; }
-.drug-main-info { display: flex; align-items: center; gap: 15px; }
-.drug-icon-box { width: 52px; height: 52px; background: #f0f7ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #e0e8f0; }
-.drug-icon-box svg { width: 32px; height: 32px; stroke: var(--accent1); fill: none; stroke-width: 2; }
+main{ max-width: 820px; margin: 18px auto 32px; padding: 0 14px; }
+
+a.back{ display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; text-decoration: none; color: var(--link); font-size: 0.9rem; font-weight: bold; }
+a.back span{ font-size: 1.1rem; }
+
+.lang-selector { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; background: #fff; padding: 10px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); border-left: 4px solid var(--accent1); }
+.lang-selector label { font-size: 0.9rem; font-weight: 600; }
+.lang-selector select { padding: 6px 10px; border-radius: 10px; border: 1px solid var(--stroke); background: #fff; font-size: 0.9rem; }
+
+.card{ background: var(--card); border-radius: 14px; padding: 20px; margin-bottom: 14px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); border-top: 4px solid var(--accent1); }
+
+.drug-header-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+.drug-main-info { display: flex; align-items: center; gap: 12px; }
+.drug-icon-box { width: 48px; height: 48px; background: #f0f7ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #e0e8f0; }
+.drug-icon-box svg { width: 28px; height: 28px; stroke: var(--accent2); fill: none; stroke-width: 2; }
 .drug-title-block { display: flex; flex-direction: column; }
-.drug-name-top { font-weight: 800; font-size: 1.5rem; color: var(--accent1); margin: 0; }
-.drug-form-sub { font-size: 1rem; color: var(--muted); margin-top: 4px; }
-.badge-green { background: var(--pillBg); color: var(--pillText); padding: 6px 14px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+.drug-name-top { font-weight: 800; font-size: 1.1rem; color: var(--text); }
+.drug-form-sub { font-size: 0.85rem; color: var(--muted); }
+.badge-green { background: var(--pillBg); color: var(--pillText); padding: 4px 12px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
 
-main{ max-width: 820px; margin: 0 auto 50px; padding: 0 20px; }
+.section{ margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--stroke); }
+.section-header{ display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.section-title{ font-weight: 700; color: var(--text); font-size: 1.05rem; }
+.section ul{ margin: 0 0 10px 20px; padding-left: 0; font-size: 0.95rem; color: #334155; }
+.section ul li { margin-bottom: 8px; }
 
-/* SPROGVÆLGER */
-.langbar{ display:flex; align-items:center; gap:10px; padding: 15px 0; margin-bottom: 20px; border-bottom: 1px solid #f0f0f0; }
-.langbar label{ font-size:0.9rem; font-weight:600; }
-.langbar select{ padding: 8px 12px; border-radius: 10px; border: 1px solid var(--stroke); font-size: 0.9rem; background: #fff; }
+.footer-note{ font-size: 0.9rem; color: var(--text); text-align: center; margin-top: 30px; padding: 20px; background: #fff; border-radius: 10px; border: 1px solid var(--stroke); }
 
-.section { margin-top: 30px; }
-.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
-.section-title { font-weight: 800; color: #123047; font-size: 1.15rem; }
-.section ul { margin: 0; padding-left: 25px; font-size: 1.05rem; }
-.section ul li { margin-bottom: 12px; color: #334155; }
-
-.footer-note { font-size: 0.95rem; color: var(--text); text-align: center; margin-top: 60px; padding: 30px; border-top: 1px solid var(--stroke); background: #fafafa; border-radius: 0 0 15px 15px; }
-
-@media (max-width: 600px){
-  .drug-name-top { font-size: 1.3rem; }
-  .drug-header-row { flex-direction: column; align-items: flex-start; }
-}
+@media (max-width: 600px){ header h1 { font-size: 1.5rem; } .drug-header-row { flex-direction: column; align-items: flex-start; } }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="drug-header-row">
-    <div class="drug-main-info">
-      <div class="drug-icon-box">
-        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-      </div>
-      <div class="drug-title-block">
-        <h1 class="drug-name-top" id="drugName">Amlodipin – dhiig-karka</h1>
-        <span class="drug-form-sub" id="drugForm">Kiniin afka ah</span>
-      </div>
-    </div>
-    <div class="badge-green" id="badgeText">Akhris fudud oo kooban</div>
-  </div>
+  <h1 id="hdrTitle">Amlodipin – dhiig-karka</h1>
+  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
 </header>
 
 <main>
-  <div class="langbar">
+  <div class="lang-selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect" onchange="updateLanguage()">
       <option value="so" selected>Somalisk</option>
@@ -78,28 +73,45 @@ main{ max-width: 820px; margin: 0 auto 50px; padding: 0 20px; }
     </select>
   </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span style="font-size:1.6rem">💊</span>
-      <div class="section-title" id="useTitle">Isticmaalka</div>
-    </div>
-    <ul id="useList"></ul>
-  </div>
+  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
 
-  <div class="section">
-    <div class="section-header">
-      <span style="font-size:1.6rem">⏰</span>
-      <div class="section-title" id="doseTitle">Qiyaasta iyo Talooyinka Ibraahim</div>
+  <div class="card">
+    <div class="drug-header-row">
+      <div class="drug-main-info">
+        <div class="drug-icon-box">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+        </div>
+        <div class="drug-title-block">
+          <span class="drug-name-top" id="drugName">Amlodipin – dhiig-karka</span>
+          <span class="drug-form-sub" id="drugForm">Kiniin afka ah</span>
+        </div>
+      </div>
+      <div class="badge-green" id="badgeText">Akhris fudud oo kooban</div>
     </div>
-    <ul id="doseList"></ul>
-  </div>
 
-  <div class="section">
-    <div class="section-header">
-      <span style="font-size:1.6rem">⚠️</span>
-      <div class="section-title" id="sideTitle">Waxyeellooyinka muhiimka ah</div>
+    <div class="section">
+      <div class="section-header">
+        <span style="font-size:1.4rem">💊</span>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
+      </div>
+      <ul id="useList"></ul>
     </div>
-    <ul id="sideList"></ul>
+
+    <div class="section">
+      <div class="section-header">
+        <span style="font-size:1.4rem">⏰</span>
+        <div class="section-title" id="doseTitle">Qiyaasta iyo Talooyinka Ibraahim</div>
+      </div>
+      <ul id="doseList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span style="font-size:1.4rem">⚠️</span>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
+      </div>
+      <ul id="sideList"></ul>
+    </div>
   </div>
 
   <div class="footer-note" id="footerNote">Qoraalkan waxaa diyaariyay farmakonom: Ibraahim Dahir Xanaf</div>
@@ -108,15 +120,18 @@ main{ max-width: 820px; margin: 0 auto 50px; padding: 0 20px; }
 <script>
 const content = {
   so: {
+    hdrTitle: "Amlodipin – dhiig-karka",
+    hdrSubtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
+    backLabel: "Ku laabo liiska daawooyinka",
+    langLabel: "Dooro luqadda:",
     drugName: "Amlodipin – dhiig-karka",
     drugForm: "Kiniin afka ah",
     badgeText: "Akhris fudud oo kooban",
-    langLabel: "Dooro luqadda:",
     useTitle: "Isticmaalka",
     useList: [
       "Amlodipin waxay ballaarisaa xididdada dhiigga si dhiig-karku u hoos ugu dhaco.",
       "Waxay ka hortagtaa xanuunka xabadka (angina) waxayna aflaxdaa wadnaha.",
-      "Dhiig-karku waa 'cadaw aamusan' (silent killer) – qaado dawada xataa haddii aad caafimaad dareemayso."
+      "Dhiig-karku waa 'cadaw aamusan' – qaado dawada xataa haddii aad caafimaad dareemayso."
     ],
     doseTitle: "Qiyaasta iyo Talooyinka Ibraahim",
     doseList: [
@@ -124,19 +139,22 @@ const content = {
       "Haddii caguhu ku bararaan: Tani waa waxyeello caadi ah. Lugaha kor u qaad markaad fadhido.",
       "Ha joojin dawada adigoon dhakhtarka la tashan."
     ],
-    sideTitle: "Waxyeellooyinka muhiimka ah",
+    sideTitle: "Waxyeellooyinka",
     sideList: [
-      "Bararka canqowga (kuraanta) iyo cagaha.",
-      "Madax-xanuun ama weji guduudasho (badanaa bilowga).",
-      "Wareer yar markaad si degdeg ah u istaagto."
+      "Bararka canqowga iyo cagaha.",
+      "Madax-xanuun ama weji guduudasho.",
+      "Wareer yar markaad istaagto."
     ],
     footerNote: "Qoraalkan waxaa diyaariyay farmakonom: Ibraahim Dahir Xanaf"
   },
   da: {
-    drugName: "Amlodipin – dhiig-karka",
+    hdrTitle: "Amlodipin – mod forhøjet blodtryk",
+    hdrSubtitle: "Kort information om medicinen – henvendt til forældre og patienter.",
+    backLabel: "Tilbage til oversigten",
+    langLabel: "Vælg sprog:",
+    drugName: "Amlodipin – mod forhøjet blodtryk",
     drugForm: "Tabletter",
     badgeText: "Kort og letlæselig",
-    langLabel: "Vælg sprog:",
     useTitle: "Anvendelse",
     useList: [
       "Amlodipin får blodkarrene til at slappe af, så trykket falder.",
@@ -149,24 +167,27 @@ const content = {
       "Ved hævede ankler: Læg benene højt, når du sidder. Det er en almindelig bivirkning.",
       "Stop aldrig behandlingen uden at tale med din læge."
     ],
-    sideTitle: "Vigtige bivirkninger",
+    sideTitle: "Bivirkninger",
     sideList: [
       "Hævede ankler og fødder.",
-      "Hovedpine eller rødmen (især i starten).",
-      "Svimmelhed, når du rejser dig hurtigt."
+      "Hovedpine eller rødmen.",
+      "Svimmelhed."
     ],
     footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf"
   },
   en: {
-    drugName: "Amlodipine – High blood pressure",
+    hdrTitle: "Amlodipine – blood pressure",
+    hdrSubtitle: "Brief information about the medicine – for parents and patients.",
+    backLabel: "Back to medication list",
+    langLabel: "Select language:",
+    drugName: "Amlodipine – blood pressure",
     drugForm: "Oral tablets",
     badgeText: "Short and easy to read",
-    langLabel: "Select language:",
     useTitle: "Usage",
     useList: [
       "Amlodipine relaxes blood vessels to lower blood pressure.",
       "It prevents chest pain and reduces the heart's workload.",
-      "Remember: High blood pressure is a 'silent killer' – take your medicine even if you feel fine."
+      "High blood pressure is a 'silent killer' – take your medicine even if you feel fine."
     ],
     doseTitle: "Dosage and Ibrahim's Advice",
     doseList: [
@@ -174,24 +195,27 @@ const content = {
       "Swollen ankles: A common side effect. Elevate your legs when sitting.",
       "Do not stop taking the medication without consulting your doctor."
     ],
-    sideTitle: "Key Side Effects",
+    sideTitle: "Side Effects",
     sideList: [
       "Swollen ankles or feet.",
-      "Headaches or flushing (especially at the start).",
-      "Dizziness when standing up quickly."
+      "Headaches or flushing.",
+      "Dizziness."
     ],
     footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf"
   },
   ar: {
-    drugName: "أملوديبين – ضغط الدم",
+    hdrTitle: "أملوديبين – ضغط الدم",
+    hdrSubtitle: "معلومات مختصرة عن الدواء - موجهة للآباء والمرضى.",
+    backLabel: "العودة إلى قائمة الأدوية",
+    langLabel: "اختر اللغة:",
+    drugName: "أملوديبين – ضغط الدم المرتفع",
     drugForm: "أقراص",
     badgeText: "قراءة سهلة ومختصرة",
-    langLabel: "اختر اللغة:",
     useTitle: "الاستخدام",
     useList: [
       "يعمل أملوديبين على إرخاء الأوعية الدموية مما يخفض ضغط الدم.",
       "يمنع آلام الصدر ويقلل الجهد على القلب.",
-      "تذكر: ضغط الدم المرتفع 'قاتل صامت'، لذا تناول دواءك حتى لو كنت تشعر بالتحسن."
+      "تذكر: ضغط الدم المرتفع هو 'القاتل الصامت' – تناول دواءك بانتظام."
     ],
     doseTitle: "الجرعة ونصائح إبراهيم",
     doseList: [
@@ -199,11 +223,11 @@ const content = {
       "تورم الكاحلين: عرض جانبي شائع. ارفع قدميك عند الجلوس.",
       "لا تتوقف عن تناول الدواء دون استشارة الطبيب."
     ],
-    sideTitle: "أهم الأعراض الجانبية",
+    sideTitle: "الأعراض الجانبية",
     sideList: [
       "تورم في الكاحلين أو القدمين.",
-      "صداع أو احمرار في الوجه (خاصة في البداية).",
-      "دوار عند الوقوف بسرعة."
+      "صداع أو احمرار في الوجه.",
+      "دوار."
     ],
     footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف"
   }
@@ -213,10 +237,13 @@ function updateLanguage() {
   const lang = document.getElementById('langSelect').value;
   const data = content[lang];
   
+  document.getElementById('hdrTitle').innerText = data.hdrTitle;
+  document.getElementById('hdrSubtitle').innerText = data.hdrSubtitle;
+  document.getElementById('backLabel').innerText = data.backLabel;
+  document.getElementById('langLabel').innerText = data.langLabel;
   document.getElementById('drugName').innerText = data.drugName;
   document.getElementById('drugForm').innerText = data.drugForm;
   document.getElementById('badgeText').innerText = data.badgeText;
-  document.getElementById('langLabel').innerText = data.langLabel;
   document.getElementById('useTitle').innerText = data.useTitle;
   document.getElementById('doseTitle').innerText = data.doseTitle;
   document.getElementById('sideTitle').innerText = data.sideTitle;
