@@ -1,208 +1,873 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-<meta charset="UTF-8""")/>>
-<meta name="viewport" content="width=device-width, initial-scale=1.0""")/>>
-<title>Amlodipin – dhiig-karka</title>
-<style>
-:root{
-  --accent1:#00a676; --accent2:#0066cc; --accentText:#ffffff;
-  --bg:#ffffff; --text:#123047; --muted:#607089;
-  --stroke:#d0d7e2; --badgeBg:#e2f5ea; --badgeText:#16634a;
-}
-body{ font-family: Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; line-height: 1.6; }
-main{ max-width: 820px; margin: 30px auto; padding: 0 20px; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amlodipin – dhiig-karka</title>
+  <style>
+    :root{
+      --accent1:#00a676;
+      --accent2:#0066cc;
+      --accentText:#ffffff;
+      --bg:#ffffff;
+      --text:#123047;
+      --muted:#607089;
+      --stroke:#d0d7e2;
+      --badgeBg:#e2f5ea;
+      --badgeText:#16634a;
+      --soft:#f7fbff;
+      --ibrahimBg:#fff8e8;
+      --ibrahimBorder:#f0c36d;
+      --ibrahimTitle:#8a5a00;
+      --sourceBg:#f8fafc;
+    }
 
-header{ background: linear-gradient(135deg, var(--accent1), var(--accent2)); color: var(--accentText); padding: 22px 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-header h1{ margin: 0 0 4px; font-size: 1.8rem; }
-header p{ margin: 0; font-size: 0.95rem; }
+    *{ box-sizing:border-box; }
 
-.drug-header-container { display: flex; align-items: center; justify-content: space-between; margin: 20px 0; }
-.drug-main-info { display: flex; align-items: center; gap: 15px; }
-.drug-icon { width: 50px; height: 50px; background: #f0f7ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; border: 1px solid #e0e8f0; }
-.drug-icon svg { width: 30px; height: 30px; fill: none; stroke: var(--accent2); stroke-width: 2; }
-.drug-title-block h1 { font-size: 1.4rem; color: var(--accent2); margin: 0; font-weight: 800; }
-.drug-title-block p { font-size: 0.95rem; color: var(--muted); margin: 4px 0 0; }
-.badge { background: var(--badgeBg); color: var(--badgeText); padding: 5px 15px; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.7;
+    }
 
-.divider { border-bottom: 1px dashed var(--stroke); margin-bottom: 25px; }
+    main{
+      max-width: 820px;
+      margin: 30px auto;
+      padding: 0 20px 40px;
+    }
 
-.lang-selector { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
-.lang-selector label { font-size: 0.95rem; font-weight: 600; }
-.lang-selector select { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--stroke); background: #fff; font-size: 0.9rem; }
+    header{
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: var(--accentText);
+      padding: 24px 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
 
-a.back{ display: inline-flex; align-items: center; gap: 6px; margin-bottom: 20px; text-decoration: none; color: var(--accent2); font-size: 0.95rem; font-weight: bold; }
+    header h1{
+      margin: 0 0 6px;
+      font-size: 1.9rem;
+    }
 
-.section { margin-top: 25px; }
-.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.section-title { font-weight: 800; color: #123047; font-size: 1.1rem; }
-.section ul { margin: 0; padding-left: 20px; }
-.section ul li { margin-bottom: 10px; color: #334155; font-size: 1.05rem; }
+    header p{
+      margin: 0;
+      font-size: 0.98rem;
+      max-width: 760px;
+      margin-inline: auto;
+    }
 
-.footer-note { font-size: 0.95rem; color: var(--text); text-align: center; margin-top: 60px; padding: 30px; border-top: 1px solid var(--stroke); }
+    .lang-selector{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 22px 0 18px;
+      flex-wrap: wrap;
+    }
 
-@media (max-width: 600px){
-  .drug-header-container { flex-direction: column; align-items: flex-start; gap: 15px; }
-  .badge { align-self: flex-end; }
-}
-</style>
+    .lang-selector label{
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .lang-selector select{
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      font-size: 0.95rem;
+    }
+
+    a.back{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+      text-decoration: none;
+      color: var(--accent2);
+      font-size: 0.95rem;
+      font-weight: bold;
+    }
+
+    .drug-header-container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin: 20px 0 10px;
+    }
+
+    .drug-main-info{
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .drug-icon{
+      width: 56px;
+      height: 56px;
+      background: #f0f7ff;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #e0e8f0;
+      flex-shrink: 0;
+    }
+
+    .drug-icon svg{
+      width: 30px;
+      height: 30px;
+      fill: none;
+      stroke: var(--accent2);
+      stroke-width: 2;
+    }
+
+    .drug-title-block h1{
+      font-size: 1.45rem;
+      color: var(--accent2);
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .drug-title-block p{
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin: 4px 0 0;
+    }
+
+    .badge{
+      background: var(--badgeBg);
+      color: var(--badgeText);
+      padding: 6px 15px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .divider{
+      border-bottom: 1px dashed var(--stroke);
+      margin: 18px 0 24px;
+    }
+
+    .intro-box{
+      background: var(--soft);
+      border: 1px solid #dbeafe;
+      border-radius: 14px;
+      padding: 16px 18px;
+      color: #24445e;
+      margin-bottom: 24px;
+      font-size: 1rem;
+    }
+
+    .ibrahim-box{
+      background: var(--ibrahimBg);
+      border: 1px solid var(--ibrahimBorder);
+      border-left: 5px solid var(--ibrahimBorder);
+      border-radius: 14px;
+      padding: 18px;
+      margin: 24px 0;
+    }
+
+    .ibrahim-box-title{
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ibrahimTitle);
+      margin-bottom: 8px;
+    }
+
+    .ibrahim-box p{
+      margin: 0;
+      color: #5f4300;
+      font-size: 1rem;
+    }
+
+    .section{
+      margin-top: 26px;
+    }
+
+    .section-header{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title{
+      font-weight: 800;
+      color: #123047;
+      font-size: 1.12rem;
+    }
+
+    .section ul{
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .section ul li{
+      margin-bottom: 10px;
+      color: #334155;
+      font-size: 1.04rem;
+    }
+
+    .sources{
+      margin-top: 44px;
+      background: var(--sourceBg);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .sources h3{
+      margin: 0 0 10px;
+      font-size: 1.02rem;
+      color: var(--text);
+    }
+
+    .sources p{
+      margin: 0 0 10px;
+      color: #334155;
+      font-size: 0.96rem;
+    }
+
+    .sources ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .sources li{
+      margin-bottom: 8px;
+      color: #334155;
+      word-break: break-word;
+    }
+
+    .sources a{
+      color: var(--accent2);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sources a:hover{
+      text-decoration: underline;
+    }
+
+    .footer-note{
+      font-size: 0.92rem;
+      color: var(--text);
+      text-align: center;
+      margin-top: 28px;
+      padding: 24px 10px 0;
+      border-top: 1px solid var(--stroke);
+    }
+
+    @media (max-width: 600px){
+      .drug-header-container{
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .badge{
+        align-self: flex-end;
+      }
+
+      .drug-title-block h1{
+        font-size: 1.25rem;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header id="mainHeader">
+    <h1 id="hdrTitle">Amlodipin – dhiig-karka</h1>
+    <p id="hdrSubtitle">Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
+  </header>
 
-<header id="mainHeader">
-  <h1 id="hdrTitle">Amlodipin – dhiig-karka</h1>
-  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
-</header>
-
-<main>
-  <div class="lang-selector">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-    <select id="langSelect" onchange="updateLanguage()">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
-      <option value="en">Engelsk</option>
-      <option value="ar">Arabisk</option>
-    </select>
-  </div>
-
-  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
-
-  <div class="drug-header-container">
-    <div class="drug-main-info">
-      <div class="drug-icon">
-        <svg viewBox="0 0 24 24" id="drugSvg"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-      </div>
-      <div class="drug-title-block">
-        <h1 id="drugName">Amlodipin – dhiig-karka</h1>
-        <p id="drugForm">Kiniin afka ah</p>
-      </div>
+  <main>
+    <div class="lang-selector">
+      <label id="langLabel" for="langSelect">Dooro luqadda:</label>
+      <select id="langSelect" onchange="updateLanguage()">
+        <option value="so" selected>Somali</option>
+        <option value="da">Dansk</option>
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+      </select>
     </div>
-    <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
-  </div>
 
-  <div class="divider"></div>
+    <a href="index.html" class="back">
+      <span>←</span>
+      <span id="backLabel">Ku laabo liiska daawooyinka</span>
+    </a>
 
-  <!-- SEKTIONER -->
-  <div class="section"><div class="section-header"><span>💊</span><div class="section-title" id="useTitle">Isticmaalka</div></div><ul id="useList"></ul></div>
-  <div class="section"><div class="section-header"><span>⏰</span><div class="section-title" id="doseTitle">Qiyaasta og Talooyinka Ibraahim</div></div><ul id="doseList"></ul></div>
-  <div class="section"><div class="section-header"><span>⚠️</span><div class="section-title" id="sideTitle">Waxyeellooyinka</div></div><ul id="sideList"></ul></div>
-  <div class="section"><div class="section-header"><span>⇆</span><div class="section-title" id="interactTitle">Isdhexgalka daawooyinka</div></div><ul id="interactList"></ul></div>
-  <div class="section"><div class="section-header"><span>!</span><div class="section-title" id="warnTitle">Digniino muhiim ah</div></div><ul id="warnList"></ul></div>
-  <div class="section"><div class="section-header"><span>☾</span><div class="section-title" id="ramadanTitle">Ramadaan og soonka</div></div><ul id="ramadanList"></ul></div>
-  <div class="section"><div class="section-header"><span>🍽️</span><div class="section-title" id="foodTitle">Cunto iyo cabitaan</div></div><ul id="foodList"></ul></div>
-  <div class="section"><div class="section-header"><span>⧉</span><div class="section-title" id="storeTitle">Kaydinta daawada</div></div><ul id="storeList"></ul></div>
+    <div class="drug-header-container">
+      <div class="drug-main-info">
+        <div class="drug-icon">
+          <svg viewBox="0 0 24 24" id="drugSvg">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+        <div class="drug-title-block">
+          <h1 id="drugName">Amlodipin – dhiig-karka</h1>
+          <p id="drugForm">Kiniin afka ah</p>
+        </div>
+      </div>
+      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+    </div>
 
-  <div class="footer-note" id="footerNote">Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf</div>
-</main>
+    <div class="divider"></div>
 
-<script>
-const content = {
-  so: {
-    accent: "#00a676", badgeBg: "#d9f6e8", badgeTextCol: "#16634a",
-    hdrTitle: "Amlodipin – dhiig-karka",
-    hdrSubtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    backLabel: "Ku laabo liiska daawooyinka", langLabel: "Dooro luqadda:", drugName: "Amlodipin – dhiig-karka", drugForm: "Kiniin afka ah", badgeText: "Akhris fudud oo kooban",
-    useTitle: "Isticmaalka", useList: ["Amlodipin waxay ballaarisaa xididdada dhiigga si dhiig-karku u hoos ugu dhaco.","Waxay ka hortagtaa xanuunka xabadka (angina).","Dhiig-karku waa 'cadaw aamusan' (silent killer) – qaado dawada xataa haddii aad caafimaad dareemayso."],
-    doseTitle: "Qiyaasta og Talooyinka Ibraahim", doseList: ["Qaado hal kaniini maalin kasta, doorbidid subaxdii isku wakhti.","Haddii caguhu ku bararaan: Tani waa waxyeello caadi ah. Lugaha kor u qaad markaad fadhido.","Ha joojin dawada adigoon dhakhtarka la tashan."],
-    sideTitle: "Waxyeellooyinka", sideList: ["Bararka canqowga (kuraanta) iyo cagaha.","Madax-xanuun ama weji guduudasho (badanaa bilowga).","Wareer yar markaad si degdeg ah u istaagto."],
-    interactTitle: "Isdhexgalka daawooyinka", interactList: ["U sheeg dhakhtarka haddii aad qaadanayso daawooyin kale.","Daawooyinka qaar ee fangaska ama HIV-ga ayaa kordhin kara saameynta."],
-    warnTitle: "Digniino muhiim ah", warnList: ["Ha cabin casiirka 'Grapefruit' maadaama uu kordhinayo saameynta dawada.","Haddii aad leedahay xanuunka beerka, la tasho dhakhtarka."],
-    ramadanTitle: "Ramadaan og soonka", ramadanList: ["Waxaa la qaadan karaa Afurka ama Suxuurta maadaama la qaato hal mar maalintii.","La tasho dhakhtarkaaga ka hor intaan bisha Ramadaan bilaaban."],
-    foodTitle: "Cunto iyo cabitaan", foodList: ["Waxaad ku qaadan kartaa cunto la'aan ama cunto ka dib.","Iska ilaali cabitaanka khamriga maadaama uu kordhinayo wareerka."],
-    storeTitle: "Kaydinta daawada", storeList: ["Ku hay meel ka fog carruurta.","Ku kaydi heerkulka qolka (ka hooseeya 30°C).","Ha isticmaalin haddii ay dhaafto taariikhda dhicitaanka."],
-    footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
-  },
-  da: {
-    accent: "#0066cc", badgeBg: "#e3f2fd", badgeTextCol: "#0d47a1",
-    hdrTitle: "Amlodipin – dhiig-karka",
-    hdrSubtitle: "Kort information om medicinen – henvendt til forældre og patienter.",
-    backLabel: "Tilbage til oversigten", langLabel: "Vælg sprog:", drugName: "Amlodipin – dhiig-karka", drugForm: "Tabletter", badgeText: "Kort og letlæselig",
-    useTitle: "Anvendelse", useList: ["Amlodipin får blodkarrene til at slappe af, så trykket falder.","Det forebygger brystsmerter og aflaster hjertet.","Husk: Højt blodtryk er en 'stille dræber' – tag medicinen, selvom du føler dig rask."],
-    doseTitle: "Dosering og Ibrahims råd", doseList: ["Tag 1 tablet dagligt, helst om morgenen på samme tidspunkt.","Ved hævede ankler: Læg benene højt, når du sidder.","Stop aldrig behandlingen uden at tale med din læge."],
-    sideTitle: "Bivirkninger", sideList: ["Hævede ankler og fødder.","Hovedpine eller rødmen (især i starten).","Svimmelhed, når du rejser dig hurtigt."],
-    interactTitle: "Interaktioner", interactList: ["Fortæl lægen hvis du tager anden medicin mod blodtryk.","Visse midler mod svamp eller HIV kan påvirke effekten."],
-    warnTitle: "Vigtige advarsler", warnList: ["Undgå grapefrugtjuice, da det kan øge medicinens virkning.","Ved leversygdom bør du rådføre dig med din læge."],
-    ramadanTitle: "Ramadan og faste", ramadanList: ["Kan tages ved Iftar eller Suhoor.","Rådfør dig med din læge før fasten."],
-    foodTitle: "Mad og drikke", foodList: ["Kan tages med eller uden mad.","Alkohol kan øge svimmelheden ved brug af denne medicin."],
-    storeTitle: "Opbevaring", storeList: ["Opbevares utilgængeligt for børn.","Brug ikke efter udløbsdato.","Aflevér din medicin til destruktion på apoteket."],
-    footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf"
-  },
-  en: {
-    accent: "#0066cc", badgeBg: "#e0e8f0", badgeTextCol: "#123047",
-    hdrTitle: "Amlodipine – High blood pressure",
-    hdrSubtitle: "Brief information about the medicine – for parents and patients.",
-    backLabel: "Back to medication list", langLabel: "Select language:", drugName: "Amlodipine – High blood pressure", drugForm: "Oral tablets", badgeText: "Short and easy to read",
-    useTitle: "Usage", useList: ["Amlodipine relaxes blood vessels to lower blood pressure.","It prevents chest pain and reduces the heart's workload.","Remember: High blood pressure is a 'silent killer' – take your medicine even if you feel fine."],
-    doseTitle: "Dosage and Ibrahim's Advice", doseList: ["Take one tablet daily, preferably in the morning at the same time.","Swollen ankles: A common side effect. Elevate your legs when sitting.","Do not stop taking the medication without consulting your doctor."],
-    sideTitle: "Key Side Effects", sideList: ["Swollen ankles or feet.","Headaches or flushing (especially at the start).","Dizziness when standing up quickly."],
-    interactTitle: "Interactions", interactList: ["Tell your doctor if you take other blood pressure medicines.","Certain fungal or HIV medications can affect the dosage."],
-    warnTitle: "Important Warnings", warnList: ["Avoid grapefruit juice as it may increase the side effects.","Consult your doctor if you have liver disease."],
-    ramadanTitle: "Ramadan and Fasting", ramadanList: ["Can be taken at Iftar or Suhoor as it is a once-daily dose.","Consult your doctor before fasting."],
-    foodTitle: "Food and Drink", foodList: ["Can be taken with or without food.","Alcohol may increase dizziness while taking this medication."],
-    storeTitle: "Storage", storeList: ["Keep out of reach of children.","Do not use after expiry date.","Return leftovers to the pharmacy."],
-    footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf"
-  },
-  ar: {
-    accent: "#0066cc", badgeBg: "#f0f0f0", badgeTextCol: "#333333",
-    hdrTitle: "أملوديبين – ضغط الدم",
-    hdrSubtitle: "معلومات مختصرة عن الدواء - موجهة للآباء والمرضى.",
-    backLabel: "العودة إلى قائمة الأدوية", langLabel: "اختر اللغة:", drugName: "أملوديبين – ضغط الدم", drugForm: "أقراص", badgeText: "قراءة سهلة ومختصرة",
-    useTitle: "الاستخدام", useList: ["يعمل أملوديبين على إرخاء الأوعية الدموية مما يخفض ضغط الدم.","يمنع آلام الصدر ويقلل الجهد على القلب.","تذكر: ضغط الدم المرتفع 'قاتل صامت'، لذا تناول دواءك بانتظام."],
-    doseTitle: "الجرعة ونصائح إبراهيم", doseList: ["تناول قرصاً واحداً يومياً، ويفضل صباحاً في نفس الوقت.","تورم الكاحلين: عرض جانبي شائع. ارفع قدميك عند الجلوس.","لا تتوقف عن تناول الدواء دون استشارة الطبيب."],
-    sideTitle: "أهم الأعراض الجانبية", sideList: ["تورم في الكاحلين أو القدمين.","صداع أو احمرار في الوجه (خاصة في البداية).","دوار عند الوقوف بسرعة."],
-    interactTitle: "التفاعلات الدوائية", interactList: ["أخبر طبيبك إذا كنت تتناول أدوية ضغط أخرى.","بعض أدوية الفطريات أو فيروس نقص المناعة البشرية قد تؤثر على الدواء."],
-    warnTitle: "تحذيرات مهمة", warnList: ["تجنب عصير الجريب فروت لأنه يزيد من تأثير الدواء.","استشر طبيبك إذا كنت تعاني من أمراض الكبد."],
-    ramadanTitle: "رمضان والصيام", ramadanList: ["يمكن تناوله عند الإفطار أو السحور لأنه يؤخذ مرة واحدة فقط.","استشر طبيبك قبل البدء بالصيام."],
-    foodTitle: "الغذاء والشراب", foodList: ["يمكن تناوله مع الطعام أو بدونه.","قد يزيد الكحول من الدوار عند تناول هذا الدواء."],
-    storeTitle: "تخزين الدواء", storeList: ["يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.","يُحفظ في العبوة الأصلية للحماية من الضوء والرطوبة.","لا يُستخدم بعد تاريخ الانتهاء. سلّم الدواء إلى الصيدلية للتخلص منه."],
-    footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف"
-  }
-};
+    <div class="intro-box" id="introBox">
+      Dhiig-karka marar badan lama dareemo, laakiin si tartiib ah ayuu jirka u daaliyaa. Amlodipin waxay ka caawisaa xididdada dhiigga inay nastaan, si dhiiggu ugu socdo si deggan oo aan cadaadis badan u saarnayn.
+    </div>
 
-function updateLanguage() {
-  const lang = document.getElementById('langSelect').value;
-  const data = content[lang];
-  
-  // Opdater Farver/Design
-  document.getElementById('mainHeader').style.background = `linear-gradient(135deg, ${data.accent}, #0066cc)`;
-  document.getElementById('drugSvg').style.stroke = data.accent;
-  document.getElementById('badgeText').style.backgroundColor = data.badgeBg;
-  document.getElementById('badgeText').style.color = data.badgeTextCol;
+    <div class="ibrahim-box">
+      <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
+      <p id="ibrahimText">
+        Waxaan bukaan badan ugu sharxaa sidan: marka xididdada dhiiggu cidhiidhi noqdaan, dhiiggu wuxuu u riixmaa sidii biyo lagu qasbayo tuubo dhuuban. Amlodipin waxay ka dhigtaa marinka mid dabacsan, si culayskaasi u yaraado. Sidaas darteed daawadan waa in si joogto ah loo qaataa, xataa maalmaha aad is leedahay “waan fiicanahay”.
+      </p>
+    </div>
 
-  // Opdater Tekst
-  document.getElementById('hdrTitle').innerText = data.hdrTitle;
-  document.getElementById('hdrSubtitle').innerText = data.hdrSubtitle;
-  document.getElementById('backLabel').innerText = data.backLabel;
-  document.getElementById('langLabel').innerText = data.langLabel;
-  document.getElementById('drugName').innerText = data.drugName;
-  document.getElementById('drugForm').innerText = data.drugForm;
-  document.getElementById('badgeText').innerText = data.badgeText;
-  document.getElementById('useTitle').innerText = data.useTitle;
-  document.getElementById('doseTitle').innerText = data.doseTitle;
-  document.getElementById('sideTitle').innerText = data.sideTitle;
-  document.getElementById('interactTitle').innerText = data.interactTitle;
-  document.getElementById('warnTitle').innerText = data.warnTitle;
-  document.getElementById('ramadanTitle').innerText = data.ramadanTitle;
-  document.getElementById('foodTitle').innerText = data.foodTitle;
-  document.getElementById('storeTitle').innerText = data.storeTitle;
-  document.getElementById('footerNote').innerText = data.footerNote;
+    <div class="section">
+      <div class="section-header">
+        <span>💊</span>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
+      </div>
+      <ul id="useList"></ul>
+    </div>
 
-  const updateList = (id, list) => {
-    const el = document.getElementById(id);
-    el.innerHTML = "";
-    list.forEach(item => { const li = document.createElement('li'); li.innerText = item; el.appendChild(li); });
-  };
+    <div class="section">
+      <div class="section-header">
+        <span>⏰</span>
+        <div class="section-title" id="doseTitle">Qiyaasta iyo talooyinka Ibraahim</div>
+      </div>
+      <ul id="doseList"></ul>
+    </div>
 
-  updateList('useList', data.useList);
-  updateList('doseList', data.doseList);
-  updateList('sideList', data.sideList);
-  updateList('interactList', data.interactList);
-  updateList('warnList', data.warnList);
-  updateList('ramadanList', data.ramadanList);
-  updateList('foodList', data.foodList);
-  updateList('storeList', data.storeList);
-}
-updateLanguage();
-</script>
+    <div class="section">
+      <div class="section-header">
+        <span>⚠️</span>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
+      </div>
+      <ul id="sideList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span>⇆</span>
+        <div class="section-title" id="interactTitle">Isdhexgalka daawooyinka</div>
+      </div>
+      <ul id="interactList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span>!</span>
+        <div class="section-title" id="warnTitle">Digniino muhiim ah</div>
+      </div>
+      <ul id="warnList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span>☾</span>
+        <div class="section-title" id="ramadanTitle">Ramadaan iyo soonka</div>
+      </div>
+      <ul id="ramadanList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span>🍽️</span>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan</div>
+      </div>
+      <ul id="foodList"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-header">
+        <span>⧉</span>
+        <div class="section-title" id="storeTitle">Kaydinta daawada</div>
+      </div>
+      <ul id="storeList"></ul>
+    </div>
+
+    <div class="sources">
+      <h3 id="sourcesTitle">Ilaha xogta</h3>
+      <p id="sourcesText">
+        Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
+      </p>
+      <ul id="sourcesList"></ul>
+    </div>
+
+    <div class="footer-note" id="footerNote">
+      Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
+    </div>
+  </main>
+
+  <script>
+    const content = {
+      so: {
+        accent: "#00a676",
+        badgeBg: "#d9f6e8",
+        badgeTextCol: "#16634a",
+
+        hdrTitle: "Amlodipin – dhiig-karka",
+        hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+
+        backLabel: "Ku laabo liiska daawooyinka",
+        langLabel: "Dooro luqadda:",
+        drugName: "Amlodipin – dhiig-karka",
+        drugForm: "Kiniin afka ah",
+        badgeText: "Akhris fudud oo kooban",
+
+        introBox: "Dhiig-karka marar badan lama dareemo, laakiin si tartiib ah ayuu jirka u daaliyaa. Amlodipin waxay ka caawisaa xididdada dhiigga inay nastaan, si dhiiggu ugu socdo si deggan oo aan cadaadis badan u saarnayn.",
+
+        ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
+        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: marka xididdada dhiiggu cidhiidhi noqdaan, dhiiggu wuxuu u riixmaa sidii biyo lagu qasbayo tuubo dhuuban. Amlodipin waxay ka dhigtaa marinka mid dabacsan, si culayskaasi u yaraado. Sidaas darteed daawadan waa in si joogto ah loo qaataa, xataa maalmaha aad is leedahay “waan fiicanahay”.",
+
+        useTitle: "Isticmaalka",
+        useList: [
+          "Amlodipin waxaa loo isticmaalaa in lagu dejiyo dhiig-karka.",
+          "Waxay ka shaqaysaa nasinta iyo furfuridda xididdada dhiigga, si dhiiggu u maro waddo ka ballaaran.",
+          "Dhiig-karku waa cadaw aamusan; marar badan calaamad ma leh, laakiin gudaha ayuu dhaawac ka samayn karaa."
+        ],
+
+        doseTitle: "Qiyaasta iyo talooyinka Ibraahim",
+        doseList: [
+          "Badanaa waxaa la qaataa hal mar maalintii, isla saacad u dhow maalin kasta.",
+          "Dad waaweyn badankood waxay ka bilaabaan 5 mg maalintii, dhakhtarkuna mararka qaar wuu kordhin karaa ilaa 10 mg haddii loo baahdo.",
+          "Waxaad qaadan kartaa subax ama fiid, laakiin joogteyntu waa waxa ugu muhiimsan.",
+          "Ha joojin daawada adigoon la tashan dhakhtar, sababtoo ah cadaadiska dhiiggu si tartiib ah ayuu mar kale kor ugu kici karaa."
+        ],
+
+        sideTitle: "Waxyeellooyinka",
+        sideList: [
+          "Waxaa dhici karta biyo ama dareere inay ku soo ururaan anqawyada ama cagaha, taas oo ka dhigi karta inay bararaan.",
+          "Madax-xanuun ama wejiga oo kululaada mararka qaar way dhici karaan bilowga.",
+          "Wareer yar ayaa iman kara, gaar ahaan marka si degdeg ah loo istaago.",
+          "Dadka qaar waxay dareemaan daal ama garaaca wadnaha oo si ka duwan sidii hore loo dareemo."
+        ],
+
+        interactTitle: "Isdhexgalka daawooyinka",
+        interactList: [
+          "U sheeg dhakhtarka ama farmashiistaha haddii aad qaadanayso dawooyin kale, xataa kuwa aan warqad dhakhtar lahayn.",
+          "Daawooyin qaar waxay beddeli karaan sida amlodipin u shaqayso gudaha jirka.",
+          "Gaar ahaan waa muhiim in la sheego haddii aad qaadato dawooyin wadne, dawooyin fangas, antibiyootik gaar ah, dawooyin HIV ah ama perikon."
+        ],
+
+        warnTitle: "Digniino muhiim ah",
+        warnList: [
+          "Ha cabin bambeelmo ama casiir bambeelmo badan, sidoo kale ka taxaddar pomelo, sababtoo ah waxay kordhin karaan saamaynta daawada.",
+          "Haddii aad qabto xanuun beerka ah, dhakhtarku wuxuu rabaa inuu si gaar ah kuu la socdo.",
+          "Haddii bararka lugaha, wareerka ama daalkaagu aad u bato, la xiriir dhakhtar."
+        ],
+
+        ramadanTitle: "Ramadaan iyo soonka",
+        ramadanList: [
+          "Maadaama daawadan badanaa la qaato hal mar maalintii, waxaa lagu qaadan karaa Afur ama Suxuur.",
+          "Dooro wakhti kuu fudud oo aad maalin walba ku celin karto.",
+          "Haddii aad leedahay dhiig-kar aan degganayn ama dawoyin kale oo badan, la tasho dhakhtar ka hor soonka."
+        ],
+
+        foodTitle: "Cunto iyo cabitaan",
+        foodList: [
+          "Waxaad ku qaadan kartaa cunto la'aan ama cunto ka dib.",
+          "Biyaha caadiga ah ayaa ku filan marka aad qaadanayso kaniinka.",
+          "Cabitaan khamri ah wuxuu kordhin karaa wareerka dadka qaarkood."
+        ],
+
+        storeTitle: "Kaydinta daawada",
+        storeList: [
+          "Ku hay meel qalalan oo ka fog carruurta.",
+          "Ha ku ridin meel aad u kulul ama qoyaan badan leh.",
+          "Ha isticmaalin haddii taariikhda dhicitaanku dhaaftay."
+        ],
+
+        sourcesTitle: "Ilaha xogta",
+        sourcesText: "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
+        sourcesList: [
+          {
+            text: "pro.medicin.dk – Amlodipin",
+            href: "https://pro.medicin.dk/medicin/praeparater/5314"
+          },
+          {
+            text: "sundhed.dk – Forhøjet blodtryk, behandling",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
+          },
+          {
+            text: "sundhed.dk – Forhøjet blodtryk, oversigt",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
+          }
+        ],
+
+        footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+      },
+
+      da: {
+        accent: "#0066cc",
+        badgeBg: "#e3f2fd",
+        badgeTextCol: "#0d47a1",
+
+        hdrTitle: "Amlodipin – mod forhøjet blodtryk",
+        hdrSubtitle: "En let og personlig forklaring på medicinen, så patienter og familier bedre kan forstå behandlingen.",
+
+        backLabel: "Tilbage til oversigten",
+        langLabel: "Vælg sprog:",
+        drugName: "Amlodipin",
+        drugForm: "Tabletter",
+        badgeText: "Kort og letlæselig",
+
+        introBox: "Forhøjet blodtryk kan være usynligt i hverdagen, men det slider stille på kroppen. Amlodipin hjælper blodkarrene med at slappe mere af, så blodet kan løbe roligere og med mindre pres.",
+
+        ibrahimTitle: "Ibrahims forklaring fra apoteket",
+        ibrahimText: "Jeg plejer at forklare det sådan: når blodkarrene er stramme, skal blodet presses igennem som vand i en for smal slange. Amlodipin gør passagen mere åben og rolig. Derfor skal medicinen tages fast, også på de dage hvor man føler sig helt fin.",
+
+        useTitle: "Anvendelse",
+        useList: [
+          "Amlodipin bruges til at sænke forhøjet blodtryk.",
+          "Medicinen hjælper blodkarrene med at slappe af, så blodet får bedre plads.",
+          "Forhøjet blodtryk kaldes ofte en stille dræber, fordi man ikke altid kan mærke det."
+        ],
+
+        doseTitle: "Dosering og Ibrahims råd",
+        doseList: [
+          "Den tages som regel én gang dagligt, gerne på samme tidspunkt hver dag.",
+          "Mange voksne starter på 5 mg dagligt, og lægen kan ved behov øge til 10 mg dagligt.",
+          "Du kan tage den morgen eller aften, men det vigtigste er faste vaner.",
+          "Stop ikke behandlingen uden at tale med din læge."
+        ],
+
+        sideTitle: "Bivirkninger",
+        sideList: [
+          "Nogle får væske i ankler eller fødder, så de kan hæve.",
+          "Der kan komme hovedpine eller varme i ansigtet, især i starten.",
+          "Nogle oplever svimmelhed, især når de rejser sig hurtigt.",
+          "Nogle kan også føle træthed eller mærke hjertet slå anderledes."
+        ],
+
+        interactTitle: "Interaktioner",
+        interactList: [
+          "Fortæl altid lægen eller apoteket om anden medicin, du tager.",
+          "Nogle lægemidler kan ændre den måde, amlodipin virker på.",
+          "Det er især vigtigt at nævne hjertemedicin, svampemidler, visse antibiotika, HIV-lægemidler og perikon."
+        ],
+
+        warnTitle: "Vigtige advarsler",
+        warnList: [
+          "Undgå store mængder grapefrugt, grapefrugtjuice og også pomelo.",
+          "Ved leversygdom kan der være behov for ekstra opmærksomhed.",
+          "Kontakt læge, hvis hævede ben, svimmelhed eller træthed bliver tydeligere."
+        ],
+
+        ramadanTitle: "Ramadan og faste",
+        ramadanList: [
+          "Da medicinen ofte tages én gang dagligt, kan den som regel tages ved Iftar eller Suhoor.",
+          "Vælg et tidspunkt du realistisk kan holde fast i hver dag.",
+          "Tal med lægen før fasten, hvis du også tager anden blodtryksmedicin."
+        ],
+
+        foodTitle: "Mad og drikke",
+        foodList: [
+          "Kan tages med eller uden mad.",
+          "Et glas vand er som regel nok til at tage tabletten.",
+          "Alkohol kan gøre svimmelhed mere mærkbar hos nogle."
+        ],
+
+        storeTitle: "Opbevaring",
+        storeList: [
+          "Opbevar medicinen tørt og utilgængeligt for børn.",
+          "Undgå meget varme og fugtige steder.",
+          "Brug ikke medicinen efter udløbsdato."
+        ],
+
+        sourcesTitle: "Kilder",
+        sourcesText: "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
+        sourcesList: [
+          {
+            text: "pro.medicin.dk – Amlodipin",
+            href: "https://pro.medicin.dk/medicin/praeparater/5314"
+          },
+          {
+            text: "sundhed.dk – Forhøjet blodtryk, behandling",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
+          },
+          {
+            text: "sundhed.dk – Forhøjet blodtryk, oversigt",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
+          }
+        ],
+
+        footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+      },
+
+      en: {
+        accent: "#0066cc",
+        badgeBg: "#e8f1fb",
+        badgeTextCol: "#0d47a1",
+
+        hdrTitle: "Amlodipine – for high blood pressure",
+        hdrSubtitle: "A simple and personal explanation of the medicine for patients and families.",
+
+        backLabel: "Back to medication list",
+        langLabel: "Select language:",
+        drugName: "Amlodipine",
+        drugForm: "Tablets",
+        badgeText: "Short and easy to read",
+
+        introBox: "High blood pressure often stays quiet, but over time it can wear the body down. Amlodipine helps the blood vessels relax so the blood can move with less pressure.",
+
+        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimText: "I often explain it like this: when blood vessels are tight, blood has to push through like water forced through a narrow hose. Amlodipine helps open that path, so the pressure becomes calmer. That is why it should be taken regularly, even on days when you feel fine.",
+
+        useTitle: "Use",
+        useList: [
+          "Amlodipine is used to lower high blood pressure.",
+          "It works by helping blood vessels relax and widen.",
+          "High blood pressure is often called a silent killer because many people do not feel it."
+        ],
+
+        doseTitle: "Dosage and Ibrahim’s advice",
+        doseList: [
+          "It is usually taken once daily, preferably around the same time each day.",
+          "Many adults start on 5 mg daily, and the doctor may increase it to 10 mg if needed.",
+          "Morning or evening can both work; the key is consistency.",
+          "Do not stop the medicine without medical advice."
+        ],
+
+        sideTitle: "Side effects",
+        sideList: [
+          "Some people get fluid build-up in the ankles or feet, causing swelling.",
+          "Headache or facial flushing may happen, especially at the beginning.",
+          "Dizziness can occur, especially when standing up quickly.",
+          "Some people also feel tired or notice their heartbeat more."
+        ],
+
+        interactTitle: "Drug interactions",
+        interactList: [
+          "Tell your doctor or pharmacist about all other medicines you take.",
+          "Some medicines can change how amlodipine works in the body.",
+          "This is especially important with heart medicines, antifungals, certain antibiotics, HIV medicines, and St John’s wort."
+        ],
+
+        warnTitle: "Important warnings",
+        warnList: [
+          "Avoid large amounts of grapefruit, grapefruit juice, and also pomelo.",
+          "Extra caution may be needed if you have liver disease.",
+          "Seek medical advice if swelling, dizziness, or tiredness gets worse."
+        ],
+
+        ramadanTitle: "Ramadan and fasting",
+        ramadanList: [
+          "Because this medicine is often taken once daily, it can usually be taken at Iftar or Suhoor.",
+          "Choose a time you can keep every day.",
+          "Speak with your doctor before fasting if you take several blood pressure medicines."
+        ],
+
+        foodTitle: "Food and drink",
+        foodList: [
+          "It can be taken with or without food.",
+          "A glass of water is usually enough when taking the tablet.",
+          "Alcohol may make dizziness worse in some people."
+        ],
+
+        storeTitle: "Storage",
+        storeList: [
+          "Keep in a dry place and out of reach of children.",
+          "Avoid very hot or humid places.",
+          "Do not use after the expiry date."
+        ],
+
+        sourcesTitle: "Sources",
+        sourcesText: "This text is written in a personal and simple style, but the medical information is based on official sources.",
+        sourcesList: [
+          {
+            text: "pro.medicin.dk – Amlodipin",
+            href: "https://pro.medicin.dk/medicin/praeparater/5314"
+          },
+          {
+            text: "sundhed.dk – High blood pressure, treatment",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
+          },
+          {
+            text: "sundhed.dk – High blood pressure, overview",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
+          }
+        ],
+
+        footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+      },
+
+      ar: {
+        accent: "#0066cc",
+        badgeBg: "#eef3f8",
+        badgeTextCol: "#23415c",
+
+        hdrTitle: "أملوديبين – لارتفاع ضغط الدم",
+        hdrSubtitle: "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+
+        backLabel: "العودة إلى قائمة الأدوية",
+        langLabel: "اختر اللغة:",
+        drugName: "أملوديبين",
+        drugForm: "أقراص",
+        badgeText: "سهل ومختصر",
+
+        introBox: "ارتفاع ضغط الدم قد لا يُشعر الإنسان بشيء، لكنه يرهق الجسم بهدوء مع الوقت. يساعد أملوديبين الأوعية الدموية على الاسترخاء حتى يسير الدم بضغط أقل.",
+
+        ibrahimTitle: "نصيحة إبراهيم من الصيدلية",
+        ibrahimText: "أنا أشرحها لكثير من المرضى بهذه الصورة: عندما تكون الأوعية ضيقة، يمر الدم كأنه ماء يُدفع داخل خرطوم ضيق. أملوديبين يجعل الطريق أوسع وأكثر هدوءاً. لذلك يجب أخذه بانتظام حتى في الأيام التي تشعر فيها أنك بخير.",
+
+        useTitle: "الاستخدام",
+        useList: [
+          "يُستخدم أملوديبين لخفض ضغط الدم المرتفع.",
+          "يساعد الأوعية الدموية على الارتخاء حتى يمر الدم بسهولة أكبر.",
+          "يُسمى ضغط الدم المرتفع أحياناً بالقاتل الصامت لأن كثيراً من الناس لا يشعرون به."
+        ],
+
+        doseTitle: "الجرعة ونصائح إبراهيم",
+        doseList: [
+          "غالباً يؤخذ مرة واحدة يومياً وفي وقت متقارب كل يوم.",
+          "كثير من البالغين يبدأون بجرعة 5 ملغ يومياً، وقد يرفعها الطبيب إلى 10 ملغ عند الحاجة.",
+          "يمكن تناوله صباحاً أو مساءً، والأهم هو الانتظام.",
+          "لا توقف الدواء من نفسك دون استشارة طبية."
+        ],
+
+        sideTitle: "الآثار الجانبية",
+        sideList: [
+          "قد يتجمع سائل في الكاحلين أو القدمين فيظهر تورم.",
+          "قد يحدث صداع أو شعور بسخونة في الوجه خاصة في البداية.",
+          "قد يحصل دوار عند بعض الناس، خصوصاً عند الوقوف بسرعة.",
+          "قد يشعر بعض الناس أيضاً بالتعب أو يلاحظون خفقان القلب أكثر."
+        ],
+
+        interactTitle: "التداخلات الدوائية",
+        interactList: [
+          "أخبر الطبيب أو الصيدلي عن كل الأدوية الأخرى التي تستعملها.",
+          "بعض الأدوية قد تغير طريقة عمل أملوديبين في الجسم.",
+          "من المهم ذكر أدوية القلب وبعض أدوية الفطريات وبعض المضادات الحيوية وبعض أدوية HIV ونبتة سانت جون."
+        ],
+
+        warnTitle: "تحذيرات مهمة",
+        warnList: [
+          "تجنب الكميات الكبيرة من الجريب فروت أو عصيره وكذلك البوميلو.",
+          "قد يلزم حذر إضافي إذا كان لديك مرض في الكبد.",
+          "راجع الطبيب إذا زاد تورم الساقين أو الدوخة أو التعب."
+        ],
+
+        ramadanTitle: "رمضان والصيام",
+        ramadanList: [
+          "لأن الدواء يؤخذ غالباً مرة واحدة يومياً، فيمكن أخذه عند الإفطار أو السحور.",
+          "اختر وقتاً تستطيع الالتزام به كل يوم.",
+          "استشر الطبيب قبل الصيام إذا كنت تستعمل عدة أدوية للضغط."
+        ],
+
+        foodTitle: "الطعام والشراب",
+        foodList: [
+          "يمكن تناوله مع الطعام أو بدونه.",
+          "يكفي عادة كوب ماء عند تناول القرص.",
+          "قد يزيد الكحول من الدوخة عند بعض الناس."
+        ],
+
+        storeTitle: "تخزين الدواء",
+        storeList: [
+          "يُحفظ في مكان جاف وبعيد عن متناول الأطفال.",
+          "تجنب الأماكن شديدة الحرارة أو الرطوبة.",
+          "لا يُستخدم بعد تاريخ الانتهاء."
+        ],
+
+        sourcesTitle: "المصادر",
+        sourcesText: "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+        sourcesList: [
+          {
+            text: "pro.medicin.dk – Amlodipin",
+            href: "https://pro.medicin.dk/medicin/praeparater/5314"
+          },
+          {
+            text: "sundhed.dk – علاج ارتفاع ضغط الدم",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
+          },
+          {
+            text: "sundhed.dk – نظرة عامة على ارتفاع ضغط الدم",
+            href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
+          }
+        ],
+
+        footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+      }
+    };
+
+    function updateList(id, list) {
+      const el = document.getElementById(id);
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        el.appendChild(li);
+      });
+    }
+
+    function updateSources(list) {
+      const el = document.getElementById("sourcesList");
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerText = item.text;
+        li.appendChild(a);
+        el.appendChild(li);
+      });
+    }
+
+    function updateLanguage() {
+      const lang = document.getElementById("langSelect").value;
+      const data = content[lang];
+
+      document.documentElement.lang = lang;
+      document.getElementById("mainHeader").style.background = `linear-gradient(135deg, ${data.accent}, #0066cc)`;
+      document.getElementById("drugSvg").style.stroke = data.accent;
+      document.getElementById("badgeText").style.backgroundColor = data.badgeBg;
+      document.getElementById("badgeText").style.color = data.badgeTextCol;
+
+      document.getElementById("hdrTitle").innerText = data.hdrTitle;
+      document.getElementById("hdrSubtitle").innerText = data.hdrSubtitle;
+      document.getElementById("backLabel").innerText = data.backLabel;
+      document.getElementById("langLabel").innerText = data.langLabel;
+      document.getElementById("drugName").innerText = data.drugName;
+      document.getElementById("drugForm").innerText = data.drugForm;
+      document.getElementById("badgeText").innerText = data.badgeText;
+
+      document.getElementById("introBox").innerText = data.introBox;
+      document.getElementById("ibrahimTitle").innerText = data.ibrahimTitle;
+      document.getElementById("ibrahimText").innerText = data.ibrahimText;
+
+      document.getElementById("useTitle").innerText = data.useTitle;
+      document.getElementById("doseTitle").innerText = data.doseTitle;
+      document.getElementById("sideTitle").innerText = data.sideTitle;
+      document.getElementById("interactTitle").innerText = data.interactTitle;
+      document.getElementById("warnTitle").innerText = data.warnTitle;
+      document.getElementById("ramadanTitle").innerText = data.ramadanTitle;
+      document.getElementById("foodTitle").innerText = data.foodTitle;
+      document.getElementById("storeTitle").innerText = data.storeTitle;
+
+      document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
+      document.getElementById("sourcesText").innerText = data.sourcesText;
+      document.getElementById("footerNote").innerText = data.footerNote;
+
+      updateList("useList", data.useList);
+      updateList("doseList", data.doseList);
+      updateList("sideList", data.sideList);
+      updateList("interactList", data.interactList);
+      updateList("warnList", data.warnList);
+      updateList("ramadanList", data.ramadanList);
+      updateList("foodList", data.foodList);
+      updateList("storeList", data.storeList);
+      updateSources(data.sourcesList);
+    }
+
+    updateLanguage();
+  </script>
 </body>
 </html>
