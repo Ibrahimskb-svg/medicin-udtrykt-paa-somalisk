@@ -360,8 +360,8 @@
   <main>
     <div class="lang-selector">
       <label id="langLabel" for="langSelect">Dooro luqadda:</label>
-      <select id="langSelect" onchange="updateLanguage()">
-        <option value="so" selected>Somali</option>
+      <select id="langSelect">
+        <option value="so">Somali</option>
         <option value="da">Dansk</option>
         <option value="en">English</option>
         <option value="ar">العربية</option>
@@ -861,7 +861,7 @@
       r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
     }
 
-    function updateLanguage() {
+    function updateLanguage(saveSelection = true) {
       const lang = document.getElementById("langSelect").value;
       const data = content[lang] || content.so;
       applyTheme(lang);
@@ -901,9 +901,22 @@
       updateList("foodList", data.foodList);
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
+
+      if (saveSelection) {
+        localStorage.setItem("selectedLanguage", lang);
+      }
     }
 
-    updateLanguage();
+    function initLanguage() {
+      const savedLang = localStorage.getItem("selectedLanguage");
+      const defaultLang = savedLang && content[savedLang] ? savedLang : "so";
+      document.getElementById("langSelect").value = defaultLang;
+      updateLanguage(false);
+    }
+
+    document.getElementById("langSelect").addEventListener("change", () => updateLanguage(true));
+
+    initLanguage();
   </script>
 </body>
 </html>
