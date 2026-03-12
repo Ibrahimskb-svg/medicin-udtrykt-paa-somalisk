@@ -1,651 +1,946 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Lamotrigin – suuxdin & laba-cirifood</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lamotrigin – suuxdin iyo laba-cirifood</title>
+  <style>
+    :root{
+      --accent1:#00a676;
+      --accent2:#0b6b57;
+      --accentText:#ffffff;
+      --bg:#ffffff;
+      --text:#123047;
+      --muted:#607089;
+      --stroke:#d0d7e2;
 
-<style>
-:root{
-  --accent1:#00a676;
-  --accent2:#0066cc;
-  --accentText:#ffffff;
+      --badgeBg:#d9f6e8;
+      --badgeText:#16634a;
 
-  --bg:#e6f2f8;
-  --text:#123047;
-  --muted:#607089;
+      --soft:#eefaf5;
+      --softBorder:#b7ead3;
 
-  --card:#ffffff;
-  --stroke:#d0d7e2;
+      --link:#0b6b57;
 
-  --pillBg:#d9f6e8;
-  --pillText:#16634a;
+      --drugIconBg:#e8f8f1;
+      --drugIconBorder:#bde8d4;
 
-  --link:#00509e;
-}
+      --langBarAccent:#00a676;
 
-@media (prefers-reduced-motion: no-preference){
-  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
-    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
-  }
-  header{ transition: background .45s ease, color .35s ease; }
-}
+      --ibrahimBg:#fff8e8;
+      --ibrahimBorder:#f0c36d;
+      --ibrahimTitle:#8a5a00;
 
-body{
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  margin: 0;
-}
+      --sourceBg:#f8fafc;
+      --sourceBorderAccent:#00a676;
 
-header{
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: var(--accentText);
-  padding: 22px 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header h1{ margin: 0 0 4px; font-size: 1.8rem; }
-header p{ margin: 0; font-size: 0.95rem; }
+      --useBg:#eefaf5;
+      --useIcon:#00a676;
+      --doseBg:#eef6ff;
+      --doseIcon:#0066cc;
+      --sideBg:#fff7ed;
+      --sideIcon:#f59e0b;
+      --interactBg:#f5f3ff;
+      --interactIcon:#7c3aed;
+      --warnBg:#fef2f2;
+      --warnIcon:#dc2626;
+      --ramadanBg:#f5f3ff;
+      --ramadanIcon:#6d28d9;
+      --foodBg:#effcf6;
+      --foodIcon:#059669;
+      --storeBg:#f8fafc;
+      --storeIcon:#475569;
+    }
 
-main{
-  max-width: 820px;
-  margin: 18px auto 32px;
-  padding: 0 14px;
-}
+    *{ box-sizing:border-box; }
 
-a.back{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
-  text-decoration: none;
-  color: var(--link);
-  font-size: 0.9rem;
-}
-a.back span{ font-size: 1.1rem; }
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.55;
+    }
 
-.langbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 0 0 14px 0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid var(--accent1);
-}
-.langbar label{
-  font-size:0.9rem;
-  color:var(--text);
-  font-weight:600;
-}
-.langbar select{
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--stroke);
-  background: #fff;
-  color:var(--text);
-  font-size: 0.9rem;
-  max-width: 100%;
-}
+    main{
+      max-width: 820px;
+      margin: 22px auto;
+      padding: 0 18px 30px;
+    }
 
-.card{
-  background: var(--card);
-  border-radius: 14px;
-  padding: 16px 16px 10px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-  border-top: 4px solid var(--accent1);
-}
+    header{
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: var(--accentText);
+      padding: 20px 14px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
 
-.drug-meta{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.drug-info{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.drug-icon{
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #e3f2fd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.drug-icon svg{ width: 30px; height: 30px; }
-.drug-icon svg .stroke{ stroke: var(--accent2); }
-.drug-icon svg .fill{ fill:#e8f3ff; }
+    header h1{
+      margin: 0 0 4px;
+      font-size: 1.7rem;
+    }
 
-.drug-labels{ display: flex; flex-direction: column; }
-.drug-name{ font-weight: 600; font-size: 0.95rem; }
-.drug-form{ font-size: 0.82rem; color: #29516e; }
+    header p{
+      margin: 0 auto;
+      font-size: 0.92rem;
+      max-width: 720px;
+    }
 
-.badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--pillBg);
-  color: var(--pillText);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  border:1px solid rgba(0,0,0,0.04);
-}
+    .lang-selector{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 14px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 12px;
+      border-left: 4px solid var(--langBarAccent);
+      box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+    }
 
-.section{
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--stroke);
-}
-.section-header{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-.section-icon{
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: var(--text);
-}
-.section-icon.use { background:#e3f2fd; }
-.section-icon.dose { background:#e2f5ea; }
-.section-icon.side { background:#fff3e0; }
-.section-icon.interact { background:#ede7f6; }
-.section-icon.warn { background:#ffebee; }
-.section-icon.ramadan { background:#e0f7fa; }
-.section-icon.food { background:#f1f8e9; }
-.section-icon.store { background:#edeff9; }
+    .lang-selector label{
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.94rem;
+    }
 
-.section-title{
-  font-weight: 700;
-  color: var(--text);
-  font-size: 0.96rem;
-}
-.section-title small{
-  font-weight: 400;
-  color: var(--muted);
-  margin-left: 6px;
-}
+    .lang-selector select{
+      padding: 7px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      font-size: 0.92rem;
+    }
 
-.section ul{
-  margin: 0 0 4px 18px;
-  padding-left: 0;
-  font-size: 0.92rem;
-}
-.section ul li{ margin-bottom: 4px; }
+    a.back{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      color: var(--link);
+      font-size: 0.92rem;
+      font-weight: bold;
+    }
 
-.highlight{ font-weight: 600; }
+    .drug-header-container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 14px 0 8px;
+    }
 
-.footer-note{
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-align: center;
-  margin: 18px 0 10px;
-}
+    .drug-main-info{
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-@media (max-width: 600px){
-  header h1 { font-size: 1.5rem; }
-}
-</style>
+    .drug-icon{
+      width: 52px;
+      height: 52px;
+      background: var(--drugIconBg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--drugIconBorder);
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .drug-icon svg{
+      width: 30px;
+      height: 30px;
+      display: block;
+      overflow: visible;
+    }
+
+    .drug-title-block h1{
+      font-size: 1.3rem;
+      color: var(--accent2);
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .drug-title-block p{
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 3px 0 0;
+    }
+
+    .badge{
+      background: var(--badgeBg);
+      color: var(--badgeText);
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .divider{
+      border-bottom: 1px dashed var(--stroke);
+      margin: 14px 0 18px;
+    }
+
+    .intro-box{
+      background: var(--soft);
+      border: 1px solid var(--softBorder);
+      border-radius: 12px;
+      padding: 13px 15px;
+      color: #24445e;
+      margin-bottom: 16px;
+      font-size: 0.96rem;
+    }
+
+    .ibrahim-box{
+      background: var(--ibrahimBg);
+      border: 1px solid var(--ibrahimBorder);
+      border-left: 5px solid var(--ibrahimBorder);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0 18px;
+    }
+
+    .ibrahim-box-title{
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--ibrahimTitle);
+      margin-bottom: 6px;
+    }
+
+    .ibrahim-box p{
+      margin: 0;
+      color: #5f4300;
+      font-size: 0.95rem;
+    }
+
+    .section{
+      margin-top: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      padding: 12px 14px 10px;
+      background: #fff;
+    }
+
+    .section-header{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-icon{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .section-title{
+      font-weight: 800;
+      color: #123047;
+      font-size: 1rem;
+    }
+
+    .section ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .section ul li{
+      margin-bottom: 7px;
+      color: #334155;
+      font-size: 0.96rem;
+    }
+
+    .use-section{ background: var(--useBg); }
+    .use-section .section-icon{ background: rgba(0,166,118,0.14); color: var(--useIcon); }
+
+    .dose-section{ background: var(--doseBg); }
+    .dose-section .section-icon{ background: rgba(0,102,204,0.14); color: var(--doseIcon); }
+
+    .side-section{ background: var(--sideBg); }
+    .side-section .section-icon{ background: rgba(245,158,11,0.15); color: var(--sideIcon); }
+
+    .interact-section{ background: var(--interactBg); }
+    .interact-section .section-icon{ background: rgba(124,58,237,0.14); color: var(--interactIcon); }
+
+    .warn-section{ background: var(--warnBg); }
+    .warn-section .section-icon{ background: rgba(220,38,38,0.12); color: var(--warnIcon); }
+
+    .ramadan-section{ background: var(--ramadanBg); }
+    .ramadan-section .section-icon{ background: rgba(109,40,217,0.12); color: var(--ramadanIcon); }
+
+    .food-section{ background: var(--foodBg); }
+    .food-section .section-icon{ background: rgba(5,150,105,0.12); color: var(--foodIcon); }
+
+    .store-section{ background: var(--storeBg); }
+    .store-section .section-icon{ background: rgba(71,85,105,0.12); color: var(--storeIcon); }
+
+    .sources{
+      margin-top: 28px;
+      background: var(--sourceBg);
+      border: 1px solid var(--stroke);
+      border-left: 4px solid var(--sourceBorderAccent);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .sources h3{
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .sources p{
+      margin: 0 0 8px;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+
+    .sources ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .sources li{
+      margin-bottom: 7px;
+      color: #334155;
+      word-break: break-word;
+      font-size: 0.93rem;
+    }
+
+    .sources a{
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sources a:hover{
+      text-decoration: underline;
+    }
+
+    .footer-note{
+      font-size: 0.86rem;
+      color: var(--text);
+      text-align: center;
+      margin-top: 20px;
+      padding: 18px 8px 0;
+      border-top: 1px solid var(--stroke);
+    }
+
+    @media (max-width: 600px){
+      body{ line-height: 1.5; }
+      main{ padding: 0 14px 24px; }
+      .drug-header-container{ flex-direction: column; align-items: flex-start; }
+      .badge{ align-self: flex-end; }
+      .drug-title-block h1{ font-size: 1.15rem; }
+      header h1{ font-size: 1.45rem; }
+      .section{ padding: 11px 12px 9px; }
+    }
+  </style>
 </head>
-
 <body>
+  <header id="mainHeader">
+    <h1 id="hdrTitle">Lamotrigin – suuxdin iyo laba-cirifood</h1>
+    <p id="hdrSubtitle">Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
+  </header>
 
-<header>
-  <h1 id="hdrTitle">Lamotrigin – suuxdin & laba-cirifood</h1>
-  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
-</header>
-
-<main>
-
-  <div class="langbar" aria-label="Language selector">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-    <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
-      <option value="en">Engelsk</option>
-      <option value="ar">Arabisk</option>
-    </select>
-  </div>
-
-  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
-
-  <div class="card">
-    <div class="drug-meta">
-      <div class="drug-info">
-        <div class="drug-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
-          </svg>
-        </div>
-        <div class="drug-labels">
-          <div class="drug-name" id="drugName">Lamotrigin – suuxdin & laba-cirifood</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
-        </div>
-      </div>
-      <div class="badge" id="badge">Akhris fudud oo kooban</div>
+  <main>
+    <div class="lang-selector">
+      <label id="langLabel" for="langSelect">Dooro luqadda:</label>
+      <select id="langSelect">
+        <option value="so">Somalisk</option>
+        <option value="da">Dansk</option>
+        <option value="en">Engelsk</option>
+        <option value="ar">Arabisk</option>
+      </select>
     </div>
 
-    <div class="section">
+    <a href="index.html" class="back">
+      <span>←</span>
+      <span id="backLabel">Ku laabo liiska daawooyinka</span>
+    </a>
+
+    <div class="drug-header-container">
+      <div class="drug-main-info">
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" id="drugSvg" aria-hidden="true">
+            <defs>
+              <linearGradient id="pillRed" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ff8a7a"></stop>
+                <stop offset="100%" stop-color="#d63b2e"></stop>
+              </linearGradient>
+              <linearGradient id="pillYellow" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f8df7a"></stop>
+                <stop offset="100%" stop-color="#caa61a"></stop>
+              </linearGradient>
+              <linearGradient id="pillShine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.95)"></stop>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
+              </linearGradient>
+            </defs>
+
+            <g transform="rotate(-45 32 32)">
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
+
+              <clipPath id="pillClip">
+                <rect x="14" y="22" width="36" height="20" rx="10"></rect>
+              </clipPath>
+
+              <g clip-path="url(#pillClip)">
+                <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
+                <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
+                <rect x="30.8" y="22" width="2.4" height="20" fill="#ffffff" opacity="0.9"></rect>
+                <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
+                <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
+              </g>
+
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
+            </g>
+          </svg>
+        </div>
+        <div class="drug-title-block">
+          <h1 id="drugName">Lamotrigin – suuxdin iyo laba-cirifood</h1>
+          <p id="drugForm">Kiniin afka ah</p>
+        </div>
+      </div>
+      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="intro-box" id="introBox">
+      Lamotrigin waa daawo saameysa fariimaha korontada ee maskaxda. Waxa lagu isticmaalaa suuxdinta, mararka qaarkoodna laba-cirifoodka, si maskaxdu u noqoto mid deggan oo xasilloon. Daawadani si tartiib ah ayaa loo bilaabaa, sababtoo ah jidhku wuxuu u baahan yahay waqti uu ula qabsado.
+    </div>
+
+    <div class="ibrahim-box">
+      <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
+      <p id="ibrahimText">
+        Waxaan bukaan badan ugu sharxaa sidan: lamotrigin ma aha daawo lagu degdego, ee waa daawo loo dhiso si tartiib ah. Sababtaas waxay tahay in aan rabno in maskaxdu si deggan ula qabsato daawada, isla markaana aan yareyno khatarta finan ama falcelin adag. Sidaas darteed qiyaasta ha kordhin adigoo iskaa u go’aansan, hana joojin si kedis ah.
+      </p>
+    </div>
+
+    <div class="section use-section">
       <div class="section-header">
-        <div class="section-icon use">💊</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
+        <span class="section-icon">💊</span>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
       </div>
       <ul id="useList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section dose-section">
       <div class="section-header">
-        <div class="section-icon dose">⏰</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
+        <span class="section-icon">⏰</span>
+        <div class="section-title" id="doseTitle">Qiyaasta iyo talooyinka Ibraahim</div>
       </div>
       <ul id="doseList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section side-section">
       <div class="section-header">
-        <div class="section-icon side">⚠️</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
+        <span class="section-icon">⚠</span>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
       </div>
       <ul id="sideList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section interact-section">
       <div class="section-header">
-        <div class="section-icon interact">⇆</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
+        <span class="section-icon">⇄</span>
+        <div class="section-title" id="interactTitle">Isdhexgalka daawooyinka</div>
       </div>
       <ul id="interactList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section warn-section">
       <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+        <span class="section-icon">!</span>
+        <div class="section-title" id="warnTitle">Digniino muhiim ah</div>
       </div>
       <ul id="warnList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section ramadan-section">
       <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
+        <span class="section-icon">☾</span>
+        <div class="section-title" id="ramadanTitle">Ramadaan iyo soonka</div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section food-section">
       <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+        <span class="section-icon">🍽</span>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan</div>
       </div>
       <ul id="foodList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section store-section">
       <div class="section-header">
-        <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
+        <span class="section-icon">⧉</span>
+        <div class="section-title" id="storeTitle">Kaydinta daawada</div>
       </div>
       <ul id="storeList"></ul>
     </div>
-  </div>
 
-  <div class="footer-note" id="footerNote"></div>
-</main>
+    <div class="sources">
+      <h3 id="sourcesTitle">Ilaha xogta</h3>
+      <p id="sourcesText">
+        Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
+      </p>
+      <ul id="sourcesList"></ul>
+    </div>
 
-<div class="footer-note" id="credit"></div>
+    <div class="footer-note" id="footerNote">
+      Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
+    </div>
+  </main>
 
-<script>
-const ENABLED_LANGS = new Set(["so","da","en","ar"]);
-const RTL = new Set(["ar"]);
+  <script>
+    const themes = {
+      so: {
+        accent1:"#00a676", accent2:"#0b6b57", badgeBg:"#d9f6e8", badgeText:"#16634a",
+        soft:"#eefaf5", softBorder:"#b7ead3", link:"#0b6b57",
+        drugIconBg:"#e8f8f1", drugIconBorder:"#bde8d4", langBarAccent:"#00a676",
+        sourceBorderAccent:"#00a676"
+      },
+      da: {
+        accent1:"#0ea5e9", accent2:"#60a5fa", badgeBg:"#e0f2fe", badgeText:"#075985",
+        soft:"#eff8ff", softBorder:"#bfdbfe", link:"#0ea5e9",
+        drugIconBg:"#eef7ff", drugIconBorder:"#cfe7ff", langBarAccent:"#0ea5e9",
+        sourceBorderAccent:"#0ea5e9"
+      },
+      en: {
+        accent1:"#7f1d1d", accent2:"#b91c1c", badgeBg:"#fef2f2", badgeText:"#7f1d1d",
+        soft:"#fff5f5", softBorder:"#fecaca", link:"#991b1b",
+        drugIconBg:"#fff1f1", drugIconBorder:"#f7caca", langBarAccent:"#991b1b",
+        sourceBorderAccent:"#991b1b"
+      },
+      ar: {
+        accent1:"#c2410c", accent2:"#fb923c", badgeBg:"#fff7ed", badgeText:"#9a3412",
+        soft:"#fff7ed", softBorder:"#fed7aa", link:"#c2410c",
+        drugIconBg:"#fff2e8", drugIconBorder:"#f8d1b0", langBarAccent:"#c2410c",
+        sourceBorderAccent:"#c2410c"
+      }
+    };
 
-const THEMES = {
-  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
-};
+    const content = {
+      so: {
+        pageTitle: "Lamotrigin – suuxdin iyo laba-cirifood",
+        hdrTitle: "Lamotrigin – suuxdin iyo laba-cirifood",
+        hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+        backLabel: "Ku laabo liiska daawooyinka",
+        langLabel: "Dooro luqadda:",
+        drugName: "Lamotrigin – suuxdin iyo laba-cirifood",
+        drugForm: "Kiniin afka ah",
+        badgeText: "Akhris fudud oo kooban",
+        introBox: "Lamotrigin waa daawo saameysa fariimaha korontada ee maskaxda. Waxa lagu isticmaalaa suuxdinta, mararka qaarkoodna laba-cirifoodka, si maskaxdu u noqoto mid deggan oo xasilloon. Daawadani si tartiib ah ayaa loo bilaabaa, sababtoo ah jidhku wuxuu u baahan yahay waqti uu ula qabsado.",
+        ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
+        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: lamotrigin ma aha daawo lagu degdego, ee waa daawo loo dhiso si tartiib ah. Sababtaas waxay tahay in aan rabno in maskaxdu si deggan ula qabsato daawada, isla markaana aan yareyno khatarta finan ama falcelin adag. Sidaas darteed qiyaasta ha kordhin adigoo iskaa u go’aansan, hana joojin si kedis ah.",
+        useTitle: "Isticmaalka",
+        useList: [
+          "Lamotrigin waa daawo ka hortagta suuxdinta.",
+          "Waxay saameysaa fariimaha maskaxda si ay u yareyso ama u xakameyso suuxdinta.",
+          "Mararka qaar waxaa loo isticmaalaa laba-cirifoodka si looga hortago xilliyada murugada."
+        ],
+        doseTitle: "Qiyaasta iyo talooyinka Ibraahim",
+        doseList: [
+          "Badanaa waxaa lagu bilaabaa qiyaas yar, kadibna si tartiib ah ayaa loo kordhiyaa toddobaadyo gudahood.",
+          "Qiyaastu way kala duwanaan kartaa iyadoo ku xiran daawooyin kale oo aad qaadato.",
+          "Ha joojin si kedis ah, sababtoo ah khatarta suuxdintu way kordhi kartaa.",
+          "Haddii aad hilmaanto dhowr maalmood oo isku xigta, la xiriir dhakhtar ama farmashiye ka hor inta aadan dib u bilaabin."
+        ],
+        sideTitle: "Waxyeellooyinka",
+        sideList: [
+          "Madax-xanuun, wareer, daal ama hurdo.",
+          "Lalabo, calool-xanuun ama matag.",
+          "Arag labanlaab ama arag daciif ah.",
+          "Finan ama raash ayaa dhici kara, gaar ahaan bilowga."
+        ],
+        interactTitle: "Isdhexgalka daawooyinka",
+        interactList: [
+          "Daawooyin qaar sida valproat waxay kordhin karaan saameynta lamotrigin.",
+          "Daawooyin kale sida carbamazepin, phenytoin ama phenobarbital waxay yareyn karaan saameynta lamotrigin.",
+          "Ka hortagga uurka ee hormoonka ku salaysan iyo lamotrigin waxay saameyn karaan midba midka kale, sidaas darteed la tasho dhakhtar ama farmashiye."
+        ],
+        warnTitle: "Digniino muhiim ah",
+        warnList: [
+          "Haddii aad yeelato finan, finan-biyo, nabro afka ama indhaha ah, qandho ama jirro daran, la xiriir dhakhtar isla markiiba.",
+          "Haddii aad hore uga joojisay lamotrigin finan awgeed, dib ha u bilaabin adigoon la tashan dhakhtar.",
+          "Bilowga daawada waxaad dareemi kartaa wareer ama arag daciif ah, markaa taxaddar markaad gaari waddo."
+        ],
+        ramadanTitle: "Ramadaan iyo soonka",
+        ramadanList: [
+          "La hadal dhakhtarka ka hor Ramadaan.",
+          "Haddii aad qaadato laba jeer maalintii, badanaa waxaa lagu beegaa afurka iyo suxuurta sida qorshaha dhakhtarka.",
+          "Ha beddelin jadwalka daawada adigoon helin talo caafimaad."
+        ],
+        foodTitle: "Cunto iyo cabitaan",
+        foodList: [
+          "Waxaa la qaadan karaa cunto la’aan ama cunto la jirta.",
+          "Liq kiniinka adigoo cabbaya hal koob biyo ah.",
+          "Haddii lalabo jirto, qaado cunto la jirta."
+        ],
+        storeTitle: "Kaydinta daawada",
+        storeList: [
+          "Ka fogee carruurta, kuna hay meel ka hooseysa 25°C.",
+          "Ku hay baakadka asalka ah.",
+          "Ha isticmaalin haddii ay dhaafto taariikhda dhicitaanka.",
+          "Wixii soo haray ku celi farmashiyaha."
+        ],
+        sourcesTitle: "Ilaha xogta",
+        sourcesText: "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Lamotrigin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2035" },
+          { text: "sundhed.dk – Epilepsi, behandling", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerne-og-nerver/sygdomme/epilepsi/epilepsi-behandling/" },
+          { text: "sundhed.dk – Mani og bipolar lidelse", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/" }
+        ],
+        footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+      },
 
-function applyTheme(lang){
-  const th = THEMES[lang] || THEMES.so;
-  const r = document.documentElement.style;
-  r.setProperty("--accent1", th.a1);
-  r.setProperty("--accent2", th.a2);
-  r.setProperty("--link", th.link || "#00509e");
-  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
-  r.setProperty("--pillText", th.pillText || "#16634a");
-}
+      da: {
+        pageTitle: "Lamotrigin – epilepsi og bipolar lidelse",
+        hdrTitle: "Lamotrigin – epilepsi og bipolar lidelse",
+        hdrSubtitle: "En let og personlig forklaring på medicinen, så patienter og familier bedre kan forstå behandlingen.",
+        backLabel: "Tilbage til medicinlisten",
+        langLabel: "Vælg sprog:",
+        drugName: "Lamotrigin – epilepsi og bipolar lidelse",
+        drugForm: "Tabletter",
+        badgeText: "Kort og letlæselig",
+        introBox: "Lamotrigin er en medicin, der påvirker de elektriske signaler i hjernen. Den bruges ved epilepsi og i nogle tilfælde ved bipolar lidelse for at skabe mere ro og stabilitet. Medicinen startes langsomt op, fordi kroppen skal have tid til at vænne sig til den.",
+        ibrahimTitle: "Ibrahims forklaring fra apoteket",
+        ibrahimText: "Jeg plejer at forklare det sådan: lamotrigin er ikke en medicin, man bare sætter hurtigt op. Den skal bygges roligt op, så hjernen får tid til at vænne sig til behandlingen, og så man mindsker risikoen for udslæt eller kraftige reaktioner. Derfor må man ikke selv ændre dosis eller stoppe pludseligt.",
+        useTitle: "Anvendelse",
+        useList: [
+          "Lamotrigin bruges mod epilepsi.",
+          "Medicinen påvirker signalerne i hjernen og kan mindske eller forebygge anfald.",
+          "Den bruges også hos nogle med bipolar lidelse, især for at forebygge depressive perioder."
+        ],
+        doseTitle: "Dosering og Ibrahims råd",
+        doseList: [
+          "Man starter ofte med en lav dosis og trapper langsomt op over flere uger.",
+          "Dosis kan afhænge af anden medicin, du tager samtidig.",
+          "Stop ikke pludseligt, da risikoen for anfald kan øges.",
+          "Hvis du har glemt medicinen flere dage i træk, skal du kontakte læge eller apotek, før du starter igen."
+        ],
+        sideTitle: "Bivirkninger",
+        sideList: [
+          "Hovedpine, svimmelhed, træthed eller døsighed.",
+          "Kvalme, mavegener eller opkast.",
+          "Sløret syn eller dobbeltsyn.",
+          "Udslæt kan forekomme, især i starten."
+        ],
+        interactTitle: "Interaktioner",
+        interactList: [
+          "Nogle lægemidler som valproat kan øge virkningen af lamotrigin.",
+          "Andre lægemidler som carbamazepin, phenytoin eller phenobarbital kan nedsætte virkningen af lamotrigin.",
+          "Hormonel prævention og lamotrigin kan påvirke hinanden, så tal med læge eller apotek."
+        ],
+        warnTitle: "Vigtige advarsler",
+        warnList: [
+          "Hvis du får udslæt, blærer, sår i mund eller øjne, feber eller kraftig sygdomsfølelse, skal du kontakte læge straks.",
+          "Hvis du tidligere har stoppet lamotrigin på grund af udslæt, må du ikke starte igen uden lægens vurdering.",
+          "I starten af behandlingen kan svimmelhed eller sløret syn forekomme, så vær forsigtig ved bilkørsel."
+        ],
+        ramadanTitle: "Ramadan og faste",
+        ramadanList: [
+          "Tal med lægen før Ramadan.",
+          "Hvis du tager medicinen to gange dagligt, kan det ofte passe med iftar og suhoor efter lægens plan.",
+          "Ændr ikke doseringen uden lægens råd."
+        ],
+        foodTitle: "Mad og drikke",
+        foodList: [
+          "Kan tages med eller uden mad.",
+          "Synk tabletten med et glas vand.",
+          "Ved kvalme kan den tages sammen med mad."
+        ],
+        storeTitle: "Opbevaring",
+        storeList: [
+          "Opbevares utilgængeligt for børn og under 25°C.",
+          "Opbevar i original emballage.",
+          "Brug ikke efter udløbsdato.",
+          "Aflever rester på apoteket."
+        ],
+        sourcesTitle: "Kilder",
+        sourcesText: "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Lamotrigin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2035" },
+          { text: "sundhed.dk – Epilepsi, behandling", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerne-og-nerver/sygdomme/epilepsi/epilepsi-behandling/" },
+          { text: "sundhed.dk – Mani og bipolar lidelse", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/" }
+        ],
+        footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+      },
 
-const T = {
-  so: {
-    title: "Lamotrigin – suuxdin & laba-cirifood",
-    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    back: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    badge: "Akhris fudud oo kooban",
-    drugName: "Lamotrigin – suuxdin & laba-cirifood",
-    drugForm: "Kiniin afka ah",
-    sections: {
-      use: { title:"Isticmaalka", small:"", items:[
-        "Lamotrigin waa daawo ka tirsan <span class='highlight'>daawooyinka ka hortaga suuxdinta</span> (antiepileptika).",
-        "Waxay saameysaa farriimaha maskaxda si ay u yareyso suuxdinta.",
-        "Mararka qaar waxaa loo isticmaalaa <span class='highlight'>laba-cirifood</span> si looga hortago xilliyada murugada."
-      ]},
-      dose: { title:"Qiyaasta", small:"", items:[
-        "Badanaa waxaa lagu bilaabaa <span class='highlight'>qiyaas yar</span>, kadibna si tartiib ah ayaa loo kordhiyaa toddobaadyo gudahood si loo yareeyo halista finan.",
-        "Qiyaastu way kala duwanaan kartaa iyadoo ku xiran daawooyin kale, tusaale <span class='highlight'>valproat</span>. Raac qorshaha dhakhtarka.",
-        "Ha joojin si kedis ah, sababtoo ah khatarta suuxdintu way kordhi kartaa.",
-        "Haddii aad hilmaanto dhowr maalmood oo isku xigta, <span class='highlight'>la xiriir dhakhtarka ama farmashiyaha</span>, maxaa yeelay mararka qaar dib ayaa loo bilaabaa si tartiib ah."
-      ]},
-      side: { title:"Waxyeellooyinka", small:"", items:[
-        "Madax-xanuun, wareer, daal ama hurdo.",
-        "Lalabo, calool-xanuun ama matag.",
-        "Arag labanlaab ama arag daciif ah.",
-        "Finan ama raash – eeg qaybta digniinaha."
-      ]},
-      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
-        "Valproat sida Orfiril waxay <span class='highlight'>kordhin</span> kartaa lamotrigin, sidaas darteed qiyaasta waa la beddelaa.",
-        "Carbamazepin, phenytoin, phenobarbital iyo kuwo kale waxay <span class='highlight'>yareyn</span> karaan lamotrigin, markaa qiyaasta waa la hagaajin karaa.",
-        "Ka hortagga uurka ee hormoonka ku salaysan iyo lamotrigin waxay saameyn karaan midba midka kale, sidaas darteed la tasho dhakhtar ama farmashiye."
-      ]},
-      warn: { title:"Digniino", small:"", items:[
-        "Finan, finan-biyo, nabro afka ama indhaha ah, qandho, barar ama jirro daran → <span class='highlight'>la xiriir dhakhtarka isla markiiba</span>.",
-        "Haddii aad hore uga joojisay lamotrigin finan awgeed, ha dib u bilaabin adigoon dhakhtarka oggolaan.",
-        "Bilowga daawada waxaad dareemi kartaa wareer ama arag daciif ah, markaa taxaddar gaar ahaan markaad gaari waddo."
-      ]},
-      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
-        "La hadal dhakhtarka ka hor Ramadaan.",
-        "Haddii aad qaadato laba jeer maalintii, badanaa waxaa lagu beegaa <span class='highlight'>afurka</span> iyo <span class='highlight'>suxuurta</span> sida qorshaha dhakhtarka."
-      ]},
-      food: { title:"Cunto iyo cabitaan", small:"", items:[
-        "Waxaa la qaadan karaa <span class='highlight'>cunto la’aan ama cunto la jirta</span>.",
-        "Liq kiniinka adigoo cabbaya <span class='highlight'>hal koob biyo ah</span>.",
-        "Haddii lalabo jirto, qaado cunto la jirta."
-      ]},
-      store: { title:"Kaydinta daawada", small:"", items:[
-        "Ka fogee carruurta, kuna hay meel ka hooseysa <span class='highlight'>25°C</span>.",
-        "Ku hay baakadka asalka ah.",
-        "Ha isticmaalin haddii ay dhaafto taariikhda dhicitaanka. Wixii soo haray ku celi farmashiyaha."
-      ]}
-    },
-    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
-    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
-  },
+      en: {
+        pageTitle: "Lamotrigine – epilepsy and bipolar disorder",
+        hdrTitle: "Lamotrigine – epilepsy and bipolar disorder",
+        hdrSubtitle: "A simple and personal explanation of the medicine for patients and families.",
+        backLabel: "Back to medication list",
+        langLabel: "Select language:",
+        drugName: "Lamotrigine – epilepsy and bipolar disorder",
+        drugForm: "Tablets",
+        badgeText: "Short and easy to read",
+        introBox: "Lamotrigine is a medicine that affects electrical signaling in the brain. It is used for epilepsy and sometimes for bipolar disorder to create more stability and calm. This medicine is started slowly because the body needs time to get used to it.",
+        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimText: "I often explain it like this: lamotrigine is not a medicine that should be increased too fast. It has to be built up slowly so the brain can adjust calmly and so the risk of rash or stronger reactions becomes lower. That is why you should not change the dose on your own or stop suddenly.",
+        useTitle: "Use",
+        useList: [
+          "Lamotrigine is used for epilepsy.",
+          "It affects brain signaling and can reduce or prevent seizures.",
+          "It is also used in some people with bipolar disorder, especially to help prevent depressive episodes."
+        ],
+        doseTitle: "Dosage and Ibrahim’s advice",
+        doseList: [
+          "It is often started at a low dose and increased slowly over several weeks.",
+          "The dose may depend on other medicines you take at the same time.",
+          "Do not stop suddenly, because seizure risk may increase.",
+          "If you have missed the medicine for several days in a row, contact your doctor or pharmacy before restarting."
+        ],
+        sideTitle: "Side effects",
+        sideList: [
+          "Headache, dizziness, tiredness, or drowsiness.",
+          "Nausea, stomach upset, or vomiting.",
+          "Blurred vision or double vision.",
+          "Rash may occur, especially at the beginning."
+        ],
+        interactTitle: "Drug interactions",
+        interactList: [
+          "Some medicines such as valproate can increase the effect of lamotrigine.",
+          "Other medicines such as carbamazepine, phenytoin, or phenobarbital can reduce the effect of lamotrigine.",
+          "Hormonal contraception and lamotrigine can affect each other, so ask your doctor or pharmacist."
+        ],
+        warnTitle: "Important warnings",
+        warnList: [
+          "If you get a rash, blisters, sores in the mouth or eyes, fever, or a strong feeling of illness, seek medical advice immediately.",
+          "If you previously stopped lamotrigine because of a rash, do not restart it without medical advice.",
+          "Dizziness or blurred vision may happen early in treatment, so be careful with driving."
+        ],
+        ramadanTitle: "Ramadan and fasting",
+        ramadanList: [
+          "Talk with your doctor before Ramadan.",
+          "If you take the medicine twice daily, it can often be timed with iftar and suhoor as part of the treatment plan.",
+          "Do not change the dosing plan on your own."
+        ],
+        foodTitle: "Food and drink",
+        foodList: [
+          "It can be taken with or without food.",
+          "Swallow the tablet with a glass of water.",
+          "If nausea happens, take it with food."
+        ],
+        storeTitle: "Storage",
+        storeList: [
+          "Keep out of reach of children and store below 25°C.",
+          "Keep in the original packaging.",
+          "Do not use after the expiry date.",
+          "Return leftover medicine to the pharmacy."
+        ],
+        sourcesTitle: "Sources",
+        sourcesText: "This text is written in a personal and simple style, but the medical information is based on official sources.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Lamotrigine", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2035" },
+          { text: "sundhed.dk – Epilepsy, treatment", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerne-og-nerver/sygdomme/epilepsi/epilepsi-behandling/" },
+          { text: "sundhed.dk – Bipolar disorder", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/" }
+        ],
+        footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+      },
 
-  da: {
-    title: "Lamotrigin – epilepsi & bipolar lidelse",
-    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
-    back: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    badge: "Kort og let at læse",
-    drugName: "Lamotrigin – epilepsi & bipolar lidelse",
-    drugForm: "Tablet til oral brug",
-    sections: {
-      use: { title:"Anvendelse", small:"", items:[
-        "Lamotrigin er et lægemiddel i gruppen <span class='highlight'>antiepileptika</span>.",
-        "Det påvirker signaler i hjernen og kan reducere anfald.",
-        "Det bruges også hos nogle ved <span class='highlight'>bipolar lidelse</span>, ofte for at forebygge depressive episoder."
-      ]},
-      dose: { title:"Dosering", small:"", items:[
-        "Man starter ofte med en <span class='highlight'>lav dosis</span> og trapper langsomt op over uger for at mindske risikoen for udslæt.",
-        "Dosis afhænger af anden medicin, for eksempel <span class='highlight'>valproat</span>. Følg lægens plan nøje.",
-        "Stop ikke pludseligt, da risikoen for anfald kan øges.",
-        "Hvis du har glemt medicinen flere dage i træk, skal du <span class='highlight'>kontakte læge eller apotek</span>, fordi du måske skal starte langsomt igen."
-      ]},
-      side: { title:"Bivirkninger", small:"", items:[
-        "Hovedpine, svimmelhed, træthed eller døsighed.",
-        "Kvalme, mavegener eller opkast.",
-        "Sløret syn eller dobbeltsyn.",
-        "Udslæt – se afsnittet om advarsler."
-      ]},
-      interact: { title:"Interaktioner", small:"", items:[
-        "Valproat som Orfiril kan <span class='highlight'>øge</span> lamotrigin, så dosis skal justeres.",
-        "Carbamazepin, phenytoin, phenobarbital med flere kan <span class='highlight'>nedsætte</span> lamotrigin, så dosis kan ændres.",
-        "Hormonel prævention og lamotrigin kan påvirke hinanden, så spørg læge eller apotek."
-      ]},
-      warn: { title:"Advarsler", small:"", items:[
-        "Udslæt, blærer, sår i mund eller øjne, feber, hævelse eller kraftig sygdomsfølelse → <span class='highlight'>kontakt læge straks</span>.",
-        "Genstart ikke lamotrigin efter udslæt uden lægens tydelige vurdering.",
-        "I starten af behandlingen kan svimmelhed eller sløret syn forekomme, så vær forsigtig ved bilkørsel."
-      ]},
-      ramadan: { title:"Ramadan og faste", small:"", items:[
-        "Tal med lægen før Ramadan.",
-        "Hvis du tager medicinen to gange dagligt, kan det ofte passe med <span class='highlight'>iftar</span> og <span class='highlight'>suhoor</span> efter lægens plan."
-      ]},
-      food: { title:"Mad og drikke", small:"", items:[
-        "Kan tages <span class='highlight'>med eller uden mad</span>.",
-        "Synkes med <span class='highlight'>et glas vand</span>.",
-        "Ved kvalme kan den tages sammen med mad."
-      ]},
-      store: { title:"Opbevaring", small:"", items:[
-        "Opbevares utilgængeligt for børn og under <span class='highlight'>25°C</span>.",
-        "Opbevar i original emballage.",
-        "Brug ikke efter udløbsdato. Aflevér din medicin til destruktion på apoteket."
-      ]}
-    },
-    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
-    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
+      ar: {
+        pageTitle: "لاموتريجين – الصرع والاضطراب ثنائي القطب",
+        hdrTitle: "لاموتريجين – الصرع والاضطراب ثنائي القطب",
+        hdrSubtitle: "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+        backLabel: "العودة إلى قائمة الأدوية",
+        langLabel: "اختر اللغة:",
+        drugName: "لاموتريجين – الصرع والاضطراب ثنائي القطب",
+        drugForm: "أقراص",
+        badgeText: "سهل ومختصر",
+        introBox: "لاموتريجين دواء يؤثر في الإشارات الكهربائية في الدماغ. يُستخدم لعلاج الصرع وأحياناً في الاضطراب ثنائي القطب للمساعدة على الاستقرار والهدوء. ويبدأ هذا الدواء بشكل تدريجي لأن الجسم يحتاج إلى وقت ليتأقلم معه.",
+        ibrahimTitle: "نصيحة إبراهيم من الصيدلية",
+        ibrahimText: "أنا أشرحها لكثير من المرضى بهذه الصورة: لاموتريجين ليس دواءً نرفع جرعته بسرعة. بل يجب بناؤه تدريجياً حتى يعتاد الدماغ عليه بهدوء، وحتى نقلل خطر الطفح الجلدي أو التفاعلات القوية. لذلك لا تغيّر الجرعة بنفسك ولا توقفه فجأة.",
+        useTitle: "الاستخدام",
+        useList: [
+          "يُستخدم لاموتريجين لعلاج الصرع.",
+          "يؤثر في إشارات الدماغ وقد يساعد على تقليل النوبات أو الوقاية منها.",
+          "ويُستخدم أيضاً عند بعض المرضى المصابين بالاضطراب ثنائي القطب، خاصة للمساعدة على الوقاية من نوبات الاكتئاب."
+        ],
+        doseTitle: "الجرعة ونصائح إبراهيم",
+        doseList: [
+          "غالباً يبدأ العلاج بجرعة منخفضة ثم تُزاد تدريجياً خلال عدة أسابيع.",
+          "قد تعتمد الجرعة على أدوية أخرى تتناولها في الوقت نفسه.",
+          "لا توقف الدواء فجأة لأن خطر النوبات قد يزداد.",
+          "إذا نسيت الدواء عدة أيام متتالية، فاتصل بالطبيب أو الصيدلية قبل إعادة البدء."
+        ],
+        sideTitle: "الآثار الجانبية",
+        sideList: [
+          "صداع، دوخة، تعب أو نعاس.",
+          "غثيان، اضطراب المعدة أو قيء.",
+          "تشوش الرؤية أو ازدواج الرؤية.",
+          "قد يحدث طفح جلدي، خاصة في البداية."
+        ],
+        interactTitle: "التداخلات الدوائية",
+        interactList: [
+          "بعض الأدوية مثل فالبروات قد تزيد تأثير لاموتريجين.",
+          "أدوية أخرى مثل كاربامازيبين أو فينيتوين أو فينوباربيتال قد تقلل تأثير لاموتريجين.",
+          "موانع الحمل الهرمونية ولاموتريجين قد يؤثر كل منهما على الآخر، لذلك استشر الطبيب أو الصيدلي."
+        ],
+        warnTitle: "تحذيرات مهمة",
+        warnList: [
+          "إذا ظهر طفح جلدي أو فقاعات أو تقرحات في الفم أو العينين أو حمى أو شعور شديد بالمرض، فاطلب المشورة الطبية فوراً.",
+          "إذا سبق أن أوقفت لاموتريجين بسبب طفح جلدي، فلا تعد إليه إلا بعد استشارة طبية.",
+          "قد تحدث دوخة أو تشوش في الرؤية في بداية العلاج، لذلك كن حذراً عند القيادة."
+        ],
+        ramadanTitle: "رمضان والصيام",
+        ramadanList: [
+          "تحدث مع طبيبك قبل رمضان.",
+          "إذا كنت تتناول الدواء مرتين يومياً، فيمكن غالباً تنسيقه مع الإفطار والسحور ضمن الخطة العلاجية.",
+          "لا تغيّر مواعيد الجرعات بنفسك."
+        ],
+        foodTitle: "الطعام والشراب",
+        foodList: [
+          "يمكن تناوله مع الطعام أو بدونه.",
+          "ابتلع القرص مع كوب من الماء.",
+          "إذا حدث غثيان، يمكن تناوله مع الطعام."
+        ],
+        storeTitle: "تخزين الدواء",
+        storeList: [
+          "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
+          "يُحفظ في العبوة الأصلية.",
+          "لا يُستخدم بعد تاريخ الانتهاء.",
+          "أعد الأدوية المتبقية إلى الصيدلية."
+        ],
+        sourcesTitle: "المصادر",
+        sourcesText: "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Lamotrigin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2035" },
+          { text: "sundhed.dk – علاج الصرع", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerne-og-nerver/sygdomme/epilepsi/epilepsi-behandling/" },
+          { text: "sundhed.dk – الاضطراب ثنائي القطب", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/" }
+        ],
+        footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+      }
+    };
 
-  en: {
-    title: "Lamotrigine – epilepsy & bipolar disorder",
-    subtitle: "Brief information about the medicine for patients and relatives.",
-    back: "Back to the medicine list",
-    langLabel: "Choose language:",
-    badge: "Short and easy to read",
-    drugName: "Lamotrigine – epilepsy & bipolar disorder",
-    drugForm: "Oral tablet",
-    sections: {
-      use: { title:"Use", small:"", items:[
-        "Lamotrigine is an <span class='highlight'>anti-seizure medicine</span>.",
-        "It affects brain signaling and can reduce seizures.",
-        "It is also used in some people with <span class='highlight'>bipolar disorder</span>, often to prevent depressive episodes."
-      ]},
-      dose: { title:"Dosage", small:"", items:[
-        "It is usually started at a <span class='highlight'>low dose</span> and increased slowly over weeks to reduce the risk of rash.",
-        "The dose depends on other medicines, for example <span class='highlight'>valproate</span>. Follow your doctor's plan carefully.",
-        "Do not stop suddenly, because seizure risk may increase.",
-        "If you have missed the medicine for several days in a row, <span class='highlight'>contact your doctor or pharmacy</span>, because you may need to restart slowly."
-      ]},
-      side: { title:"Side effects", small:"", items:[
-        "Headache, dizziness, tiredness, or drowsiness.",
-        "Nausea, stomach upset, or vomiting.",
-        "Blurred vision or double vision.",
-        "Rash – see the warnings section."
-      ]},
-      interact: { title:"Interactions", small:"", items:[
-        "Valproate such as Orfiril can <span class='highlight'>increase</span> lamotrigine, so the dose must be adjusted.",
-        "Carbamazepine, phenytoin, phenobarbital and others can <span class='highlight'>reduce</span> lamotrigine, so the dose may need adjustment.",
-        "Hormonal contraception and lamotrigine can affect each other, so ask your doctor or pharmacy."
-      ]},
-      warn: { title:"Warnings", small:"", items:[
-        "Rash, blisters, sores in the mouth or eyes, fever, swelling, or severe illness → <span class='highlight'>seek medical help immediately</span>.",
-        "Do not restart lamotrigine after a rash unless your doctor clearly advises it.",
-        "Dizziness or blurred vision may occur early in treatment, so be careful with driving."
-      ]},
-      ramadan: { title:"Ramadan and fasting", small:"", items:[
-        "Talk with your doctor before Ramadan.",
-        "If you take it twice daily, it can often be timed with <span class='highlight'>iftar</span> and <span class='highlight'>suhoor</span> as part of the treatment plan."
-      ]},
-      food: { title:"Food and drink", small:"", items:[
-        "It can be taken <span class='highlight'>with or without food</span>.",
-        "Swallow it with <span class='highlight'>a glass of water</span>.",
-        "If nausea occurs, take it with food."
-      ]},
-      store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children and store below <span class='highlight'>25°C</span>.",
-        "Keep in the original packaging.",
-        "Do not use after expiry date. Return leftovers to the pharmacy."
-      ]}
-    },
-    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
-    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
+    const ENABLED_LANGS = new Set(["so", "da", "en", "ar"]);
 
-  ar: {
-    title: "لاموتريجين – الصرع وثنائي القطب",
-    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
-    back: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    badge: "معلومات مختصرة وسهلة",
-    drugName: "لاموتريجين – الصرع وثنائي القطب",
-    drugForm: "أقراص فموية",
-    sections: {
-      use: { title:"الاستعمال", small:"", items:[
-        "لاموتريجين من <span class='highlight'>الأدوية المضادة للاختلاج</span>.",
-        "يؤثر على إشارات الدماغ وقد يقلل النوبات.",
-        "يُستخدم أيضاً عند بعض المرضى المصابين <span class='highlight'>بالاضطراب ثنائي القطب</span>، وغالباً للوقاية من نوبات الاكتئاب."
-      ]},
-      dose: { title:"الجرعة", small:"", items:[
-        "عادة يبدأ بجرعة <span class='highlight'>منخفضة</span> ثم تُزاد تدريجياً خلال أسابيع لتقليل خطر الطفح الجلدي.",
-        "تعتمد الجرعة على أدوية أخرى مثل <span class='highlight'>فالبروات</span>. اتبع خطة الطبيب بدقة.",
-        "لا توقف الدواء فجأة لأن خطر النوبات قد يزداد.",
-        "إذا نسيت الدواء عدة أيام متتالية، <span class='highlight'>تواصل مع الطبيب أو الصيدلية</span> لأنك قد تحتاج للبدء من جديد بشكل تدريجي."
-      ]},
-      side: { title:"الآثار الجانبية", small:"", items:[
-        "صداع، دوخة، تعب أو نعاس.",
-        "غثيان، اضطراب المعدة أو قيء.",
-        "تشوش الرؤية أو ازدواج الرؤية.",
-        "طفح جلدي – انظر قسم التحذيرات."
-      ]},
-      interact: { title:"التداخلات الدوائية", small:"", items:[
-        "فالبروات مثل Orfiril قد <span class='highlight'>يزيد</span> من لاموتريجين، لذلك قد تحتاج الجرعة إلى تعديل.",
-        "كاربامازيبين، فينيتوين، فينوباربيتال وغيرها قد <span class='highlight'>تقلل</span> من لاموتريجين، لذلك قد تُعدّل الجرعة.",
-        "موانع الحمل الهرمونية ولاموتريجين قد يؤثر كل منهما على الآخر، لذلك استشر الطبيب أو الصيدلية."
-      ]},
-      warn: { title:"تحذيرات", small:"", items:[
-        "طفح جلدي، فقاعات، تقرحات في الفم أو العينين، حمى، تورم أو شعور شديد بالمرض → <span class='highlight'>اطلب المساعدة الطبية فوراً</span>.",
-        "لا تعاود استخدام لاموتريجين بعد طفح جلدي إلا إذا أوصى الطبيب بذلك بوضوح.",
-        "قد تحدث دوخة أو تشوش في الرؤية في بداية العلاج، لذلك كن حذراً عند القيادة."
-      ]},
-      ramadan: { title:"رمضان والصيام", small:"", items:[
-        "تحدث مع طبيبك قبل رمضان.",
-        "إذا كنت تتناول الدواء مرتين يومياً، فيمكن غالباً تنسيقه مع <span class='highlight'>الإفطار</span> و<span class='highlight'>السحور</span> حسب الخطة العلاجية."
-      ]},
-      food: { title:"الطعام والشراب", small:"", items:[
-        "يمكن تناوله <span class='highlight'>مع الطعام أو بدونه</span>.",
-        "ابتلع القرص مع <span class='highlight'>كوب ماء</span>.",
-        "إذا حدث غثيان، يمكن تناوله مع الطعام."
-      ]},
-      store: { title:"الحفظ", small:"", items:[
-  "يُحفظ بعيداً عن متناول الأطفال وتحت <span class='highlight'>25°م</span>.",
-  "يُحفظ في العبوة الأصلية.",
-  "لا يُستخدم بعد تاريخ الانتهاء."
-      ]}
-    },
-    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
-    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
-  }
-};
+    function updateList(id, list) {
+      const el = document.getElementById(id);
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        el.appendChild(li);
+      });
+    }
 
-function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
+    function updateSources(list) {
+      const el = document.getElementById("sourcesList");
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerText = item.text;
+        li.appendChild(a);
+        el.appendChild(li);
+      });
+    }
 
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
+    function applyTheme(lang){
+      const t = themes[lang] || themes.so;
+      const r = document.documentElement.style;
+      r.setProperty("--accent1", t.accent1);
+      r.setProperty("--accent2", t.accent2);
+      r.setProperty("--badgeBg", t.badgeBg);
+      r.setProperty("--badgeText", t.badgeText);
+      r.setProperty("--soft", t.soft);
+      r.setProperty("--softBorder", t.softBorder);
+      r.setProperty("--link", t.link);
+      r.setProperty("--drugIconBg", t.drugIconBg);
+      r.setProperty("--drugIconBorder", t.drugIconBorder);
+      r.setProperty("--langBarAccent", t.langBarAccent);
+      r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
+    }
 
-function fillList(listId, items){
-  const ul = document.getElementById(listId);
-  ul.innerHTML = "";
-  (items || []).forEach(html => {
-    const li = document.createElement("li");
-    li.innerHTML = html;
-    ul.appendChild(li);
-  });
-}
+    function updateLanguage(pushToUrl = true) {
+      let lang = document.getElementById("langSelect").value;
+      if (!ENABLED_LANGS.has(lang)) lang = "so";
 
-function setSmall(id, txt){
-  const el = document.getElementById(id);
-  if (!el) return;
-  const t = (txt || "").trim();
-  el.textContent = t;
-  el.style.display = t ? "inline" : "none";
-}
+      const data = content[lang] || content.so;
+      applyTheme(lang);
 
-function render(lang){
-  if (!ENABLED_LANGS.has(lang)) lang = "so";
-  const d = T[lang] || T.so;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = data.pageTitle || data.hdrTitle;
 
-  setDirLang(lang);
-  applyTheme(lang);
+      document.getElementById("hdrTitle").innerText = data.hdrTitle;
+      document.getElementById("hdrSubtitle").innerText = data.hdrSubtitle;
+      document.getElementById("backLabel").innerText = data.backLabel;
+      document.getElementById("langLabel").innerText = data.langLabel;
+      document.getElementById("drugName").innerText = data.drugName;
+      document.getElementById("drugForm").innerText = data.drugForm;
+      document.getElementById("badgeText").innerText = data.badgeText;
+      document.getElementById("introBox").innerText = data.introBox;
+      document.getElementById("ibrahimTitle").innerText = data.ibrahimTitle;
+      document.getElementById("ibrahimText").innerText = data.ibrahimText;
+      document.getElementById("useTitle").innerText = data.useTitle;
+      document.getElementById("doseTitle").innerText = data.doseTitle;
+      document.getElementById("sideTitle").innerText = data.sideTitle;
+      document.getElementById("interactTitle").innerText = data.interactTitle;
+      document.getElementById("warnTitle").innerText = data.warnTitle;
+      document.getElementById("ramadanTitle").innerText = data.ramadanTitle;
+      document.getElementById("foodTitle").innerText = data.foodTitle;
+      document.getElementById("storeTitle").innerText = data.storeTitle;
+      document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
+      document.getElementById("sourcesText").innerText = data.sourcesText;
+      document.getElementById("footerNote").innerText = data.footerNote;
 
-  document.title = stripTags(d.title);
-  document.getElementById("hdrTitle").textContent = stripTags(d.title);
-  document.getElementById("hdrSubtitle").textContent = d.subtitle;
-  document.getElementById("backLabel").textContent = d.back;
-  document.getElementById("badge").textContent = d.badge;
-  document.getElementById("drugName").textContent = stripTags(d.drugName);
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("langLabel").textContent = d.langLabel;
+      updateList("useList", data.useList);
+      updateList("doseList", data.doseList);
+      updateList("sideList", data.sideList);
+      updateList("interactList", data.interactList);
+      updateList("warnList", data.warnList);
+      updateList("ramadanList", data.ramadanList);
+      updateList("foodList", data.foodList);
+      updateList("storeList", data.storeList);
+      updateSources(data.sourcesList);
 
-  document.getElementById("useTitle").textContent = d.sections.use.title;
-  setSmall("useSmall", d.sections.use.small);
-  document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  setSmall("doseSmall", d.sections.dose.small);
-  document.getElementById("sideTitle").textContent = d.sections.side.title;
-  setSmall("sideSmall", d.sections.side.small);
-  document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  setSmall("interactSmall", d.sections.interact.small);
-  document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  setSmall("warnSmall", d.sections.warn.small);
-  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  setSmall("ramadanSmall", d.sections.ramadan.small);
-  document.getElementById("foodTitle").textContent = d.sections.food.title;
-  setSmall("foodSmall", d.sections.food.small);
-  document.getElementById("storeTitle").textContent = d.sections.store.title;
-  setSmall("storeSmall", d.sections.store.small);
+      if (pushToUrl) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", lang);
+        window.history.replaceState({}, "", url.toString());
+      }
+    }
 
-  fillList("useList", d.sections.use.items);
-  fillList("doseList", d.sections.dose.items);
-  fillList("sideList", d.sections.side.items);
-  fillList("interactList", d.sections.interact.items);
-  fillList("warnList", d.sections.warn.items);
-  fillList("ramadanList", d.sections.ramadan.items);
-  fillList("foodList", d.sections.food.items);
-  fillList("storeList", d.sections.store.items);
+    function initLanguage() {
+      const params = new URLSearchParams(window.location.search);
+      let startLang = params.get("lang") || "so";
 
-  document.getElementById("footerNote").innerHTML = d.footerHTML;
-  document.getElementById("credit").innerHTML = d.creditHTML;
+      if (!ENABLED_LANGS.has(startLang)) {
+        startLang = "so";
+      }
 
-  const backA = document.querySelector("a.back");
-  const base = backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+      document.getElementById("langSelect").value = startLang;
+      updateLanguage(false);
+    }
 
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
-  window.history.replaceState({}, "", url.toString());
-}
+    document.getElementById("langSelect").addEventListener("change", function () {
+      updateLanguage(true);
+    });
 
-const params = new URLSearchParams(window.location.search);
-let startLang = params.get("lang") || "so";
-if (!ENABLED_LANGS.has(startLang)) startLang = "so";
-
-const select = document.getElementById("langSelect");
-select.value = startLang;
-render(select.value);
-select.addEventListener("change", function(){ render(this.value); });
-</script>
-
+    initLanguage();
+  </script>
 </body>
 </html>
