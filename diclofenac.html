@@ -360,8 +360,8 @@
   <main>
     <div class="lang-selector">
       <label id="langLabel" for="langSelect">Dooro luqadda:</label>
-      <select id="langSelect" onchange="updateLanguage()">
-        <option value="so" selected>Somalisk</option>
+      <select id="langSelect">
+        <option value="so">Somalisk</option>
         <option value="da">Dansk</option>
         <option value="en">Engelsk</option>
         <option value="ar">Arabisk</option>
@@ -539,6 +539,7 @@
 
     const content = {
       so: {
+        pageTitle: "Diclofenac – xanuun & barar",
         hdrTitle: "Diclofenac – xanuun & barar",
         hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
         backLabel: "Ku laabo liiska daawooyinka",
@@ -609,6 +610,7 @@
       },
 
       da: {
+        pageTitle: "Diclofenac – smerter og betændelse",
         hdrTitle: "Diclofenac – smerter og betændelse",
         hdrSubtitle: "En let og personlig forklaring på medicinen, så patienter og familier bedre kan forstå behandlingen.",
         backLabel: "Tilbage til medicinlisten",
@@ -679,6 +681,7 @@
       },
 
       en: {
+        pageTitle: "Diclofenac – pain and inflammation",
         hdrTitle: "Diclofenac – pain and inflammation",
         hdrSubtitle: "A simple and personal explanation of the medicine for patients and families.",
         backLabel: "Back to medication list",
@@ -749,6 +752,7 @@
       },
 
       ar: {
+        pageTitle: "ديكلوفيناك – ألم والتهاب",
         hdrTitle: "ديكلوفيناك – ألم والتهاب",
         hdrSubtitle: "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
         backLabel: "العودة إلى قائمة الأدوية",
@@ -860,13 +864,14 @@
       r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
     }
 
-    function updateLanguage() {
+    function updateLanguage(saveSelection = true) {
       const lang = document.getElementById("langSelect").value;
-      const data = content[lang];
+      const data = content[lang] || content.so;
       applyTheme(lang);
 
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = data.pageTitle || data.hdrTitle;
 
       document.getElementById("hdrTitle").innerText = data.hdrTitle;
       document.getElementById("hdrSubtitle").innerText = data.hdrSubtitle;
@@ -899,9 +904,22 @@
       updateList("foodList", data.foodList);
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
+
+      if (saveSelection) {
+        localStorage.setItem("selectedLanguage", lang);
+      }
     }
 
-    updateLanguage();
+    function initLanguage() {
+      const savedLang = localStorage.getItem("selectedLanguage");
+      const defaultLang = savedLang && content[savedLang] ? savedLang : "so";
+      document.getElementById("langSelect").value = defaultLang;
+      updateLanguage(false);
+    }
+
+    document.getElementById("langSelect").addEventListener("change", () => updateLanguage(true));
+
+    initLanguage();
   </script>
 </body>
 </html>
