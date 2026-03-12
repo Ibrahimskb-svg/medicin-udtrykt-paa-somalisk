@@ -1,627 +1,942 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Imozop (Zopiclon) – hurdo la’aan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Imozop – hurdo la’aan</title>
+  <style>
+    :root{
+      --accent1:#00a676;
+      --accent2:#0b6b57;
+      --accentText:#ffffff;
+      --bg:#ffffff;
+      --text:#123047;
+      --muted:#607089;
+      --stroke:#d0d7e2;
 
-<style>
-:root{
-  --accent1:#00a676;
-  --accent2:#0066cc;
-  --accentText:#ffffff;
+      --badgeBg:#d9f6e8;
+      --badgeText:#16634a;
 
-  --bg:#e6f2f8;
-  --text:#123047;
-  --muted:#607089;
+      --soft:#eefaf5;
+      --softBorder:#b7ead3;
 
-  --card:#ffffff;
-  --stroke:#d0d7e2;
+      --link:#0b6b57;
 
-  --pillBg:#d9f6e8;
-  --pillText:#16634a;
+      --drugIconBg:#e8f8f1;
+      --drugIconBorder:#bde8d4;
 
-  --link:#00509e;
-}
+      --langBarAccent:#00a676;
 
-@media (prefers-reduced-motion: no-preference){
-  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
-    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
-  }
-  header{ transition: background .45s ease, color .35s ease; }
-}
+      --ibrahimBg:#fff8e8;
+      --ibrahimBorder:#f0c36d;
+      --ibrahimTitle:#8a5a00;
 
-body{
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  margin: 0;
-}
+      --sourceBg:#f8fafc;
+      --sourceBorderAccent:#00a676;
 
-header{
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: var(--accentText);
-  padding: 22px 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header h1{ margin: 0 0 4px; font-size: 1.8rem; }
-header p{ margin: 0; font-size: 0.95rem; }
+      --useBg:#eefaf5;
+      --useIcon:#00a676;
+      --doseBg:#eef6ff;
+      --doseIcon:#0066cc;
+      --sideBg:#fff7ed;
+      --sideIcon:#f59e0b;
+      --interactBg:#f5f3ff;
+      --interactIcon:#7c3aed;
+      --warnBg:#fef2f2;
+      --warnIcon:#dc2626;
+      --ramadanBg:#f5f3ff;
+      --ramadanIcon:#6d28d9;
+      --foodBg:#effcf6;
+      --foodIcon:#059669;
+      --storeBg:#f8fafc;
+      --storeIcon:#475569;
+    }
 
-main{
-  max-width: 820px;
-  margin: 18px auto 32px;
-  padding: 0 14px;
-}
+    *{ box-sizing:border-box; }
 
-a.back{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
-  text-decoration: none;
-  color: var(--link);
-  font-size: 0.9rem;
-}
-a.back span{ font-size: 1.1rem; }
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.55;
+    }
 
-.langbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 0 0 14px 0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid var(--accent1);
-}
-.langbar label{
-  font-size:0.9rem;
-  color:var(--text);
-  font-weight:600;
-}
-.langbar select{
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--stroke);
-  background: #fff;
-  color:var(--text);
-  font-size: 0.9rem;
-  max-width: 100%;
-}
+    main{
+      max-width: 820px;
+      margin: 22px auto;
+      padding: 0 18px 30px;
+    }
 
-.card{
-  background: var(--card);
-  border-radius: 14px;
-  padding: 16px 16px 10px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-  border-top: 4px solid var(--accent1);
-}
+    header{
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: var(--accentText);
+      padding: 20px 14px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
 
-.drug-meta{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.drug-info{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.drug-icon{
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #e3f2fd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.drug-icon svg{ width: 30px; height: 30px; }
-.drug-icon svg .stroke{ stroke: var(--accent2); }
-.drug-icon svg .fill{ fill:#e8f3ff; }
+    header h1{
+      margin: 0 0 4px;
+      font-size: 1.7rem;
+    }
 
-.drug-labels{ display: flex; flex-direction: column; }
-.drug-name{ font-weight: 600; font-size: 0.95rem; }
-.drug-form{ font-size: 0.82rem; color: #29516e; }
+    header p{
+      margin: 0 auto;
+      font-size: 0.92rem;
+      max-width: 720px;
+    }
 
-.badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--pillBg);
-  color: var(--pillText);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  border:1px solid rgba(0,0,0,0.04);
-}
+    .lang-selector{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 14px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 12px;
+      border-left: 4px solid var(--langBarAccent);
+      box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+    }
 
-.section{
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--stroke);
-}
-.section-header{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-.section-icon{
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: var(--text);
-}
-.section-icon.use { background:#e3f2fd; }
-.section-icon.dose { background:#e2f5ea; }
-.section-icon.side { background:#fff3e0; }
-.section-icon.interact { background:#ede7f6; }
-.section-icon.warn { background:#ffebee; }
-.section-icon.ramadan { background:#e0f7fa; }
-.section-icon.food { background:#f1f8e9; }
-.section-icon.store { background:#edeff9; }
+    .lang-selector label{
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.94rem;
+    }
 
-.section-title{
-  font-weight: 700;
-  color: var(--text);
-  font-size: 0.96rem;
-}
-.section-title small{
-  font-weight: 400;
-  color: var(--muted);
-  margin-left: 6px;
-}
+    .lang-selector select{
+      padding: 7px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      font-size: 0.92rem;
+    }
 
-.section ul{
-  margin: 0 0 4px 18px;
-  padding-left: 0;
-  font-size: 0.92rem;
-}
-.section ul li{ margin-bottom: 4px; }
+    a.back{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      color: var(--link);
+      font-size: 0.92rem;
+      font-weight: bold;
+    }
 
-.highlight{ font-weight: 600; }
+    .drug-header-container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 14px 0 8px;
+    }
 
-.footer-note{
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-align: center;
-  margin: 18px 0 10px;
-}
+    .drug-main-info{
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-@media (max-width: 600px){
-  header h1 { font-size: 1.5rem; }
-}
-</style>
+    .drug-icon{
+      width: 52px;
+      height: 52px;
+      background: var(--drugIconBg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--drugIconBorder);
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .drug-icon svg{
+      width: 30px;
+      height: 30px;
+      display: block;
+      overflow: visible;
+    }
+
+    .drug-title-block h1{
+      font-size: 1.3rem;
+      color: var(--accent2);
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .drug-title-block p{
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 3px 0 0;
+    }
+
+    .badge{
+      background: var(--badgeBg);
+      color: var(--badgeText);
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .divider{
+      border-bottom: 1px dashed var(--stroke);
+      margin: 14px 0 18px;
+    }
+
+    .intro-box{
+      background: var(--soft);
+      border: 1px solid var(--softBorder);
+      border-radius: 12px;
+      padding: 13px 15px;
+      color: #24445e;
+      margin-bottom: 16px;
+      font-size: 0.96rem;
+    }
+
+    .ibrahim-box{
+      background: var(--ibrahimBg);
+      border: 1px solid var(--ibrahimBorder);
+      border-left: 5px solid var(--ibrahimBorder);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0 18px;
+    }
+
+    .ibrahim-box-title{
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--ibrahimTitle);
+      margin-bottom: 6px;
+    }
+
+    .ibrahim-box p{
+      margin: 0;
+      color: #5f4300;
+      font-size: 0.95rem;
+    }
+
+    .section{
+      margin-top: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      padding: 12px 14px 10px;
+      background: #fff;
+    }
+
+    .section-header{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-icon{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .section-title{
+      font-weight: 800;
+      color: #123047;
+      font-size: 1rem;
+    }
+
+    .section ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .section ul li{
+      margin-bottom: 7px;
+      color: #334155;
+      font-size: 0.96rem;
+    }
+
+    .use-section{ background: var(--useBg); }
+    .use-section .section-icon{ background: rgba(0,166,118,0.14); color: var(--useIcon); }
+
+    .dose-section{ background: var(--doseBg); }
+    .dose-section .section-icon{ background: rgba(0,102,204,0.14); color: var(--doseIcon); }
+
+    .side-section{ background: var(--sideBg); }
+    .side-section .section-icon{ background: rgba(245,158,11,0.15); color: var(--sideIcon); }
+
+    .interact-section{ background: var(--interactBg); }
+    .interact-section .section-icon{ background: rgba(124,58,237,0.14); color: var(--interactIcon); }
+
+    .warn-section{ background: var(--warnBg); }
+    .warn-section .section-icon{ background: rgba(220,38,38,0.12); color: var(--warnIcon); }
+
+    .ramadan-section{ background: var(--ramadanBg); }
+    .ramadan-section .section-icon{ background: rgba(109,40,217,0.12); color: var(--ramadanIcon); }
+
+    .food-section{ background: var(--foodBg); }
+    .food-section .section-icon{ background: rgba(5,150,105,0.12); color: var(--foodIcon); }
+
+    .store-section{ background: var(--storeBg); }
+    .store-section .section-icon{ background: rgba(71,85,105,0.12); color: var(--storeIcon); }
+
+    .sources{
+      margin-top: 28px;
+      background: var(--sourceBg);
+      border: 1px solid var(--stroke);
+      border-left: 4px solid var(--sourceBorderAccent);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .sources h3{
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .sources p{
+      margin: 0 0 8px;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+
+    .sources ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .sources li{
+      margin-bottom: 7px;
+      color: #334155;
+      word-break: break-word;
+      font-size: 0.93rem;
+    }
+
+    .sources a{
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sources a:hover{
+      text-decoration: underline;
+    }
+
+    .footer-note{
+      font-size: 0.86rem;
+      color: var(--text);
+      text-align: center;
+      margin-top: 20px;
+      padding: 18px 8px 0;
+      border-top: 1px solid var(--stroke);
+    }
+
+    @media (max-width: 600px){
+      body{ line-height: 1.5; }
+      main{ padding: 0 14px 24px; }
+      .drug-header-container{ flex-direction: column; align-items: flex-start; }
+      .badge{ align-self: flex-end; }
+      .drug-title-block h1{ font-size: 1.15rem; }
+      header h1{ font-size: 1.45rem; }
+      .section{ padding: 11px 12px 9px; }
+    }
+  </style>
 </head>
-
 <body>
+  <header id="mainHeader">
+    <h1 id="hdrTitle">Imozop – hurdo la’aan</h1>
+    <p id="hdrSubtitle">Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
+  </header>
 
-<header>
-  <h1 id="hdrTitle">Imozop (Zopiclon) – hurdo la’aan</h1>
-  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
-</header>
-
-<main>
-
-  <div class="langbar" aria-label="Language selector">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-    <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
-      <option value="en">Engelsk</option>
-      <option value="ar">Arabisk</option>
-    </select>
-  </div>
-
-  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
-
-  <div class="card">
-    <div class="drug-meta">
-      <div class="drug-info">
-        <div class="drug-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
-          </svg>
-        </div>
-        <div class="drug-labels">
-          <div class="drug-name" id="drugName">Imozop (Zopiclon) – hurdo la’aan</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
-        </div>
-      </div>
-      <div class="badge" id="badge">Akhris fudud oo kooban</div>
+  <main>
+    <div class="lang-selector">
+      <label id="langLabel" for="langSelect">Dooro luqadda:</label>
+      <select id="langSelect">
+        <option value="so">Somalisk</option>
+        <option value="da">Dansk</option>
+        <option value="en">Engelsk</option>
+        <option value="ar">Arabisk</option>
+      </select>
     </div>
 
-    <div class="section">
+    <a href="index.html" class="back">
+      <span>←</span>
+      <span id="backLabel">Ku laabo liiska daawooyinka</span>
+    </a>
+
+    <div class="drug-header-container">
+      <div class="drug-main-info">
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" id="drugSvg" aria-hidden="true">
+            <defs>
+              <linearGradient id="pillRed" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ff8a7a"></stop>
+                <stop offset="100%" stop-color="#d63b2e"></stop>
+              </linearGradient>
+              <linearGradient id="pillYellow" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f8df7a"></stop>
+                <stop offset="100%" stop-color="#caa61a"></stop>
+              </linearGradient>
+              <linearGradient id="pillShine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.95)"></stop>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
+              </linearGradient>
+            </defs>
+
+            <g transform="rotate(-45 32 32)">
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
+
+              <clipPath id="pillClip">
+                <rect x="14" y="22" width="36" height="20" rx="10"></rect>
+              </clipPath>
+
+              <g clip-path="url(#pillClip)">
+                <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
+                <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
+                <rect x="30.8" y="22" width="2.4" height="20" fill="#ffffff" opacity="0.9"></rect>
+                <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
+                <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
+              </g>
+
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
+            </g>
+          </svg>
+        </div>
+        <div class="drug-title-block">
+          <h1 id="drugName">Imozop – hurdo la’aan</h1>
+          <p id="drugForm">Kiniin afka ah</p>
+        </div>
+      </div>
+      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="intro-box" id="introBox">
+      Imozop waa daawo hurdada kaa caawin karta marka hurdo la’aantu noqoto dhibaato muddo gaaban ah. Waxay kaa caawin kartaa inaad si fudud u seexato, laakiin saameynteedu waxay sii jiri kartaa ilaa subaxda xigta dadka qaarkood. Sidaas darteed waa in si taxaddar leh loo isticmaalaa oo aan loo qaadan caado joogto ah.
+    </div>
+
+    <div class="ibrahim-box">
+      <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
+      <p id="ibrahimText">
+        Waxaan bukaan badan ugu sharxaa sidan: daawadan waa in loo arkaa caawiye hurdada ah, ee ma aha xal joogto ah oo hurdo kasta lagu xalliyo. Haddii aad qaadato habeen kasta muddo dheer, jidhku wuu la qabsan karaa. Sidaas darteed qaado keliya marka loo baahdo iyo sida dhakhtarku kuu faray, adigoo hubinaya inaad haysato waqti hurdo oo kugu filan ilaa subaxda.
+      </p>
+    </div>
+
+    <div class="section use-section">
       <div class="section-header">
-        <div class="section-icon use">💊</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
+        <span class="section-icon">💊</span>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
       </div>
       <ul id="useList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section dose-section">
       <div class="section-header">
-        <div class="section-icon dose">⏰</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
+        <span class="section-icon">⏰</span>
+        <div class="section-title" id="doseTitle">Qiyaasta iyo talooyinka Ibraahim</div>
       </div>
       <ul id="doseList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section side-section">
       <div class="section-header">
-        <div class="section-icon side">⚠️</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
+        <span class="section-icon">⚠</span>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
       </div>
       <ul id="sideList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section interact-section">
       <div class="section-header">
-        <div class="section-icon interact">⇆</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
+        <span class="section-icon">⇄</span>
+        <div class="section-title" id="interactTitle">Isdhexgalka daawooyinka</div>
       </div>
       <ul id="interactList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section warn-section">
       <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+        <span class="section-icon">!</span>
+        <div class="section-title" id="warnTitle">Digniino muhiim ah</div>
       </div>
       <ul id="warnList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section ramadan-section">
       <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
+        <span class="section-icon">☾</span>
+        <div class="section-title" id="ramadanTitle">Ramadaan iyo soonka</div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section food-section">
       <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+        <span class="section-icon">🍽</span>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan</div>
       </div>
       <ul id="foodList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section store-section">
       <div class="section-header">
-        <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
+        <span class="section-icon">⧉</span>
+        <div class="section-title" id="storeTitle">Kaydinta daawada</div>
       </div>
       <ul id="storeList"></ul>
     </div>
-  </div>
 
-  <div class="footer-note" id="footerNote"></div>
-</main>
+    <div class="sources">
+      <h3 id="sourcesTitle">Ilaha xogta</h3>
+      <p id="sourcesText">
+        Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
+      </p>
+      <ul id="sourcesList"></ul>
+    </div>
 
-<div class="footer-note" id="credit"></div>
+    <div class="footer-note" id="footerNote">
+      Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
+    </div>
+  </main>
 
-<script>
-const ENABLED_LANGS = new Set(["so","da","en","ar"]);
-const RTL = new Set(["ar"]);
+  <script>
+    const themes = {
+      so: {
+        accent1:"#00a676", accent2:"#0b6b57", badgeBg:"#d9f6e8", badgeText:"#16634a",
+        soft:"#eefaf5", softBorder:"#b7ead3", link:"#0b6b57",
+        drugIconBg:"#e8f8f1", drugIconBorder:"#bde8d4", langBarAccent:"#00a676",
+        sourceBorderAccent:"#00a676"
+      },
+      da: {
+        accent1:"#0ea5e9", accent2:"#60a5fa", badgeBg:"#e0f2fe", badgeText:"#075985",
+        soft:"#eff8ff", softBorder:"#bfdbfe", link:"#0ea5e9",
+        drugIconBg:"#eef7ff", drugIconBorder:"#cfe7ff", langBarAccent:"#0ea5e9",
+        sourceBorderAccent:"#0ea5e9"
+      },
+      en: {
+        accent1:"#7f1d1d", accent2:"#b91c1c", badgeBg:"#fef2f2", badgeText:"#7f1d1d",
+        soft:"#fff5f5", softBorder:"#fecaca", link:"#991b1b",
+        drugIconBg:"#fff1f1", drugIconBorder:"#f7caca", langBarAccent:"#991b1b",
+        sourceBorderAccent:"#991b1b"
+      },
+      ar: {
+        accent1:"#c2410c", accent2:"#fb923c", badgeBg:"#fff7ed", badgeText:"#9a3412",
+        soft:"#fff7ed", softBorder:"#fed7aa", link:"#c2410c",
+        drugIconBg:"#fff2e8", drugIconBorder:"#f8d1b0", langBarAccent:"#c2410c",
+        sourceBorderAccent:"#c2410c"
+      }
+    };
 
-const THEMES = {
-  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
-};
+    const content = {
+      so: {
+        pageTitle: "Imozop – hurdo la’aan",
+        hdrTitle: "Imozop – hurdo la’aan",
+        hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+        backLabel: "Ku laabo liiska daawooyinka",
+        langLabel: "Dooro luqadda:",
+        drugName: "Imozop – hurdo la’aan",
+        drugForm: "Kiniin afka ah",
+        badgeText: "Akhris fudud oo kooban",
+        introBox: "Imozop waa daawo hurdada kaa caawin karta marka hurdo la’aantu noqoto dhibaato muddo gaaban ah. Waxay kaa caawin kartaa inaad si fudud u seexato, laakiin saameynteedu waxay sii jiri kartaa ilaa subaxda xigta dadka qaarkood. Sidaas darteed waa in si taxaddar leh loo isticmaalaa oo aan loo qaadan caado joogto ah.",
+        ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
+        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: daawadan waa in loo arkaa caawiye hurdada ah, ee ma aha xal joogto ah oo hurdo kasta lagu xalliyo. Haddii aad qaadato habeen kasta muddo dheer, jidhku wuu la qabsan karaa. Sidaas darteed qaado keliya marka loo baahdo iyo sida dhakhtarku kuu faray, adigoo hubinaya inaad haysato waqti hurdo oo kugu filan ilaa subaxda.",
+        useTitle: "Isticmaalka",
+        useList: [
+          "Imozop waxaa loo isticmaalaa hurdo la’aan muddo gaaban ah.",
+          "Waxay kaa caawin kartaa inaad si fudud u seexato ama hurdada sii wadato habeenkii.",
+          "Badanaa looma qorsheeyo isticmaal muddo dheer ah."
+        ],
+        doseTitle: "Qiyaasta iyo talooyinka Ibraahim",
+        doseList: [
+          "Badanaa waxaa la qaataa hal mar fiidkii, 15 ilaa 30 daqiiqo ka hor hurdada.",
+          "Qiyaasta dadka waaweyn badanaa waa 7.5 mg, laakiin dadka waayeelka ah ama dadka leh dhibaatooyin neefsasho waxay badanaa bilaabaan 3.75 mg.",
+          "Qaado keliya marka aad diyaar u tahay inaad seexato oo aad haysato waqti hurdo oo kugu filan ilaa subaxda.",
+          "Ha qaadan qiyaas labaad isla habeenkaas."
+        ],
+        sideTitle: "Waxyeellooyinka",
+        sideList: [
+          "Dhadhan qadhaadh ama bir u eg afka, af qallalan, madax-wareer ama hurdo badan subaxda dambe.",
+          "Qaar waxay dareemi karaan daal, wareer ama xusuus daciif ah subaxda xigta.",
+          "Mararka qaarkood dadka qaarkood waxay dareemaan socod ama dhaqan aan caadi ahayn iyagoo si buuxda u baraarugsanayn."
+        ],
+        interactTitle: "Isdhexgalka daawooyinka",
+        interactList: [
+          "Ha ku darin khamri, opioids ama dawooyin kale oo hurdo iyo dejin ah adigoon la tashan dhakhtar.",
+          "Daawooyin qaar oo maskaxda saameeya waxay kordhin karaan saameynta Imozop.",
+          "U sheeg dhakhtarka ama farmashiistaha dhammaan daawooyinka aad qaadato."
+        ],
+        warnTitle: "Digniino muhiim ah",
+        warnList: [
+          "Waxay keeni kartaa hurdo, dawakh ama feejignaan yaraata maalinta xigta.",
+          "Khatarta la qabsashada iyo ku tiirsanaanta daawadu way kordhi kartaa haddii muddo dheer la isticmaalo.",
+          "Ha wadin gaari ama ha shaqayn qalab halis ah haddii aad weli saameyn dareemayso.",
+          "Ha joojin si kedis ah haddii aad si joogto ah u qaadanaysay muddo dheer adigoon la tashan dhakhtar."
+        ],
+        ramadanTitle: "Ramadaan iyo soonka",
+        ramadanList: [
+          "La hadal dhakhtarka ka hor Ramadaan haddii aad si joogto ah u qaadato.",
+          "Badanaa waxaa la qaataa fiidkii ka dib afurka marka aad seexan doonto.",
+          "Hubi inaad haysato waqti hurdo oo kugu filan si daalku uusan kuugu sii jirin maalinta xigta."
+        ],
+        foodTitle: "Cunto iyo cabitaan",
+        foodList: [
+          "Waxaa fiican in lagu qaato calool madhan ama ka fog cunto dufan badan leh.",
+          "Ku liq kiniinka biyo.",
+          "Ha cabin khamri marka aad daawadan qaadanayso."
+        ],
+        storeTitle: "Kaydinta daawada",
+        storeList: [
+          "Ku hay meel ka fog carruurta yar yar, kana hooseysa 25°C.",
+          "Ku hay baakadka asalka ah si looga ilaaliyo huurka.",
+          "Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka."
+        ],
+        sourcesTitle: "Ilaha xogta",
+        sourcesText: "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Imozop", href: "https://pro.medicin.dk/medicin/praeparater/1881" },
+          { text: "min.medicin.dk – Imozop", href: "https://min.medicin.dk/medicin/praeparater/1881" },
+          { text: "sundhed.dk – Søvnløshed", href: "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/" }
+        ],
+        footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+      },
 
-function applyTheme(lang){
-  const th = THEMES[lang] || THEMES.so;
-  const r = document.documentElement.style;
-  r.setProperty("--accent1", th.a1);
-  r.setProperty("--accent2", th.a2);
-  r.setProperty("--link", th.link || "#00509e");
-  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
-  r.setProperty("--pillText", th.pillText || "#16634a");
-}
+      da: {
+        pageTitle: "Imozop – søvnløshed",
+        hdrTitle: "Imozop – søvnløshed",
+        hdrSubtitle: "En let og personlig forklaring på medicinen, så patienter og familier bedre kan forstå behandlingen.",
+        backLabel: "Tilbage til medicinlisten",
+        langLabel: "Vælg sprog:",
+        drugName: "Imozop – søvnløshed",
+        drugForm: "Tabletter",
+        badgeText: "Kort og letlæselig",
+        introBox: "Imozop er en sovemedicin, som kan hjælpe ved kortvarig søvnløshed. Den kan gøre det lettere at falde i søvn, men virkningen kan hos nogle mærkes næste morgen. Derfor skal den bruges med omtanke og helst kun i en begrænset periode.",
+        ibrahimTitle: "Ibrahims forklaring fra apoteket",
+        ibrahimText: "Jeg plejer at forklare det sådan: denne medicin skal ses som en hjælp til søvnen, ikke som en fast løsning på alle søvnproblemer. Hvis man bruger den for ofte eller for længe, kan kroppen vænne sig til den. Derfor er det vigtigt at tage den som aftalt og kun, når man faktisk har mulighed for at sove længe nok bagefter.",
+        useTitle: "Anvendelse",
+        useList: [
+          "Imozop bruges mod kortvarig søvnløshed.",
+          "Den kan hjælpe dig med at falde i søvn eller sove igennem om natten.",
+          "Den er normalt ikke tænkt som langvarig behandling."
+        ],
+        doseTitle: "Dosering og Ibrahims råd",
+        doseList: [
+          "Den tages normalt én gang om aftenen, 15 til 30 minutter før sengetid.",
+          "Den almindelige dosis for voksne er ofte 7,5 mg, men ældre eller personer med vejrtrækningsproblemer starter ofte med 3,75 mg.",
+          "Tag den kun, når du er klar til at sove og har tid til flere timers søvn.",
+          "Tag ikke en ekstra dosis samme nat."
+        ],
+        sideTitle: "Bivirkninger",
+        sideList: [
+          "Bitter eller metallisk smag i munden, mundtørhed, svimmelhed eller træthed næste morgen.",
+          "Nogle kan opleve forvirring eller nedsat hukommelse morgenen efter.",
+          "I sjældne tilfælde kan man have usædvanlig adfærd uden at være helt vågen."
+        ],
+        interactTitle: "Interaktioner",
+        interactList: [
+          "Undgå alkohol, opioider og andre sovende eller sløvende lægemidler uden aftale med lægen.",
+          "Visse lægemidler, der påvirker hjernen, kan forstærke virkningen af Imozop.",
+          "Fortæl altid lægen eller apoteket om al den medicin, du bruger."
+        ],
+        warnTitle: "Vigtige advarsler",
+        warnList: [
+          "Det kan give døsighed, svimmelhed eller nedsat opmærksomhed dagen efter.",
+          "Risikoen for tilvænning og afhængighed øges ved længere tids brug.",
+          "Kør ikke bil og brug ikke farlige maskiner, hvis du stadig føler dig påvirket.",
+          "Stop ikke pludseligt efter længere tids fast brug uden lægens vurdering."
+        ],
+        ramadanTitle: "Ramadan og faste",
+        ramadanList: [
+          "Tal med lægen før Ramadan, hvis du bruger medicinen regelmæssigt.",
+          "Den tages ofte om aftenen efter iftar, når du skal sove.",
+          "Sørg for at have tid nok til søvn, så du ikke er påvirket næste dag."
+        ],
+        foodTitle: "Mad og drikke",
+        foodList: [
+          "Det er bedst at tage den på tom mave eller væk fra meget fed mad.",
+          "Synk tabletten med vand.",
+          "Undgå alkohol sammen med denne medicin."
+        ],
+        storeTitle: "Opbevaring",
+        storeList: [
+          "Opbevar medicinen utilgængeligt for børn og under 25°C.",
+          "Opbevar den i original emballage for at beskytte mod fugt.",
+          "Brug ikke medicinen efter udløbsdatoen."
+        ],
+        sourcesTitle: "Kilder",
+        sourcesText: "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Imozop", href: "https://pro.medicin.dk/medicin/praeparater/1881" },
+          { text: "min.medicin.dk – Imozop", href: "https://min.medicin.dk/medicin/praeparater/1881" },
+          { text: "sundhed.dk – Søvnløshed", href: "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/" }
+        ],
+        footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+      },
 
-const T = {
-  so: {
-    title: "Imozop (Zopiclon) – hurdo la’aan",
-    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    back: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    badge: "Akhris fudud oo kooban",
-    drugName: "Imozop (Zopiclon) – hurdo la’aan",
-    drugForm: "Kiniin afka ah",
-    sections: {
-      use: { title:"Isticmaalka", small:"", items:[
-        "Imozop (zopiclon) waa daawo loo isticmaalo <span class='highlight'>hurdo la’aanta muddo gaaban</span>.",
-        "Waxay kaa caawin kartaa inaad si fudud u seexato ama aad hurdada sii wadato habeenkii."
-      ]},
-      dose: { title:"Qiyaasta", small:"", items:[
-        "Badanaa waxaa la qaataa <span class='highlight'>hal mar fiidkii</span>, 15 ilaa 30 daqiiqo ka hor hurdada.",
-        "Qiyaasta caadiga ah ee dadka waaweyn waa 7.5 mg. Dadka waayeelka ah ama dadka leh dhibaatooyin neefsasho ama beerka ah waxay bilaabi karaan qiyaas hoose."
-      ]},
-      side: { title:"Waxyeellooyinka", small:"", items:[
-        "Dhadhan qadhaadh ama bir u eg afka, af qallalan, madax-wareer, ama hurdo badan maalinta xigta.",
-        "Qaar waxay dareemi karaan daal, wareer, ama xusuus daciif ah subaxda dambe."
-      ]},
-      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
-        "Ha ku darin khamri, opioids, ama daawooyin kale oo hurdo/dejin ah adiga oo aan la tashan dhakhtar.",
-        "Daawooyinka maskaxda saameeya qaarkood waxay kordhin karaan saameynta zopiclon."
-      ]},
-      warn: { title:"Digniino", small:"", items:[
-        "Waxay keeni kartaa hurdo, dawakh, ama feejignaan yaraata maalinta xigta.",
-        "Khatarta la qabsashada iyo ku tiirsanaanta daawadu way kordhi kartaa haddii muddo dheer la isticmaalo.",
-        "Ha wadin gaari ama ha shaqayn qalab halis ah haddii aad weli saameyn dareemayso."
-      ]},
-      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
-        "La hadal dhakhtarkaaga ka hor Ramadaan haddii aad si joogto ah u qaadato.",
-        "Badanaa waxaa la qaataa <span class='highlight'>fiidkii ka dib afurka</span> marka aad seexan doonto.",
-        "Ha joojin daawada si lama filaan ah adiga oo aan talo caafimaad helin."
-      ]},
-      food: { title:"Cunto iyo cabitaan", small:"", items:[
-        "Waxaa fiican in lagu qaato calool madhan ama ka fog cunto dufan badan, sababtoo ah cuntadu waxay dib u dhigi kartaa saameynta.",
-        "Ku liq kiniinka biyo."
-      ]},
-      store: { title:"Kaydinta daawada", small:"", items:[
-        "Ku hay meel ka fog carruurta yar yar, kana hooseysa 25 °C.",
-        "Ku hay baakadka asalka ah si looga ilaaliyo huurka.",
-        "Ha qaadan daawada marka ay dhaafto taariikhda dhicitaanka."
-      ]}
-    },
-    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
-    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
-  },
+      en: {
+        pageTitle: "Imozop – insomnia",
+        hdrTitle: "Imozop – insomnia",
+        hdrSubtitle: "A simple and personal explanation of the medicine for patients and families.",
+        backLabel: "Back to medication list",
+        langLabel: "Select language:",
+        drugName: "Imozop – insomnia",
+        drugForm: "Tablets",
+        badgeText: "Short and easy to read",
+        introBox: "Imozop is a sleeping medicine that may help with short-term insomnia. It can make it easier to fall asleep, but in some people the effect may still be felt the next morning. That is why it should be used carefully and preferably only for a limited period.",
+        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimText: "I often explain it like this: this medicine should be seen as a helper for sleep, not as a permanent solution to every sleep problem. If it is used too often or for too long, the body can get used to it. That is why it is important to take it exactly as agreed and only when you actually have enough time to sleep afterwards.",
+        useTitle: "Use",
+        useList: [
+          "Imozop is used for short-term insomnia.",
+          "It may help you fall asleep or stay asleep during the night.",
+          "It is usually not intended for long-term treatment."
+        ],
+        doseTitle: "Dosage and Ibrahim’s advice",
+        doseList: [
+          "It is usually taken once in the evening, 15 to 30 minutes before bedtime.",
+          "The usual adult dose is often 7.5 mg, but older adults or people with breathing problems often start at 3.75 mg.",
+          "Take it only when you are ready to sleep and have time for several hours of rest.",
+          "Do not take an extra dose the same night."
+        ],
+        sideTitle: "Side effects",
+        sideList: [
+          "Bitter or metallic taste in the mouth, dry mouth, dizziness, or sleepiness the next morning.",
+          "Some people may feel confused or have reduced memory the following morning.",
+          "In rare cases, unusual behaviour may happen without being fully awake."
+        ],
+        interactTitle: "Drug interactions",
+        interactList: [
+          "Avoid alcohol, opioids, and other sleeping or sedating medicines unless agreed with your doctor.",
+          "Some medicines that affect the brain may increase the effect of Imozop.",
+          "Always tell your doctor or pharmacist about all medicines you use."
+        ],
+        warnTitle: "Important warnings",
+        warnList: [
+          "It may cause drowsiness, dizziness, or reduced alertness the next day.",
+          "The risk of dependence and habit formation increases with longer use.",
+          "Do not drive or use dangerous machinery if you still feel affected.",
+          "Do not stop suddenly after longer regular use without medical advice."
+        ],
+        ramadanTitle: "Ramadan and fasting",
+        ramadanList: [
+          "Talk with your doctor before Ramadan if you use the medicine regularly.",
+          "It is often taken in the evening after iftar when you are going to sleep.",
+          "Make sure you have enough time to sleep so you are not still affected the next day."
+        ],
+        foodTitle: "Food and drink",
+        foodList: [
+          "It is best taken on an empty stomach or away from very fatty meals.",
+          "Swallow the tablet with water.",
+          "Avoid alcohol with this medicine."
+        ],
+        storeTitle: "Storage",
+        storeList: [
+          "Keep out of reach of children and store below 25°C.",
+          "Keep in the original packaging to protect from moisture.",
+          "Do not use after the expiry date."
+        ],
+        sourcesTitle: "Sources",
+        sourcesText: "This text is written in a personal and simple style, but the medical information is based on official sources.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Imozop", href: "https://pro.medicin.dk/medicin/praeparater/1881" },
+          { text: "min.medicin.dk – Imozop", href: "https://min.medicin.dk/medicin/praeparater/1881" },
+          { text: "sundhed.dk – Insomnia", href: "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/" }
+        ],
+        footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+      },
 
-  da: {
-    title: "Imozop (Zopiclon) – søvnløshed",
-    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
-    back: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    badge: "Kort og let at læse",
-    drugName: "Imozop (Zopiclon) – søvnløshed",
-    drugForm: "Tablet til oral brug",
-    sections: {
-      use: { title:"Anvendelse", small:"", items:[
-        "Imozop (zopiclon) bruges til <span class='highlight'>kortvarig behandling af søvnløshed</span>.",
-        "Det kan hjælpe dig med at falde i søvn eller sove igennem om natten."
-      ]},
-      dose: { title:"Dosering", small:"", items:[
-        "Det tages normalt <span class='highlight'>én gang om aftenen</span>, 15 til 30 minutter før sengetid.",
-        "Den almindelige dosis for voksne er 7,5 mg. Ældre eller personer med vejrtræknings- eller leverproblemer starter ofte med en lavere dosis."
-      ]},
-      side: { title:"Bivirkninger", small:"", items:[
-        "Bitter eller metallisk smag i munden, mundtørhed, svimmelhed eller søvnighed næste dag.",
-        "Nogle kan føle træthed, forvirring eller nedsat hukommelse morgenen efter."
-      ]},
-      interact: { title:"Interaktioner", small:"", items:[
-        "Undgå alkohol, opioider og andre sovende eller sløvende lægemidler uden aftale med lægen.",
-        "Visse lægemidler, der påvirker hjernen, kan forstærke virkningen af zopiclon."
-      ]},
-      warn: { title:"Advarsler", small:"", items:[
-        "Det kan give døsighed, svimmelhed eller nedsat opmærksomhed dagen efter.",
-        "Risikoen for tilvænning og afhængighed øges ved længere tids brug.",
-        "Kør ikke bil og brug ikke farlige maskiner, hvis du stadig føler dig påvirket."
-      ]},
-      ramadan: { title:"Ramadan og faste", small:"", items:[
-        "Tal med lægen før Ramadan, hvis du bruger medicinen regelmæssigt.",
-        "Den tages ofte <span class='highlight'>om aftenen efter iftar</span>, når du skal sove.",
-        "Stop ikke pludseligt uden lægens råd."
-      ]},
-      food: { title:"Mad og drikke", small:"", items:[
-        "Det er bedst at tage den på tom mave eller væk fra meget fed mad, fordi mad kan forsinke virkningen.",
-        "Synk tabletten med vand."
-      ]},
-      store: { title:"Opbevaring", small:"", items:[
-        "Opbevar medicinen utilgængeligt for børn og under 25 °C.",
-        "Opbevar den i original emballage for at beskytte mod fugt.",
-        "Brug ikke medicinen efter udløbsdatoen."
-      ]}
-    },
-    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
-    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
+      ar: {
+        pageTitle: "إيموزوب – الأرق",
+        hdrTitle: "إيموزوب – الأرق",
+        hdrSubtitle: "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+        backLabel: "العودة إلى قائمة الأدوية",
+        langLabel: "اختر اللغة:",
+        drugName: "إيموزوب – الأرق",
+        drugForm: "أقراص",
+        badgeText: "سهل ومختصر",
+        introBox: "إيموزوب دواء مساعد على النوم يمكن استخدامه في حالات الأرق قصيرة المدة. قد يساعد على النوم بسرعة أكبر، لكن بعض الناس قد يشعرون بتأثيره في صباح اليوم التالي. لذلك يجب استخدامه بحذر ولمدة محدودة قدر الإمكان.",
+        ibrahimTitle: "نصيحة إبراهيم من الصيدلية",
+        ibrahimText: "أنا أشرحها لكثير من المرضى بهذه الصورة: هذا الدواء مساعد على النوم، لكنه ليس حلاً دائماً لكل مشاكل النوم. إذا استُخدم كثيراً أو لفترة طويلة، قد يعتاد عليه الجسم. لذلك من المهم أن يؤخذ فقط حسب الخطة العلاجية وعندما يكون لديك وقت كافٍ للنوم بعده.",
+        useTitle: "الاستخدام",
+        useList: [
+          "يُستخدم إيموزوب لعلاج الأرق لفترة قصيرة.",
+          "قد يساعدك على النوم أو الاستمرار في النوم أثناء الليل.",
+          "وهو عادة ليس علاجاً مخصصاً للاستعمال الطويل."
+        ],
+        doseTitle: "الجرعة ونصائح إبراهيم",
+        doseList: [
+          "يؤخذ عادة مرة واحدة مساءً قبل النوم بـ 15 إلى 30 دقيقة.",
+          "الجرعة المعتادة للبالغين غالباً 7.5 ملغ، لكن كبار السن أو من لديهم مشاكل في التنفس يبدأون غالباً بجرعة 3.75 ملغ.",
+          "خذه فقط عندما تكون مستعداً للنوم ولديك وقت كافٍ لعدة ساعات من الراحة.",
+          "لا تأخذ جرعة إضافية في الليلة نفسها."
+        ],
+        sideTitle: "الآثار الجانبية",
+        sideList: [
+          "طعم مر أو معدني في الفم، جفاف الفم، دوخة أو نعاس في صباح اليوم التالي.",
+          "قد يشعر بعض الناس بالارتباك أو ضعف الذاكرة في صباح اليوم التالي.",
+          "وفي حالات نادرة قد تحدث تصرفات غير معتادة دون أن يكون الشخص مستيقظاً بالكامل."
+        ],
+        interactTitle: "التداخلات الدوائية",
+        interactList: [
+          "تجنب الكحول والأفيونات والأدوية الأخرى المنومة أو المهدئة إلا بعد استشارة الطبيب.",
+          "بعض الأدوية التي تؤثر في الدماغ قد تزيد تأثير إيموزوب.",
+          "أخبر الطبيب أو الصيدلي بكل الأدوية التي تستخدمها."
+        ],
+        warnTitle: "تحذيرات مهمة",
+        warnList: [
+          "قد يسبب النعاس أو الدوخة أو قلة الانتباه في اليوم التالي.",
+          "يزداد خطر الاعتماد على الدواء مع الاستعمال الطويل.",
+          "لا تقد السيارة ولا تستخدم الآلات الخطرة إذا كنت لا تزال تشعر بالتأثير.",
+          "لا توقفه فجأة بعد الاستعمال المنتظم لفترة طويلة دون استشارة طبية."
+        ],
+        ramadanTitle: "رمضان والصيام",
+        ramadanList: [
+          "تحدث مع طبيبك قبل رمضان إذا كنت تستخدم الدواء بانتظام.",
+          "يؤخذ غالباً مساءً بعد الإفطار عند الاستعداد للنوم.",
+          "تأكد من أن لديك وقتاً كافياً للنوم حتى لا يستمر التأثير إلى اليوم التالي."
+        ],
+        foodTitle: "الطعام والشراب",
+        foodList: [
+          "يفضل تناوله على معدة فارغة أو بعيداً عن الوجبات الدسمة.",
+          "ابتلع القرص مع الماء.",
+          "تجنب الكحول مع هذا الدواء."
+        ],
+        storeTitle: "تخزين الدواء",
+        storeList: [
+          "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
+          "احفظه في العبوة الأصلية للحماية من الرطوبة.",
+          "لا تستخدمه بعد تاريخ الانتهاء."
+        ],
+        sourcesTitle: "المصادر",
+        sourcesText: "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Imozop", href: "https://pro.medicin.dk/medicin/praeparater/1881" },
+          { text: "min.medicin.dk – Imozop", href: "https://min.medicin.dk/medicin/praeparater/1881" },
+          { text: "sundhed.dk – الأرق", href: "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/" }
+        ],
+        footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+      }
+    };
 
-  en: {
-    title: "Imozop (Zopiclone) – insomnia",
-    subtitle: "Brief information about the medicine for patients and relatives.",
-    back: "Back to the medicine list",
-    langLabel: "Choose language:",
-    badge: "Short and easy to read",
-    drugName: "Imozop (Zopiclone) – insomnia",
-    drugForm: "Oral tablet",
-    sections: {
-      use: { title:"Use", small:"", items:[
-        "Imozop (zopiclone) is used for <span class='highlight'>short-term treatment of insomnia</span>.",
-        "It may help you fall asleep more easily or stay asleep during the night."
-      ]},
-      dose: { title:"Dosage", small:"", items:[
-        "It is usually taken <span class='highlight'>once in the evening</span>, 15 to 30 minutes before bedtime.",
-        "The usual adult dose is 7.5 mg. Older adults or people with breathing or liver problems often start with a lower dose."
-      ]},
-      side: { title:"Side effects", small:"", items:[
-        "Bitter or metallic taste in the mouth, dry mouth, dizziness, or sleepiness the next day.",
-        "Some people may feel tired, confused, or have reduced memory the following morning."
-      ]},
-      interact: { title:"Interactions", small:"", items:[
-        "Avoid alcohol, opioids, and other sleeping or sedating medicines unless agreed with your doctor.",
-        "Some medicines that affect the brain may increase the effect of zopiclone."
-      ]},
-      warn: { title:"Warnings", small:"", items:[
-        "It may cause drowsiness, dizziness, or reduced alertness the next day.",
-        "The risk of dependence and habit formation increases with longer use.",
-        "Do not drive or use dangerous machinery if you still feel affected."
-      ]},
-      ramadan: { title:"Ramadan and fasting", small:"", items:[
-        "Talk with your doctor before Ramadan if you use this medicine regularly.",
-        "It is often taken <span class='highlight'>in the evening after iftar</span> when you are going to sleep.",
-        "Do not stop suddenly without medical advice."
-      ]},
-      food: { title:"Food and drink", small:"", items:[
-        "It is best taken on an empty stomach or away from very fatty meals, because food may delay the effect.",
-        "Swallow the tablet with water."
-      ]},
-      store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children and store below 25 °C.",
-        "Keep in the original packaging to protect from moisture.",
-        "Do not use after the expiry date."
-      ]}
-    },
-    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
-    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
+    const ENABLED_LANGS = new Set(["so", "da", "en", "ar"]);
 
-  ar: {
-    title: "إيموزوب (زوبيكلون) – الأرق",
-    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
-    back: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    badge: "معلومات مختصرة وسهلة",
-    drugName: "إيموزوب (زوبيكلون) – الأرق",
-    drugForm: "أقراص فموية",
-    sections: {
-      use: { title:"الاستعمال", small:"", items:[
-        "يُستخدم إيموزوب (زوبيكلون) لعلاج <span class='highlight'>الأرق لفترة قصيرة</span>.",
-        "قد يساعدك على النوم بسهولة أكبر أو الاستمرار في النوم أثناء الليل."
-      ]},
-      dose: { title:"الجرعة", small:"", items:[
-        "يؤخذ عادة <span class='highlight'>مرة واحدة مساءً</span>، قبل النوم بـ 15 إلى 30 دقيقة.",
-        "الجرعة المعتادة للبالغين هي 7.5 ملغ. كبار السن أو من لديهم مشاكل في التنفس أو الكبد يبدأون غالباً بجرعة أقل."
-      ]},
-      side: { title:"الآثار الجانبية", small:"", items:[
-        "طعم مر أو معدني في الفم، جفاف الفم، دوخة أو نعاس في اليوم التالي.",
-        "قد يشعر بعض الأشخاص بالتعب أو الارتباك أو ضعف الذاكرة في صباح اليوم التالي."
-      ]},
-      interact: { title:"التداخلات الدوائية", small:"", items:[
-        "تجنب الكحول والأفيونات والأدوية المنومة أو المهدئة الأخرى إلا بعد استشارة الطبيب.",
-        "بعض الأدوية التي تؤثر في الدماغ قد تزيد من تأثير الزوبيكلون."
-      ]},
-      warn: { title:"تحذيرات", small:"", items:[
-        "قد يسبب النعاس أو الدوخة أو قلة الانتباه في اليوم التالي.",
-        "يزداد خطر الاعتماد على الدواء مع الاستعمال الطويل.",
-        "لا تقد السيارة ولا تستخدم الآلات الخطرة إذا كنت لا تزال تشعر بالتأثير."
-      ]},
-      ramadan: { title:"رمضان والصيام", small:"", items:[
-        "تحدث مع طبيبك قبل رمضان إذا كنت تستخدم هذا الدواء بانتظام.",
-        "يؤخذ غالباً <span class='highlight'>مساءً بعد الإفطار</span> عند الاستعداد للنوم.",
-        "لا توقف الدواء فجأة دون استشارة طبية."
-      ]},
-      food: { title:"الطعام والشراب", small:"", items:[
-        "يفضل تناوله على معدة فارغة أو بعيداً عن الوجبات الدسمة لأن الطعام قد يؤخر المفعول.",
-        "ابتلع القرص مع الماء."
-      ]},
-      store: { title:"الحفظ", small:"", items:[
-        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
-        "احفظه في العبوة الأصلية للحماية من الرطوبة.",
-        "لا تستخدمه بعد تاريخ الانتهاء."
-      ]}
-    },
-    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
-    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
-  }
-};
+    function updateList(id, list) {
+      const el = document.getElementById(id);
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        el.appendChild(li);
+      });
+    }
 
-function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
+    function updateSources(list) {
+      const el = document.getElementById("sourcesList");
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerText = item.text;
+        li.appendChild(a);
+        el.appendChild(li);
+      });
+    }
 
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
+    function applyTheme(lang){
+      const t = themes[lang] || themes.so;
+      const r = document.documentElement.style;
+      r.setProperty("--accent1", t.accent1);
+      r.setProperty("--accent2", t.accent2);
+      r.setProperty("--badgeBg", t.badgeBg);
+      r.setProperty("--badgeText", t.badgeText);
+      r.setProperty("--soft", t.soft);
+      r.setProperty("--softBorder", t.softBorder);
+      r.setProperty("--link", t.link);
+      r.setProperty("--drugIconBg", t.drugIconBg);
+      r.setProperty("--drugIconBorder", t.drugIconBorder);
+      r.setProperty("--langBarAccent", t.langBarAccent);
+      r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
+    }
 
-function fillList(listId, items){
-  const ul = document.getElementById(listId);
-  ul.innerHTML = "";
-  (items || []).forEach(html => {
-    const li = document.createElement("li");
-    li.innerHTML = html;
-    ul.appendChild(li);
-  });
-}
+    function updateLanguage(pushToUrl = true) {
+      let lang = document.getElementById("langSelect").value;
+      if (!ENABLED_LANGS.has(lang)) lang = "so";
 
-function setSmall(id, txt){
-  const el = document.getElementById(id);
-  if (!el) return;
-  const t = (txt || "").trim();
-  el.textContent = t;
-  el.style.display = t ? "inline" : "none";
-}
+      const data = content[lang] || content.so;
+      applyTheme(lang);
 
-function render(lang){
-  if (!ENABLED_LANGS.has(lang)) lang = "so";
-  const d = T[lang] || T.so;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = data.pageTitle || data.hdrTitle;
 
-  setDirLang(lang);
-  applyTheme(lang);
+      document.getElementById("hdrTitle").innerText = data.hdrTitle;
+      document.getElementById("hdrSubtitle").innerText = data.hdrSubtitle;
+      document.getElementById("backLabel").innerText = data.backLabel;
+      document.getElementById("langLabel").innerText = data.langLabel;
+      document.getElementById("drugName").innerText = data.drugName;
+      document.getElementById("drugForm").innerText = data.drugForm;
+      document.getElementById("badgeText").innerText = data.badgeText;
+      document.getElementById("introBox").innerText = data.introBox;
+      document.getElementById("ibrahimTitle").innerText = data.ibrahimTitle;
+      document.getElementById("ibrahimText").innerText = data.ibrahimText;
+      document.getElementById("useTitle").innerText = data.useTitle;
+      document.getElementById("doseTitle").innerText = data.doseTitle;
+      document.getElementById("sideTitle").innerText = data.sideTitle;
+      document.getElementById("interactTitle").innerText = data.interactTitle;
+      document.getElementById("warnTitle").innerText = data.warnTitle;
+      document.getElementById("ramadanTitle").innerText = data.ramadanTitle;
+      document.getElementById("foodTitle").innerText = data.foodTitle;
+      document.getElementById("storeTitle").innerText = data.storeTitle;
+      document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
+      document.getElementById("sourcesText").innerText = data.sourcesText;
+      document.getElementById("footerNote").innerText = data.footerNote;
 
-  document.title = stripTags(d.title);
-  document.getElementById("hdrTitle").textContent = stripTags(d.title);
-  document.getElementById("hdrSubtitle").textContent = d.subtitle;
-  document.getElementById("backLabel").textContent = d.back;
-  document.getElementById("badge").textContent = d.badge;
-  document.getElementById("drugName").textContent = stripTags(d.drugName);
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("langLabel").textContent = d.langLabel;
+      updateList("useList", data.useList);
+      updateList("doseList", data.doseList);
+      updateList("sideList", data.sideList);
+      updateList("interactList", data.interactList);
+      updateList("warnList", data.warnList);
+      updateList("ramadanList", data.ramadanList);
+      updateList("foodList", data.foodList);
+      updateList("storeList", data.storeList);
+      updateSources(data.sourcesList);
 
-  document.getElementById("useTitle").textContent = d.sections.use.title;
-  setSmall("useSmall", d.sections.use.small);
-  document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  setSmall("doseSmall", d.sections.dose.small);
-  document.getElementById("sideTitle").textContent = d.sections.side.title;
-  setSmall("sideSmall", d.sections.side.small);
-  document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  setSmall("interactSmall", d.sections.interact.small);
-  document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  setSmall("warnSmall", d.sections.warn.small);
-  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  setSmall("ramadanSmall", d.sections.ramadan.small);
-  document.getElementById("foodTitle").textContent = d.sections.food.title;
-  setSmall("foodSmall", d.sections.food.small);
-  document.getElementById("storeTitle").textContent = d.sections.store.title;
-  setSmall("storeSmall", d.sections.store.small);
+      if (pushToUrl) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", lang);
+        window.history.replaceState({}, "", url.toString());
+      }
+    }
 
-  fillList("useList", d.sections.use.items);
-  fillList("doseList", d.sections.dose.items);
-  fillList("sideList", d.sections.side.items);
-  fillList("interactList", d.sections.interact.items);
-  fillList("warnList", d.sections.warn.items);
-  fillList("ramadanList", d.sections.ramadan.items);
-  fillList("foodList", d.sections.food.items);
-  fillList("storeList", d.sections.store.items);
+    function initLanguage() {
+      const params = new URLSearchParams(window.location.search);
+      let startLang = params.get("lang") || "so";
 
-  document.getElementById("footerNote").innerHTML = d.footerHTML;
-  document.getElementById("credit").innerHTML = d.creditHTML;
+      if (!ENABLED_LANGS.has(startLang)) {
+        startLang = "so";
+      }
 
-  const backA = document.querySelector("a.back");
-  const base = backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+      document.getElementById("langSelect").value = startLang;
+      updateLanguage(false);
+    }
 
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
-  window.history.replaceState({}, "", url.toString());
-}
+    document.getElementById("langSelect").addEventListener("change", function () {
+      updateLanguage(true);
+    });
 
-const params = new URLSearchParams(window.location.search);
-let startLang = params.get("lang") || "so";
-if (!ENABLED_LANGS.has(startLang)) startLang = "so";
-
-const select = document.getElementById("langSelect");
-select.value = startLang;
-render(select.value);
-select.addEventListener("change", function(){ render(this.value); });
-</script>
-
+    initLanguage();
+  </script>
 </body>
 </html>
