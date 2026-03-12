@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eliquis (apixaban) – dhiig-khafiifiye</title>
+  <title>Eliquis – dhiig-khafiifiye</title>
   <style>
     :root{
       --accent1:#00a676;
@@ -353,7 +353,7 @@
 </head>
 <body>
   <header id="mainHeader">
-    <h1 id="hdrTitle">Eliquis (apixaban) – dhiig-khafiifiye</h1>
+    <h1 id="hdrTitle">Eliquis – dhiig-khafiifiye</h1>
     <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
   </header>
 
@@ -377,13 +377,42 @@
       <div class="drug-main-info">
         <div class="drug-icon">
           <svg viewBox="0 0 64 64" id="drugSvg" aria-hidden="true">
-            <ellipse cx="32" cy="32" rx="20" ry="12" fill="#e8f3ff"></ellipse>
-            <ellipse cx="32" cy="32" rx="20" ry="12" fill="none" stroke="#0b6b57" stroke-width="3"></ellipse>
-            <line x1="22" y1="22" x2="42" y2="42" stroke="#0b6b57" stroke-width="4"></line>
+            <defs>
+              <linearGradient id="pillRed" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ff8a7a"></stop>
+                <stop offset="100%" stop-color="#d63b2e"></stop>
+              </linearGradient>
+              <linearGradient id="pillYellow" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f8df7a"></stop>
+                <stop offset="100%" stop-color="#caa61a"></stop>
+              </linearGradient>
+              <linearGradient id="pillShine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.95)"></stop>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
+              </linearGradient>
+            </defs>
+
+            <g transform="rotate(-45 32 32)">
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
+
+              <clipPath id="pillClip">
+                <rect x="14" y="22" width="36" height="20" rx="10"></rect>
+              </clipPath>
+
+              <g clip-path="url(#pillClip)">
+                <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
+                <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
+                <rect x="30.8" y="22" width="2.4" height="20" fill="#ffffff" opacity="0.9"></rect>
+                <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
+                <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
+              </g>
+
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
+            </g>
           </svg>
         </div>
         <div class="drug-title-block">
-          <h1 id="drugName">Eliquis (apixaban) – dhiig-khafiifiye</h1>
+          <h1 id="drugName">Eliquis – dhiig-khafiifiye</h1>
           <p id="drugForm">Kiniin afka ah</p>
         </div>
       </div>
@@ -510,12 +539,12 @@
 
     const content = {
       so: {
-        pageTitle: "Eliquis (apixaban) – dhiig-khafiifiye",
-        hdrTitle: "Eliquis (apixaban) – dhiig-khafiifiye",
+        pageTitle: "Eliquis – dhiig-khafiifiye",
+        hdrTitle: "Eliquis – dhiig-khafiifiye",
         hdrSubtitle: "Waa warbixin kooban oo ku saabsan daawada, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
         backLabel: "Ku laabo liiska daawooyinka",
         langLabel: "Dooro luqadda:",
-        drugName: "Eliquis (apixaban) – dhiig-khafiifiye",
+        drugName: "Eliquis – dhiig-khafiifiye",
         drugForm: "Kiniin afka ah",
         badgeText: "Akhris fudud oo kooban",
         introBox: "Eliquis waa daawo dhiigga ka dhigta mid aan si sahlan u xinjiroobin. Tani waxay kaa caawin kartaa ka hortagga xinjiro halis ah, laakiin sidoo kale waxay ka dhigan tahay in jirku si fudud u dhiigi karo haddii dhaawac ama dhibaato timaaddo.",
@@ -523,7 +552,7 @@
         ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: Eliquis ma aha daawo aad dareento inay wax dejinayso ama xanuun baabi’inayso, laakiin waxay aamusnaan ku ilaalisaa in dhiiggu sameeyo xinjiro aan la rabin. Sidaas darteed muhiimaddu waxay ku jirtaa joogtaynta. Haddii mar la qaato marna la iska dhaafo, ilaalintii daawadu way daciifi kartaa.",
         useTitle: "Isticmaalka",
         useList: [
-          "Eliquis (apixaban) waa dhiig-khafiifiye loo isticmaalo si loo yareeyo khatarta xinjirowga dhiigga.",
+          "Eliquis waa dhiig-khafiifiye loo isticmaalo si loo yareeyo khatarta xinjirowga dhiigga.",
           "Waxaa loo isticmaalaa dadka qaarkood ee qaba garaac aan caadi ahayn oo wadnaha ah iyo dadka loo daweynayo ama looga hortagayo xinjiro lugaha ama sambabbada.",
           "Mararka qaar waxaa kale oo loo isticmaalaa ka dib qalliin si loo yareeyo khatarta xinjiro samaysanka."
         ],
@@ -810,6 +839,8 @@
       }
     };
 
+    const ENABLED_LANGS = new Set(["so", "da", "en", "ar"]);
+
     function updateList(id, list) {
       const el = document.getElementById(id);
       el.innerHTML = "";
@@ -851,8 +882,10 @@
       r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
     }
 
-    function updateLanguage(saveSelection = true) {
-      const lang = document.getElementById("langSelect").value;
+    function updateLanguage(pushToUrl = true) {
+      let lang = document.getElementById("langSelect").value;
+      if (!ENABLED_LANGS.has(lang)) lang = "so";
+
       const data = content[lang] || content.so;
       applyTheme(lang);
 
@@ -892,28 +925,28 @@
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
 
-      if (saveSelection) {
-        localStorage.setItem("selectedLanguage", lang);
+      if (pushToUrl) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", lang);
+        window.history.replaceState({}, "", url.toString());
       }
     }
 
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
-      const urlLang = params.get("lang");
-      const savedLang = localStorage.getItem("selectedLanguage");
-      let defaultLang = "so";
+      let startLang = params.get("lang") || "so";
 
-      if (urlLang && content[urlLang]) {
-        defaultLang = urlLang;
-      } else if (savedLang && content[savedLang]) {
-        defaultLang = savedLang;
+      if (!ENABLED_LANGS.has(startLang)) {
+        startLang = "so";
       }
 
-      document.getElementById("langSelect").value = defaultLang;
+      document.getElementById("langSelect").value = startLang;
       updateLanguage(false);
     }
 
-    document.getElementById("langSelect").addEventListener("change", () => updateLanguage(true));
+    document.getElementById("langSelect").addEventListener("change", function () {
+      updateLanguage(true);
+    });
 
     initLanguage();
   </script>
