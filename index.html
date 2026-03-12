@@ -135,7 +135,7 @@ footer{
   <div class="langbar" aria-label="Language selector">
     <label for="langSelect" id="langLabel">Dooro luqadda:</label>
     <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
+      <option value="so">Somalisk</option>
       <option value="da">Dansk</option>
       <option value="en">Engelsk</option>
       <option value="ar">Arabisk</option>
@@ -186,6 +186,7 @@ footer{
 <script>
 const ENABLED_LANGS = new Set(["so","da","en","ar"]);
 const RTL = new Set(["ar"]);
+const STORAGE_KEY = "selectedLanguage";
 
 const THEME = {
   so: { c1:"#00a676", c2:"#0066cc", accent:"#00a676", flash:"#d9f6e8" },
@@ -284,6 +285,20 @@ function setLangInUrl(lang){
   history.replaceState({}, "", url.toString());
 }
 
+function saveLang(lang){
+  localStorage.setItem(STORAGE_KEY, lang);
+}
+
+function getInitialLang(){
+  const params = new URLSearchParams(window.location.search);
+  const urlLang = params.get("lang");
+  const storedLang = localStorage.getItem(STORAGE_KEY);
+
+  if (urlLang && ENABLED_LANGS.has(urlLang)) return urlLang;
+  if (storedLang && ENABLED_LANGS.has(storedLang)) return storedLang;
+  return "so";
+}
+
 function applyTheme(lang){
   const th = THEME[lang] || THEME.so;
   document.documentElement.style.setProperty("--accent1", th.c1);
@@ -319,6 +334,13 @@ function updateIndexSubs(lang){
   });
 }
 
+function updateLinks(lang){
+  document.querySelectorAll('a.index-link').forEach(a => {
+    const base = a.getAttribute('href').split('?')[0];
+    a.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
+  });
+}
+
 function applyLang(lang){
   if (!ENABLED_LANGS.has(lang)) lang = "so";
   const d = T[lang] || T.so;
@@ -344,19 +366,12 @@ function applyLang(lang){
 
   updateIndexSubs(lang);
   flashCards();
-
-  document.querySelectorAll('a.index-link').forEach(a => {
-    const base = a.getAttribute('href').split('?')[0];
-    a.setAttribute('href', base + '?lang=' + encodeURIComponent(lang));
-  });
-
+  updateLinks(lang);
+  saveLang(lang);
   setLangInUrl(lang);
 }
 
-const params = new URLSearchParams(window.location.search);
-let startLang = params.get('lang') || 'so';
-if (!ENABLED_LANGS.has(startLang)) startLang = 'so';
-
+const startLang = getInitialLang();
 document.getElementById("langSelect").value = startLang;
 applyLang(startLang);
 
