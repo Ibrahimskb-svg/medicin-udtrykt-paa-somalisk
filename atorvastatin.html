@@ -149,6 +149,7 @@
       justify-content: center;
       border: 1px solid var(--drugIconBorder);
       flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
     }
 
     .drug-icon svg{
@@ -360,10 +361,10 @@
     <div class="lang-selector">
       <label id="langLabel" for="langSelect">Dooro luqadda:</label>
       <select id="langSelect" onchange="updateLanguage()">
-        <option value="so" selected>Somalisk</option>
+        <option value="so" selected>Somali</option>
         <option value="da">Dansk</option>
-        <option value="en">Engelsk</option>
-        <option value="ar">Arabisk</option>
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
       </select>
     </div>
 
@@ -389,13 +390,14 @@
                 <stop offset="0%" stop-color="rgba(255,255,255,0.95)"></stop>
                 <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
               </linearGradient>
-              <clipPath id="pillClip">
-                <rect x="14" y="22" width="36" height="20" rx="10"></rect>
-              </clipPath>
             </defs>
 
             <g transform="rotate(-45 32 32)">
               <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
+
+              <clipPath id="pillClip">
+                <rect x="14" y="22" width="36" height="20" rx="10"></rect>
+              </clipPath>
 
               <g clip-path="url(#pillClip)">
                 <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
@@ -420,13 +422,13 @@
     <div class="divider"></div>
 
     <div class="intro-box" id="introBox">
-      Kolestaroolka xun marar badan lama dareemo, laakiin si aamusnaan ah ayuu xididdada dhiigga ugu ururi karaa dufan. Atorvastatin waxay ka caawisaa jirka inuu yareeyo kolestaroolkaas, si waddada dhiiggu u ahaato mid ka sii nadiifsan oo khatartu u yaraato.
+      Kolestaroolka badan badanaa xanuun ma keeno, mana aha wax si degdeg ah loo dareemo. Laakiin marba in yar ayuu dufan ugu reebi karaa gudaha xididdada dhiigga. Atorvastatin waxay ka shaqaysaa in culayskaas la yareeyo, si wadnaha iyo dhiiggu u helaan marin ka nabdoon oo deggan mustaqbalka.
     </div>
 
     <div class="ibrahim-box">
       <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
       <p id="ibrahimText">
-        Waxaan dadka ugu sharxaa sidan: haddii dufan yar-yar uu si tartiib ah ugu dhego gudaha xididdada dhiigga, marinku wuu cidhiidhi noqon karaa sida tuubo wasakh ku uruurtay. Atorvastatin ma aha daawo aad isla markiiba dareemayso, balse waa daawo si deggan u ilaalisa wadnaha iyo maskaxda mustaqbalka.
+        Waxaan bukaan badan ugu sharxaa sidan: daawadan ma aha nooca aad qaadato oo isla markiiba aad dareento. Waxay u shaqaysaa sidii qof maalin kasta si aamusnaan ah u sifaynaya waddo muhiim ah. Haddii aad joojiso mar walba ama aad iska ilowdo, ilaalintaas way daciifaysaa. Sidaa darteed atorvastatin waxaa ugu fiican in lala saaxiibo si joogto ah, ee aan loo qaadan sidii wax kumeelgaar ah oo keliya.
       </p>
     </div>
 
@@ -537,6 +539,7 @@
 
     const content = {
       so: {
+        pageTitle: "Atorvastatin – kolestarool",
         hdrTitle: "Atorvastatin – kolestarool",
         hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
         backLabel: "Ku laabo liiska daawooyinka",
@@ -544,51 +547,51 @@
         drugName: "Atorvastatin – kolestarool",
         drugForm: "Kiniin afka ah",
         badgeText: "Akhris fudud oo kooban",
-        introBox: "Kolestaroolka xun marar badan lama dareemo, laakiin si aamusnaan ah ayuu xididdada dhiigga ugu ururi karaa dufan. Atorvastatin waxay ka caawisaa jirka inuu yareeyo kolestaroolkaas, si waddada dhiiggu u ahaato mid ka sii nadiifsan oo khatartu u yaraato.",
+        introBox: "Kolestaroolka badan badanaa xanuun ma keeno, mana aha wax si degdeg ah loo dareemo. Laakiin marba in yar ayuu dufan ugu reebi karaa gudaha xididdada dhiigga. Atorvastatin waxay ka shaqaysaa in culayskaas la yareeyo, si wadnaha iyo dhiiggu u helaan marin ka nabdoon oo deggan mustaqbalka.",
         ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
-        ibrahimText: "Waxaan dadka ugu sharxaa sidan: haddii dufan yar-yar uu si tartiib ah ugu dhego gudaha xididdada dhiigga, marinku wuu cidhiidhi noqon karaa sida tuubo wasakh ku uruurtay. Atorvastatin ma aha daawo aad isla markiiba dareemayso, balse waa daawo si deggan u ilaalisa wadnaha iyo maskaxda mustaqbalka.",
+        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: daawadan ma aha nooca aad qaadato oo isla markiiba aad dareento. Waxay u shaqaysaa sidii qof maalin kasta si aamusnaan ah u sifaynaya waddo muhiim ah. Haddii aad joojiso mar walba ama aad iska ilowdo, ilaalintaas way daciifaysaa. Sidaa darteed atorvastatin waxaa ugu fiican in lala saaxiibo si joogto ah, ee aan loo qaadan sidii wax kumeelgaar ah oo keliya.",
         useTitle: "Isticmaalka",
         useList: [
-          "Atorvastatin waxaa loo isticmaalaa in lagu yareeyo kolestaroolka xun ee dhiigga ku badan.",
-          "Waxay ka tirsan tahay dawooyinka statin-ka ah oo ka shaqeeya beerka si ay u yareeyaan samaysanka kolestaroolka.",
-          "Waxaa kale oo loo isticmaalaa in lagu yareeyo khatarta cudurrada wadnaha iyo xididdada dhiigga dadka halistu ku badan tahay."
+          "Atorvastatin waxaa loo isticmaalaa marka kolestaroolka xun dhiigga ku bato.",
+          "Waxay ka caawisaa jirka inuu sameeyo kolestarool ka yar sidii hore.",
+          "Waxaa sidoo kale loo isticmaalaa in lagu yareeyo khatarta dhibaatooyinka wadnaha iyo xididdada dhiigga dadka halistu ku badan tahay."
         ],
         doseTitle: "Qiyaasta iyo talooyinka Ibraahim",
         doseList: [
           "Badanaa waxaa la qaataa hal mar maalintii, isla saacad u dhow maalin kasta.",
-          "Waxaad qaadan kartaa subax ama fiid, laakiin joogteyntu waa waxa ugu muhiimsan.",
+          "Waxaad qaadan kartaa subax ama fiid, laakiin waxa ugu muhiimsan waa inaad joogto ka dhigto.",
           "Kiniinka waxaa lagu qaadan karaa cunto la'aan ama cunto ka dib.",
-          "Ha joojin daawada adigoon la tashan dhakhtar, xataa haddii aadan wax calaamado ah dareemayn."
+          "Ha joojin daawada adigoon la tashan dhakhtar, xataa haddii aad is leedahay wax dhibaato ah ma qabo."
         ],
         sideTitle: "Waxyeellooyinka",
         sideList: [
           "Dadka qaar waxay dareemi karaan murqo xanuun, murqo daal ama tabardarri.",
-          "Calool-xanuun, lallabbo ama madax-xanuun mararka qaar way dhici karaan.",
-          "Haddii murqo xanuunku noqdo mid daran ama aad aragto kaadi madow, si degdeg ah ula xiriir dhakhtar."
+          "Qaar kale waxay dareemi karaan lalabbo, calool-xanuun ama madax-xanuun.",
+          "Haddii murqahaagu si daran kuu xanuunaan, aad tabardarri weyn dareento ama kaadidu madow noqoto, si degdeg ah ula xiriir dhakhtar."
         ],
         interactTitle: "Isdhexgalka daawooyinka",
         interactList: [
-          "Daawooyin qaar waxay kordhin karaan khatarta murqo-dhibaatooyinka marka lala qaato atorvastatin.",
-          "Gaar ahaan waa muhiim in la sheego haddii aad qaadato antibiyootik gaar ah, dawooyin fangas, dawooyin HIV ah ama daawooyin kale oo kolestaroolka loo qaato.",
+          "Daawooyin kale qaarkood waxay beddeli karaan sida atorvastatin u shaqayso.",
+          "Qaarkood waxay kordhin karaan khatarta murqo-dhibaatooyinka.",
           "U sheeg dhakhtarka ama farmashiistaha dhammaan daawooyinka aad isticmaalayso, xataa kuwa aan warqad dhakhtar lahayn."
         ],
         warnTitle: "Digniino muhiim ah",
         warnList: [
-          "Haddii aad qabto xanuun beerka ah ama aad cabto khamri badan, dhakhtarku wuxuu rabaa inuu si gaar ah kuu la socdo.",
-          "Haddii aad yeelato murqo xanuun daran, murqo daciifnimo ama kaadi madow, ha sugin ee la xiriir dhakhtar.",
-          "Mararka qaar waxaa la sameeyaa baaritaan dhiig si loo eego sida beerku uga jawaabayo daawada."
+          "Haddii aad qabto xanuun beerka ah ama aad cabto khamri badan, waxaa jiri karta baahi kormeer dheeraad ah.",
+          "Haddii murqo xanuun ama daciifnimo ay si aad ah kuu saameeyaan, ha iska aamusin ee la xiriir dhakhtar.",
+          "Dhakhtarku mararka qaar wuxuu samayn karaa baaritaanno dhiig haddii loo baahdo si loo hubiyo in daawadu si fiican kuugu socoto."
         ],
         ramadanTitle: "Ramadaan iyo soonka",
         ramadanList: [
           "Maadaama daawadan badanaa la qaato hal mar maalintii, waxaa lagu qaadan karaa Afur ama Suxuur.",
-          "Dooro wakhti kuu fudud oo aad maalin walba ku celin karto.",
-          "Waxa ugu muhiimsan waa in daawadu noqoto qayb joogto ah oo ka mid ah jadwalkaaga."
+          "Dooro wakhti kuu sahlan oo aad maalin kasta ku celin karto.",
+          "Waxa ugu muhiimsan waa joogtaynta, ee ma aha saacadda saxda ah oo keliya."
         ],
         foodTitle: "Cunto iyo cabitaan",
         foodList: [
           "Waxaad ku qaadan kartaa cunto la'aan ama cunto ka dib.",
-          "Ka taxaddar liin bambeelmo ama casiir liin bambeelmo badan, sababtoo ah waxay beddeli karaan saamaynta daawada.",
-          "Cunto caafimaad leh iyo dhaqdhaqaaq jidheed ayaa weli muhiim ah, xitaa marka aad qaadanayso atorvastatin."
+          "Ka taxaddar xaddi badan oo liin bambeelmo ama casiirkiisa, sababtoo ah waxay beddeli karaan saamaynta daawada.",
+          "Cunto caafimaad leh iyo dhaqdhaqaaq jidheed ayaa weli qayb muhiim ah ka ah daryeelkaaga."
         ],
         storeTitle: "Kaydinta daawada",
         storeList: [
@@ -601,11 +604,12 @@
         sourcesList: [
           { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
           { text: "sundhed.dk – Højt kolesterol (dyslipidæmi)", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
-          { text: "sundhed.dk – Kolesterolsænkende behandling med statiner", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+          { text: "sundhed.dk – Hjertesygdom, forebyg åreforkalkning i hjertets kranspulsårer", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/" }
         ],
         footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
       },
       da: {
+        pageTitle: "Atorvastatin – kolesterol",
         hdrTitle: "Atorvastatin – kolesterol",
         hdrSubtitle: "En let og personlig forklaring på medicinen, så patienter og familier bedre kan forstå behandlingen.",
         backLabel: "Tilbage til medicinlisten",
@@ -613,51 +617,51 @@
         drugName: "Atorvastatin",
         drugForm: "Tabletter",
         badgeText: "Kort og letlæselig",
-        introBox: "Forhøjet kolesterol kan ikke mærkes i hverdagen, men over tid kan fedtstoffer sætte sig i blodkarrene. Atorvastatin hjælper kroppen med at sænke det skadelige kolesterol, så blodet får bedre passage og risikoen mindskes.",
+        introBox: "Forhøjet kolesterol kan ikke mærkes på samme måde som smerter eller feber. Men stille og roligt kan det sætte sig som fedt inde i blodkarrene. Atorvastatin hjælper med at mindske den belastning, så blodet får en tryggere vej frem, og risikoen på længere sigt bliver mindre.",
         ibrahimTitle: "Ibrahims forklaring fra apoteket",
-        ibrahimText: "Jeg plejer at forklare det sådan: hvis der langsomt sætter sig fedt inde i blodkarrene, bliver passagen mere snæver, lidt som et rør der bliver mere og mere belagt indvendigt. Atorvastatin er ikke en medicin man nødvendigvis kan mærke med det samme, men den arbejder stille og roligt for at beskytte hjerte og hjerne på længere sigt.",
+        ibrahimText: "Jeg plejer at forklare det sådan: det her er ikke nødvendigvis en medicin, man kan mærke med det samme. Den arbejder mere i baggrunden, lidt som nogen der holder en vigtig vej ren, så trafikken kan glide bedre i fremtiden. Hvis man stopper for tit eller glemmer den ofte, mister man noget af den beskyttelse. Derfor er atorvastatin bedst, når den bliver en fast del af hverdagen.",
         useTitle: "Anvendelse",
         useList: [
-          "Atorvastatin bruges til at sænke det dårlige kolesterol i blodet.",
-          "Det er et statin, som hjælper leveren med at danne mindre kolesterol.",
-          "Medicinen bruges også til at forebygge hjerte-kar-sygdom hos personer med øget risiko."
+          "Atorvastatin bruges, når det dårlige kolesterol er for højt.",
+          "Medicinen hjælper kroppen med at danne mindre kolesterol end før.",
+          "Den bruges også til at mindske risikoen for problemer med hjerte og blodkar hos personer med øget risiko."
         ],
         doseTitle: "Dosering og Ibrahims råd",
         doseList: [
-          "Den tages som regel én gang dagligt, gerne på samme tidspunkt hver dag.",
-          "Du kan tage den morgen eller aften, men det vigtigste er faste vaner.",
+          "Den tages som regel én gang dagligt, gerne omkring samme tidspunkt hver dag.",
+          "Du kan tage den morgen eller aften, men det vigtigste er, at du gør det fast.",
           "Tabletten kan tages med eller uden mad.",
-          "Stop ikke behandlingen uden at tale med din læge, også selv om du ikke mærker noget."
+          "Stop ikke behandlingen uden at tale med din læge, også selv om du føler dig helt okay."
         ],
         sideTitle: "Bivirkninger",
         sideList: [
-          "Nogle oplever muskelsmerter, muskelømhed eller træthed i musklerne.",
-          "Mavegener, kvalme eller hovedpine kan også forekomme.",
-          "Kontakt læge hurtigt, hvis du får kraftige muskelsmerter eller mørk urin."
+          "Nogle kan mærke muskelsmerter, ømme muskler eller træthed i kroppen.",
+          "Der kan også komme kvalme, maveuro eller hovedpine.",
+          "Kontakt læge hurtigt, hvis musklerne gør meget ondt, du føler tydelig svaghed, eller urinen bliver mørk."
         ],
         interactTitle: "Interaktioner",
         interactList: [
-          "Nogle lægemidler kan øge risikoen for muskelbivirkninger, når de tages sammen med atorvastatin.",
-          "Det er især vigtigt at nævne visse antibiotika, svampemidler, HIV-lægemidler og andre kolesterolsænkende midler.",
-          "Fortæl altid lægen eller apoteket om al den medicin, du bruger, også håndkøbsmedicin."
+          "Nogle andre lægemidler kan ændre den måde, atorvastatin virker på.",
+          "Nogle kan også gøre risikoen for muskelproblemer større.",
+          "Fortæl derfor altid lægen eller apoteket om al den medicin, du bruger, også håndkøbsmedicin."
         ],
         warnTitle: "Vigtige advarsler",
         warnList: [
-          "Ved leversygdom eller stort alkoholforbrug kan der være behov for ekstra kontrol.",
-          "Hvis du får kraftige muskelsmerter, tydelig svaghed eller mørk urin, skal du kontakte læge.",
-          "Der kan blive taget blodprøver for at kontrollere, hvordan kroppen tåler behandlingen."
+          "Hvis du har leversygdom eller drikker meget alkohol, kan der være behov for ekstra opmærksomhed.",
+          "Hvis muskelsmerter eller svaghed bliver tydelige, skal du ikke bare gå med det, men kontakte læge.",
+          "Lægen kan i nogle tilfælde tage blodprøver ved behov for at se, om behandlingen passer godt til dig."
         ],
         ramadanTitle: "Ramadan og faste",
         ramadanList: [
           "Da medicinen ofte tages én gang dagligt, kan den som regel tages ved Iftar eller Suhoor.",
-          "Vælg et tidspunkt du realistisk kan holde fast i hver dag.",
-          "Det vigtigste er en stabil daglig rutine."
+          "Vælg et tidspunkt, som passer naturligt ind i din hverdag under fasten.",
+          "Det vigtigste er, at du holder fast i en rolig og stabil rutine."
         ],
         foodTitle: "Mad og drikke",
         foodList: [
           "Kan tages med eller uden mad.",
           "Vær forsigtig med store mængder grapefrugt eller grapefrugtjuice.",
-          "Sund kost og motion er stadig vigtige, selv om du tager atorvastatin."
+          "Sund mad og bevægelse er stadig en vigtig del af behandlingen, også når du tager medicinen."
         ],
         storeTitle: "Opbevaring",
         storeList: [
@@ -670,11 +674,12 @@
         sourcesList: [
           { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
           { text: "sundhed.dk – Højt kolesterol (dyslipidæmi)", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
-          { text: "sundhed.dk – Kolesterolsænkende behandling med statiner", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+          { text: "sundhed.dk – Hjertesygdom, forebyg åreforkalkning i hjertets kranspulsårer", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/" }
         ],
         footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
       },
       en: {
+        pageTitle: "Atorvastatin – cholesterol",
         hdrTitle: "Atorvastatin – cholesterol",
         hdrSubtitle: "A simple and personal explanation of the medicine for patients and families.",
         backLabel: "Back to medication list",
@@ -682,51 +687,51 @@
         drugName: "Atorvastatin",
         drugForm: "Tablets",
         badgeText: "Short and easy to read",
-        introBox: "High cholesterol often stays silent, but over time fatty material can build up inside the blood vessels. Atorvastatin helps the body lower harmful cholesterol so the blood can move more freely and the long-term risk becomes lower.",
+        introBox: "High cholesterol does not usually feel like an illness in daily life. But over time, it can quietly leave fatty build-up inside the blood vessels. Atorvastatin helps reduce that burden, so the blood has a safer and calmer path in the future, and the long-term risk becomes lower.",
         ibrahimTitle: "Ibrahim’s pharmacy advice",
-        ibrahimText: "I often explain it like this: if fat slowly sticks inside the blood vessels, the path becomes narrower, like a pipe that gets more and more coated on the inside. Atorvastatin is not a medicine you always feel straight away, but it works quietly in the background to protect the heart and brain over time.",
+        ibrahimText: "I often explain it like this: this is not the kind of medicine you always feel right away. It works more quietly in the background, like someone keeping an important road clean so traffic can move better later on. If you stop too often or forget it regularly, that protection becomes weaker. That is why atorvastatin works best when it becomes a steady part of everyday life.",
         useTitle: "Use",
         useList: [
-          "Atorvastatin is used to lower harmful cholesterol in the blood.",
-          "It is a statin that helps the liver make less cholesterol.",
-          "It is also used to reduce the risk of cardiovascular disease in people with increased risk."
+          "Atorvastatin is used when harmful cholesterol is too high.",
+          "It helps the body make less cholesterol than before.",
+          "It is also used to lower the risk of heart and blood vessel problems in people with higher risk."
         ],
         doseTitle: "Dosage and Ibrahim’s advice",
         doseList: [
           "It is usually taken once daily, preferably around the same time each day.",
-          "Morning or evening can both work; the key is consistency.",
+          "Morning or evening can both work, but the most important thing is to take it regularly.",
           "The tablet can be taken with or without food.",
-          "Do not stop the medicine without medical advice, even if you feel fine."
+          "Do not stop the medicine without speaking to your doctor, even if you feel completely fine."
         ],
         sideTitle: "Side effects",
         sideList: [
-          "Some people get muscle pain, muscle soreness, or tired muscles.",
-          "Stomach upset, nausea, or headache may also occur.",
-          "Seek medical advice quickly if you get severe muscle pain or dark urine."
+          "Some people may notice muscle pain, sore muscles, or unusual weakness.",
+          "Nausea, stomach discomfort, or headache can also happen.",
+          "Seek medical advice quickly if your muscles become very painful, you feel marked weakness, or your urine turns dark."
         ],
         interactTitle: "Drug interactions",
         interactList: [
-          "Some medicines can increase the risk of muscle side effects when taken with atorvastatin.",
-          "This is especially important with certain antibiotics, antifungals, HIV medicines, and other cholesterol medicines.",
-          "Always tell your doctor or pharmacist about all the medicines you use, including non-prescription medicines."
+          "Some other medicines can change the way atorvastatin works.",
+          "Some can also increase the chance of muscle-related problems.",
+          "Always tell your doctor or pharmacist about all medicines you use, including non-prescription medicines."
         ],
         warnTitle: "Important warnings",
         warnList: [
-          "Extra monitoring may be needed if you have liver disease or drink a lot of alcohol.",
-          "If you develop severe muscle pain, marked weakness, or dark urine, contact a doctor.",
-          "Blood tests may sometimes be used to check how your body is tolerating the treatment."
+          "If you have liver problems or drink a lot of alcohol, extra attention may be needed.",
+          "If muscle pain or weakness becomes more noticeable, do not ignore it—contact a doctor.",
+          "Blood tests may sometimes be used when needed to make sure the treatment is suiting you well."
         ],
         ramadanTitle: "Ramadan and fasting",
         ramadanList: [
           "Because this medicine is often taken once daily, it can usually be taken at Iftar or Suhoor.",
-          "Choose a time you can keep every day.",
-          "The most important thing is a stable daily routine."
+          "Choose a time that fits naturally into your routine during fasting.",
+          "The most important thing is keeping a steady daily habit."
         ],
         foodTitle: "Food and drink",
         foodList: [
           "It can be taken with or without food.",
           "Be careful with large amounts of grapefruit or grapefruit juice.",
-          "Healthy eating and physical activity still matter, even when you take atorvastatin."
+          "Healthy food and regular movement are still an important part of your care, even while taking this medicine."
         ],
         storeTitle: "Storage",
         storeList: [
@@ -739,11 +744,12 @@
         sourcesList: [
           { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
           { text: "sundhed.dk – High cholesterol (dyslipidaemia)", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
-          { text: "sundhed.dk – Cholesterol-lowering treatment with statins", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+          { text: "sundhed.dk – Heart disease, preventing atherosclerosis in the coronary arteries", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/" }
         ],
         footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
       },
       ar: {
+        pageTitle: "أتورفاستاتين – الكوليسترول",
         hdrTitle: "أتورفاستاتين – الكوليسترول",
         hdrSubtitle: "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
         backLabel: "العودة إلى قائمة الأدوية",
@@ -751,51 +757,51 @@
         drugName: "أتورفاستاتين",
         drugForm: "أقراص",
         badgeText: "سهل ومختصر",
-        introBox: "ارتفاع الكوليسترول قد لا يُشعر الإنسان بشيء، لكن مع الوقت قد تتراكم الدهون داخل الأوعية الدموية. يساعد أتورفاستاتين الجسم على خفض الكوليسترول الضار حتى يتحرك الدم بسهولة أكبر وتقل المخاطر على المدى البعيد.",
+        introBox: "ارتفاع الكوليسترول لا يُشعر الإنسان عادة بمرض واضح في يومه. لكنه مع الوقت قد يترك ترسّبات دهنية داخل الأوعية الدموية بهدوء. يساعد أتورفاستاتين على تخفيف هذا العبء، حتى يكون طريق الدم أكثر أماناً وهدوءاً في المستقبل، وتقل المخاطر على المدى البعيد.",
         ibrahimTitle: "نصيحة إبراهيم من الصيدلية",
-        ibrahimText: "أنا أشرحها لكثير من المرضى بهذه الصورة: عندما تتراكم الدهون ببطء داخل الأوعية الدموية، يصبح الطريق أضيق، مثل أنبوب تتكوّن فيه طبقة من الداخل. أتورفاستاتين ليس دواءً تشعر به فوراً، لكنه يعمل بهدوء في الخلفية لحماية القلب والدماغ مع الوقت.",
+        ibrahimText: "أنا أشرحها لكثير من المرضى بهذه الصورة: هذا ليس دواءً تشعر بمفعوله دائماً من أول يوم. هو يعمل بهدوء في الخلفية، مثل شخص يحافظ كل يوم على نظافة طريق مهم حتى تبقى الحركة فيه أسهل لاحقاً. إذا أوقفته كثيراً أو نسيته بشكل متكرر، تضعف هذه الحماية. لذلك أتورفاستاتين يكون أفضل عندما يصبح جزءاً ثابتاً من الحياة اليومية.",
         useTitle: "الاستخدام",
         useList: [
-          "يُستخدم أتورفاستاتين لخفض الكوليسترول الضار في الدم.",
-          "وهو من أدوية الستاتين التي تساعد الكبد على تصنيع كمية أقل من الكوليسترول.",
-          "كما يُستخدم لتقليل خطر أمراض القلب والأوعية الدموية عند الأشخاص الأكثر عرضة للخطر."
+          "يُستخدم أتورفاستاتين عندما يكون الكوليسترول الضار مرتفعاً.",
+          "يساعد الجسم على صنع كمية أقل من الكوليسترول من قبل.",
+          "كما يُستخدم لتقليل خطر مشاكل القلب والأوعية الدموية عند الأشخاص الأكثر عرضة لذلك."
         ],
         doseTitle: "الجرعة ونصائح إبراهيم",
         doseList: [
           "غالباً يؤخذ مرة واحدة يومياً وفي وقت متقارب كل يوم.",
-          "يمكن تناوله صباحاً أو مساءً، والأهم هو الانتظام.",
+          "يمكن تناوله صباحاً أو مساءً، لكن الأهم هو الانتظام.",
           "يمكن تناول القرص مع الطعام أو بدونه.",
-          "لا توقف الدواء من نفسك دون استشارة طبية حتى لو كنت تشعر أنك بخير."
+          "لا توقف الدواء من نفسك دون التحدث مع الطبيب، حتى لو كنت تشعر أنك بخير تماماً."
         ],
         sideTitle: "الآثار الجانبية",
         sideList: [
-          "قد يشعر بعض الناس بألم في العضلات أو تعب أو إرهاق عضلي.",
-          "قد يحدث أيضاً اضطراب في المعدة أو غثيان أو صداع.",
-          "راجع الطبيب بسرعة إذا ظهر ألم شديد في العضلات أو بول داكن."
+          "قد يشعر بعض الناس بألم في العضلات أو إجهاد أو ضعف غير معتاد.",
+          "وقد يحدث أيضاً غثيان أو انزعاج في المعدة أو صداع.",
+          "راجع الطبيب بسرعة إذا أصبح ألم العضلات شديداً، أو شعرت بضعف واضح، أو أصبح البول داكناً."
         ],
         interactTitle: "التداخلات الدوائية",
         interactList: [
-          "بعض الأدوية قد تزيد من خطر مشاكل العضلات عند استعمالها مع أتورفاستاتين.",
-          "من المهم بشكل خاص ذكر بعض المضادات الحيوية وبعض أدوية الفطريات وأدوية HIV وبعض أدوية الكوليسترول الأخرى.",
-          "أخبر الطبيب أو الصيدلي بكل الأدوية التي تستخدمها، حتى الأدوية التي تُصرف دون وصفة."
+          "بعض الأدوية الأخرى قد تغيّر طريقة عمل أتورفاستاتين.",
+          "وبعضها قد يزيد احتمال حدوث مشاكل في العضلات.",
+          "لذلك أخبر الطبيب أو الصيدلي بكل الأدوية التي تستخدمها، حتى الأدوية التي تؤخذ دون وصفة."
         ],
         warnTitle: "تحذيرات مهمة",
         warnList: [
-          "قد تحتاج إلى متابعة إضافية إذا كان لديك مرض في الكبد أو كنت تشرب الكحول بكثرة.",
-          "إذا حدث ألم شديد في العضلات أو ضعف واضح أو بول داكن، فاتصل بالطبيب.",
-          "قد تُستخدم تحاليل الدم أحياناً لمتابعة مدى تحمّل الجسم للعلاج."
+          "إذا كان لديك مرض في الكبد أو كنت تشرب الكحول بكثرة، فقد تحتاج إلى متابعة إضافية.",
+          "إذا أصبح ألم العضلات أو الضعف أوضح من المعتاد، فلا تتجاهله وتواصل مع الطبيب.",
+          "قد تُستخدم تحاليل الدم أحياناً عند الحاجة للتأكد من أن العلاج مناسب لك."
         ],
         ramadanTitle: "رمضان والصيام",
         ramadanList: [
           "لأن الدواء يؤخذ غالباً مرة واحدة يومياً، فيمكن أخذه عند الإفطار أو السحور.",
-          "اختر وقتاً تستطيع الالتزام به كل يوم.",
-          "الأهم هو الاستمرار على روتين يومي ثابت."
+          "اختر وقتاً ينسجم مع روتينك اليومي أثناء الصيام.",
+          "الأهم هو الثبات على عادة يومية منتظمة."
         ],
         foodTitle: "الطعام والشراب",
         foodList: [
           "يمكن تناوله مع الطعام أو بدونه.",
-          "تجنب الكميات الكبيرة من جريب فروت أو عصيره.",
-          "الطعام الصحي والنشاط البدني يبقيان مهمين حتى مع استعمال أتورفاستاتين."
+          "انتبه من الكميات الكبيرة من جريب فروت أو عصيره.",
+          "يبقى الطعام الصحي والحركة المنتظمة جزءاً مهماً من العناية بك حتى مع استعمال الدواء."
         ],
         storeTitle: "تخزين الدواء",
         storeList: [
@@ -808,7 +814,7 @@
         sourcesList: [
           { text: "pro.medicin.dk – Atorvastatin", href: "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257" },
           { text: "sundhed.dk – ارتفاع الكوليسترول", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/" },
-          { text: "sundhed.dk – العلاج الخافض للكوليسترول بالستاتين", href: "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/illustrationer/video/kolesterolsaenkende-behandling-statiner/" }
+          { text: "sundhed.dk – الوقاية من تصلب الشرايين في شرايين القلب التاجية", href: "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/" }
         ],
         footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
       }
@@ -857,11 +863,12 @@
 
     function updateLanguage() {
       const lang = document.getElementById("langSelect").value;
-      const data = content[lang];
+      const data = content[lang] || content.so;
       applyTheme(lang);
 
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = data.pageTitle || data.hdrTitle;
 
       document.getElementById("hdrTitle").innerText = data.hdrTitle;
       document.getElementById("hdrSubtitle").innerText = data.hdrSubtitle;
