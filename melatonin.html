@@ -1,647 +1,941 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Melatonin – hurdo la’aan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melatonin – hurdo la’aan</title>
+  <style>
+    :root{
+      --accent1:#00a676;
+      --accent2:#0b6b57;
+      --accentText:#ffffff;
+      --bg:#ffffff;
+      --text:#123047;
+      --muted:#607089;
+      --stroke:#d0d7e2;
 
-<style>
-:root{
-  --accent1:#00a676;
-  --accent2:#0066cc;
-  --accentText:#ffffff;
+      --badgeBg:#d9f6e8;
+      --badgeText:#16634a;
 
-  --bg:#e6f2f8;
-  --text:#123047;
-  --muted:#607089;
+      --soft:#eefaf5;
+      --softBorder:#b7ead3;
 
-  --card:#ffffff;
-  --stroke:#d0d7e2;
+      --link:#0b6b57;
 
-  --pillBg:#d9f6e8;
-  --pillText:#16634a;
+      --drugIconBg:#e8f8f1;
+      --drugIconBorder:#bde8d4;
 
-  --link:#00509e;
-}
+      --langBarAccent:#00a676;
 
-@media (prefers-reduced-motion: no-preference){
-  body, header, .langbar, .card, .badge, .drug-icon, .section-icon, a.back{
-    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
-  }
-  header{ transition: background .45s ease, color .35s ease; }
-}
+      --ibrahimBg:#fff8e8;
+      --ibrahimBorder:#f0c36d;
+      --ibrahimTitle:#8a5a00;
 
-body{
-  font-family: Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  margin: 0;
-}
+      --sourceBg:#f8fafc;
+      --sourceBorderAccent:#00a676;
 
-header{
-  background: linear-gradient(135deg, var(--accent1), var(--accent2));
-  color: var(--accentText);
-  padding: 22px 16px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-}
-header h1{ margin: 0 0 4px; font-size: 1.8rem; }
-header p{ margin: 0; font-size: 0.95rem; }
+      --useBg:#eefaf5;
+      --useIcon:#00a676;
+      --doseBg:#eef6ff;
+      --doseIcon:#0066cc;
+      --sideBg:#fff7ed;
+      --sideIcon:#f59e0b;
+      --interactBg:#f5f3ff;
+      --interactIcon:#7c3aed;
+      --warnBg:#fef2f2;
+      --warnIcon:#dc2626;
+      --ramadanBg:#f5f3ff;
+      --ramadanIcon:#6d28d9;
+      --foodBg:#effcf6;
+      --foodIcon:#059669;
+      --storeBg:#f8fafc;
+      --storeIcon:#475569;
+    }
 
-main{
-  max-width: 820px;
-  margin: 18px auto 32px;
-  padding: 0 14px;
-}
+    *{ box-sizing:border-box; }
 
-a.back{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 14px;
-  text-decoration: none;
-  color: var(--link);
-  font-size: 0.9rem;
-}
-a.back span{ font-size: 1.1rem; }
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      line-height: 1.55;
+    }
 
-.langbar{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  flex-wrap:wrap;
-  background:#ffffff;
-  border-radius: 12px;
-  padding: 10px 12px;
-  margin: 0 0 14px 0;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.10);
-  border-left: 4px solid var(--accent1);
-}
-.langbar label{
-  font-size:0.9rem;
-  color:var(--text);
-  font-weight:600;
-}
-.langbar select{
-  padding: 7px 10px;
-  border-radius: 10px;
-  border: 1px solid var(--stroke);
-  background: #fff;
-  color:var(--text);
-  font-size: 0.9rem;
-  max-width: 100%;
-}
+    main{
+      max-width: 820px;
+      margin: 22px auto;
+      padding: 0 18px 30px;
+    }
 
-.card{
-  background: var(--card);
-  border-radius: 14px;
-  padding: 16px 16px 10px;
-  margin-bottom: 14px;
-  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-  border-top: 4px solid var(--accent1);
-}
+    header{
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      color: var(--accentText);
+      padding: 20px 14px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    }
 
-.drug-meta{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.drug-info{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.drug-icon{
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: #e3f2fd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.drug-icon svg{ width: 30px; height: 30px; }
-.drug-icon svg .stroke{ stroke: var(--accent2); }
-.drug-icon svg .fill{ fill:#e8f3ff; }
+    header h1{
+      margin: 0 0 4px;
+      font-size: 1.7rem;
+    }
 
-.drug-labels{ display: flex; flex-direction: column; }
-.drug-name{ font-weight: 600; font-size: 0.95rem; }
-.drug-form{ font-size: 0.82rem; color: #29516e; }
+    header p{
+      margin: 0 auto;
+      font-size: 0.92rem;
+      max-width: 720px;
+    }
 
-.badge{
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: var(--pillBg);
-  color: var(--pillText);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  border:1px solid rgba(0,0,0,0.04);
-}
+    .lang-selector{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0 14px;
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      background: #fff;
+      border-radius: 12px;
+      border-left: 4px solid var(--langBarAccent);
+      box-shadow: 0 2px 8px rgba(15,23,42,0.08);
+    }
 
-.section{
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--stroke);
-}
-.section-header{
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-.section-icon{
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: var(--text);
-}
-.section-icon.use { background:#e3f2fd; }
-.section-icon.dose { background:#e2f5ea; }
-.section-icon.side { background:#fff3e0; }
-.section-icon.interact { background:#ede7f6; }
-.section-icon.warn { background:#ffebee; }
-.section-icon.ramadan { background:#e0f7fa; }
-.section-icon.food { background:#f1f8e9; }
-.section-icon.store { background:#edeff9; }
+    .lang-selector label{
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.94rem;
+    }
 
-.section-title{
-  font-weight: 700;
-  color: var(--text);
-  font-size: 0.96rem;
-}
-.section-title small{
-  font-weight: 400;
-  color: var(--muted);
-  margin-left: 6px;
-}
+    .lang-selector select{
+      padding: 7px 11px;
+      border-radius: 8px;
+      border: 1px solid var(--stroke);
+      background: #fff;
+      font-size: 0.92rem;
+    }
 
-.section ul{
-  margin: 0 0 4px 18px;
-  padding-left: 0;
-  font-size: 0.92rem;
-}
-.section ul li{ margin-bottom: 4px; }
+    a.back{
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      text-decoration: none;
+      color: var(--link);
+      font-size: 0.92rem;
+      font-weight: bold;
+    }
 
-.highlight{ font-weight: 600; }
+    .drug-header-container{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin: 14px 0 8px;
+    }
 
-.footer-note{
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-align: center;
-  margin: 18px 0 10px;
-}
+    .drug-main-info{
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
 
-@media (max-width: 600px){
-  header h1 { font-size: 1.5rem; }
-}
-</style>
+    .drug-icon{
+      width: 52px;
+      height: 52px;
+      background: var(--drugIconBg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--drugIconBorder);
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+    }
+
+    .drug-icon svg{
+      width: 30px;
+      height: 30px;
+      display: block;
+      overflow: visible;
+    }
+
+    .drug-title-block h1{
+      font-size: 1.3rem;
+      color: var(--accent2);
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .drug-title-block p{
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin: 3px 0 0;
+    }
+
+    .badge{
+      background: var(--badgeBg);
+      color: var(--badgeText);
+      padding: 5px 13px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .divider{
+      border-bottom: 1px dashed var(--stroke);
+      margin: 14px 0 18px;
+    }
+
+    .intro-box{
+      background: var(--soft);
+      border: 1px solid var(--softBorder);
+      border-radius: 12px;
+      padding: 13px 15px;
+      color: #24445e;
+      margin-bottom: 16px;
+      font-size: 0.96rem;
+    }
+
+    .ibrahim-box{
+      background: var(--ibrahimBg);
+      border: 1px solid var(--ibrahimBorder);
+      border-left: 5px solid var(--ibrahimBorder);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0 18px;
+    }
+
+    .ibrahim-box-title{
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--ibrahimTitle);
+      margin-bottom: 6px;
+    }
+
+    .ibrahim-box p{
+      margin: 0;
+      color: #5f4300;
+      font-size: 0.95rem;
+    }
+
+    .section{
+      margin-top: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      padding: 12px 14px 10px;
+      background: #fff;
+    }
+
+    .section-header{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .section-icon{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .section-title{
+      font-weight: 800;
+      color: #123047;
+      font-size: 1rem;
+    }
+
+    .section ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .section ul li{
+      margin-bottom: 7px;
+      color: #334155;
+      font-size: 0.96rem;
+    }
+
+    .use-section{ background: var(--useBg); }
+    .use-section .section-icon{ background: rgba(0,166,118,0.14); color: var(--useIcon); }
+
+    .dose-section{ background: var(--doseBg); }
+    .dose-section .section-icon{ background: rgba(0,102,204,0.14); color: var(--doseIcon); }
+
+    .side-section{ background: var(--sideBg); }
+    .side-section .section-icon{ background: rgba(245,158,11,0.15); color: var(--sideIcon); }
+
+    .interact-section{ background: var(--interactBg); }
+    .interact-section .section-icon{ background: rgba(124,58,237,0.14); color: var(--interactIcon); }
+
+    .warn-section{ background: var(--warnBg); }
+    .warn-section .section-icon{ background: rgba(220,38,38,0.12); color: var(--warnIcon); }
+
+    .ramadan-section{ background: var(--ramadanBg); }
+    .ramadan-section .section-icon{ background: rgba(109,40,217,0.12); color: var(--ramadanIcon); }
+
+    .food-section{ background: var(--foodBg); }
+    .food-section .section-icon{ background: rgba(5,150,105,0.12); color: var(--foodIcon); }
+
+    .store-section{ background: var(--storeBg); }
+    .store-section .section-icon{ background: rgba(71,85,105,0.12); color: var(--storeIcon); }
+
+    .sources{
+      margin-top: 28px;
+      background: var(--sourceBg);
+      border: 1px solid var(--stroke);
+      border-left: 4px solid var(--sourceBorderAccent);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .sources h3{
+      margin: 0 0 8px;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .sources p{
+      margin: 0 0 8px;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+
+    .sources ul{
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .sources li{
+      margin-bottom: 7px;
+      color: #334155;
+      word-break: break-word;
+      font-size: 0.93rem;
+    }
+
+    .sources a{
+      color: var(--link);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sources a:hover{
+      text-decoration: underline;
+    }
+
+    .footer-note{
+      font-size: 0.86rem;
+      color: var(--text);
+      text-align: center;
+      margin-top: 20px;
+      padding: 18px 8px 0;
+      border-top: 1px solid var(--stroke);
+    }
+
+    @media (max-width: 600px){
+      body{ line-height: 1.5; }
+      main{ padding: 0 14px 24px; }
+      .drug-header-container{ flex-direction: column; align-items: flex-start; }
+      .badge{ align-self: flex-end; }
+      .drug-title-block h1{ font-size: 1.15rem; }
+      header h1{ font-size: 1.45rem; }
+      .section{ padding: 11px 12px 9px; }
+    }
+  </style>
 </head>
-
 <body>
+  <header id="mainHeader">
+    <h1 id="hdrTitle">Melatonin – hurdo la’aan</h1>
+    <p id="hdrSubtitle">Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
+  </header>
 
-<header>
-  <h1 id="hdrTitle">Melatonin – hurdo la’aan</h1>
-  <p id="hdrSubtitle">Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.</p>
-</header>
-
-<main>
-
-  <div class="langbar" aria-label="Language selector">
-    <label for="langSelect" id="langLabel">Dooro luqadda:</label>
-    <select id="langSelect">
-      <option value="so" selected>Somalisk</option>
-      <option value="da">Dansk</option>
-      <option value="en">Engelsk</option>
-      <option value="ar">Arabisk</option>
-    </select>
-  </div>
-
-  <a href="index.html" class="back"><span>←</span><span id="backLabel">Ku laabo liiska daawooyinka</span></a>
-
-  <div class="card">
-    <div class="drug-meta">
-      <div class="drug-info">
-        <div class="drug-icon">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <ellipse class="fill" cx="32" cy="32" rx="22" ry="14"/>
-            <ellipse cx="32" cy="32" rx="22" ry="14" fill="none" class="stroke" stroke-width="3"/>
-            <line x1="20" y1="20" x2="44" y2="44" class="stroke" stroke-width="4"/>
-          </svg>
-        </div>
-        <div class="drug-labels">
-          <div class="drug-name" id="drugName">Melatonin – hurdo la’aan</div>
-          <div class="drug-form" id="drugForm">Kiniin afka ah</div>
-        </div>
-      </div>
-      <div class="badge" id="badge">Akhris fudud oo kooban</div>
+  <main>
+    <div class="lang-selector">
+      <label id="langLabel" for="langSelect">Dooro luqadda:</label>
+      <select id="langSelect">
+        <option value="so">Somalisk</option>
+        <option value="da">Dansk</option>
+        <option value="en">Engelsk</option>
+        <option value="ar">Arabisk</option>
+      </select>
     </div>
 
-    <div class="section">
+    <a href="index.html" class="back">
+      <span>←</span>
+      <span id="backLabel">Ku laabo liiska daawooyinka</span>
+    </a>
+
+    <div class="drug-header-container">
+      <div class="drug-main-info">
+        <div class="drug-icon">
+          <svg viewBox="0 0 64 64" id="drugSvg" aria-hidden="true">
+            <defs>
+              <linearGradient id="pillRed" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#ff8a7a"></stop>
+                <stop offset="100%" stop-color="#d63b2e"></stop>
+              </linearGradient>
+              <linearGradient id="pillYellow" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#f8df7a"></stop>
+                <stop offset="100%" stop-color="#caa61a"></stop>
+              </linearGradient>
+              <linearGradient id="pillShine" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.95)"></stop>
+                <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
+              </linearGradient>
+            </defs>
+
+            <g transform="rotate(-45 32 32)">
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
+
+              <clipPath id="pillClip">
+                <rect x="14" y="22" width="36" height="20" rx="10"></rect>
+              </clipPath>
+
+              <g clip-path="url(#pillClip)">
+                <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
+                <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
+                <rect x="30.8" y="22" width="2.4" height="20" fill="#ffffff" opacity="0.9"></rect>
+                <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
+                <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
+              </g>
+
+              <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
+            </g>
+          </svg>
+        </div>
+        <div class="drug-title-block">
+          <h1 id="drugName">Melatonin – hurdo la’aan</h1>
+          <p id="drugForm">Kiniin afka ah</p>
+        </div>
+      </div>
+      <div class="badge" id="badgeText">Akhris fudud oo kooban</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="intro-box" id="introBox">
+      Mararka qaar jidhku wuu daalaa, laakiin saacaddii hurdadu si fiican uma shaqayso. Melatonin waxay jirka ka caawisaa inuu helo fariinta habeenkii, si hurdadu ugu timaaddo si dabiici ah oo deggan.
+    </div>
+
+    <div class="ibrahim-box">
+      <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
+      <p id="ibrahimText">
+        Waxaan dadka ugu sharxaa sidan: melatonin ma aha daawo xoog ku seexisa qofka, balse waa caawiye xusuusiya jirka in habeen la joogo. Sidaas darteed waxay si fiican u shaqaysaa marka hurdada loo diyaargaroobo si joogto ah, nalka la yareeyo, shaashaddana laga dheeraado.
+      </p>
+    </div>
+
+    <div class="section use-section">
       <div class="section-header">
-        <div class="section-icon use">💊</div>
-        <div class="section-title"><span id="useTitle">Isticmaalka</span><small id="useSmall"></small></div>
+        <span class="section-icon">💊</span>
+        <div class="section-title" id="useTitle">Isticmaalka</div>
       </div>
       <ul id="useList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section dose-section">
       <div class="section-header">
-        <div class="section-icon dose">⏰</div>
-        <div class="section-title"><span id="doseTitle">Qiyaasta</span><small id="doseSmall"></small></div>
+        <span class="section-icon">⏰</span>
+        <div class="section-title" id="doseTitle">Qiyaasta iyo talooyinka Ibraahim</div>
       </div>
       <ul id="doseList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section side-section">
       <div class="section-header">
-        <div class="section-icon side">⚠️</div>
-        <div class="section-title"><span id="sideTitle">Waxyeellooyinka</span><small id="sideSmall"></small></div>
+        <span class="section-icon">⚠</span>
+        <div class="section-title" id="sideTitle">Waxyeellooyinka</div>
       </div>
       <ul id="sideList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section interact-section">
       <div class="section-header">
-        <div class="section-icon interact">⇆</div>
-        <div class="section-title"><span id="interactTitle">Isdhexgalka daawooyinka</span><small id="interactSmall"></small></div>
+        <span class="section-icon">⇄</span>
+        <div class="section-title" id="interactTitle">Isdhexgalka daawooyinka</div>
       </div>
       <ul id="interactList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section warn-section">
       <div class="section-header">
-        <div class="section-icon warn">!</div>
-        <div class="section-title"><span id="warnTitle">Digniino</span><small id="warnSmall"></small></div>
+        <span class="section-icon">!</span>
+        <div class="section-title" id="warnTitle">Digniino muhiim ah</div>
       </div>
       <ul id="warnList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section ramadan-section">
       <div class="section-header">
-        <div class="section-icon ramadan">☾</div>
-        <div class="section-title"><span id="ramadanTitle">Ramadaan iyo soonka</span><small id="ramadanSmall"></small></div>
+        <span class="section-icon">☾</span>
+        <div class="section-title" id="ramadanTitle">Ramadaan iyo soonka</div>
       </div>
       <ul id="ramadanList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section food-section">
       <div class="section-header">
-        <div class="section-icon food">🍽️</div>
-        <div class="section-title"><span id="foodTitle">Cunto iyo cabitaan</span><small id="foodSmall"></small></div>
+        <span class="section-icon">🍽</span>
+        <div class="section-title" id="foodTitle">Cunto iyo cabitaan</div>
       </div>
       <ul id="foodList"></ul>
     </div>
 
-    <div class="section">
+    <div class="section store-section">
       <div class="section-header">
-        <div class="section-icon store">⧉</div>
-        <div class="section-title"><span id="storeTitle">Kaydinta daawada</span><small id="storeSmall"></small></div>
+        <span class="section-icon">⧉</span>
+        <div class="section-title" id="storeTitle">Kaydinta daawada</div>
       </div>
       <ul id="storeList"></ul>
     </div>
-  </div>
 
-  <div class="footer-note" id="footerNote"></div>
-</main>
+    <div class="sources">
+      <h3 id="sourcesTitle">Ilaha xogta</h3>
+      <p id="sourcesText">
+        Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
+      </p>
+      <ul id="sourcesList"></ul>
+    </div>
 
-<div class="footer-note" id="credit"></div>
+    <div class="footer-note" id="footerNote">
+      Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
+    </div>
+  </main>
 
-<script>
-const ENABLED_LANGS = new Set(["so","da","en","ar"]);
-const RTL = new Set(["ar"]);
+  <script>
+    const themes = {
+      so: {
+        accent1:"#00a676", accent2:"#0b6b57", badgeBg:"#d9f6e8", badgeText:"#16634a",
+        soft:"#eefaf5", softBorder:"#b7ead3", link:"#0b6b57",
+        drugIconBg:"#e8f8f1", drugIconBorder:"#bde8d4", langBarAccent:"#00a676",
+        sourceBorderAccent:"#00a676"
+      },
+      da: {
+        accent1:"#0ea5e9", accent2:"#60a5fa", badgeBg:"#e0f2fe", badgeText:"#075985",
+        soft:"#eff8ff", softBorder:"#bfdbfe", link:"#0ea5e9",
+        drugIconBg:"#eef7ff", drugIconBorder:"#cfe7ff", langBarAccent:"#0ea5e9",
+        sourceBorderAccent:"#0ea5e9"
+      },
+      en: {
+        accent1:"#7f1d1d", accent2:"#b91c1c", badgeBg:"#fef2f2", badgeText:"#7f1d1d",
+        soft:"#fff5f5", softBorder:"#fecaca", link:"#991b1b",
+        drugIconBg:"#fff1f1", drugIconBorder:"#f7caca", langBarAccent:"#991b1b",
+        sourceBorderAccent:"#991b1b"
+      },
+      ar: {
+        accent1:"#c2410c", accent2:"#fb923c", badgeBg:"#fff7ed", badgeText:"#9a3412",
+        soft:"#fff7ed", softBorder:"#fed7aa", link:"#c2410c",
+        drugIconBg:"#fff2e8", drugIconBorder:"#f8d1b0", langBarAccent:"#c2410c",
+        sourceBorderAccent:"#c2410c"
+      }
+    };
 
-const THEMES = {
-  so: { a1:"#00a676", a2:"#0066cc", link:"#00509e", pillBg:"#d9f6e8", pillText:"#16634a" },
-  da: { a1:"#0ea5e9", a2:"#60a5fa", link:"#0ea5e9", pillBg:"#e0f2fe", pillText:"#075985" },
-  en: { a1:"#7c2d12", a2:"#b91c1c", link:"#991b1b", pillBg:"#fef2f2", pillText:"#7f1d1d" },
-  ar: { a1:"#c2410c", a2:"#fb923c", link:"#c2410c", pillBg:"#fff7ed", pillText:"#9a3412" }
-};
+    const content = {
+      so: {
+        pageTitle: "Melatonin – hurdo la’aan",
+        hdrTitle: "Melatonin – hurdo la’aan",
+        hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+        backLabel: "Ku laabo liiska daawooyinka",
+        langLabel: "Dooro luqadda:",
+        drugName: "Melatonin – hurdo la’aan",
+        drugForm: "Kiniin afka ah",
+        badgeText: "Akhris fudud oo kooban",
+        introBox: "Mararka qaar jidhku wuu daalaa, laakiin saacaddii hurdadu si fiican uma shaqayso. Melatonin waxay jirka ka caawisaa inuu helo fariinta habeenkii, si hurdadu ugu timaaddo si dabiici ah oo deggan.",
+        ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
+        ibrahimText: "Waxaan dadka ugu sharxaa sidan: melatonin ma aha daawo xoog ku seexisa qofka, balse waa caawiye xusuusiya jirka in habeen la joogo. Sidaas darteed waxay si fiican u shaqaysaa marka hurdada loo diyaargaroobo si joogto ah, nalka la yareeyo, shaashaddana laga dheeraado.",
+        useTitle: "Isticmaalka",
+        useList: [
+          "Melatonin waa hormoon dabiici ah oo jirku sameeyo fiidkii si uu hurdada u diyaariyo.",
+          "Daawo ahaan waxaa loo isticmaalaa marka hurdadu dib u dhacdo ama ay adag tahay in la seexdo wakhtiga la rabo.",
+          "Mararka qaarkood waxaa kale oo loo isticmaalaa marka saacadda hurdadu is beddesho, tusaale ahaan safar dheer ka dib."
+        ],
+        doseTitle: "Qiyaasta iyo talooyinka Ibraahim",
+        doseList: [
+          "Raac qiyaasta dhakhtarka ama tilmaanta baakadka. Badanaa waxaa la qaataa 30 ilaa 60 daqiiqo ka hor hurdada.",
+          "Qaar ka mid ah noocyada kiniinka waa in si dhan loo liqaa oo aan la jebin ama la calalin.",
+          "Ku dadaal inaad habeen walba qaadato wakhti u dhow si jirku u barto jadwal deggan.",
+          "Haddii aadan wax faa’iido ah dareemin dhowr maalmood ama toddobaadyo gudahood, la hadal dhakhtar ama farmashiiste."
+        ],
+        sideTitle: "Waxyeellooyinka",
+        sideList: [
+          "Qaar ka mid ah dadka waxay dareemaan hurdo ama daal subaxda xigta.",
+          "Madax-xanuun ama wareer yar ayaa dhici kara.",
+          "Dadka qaarkood waxay arkaan riyooyin xooggan ama hurdada oo noqota mid kala go’go’an."
+        ],
+        interactTitle: "Isdhexgalka daawooyinka",
+        interactList: [
+          "Daawooyinka kale ee hurdo ama dejin keena waxay kordhin karaan lulmada.",
+          "Daawooyin qaar, sida qaar ka mid ah dawooyinka dhiig-khafiifiya ama niyadda, waxay u baahan karaan taxaddar dheeraad ah.",
+          "U sheeg dhakhtarka ama farmashiistaha dhammaan daawooyinka iyo kaabisyada aad qaadanayso."
+        ],
+        warnTitle: "Digniino muhiim ah",
+        warnList: [
+          "Haddii aad weli dareemayso hurdo ama wareer, ha wadin gaari hana qaban shaqo u baahan feejignaan badan.",
+          "Ha ku darin khamri badan, sababtoo ah wuxuu kordhin karaa lulmada ama jahawareerka hurdada.",
+          "La hadal dhakhtar haddii aad uur leedahay, nuujinayso, ama aad qabto xanuun beerka ah."
+        ],
+        ramadanTitle: "Ramadaan iyo soonka",
+        ramadanList: [
+          "Badanaa melatonin waxaa lagu qaataa fiidkii, marka afurka ka dib la isu diyaarinayo hurdada.",
+          "Haddii jadwalka hurdadu si weyn isu beddelo bisha Ramadaan, waxaa fiican in talo laga helo dhakhtar ama farmashiiste.",
+          "Waxa ugu muhiimsan waa in wakhtiga hurdada iyo qaadashada daawadu noqdaan kuwo joogto ah intii suurtagal ah."
+        ],
+        foodTitle: "Cunto iyo cabitaan",
+        foodList: [
+          "Waxaa la qaadan karaa cunto la’aan ama cunto la jirta.",
+          "Ka fogow kafeyn badan fiidkii, sida qaxwo, shaah xooggan ama cabbitaannada tamarta.",
+          "Si daawadu u shaqayso si wanaagsan, isku day in qolka hurdadu noqdo mid deggan oo iftiinkiisu yar yahay."
+        ],
+        storeTitle: "Kaydinta daawada",
+        storeList: [
+          "Ku hay meel ka fog carruurta.",
+          "Ku kaydi heerkulka qolka, kana ilaali huur iyo iftiin badan.",
+          "Ha isticmaalin haddii taariikhda dhicitaanku dhaaftay."
+        ],
+        sourcesTitle: "Ilaha xogta",
+        sourcesText: "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Melatonin", href: "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199" },
+          { text: "sundhed.dk – Søvnproblemer og søvnløshed", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/" },
+          { text: "sundhed.dk – Jetlag", href: "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/" }
+        ],
+        footerNote: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+      },
 
-function applyTheme(lang){
-  const th = THEMES[lang] || THEMES.so;
-  const r = document.documentElement.style;
-  r.setProperty("--accent1", th.a1);
-  r.setProperty("--accent2", th.a2);
-  r.setProperty("--link", th.link || "#00509e");
-  r.setProperty("--pillBg", th.pillBg || "#d9f6e8");
-  r.setProperty("--pillText", th.pillText || "#16634a");
-}
+      da: {
+        pageTitle: "Melatonin – søvnbesvær",
+        hdrTitle: "Melatonin – søvnbesvær",
+        hdrSubtitle: "En let og personlig forklaring på medicinen, så patienter og familier bedre kan forstå behandlingen.",
+        backLabel: "Tilbage til medicinlisten",
+        langLabel: "Vælg sprog:",
+        drugName: "Melatonin – søvnbesvær",
+        drugForm: "Tabletter",
+        badgeText: "Kort og letlæselig",
+        introBox: "Nogle gange er kroppen træt, men søvnrytmen kommer ikke helt på plads. Melatonin hjælper kroppen med at genkende, at det er aften, så det bliver lettere at falde til ro.",
+        ibrahimTitle: "Ibrahims forklaring fra apoteket",
+        ibrahimText: "Jeg plejer at forklare det sådan: melatonin er ikke en tung sovepille, der bare slår dig ud. Den hjælper mere kroppen med at finde tilbage til sit naturlige aften-signal. Derfor virker den bedst sammen med gode søvnvaner, dæmpet lys og færre skærme sent på aftenen.",
+        useTitle: "Anvendelse",
+        useList: [
+          "Melatonin er et naturligt hormon, som kroppen danner om aftenen for at støtte søvn.",
+          "Som medicin bruges det ved søvnbesvær, især når det er svært at falde i søvn på det ønskede tidspunkt.",
+          "Det kan også bruges ved forstyrret døgnrytme, for eksempel efter lange rejser."
+        ],
+        doseTitle: "Dosering og Ibrahims råd",
+        doseList: [
+          "Følg lægens plan eller anvisningen på pakningen. Det tages ofte 30 til 60 minutter før sengetid.",
+          "Nogle tabletter skal synkes hele og må ikke knuses eller deles.",
+          "Prøv at tage det omkring samme tidspunkt hver aften, så kroppen får en mere stabil rytme.",
+          "Hvis du ikke mærker nogen effekt efter nogle dage eller uger, så tal med læge eller apotek."
+        ],
+        sideTitle: "Bivirkninger",
+        sideList: [
+          "Nogle føler sig trætte eller døsige næste morgen.",
+          "Hovedpine eller let svimmelhed kan forekomme.",
+          "Nogle oplever livlige drømme eller søvn, der føles anderledes end normalt."
+        ],
+        interactTitle: "Interaktioner",
+        interactList: [
+          "Andre sovende eller sløvende lægemidler kan øge døsighed.",
+          "Nogle lægemidler, for eksempel visse blodfortyndende eller antidepressiva, kan kræve ekstra opmærksomhed.",
+          "Fortæl lægen eller apoteket om al medicin og alle kosttilskud, du bruger."
+        ],
+        warnTitle: "Vigtige advarsler",
+        warnList: [
+          "Hvis du stadig føler dig søvnig eller svimmel, skal du være forsigtig med bilkørsel og andre opgaver, der kræver koncentration.",
+          "Undgå større mængder alkohol, fordi det kan forstyrre søvnen og øge døsigheden.",
+          "Tal med lægen, hvis du er gravid, ammer eller har leversygdom."
+        ],
+        ramadanTitle: "Ramadan og faste",
+        ramadanList: [
+          "Melatonin tages ofte om aftenen efter iftar, når man gør sig klar til at sove.",
+          "Hvis din søvnrytme ændrer sig meget i Ramadan, kan det være en god idé at tale med læge eller apotek om en passende plan.",
+          "Det vigtigste er at prøve at holde et nogenlunde fast søvnmønster."
+        ],
+        foodTitle: "Mad og drikke",
+        foodList: [
+          "Kan tages med eller uden mad.",
+          "Undgå meget koffein sent på dagen, for eksempel kaffe, stærk te eller energidrikke.",
+          "Melatonin virker bedst, når omgivelserne også støtter søvnen, for eksempel dæmpet lys og ro omkring sengetid."
+        ],
+        storeTitle: "Opbevaring",
+        storeList: [
+          "Opbevar medicinen utilgængeligt for børn.",
+          "Opbevar ved stuetemperatur og beskyt mod fugt og stærkt lys.",
+          "Brug ikke medicinen efter udløbsdato."
+        ],
+        sourcesTitle: "Kilder",
+        sourcesText: "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Melatonin", href: "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199" },
+          { text: "sundhed.dk – Søvnproblemer og søvnløshed", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/" },
+          { text: "sundhed.dk – Jetlag", href: "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/" }
+        ],
+        footerNote: "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+      },
 
-const T = {
-  so: {
-    title: "Melatonin – hurdo la’aan",
-    subtitle: "Waa warbixin kooban oo ku saabsan daawada – waxaa loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed.",
-    back: "Ku laabo liiska daawooyinka",
-    langLabel: "Dooro luqadda:",
-    badge: "Akhris fudud oo kooban",
-    drugName: "Melatonin – hurdo la’aan",
-    drugForm: "Kiniin afka ah",
-    sections: {
-      use: { title:"Isticmaalka", small:"", items:[
-        "Melatonin waa <span class='highlight'>hormoon dabiici ah</span> oo jirku sameeyo habeenkii si uu u caawiyo hurdada.",
-        "Daawada melatonin waxay caawisaa in <span class='highlight'>saacadda hurdada</span> ay hagaagto.",
-        "Waxaa loo isticmaalaa hurdo la’aan iyo hurdada oo soo daahda.",
-        "Waxaa kale oo loo isticmaalaa dhibaatooyinka saacadda hurdada, tusaale ahaan <span class='highlight'>jetlag</span>."
-      ]},
-      dose: { title:"Qiyaasta", small:"", items:[
-        "Raac qiyaasta dhakhtarka. Badanaa waxaa la qaataa <span class='highlight'>30–60 daqiiqo ka hor hurdada</span>.",
-        "Qaarkood, sida depottablet, waa in la liqaa oo aan la burburin ama la jeexin.",
-        "Haddii aysan wax tar muuqan 1–2 toddobaad, la hadal dhakhtarka ama farmashiyaha."
-      ]},
-      side: { title:"Waxyeellooyinka", small:"", items:[
-        "Hurdo ama daal subaxdii.",
-        "Madax-xanuun.",
-        "Riyooyin xooggan ama wareer khafiif ah dadka qaarkood."
-      ]},
-      interact: { title:"Isdhexgalka daawooyinka", small:"", items:[
-        "Daawooyinka hurdo-dejiya kale waxay kordhin karaan hurdo.",
-        "Daawooyin qaar, tusaale anticoagulants iyo antidepressants qaarkood, waxay u baahan karaan la-talin.",
-        "U sheeg farmashiyaha ama dhakhtarka wax kasta oo aad qaadato."
-      ]},
-      warn: { title:"Digniino", small:"", items:[
-        "Waxay keeni kartaa hurdo; ha wadin gaari haddii aad dareento hurdo ama dawakh.",
-        "Ha isku darin <span class='highlight'>khamri</span>, sababtoo ah waxay kordhin kartaa hurdo iyo dawakh.",
-        "U sheeg dhakhtarka haddii aad uur leedahay, nuujinayso, ama aad qabto xanuun beerka ah."
-      ]},
-      ramadan: { title:"Ramadaan iyo soonka", small:"", items:[
-        "Haddii aad sooman tahay, badanaa melatonin waxaa la qaataa <span class='highlight'>fiidkii (afurka kadib)</span> marka aad diyaar u tahay hurdo.",
-        "Haddii jadwalka hurdada is beddelo, la hadal dhakhtarka qorshe ku habboon."
-      ]},
-      food: { title:"Cunto iyo cabitaan", small:"", items:[
-        "Waxaa la qaadan karaa cunto la’aan ama cunto la jirta.",
-        "Isku day in aad ku qaadato <span class='highlight'>wakhti joogto ah</span> habeen kasta.",
-        "Ka fogow kafeyn sida qaxwo, shaah xooggan, ama energy drinks fiidkii."
-      ]},
-      store: { title:"Kaydinta daawada", small:"", items:[
-        "Ku hay meel ka fog carruurta, heerkulka qolka, kana ilaali iftiin iyo huur.",
-        "Ha isticmaalin haddii ay dhaafto taariikhda dhicitaanka.",
-        "Wixii soo haray ku celi farmashiyaha."
-      ]}
-    },
-    footerHTML: "Haddii aad u baahan tahay faahfaahin dheeraad ah, la xiriir <span class=\"highlight\">farmashiyaha</span> ama dhakhtarkaaga.",
-    creditHTML: "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf"
-  },
+      en: {
+        pageTitle: "Melatonin – sleep problems",
+        hdrTitle: "Melatonin – sleep problems",
+        hdrSubtitle: "A simple and personal explanation of the medicine for patients and families.",
+        backLabel: "Back to medication list",
+        langLabel: "Select language:",
+        drugName: "Melatonin – sleep problems",
+        drugForm: "Tablets",
+        badgeText: "Short and easy to read",
+        introBox: "Sometimes the body feels tired, but the sleep rhythm does not settle properly. Melatonin helps the body recognize that it is night, so sleep can come more naturally.",
+        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimText: "I often explain it like this: melatonin is not a strong sleeping pill that simply knocks you out. It works more like a gentle reminder to the body that night has arrived. That is why it works best together with a calm bedtime routine, lower light, and less screen time late in the evening.",
+        useTitle: "Use",
+        useList: [
+          "Melatonin is a natural hormone made by the body in the evening to support sleep.",
+          "As a medicine, it is used when it is difficult to fall asleep at the desired time.",
+          "It may also be used when the sleep-wake rhythm has shifted, for example after long-distance travel."
+        ],
+        doseTitle: "Dosage and Ibrahim’s advice",
+        doseList: [
+          "Follow your doctor’s plan or the instructions on the pack. It is often taken 30 to 60 minutes before bedtime.",
+          "Some tablets should be swallowed whole and should not be crushed or split.",
+          "Try to take it around the same time each evening so the body can build a steadier rhythm.",
+          "If you notice no benefit after several days or weeks, speak with your doctor or pharmacist."
+        ],
+        sideTitle: "Side effects",
+        sideList: [
+          "Some people feel sleepy or tired the next morning.",
+          "Headache or mild dizziness can happen.",
+          "Some notice vivid dreams or sleep that feels different from usual."
+        ],
+        interactTitle: "Drug interactions",
+        interactList: [
+          "Other sleeping medicines or sedatives may increase drowsiness.",
+          "Some medicines, such as certain blood thinners or antidepressants, may need extra attention.",
+          "Tell your doctor or pharmacist about all medicines and supplements you use."
+        ],
+        warnTitle: "Important warnings",
+        warnList: [
+          "If you still feel sleepy or dizzy, be careful with driving and tasks that need full attention.",
+          "Avoid large amounts of alcohol because it may disturb sleep further and increase drowsiness.",
+          "Speak with a doctor if you are pregnant, breastfeeding, or have liver disease."
+        ],
+        ramadanTitle: "Ramadan and fasting",
+        ramadanList: [
+          "Melatonin is often taken in the evening after Iftar, when you are preparing to sleep.",
+          "If your sleep pattern changes a lot during Ramadan, it may be helpful to speak with your doctor or pharmacist.",
+          "The most important thing is to keep the sleep routine as regular as possible."
+        ],
+        foodTitle: "Food and drink",
+        foodList: [
+          "It can be taken with or without food.",
+          "Avoid too much caffeine late in the day, such as coffee, strong tea, or energy drinks.",
+          "Melatonin works best when the surroundings also support sleep, such as dim light and a calm bedtime routine."
+        ],
+        storeTitle: "Storage",
+        storeList: [
+          "Keep out of reach of children.",
+          "Store at room temperature and protect from moisture and strong light.",
+          "Do not use after the expiry date."
+        ],
+        sourcesTitle: "Sources",
+        sourcesText: "This text is written in a personal and simple style, but the medical information is based on official sources.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Melatonin", href: "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199" },
+          { text: "sundhed.dk – Sleep problems and insomnia", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/" },
+          { text: "sundhed.dk – Jet lag", href: "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/" }
+        ],
+        footerNote: "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+      },
 
-  da: {
-    title: "Melatonin – søvnbesvær",
-    subtitle: "Kort information om lægemidlet til patienter og pårørende.",
-    back: "Tilbage til medicinlisten",
-    langLabel: "Vælg sprog:",
-    badge: "Kort og let at læse",
-    drugName: "Melatonin – søvnbesvær",
-    drugForm: "Tablet til oral brug",
-    sections: {
-      use: { title:"Anvendelse", small:"", items:[
-        "Melatonin er et <span class='highlight'>naturligt hormon</span>, som kroppen danner om aftenen for at fremme søvn.",
-        "Som medicin kan melatonin hjælpe med at stabilisere <span class='highlight'>døgnrytmen</span>.",
-        "Det bruges ved søvnbesvær og problemer med at falde i søvn.",
-        "Det kan også bruges ved døgnrytmeforstyrrelser, fx <span class='highlight'>jetlag</span>."
-      ]},
-      dose: { title:"Dosering", small:"", items:[
-        "Følg lægens plan. Ofte tages det <span class='highlight'>30–60 minutter før sengetid</span>.",
-        "Depot-tabletter skal typisk synkes hele og må ikke knuses eller deles.",
-        "Kontakt læge eller apotek hvis effekten udebliver efter 1–2 uger."
-      ]},
-      side: { title:"Bivirkninger", small:"", items:[
-        "Træthed næste morgen.",
-        "Hovedpine.",
-        "Livlige drømme eller let svimmelhed hos nogle."
-      ]},
-      interact: { title:"Interaktioner", small:"", items:[
-        "Andre sløvende midler kan øge døsighed.",
-        "Nogle lægemidler, fx visse blodfortyndende og antidepressiva, kan kræve særlig opmærksomhed.",
-        "Oplys altid læge eller apotek om al medicin du tager."
-      ]},
-      warn: { title:"Advarsler", small:"", items:[
-        "Kan give døsighed; vær forsigtig ved bilkørsel, hvis du føler dig træt eller svimmel.",
-        "Undgå alkohol, da det kan øge døsighed.",
-        "Tal med lægen ved graviditet, amning eller leversygdom."
-      ]},
-      ramadan: { title:"Ramadan og faste", small:"", items:[
-        "Tages ofte om aftenen efter iftar, når du er klar til at sove.",
-        "Ved ændret søvnmønster i Ramadan: tal med lægen om en plan."
-      ]},
-      food: { title:"Mad og drikke", small:"", items:[
-        "Kan tages med eller uden mad.",
-        "Prøv at tage det på <span class='highlight'>samme tidspunkt</span> hver aften.",
-        "Undgå koffein sent på dagen."
-      ]},
-      store: { title:"Opbevaring", small:"", items:[
-        "Opbevares utilgængeligt for børn, ved stuetemperatur og beskyttet mod lys og fugt.",
-        "Brug ikke efter udløbsdato.",
-        "Aflevér din medicin til destruktion på apoteket."
-      ]}
-    },
-    footerHTML: "Hvis du har brug for mere information, kontakt <span class=\"highlight\">apoteket</span> eller din læge.",
-    creditHTML: "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf"
-  },
+      ar: {
+        pageTitle: "الميلاتونين – صعوبة النوم",
+        hdrTitle: "الميلاتونين – صعوبة النوم",
+        hdrSubtitle: "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+        backLabel: "العودة إلى قائمة الأدوية",
+        langLabel: "اختر اللغة:",
+        drugName: "الميلاتونين – صعوبة النوم",
+        drugForm: "أقراص",
+        badgeText: "سهل ومختصر",
+        introBox: "أحياناً يكون الجسم متعباً لكن إيقاع النوم لا ينتظم كما ينبغي. يساعد الميلاتونين الجسم على فهم أن وقت الليل قد حان، فيسهل الدخول في النوم بشكل أكثر هدوءاً.",
+        ibrahimTitle: "نصيحة إبراهيم من الصيدلية",
+        ibrahimText: "أنا أشرحها لكثير من المرضى بهذه الصورة: الميلاتونين ليس دواءً قوياً يفرض النوم بالقوة، بل هو أقرب إلى تذكير لطيف للجسم بأن الوقت صار وقت راحة. لذلك يعمل بشكل أفضل مع روتين هادئ قبل النوم، وإضاءة منخفضة، وتقليل الشاشات في آخر المساء.",
+        useTitle: "الاستخدام",
+        useList: [
+          "الميلاتونين هرمون طبيعي يفرزه الجسم مساءً للمساعدة على النوم.",
+          "كدواء يُستخدم عندما يكون من الصعب النوم في الوقت المطلوب.",
+          "وقد يُستخدم أيضاً عند اضطراب إيقاع النوم، مثل ما يحدث بعد السفر الطويل."
+        ],
+        doseTitle: "الجرعة ونصائح إبراهيم",
+        doseList: [
+          "اتبع خطة الطبيب أو تعليمات العبوة. غالباً يؤخذ قبل النوم بـ 30 إلى 60 دقيقة.",
+          "بعض الأقراص يجب بلعها كاملة ولا ينبغي كسرها أو سحقها.",
+          "حاول تناوله في وقت متقارب كل مساء حتى يعتاد الجسم على نمط أكثر ثباتاً.",
+          "إذا لم تشعر بفائدة بعد عدة أيام أو أسابيع، فتحدث مع الطبيب أو الصيدلي."
+        ],
+        sideTitle: "الآثار الجانبية",
+        sideList: [
+          "قد يشعر بعض الناس بالنعاس أو التعب في صباح اليوم التالي.",
+          "قد يحدث صداع أو دوخة خفيفة.",
+          "بعض الناس يلاحظون أحلاماً قوية أو نوماً مختلفاً عن المعتاد."
+        ],
+        interactTitle: "التداخلات الدوائية",
+        interactList: [
+          "الأدوية الأخرى المنومة أو المهدئة قد تزيد النعاس.",
+          "بعض الأدوية، مثل بعض مميعات الدم أو مضادات الاكتئاب، قد تحتاج إلى انتباه إضافي.",
+          "أخبر الطبيب أو الصيدلي بكل الأدوية والمكملات التي تستعملها."
+        ],
+        warnTitle: "تحذيرات مهمة",
+        warnList: [
+          "إذا بقي عندك نعاس أو دوخة، فكن حذراً عند القيادة أو عند أداء الأعمال التي تحتاج إلى تركيز كامل.",
+          "تجنب الإكثار من الكحول لأنه قد يزيد النعاس ويُربك النوم أكثر.",
+          "استشر الطبيب إذا كنت حاملاً أو مرضعة أو لديك مرض في الكبد."
+        ],
+        ramadanTitle: "رمضان والصيام",
+        ramadanList: [
+          "غالباً يؤخذ الميلاتونين مساءً بعد الإفطار عندما تكون مستعداً للنوم.",
+          "إذا تغير نظام نومك كثيراً في رمضان، فقد يكون من المفيد استشارة الطبيب أو الصيدلي.",
+          "الأهم هو محاولة الحفاظ على روتين نوم منتظم قدر الإمكان."
+        ],
+        foodTitle: "الطعام والشراب",
+        foodList: [
+          "يمكن تناوله مع الطعام أو بدونه.",
+          "تجنب الكافيين في وقت متأخر من اليوم مثل القهوة أو الشاي القوي أو مشروبات الطاقة.",
+          "يعمل الميلاتونين بشكل أفضل عندما تساعد البيئة أيضاً على النوم، مثل تخفيف الإضاءة وتهيئة جو هادئ قبل النوم."
+        ],
+        storeTitle: "تخزين الدواء",
+        storeList: [
+          "يُحفظ بعيداً عن متناول الأطفال.",
+          "يُحفظ في درجة حرارة الغرفة مع الحماية من الرطوبة والضوء الشديد.",
+          "لا يُستخدم بعد تاريخ الانتهاء."
+        ],
+        sourcesTitle: "المصادر",
+        sourcesText: "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+        sourcesList: [
+          { text: "pro.medicin.dk – Melatonin", href: "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199" },
+          { text: "sundhed.dk – مشاكل النوم والأرق", href: "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/" },
+          { text: "sundhed.dk – اضطراب السفر", href: "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/" }
+        ],
+        footerNote: "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+      }
+    };
 
-  en: {
-    title: "Melatonin – sleep problems",
-    subtitle: "Brief information about the medicine for patients and relatives.",
-    back: "Back to the medicine list",
-    langLabel: "Choose language:",
-    badge: "Short and easy to read",
-    drugName: "Melatonin – sleep problems",
-    drugForm: "Oral tablet",
-    sections: {
-      use: { title:"Use", small:"", items:[
-        "Melatonin is a <span class='highlight'>natural hormone</span> produced in the evening to support sleep.",
-        "As a medicine it can help stabilize the <span class='highlight'>sleep-wake rhythm</span>.",
-        "It is used for difficulty falling asleep and sleep problems.",
-        "It can also be used for circadian rhythm problems, for example <span class='highlight'>jet lag</span>."
-      ]},
-      dose: { title:"Dosage", small:"", items:[
-        "Follow your doctor’s plan. Often taken <span class='highlight'>30–60 minutes before bedtime</span>.",
-        "Extended-release tablets should usually be swallowed whole and not crushed or split.",
-        "Contact your doctor or pharmacy if there is no benefit after 1–2 weeks."
-      ]},
-      side: { title:"Side effects", small:"", items:[
-        "Morning sleepiness.",
-        "Headache.",
-        "Vivid dreams or mild dizziness in some people."
-      ]},
-      interact: { title:"Interactions", small:"", items:[
-        "Other sedatives can increase drowsiness.",
-        "Some medicines, such as certain blood thinners and antidepressants, may need extra attention.",
-        "Tell your doctor or pharmacy about all medicines you take."
-      ]},
-      warn: { title:"Warnings", small:"", items:[
-        "May cause drowsiness; be careful with driving if you feel sleepy or dizzy.",
-        "Avoid alcohol because it can increase drowsiness.",
-        "Talk to a doctor if pregnant, breastfeeding, or if you have liver disease."
-      ]},
-      ramadan: { title:"Ramadan and fasting", small:"", items:[
-        "It is often taken in the evening after iftar when you are ready to sleep.",
-        "If your sleep pattern changes during Ramadan, ask your doctor for a suitable plan."
-      ]},
-      food: { title:"Food and drink", small:"", items:[
-        "Can be taken with or without food.",
-        "Try to take it at the <span class='highlight'>same time</span> each evening.",
-        "Avoid caffeine late in the day."
-      ]},
-      store: { title:"Storage", small:"", items:[
-        "Keep out of reach of children, at room temperature, protected from light and moisture.",
-        "Do not use after expiry date.",
-        "Return leftovers to the pharmacy."
-      ]}
-    },
-    footerHTML: "If you need more information, contact your <span class=\"highlight\">pharmacy</span> or doctor.",
-    creditHTML: "Prepared by pharmaconomist: Ibrahim Dahir Hanaf"
-  },
+    function updateList(id, list) {
+      const el = document.getElementById(id);
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        li.innerText = item;
+        el.appendChild(li);
+      });
+    }
 
-  ar: {
-    title: "ميلاتونين – مشاكل النوم",
-    subtitle: "معلومات مختصرة عن الدواء للمرضى وأفراد الأسرة.",
-    back: "العودة إلى قائمة الأدوية",
-    langLabel: "اختر اللغة:",
-    badge: "معلومات مختصرة وسهلة",
-    drugName: "ميلاتونين – مشاكل النوم",
-    drugForm: "أقراص فموية",
-    sections: {
-      use: { title:"الاستعمال", small:"", items:[
-        "الميلاتونين <span class='highlight'>هرمون طبيعي</span> يفرزه الجسم مساءً للمساعدة على النوم.",
-        "كدواء يساعد على تنظيم <span class='highlight'>الساعة البيولوجية</span>.",
-        "يُستخدم لصعوبة بدء النوم ومشاكل النوم.",
-        "ويمكن استخدامه أيضاً لاضطراب الإيقاع اليومي مثل <span class='highlight'>اضطراب السفر</span>."
-      ]},
-      dose: { title:"الجرعة", small:"", items:[
-        "اتبع خطة الطبيب. غالباً يؤخذ <span class='highlight'>قبل النوم بـ 30–60 دقيقة</span>.",
-        "الأقراص ممتدة المفعول تُبلع كاملة ولا تُكسر أو تُسحق.",
-        "راجع الطبيب أو الصيدلية إذا لم تتحسن خلال 1–2 أسبوع."
-      ]},
-      side: { title:"الآثار الجانبية", small:"", items:[
-        "نعاس صباحي.",
-        "صداع.",
-        "أحلام حيوية أو دوخة خفيفة لدى البعض."
-      ]},
-      interact: { title:"التداخلات الدوائية", small:"", items:[
-        "المهدئات الأخرى قد تزيد النعاس.",
-        "بعض الأدوية مثل بعض مميعات الدم ومضادات الاكتئاب قد تحتاج إلى انتباه خاص.",
-        "أخبر الطبيب أو الصيدلية بكل أدويتك."
-      ]},
-      warn: { title:"تحذيرات", small:"", items:[
-        "قد يسبب نعاساً؛ انتبه عند القيادة إذا شعرت بالنعاس أو الدوخة.",
-        "تجنب الكحول لأنه قد يزيد النعاس.",
-        "استشر الطبيب في الحمل أو الرضاعة أو أمراض الكبد."
-      ]},
-      ramadan: { title:"رمضان والصيام", small:"", items:[
-        "غالباً يُؤخذ مساءً بعد الإفطار عندما تكون مستعداً للنوم.",
-        "إذا تغير نمط نومك في رمضان فاسأل الطبيب عن خطة مناسبة."
-      ]},
-      food: { title:"الطعام والشراب", small:"", items:[
-        "يمكن أخذه مع أو بدون طعام.",
-        "حاول أخذه في <span class='highlight'>نفس الوقت</span> مساءً.",
-        "تجنب الكافيين في وقت متأخر من اليوم."
-      ]},
-      store: { title:"الحفظ", small:"", items:[
-        "يُحفظ بعيداً عن متناول الأطفال وتحت 25°م.",
-"يُحفظ في العبوة الأصلية للحماية من الضوء والرطوبة.",
-"لا يُستخدم بعد تاريخ الانتهاء. سلّم الدواء إلى الصيدلية للتخلص منه."
-      ]}
-    },
-    footerHTML: "إذا كنت بحاجة إلى مزيد من المعلومات، تواصل مع <span class=\"highlight\">الصيدلية</span> أو طبيبك.",
-    creditHTML: "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف"
-  }
-};
+    function updateSources(list) {
+      const el = document.getElementById("sourcesList");
+      el.innerHTML = "";
+      list.forEach(item => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.innerText = item.text;
+        li.appendChild(a);
+        el.appendChild(li);
+      });
+    }
 
-function stripTags(s){ return (s || "").replace(/<[^>]*>?/gm, ""); }
+    function applyTheme(lang){
+      const t = themes[lang] || themes.so;
+      const r = document.documentElement.style;
+      r.setProperty("--accent1", t.accent1);
+      r.setProperty("--accent2", t.accent2);
+      r.setProperty("--badgeBg", t.badgeBg);
+      r.setProperty("--badgeText", t.badgeText);
+      r.setProperty("--soft", t.soft);
+      r.setProperty("--softBorder", t.softBorder);
+      r.setProperty("--link", t.link);
+      r.setProperty("--drugIconBg", t.drugIconBg);
+      r.setProperty("--drugIconBorder", t.drugIconBorder);
+      r.setProperty("--langBarAccent", t.langBarAccent);
+      r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
+    }
 
-function setDirLang(lang){
-  document.documentElement.lang = lang;
-  document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
-}
+    function updateLanguage(saveSelection = true) {
+      const lang = document.getElementById("langSelect").value;
+      const data = content[lang] || content.so;
+      applyTheme(lang);
 
-function fillList(listId, items){
-  const ul = document.getElementById(listId);
-  ul.innerHTML = "";
-  (items || []).forEach(html => {
-    const li = document.createElement("li");
-    li.innerHTML = html;
-    ul.appendChild(li);
-  });
-}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = data.pageTitle || data.hdrTitle;
 
-function setSmall(id, txt){
-  const el = document.getElementById(id);
-  if (!el) return;
-  const t = (txt || "").trim();
-  el.textContent = t;
-  el.style.display = t ? "inline" : "none";
-}
+      document.getElementById("hdrTitle").innerText = data.hdrTitle;
+      document.getElementById("hdrSubtitle").innerText = data.hdrSubtitle;
+      document.getElementById("backLabel").innerText = data.backLabel;
+      document.getElementById("langLabel").innerText = data.langLabel;
+      document.getElementById("drugName").innerText = data.drugName;
+      document.getElementById("drugForm").innerText = data.drugForm;
+      document.getElementById("badgeText").innerText = data.badgeText;
+      document.getElementById("introBox").innerText = data.introBox;
+      document.getElementById("ibrahimTitle").innerText = data.ibrahimTitle;
+      document.getElementById("ibrahimText").innerText = data.ibrahimText;
+      document.getElementById("useTitle").innerText = data.useTitle;
+      document.getElementById("doseTitle").innerText = data.doseTitle;
+      document.getElementById("sideTitle").innerText = data.sideTitle;
+      document.getElementById("interactTitle").innerText = data.interactTitle;
+      document.getElementById("warnTitle").innerText = data.warnTitle;
+      document.getElementById("ramadanTitle").innerText = data.ramadanTitle;
+      document.getElementById("foodTitle").innerText = data.foodTitle;
+      document.getElementById("storeTitle").innerText = data.storeTitle;
+      document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
+      document.getElementById("sourcesText").innerText = data.sourcesText;
+      document.getElementById("footerNote").innerText = data.footerNote;
 
-function render(lang){
-  if (!ENABLED_LANGS.has(lang)) lang = "so";
-  const d = T[lang] || T.so;
+      updateList("useList", data.useList);
+      updateList("doseList", data.doseList);
+      updateList("sideList", data.sideList);
+      updateList("interactList", data.interactList);
+      updateList("warnList", data.warnList);
+      updateList("ramadanList", data.ramadanList);
+      updateList("foodList", data.foodList);
+      updateList("storeList", data.storeList);
+      updateSources(data.sourcesList);
 
-  setDirLang(lang);
-  applyTheme(lang);
+      if (saveSelection) {
+        localStorage.setItem("selectedLanguage", lang);
+      }
 
-  document.title = stripTags(d.title);
-  document.getElementById("hdrTitle").textContent = stripTags(d.title);
-  document.getElementById("hdrSubtitle").textContent = d.subtitle;
-  document.getElementById("backLabel").textContent = d.back;
-  document.getElementById("badge").textContent = d.badge;
-  document.getElementById("drugName").textContent = stripTags(d.drugName);
-  document.getElementById("drugForm").textContent = d.drugForm;
-  document.getElementById("langLabel").textContent = d.langLabel;
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", lang);
+      window.history.replaceState({}, "", url.toString());
 
-  document.getElementById("useTitle").textContent = d.sections.use.title;
-  setSmall("useSmall", d.sections.use.small);
-  document.getElementById("doseTitle").textContent = d.sections.dose.title;
-  setSmall("doseSmall", d.sections.dose.small);
-  document.getElementById("sideTitle").textContent = d.sections.side.title;
-  setSmall("sideSmall", d.sections.side.small);
-  document.getElementById("interactTitle").textContent = d.sections.interact.title;
-  setSmall("interactSmall", d.sections.interact.small);
-  document.getElementById("warnTitle").textContent = d.sections.warn.title;
-  setSmall("warnSmall", d.sections.warn.small);
-  document.getElementById("ramadanTitle").textContent = d.sections.ramadan.title;
-  setSmall("ramadanSmall", d.sections.ramadan.small);
-  document.getElementById("foodTitle").textContent = d.sections.food.title;
-  setSmall("foodSmall", d.sections.food.small);
-  document.getElementById("storeTitle").textContent = d.sections.store.title;
-  setSmall("storeSmall", d.sections.store.small);
+      const backA = document.querySelector("a.back");
+      const base = backA.getAttribute("href").split("?")[0];
+      backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+    }
 
-  fillList("useList", d.sections.use.items);
-  fillList("doseList", d.sections.dose.items);
-  fillList("sideList", d.sections.side.items);
-  fillList("interactList", d.sections.interact.items);
-  fillList("warnList", d.sections.warn.items);
-  fillList("ramadanList", d.sections.ramadan.items);
-  fillList("foodList", d.sections.food.items);
-  fillList("storeList", d.sections.store.items);
+    function initLanguage() {
+      const params = new URLSearchParams(window.location.search);
+      const urlLang = params.get("lang");
+      const savedLang = localStorage.getItem("selectedLanguage");
+      let defaultLang = "so";
 
-  document.getElementById("footerNote").innerHTML = d.footerHTML;
-  document.getElementById("credit").innerHTML = d.creditHTML;
+      if (urlLang && content[urlLang]) {
+        defaultLang = urlLang;
+      } else if (savedLang && content[savedLang]) {
+        defaultLang = savedLang;
+      }
 
-  const backA = document.querySelector("a.back");
-  const base = backA.getAttribute("href").split("?")[0];
-  backA.setAttribute("href", base + "?lang=" + encodeURIComponent(lang));
+      document.getElementById("langSelect").value = defaultLang;
+      updateLanguage(false);
+    }
 
-  const url = new URL(window.location.href);
-  url.searchParams.set("lang", lang);
-  window.history.replaceState({}, "", url.toString());
-}
-
-const params = new URLSearchParams(window.location.search);
-let startLang = params.get("lang") || "so";
-if (!ENABLED_LANGS.has(startLang)) startLang = "so";
-
-const select = document.getElementById("langSelect");
-select.value = startLang;
-render(select.value);
-select.addEventListener("change", function(){ render(this.value); });
-</script>
-
+    document.getElementById("langSelect").addEventListener("change", () => updateLanguage(true));
+    initLanguage();
+  </script>
 </body>
 </html>
