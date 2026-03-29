@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -504,6 +508,13 @@
       <ul id="sourcesList"></ul>
     </div>
 
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Losartan.mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
     <div class="footer-note" id="footerNote">
       Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
     </div>
@@ -549,7 +560,7 @@
         badgeText: "Akhris fudud oo kooban",
         introBox: "Dhiig-karka marar badan lama dareemo, laakiin gudaha ayuu si tartiib ah u waxyeelleeyaa wadnaha, maskaxda iyo kelyaha. Losartan waxay ka caawisaa xakameynta dhiig-karka, si cadaadiska dhiiggu u noqdo mid deggan oo culaysku u yaraado.",
         ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
-        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: marka dhiig-karka la daaweeyo, calaamadaha mararka qaar si degdeg ah uma baaba’aan, laakiin gudaha jidhka ayuu shaqo culus ka wadaa. Losartan ma aha daawo aad isla markiiba dareemayso, balse waa daawo si aamusan u ilaalisa jirka. Sidaas darteed joogtayntu waa muhiim, xataa maalmaha aad is leedahay wax dhib ah ma qabo.",
+        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: marka dhiig-karka la daaweeyo, calaamadaha mararka qaar si degdeg ah uma baaba'aan, laakiin gudaha jidhka ayuu shaqo culus ka wadaa. Losartan ma aha daawo aad isla markiiba dareemayso, balse waa daawo si aamusan u ilaalisa jirka. Sidaas darteed joogtayntu waa muhiim, xataa maalmaha aad is leedahay wax dhib ah ma qabo.",
         useTitle: "Isticmaalka",
         useList: [
           "Losartan waxaa loo isticmaalaa in lagu dejiyo dhiig-karka.",
@@ -690,7 +701,7 @@
         drugForm: "Tablets",
         badgeText: "Short and easy to read",
         introBox: "High blood pressure often stays quiet, but over time it can put strain on the heart, brain, and kidneys. Losartan helps the blood vessels relax more, so the blood can move with less pressure.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: high blood pressure does not always feel like something is wrong, but the body may still be working against that pressure every day. Losartan is not always a medicine you feel straight away, but it quietly helps the circulation become calmer. That is why steady routines matter more than whether you feel an immediate effect.",
         useTitle: "Use",
         useList: [
@@ -698,7 +709,7 @@
           "It reduces a body signal that would otherwise tighten the blood vessels.",
           "In some people it is also used to help protect the kidneys."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "It is usually taken once daily, preferably around the same time each day.",
           "Many people begin with a usual starting dose, but your doctor decides what suits you best.",
@@ -916,6 +927,11 @@
       updateSources(data.sourcesList);
       updateBackLink(lang);
 
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
+
       if (pushToUrl) {
         const url = new URL(window.location.href);
         url.searchParams.set("lang", lang);
@@ -926,11 +942,7 @@
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
       let startLang = params.get("lang") || "so";
-
-      if (!ENABLED_LANGS.has(startLang)) {
-        startLang = "so";
-      }
-
+      if (!ENABLED_LANGS.has(startLang)) startLang = "so";
       document.getElementById("langSelect").value = startLang;
       updateLanguage(false);
     }
