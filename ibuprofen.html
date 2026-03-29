@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -424,7 +428,7 @@
     <div class="ibrahim-box">
       <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
       <p id="ibrahimText">
-        Waxaan dadka ugu sharxaa sidan: ibuprofen waxay dejisaa xanuunka iyo bararka, laakiin ma aha daawo aan xad lahayn. Haddii si badan ama si joogto ah loo qaato, waxay jirka ka keeni kartaa dhib ka badan faa'iido. Sidaas darteed qaanuunka ugu fiican waa qiyaasta ugu yar ee kuu shaqaysa iyo muddada ugu gaaban ee loo baahan yahay.
+        Waxaan dadka ugu sharxaa sidan: Ibuprofen waxay dejisaa xanuunka iyo bararka, laakiin ma aha daawo aan xad lahayn. Haddii si badan ama si joogto ah loo qaato, waxay jirka ka keeni kartaa dhib ka badan faa'iido. Sidaas darteed habka ugu fiican waa qiyaasta ugu yar ee kuu shaqaysa iyo muddada ugu gaaban ee suurtogalka ah.
       </p>
     </div>
 
@@ -496,6 +500,13 @@
       <h3 id="sourcesTitle">Ilaha xogta</h3>
       <p id="sourcesText">Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.</p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Ibuprofen.mp3">
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -612,7 +623,7 @@
         drugName: "Ibuprofen – smerter, betændelse og feber",
         drugForm: "Tablet",
         badgeText: "Kort og letlæselig",
-        introBox: "Ibuprofen er medicin mod smerter, betændelse og feber. Det tilhører en gruppe lægemidler, som både kan dæmpe smerte og inflammation. Men som andre NSAID’er kan det også belaste maven, nyrerne eller hjertet hos nogle personer, hvis det bruges forkert eller for længe.",
+        introBox: "Ibuprofen er medicin mod smerter, betændelse og feber. Det tilhører en gruppe lægemidler, som både kan dæmpe smerte og inflammation. Men som andre NSAID'er kan det også belaste maven, nyrerne eller hjertet hos nogle personer, hvis det bruges forkert eller for længe.",
         ibrahimTitle: "Ibrahims forklaring fra apoteket",
         ibrahimText: "Jeg plejer at forklare det sådan: Ibuprofen kan være en god hjælp ved smerter og betændelse, men det er ikke en medicin uden grænser. Hvis man tager for meget eller for ofte, kan kroppen betale en pris for det. Derfor er den bedste regel ofte den laveste dosis, der virker, i den kortest nødvendige tid.",
         useTitle: "Anvendelse",
@@ -636,7 +647,7 @@
         ],
         interactTitle: "Interaktioner",
         interactList: [
-          "Undgå at kombinere ibuprofen med andre NSAID’er som diclofenac eller naproxen uden lægens råd.",
+          "Undgå at kombinere ibuprofen med andre NSAID'er som diclofenac eller naproxen uden lægens råd.",
           "Vær forsigtig ved samtidig brug af aspirin eller blodfortyndende medicin, fordi det kan øge risikoen for blødning.",
           "Visse lægemidler mod nyrer, blodtryk eller steroidbehandling kan også øge risikoen for bivirkninger."
         ],
@@ -684,7 +695,7 @@
         drugForm: "Tablet",
         badgeText: "Short and easy to read",
         introBox: "Ibuprofen is used for pain, inflammation, and fever. It belongs to a group of medicines that can reduce both pain and inflammation. But like other NSAIDs, it can also put strain on the stomach, kidneys, or heart in some people if used incorrectly or for too long.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: Ibuprofen can be very helpful for pain and inflammation, but it is not a medicine without limits. If it is used too much or too often, the body may pay a price for that. So the best rule is usually the lowest dose that works for the shortest time needed.",
         useTitle: "Use",
         useList: [
@@ -692,7 +703,7 @@
           "It may be used for headaches, muscle pain, period pain, toothache, and joint pain.",
           "It belongs to the NSAID group."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "Adults often take 200 to 400 mg at a time, with at least 4 to 6 hours between doses as needed.",
           "Do not exceed the recommended daily dose.",
@@ -903,6 +914,11 @@
       updateList("foodList", data.foodList);
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
+
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
 
       if (pushToUrl) {
         const url = new URL(window.location.href);
