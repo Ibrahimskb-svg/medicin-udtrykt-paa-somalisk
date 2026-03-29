@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -420,7 +424,7 @@
     <div class="ibrahim-box">
       <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
       <p id="ibrahimText">
-        Waxaan bukaan badan ugu sharxaa sidan: insulin-ku waa furaha albaabka u fura sonkorta inay gasho unugyada jirka. Haddii furahaasi yaraado ama uusan si fiican u shaqayn, sonkortu waxay ku sii jirtaa dhiigga halkii ay jirka uga faa’iidaysan lahayd. Sidaas darteed insulin ma aha oo keliya cirbad, balse waa daawo ilaalisa jirka maalin kasta. Waxa ugu muhiimsan waa in si sax ah loo qaato, sonkortana si joogto ah loola socdo.
+        Waxaan bukaan badan ugu sharxaa sidan: insulin-ku waa furaha albaabka u fura sonkorta inay gasho unugyada jirka. Haddii furahaasi yaraado ama uusan si fiican u shaqayn, sonkortu waxay ku sii jirtaa dhiigga halkii ay jirka uga faa'iidaysan lahayd. Sidaas darteed insulin ma aha oo keliya cirbad, balse waa daawo ilaalisa jirka maalin kasta. Waxa ugu muhiimsan waa in si sax ah loo qaato, sonkortana si joogto ah loola socdo.
       </p>
     </div>
 
@@ -496,6 +500,13 @@
       <ul id="sourcesList"></ul>
     </div>
 
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Insulin.mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
     <div class="footer-note" id="footerNote">
       Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
     </div>
@@ -541,7 +552,7 @@
         badgeText: "Akhris fudud oo kooban",
         introBox: "Insulin waa daawo ka caawisa jirka inuu sonkorta dhiigga si sax ah u maareeyo. Marka insulin-ku yaraado ama uusan si fiican u shaqayn, sonkorta dhiigga way kordhi kartaa. Daawadani waxay ka caawisaa sonkorta inay gasho unugyada jirka si tamar loogu helo.",
         ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
-        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: insulin-ku waa furaha albaabka u fura sonkorta inay gasho unugyada jirka. Haddii furahaasi yaraado ama uusan si fiican u shaqayn, sonkortu waxay ku sii jirtaa dhiigga halkii ay jirka uga faa’iidaysan lahayd. Sidaas darteed insulin ma aha oo keliya cirbad, balse waa daawo ilaalisa jirka maalin kasta. Waxa ugu muhiimsan waa in si sax ah loo qaato, isla markaana sonkorta dhiigga si joogto ah loola socdo.",
+        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: insulin-ku waa furaha albaabka u fura sonkorta inay gasho unugyada jirka. Haddii furahaasi yaraado ama uusan si fiican u shaqayn, sonkortu waxay ku sii jirtaa dhiigga halkii ay jirka uga faa'iidaysan lahayd. Sidaas darteed insulin ma aha oo keliya cirbad, balse waa daawo ilaalisa jirka maalin kasta. Waxa ugu muhiimsan waa in si sax ah loo qaato, isla markaana sonkorta dhiigga si joogto ah loola socdo.",
         useTitle: "Isticmaalka",
         useList: [
           "Insulin waxaa loo isticmaalaa daaweynta sonkorowga.",
@@ -690,15 +701,15 @@
         drugForm: "Injection under the skin",
         badgeText: "Short and easy to read",
         introBox: "Insulin helps the body regulate blood sugar properly. When the body does not have enough insulin, or when insulin does not work well enough, sugar remains too high in the blood. This medicine helps sugar move into the body's cells so it can be used for energy.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
-        ibrahimText: "I often explain it like this: insulin is the key that opens the door so sugar can enter the body’s cells. If that key is missing or does not work properly, the sugar stays in the blood instead of being used by the body. So insulin is not just an injection. It is an important daily treatment that helps the body function properly. The most important things are correct use and regular blood sugar monitoring.",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
+        ibrahimText: "I often explain it like this: insulin is the key that opens the door so sugar can enter the body's cells. If that key is missing or does not work properly, the sugar stays in the blood instead of being used by the body. So insulin is not just an injection. It is an important daily treatment that helps the body function properly. The most important things are correct use and regular blood sugar monitoring.",
         useTitle: "Use",
         useList: [
           "Insulin is used to treat diabetes.",
           "It helps sugar move from the blood into the body's cells so blood sugar can come down.",
           "Some types of insulin act quickly, while others work more slowly and for longer."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "Insulin dose is individual and depends on the type of insulin, food, activity, and blood sugar level.",
           "Always follow the plan from your doctor or diabetes nurse.",
@@ -917,6 +928,11 @@
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
 
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
+
       if (pushToUrl) {
         const url = new URL(window.location.href);
         url.searchParams.set("lang", lang);
@@ -927,11 +943,7 @@
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
       let startLang = params.get("lang") || "so";
-
-      if (!ENABLED_LANGS.has(startLang)) {
-        startLang = "so";
-      }
-
+      if (!ENABLED_LANGS.has(startLang)) startLang = "so";
       document.getElementById("langSelect").value = startLang;
       updateLanguage(false);
     }
