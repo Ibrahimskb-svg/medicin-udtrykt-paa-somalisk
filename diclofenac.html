@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -422,7 +426,7 @@
     <div class="divider"></div>
 
     <div class="intro-box" id="introBox">
-      Diclofenac waa daawo xanuunka iyo bararka dejisa, laakiin sidoo kale waxay culays saari kartaa caloosha, wadnaha ama kelyaha dadka qaarkood. Sidaas darteed waa daawo faa’iido leh marka si sax ah loo isticmaalo, laakiin aan ahayn mid lagu qaato si iska caadi ah muddo dheer.
+      Diclofenac waa daawo xanuunka iyo bararka dejisa, laakiin sidoo kale waxay culays saari kartaa caloosha, wadnaha ama kelyaha dadka qaarkood. Sidaas darteed waa daawo faa'iido leh marka si sax ah loo isticmaalo, laakiin aan ahayn mid lagu qaato si iska caadi ah muddo dheer.
     </div>
 
     <div class="ibrahim-box">
@@ -504,6 +508,13 @@
       <ul id="sourcesList"></ul>
     </div>
 
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Diclofenac.mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
     <div class="footer-note" id="footerNote">
       Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
     </div>
@@ -547,7 +558,7 @@
         drugName: "Diclofenac – xanuun & barar",
         drugForm: "Kiniin afka ah",
         badgeText: "Akhris fudud oo kooban",
-        introBox: "Diclofenac waa daawo xanuunka iyo bararka dejisa, laakiin sidoo kale waxay culays saari kartaa caloosha, wadnaha ama kelyaha dadka qaarkood. Sidaas darteed waa daawo faa’iido leh marka si sax ah loo isticmaalo, laakiin aan ahayn mid lagu qaato si iska caadi ah muddo dheer.",
+        introBox: "Diclofenac waa daawo xanuunka iyo bararka dejisa, laakiin sidoo kale waxay culays saari kartaa caloosha, wadnaha ama kelyaha dadka qaarkood. Sidaas darteed waa daawo faa'iido leh marka si sax ah loo isticmaalo, laakiin aan ahayn mid lagu qaato si iska caadi ah muddo dheer.",
         ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
         ibrahimText: "Waxaan dadka ugu sharxaa sidan: diclofenac waxay dabka ka demisaa meesha xanuunku ka kacsan yahay, laakiin haddii si khaldan loo isticmaalo waxay caloosha uga tagi kartaa meel jilicsan ama jirka culays kale saari kartaa. Sidaas darteed qaado qiyaasta ugu yar ee kuu shaqaysa, wakhtiga ugu gaaban, hana ku darin dawooyin kale oo la mid ah adigoon talo helin.",
         useTitle: "Isticmaalka",
@@ -690,7 +701,7 @@
         drugForm: "Tablets",
         badgeText: "Short and easy to read",
         introBox: "Diclofenac can reduce pain and inflammation, but it may also irritate the stomach and, in some people, affect the heart or kidneys. It is most useful when used carefully, at the lowest effective dose, for the shortest possible time.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: diclofenac helps put out some of the fire in pain and inflammation. But if it is used the wrong way or for too long, it can make the stomach more vulnerable and place extra strain on the rest of the body. That is why the usual goal is the lowest effective dose for the shortest possible time.",
         useTitle: "Use",
         useList: [
@@ -698,7 +709,7 @@
           "It belongs to the NSAID group, which helps reduce both pain and inflammation.",
           "It may also be used for a short time after surgery or injury."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "Take it as prescribed, because the dose depends on the product and the reason for treatment.",
           "Do not exceed the dose and do not use it longer than needed without medical advice.",
@@ -904,6 +915,11 @@
       updateList("foodList", data.foodList);
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
+
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
 
       if (saveSelection) {
         localStorage.setItem("selectedLanguage", lang);
