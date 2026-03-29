@@ -197,6 +197,38 @@
       font-size: 0.96rem;
     }
 
+    /* ── Audio Player ── */
+    .audio-box{
+      background: #fff;
+      border: 1px solid var(--stroke);
+      border-left: 5px solid var(--accent1);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .audio-box-title{
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .audio-box-title span.audio-icon{
+      font-size: 1.2rem;
+    }
+
+    .audio-box audio{
+      width: 100%;
+      border-radius: 8px;
+      outline: none;
+    }
+
     .ibrahim-box{
       background: var(--ibrahimBg);
       border: 1px solid var(--ibrahimBorder);
@@ -391,14 +423,11 @@
                 <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
               </linearGradient>
             </defs>
-
             <g transform="rotate(-45 32 32)">
               <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
-
               <clipPath id="pillClip">
                 <rect x="14" y="22" width="36" height="20" rx="10"></rect>
               </clipPath>
-
               <g clip-path="url(#pillClip)">
                 <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
                 <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
@@ -406,7 +435,6 @@
                 <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
                 <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
               </g>
-
               <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
             </g>
           </svg>
@@ -502,6 +530,17 @@
         Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
       </p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <!-- AUDIO PLAYER – kun synlig på somalisk -->
+    <div class="audio-box" id="audioBox" style="display:none;">
+      <div class="audio-box-title">
+        <span class="audio-icon">🔊</span>
+        <span id="audioTitle">Dhageyso codkan</span>
+      </div>
+      <audio id="metforminAudio" controls preload="metadata">
+        <source src="Metformin.mp3" type="audio/mpeg" />
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -702,7 +741,7 @@
         drugForm: "Tablet",
         badgeText: "Short and easy to read",
         introBox: "Metformin helps the body manage blood sugar in a steadier and more balanced way. Many people start this medicine when type 2 diabetes is diagnosed because it supports the body without usually causing a sudden strong drop in blood sugar.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: metformin is not a medicine you usually feel working right away. It quietly helps move the body in a better direction over time. At the beginning, some people notice stomach upset, but this often improves when the dose is increased slowly and the medicine is taken with food. So patience and consistency really matter with metformin.",
         useTitle: "Use",
         useList: [
@@ -710,7 +749,7 @@
           "It helps control blood sugar and is often used together with diet, exercise, and weight management.",
           "For many people, it is the first medicine started for type 2 diabetes."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "Treatment often starts with a low dose and then increases gradually.",
           "It is often taken 1 to 2 times daily as prescribed.",
@@ -918,6 +957,9 @@
       document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
       document.getElementById("sourcesText").innerText = data.sourcesText;
       document.getElementById("footerNote").innerText = data.footerNote;
+
+      // Vis lydafspiller kun på somalisk
+      document.getElementById("audioBox").style.display = lang === "so" ? "flex" : "none";
 
       updateList("useList", data.useList);
       updateList("doseList", data.doseList);
