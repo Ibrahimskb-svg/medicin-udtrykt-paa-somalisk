@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -502,6 +506,13 @@
         Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
       </p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Enalapril.mp3">
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -696,7 +707,7 @@
         drugForm: "Tablet",
         badgeText: "Short and easy to read",
         introBox: "Enalapril is used for high blood pressure and, in some cases, for heart failure. It helps the blood vessels relax so that blood can flow more easily and the strain on the heart and circulation becomes lower.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: if the blood has to move under too much pressure every day, both the heart and the blood vessels become tired over time. Enalapril helps make that system calmer. But some people notice dizziness or a dry cough at the beginning, so it is important not to stop on your own, but to speak with your doctor if it starts to trouble you.",
         useTitle: "Use",
         useList: [
@@ -704,9 +715,9 @@
           "It helps the blood vessels open more so the blood pressure can come down.",
           "In some cases it is also used to reduce the strain on the heart."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
-          "Treatment often starts with a low dose taken once or twice daily according to your doctor’s plan.",
+          "Treatment often starts with a low dose taken once or twice daily according to your doctor's plan.",
           "Your doctor may adjust the dose gradually based on blood pressure and blood tests.",
           "If you feel dizzy at the start, rise slowly from bed or from a chair.",
           "Do not stop treatment without medical advice."
@@ -921,6 +932,11 @@
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
 
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
+
       if (pushToUrl) {
         const url = new URL(window.location.href);
         url.searchParams.set("lang", lang);
@@ -931,11 +947,7 @@
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
       let startLang = params.get("lang") || "so";
-
-      if (!ENABLED_LANGS.has(startLang)) {
-        startLang = "so";
-      }
-
+      if (!ENABLED_LANGS.has(startLang)) startLang = "so";
       document.getElementById("langSelect").value = startLang;
       updateLanguage(false);
     }
