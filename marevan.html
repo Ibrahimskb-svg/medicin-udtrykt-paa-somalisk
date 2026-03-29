@@ -13,27 +13,19 @@
       --text:#123047;
       --muted:#607089;
       --stroke:#d0d7e2;
-
       --badgeBg:#d9f6e8;
       --badgeText:#16634a;
-
       --soft:#eefaf5;
       --softBorder:#b7ead3;
-
       --link:#0b6b57;
-
       --drugIconBg:#e8f8f1;
       --drugIconBorder:#bde8d4;
-
       --langBarAccent:#00a676;
-
       --ibrahimBg:#fff8e8;
       --ibrahimBorder:#f0c36d;
       --ibrahimTitle:#8a5a00;
-
       --sourceBg:#f8fafc;
       --sourceBorderAccent:#00a676;
-
       --useBg:#eefaf5;
       --useIcon:#00a676;
       --doseBg:#eef6ff;
@@ -195,6 +187,38 @@
       color: #24445e;
       margin-bottom: 16px;
       font-size: 0.96rem;
+    }
+
+    /* ── Audio Player ── */
+    .audio-box{
+      background: #fff;
+      border: 1px solid var(--stroke);
+      border-left: 5px solid var(--accent1);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .audio-box-title{
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .audio-box-title span.audio-icon{
+      font-size: 1.2rem;
+    }
+
+    .audio-box audio{
+      width: 100%;
+      border-radius: 8px;
+      outline: none;
     }
 
     .ibrahim-box{
@@ -391,14 +415,11 @@
                 <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
               </linearGradient>
             </defs>
-
             <g transform="rotate(-45 32 32)">
               <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
-
               <clipPath id="pillClip">
                 <rect x="14" y="22" width="36" height="20" rx="10"></rect>
               </clipPath>
-
               <g clip-path="url(#pillClip)">
                 <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
                 <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
@@ -406,7 +427,6 @@
                 <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
                 <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
               </g>
-
               <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
             </g>
           </svg>
@@ -504,6 +524,17 @@
       <ul id="sourcesList"></ul>
     </div>
 
+    <!-- AUDIO PLAYER – kun synlig på somalisk -->
+    <div class="audio-box" id="audioBox" style="display:none;">
+      <div class="audio-box-title">
+        <span class="audio-icon">🔊</span>
+        <span id="audioTitle">Dhageyso codkan</span>
+      </div>
+      <audio id="marevanAudio" controls preload="metadata">
+        <source src="Marevan.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
     <div class="footer-note" id="footerNote">
       Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
     </div>
@@ -573,7 +604,7 @@
         interactTitle: "Isdhexgalka daawooyinka",
         interactList: [
           "Marevan waxaa saameyn kara daawooyin badan oo kale, sidaas darteed waa muhiim in daawo kasta oo cusub la sheego.",
-          "Xanuun baabi’iyeyaasha sida ibuprofen iyo naproxen waxay kordhin karaan khatarta dhiig-baxa.",
+          "Xanuun baabi'iyeyaasha sida ibuprofen iyo naproxen waxay kordhin karaan khatarta dhiig-baxa.",
           "Antibiyootiko, daawooyinka fangaska, qaar ka mid ah dawooyinka niyadda iyo dawooyinka dabiiciga ah qaarkood waxay beddeli karaan INR.",
           "Had iyo jeer u sheeg farmashiyaha iyo dhakhtarkaaga in aad qaadanayso Marevan."
         ],
@@ -702,7 +733,7 @@
         drugForm: "Tablet",
         badgeText: "Short and easy to read",
         introBox: "Marevan makes it harder for the blood to clot. This can protect against dangerous clots, but it also means bleeding can happen more easily if the dose becomes too strong or if another medicine changes the effect.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: Marevan works best when it stays in balance. If the effect is too weak, clots may form. If it is too strong, bleeding may happen. So this is not just a tablet you take every day without thinking — it is a treatment that needs respect for the dose, the diet, and the INR checks.",
         useTitle: "Use",
         useList: [
@@ -710,7 +741,7 @@
           "It is used in some people with atrial fibrillation, previous clots, or mechanical heart valves.",
           "It works by slowing down the clotting process in the blood."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "The dose of Marevan is individual and may differ from one person to another.",
           "It is often taken once daily, often in the evening, according to your treatment plan.",
@@ -918,6 +949,9 @@
       document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
       document.getElementById("sourcesText").innerText = data.sourcesText;
       document.getElementById("footerNote").innerText = data.footerNote;
+
+      // Vis lydafspiller kun på somalisk
+      document.getElementById("audioBox").style.display = lang === "so" ? "flex" : "none";
 
       updateList("useList", data.useList);
       updateList("doseList", data.doseList);
