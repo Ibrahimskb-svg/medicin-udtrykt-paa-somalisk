@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -428,7 +432,7 @@
     <div class="ibrahim-box">
       <div class="ibrahim-box-title" id="ibrahimTitle">Talo gaar ah oo Ibraahim ka timid</div>
       <p id="ibrahimText">
-        Waxaan bukaan badan ugu sharxaa sidan: lamotrigin ma aha daawo lagu degdego, ee waa daawo loo dhiso si tartiib ah. Sababtaas waxay tahay in aan rabno in maskaxdu si deggan ula qabsato daawada, isla markaana aan yareyno khatarta finan ama falcelin adag. Sidaas darteed qiyaasta ha kordhin adigoo iskaa u go’aansan, hana joojin si kedis ah.
+        Waxaan bukaan badan ugu sharxaa sidan: lamotrigin ma aha daawo lagu degdego, ee waa daawo loo dhiso si tartiib ah. Sababtaas waxay tahay in aan rabno in maskaxdu si deggan ula qabsato daawada, isla markaana aan yareyno khatarta finan ama falcelin adag. Sidaas darteed qiyaasta ha kordhin adigoo iskaa u go'aansan, hana joojin si kedis ah.
       </p>
     </div>
 
@@ -504,6 +508,13 @@
       <ul id="sourcesList"></ul>
     </div>
 
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Lamotrigin.mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
     <div class="footer-note" id="footerNote">
       Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
     </div>
@@ -549,7 +560,7 @@
         badgeText: "Akhris fudud oo kooban",
         introBox: "Lamotrigin waa daawo saameysa fariimaha korontada ee maskaxda. Waxaa loo isticmaalaa suuxdinta, mararka qaarkoodna laba-cirifoodka, si maskaxdu u noqoto mid deggan oo xasilloon. Daawadan si tartiib ah ayaa loo bilaabaa, sababtoo ah jirku wuxuu u baahan yahay waqti uu ula qabsado.",
         ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
-        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: lamotrigin ma aha daawo lagu degdego, ee waa daawo loo dhiso si tartiib ah. Sababtaas waxay tahay in aan rabno in maskaxdu si deggan ula qabsato daawada, isla markaana aan yareyno khatarta finan ama falcelin adag. Sidaas darteed qiyaasta ha kordhin adigoo iskaa u go’aansan, hana joojin si kedis ah.",
+        ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: lamotrigin ma aha daawo lagu degdego, ee waa daawo loo dhiso si tartiib ah. Sababtaas waxay tahay in aan rabno in maskaxdu si deggan ula qabsato daawada, isla markaana aan yareyno khatarta finan ama falcelin adag. Sidaas darteed qiyaasta ha kordhin adigoo iskaa u go'aansan, hana joojin si kedis ah.",
         useTitle: "Isticmaalka",
         useList: [
           "Lamotrigin waa daawo ka hortagta suuxdinta.",
@@ -694,7 +705,7 @@
         drugForm: "Tablets",
         badgeText: "Short and easy to read",
         introBox: "Lamotrigine is a medicine that affects electrical signaling in the brain. It is used for epilepsy and sometimes for bipolar disorder to create more stability and calm. This medicine is started slowly because the body needs time to get used to it.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: lamotrigine is not a medicine that should be increased too quickly. It has to be built up slowly so the brain can adjust calmly and so the risk of rash or stronger reactions becomes lower. That is why you should not change the dose on your own or stop suddenly.",
         useTitle: "Use",
         useList: [
@@ -702,7 +713,7 @@
           "It affects brain signaling and can reduce or prevent seizures.",
           "It is also used in some people with bipolar disorder, especially to help prevent depressive episodes."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "It is often started at a low dose and increased slowly over several weeks.",
           "The dose may depend on other medicines you take at the same time.",
@@ -917,6 +928,11 @@
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
 
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
+
       if (pushToUrl) {
         const url = new URL(window.location.href);
         url.searchParams.set("lang", lang);
@@ -927,11 +943,7 @@
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
       let startLang = params.get("lang") || "so";
-
-      if (!ENABLED_LANGS.has(startLang)) {
-        startLang = "so";
-      }
-
+      if (!ENABLED_LANGS.has(startLang)) startLang = "so";
       document.getElementById("langSelect").value = startLang;
       updateLanguage(false);
     }
