@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -496,6 +500,13 @@
       <h3 id="sourcesTitle">Ilaha xogta</h3>
       <p id="sourcesText">Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.</p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Hjertemagnyl.mp3">
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -684,7 +695,7 @@
         drugForm: "Tablet",
         badgeText: "Short and easy to read",
         introBox: "Hjertemagnyl is low-dose acetylsalicylic acid that makes blood platelets less likely to stick together. In this setting, it is not used as an ordinary painkiller, but as protection against blood clots in people who need it.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: Hjertemagnyl is not a medicine you clearly feel from day to day, but it works quietly in the background to lower the risk that the blood forms dangerous clots in the wrong place. That is why regular use matters, especially if it has been prescribed after a heart attack or after a stent.",
         useTitle: "Use",
         useList: [
@@ -692,7 +703,7 @@
           "It helps reduce the risk of blood clots by making blood platelets less sticky.",
           "It is often used in people with cardiovascular disease or after a stent or heart attack."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "It is usually taken once daily at the same time each day.",
           "Swallow the tablet with water. If you miss a dose, take it when you remember if it is still reasonably close to the usual time.",
@@ -903,6 +914,11 @@
       updateList("foodList", data.foodList);
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
+
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
 
       if (pushToUrl) {
         const url = new URL(window.location.href);
