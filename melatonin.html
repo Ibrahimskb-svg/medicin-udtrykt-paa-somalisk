@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Melatonin – hurdo la’aan</title>
+  <title>Melatonin – hurdo la'aan</title>
   <style>
     :root{
       --accent1:#00a676;
@@ -197,6 +197,38 @@
       font-size: 0.96rem;
     }
 
+    /* ── Audio Player ── */
+    .audio-box{
+      background: #fff;
+      border: 1px solid var(--stroke);
+      border-left: 5px solid var(--accent1);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .audio-box-title{
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .audio-box-title span.audio-icon{
+      font-size: 1.2rem;
+    }
+
+    .audio-box audio{
+      width: 100%;
+      border-radius: 8px;
+      outline: none;
+    }
+
     .ibrahim-box{
       background: var(--ibrahimBg);
       border: 1px solid var(--ibrahimBorder);
@@ -353,7 +385,7 @@
 </head>
 <body>
   <header id="mainHeader">
-    <h1 id="hdrTitle">Melatonin – hurdo la’aan</h1>
+    <h1 id="hdrTitle">Melatonin – hurdo la'aan</h1>
     <p id="hdrSubtitle">Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
   </header>
 
@@ -391,14 +423,11 @@
                 <stop offset="100%" stop-color="rgba(255,255,255,0)"></stop>
               </linearGradient>
             </defs>
-
             <g transform="rotate(-45 32 32)">
               <rect x="14" y="22" width="36" height="20" rx="10" fill="#ffffff" opacity="0.22"></rect>
-
               <clipPath id="pillClip">
                 <rect x="14" y="22" width="36" height="20" rx="10"></rect>
               </clipPath>
-
               <g clip-path="url(#pillClip)">
                 <rect x="14" y="22" width="18" height="20" fill="url(#pillRed)"></rect>
                 <rect x="32" y="22" width="18" height="20" fill="url(#pillYellow)"></rect>
@@ -406,13 +435,12 @@
                 <ellipse cx="24" cy="27.5" rx="10" ry="4.2" fill="url(#pillShine)" opacity="0.55"></ellipse>
                 <ellipse cx="40" cy="36.5" rx="8.5" ry="3.5" fill="#000000" opacity="0.05"></ellipse>
               </g>
-
               <rect x="14" y="22" width="36" height="20" rx="10" fill="none" stroke="#9a9a9a" stroke-width="1.4"></rect>
             </g>
           </svg>
         </div>
         <div class="drug-title-block">
-          <h1 id="drugName">Melatonin – hurdo la’aan</h1>
+          <h1 id="drugName">Melatonin – hurdo la'aan</h1>
           <p id="drugForm">Kiniin afka ah</p>
         </div>
       </div>
@@ -504,6 +532,17 @@
       <ul id="sourcesList"></ul>
     </div>
 
+    <!-- AUDIO PLAYER – kun synlig på somalisk -->
+    <div class="audio-box" id="audioBox" style="display:none;">
+      <div class="audio-box-title">
+        <span class="audio-icon">🔊</span>
+        <span id="audioTitle">Dhageyso codkan</span>
+      </div>
+      <audio id="melatoninAudio" controls preload="metadata">
+        <source src="Melatonin.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
     <div class="footer-note" id="footerNote">
       Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
     </div>
@@ -539,12 +578,12 @@
 
     const content = {
       so: {
-        pageTitle: "Melatonin – hurdo la’aan",
-        hdrTitle: "Melatonin – hurdo la’aan",
+        pageTitle: "Melatonin – hurdo la'aan",
+        hdrTitle: "Melatonin – hurdo la'aan",
         hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
         backLabel: "Ku laabo liiska daawooyinka",
         langLabel: "Dooro luqadda:",
-        drugName: "Melatonin – hurdo la’aan",
+        drugName: "Melatonin – hurdo la'aan",
         drugForm: "Kiniin afka ah",
         badgeText: "Akhris fudud oo kooban",
         introBox: "Mararka qaar jidhku wuu daalaa, laakiin saacadda hurdadu si fiican uma shaqayso. Melatonin waxay jirka ka caawisaa inuu helo fariinta habeenka, si hurdadu u noqoto mid dabiici ah oo deggan.",
@@ -561,13 +600,13 @@
           "Raac qiyaasta uu dhakhtarkaagu kuu qoray ama tilmaamaha baakadka. Badanaa waxaa la qaataa 30 ilaa 60 daqiiqo ka hor hurdada.",
           "Kiniinnada qaar waa in la liqaa oo dhan, mana aha in la jebiyo ama la calaliyo.",
           "Ku dadaal inaad qaadato waqti isku mid ah maalin kasta si jirku ula qabsado jadwalka.",
-          "Haddii aad wax faa’iido ah dareemi weydo ama aad la kulanto waxyeellooyin, la tasho dhakhtarkaaga ama farmashiyaha."
+          "Haddii aad wax faa'iido ah dareemi weydo ama aad la kulanto waxyeellooyin, la tasho dhakhtarkaaga ama farmashiyaha."
         ],
         sideTitle: "Waxyeellooyinka",
         sideList: [
           "Qaar ka mid ah dadka waxay dareemaan hurdo ama daal maalinta xigta.",
           "Madax-xanuun ama wareer yar ayaa dhici kara.",
-          "Dadka qaarkood waxay arkaan riyooyin xooggan ama hurdada oo noqota mid kala go’an."
+          "Dadka qaarkood waxay arkaan riyooyin xooggan ama hurdada oo noqota mid kala go'an."
         ],
         interactTitle: "Isdhexgalka daawooyinka",
         interactList: [
@@ -690,7 +729,7 @@
         drugForm: "Tablets",
         badgeText: "Short and easy to read",
         introBox: "Sometimes the body feels tired, but the sleep rhythm does not settle properly. Melatonin helps the body recognise that it is night, so sleep can come more naturally.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: melatonin is not a strong sleeping pill that simply knocks you out. It works more like a gentle reminder to the body that night has arrived. That is why it works best together with a calm bedtime routine, lower light, and less screen time late in the evening.",
         useTitle: "Use",
         useList: [
@@ -698,9 +737,9 @@
           "As a medicine, it is used when it is difficult to fall asleep at the desired time.",
           "It may also be used when the sleep-wake rhythm has shifted, for example after long-distance travel."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
-          "Follow your doctor’s plan or the instructions on the pack. It is often taken 30 to 60 minutes before bedtime.",
+          "Follow your doctor's plan or the instructions on the pack. It is often taken 30 to 60 minutes before bedtime.",
           "Some tablets should be swallowed whole and should not be crushed or split.",
           "Try to take it around the same time each evening so the body can build a steadier rhythm.",
           "If you notice no benefit after several days or weeks, speak with your doctor or pharmacist."
@@ -894,6 +933,9 @@
       document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
       document.getElementById("sourcesText").innerText = data.sourcesText;
       document.getElementById("footerNote").innerText = data.footerNote;
+
+      // Vis lydafspiller kun på somalisk
+      document.getElementById("audioBox").style.display = lang === "so" ? "flex" : "none";
 
       updateList("useList", data.useList);
       updateList("doseList", data.doseList);
