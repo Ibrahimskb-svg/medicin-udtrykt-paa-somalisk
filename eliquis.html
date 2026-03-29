@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -502,6 +506,13 @@
         Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
       </p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Eliquis.mp3">
+        Your browser does not support the audio element.
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -698,7 +709,7 @@
         drugForm: "Tablet",
         badgeText: "Short and easy to read",
         introBox: "Eliquis helps prevent harmful blood clots by making it harder for the blood to clot. This can protect against dangerous clots, but it also means the body may bleed more easily if an injury or irritation occurs.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: Eliquis is not a medicine you usually feel working from day to day. It works quietly in the background and helps stop the blood from forming clots that should not be there. That is why regular use is so important. If it is taken unevenly, the protection becomes less reliable.",
         useTitle: "Use",
         useList: [
@@ -706,7 +717,7 @@
           "It is used in some people with atrial fibrillation and for treatment or prevention of clots in the legs or lungs.",
           "It may also be used after certain operations to reduce the risk of clot formation."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "Take the medicine exactly as prescribed. Many people take it twice daily, but you should follow your own treatment plan.",
           "If you forget a dose, take it on the same day when you remember. Do not take a double dose.",
@@ -925,6 +936,11 @@
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
 
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
+
       if (pushToUrl) {
         const url = new URL(window.location.href);
         url.searchParams.set("lang", lang);
@@ -935,11 +951,7 @@
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
       let startLang = params.get("lang") || "so";
-
-      if (!ENABLED_LANGS.has(startLang)) {
-        startLang = "so";
-      }
-
+      if (!ENABLED_LANGS.has(startLang)) startLang = "so";
       document.getElementById("langSelect").value = startLang;
       updateLanguage(false);
     }
