@@ -337,6 +337,12 @@
       text-decoration: underline;
     }
 
+    /* ── Audio Player ── */
+    .audio-box{ background: #fff; border: 1px solid var(--stroke); border-left: 5px solid var(--accent1); border-radius: 12px; padding: 14px 16px; margin: 16px 0; display: flex; flex-direction: column; gap: 10px; }
+    .audio-box-title{ font-size: 0.95rem; font-weight: 800; color: var(--accent2); display: flex; align-items: center; gap: 8px; }
+    .audio-box-title span.audio-icon{ font-size: 1.2rem; }
+    .audio-box audio{ width: 100%; border-radius: 8px; outline: none; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -515,6 +521,17 @@
         Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
       </p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <!-- AUDIO PLAYER – kun synlig på somalisk -->
+    <div class="audio-box" id="audioBox" style="display:none;">
+      <div class="audio-box-title">
+        <span class="audio-icon">🔊</span>
+        <span id="audioTitle">Dhageyso codkan</span>
+      </div>
+      <audio id="symbicortAudio" controls preload="metadata">
+        <source src="Symbicort.mp3" type="audio/mpeg" />
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -707,7 +724,7 @@
         drugForm: "Inhaler",
         badgeText: "Short and easy to read",
         introBox: "Symbicort is an inhaled medicine containing two ingredients: budesonide and formoterol. Budesonide reduces inflammation in the airways, and formoterol opens the airways to make breathing easier. It is used for asthma and, in some people, also for COPD.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "When a patient comes to the pharmacy with Symbicort, one of the first things I usually check is inhaler technique. If it is their first time, I show step by step how to use it. If they have used it before, I often ask whether the technique is still correct and whether they remember to rinse the mouth after use. This matters because poor technique means the medicine may not reach the lungs properly, and not rinsing the mouth can increase the risk of oral thrush and throat irritation.",
         useTitle: "Use",
         useList: [
@@ -715,9 +732,9 @@
           "It reduces airway inflammation and helps breathing become easier.",
           "It is used for asthma and, in some patients, also for COPD."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
-          "Always follow your doctor’s plan, because the dose can differ from person to person.",
+          "Always follow your doctor's plan, because the dose can differ from person to person.",
           "Many people use 1 to 2 inhalations 1 to 2 times daily, but your prescription is the key guide.",
           "Some people with asthma may have a plan where Symbicort is used both regularly and when symptoms appear, but only if this is clearly agreed with the clinician.",
           "Correct inhaler technique is very important. Ask your pharmacy or clinic for help if you are unsure."
@@ -919,6 +936,9 @@
       document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
       document.getElementById("sourcesText").innerText = data.sourcesText;
       document.getElementById("footerNote").innerText = data.footerNote;
+
+      // Vis lydafspiller kun på somalisk
+      document.getElementById("audioBox").style.display = lang === "so" ? "flex" : "none";
 
       updateList("useList", data.useList);
       updateList("doseList", data.doseList);
