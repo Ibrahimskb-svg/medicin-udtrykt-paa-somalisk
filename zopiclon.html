@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Imozop – hurdo la’aan</title>
+  <title>Imozop – hurdo la'aan</title>
   <style>
     :root{
       --accent1:#00a676;
@@ -331,6 +331,10 @@
       text-decoration: underline;
     }
 
+    .audio-box{ margin-top: 24px; padding: 16px; background: #f5f5f5; border: 1px solid var(--stroke); border-radius: 12px; }
+    .audio-box p{ margin: 0 0 10px; font-size: 0.96rem; color: var(--text); }
+    .audio-box audio{ width: 100%; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -353,7 +357,7 @@
 </head>
 <body>
   <header id="mainHeader">
-    <h1 id="hdrTitle">Imozop – hurdo la’aan</h1>
+    <h1 id="hdrTitle">Imozop – hurdo la'aan</h1>
     <p id="hdrSubtitle">Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.</p>
   </header>
 
@@ -412,7 +416,7 @@
           </svg>
         </div>
         <div class="drug-title-block">
-          <h1 id="drugName">Imozop – hurdo la’aan</h1>
+          <h1 id="drugName">Imozop – hurdo la'aan</h1>
           <p id="drugForm">Kiniin afka laga qaato</p>
         </div>
       </div>
@@ -422,7 +426,7 @@
     <div class="divider"></div>
 
     <div class="intro-box" id="introBox">
-      Imozop waa daawo hurdada kaa caawin karta marka hurdo la’aantu noqoto dhibaato muddo gaaban ah. Waxay kaa caawin kartaa inaad si fudud u seexato, laakiin saameynteedu waxay sii jiri kartaa ilaa subaxda xigta dadka qaarkood. Sidaas darteed waa in si taxaddar leh loo isticmaalaa oo aan loo qaadan caado joogto ah.
+      Imozop waa daawo hurdada kaa caawin karta marka hurdo la'aantu noqoto dhibaato muddo gaaban ah. Waxay kaa caawin kartaa inaad si fudud u seexato, laakiin saameynteedu waxay sii jiri kartaa ilaa subaxda xigta dadka qaarkood. Sidaas darteed waa in si taxaddar leh loo isticmaalaa oo aan loo qaadan caado joogto ah.
     </div>
 
     <div class="ibrahim-box">
@@ -504,6 +508,13 @@
       <ul id="sourcesList"></ul>
     </div>
 
+    <div class="audio-box" id="audioSection">
+      <p><strong>Dhageyso codkan</strong></p>
+      <audio controls preload="none" src="Imozop.mp3">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
     <div class="footer-note" id="footerNote">
       Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga.
     </div>
@@ -539,20 +550,20 @@
 
     const content = {
       so: {
-        pageTitle: "Imozop – hurdo la’aan",
-        hdrTitle: "Imozop – hurdo la’aan",
+        pageTitle: "Imozop – hurdo la'aan",
+        hdrTitle: "Imozop – hurdo la'aan",
         hdrSubtitle: "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
         backLabel: "Ku laabo liiska daawooyinka",
         langLabel: "Dooro luqadda:",
-        drugName: "Imozop – hurdo la’aan",
+        drugName: "Imozop – hurdo la'aan",
         drugForm: "Kiniin afka laga qaato",
         badgeText: "Akhris fudud oo kooban",
-        introBox: "Imozop waa daawo hurdada kaa caawin karta marka hurdo la’aantu noqoto dhibaato muddo gaaban ah. Waxay kaa caawin kartaa inaad si fudud u seexato, laakiin saameynteedu waxay sii jiri kartaa ilaa subaxda xigta dadka qaarkood. Sidaas darteed waa in si taxaddar leh loo isticmaalaa oo aan loo qaadan caado joogto ah.",
+        introBox: "Imozop waa daawo hurdada kaa caawin karta marka hurdo la'aantu noqoto dhibaato muddo gaaban ah. Waxay kaa caawin kartaa inaad si fudud u seexato, laakiin saameynteedu waxay sii jiri kartaa ilaa subaxda xigta dadka qaarkood. Sidaas darteed waa in si taxaddar leh loo isticmaalaa oo aan loo qaadan caado joogto ah.",
         ibrahimTitle: "Talo gaar ah oo Ibraahim ka timid",
         ibrahimText: "Waxaan bukaan badan ugu sharxaa sidan: daawadan waa in loo arkaa caawiye hurdada ah, ee ma aha xal joogto ah oo hurdo kasta lagu xalliyo. Haddii aad qaadato habeen kasta muddo dheer, jirku wuu la qabsan karaa. Sidaas darteed qaado keliya marka loo baahdo iyo sida dhakhtarku kuu faray, adigoo hubinaya inaad haysato waqti hurdo oo kugu filan ilaa subaxda.",
         useTitle: "Isticmaalka",
         useList: [
-          "Imozop waxaa loo isticmaalaa hurdo la’aan muddo gaaban ah.",
+          "Imozop waxaa loo isticmaalaa hurdo la'aan muddo gaaban ah.",
           "Waxay kaa caawin kartaa inaad si fudud u seexato ama hurdada sii wadato habeenkii.",
           "Badanaa looma qorsheeyo in muddo dheer la isticmaalo."
         ],
@@ -692,7 +703,7 @@
         drugForm: "Oral tablet",
         badgeText: "Short and easy to read",
         introBox: "Imozop is a sleeping medicine that may help with short-term insomnia. It can make it easier to fall asleep, but in some people the effect may still be felt the next morning. That is why it should be used carefully and preferably only for a limited period.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "I often explain it like this: this medicine should be seen as a helper for sleep, not as a permanent solution to every sleep problem. If it is used too often or for too long, the body can get used to it. That is why it is important to take it exactly as agreed and only when you actually have enough time to sleep afterwards.",
         useTitle: "Use",
         useList: [
@@ -700,7 +711,7 @@
           "It may help you fall asleep or stay asleep during the night.",
           "It is usually not intended for long-term treatment."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
           "It is usually taken once in the evening, 15 to 30 minutes before bedtime.",
           "The usual adult dose is often 7.5 mg, but older adults or people with breathing problems often start at 3.75 mg.",
@@ -913,6 +924,11 @@
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
 
+      const audioSection = document.getElementById("audioSection");
+      if (audioSection) {
+        audioSection.style.display = lang === "so" ? "block" : "none";
+      }
+
       if (pushToUrl) {
         const url = new URL(window.location.href);
         url.searchParams.set("lang", lang);
@@ -923,11 +939,7 @@
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
       let startLang = params.get("lang") || "so";
-
-      if (!ENABLED_LANGS.has(startLang)) {
-        startLang = "so";
-      }
-
+      if (!ENABLED_LANGS.has(startLang)) startLang = "so";
       document.getElementById("langSelect").value = startLang;
       updateLanguage(false);
     }
