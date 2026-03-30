@@ -337,6 +337,12 @@
       text-decoration: underline;
     }
 
+    /* ── Audio Player ── */
+    .audio-box{ background: #fff; border: 1px solid var(--stroke); border-left: 5px solid var(--accent1); border-radius: 12px; padding: 14px 16px; margin: 16px 0; display: flex; flex-direction: column; gap: 10px; }
+    .audio-box-title{ font-size: 0.95rem; font-weight: 800; color: var(--accent2); display: flex; align-items: center; gap: 8px; }
+    .audio-box-title span.audio-icon{ font-size: 1.2rem; }
+    .audio-box audio{ width: 100%; border-radius: 8px; outline: none; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -500,6 +506,17 @@
         Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
       </p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <!-- AUDIO PLAYER – kun synlig på somalisk -->
+    <div class="audio-box" id="audioBox" style="display:none;">
+      <div class="audio-box-title">
+        <span class="audio-icon">🔊</span>
+        <span id="audioTitle">Dhageyso codkan</span>
+      </div>
+      <audio id="ventolineAudio" controls preload="metadata">
+        <source src="Ventoline.mp3" type="audio/mpeg" />
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -689,7 +706,7 @@
         drugForm: "Inhaler",
         badgeText: "Short and easy to read",
         introBox: "Ventoline is a quick-relief inhaled medicine. It opens the airways to make breathing easier when shortness of breath or wheezing comes on quickly. This medicine is mainly used for fast relief of asthma symptoms or other episodes of narrowed airways.",
-        ibrahimTitle: "Ibrahim’s pharmacy advice",
+        ibrahimTitle: "Ibrahim's pharmacy advice",
         ibrahimText: "When a patient comes to the pharmacy with Ventoline, I always pay attention to inhaler technique. For a first-time user, I show step by step how to use it correctly. For someone who has used it before, I often ask whether the technique is still correct and whether the medicine is really reaching the lungs well. If the technique is wrong, the fast effect may not come as expected. For some people, a spacer can be very helpful, especially for children and adults who find it hard to coordinate the spray and the inhalation.",
         useTitle: "Use",
         useList: [
@@ -697,10 +714,10 @@
           "It opens the airways and makes breathing easier during shortness of breath.",
           "It is used for asthma symptoms and, in some people, also for COPD or other narrowing of the airways."
         ],
-        doseTitle: "Dosage and Ibrahim’s advice",
+        doseTitle: "Dosage and Ibrahim's advice",
         doseList: [
-          "Follow your doctor’s plan. Many people use 1 to 2 inhalations when needed.",
-          "If symptoms continue, an extra dose may sometimes be needed according to your clinician’s advice.",
+          "Follow your doctor's plan. Many people use 1 to 2 inhalations when needed.",
+          "If symptoms continue, an extra dose may sometimes be needed according to your clinician's advice.",
           "If you need Ventoline more often than usual, contact a doctor to review your treatment.",
           "Correct inhaler technique is important. If you are unsure, contact your pharmacy or your doctor."
         ],
@@ -773,7 +790,7 @@
           "اتبع خطة الطبيب. كثير من المرضى يستخدمون 1 إلى 2 بخة عند الحاجة.",
           "إذا استمرت الأعراض فقد تكون هناك حاجة أحيانا إلى جرعة إضافية حسب تعليمات الطبيب.",
           "إذا احتجت إلى فنتولين أكثر من المعتاد فيجب مراجعة الطبيب لتقييم العلاج.",
-          "تَقْنِيَّةُ الاسْتِنْشَاقِ الصَّحِيحَةُ مُهِمَّةٌ. إِذَا لَمْ تَكُنْ مُتَأَكِّدًا، فَتَوَاصَلْ مَعَ الصَّيْدَلِيَّةِ أَوْ مَعَ طَبِيبِكَ."
+          "تَقْنِيَّةُ الاسْتِنْشَاقِ الصَّحِيحَةُ مُهِمَّةٌ. إِذَا لَمْ تَكُنْ مُتَأَكِّدًا، فَتَوَاصَلْ مَعَ الصَّيْدَلِيَّةِ أَوْ مَعَ طَبِيبِكَ."
         ],
         sideTitle: "الآثار الجانبية",
         sideList: [
@@ -897,6 +914,9 @@
       document.getElementById("sourcesTitle").innerText = data.sourcesTitle;
       document.getElementById("sourcesText").innerText = data.sourcesText;
       document.getElementById("footerNote").innerText = data.footerNote;
+
+      // Vis lydafspiller kun på somalisk
+      document.getElementById("audioBox").style.display = lang === "so" ? "flex" : "none";
 
       updateList("useList", data.useList);
       updateList("doseList", data.doseList);
