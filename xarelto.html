@@ -333,6 +333,12 @@
       text-decoration: underline;
     }
 
+    /* ── Audio Player ── */
+    .audio-box{ background: #fff; border: 1px solid var(--stroke); border-left: 5px solid var(--accent1); border-radius: 12px; padding: 14px 16px; margin: 16px 0; display: flex; flex-direction: column; gap: 10px; }
+    .audio-box-title{ font-size: 0.95rem; font-weight: 800; color: var(--accent2); display: flex; align-items: center; gap: 8px; }
+    .audio-box-title span.audio-icon{ font-size: 1.2rem; }
+    .audio-box audio{ width: 100%; border-radius: 8px; outline: none; }
+
     .footer-note{
       font-size: 0.86rem;
       color: var(--text);
@@ -480,6 +486,17 @@
       <h3 id="sourcesTitle">Ilaha xogta</h3>
       <p id="sourcesText">Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.</p>
       <ul id="sourcesList"></ul>
+    </div>
+
+    <!-- AUDIO PLAYER – kun synlig på somalisk -->
+    <div class="audio-box" id="audioBox" style="display:none;">
+      <div class="audio-box-title">
+        <span class="audio-icon">🔊</span>
+        <span id="audioTitle">Dhageyso codkan</span>
+      </div>
+      <audio id="xareltoAudio" controls preload="metadata">
+        <source src="Xarelto.mp3" type="audio/mpeg" />
+      </audio>
     </div>
 
     <div class="footer-note" id="footerNote">
@@ -746,7 +763,7 @@
         drugForm:"Tablet",
         badgeText:"Short and easy to read",
         introBox:"Xarelto is a blood thinner. It lowers the risk that the blood will form harmful clots. This medicine is used in some patients to prevent or treat blood clots, depending on their condition.",
-        ibrahimTitle:"Ibrahim’s pharmacy advice",
+        ibrahimTitle:"Ibrahim's pharmacy advice",
         ibrahimText:"When a patient comes to the pharmacy with Xarelto, I usually make sure of two things: first, that the person understands the medicine should not be stopped suddenly; second, that the person knows the signs of bleeding. I also always remind patients that the 15 mg and 20 mg tablets should be taken with food, because that helps the body absorb the medicine properly. If unusual bleeding or many bruises appear, medical advice should be sought quickly.",
 
         sec0Title:"What is Xarelto?",
@@ -765,7 +782,7 @@
         sec2:[
           "Take it <span class='highlight'>exactly as prescribed</span>; the dose depends on why you are taking it.",
           "Try to take it at the <span class='highlight'>same time</span> every day.",
-          "If you miss a dose, follow your doctor’s or pharmacy label instructions; <span class='highlight'>do not take a double dose</span> unless you were specifically told to do so."
+          "If you miss a dose, follow your doctor's or pharmacy label instructions; <span class='highlight'>do not take a double dose</span> unless you were specifically told to do so."
         ],
 
         sec3Title:"Food and drink",
@@ -951,6 +968,9 @@
       updateSources(d.sourcesList);
 
       document.getElementById("footerNote").textContent = d.footerNote;
+
+      // Vis lydafspiller kun på somalisk
+      document.getElementById("audioBox").style.display = lang === "so" ? "flex" : "none";
 
       const backA = document.querySelector("a.back");
       const base = backA.getAttribute("href").split("?")[0];
