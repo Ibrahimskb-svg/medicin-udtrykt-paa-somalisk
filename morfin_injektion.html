@@ -89,13 +89,19 @@
     .sources a:hover{ text-decoration: underline; }
     .footer-note{ font-size: 0.86rem; color: var(--text); text-align: center; margin-top: 20px; padding: 18px 8px 0; border-top: 1px solid var(--stroke); }
 
-    /* ── Professionel pill-lydknap ── */
+    /* ── Somalisk lydknap (grøn) ── */
     .audio-pill{ display: inline-flex; align-items: center; gap: 10px; padding: 9px 20px 9px 14px; border: 1.8px solid var(--accent1); border-radius: 999px; background: #fff; cursor: pointer; margin-bottom: 18px; transition: background 0.15s; }
     .audio-pill:hover{ background: #f0faf6; }
     .audio-pill .ap-icon{ display: flex; align-items: center; }
     .audio-pill .ap-label{ font-size: 0.92rem; font-weight: 700; color: var(--accent1); letter-spacing: 0.01em; }
     .audio-player-expanded{ margin-bottom: 18px; }
     .audio-player-expanded audio{ width: 100%; border-radius: 8px; }
+
+    /* ── Arabisk lydknap (orange) ── */
+    .audio-pill-ar{ display: inline-flex; align-items: center; gap: 10px; padding: 9px 20px 9px 14px; border: 1.8px solid #c2410c; border-radius: 999px; background: #fff; cursor: pointer; margin-bottom: 18px; transition: background 0.15s; }
+    .audio-pill-ar:hover{ background: #fff7ed; }
+    .audio-pill-ar .ap-icon{ display: flex; align-items: center; }
+    .audio-pill-ar .ap-label-ar{ font-size: 0.92rem; font-weight: 700; color: #c2410c; }
 
     @media (max-width: 600px){
       body{ line-height: 1.5; }
@@ -168,11 +174,11 @@
 
     <div class="divider"></div>
 
-    <!-- ── Professionel pill-lydknap – kun synlig på somalisk ── -->
+    <!-- ── Somalisk lydknap (grøn) ── -->
     <div id="audioSection" style="display:none;">
-      <div class="audio-pill" onclick="document.getElementById('audioPlayer').style.display='block'; this.style.display='none';">
+      <div class="audio-pill" id="audioPillSo" onclick="document.getElementById('audioPlayer').style.display='block'; this.style.display='none';">
         <span class="ap-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <rect x="2" y="9" width="5" height="6" rx="1.5" fill="#00a676"/>
             <polygon points="7,9 15,4 15,20 7,15" fill="#00a676"/>
             <path d="M17.5 8.5 Q20.5 12 17.5 15.5" stroke="#00a676" stroke-width="1.8" stroke-linecap="round" fill="none"/>
@@ -183,6 +189,24 @@
       </div>
       <div class="audio-player-expanded" id="audioPlayer" style="display:none;">
         <audio controls preload="none" src="Morfin.mp3" style="width:100%; border-radius:8px;"></audio>
+      </div>
+    </div>
+
+    <!-- ── Arabisk lydknap (orange) ── -->
+    <div id="audioSectionAr" style="display:none;">
+      <div class="audio-pill-ar" id="audioPillAr">
+        <span class="ap-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="9" width="5" height="6" rx="1.5" fill="#c2410c"/>
+            <polygon points="7,9 15,4 15,20 7,15" fill="#c2410c"/>
+            <path d="M17.5 8.5 Q20.5 12 17.5 15.5" stroke="#c2410c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M20 6 Q24 12 20 18" stroke="#c2410c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          </svg>
+        </span>
+        <span class="ap-label-ar">استمع إلى التسجيل</span>
+      </div>
+      <div class="audio-player-expanded" id="audioPlayerAr" style="display:none;">
+        <audio controls preload="none" src="Morfin-arabisk.mp3" style="width:100%; border-radius:8px;"></audio>
       </div>
     </div>
 
@@ -263,9 +287,7 @@
 
     <div class="sources">
       <h3 id="sourcesTitle">Ilaha xogta</h3>
-      <p id="sourcesText">
-        Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.
-      </p>
+      <p id="sourcesText">Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.</p>
       <ul id="sourcesList"></ul>
     </div>
 
@@ -615,6 +637,26 @@
       r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
     }
 
+    function resetAudioUi(lang) {
+      // Somalisk knap
+      const audioSection = document.getElementById("audioSection");
+      const audioPlayer = document.getElementById("audioPlayer");
+      const audioPillSo = document.getElementById("audioPillSo");
+      const audioEl = audioPlayer ? audioPlayer.querySelector("audio") : null;
+      audioSection.style.display = lang === "so" ? "block" : "none";
+      audioPlayer.style.display = "none";
+      audioPillSo.style.display = "inline-flex";
+      if (audioEl) { audioEl.pause(); audioEl.currentTime = 0; }
+
+      // Arabisk knap
+      const audioSectionAr = document.getElementById("audioSectionAr");
+      const audioPlayerAr = document.getElementById("audioPlayerAr");
+      const audioPillAr = document.getElementById("audioPillAr");
+      audioSectionAr.style.display = lang === "ar" ? "block" : "none";
+      audioPlayerAr.style.display = "none";
+      audioPillAr.style.display = "inline-flex";
+    }
+
     function updateLanguage(pushToUrl = true) {
       let lang = document.getElementById("langSelect").value;
       if (!ENABLED_LANGS.has(lang)) lang = "so";
@@ -648,12 +690,6 @@
       document.getElementById("sourcesText").innerText = data.sourcesText;
       document.getElementById("footerNote").innerText = data.footerNote;
 
-      // Vis lydknap kun på somalisk
-      const audioSection = document.getElementById("audioSection");
-      if (audioSection) {
-        audioSection.style.display = lang === "so" ? "block" : "none";
-      }
-
       updateList("useList", data.useList);
       updateList("doseList", data.doseList);
       updateList("sideList", data.sideList);
@@ -663,6 +699,7 @@
       updateList("foodList", data.foodList);
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
+      resetAudioUi(lang);
 
       if (pushToUrl) {
         const url = new URL(window.location.href);
@@ -670,6 +707,12 @@
         window.history.replaceState({}, "", url.toString());
       }
     }
+
+    // Arabisk knap klik
+    document.getElementById("audioPillAr").addEventListener("click", function(){
+      document.getElementById("audioPlayerAr").style.display = "block";
+      this.style.display = "none";
+    });
 
     function initLanguage() {
       const params = new URLSearchParams(window.location.search);
