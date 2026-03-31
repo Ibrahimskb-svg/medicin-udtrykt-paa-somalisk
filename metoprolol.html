@@ -90,9 +90,20 @@
     .footer-note{ font-size: 0.86rem; color: var(--text); text-align: center; margin-top: 20px; padding: 18px 8px 0; border-top: 1px solid var(--stroke); }
 
     /* ── Professionel pill-lydknap ── */
-    .audio-pill{ display: inline-flex; align-items: center; gap: 10px; padding: 9px 20px 9px 14px; border: 1.8px solid var(--accent1); border-radius: 999px; background: #fff; cursor: pointer; margin-bottom: 18px; transition: background 0.15s; }
-    .audio-pill:hover{ background: #f0faf6; }
-    .audio-pill .ap-icon{ display: flex; align-items: center; }
+    .audio-pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 20px 9px 14px;
+      border: 1.8px solid var(--accent1);
+      border-radius: 999px;
+      background: #fff;
+      cursor: pointer;
+      margin-bottom: 18px;
+      transition: background 0.15s;
+    }
+    .audio-pill:hover{ background: #fff7ed; }
+    .audio-pill .ap-icon{ display: flex; align-items: center; color: var(--accent1); }
     .audio-pill .ap-label{ font-size: 0.92rem; font-weight: 700; color: var(--accent1); letter-spacing: 0.01em; }
     .audio-player-expanded{ margin-bottom: 18px; }
     .audio-player-expanded audio{ width: 100%; border-radius: 8px; }
@@ -174,21 +185,21 @@
 
     <div class="divider"></div>
 
-    <!-- ── Professionel pill-lydknap – kun synlig på somalisk ── -->
+    <!-- ── Arabisk lydknap – kun synlig på arabisk ── -->
     <div id="audioSection" style="display:none;">
-      <div class="audio-pill" onclick="document.getElementById('audioPlayer').style.display='block'; this.style.display='none';">
+      <div class="audio-pill" id="audioPill" onclick="document.getElementById('audioPlayer').style.display='block'; this.style.display='none';">
         <span class="ap-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="9" width="5" height="6" rx="1.5" fill="#00a676"/>
-            <polygon points="7,9 15,4 15,20 7,15" fill="#00a676"/>
-            <path d="M17.5 8.5 Q20.5 12 17.5 15.5" stroke="#00a676" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-            <path d="M20 6 Q24 12 20 18" stroke="#00a676" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <rect x="2" y="9" width="5" height="6" rx="1.5" fill="currentColor"/>
+            <polygon points="7,9 15,4 15,20 7,15" fill="currentColor"/>
+            <path d="M17.5 8.5 Q20.5 12 17.5 15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M20 6 Q24 12 20 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
           </svg>
         </span>
-        <span class="ap-label">Dhageyso codkan</span>
+        <span class="ap-label" id="audioLabel">استمع إلى التسجيل</span>
       </div>
       <div class="audio-player-expanded" id="audioPlayer" style="display:none;">
-        <audio controls preload="none" src="Metoprolol.mp3" style="width:100%; border-radius:8px;"></audio>
+        <audio controls preload="none" src="Metoprolol-arabisk.mp3" style="width:100%; border-radius:8px;"></audio>
       </div>
     </div>
 
@@ -635,8 +646,35 @@
       r.setProperty("--sourceBorderAccent", t.sourceBorderAccent);
     }
 
+    function resetAudioUi(lang) {
+      const audioSection = document.getElementById("audioSection");
+      const audioPlayer = document.getElementById("audioPlayer");
+      const audioPill = document.getElementById("audioPill");
+      const audioEl = audioPlayer ? audioPlayer.querySelector("audio") : null;
+      const audioLabel = document.getElementById("audioLabel");
+
+      if (!audioSection || !audioPlayer || !audioPill || !audioEl || !audioLabel) return;
+
+      if (lang === "ar") {
+        audioSection.style.display = "block";
+        audioLabel.innerText = "استمع إلى التسجيل";
+        audioEl.src = "Metoprolol-arabisk.mp3";
+      } else {
+        audioSection.style.display = "none";
+        audioLabel.innerText = "استمع إلى التسجيل";
+        audioEl.src = "Metoprolol-arabisk.mp3";
+      }
+
+      audioPlayer.style.display = "none";
+      audioPill.style.display = "inline-flex";
+      audioEl.pause();
+      audioEl.currentTime = 0;
+      audioEl.load();
+    }
+
     function updateLanguage(saveSelection = true) {
-      const lang = document.getElementById("langSelect").value;
+      const rawLang = document.getElementById("langSelect").value;
+      const lang = content[rawLang] ? rawLang : "so";
       const data = content[lang] || content.so;
       applyTheme(lang);
 
@@ -666,12 +704,6 @@
       document.getElementById("sourcesText").innerText = data.sourcesText;
       document.getElementById("footerNote").innerText = data.footerNote;
 
-      // Vis lydknap kun på somalisk
-      const audioSection = document.getElementById("audioSection");
-      if (audioSection) {
-        audioSection.style.display = lang === "so" ? "block" : "none";
-      }
-
       updateList("useList", data.useList);
       updateList("doseList", data.doseList);
       updateList("sideList", data.sideList);
@@ -681,6 +713,7 @@
       updateList("foodList", data.foodList);
       updateList("storeList", data.storeList);
       updateSources(data.sourcesList);
+      resetAudioUi(lang);
 
       if (saveSelection) {
         localStorage.setItem("selectedLanguage", lang);
