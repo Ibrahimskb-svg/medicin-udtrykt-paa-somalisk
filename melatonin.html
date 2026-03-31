@@ -345,11 +345,12 @@
       transition: background 0.15s;
     }
 
-    .audio-pill:hover{ background: #f0faf6; }
+    .audio-pill:hover{ background: #fff7ed; }
 
     .audio-pill .ap-icon{
       display: flex;
       align-items: center;
+      color: var(--accent1);
     }
 
     .audio-pill .ap-label{
@@ -454,21 +455,21 @@
 
     <div class="divider"></div>
 
-    <!-- ── Professionel lydknap – kun synlig på somalisk ── -->
+    <!-- ── Arabisk lydknap – kun synlig på arabisk ── -->
     <div id="audioSection" style="display:none;">
-      <div class="audio-pill" onclick="document.getElementById('audioPlayer').style.display='block'; this.style.display='none';">
+      <div class="audio-pill" id="audioPill" onclick="document.getElementById('audioPlayer').style.display='block'; this.style.display='none';">
         <span class="ap-icon">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="9" width="5" height="6" rx="1.5" fill="#00a676"/>
-            <polygon points="7,9 15,4 15,20 7,15" fill="#00a676"/>
-            <path d="M17.5 8.5 Q20.5 12 17.5 15.5" stroke="#00a676" stroke-width="1.8" stroke-linecap="round" fill="none"/>
-            <path d="M20 6 Q24 12 20 18" stroke="#00a676" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <rect x="2" y="9" width="5" height="6" rx="1.5" fill="currentColor"/>
+            <polygon points="7,9 15,4 15,20 7,15" fill="currentColor"/>
+            <path d="M17.5 8.5 Q20.5 12 17.5 15.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            <path d="M20 6 Q24 12 20 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
           </svg>
         </span>
-        <span class="ap-label">Dhageyso codkan</span>
+        <span class="ap-label" id="audioLabel">استمع إلى التسجيل</span>
       </div>
       <div class="audio-player-expanded" id="audioPlayer" style="display:none;">
-        <audio controls preload="none" src="Melatonin.mp3" style="width:100%; border-radius:8px;"></audio>
+        <audio controls preload="none" src="Melatonin-arabisk.mp3" style="width:100%; border-radius:8px;"></audio>
       </div>
     </div>
 
@@ -918,24 +919,28 @@
     function resetAudioUi(lang) {
       const audioSection = document.getElementById("audioSection");
       const audioPlayer = document.getElementById("audioPlayer");
-      const audioPill = audioSection ? audioSection.querySelector(".audio-pill") : null;
+      const audioPill = document.getElementById("audioPill");
       const audioEl = audioPlayer ? audioPlayer.querySelector("audio") : null;
+      const audioLabel = document.getElementById("audioLabel");
 
-      if (!audioSection || !audioPlayer || !audioPill) return;
+      if (!audioSection || !audioPlayer || !audioPill || !audioEl || !audioLabel) return;
 
-      if (lang === "so") {
+      if (lang === "ar") {
         audioSection.style.display = "block";
+        audioLabel.innerText = "استمع إلى التسجيل";
+        audioEl.src = "Melatonin-arabisk.mp3";
       } else {
         audioSection.style.display = "none";
+        audioLabel.innerText = "استمع إلى التسجيل";
+        audioEl.src = "Melatonin-arabisk.mp3";
       }
 
       audioPlayer.style.display = "none";
       audioPill.style.display = "inline-flex";
 
-      if (audioEl) {
-        audioEl.pause();
-        audioEl.currentTime = 0;
-      }
+      audioEl.pause();
+      audioEl.currentTime = 0;
+      audioEl.load();
     }
 
     function updateLanguage(saveSelection = true) {
