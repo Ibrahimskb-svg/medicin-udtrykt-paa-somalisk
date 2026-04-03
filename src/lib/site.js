@@ -26,7 +26,7 @@ export const languageThemes = {
     drugIconBorder: "#6ee7b7",
     langBarAccent: "#00a676",
     sourceBorderAccent: "#0b6b57",
-    heroBg: "linear-gradient(135deg, #0b6b57 0%, #00a676 50%, #34d399 100%)",
+    heroBg: "linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%)",
   },
   da: {
     accent1: "#0ea5e9",
