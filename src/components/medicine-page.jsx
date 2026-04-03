@@ -31,10 +31,38 @@ function BackIcon() {
   );
 }
 
+function SectionIcon({ type }) {
+  const props = { width: 18, height: 18, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
+  if (type === "clock") return (
+    <svg {...props}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+  );
+  if (type === "warning") return (
+    <svg {...props}><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  );
+  if (type === "alert") return (
+    <svg {...props}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  );
+  if (type === "shield") return (
+    <svg {...props}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+  );
+  if (type === "pill") return (
+    <svg {...props}><path d="m10.5 20.5-7-7a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7z"/><line x1="8.5" y1="12.5" x2="15.5" y2="5.5"/></svg>
+  );
+  if (type === "moon") return (
+    <svg {...props}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  );
+  if (type === "food") return (
+    <svg {...props}><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+  );
+  if (type === "box") return (
+    <svg {...props}><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+  );
+  return <span>•</span>;
+}
+
 function AudioButton({ label, tone = "primary", onClick }) {
   const isPrimary = tone === "primary";
   const color = isPrimary ? "var(--accent1)" : "var(--accent2)";
-
   return (
     <button
       type="button"
@@ -93,7 +121,6 @@ export function MedicinePage({ medicine, initialLang }) {
           </Link>
 
           <div className="flex items-start gap-4">
-            {/* Medicine icon */}
             <div
               className="hidden shrink-0 items-center justify-center rounded-2xl border p-3 sm:flex"
               style={{ background: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.25)", width: 64, height: 64 }}
@@ -105,9 +132,7 @@ export function MedicinePage({ medicine, initialLang }) {
             </div>
 
             <div>
-              <span
-                className="mb-2 inline-block rounded-full bg-white/20 px-3 py-0.5 text-xs font-semibold text-white/90"
-              >
+              <span className="mb-2 inline-block rounded-full bg-white/20 px-3 py-0.5 text-xs font-semibold text-white/90">
                 {chromeText.medicinePill}
               </span>
               <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl" style={{ lineHeight: 1.1 }}>
@@ -122,7 +147,6 @@ export function MedicinePage({ medicine, initialLang }) {
             </div>
           </div>
 
-          {/* Status badges */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold text-white">
               {data.badgeText}
@@ -136,10 +160,8 @@ export function MedicinePage({ medicine, initialLang }) {
 
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
 
-        {/* Language pills */}
         <LanguageSelect label={data.langLabel} onChange={updateLanguage} value={language} />
 
-        {/* Audio buttons */}
         {medicine.audio.so && language === "so" ? (
           <div className="mb-6">
             {!showSomaliAudio ? (
@@ -164,7 +186,6 @@ export function MedicinePage({ medicine, initialLang }) {
           </div>
         ) : null}
 
-        {/* Intro + Ibrahim boxes */}
         <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
           <section
             className="reveal-on-scroll rounded-2xl border px-6 py-5 text-[15px] leading-7"
@@ -189,7 +210,6 @@ export function MedicinePage({ medicine, initialLang }) {
           </section>
         </div>
 
-        {/* Info section cards */}
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           {medicine.sections.map((section) => {
             const list = data[section.listKey] || [];
@@ -202,7 +222,7 @@ export function MedicinePage({ medicine, initialLang }) {
                   <span
                     className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${sectionIconStyles[section.variant] || "bg-slate-200 text-slate-700"}`}
                   >
-                    <span dangerouslySetInnerHTML={{ __html: sectionIcons[section.variant] || section.icon || "•" }} />
+                    <SectionIcon type={sectionIcons[section.variant]} />
                   </span>
                   <h3 className="text-base font-bold" style={{ color: "var(--text)" }}>
                     {data[section.titleKey]}
@@ -218,7 +238,6 @@ export function MedicinePage({ medicine, initialLang }) {
           })}
         </div>
 
-        {/* Sources */}
         <section
           className="reveal-on-scroll mt-6 rounded-2xl border bg-white px-6 py-5"
           style={{ borderColor: "var(--border)", borderLeft: "4px solid var(--sourceBorderAccent)" }}
@@ -246,7 +265,6 @@ export function MedicinePage({ medicine, initialLang }) {
           </ul>
         </section>
 
-        {/* Footer note */}
         <footer
           className="mt-8 border-t px-2 pt-6 text-center text-sm leading-6"
           style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}
