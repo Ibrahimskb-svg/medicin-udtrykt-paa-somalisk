@@ -109,7 +109,6 @@ export function MedicinePage({ medicine, initialLang }) {
   return (
     <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
 
-      {/* Hero banner */}
       <div style={{ background: "var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-8 sm:py-10">
           <Link
