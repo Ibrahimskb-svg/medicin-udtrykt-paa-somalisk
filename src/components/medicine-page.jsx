@@ -212,6 +212,7 @@ export function MedicinePage({ medicine, initialLang }) {
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           {medicine.sections.map((section) => {
             const list = data[section.listKey] || [];
+            const iconStyle = sectionIconStyles[section.variant] || {};
             return (
               <section
                 className={`reveal-on-scroll rounded-2xl border border-transparent px-6 py-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-md ${sectionStyles[section.variant] || "bg-slate-50"}`}
@@ -219,7 +220,8 @@ export function MedicinePage({ medicine, initialLang }) {
               >
                 <div className="mb-4 flex items-center gap-3">
                   <span
-                    className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${sectionIconStyles[section.variant] || "bg-slate-200 text-slate-700"}`}
+                    className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-sm"
+                    style={iconStyle}
                   >
                     <SectionIcon type={sectionIcons[section.variant]} />
                   </span>
