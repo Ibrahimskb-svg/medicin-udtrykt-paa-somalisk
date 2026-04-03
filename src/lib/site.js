@@ -189,14 +189,14 @@ export const sectionStyles = {
 };
 
 export const sectionIconStyles = {
-  use: "bg-emerald-100 text-emerald-700",
-  dose: "bg-sky-100 text-sky-700",
-  side: "bg-amber-100 text-amber-700",
-  interact: "bg-violet-100 text-violet-700",
-  warn: "bg-rose-100 text-rose-700",
-  ramadan: "bg-fuchsia-100 text-fuchsia-700",
-  food: "bg-green-100 text-green-700",
-  store: "bg-slate-200 text-slate-700",
+  use: { background: "#059669", color: "#ffffff", borderRadius: "14px" },
+  dose: { background: "#0284c7", color: "#ffffff", borderRadius: "14px" },
+  side: { background: "#d97706", color: "#ffffff", borderRadius: "14px" },
+  interact: { background: "#7c3aed", color: "#ffffff", borderRadius: "14px" },
+  warn: { background: "#e11d48", color: "#ffffff", borderRadius: "14px" },
+  ramadan: { background: "#a21caf", color: "#ffffff", borderRadius: "14px" },
+  food: { background: "#16a34a", color: "#ffffff", borderRadius: "14px" },
+  store: { background: "#475569", color: "#ffffff", borderRadius: "14px" },
 };
 
 export function getIndexData() {
