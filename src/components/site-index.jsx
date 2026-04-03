@@ -19,24 +19,23 @@ import { getIndexData, uiText } from "../lib/site";
 
 const indexData = getIndexData();
 
-// ── Category accent colors (one per English category) ──────────────────────
 const CATEGORY_STYLE = {
-  "high blood pressure":          { color: "#DC2626", bg: "#FEF2F2" }, // red — pressure
-  "blood pressure & palpitations":{ color: "#E11D48", bg: "#FFF1F2" }, // rose — heart rhythm
-  "blood thinner":                { color: "#7C3AED", bg: "#F5F3FF" }, // violet — anticoagulant
-  "blood clot prevention":        { color: "#6D28D9", bg: "#EDE9FE" }, // purple — clot
-  "cholesterol":                  { color: "#D97706", bg: "#FFFBEB" }, // amber — lipid
-  "diabetes":                     { color: "#0284C7", bg: "#F0F9FF" }, // sky — insulin/water
-  "asthma":                       { color: "#0D9488", bg: "#F0FDFA" }, // teal — lungs/air
-  "depression & anxiety":         { color: "#8B5CF6", bg: "#F5F3FF" }, // violet — mental
-  "psychosis & bipolar":          { color: "#A855F7", bg: "#FAF5FF" }, // purple — mental
-  "epilepsy & bipolar":           { color: "#7C3AED", bg: "#F5F3FF" }, // violet — neuro
-  "sleep":                        { color: "#4F46E5", bg: "#EEF2FF" }, // indigo — night
-  "insomnia":                     { color: "#6366F1", bg: "#EEF2FF" }, // indigo — night
-  "pain relief":                  { color: "#059669", bg: "#ECFDF5" }, // emerald — relief
-  "pain and fever":               { color: "#F59E0B", bg: "#FFFBEB" }, // amber — fever
-  "pain and inflammation":        { color: "#EF4444", bg: "#FEF2F2" }, // red — inflammation
-  "stomach acid and heartburn":   { color: "#10B981", bg: "#ECFDF5" }, // emerald — stomach
+  "high blood pressure":          { color: "#DC2626", bg: "#FEF2F2" },
+  "blood pressure & palpitations":{ color: "#E11D48", bg: "#FFF1F2" },
+  "blood thinner":                { color: "#7C3AED", bg: "#F5F3FF" },
+  "blood clot prevention":        { color: "#6D28D9", bg: "#EDE9FE" },
+  "cholesterol":                  { color: "#D97706", bg: "#FFFBEB" },
+  "diabetes":                     { color: "#0284C7", bg: "#F0F9FF" },
+  "asthma":                       { color: "#0D9488", bg: "#F0FDFA" },
+  "depression & anxiety":         { color: "#8B5CF6", bg: "#F5F3FF" },
+  "psychosis & bipolar":          { color: "#A855F7", bg: "#FAF5FF" },
+  "epilepsy & bipolar":           { color: "#7C3AED", bg: "#F5F3FF" },
+  "sleep":                        { color: "#4F46E5", bg: "#EEF2FF" },
+  "insomnia":                     { color: "#6366F1", bg: "#EEF2FF" },
+  "pain relief":                  { color: "#059669", bg: "#ECFDF5" },
+  "pain and fever":               { color: "#F59E0B", bg: "#FFFBEB" },
+  "pain and inflammation":        { color: "#EF4444", bg: "#FEF2F2" },
+  "stomach acid and heartburn":   { color: "#10B981", bg: "#ECFDF5" },
 };
 const DEFAULT_STYLE = { color: "#0D9488", bg: "#F0FDFA" };
 
@@ -70,182 +69,132 @@ const LIBRARY_OVAL_TABLET_SLUGS = new Set([
   "pantoprazol",
 ]);
 
-// ── Category icons — SVG per medicine type ─────────────────────────────────
 function CategoryIcon({ englishCat, color, size = 20 }) {
   const s = { width: size, height: size };
   const p = { fill: "none", stroke: color, strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" };
 
   switch (englishCat) {
-
     case "high blood pressure":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Heart */}
           <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          {/* Small up-arrow above heart */}
           <path d="M12 3V1M11 2l1-1 1 1" strokeWidth="1.5" />
         </svg>
       );
-
     case "blood pressure & palpitations":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Heart */}
           <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          {/* Pulse line across the heart */}
           <path d="M5 10h2.5l1.5-2 2 4 1.5-2H17" strokeWidth="1.4" />
         </svg>
       );
-
     case "blood thinner":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Blood drop */}
           <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" />
-          {/* Horizontal "thinning" line */}
           <path d="M8.5 14.5h7" strokeWidth="2" />
         </svg>
       );
-
     case "blood clot prevention":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Shield */}
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          {/* Checkmark */}
           <path d="m9 12 2 2 4-4" />
         </svg>
       );
-
     case "cholesterol":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Two wavy vessel/artery lines */}
           <path d="M2 9.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" />
           <path d="M2 14.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" />
-          {/* Plaque buildup dot */}
           <circle cx="8" cy="9.5" r="1.8" fill={color} stroke="none" />
         </svg>
       );
-
     case "diabetes":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Water/insulin drop */}
           <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" />
-          {/* Glucose cross inside */}
           <path d="M12 9v6M9 12h6" strokeWidth="1.6" />
         </svg>
       );
-
     case "asthma":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Left lung */}
           <path d="M7 8V4H5C3.9 4 3 5.1 3 6.3v6.4C3 15 4.3 17 6 17h1V8" />
-          {/* Right lung */}
           <path d="M17 8V4h2c1.1 0 2 1.1 2 2.3v6.4C21 15 19.7 17 18 17h-1V8" />
-          {/* Trachea/stem */}
           <path d="M7 8h10M12 4v4" />
         </svg>
       );
-
     case "depression & anxiety":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Brain outline */}
           <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
           <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          {/* Wave indicating mood/signal */}
           <path d="M9 22l1-3h4l1 3" strokeWidth="1.4" />
         </svg>
       );
-
     case "psychosis & bipolar":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Brain outline */}
           <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
           <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
           <path d="M12 19v2" />
-          {/* Two poles — bipolar */}
           <circle cx="10" cy="21.5" r="0.6" fill={color} stroke="none" />
           <circle cx="14" cy="21.5" r="0.6" fill={color} stroke="none" />
         </svg>
       );
-
     case "epilepsy & bipolar":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Brain outline */}
           <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
           <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          {/* Lightning bolt — epilepsy */}
           <path d="M13 9l-2.5 4h3.5l-2.5 4" strokeWidth="1.6" />
         </svg>
       );
-
     case "sleep":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Moon */}
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          {/* Small stars */}
           <path d="M17 4l.5 1 .5-1-.5-1z" fill={color} stroke="none" />
           <path d="M20 7l.4.8.4-.8-.4-.8z" fill={color} stroke="none" />
         </svg>
       );
-
     case "insomnia":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Crescent moon */}
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          {/* "Z z" suggesting sleeplessness */}
           <path d="M15 9h3l-3 3h3" strokeWidth="1.3" />
         </svg>
       );
-
     case "pain relief":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Pill/capsule */}
           <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
-          {/* Dividing line */}
           <path d="m8.5 8.5 7 7" />
         </svg>
       );
-
     case "pain and fever":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Thermometer body */}
           <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
-          {/* Mercury fill suggestion */}
           <path d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill={color} stroke="none" />
         </svg>
       );
-
     case "pain and inflammation":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Flame */}
           <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
         </svg>
       );
-
     case "stomach acid and heartburn":
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
-          {/* Stomach shape */}
           <path d="M6 4c0-1 .9-2 2-2s2 1 2 2v7c0 2.5 1.5 4.5 4 4.5s4-2 4-4.5V5" />
-          {/* Acid bubbles */}
           <circle cx="10.5" cy="17" r="1" fill={color} stroke="none" />
           <circle cx="13.5" cy="19" r="0.7" fill={color} stroke="none" />
           <circle cx="8" cy="19.5" r="0.8" fill={color} stroke="none" />
         </svg>
       );
-
     default:
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
@@ -264,34 +213,13 @@ function LibraryMedicineIcon({ slug, color, size = 18 }) {
     absoluteStrokeWidth: true,
   };
 
-  if (slug === "insulin") {
-    return <PillBottle {...iconProps} />;
-  }
-
-  if (slug === "morfin_injektion") {
-    return <Syringe {...iconProps} />;
-  }
-
-  if (slug === "symbicort") {
-    return <AirVent {...iconProps} />;
-  }
-
-  if (slug === "ventoline") {
-    return <SprayCan {...iconProps} />;
-  }
-
-  if (LIBRARY_CAPSULE_SLUGS.has(slug)) {
-    return <Pill {...iconProps} />;
-  }
-
-  if (LIBRARY_OVAL_TABLET_SLUGS.has(slug)) {
-    return <Tablets {...iconProps} />;
-  }
-
-  if (LIBRARY_ROUND_TABLET_SLUGS.has(slug)) {
-    return <Pill {...iconProps} />;
-  }
-
+  if (slug === "insulin") return <PillBottle {...iconProps} />;
+  if (slug === "morfin_injektion") return <Syringe {...iconProps} />;
+  if (slug === "symbicort") return <AirVent {...iconProps} />;
+  if (slug === "ventoline") return <SprayCan {...iconProps} />;
+  if (LIBRARY_CAPSULE_SLUGS.has(slug)) return <Pill {...iconProps} />;
+  if (LIBRARY_OVAL_TABLET_SLUGS.has(slug)) return <Tablets {...iconProps} />;
+  if (LIBRARY_ROUND_TABLET_SLUGS.has(slug)) return <Pill {...iconProps} />;
   return <Pill {...iconProps} />;
 }
 
@@ -341,7 +269,6 @@ export function SiteIndex({ initialLang }) {
   return (
     <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
 
-      {/* ── Hero banner ── */}
       <div style={{ background: "var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
@@ -374,14 +301,11 @@ export function SiteIndex({ initialLang }) {
 
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
 
-        {/* ── Language pills ── */}
         <div className="reveal-on-scroll">
           <LanguageSelect label={text.langLabel} onChange={updateLanguage} value={language} />
         </div>
 
-        {/* ── Search + Category row ── */}
         <div className="reveal-on-scroll mb-7 flex flex-col gap-3 sm:flex-row sm:items-end">
-          {/* Search */}
           <label className="flex-1" htmlFor="medSearch">
             <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
               {chromeText.searchLabel}
@@ -407,7 +331,6 @@ export function SiteIndex({ initialLang }) {
             </div>
           </label>
 
-          {/* Category dropdown */}
           <label className="sm:w-52" htmlFor="catSelect">
             <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
               {chromeText.categoryLabel}
@@ -434,7 +357,6 @@ export function SiteIndex({ initialLang }) {
           </label>
         </div>
 
-        {/* ── Section heading ── */}
         <div className="reveal-on-scroll mb-5 flex items-end justify-between gap-4">
           <div>
             <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
@@ -451,15 +373,12 @@ export function SiteIndex({ initialLang }) {
           )}
         </div>
 
-        {/* ── Medicine cards ── */}
         {filteredItems.length ? (
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {filteredItems.map((item, index) => {
               const subtitle =
                 (indexData.subtitles[item.slug] &&
                   (indexData.subtitles[item.slug][language] || indexData.subtitles[item.slug].so)) || "";
-
-              // Always use English key for consistent icon/color lookup
               const englishCat = indexData.subtitles[item.slug]?.en || "";
               const style = CATEGORY_STYLE[englishCat] || DEFAULT_STYLE;
 
@@ -470,17 +389,15 @@ export function SiteIndex({ initialLang }) {
                     style={{ borderColor: "var(--border)" }}
                     href={{ pathname: `/${item.href}`, query: { lang: language } }}
                   >
-                    {/* Left colored accent bar */}
                     <div className="w-1.5 shrink-0" style={{ background: style.color }} />
 
                     <div className="flex flex-1 flex-col p-5">
-                      {/* Medicine icon + category */}
                       <div className="flex items-center gap-2.5">
                         <span
-                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-                          style={{ background: style.bg, borderColor: `${style.color}22` }}
+                          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-sm"
+                          style={{ background: style.color }}
                         >
-                          <LibraryMedicineIcon slug={item.slug} color={style.color} size={20} />
+                          <LibraryMedicineIcon slug={item.slug} color="#ffffff" size={22} />
                         </span>
                         <span
                           className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
@@ -490,12 +407,10 @@ export function SiteIndex({ initialLang }) {
                         </span>
                       </div>
 
-                      {/* Medicine name */}
                       <h3 className="mt-3 text-xl font-bold" style={{ color: "var(--text)" }}>
                         {item.name}
                       </h3>
 
-                      {/* CTA */}
                       <div
                         className="mt-auto flex items-center justify-between border-t pt-4"
                         style={{ borderColor: "var(--border)", marginTop: "1rem" }}
@@ -527,7 +442,6 @@ export function SiteIndex({ initialLang }) {
         )}
       </main>
 
-      {/* ── Footer ── */}
       <footer className="mx-auto max-w-6xl border-t px-4 pb-14 pt-8 text-center text-sm leading-7" style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
         <span>{text.footer1}</span>
         {text.footer2 ? <><br />{text.footer2}</> : null}
