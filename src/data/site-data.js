@@ -9124,55 +9124,55 @@ export const siteData = {
           "variant": "use",
           "icon": "💊",
           "titleKey": "sec0Title",
-          "listKey": "sec0List"
+          "listKey": "sec0"
         },
         {
           "variant": "use",
           "icon": "✔",
           "titleKey": "sec1Title",
-          "listKey": "sec1List"
+          "listKey": "sec1"
         },
         {
           "variant": "dose",
           "icon": "⏰",
           "titleKey": "sec2Title",
-          "listKey": "sec2List"
+          "listKey": "sec2"
         },
         {
           "variant": "food",
           "icon": "🍽",
           "titleKey": "sec3Title",
-          "listKey": "sec3List"
+          "listKey": "sec3"
         },
         {
           "variant": "warn",
           "icon": "!",
           "titleKey": "sec4Title",
-          "listKey": "sec4List"
+          "listKey": "sec4"
         },
         {
           "variant": "side",
           "icon": "⚠",
           "titleKey": "sec5Title",
-          "listKey": "sec5List"
+          "listKey": "sec5"
         },
         {
           "variant": "interact",
           "icon": "⇄",
           "titleKey": "sec6Title",
-          "listKey": "sec6List"
+          "listKey": "sec6"
         },
         {
           "variant": "ramadan",
           "icon": "☾",
           "titleKey": "sec7Title",
-          "listKey": "sec7List"
+          "listKey": "sec7"
         },
         {
           "variant": "store",
           "icon": "⧉",
           "titleKey": "sec8Title",
-          "listKey": "sec8List"
+          "listKey": "sec8"
         }
       ],
       "translations": {
