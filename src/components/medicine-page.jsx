@@ -33,7 +33,7 @@ function BackIcon() {
 
 function AudioButton({ label, tone = "primary", onClick }) {
   const isPrimary = tone === "primary";
-  const color = isPrimary ? "var(--accent1)" : "#D97706";
+  const color = isPrimary ? "var(--accent1)" : "var(--accent2)";
 
   return (
     <button
@@ -82,7 +82,7 @@ export function MedicinePage({ medicine, initialLang }) {
     <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
 
       {/* Hero banner */}
-      <div style={{ background: "linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%)" }}>
+      <div style={{ background: "var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-8 sm:py-10">
           <Link
             className="mb-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white/90 transition hover:bg-white/25"

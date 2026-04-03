@@ -20,6 +20,7 @@
   --drugIconBorder: #99F6E4;
   --langBarAccent: #0D9488;
   --sourceBorderAccent: #0D9488;
+  --heroBg: linear-gradient(135deg, #0A7A73 0%, #0D9488 40%, #0E7FC0 100%);
 }
 
 * {

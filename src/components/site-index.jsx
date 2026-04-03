@@ -342,7 +342,7 @@ export function SiteIndex({ initialLang }) {
     <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
 
       {/* ── Hero banner ── */}
-      <div style={{ background: "linear-gradient(135deg, #0A7A73 0%, #0D9488 40%, #0E7FC0 100%)" }}>
+      <div style={{ background: "var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
