@@ -20,22 +20,22 @@ import { getIndexData, uiText } from "../lib/site";
 const indexData = getIndexData();
 
 const CATEGORY_STYLE = {
-  "high blood pressure":          { color: "#DC2626", bg: "#FEF2F2" },
-  "blood pressure & palpitations":{ color: "#E11D48", bg: "#FFF1F2" },
-  "blood thinner":                { color: "#7C3AED", bg: "#F5F3FF" },
-  "blood clot prevention":        { color: "#6D28D9", bg: "#EDE9FE" },
-  "cholesterol":                  { color: "#D97706", bg: "#FFFBEB" },
-  "diabetes":                     { color: "#0284C7", bg: "#F0F9FF" },
-  "asthma":                       { color: "#0D9488", bg: "#F0FDFA" },
-  "depression & anxiety":         { color: "#8B5CF6", bg: "#F5F3FF" },
-  "psychosis & bipolar":          { color: "#A855F7", bg: "#FAF5FF" },
-  "epilepsy & bipolar":           { color: "#7C3AED", bg: "#F5F3FF" },
-  "sleep":                        { color: "#4F46E5", bg: "#EEF2FF" },
-  "insomnia":                     { color: "#6366F1", bg: "#EEF2FF" },
-  "pain relief":                  { color: "#059669", bg: "#ECFDF5" },
-  "pain and fever":               { color: "#F59E0B", bg: "#FFFBEB" },
-  "pain and inflammation":        { color: "#EF4444", bg: "#FEF2F2" },
-  "stomach acid and heartburn":   { color: "#10B981", bg: "#ECFDF5" },
+  "high blood pressure": { color: "#DC2626", bg: "#FEF2F2" },
+  "blood pressure & palpitations": { color: "#E11D48", bg: "#FFF1F2" },
+  "blood thinner": { color: "#7C3AED", bg: "#F5F3FF" },
+  "blood clot prevention": { color: "#6D28D9", bg: "#EDE9FE" },
+  "cholesterol": { color: "#D97706", bg: "#FFFBEB" },
+  "diabetes": { color: "#0284C7", bg: "#F0F9FF" },
+  "asthma": { color: "#0D9488", bg: "#F0FDFA" },
+  "depression & anxiety": { color: "#8B5CF6", bg: "#F5F3FF" },
+  "psychosis & bipolar": { color: "#A855F7", bg: "#FAF5FF" },
+  "epilepsy & bipolar": { color: "#7C3AED", bg: "#F5F3FF" },
+  "sleep": { color: "#4F46E5", bg: "#EEF2FF" },
+  "insomnia": { color: "#6366F1", bg: "#EEF2FF" },
+  "pain relief": { color: "#059669", bg: "#ECFDF5" },
+  "pain and fever": { color: "#F59E0B", bg: "#FFFBEB" },
+  "pain and inflammation": { color: "#EF4444", bg: "#FEF2F2" },
+  "stomach acid and heartburn": { color: "#10B981", bg: "#ECFDF5" },
 };
 const DEFAULT_STYLE = { color: "#0D9488", bg: "#F0FDFA" };
 
@@ -71,7 +71,13 @@ const LIBRARY_OVAL_TABLET_SLUGS = new Set([
 
 function CategoryIcon({ englishCat, color, size = 20 }) {
   const s = { width: size, height: size };
-  const p = { fill: "none", stroke: color, strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" };
+  const p = {
+    fill: "none",
+    stroke: color,
+    strokeWidth: "1.75",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
 
   switch (englishCat) {
     case "high blood pressure":
@@ -177,7 +183,11 @@ function CategoryIcon({ englishCat, color, size = 20 }) {
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
           <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
-          <path d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill={color} stroke="none" />
+          <path
+            d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
+            fill={color}
+            stroke="none"
+          />
         </svg>
       );
     case "pain and inflammation":
@@ -225,7 +235,17 @@ function LibraryMedicineIcon({ slug, color, size = 18 }) {
 
 function SearchIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="11" cy="11" r="8" />
       <path d="m21 21-4.35-4.35" />
     </svg>
@@ -233,11 +253,16 @@ function SearchIcon() {
 }
 
 export function SiteIndex({ initialLang }) {
-  const { language, updateLanguage } = useLanguageRouting({ initialLanguage: initialLang });
+  const { language, updateLanguage } = useLanguageRouting({
+    initialLanguage: initialLang,
+  });
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const text = useMemo(() => indexData.translations[language] || indexData.translations.so, [language]);
+  const text = useMemo(
+    () => indexData.translations[language] || indexData.translations.so,
+    [language]
+  );
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
 
   useEffect(() => {
@@ -246,7 +271,12 @@ export function SiteIndex({ initialLang }) {
 
   const categories = useMemo(() => {
     const values = indexData.items
-      .map((item) => indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "")
+      .map(
+        (item) =>
+          indexData.subtitles[item.slug]?.[language] ||
+          indexData.subtitles[item.slug]?.so ||
+          ""
+      )
       .filter(Boolean);
     return [...new Set(values)];
   }, [language]);
@@ -254,8 +284,12 @@ export function SiteIndex({ initialLang }) {
   const filteredItems = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
     return indexData.items.filter((item) => {
-      const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
-      const matchesCategory = activeCategory === "all" || subtitle === activeCategory;
+      const subtitle =
+        indexData.subtitles[item.slug]?.[language] ||
+        indexData.subtitles[item.slug]?.so ||
+        "";
+      const matchesCategory =
+        activeCategory === "all" || subtitle === activeCategory;
       const matchesSearch =
         !query ||
         item.name.toLowerCase().includes(query) ||
@@ -267,25 +301,45 @@ export function SiteIndex({ initialLang }) {
   useScrollReveal([language, activeCategory, searchTerm]);
 
   return (
-    <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
-
+    <div
+      style={{ background: "var(--bg)", color: "var(--text)" }}
+      className="min-h-screen"
+    >
       <div style={{ background: "var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" />
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
+              <path d="m8.5 8.5 7 7" />
             </svg>
             {chromeText.heroEyebrow}
           </div>
-          <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl" style={{ lineHeight: 1.1 }}>
+
+          <h1
+            className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+            style={{ lineHeight: 1.1 }}
+          >
             {text.hdrTitle}
           </h1>
+
           <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
             {text.hdrSubtitle}
           </p>
+
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
             <span className="flex items-center gap-1.5">
-              <span className="text-lg font-black text-white">{indexData.items.length}</span>
+              <span className="text-lg font-black text-white">
+                {indexData.items.length}
+              </span>
               {chromeText.medicinesStat}
             </span>
             <span className="text-white/40">·</span>
@@ -300,21 +354,34 @@ export function SiteIndex({ initialLang }) {
       </div>
 
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
-
         <div className="reveal-on-scroll">
-          <LanguageSelect label={text.langLabel} onChange={updateLanguage} value={language} />
+          <LanguageSelect
+            label={text.langLabel}
+            onChange={updateLanguage}
+            value={language}
+          />
         </div>
 
         <div className="reveal-on-scroll mb-7 flex flex-col gap-3 sm:flex-row sm:items-end">
           <label className="flex-1" htmlFor="medSearch">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            <span
+              className="mb-2 block text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "var(--text-muted)" }}
+            >
               {chromeText.searchLabel}
             </span>
+
             <div
               className="flex items-center gap-3 rounded-2xl border bg-white px-5 py-3.5 transition-shadow duration-200 focus-within:shadow-lg"
               style={{ borderColor: "var(--border)" }}
             >
-              <span className="shrink-0" style={{ color: "var(--text-muted)" }}><SearchIcon /></span>
+              <span
+                className="shrink-0"
+                style={{ color: "var(--text-muted)" }}
+              >
+                <SearchIcon />
+              </span>
+
               <input
                 id="medSearch"
                 className="flex-1 bg-transparent text-base outline-none"
@@ -323,8 +390,14 @@ export function SiteIndex({ initialLang }) {
                 placeholder={chromeText.searchPlaceholder}
                 value={searchTerm}
               />
+
               {searchTerm && (
-                <button type="button" className="shrink-0 rounded-full p-1 text-sm transition hover:bg-gray-100" style={{ color: "var(--text-muted)" }} onClick={() => setSearchTerm("")}>
+                <button
+                  type="button"
+                  className="shrink-0 rounded-full p-1 text-sm transition hover:bg-gray-100"
+                  style={{ color: "var(--text-muted)" }}
+                  onClick={() => setSearchTerm("")}
+                >
                   ✕
                 </button>
               )}
@@ -332,9 +405,13 @@ export function SiteIndex({ initialLang }) {
           </label>
 
           <label className="sm:w-52" htmlFor="catSelect">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            <span
+              className="mb-2 block text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "var(--text-muted)" }}
+            >
               {chromeText.categoryLabel}
             </span>
+
             <select
               id="catSelect"
               className="w-full appearance-none rounded-2xl border bg-white px-4 py-3.5 text-sm font-medium outline-none transition-shadow duration-200 focus:shadow-lg"
@@ -351,7 +428,9 @@ export function SiteIndex({ initialLang }) {
             >
               <option value="all">{chromeText.allCategories}</option>
               {categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
               ))}
             </select>
           </label>
@@ -359,15 +438,22 @@ export function SiteIndex({ initialLang }) {
 
         <div className="reveal-on-scroll mb-5 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            <p
+              className="mb-0.5 text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "var(--text-muted)" }}
+            >
               {chromeText.libraryEyebrow}
             </p>
             <h2 className="text-2xl font-extrabold" style={{ color: "var(--text)" }}>
               {text.pickTitle}
             </h2>
           </div>
+
           {filteredItems.length > 0 && (
-            <span className="shrink-0 text-sm" style={{ color: "var(--text-muted)" }}>
+            <span
+              className="shrink-0 text-sm"
+              style={{ color: "var(--text-muted)" }}
+            >
               {filteredItems.length} {chromeText.medicinesStat.toLowerCase()}
             </span>
           )}
@@ -378,18 +464,29 @@ export function SiteIndex({ initialLang }) {
             {filteredItems.map((item, index) => {
               const subtitle =
                 (indexData.subtitles[item.slug] &&
-                  (indexData.subtitles[item.slug][language] || indexData.subtitles[item.slug].so)) || "";
+                  (indexData.subtitles[item.slug][language] ||
+                    indexData.subtitles[item.slug].so)) ||
+                "";
               const englishCat = indexData.subtitles[item.slug]?.en || "";
               const style = CATEGORY_STYLE[englishCat] || DEFAULT_STYLE;
 
               return (
-                <li className="reveal-on-scroll" key={item.slug} style={{ transitionDelay: `${Math.min(index * 40, 200)}ms` }}>
+                <li
+                  className="reveal-on-scroll"
+                  key={item.slug}
+                  style={{
+                    transitionDelay: `${Math.min(index * 40, 200)}ms`,
+                  }}
+                >
                   <Link
                     className="group flex h-full overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                     style={{ borderColor: "var(--border)" }}
                     href={{ pathname: `/${item.href}`, query: { lang: language } }}
                   >
-                    <div className="w-1.5 shrink-0" style={{ background: style.color }} />
+                    <div
+                      className="w-1.5 shrink-0"
+                      style={{ background: style.color }}
+                    />
 
                     <div className="flex flex-1 flex-col p-5">
                       <div className="flex items-center gap-2.5">
@@ -397,27 +494,42 @@ export function SiteIndex({ initialLang }) {
                           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl shadow-sm"
                           style={{ background: style.color }}
                         >
-                          <LibraryMedicineIcon slug={item.slug} color="#ffffff" size={22} />
+                          <LibraryMedicineIcon
+                            slug={item.slug}
+                            color="#ffffff"
+                            size={22}
+                          />
                         </span>
+
                         <span
-                          className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                          className="rounded-full px-2.5 py-0.5 text-sm font-semibold"
                           style={{ background: style.bg, color: style.color }}
                         >
                           {subtitle || chromeText.medicinePill}
                         </span>
                       </div>
 
-                      <h3 className="mt-3 text-xl font-bold" style={{ color: "var(--text)" }}>
+                      <h3
+                        className="mt-3 text-2xl font-bold"
+                        style={{ color: "var(--text)" }}
+                      >
                         {item.name}
                       </h3>
 
                       <div
                         className="mt-auto flex items-center justify-between border-t pt-4"
-                        style={{ borderColor: "var(--border)", marginTop: "1rem" }}
+                        style={{
+                          borderColor: "var(--border)",
+                          marginTop: "1rem",
+                        }}
                       >
-                        <span className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
+                        <span
+                          className="text-base font-medium"
+                          style={{ color: "var(--text-muted)" }}
+                        >
                           {chromeText.openDetails}
                         </span>
+
                         <span
                           className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-white transition duration-300 group-hover:scale-110"
                           style={{ background: style.color }}
@@ -432,22 +544,49 @@ export function SiteIndex({ initialLang }) {
             })}
           </ul>
         ) : (
-          <section className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center" style={{ borderColor: "var(--border)" }}>
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "var(--bg)" }}>
+          <section
+            className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center"
+            style={{ borderColor: "var(--border)" }}
+          >
+            <div
+              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl"
+              style={{ background: "var(--bg)" }}
+            >
               <SearchIcon />
             </div>
-            <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>{chromeText.noResultsTitle}</h3>
-            <p className="mt-2" style={{ color: "var(--text-muted)" }}>{chromeText.noResultsBody}</p>
+            <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>
+              {chromeText.noResultsTitle}
+            </h3>
+            <p className="mt-2" style={{ color: "var(--text-muted)" }}>
+              {chromeText.noResultsBody}
+            </p>
           </section>
         )}
       </main>
 
-      <footer className="mx-auto max-w-6xl border-t px-4 pb-14 pt-8 text-center text-sm leading-7" style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
+      <footer
+        className="mx-auto max-w-6xl border-t px-4 pb-14 pt-8 text-center text-sm leading-7"
+        style={{
+          borderColor: "var(--border)",
+          color: "var(--text-muted)",
+        }}
+      >
         <span>{text.footer1}</span>
-        {text.footer2 ? <><br />{text.footer2}</> : null}
-        <br /><br />
+        {text.footer2 ? (
+          <>
+            <br />
+            {text.footer2}
+          </>
+        ) : null}
+        <br />
+        <br />
         <strong style={{ color: "var(--text)" }}>{text.footerStrong}</strong>
-        {text.footer3 ? <><br />{text.footer3}</> : null}
+        {text.footer3 ? (
+          <>
+            <br />
+            {text.footer3}
+          </>
+        ) : null}
       </footer>
     </div>
   );
