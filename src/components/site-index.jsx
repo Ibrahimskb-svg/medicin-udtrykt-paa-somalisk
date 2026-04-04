@@ -183,11 +183,7 @@ function CategoryIcon({ englishCat, color, size = 20 }) {
       return (
         <svg viewBox="0 0 24 24" style={s} {...p}>
           <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
-          <path
-            d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"
-            fill={color}
-            stroke="none"
-          />
+          <path d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill={color} stroke="none" />
         </svg>
       );
     case "pain and inflammation":
@@ -502,7 +498,7 @@ export function SiteIndex({ initialLang }) {
                         </span>
 
                         <span
-                          className="rounded-full px-2.5 py-0.5 text-sm font-semibold"
+                          className="rounded-full px-3 py-1 text-base font-semibold"
                           style={{ background: style.bg, color: style.color }}
                         >
                           {subtitle || chromeText.medicinePill}
@@ -510,7 +506,7 @@ export function SiteIndex({ initialLang }) {
                       </div>
 
                       <h3
-                        className="mt-3 text-2xl font-bold"
+                        className="mt-4 text-[3rem] font-bold leading-none"
                         style={{ color: "var(--text)" }}
                       >
                         {item.name}
@@ -520,11 +516,11 @@ export function SiteIndex({ initialLang }) {
                         className="mt-auto flex items-center justify-between border-t pt-4"
                         style={{
                           borderColor: "var(--border)",
-                          marginTop: "1rem",
+                          marginTop: "1.25rem",
                         }}
                       >
                         <span
-                          className="text-base font-medium"
+                          className="text-xl font-medium"
                           style={{ color: "var(--text-muted)" }}
                         >
                           {chromeText.openDetails}
