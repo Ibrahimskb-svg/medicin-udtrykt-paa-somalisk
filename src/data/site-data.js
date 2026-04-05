@@ -225,7 +225,7 @@ export const siteData = {
       {
         "slug": "eliquis",
         "href": "eliquis",
-        "name": "Eliquis",
+        "name": "Eliquis (Apixaban)",
         "icon": "➜"
       },
       {
@@ -237,7 +237,7 @@ export const siteData = {
       {
         "slug": "hjertemagnyl",
         "href": "hjertemagnyl",
-        "name": "Hjertemagnyl",
+        "name": "Hjertemagnyl (Acetylsalicylsyre, ASA)",
         "icon": "➜"
       },
       {
@@ -339,19 +339,19 @@ export const siteData = {
       {
         "slug": "symbicort",
         "href": "symbicort",
-        "name": "Symbicort",
+        "name": "Symbicort (Budesonid/Formoterol)",
         "icon": "➜"
       },
       {
         "slug": "ventoline",
         "href": "ventoline",
-        "name": "Ventoline",
+        "name": "Ventoline (Salbutamol)",
         "icon": "➜"
       },
       {
         "slug": "xarelto",
         "href": "xarelto",
-        "name": "Xarelto",
+        "name": "Xarelto (Rivaroxaban)",
         "icon": "➜"
       }
     ]
