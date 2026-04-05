@@ -1,534 +1,260 @@
-"use client";
+import { siteData } from "../data/site-data";
 
-import {
-  AirVent,
-  Pill,
-  PillBottle,
-  SprayCan,
-  Syringe,
-  Tablets,
-} from "lucide-react";
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+export const languages = ["so", "da", "en", "ar"];
+export const rtlLanguages = new Set(["ar"]);
+export const arabicAudioLabel = "\u0627\u0633\u062a\u0645\u0639 \u0625\u0644\u0649 \u0627\u0644\u062a\u0633\u062c\u064a\u0644";
 
-import { LanguageSelect } from "./language-select";
-import { useLanguageRouting } from "../hooks/use-language-routing";
-import { useScrollReveal } from "../hooks/use-scroll-reveal";
-import { applyLanguageToDocument } from "../lib/language";
-import { getIndexData, uiText } from "../lib/site";
+export const languageLabels = {
+  so: "Somali",
+  da: "Dansk",
+  en: "English",
+  ar: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+};
 
-const indexData = getIndexData();
-
-// ── Translated display names for slugs that need language-specific names ───
-const SLUG_DISPLAY_NAMES = {
-  morfin_injektion: {
-    da: "Morfin (injektion)",
-    en: "Morphine (injection)",
-    ar: "مورفين (حقن)",
-    so: "Morfin (irbad)",
+export const languageThemes = {
+  so: {
+    accent1: "#00a676",
+    accent2: "#0b6b57",
+    accent: "#00a676",
+    flash: "#d1fae5",
+    badgeBg: "#d1fae5",
+    badgeText: "#0b6b57",
+    soft: "#ecfdf5",
+    softBorder: "#6ee7b7",
+    link: "#00a676",
+    drugIconBg: "#ecfdf5",
+    drugIconBorder: "#6ee7b7",
+    langBarAccent: "#00a676",
+    sourceBorderAccent: "#0b6b57",
+    heroBg: "linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%)",
   },
-  morfin_tablet: {
-    da: "Morfin (tablet)",
-    en: "Morphine (tablet)",
-    ar: "مورفين (قرص)",
-    so: "Morfin (kiniin)",
+  da: {
+    accent1: "#0ea5e9",
+    accent2: "#60a5fa",
+    accent: "#0ea5e9",
+    flash: "#e0f2fe",
+    badgeBg: "#e0f2fe",
+    badgeText: "#0369a1",
+    soft: "#f0f9ff",
+    softBorder: "#bae6fd",
+    link: "#0ea5e9",
+    drugIconBg: "#f0f9ff",
+    drugIconBorder: "#bae6fd",
+    langBarAccent: "#0ea5e9",
+    sourceBorderAccent: "#60a5fa",
+    heroBg: "linear-gradient(135deg, #0369a1 0%, #0ea5e9 50%, #60a5fa 100%)",
+  },
+  en: {
+    accent1: "#7f1d1d",
+    accent2: "#b91c1c",
+    accent: "#7f1d1d",
+    flash: "#fee2e2",
+    badgeBg: "#fee2e2",
+    badgeText: "#7f1d1d",
+    soft: "#fef2f2",
+    softBorder: "#fecaca",
+    link: "#b91c1c",
+    drugIconBg: "#fef2f2",
+    drugIconBorder: "#fecaca",
+    langBarAccent: "#7f1d1d",
+    sourceBorderAccent: "#b91c1c",
+    heroBg: "linear-gradient(135deg, #450a0a 0%, #7f1d1d 50%, #b91c1c 100%)",
+  },
+  ar: {
+    accent1: "#c2410c",
+    accent2: "#fb923c",
+    accent: "#c2410c",
+    flash: "#ffedd5",
+    badgeBg: "#ffedd5",
+    badgeText: "#9a3412",
+    soft: "#fff7ed",
+    softBorder: "#fed7aa",
+    link: "#c2410c",
+    drugIconBg: "#fff7ed",
+    drugIconBorder: "#fed7aa",
+    langBarAccent: "#c2410c",
+    sourceBorderAccent: "#fb923c",
+    heroBg: "linear-gradient(135deg, #431407 0%, #c2410c 50%, #fb923c 100%)",
   },
 };
 
-function getDisplayName(slug, language, fallback) {
-  const translations = SLUG_DISPLAY_NAMES[slug];
-  if (!translations) return fallback;
-  return translations[language] ?? translations.so ?? fallback;
-}
-
-// ── Category accent colors (one per English category) ──────────────────────
-const CATEGORY_STYLE = {
-  "high blood pressure":          { color: "#DC2626", bg: "#FEF2F2" },
-  "blood pressure & palpitations":{ color: "#E11D48", bg: "#FFF1F2" },
-  "blood thinner":                { color: "#7C3AED", bg: "#F5F3FF" },
-  "blood clot prevention":        { color: "#6D28D9", bg: "#EDE9FE" },
-  "cholesterol":                  { color: "#D97706", bg: "#FFFBEB" },
-  "diabetes":                     { color: "#0284C7", bg: "#F0F9FF" },
-  "asthma":                       { color: "#0D9488", bg: "#F0FDFA" },
-  "depression & anxiety":         { color: "#8B5CF6", bg: "#F5F3FF" },
-  "psychosis & bipolar":          { color: "#A855F7", bg: "#FAF5FF" },
-  "epilepsy & bipolar":           { color: "#7C3AED", bg: "#F5F3FF" },
-  "sleep":                        { color: "#4F46E5", bg: "#EEF2FF" },
-  "insomnia":                     { color: "#6366F1", bg: "#EEF2FF" },
-  "pain relief":                  { color: "#059669", bg: "#ECFDF5" },
-  "pain and fever":               { color: "#F59E0B", bg: "#FFFBEB" },
-  "pain and inflammation":        { color: "#EF4444", bg: "#FEF2F2" },
-  "stomach acid and heartburn":   { color: "#10B981", bg: "#ECFDF5" },
+export const uiText = {
+  so: {
+    navbarTitle: "somalimed",
+    heroEyebrow: "Hagitaan fudud oo casri ah",
+    heroFormatLabel: "Qaab",
+    heroFormatValue: "Qoraal kooban, cod iyo sharaxaad sahlan",
+    heroFocusLabel: "Ujeeddo",
+    heroFocusValue: "Helitaanka xogta daawada si degdeg ah oo kalsooni leh",
+    libraryEyebrow: "Maktabad",
+    medicinePill: "Daawo",
+    openDetails: "Fur faahfaahinta",
+    nowLabel: "Hadda",
+    searchLabel: "Raadi",
+    searchPlaceholder: "Raadi magaca daawada ama qaybta...",
+    categoryLabel: "Qayb",
+    allCategories: "Dhammaan",
+    clearFilters: "Nadiifi",
+    noResultsTitle: "Wax natiijo ah lama helin",
+    noResultsBody: "Isku day magac kale ama ka saar filtarrada.",
+    medicinesStat: "Daawooyin",
+    languagesStat: "Luuqado",
+  },
+  da: {
+    navbarTitle: "somalimed",
+    heroEyebrow: "En moderne og enkel guide",
+    heroFormatLabel: "Format",
+    heroFormatValue: "Korte forklaringer, lyd og let sprog",
+    heroFocusLabel: "Fokus",
+    heroFocusValue: "Hurtig og tryg adgang til somalimed",
+    libraryEyebrow: "Bibliotek",
+    medicinePill: "Medicin",
+    openDetails: "\u00c5bn detaljer",
+    nowLabel: "Nu",
+    searchLabel: "S\u00f8g",
+    searchPlaceholder: "S\u00f8g efter medicin eller kategori...",
+    categoryLabel: "Kategori",
+    allCategories: "Alle",
+    clearFilters: "Nulstil",
+    noResultsTitle: "Ingen resultater",
+    noResultsBody: "Pr\u00f8v et andet s\u00f8geord eller fjern filtrene.",
+    medicinesStat: "Mediciner",
+    languagesStat: "Sprog",
+  },
+  en: {
+    navbarTitle: "somalimed",
+    heroEyebrow: "A modern and simple guide",
+    heroFormatLabel: "Format",
+    heroFormatValue: "Short explanations, audio and plain language",
+    heroFocusLabel: "Focus",
+    heroFocusValue: "Fast and reliable access to somalimed",
+    libraryEyebrow: "Library",
+    medicinePill: "Medicine",
+    openDetails: "Open details",
+    nowLabel: "Now",
+    searchLabel: "Search",
+    searchPlaceholder: "Search medicine or category...",
+    categoryLabel: "Category",
+    allCategories: "All",
+    clearFilters: "Reset",
+    noResultsTitle: "No results found",
+    noResultsBody: "Try another keyword or remove the filters.",
+    medicinesStat: "Medicines",
+    languagesStat: "Languages",
+  },
+  ar: {
+    navbarEyebrow: "\u062f\u0644\u064a\u0644 \u0631\u0642\u0645\u064a",
+    navbarTitle: "\u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u0623\u062f\u0648\u064a\u0629",
+    heroEyebrow: "\u062f\u0644\u064a\u0644 \u062d\u062f\u064a\u062b \u0648\u0628\u0633\u064a\u0637",
+    heroFormatLabel: "\u0627\u0644\u0623\u0633\u0644\u0648\u0628",
+    heroFormatValue: "\u0634\u0631\u062d \u0645\u062e\u062a\u0635\u0631 \u0648\u0635\u0648\u062a \u0648\u0644\u063a\u0629 \u0633\u0647\u0644\u0629",
+    heroFocusLabel: "\u0627\u0644\u062a\u0631\u0643\u064a\u0632",
+    heroFocusValue: "\u0648\u0635\u0648\u0644 \u0633\u0631\u064a\u0639 \u0648\u0645\u0648\u062b\u0648\u0642 \u0625\u0644\u0649 \u0645\u0639\u0644\u0648\u0645\u0627\u062a \u0627\u0644\u062f\u0648\u0627\u0621",
+    libraryEyebrow: "\u0627\u0644\u0645\u0643\u062a\u0628\u0629",
+    medicinePill: "\u062f\u0648\u0627\u0621",
+    openDetails: "\u0627\u0641\u062a\u062d \u0627\u0644\u062a\u0641\u0627\u0635\u064a\u0644",
+    nowLabel: "\u0627\u0644\u0622\u0646",
+    searchLabel: "\u0628\u062d\u062b",
+    searchPlaceholder: "\u0627\u0628\u062d\u062b \u0639\u0646 \u062f\u0648\u0627\u0621 \u0623\u0648 \u0641\u0626\u0629...",
+    categoryLabel: "\u0627\u0644\u0641\u0626\u0629",
+    allCategories: "\u0627\u0644\u0643\u0644",
+    clearFilters: "\u0625\u0639\u0627\u062f\u0629 \u0636\u0628\u0637",
+    noResultsTitle: "\u0644\u0627 \u062a\u0648\u062c\u062f \u0646\u062a\u0627\u0626\u062c",
+    noResultsBody: "\u062c\u0631\u0628 \u0643\u0644\u0645\u0629 \u0623\u062e\u0631\u0649 \u0623\u0648 \u0623\u0632\u0644 \u0627\u0644\u0641\u0644\u0627\u062a\u0631.",
+    medicinesStat: "\u0623\u062f\u0648\u064a\u0629",
+    languagesStat: "\u0644\u063a\u0627\u062a",
+  },
 };
-const DEFAULT_STYLE = { color: "#0D9488", bg: "#F0FDFA" };
 
-const LIBRARY_CAPSULE_SLUGS = new Set([
-  "amlodipin",
-  "atorvastatin",
-  "enalapril",
-  "lamotrigin",
-  "losartan",
-  "zopiclon",
-]);
+// ── Section SVG icons — professionelle ikoner til alle 8 sektioner ──────────
+// Bruges i medicine-page.jsx som: sectionIcons[section.variant]
+// Returnerer en SVG-streng der indsættes med dangerouslySetInnerHTML
+export const sectionIcons = {
 
-const LIBRARY_ROUND_TABLET_SLUGS = new Set([
-  "eliquis",
-  "marevan",
-  "melatonin",
-  "metformin",
-  "metoprolol",
-  "paracetamol",
-  "quetiapin",
-  "sertralin",
-  "xarelto",
-]);
+  // Medicin / Brug — pille-ikon
+  use: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+    <path d="m8.5 8.5 7 7"/>
+  </svg>`,
 
-const LIBRARY_OVAL_TABLET_SLUGS = new Set([
-  "diclofenac",
-  "hjertemagnyl",
-  "ibuprofen",
-  "morfin_tablet",
-  "naproxen",
-  "pantoprazol",
-]);
+  // Dosering / Tid — ur-ikon
+  dose: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <polyline points="12 6 12 12 16 14"/>
+  </svg>`,
 
-// ── Category icons — SVG per medicine type ─────────────────────────────────
-function CategoryIcon({ englishCat, color, size = 20 }) {
-  const s = { width: size, height: size };
-  const p = { fill: "none", stroke: color, strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" };
+  // Bivirkninger — advarselstrekant
+  side: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+    <path d="M12 9v4"/>
+    <path d="M12 17h.01"/>
+  </svg>`,
 
-  switch (englishCat) {
+  // Interaktioner — to pile der krydser
+  interact: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m17 2 4 4-4 4"/>
+    <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+    <path d="m7 22-4-4 4-4"/>
+    <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+  </svg>`,
 
-    case "high blood pressure":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          <path d="M12 3V1M11 2l1-1 1 1" strokeWidth="1.5" />
-        </svg>
-      );
+  // Vigtig advarsel — udråbstegn i cirkel
+  warn: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="12" y1="8" x2="12" y2="12"/>
+    <line x1="12" y1="16" x2="12.01" y2="16"/>
+  </svg>`,
 
-    case "blood pressure & palpitations":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          <path d="M5 10h2.5l1.5-2 2 4 1.5-2H17" strokeWidth="1.4" />
-        </svg>
-      );
+  // Ramadan — halvmåne
+  ramadan: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+  </svg>`,
 
-    case "blood thinner":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" />
-          <path d="M8.5 14.5h7" strokeWidth="2" />
-        </svg>
-      );
+  // Mad / Cunto — gaffel og kniv
+  food: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+    <path d="M7 2v20"/>
+    <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+  </svg>`,
 
-    case "blood clot prevention":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          <path d="m9 12 2 2 4-4" />
-        </svg>
-      );
+  // Opbevaring / Gem — pakke/æske
+  store: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+    <path d="m3.3 7 8.7 5 8.7-5"/>
+    <path d="M12 22V12"/>
+  </svg>`,
+};
 
-    case "cholesterol":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M2 9.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" />
-          <path d="M2 14.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" />
-          <circle cx="8" cy="9.5" r="1.8" fill={color} stroke="none" />
-        </svg>
-      );
+export const sectionStyles = {
+  use: "bg-emerald-50/90",
+  dose: "bg-sky-50/90",
+  side: "bg-amber-50/90",
+  interact: "bg-violet-50/90",
+  warn: "bg-rose-50/90",
+  ramadan: "bg-fuchsia-50/90",
+  food: "bg-green-50/90",
+  store: "bg-slate-50/90",
+};
 
-    case "diabetes":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" />
-          <path d="M12 9v6M9 12h6" strokeWidth="1.6" />
-        </svg>
-      );
+export const sectionIconStyles = {
+  use: "bg-emerald-100 text-emerald-700",
+  dose: "bg-sky-100 text-sky-700",
+  side: "bg-amber-100 text-amber-700",
+  interact: "bg-violet-100 text-violet-700",
+  warn: "bg-rose-100 text-rose-700",
+  ramadan: "bg-fuchsia-100 text-fuchsia-700",
+  food: "bg-green-100 text-green-700",
+  store: "bg-slate-200 text-slate-700",
+};
 
-    case "asthma":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M7 8V4H5C3.9 4 3 5.1 3 6.3v6.4C3 15 4.3 17 6 17h1V8" />
-          <path d="M17 8V4h2c1.1 0 2 1.1 2 2.3v6.4C21 15 19.7 17 18 17h-1V8" />
-          <path d="M7 8h10M12 4v4" />
-        </svg>
-      );
-
-    case "depression & anxiety":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
-          <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          <path d="M9 22l1-3h4l1 3" strokeWidth="1.4" />
-        </svg>
-      );
-
-    case "psychosis & bipolar":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
-          <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          <path d="M12 19v2" />
-          <circle cx="10" cy="21.5" r="0.6" fill={color} stroke="none" />
-          <circle cx="14" cy="21.5" r="0.6" fill={color} stroke="none" />
-        </svg>
-      );
-
-    case "epilepsy & bipolar":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
-          <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          <path d="M13 9l-2.5 4h3.5l-2.5 4" strokeWidth="1.6" />
-        </svg>
-      );
-
-    case "sleep":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          <path d="M17 4l.5 1 .5-1-.5-1z" fill={color} stroke="none" />
-          <path d="M20 7l.4.8.4-.8-.4-.8z" fill={color} stroke="none" />
-        </svg>
-      );
-
-    case "insomnia":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          <path d="M15 9h3l-3 3h3" strokeWidth="1.3" />
-        </svg>
-      );
-
-    case "pain relief":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
-          <path d="m8.5 8.5 7 7" />
-        </svg>
-      );
-
-    case "pain and fever":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
-          <path d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill={color} stroke="none" />
-        </svg>
-      );
-
-    case "pain and inflammation":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-        </svg>
-      );
-
-    case "stomach acid and heartburn":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M6 4c0-1 .9-2 2-2s2 1 2 2v7c0 2.5 1.5 4.5 4 4.5s4-2 4-4.5V5" />
-          <circle cx="10.5" cy="17" r="1" fill={color} stroke="none" />
-          <circle cx="13.5" cy="19" r="0.7" fill={color} stroke="none" />
-          <circle cx="8" cy="19.5" r="0.8" fill={color} stroke="none" />
-        </svg>
-      );
-
-    default:
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
-          <path d="m8.5 8.5 7 7" />
-        </svg>
-      );
-  }
+export function getIndexData() {
+  return siteData.index;
 }
 
-function LibraryMedicineIcon({ slug, color, size = 18 }) {
-  const iconProps = {
-    color,
-    size,
-    strokeWidth: 2,
-    absoluteStrokeWidth: true,
-  };
-
-  if (slug === "insulin") {
-    return <PillBottle {...iconProps} />;
-  }
-
-  if (slug === "morfin_injektion") {
-    return <Syringe {...iconProps} />;
-  }
-
-  if (slug === "symbicort") {
-    return <AirVent {...iconProps} />;
-  }
-
-  if (slug === "ventoline") {
-    return <SprayCan {...iconProps} />;
-  }
-
-  if (LIBRARY_CAPSULE_SLUGS.has(slug)) {
-    return <Pill {...iconProps} />;
-  }
-
-  if (LIBRARY_OVAL_TABLET_SLUGS.has(slug)) {
-    return <Tablets {...iconProps} />;
-  }
-
-  if (LIBRARY_ROUND_TABLET_SLUGS.has(slug)) {
-    return <Pill {...iconProps} />;
-  }
-
-  return <Pill {...iconProps} />;
+export function getMedicine(slug) {
+  return siteData.medicines.find((item) => item.slug === slug) ?? null;
 }
 
-function SearchIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.35-4.35" />
-    </svg>
-  );
-}
-
-export function SiteIndex({ initialLang }) {
-  const { language, updateLanguage } = useLanguageRouting({ initialLanguage: initialLang });
-  const [searchTerm, setSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  const text = useMemo(() => indexData.translations[language] || indexData.translations.so, [language]);
-  const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
-
-  useEffect(() => {
-    applyLanguageToDocument(language, text.pageTitle);
-  }, [language, text.pageTitle]);
-
-  const categories = useMemo(() => {
-    const values = indexData.items
-      .map((item) => indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "")
-      .filter(Boolean);
-    return [...new Set(values)];
-  }, [language]);
-
-  const filteredItems = useMemo(() => {
-    const query = searchTerm.trim().toLowerCase();
-    return indexData.items.filter((item) => {
-      const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
-      const matchesCategory = activeCategory === "all" || subtitle === activeCategory;
-      const displayName = getDisplayName(item.slug, language, item.name);
-      const matchesSearch =
-        !query ||
-        displayName.toLowerCase().includes(query) ||
-        item.name.toLowerCase().includes(query) ||
-        subtitle.toLowerCase().includes(query);
-      return matchesCategory && matchesSearch;
-    });
-  }, [activeCategory, language, searchTerm]);
-
-  useScrollReveal([language, activeCategory, searchTerm]);
-
-  return (
-    <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
-
-      {/* ── Hero banner ── */}
-      <div style={{ background: "var(--heroBg)" }}>
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" />
-            </svg>
-            {chromeText.heroEyebrow}
-          </div>
-          <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl" style={{ lineHeight: 1.1 }}>
-            {text.hdrTitle}
-          </h1>
-          <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
-            {text.hdrSubtitle}
-          </p>
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
-            <span className="flex items-center gap-1.5">
-              <span className="text-lg font-black text-white">{indexData.items.length}</span>
-              {chromeText.medicinesStat}
-            </span>
-            <span className="text-white/40">·</span>
-            <span className="flex items-center gap-1.5">
-              <span className="text-lg font-black text-white">4</span>
-              {chromeText.languagesStat}
-            </span>
-            <span className="text-white/40">·</span>
-            <span>{chromeText.heroFormatValue}</span>
-          </div>
-        </div>
-      </div>
-
-      <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
-
-        {/* ── Language pills ── */}
-        <div className="reveal-on-scroll">
-          <LanguageSelect label={text.langLabel} onChange={updateLanguage} value={language} />
-        </div>
-
-        {/* ── Search + Category row ── */}
-        <div className="reveal-on-scroll mb-7 flex flex-col gap-3 sm:flex-row sm:items-end">
-          {/* Search */}
-          <label className="flex-1" htmlFor="medSearch">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-              {chromeText.searchLabel}
-            </span>
-            <div
-              className="flex items-center gap-3 rounded-2xl border bg-white px-5 py-3.5 transition-shadow duration-200 focus-within:shadow-lg"
-              style={{ borderColor: "var(--border)" }}
-            >
-              <span className="shrink-0" style={{ color: "var(--text-muted)" }}><SearchIcon /></span>
-              <input
-                id="medSearch"
-                className="flex-1 bg-transparent text-base outline-none"
-                style={{ color: "var(--text)" }}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder={chromeText.searchPlaceholder}
-                value={searchTerm}
-              />
-              {searchTerm && (
-                <button type="button" className="shrink-0 rounded-full p-1 text-sm transition hover:bg-gray-100" style={{ color: "var(--text-muted)" }} onClick={() => setSearchTerm("")}>
-                  ✕
-                </button>
-              )}
-            </div>
-          </label>
-
-          {/* Category dropdown */}
-          <label className="sm:w-52" htmlFor="catSelect">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-              {chromeText.categoryLabel}
-            </span>
-            <select
-              id="catSelect"
-              className="w-full appearance-none rounded-2xl border bg-white px-4 py-3.5 text-sm font-medium outline-none transition-shadow duration-200 focus:shadow-lg"
-              style={{
-                borderColor: "var(--border)",
-                color: "var(--text)",
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235A6A7A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 14px center",
-                paddingRight: "40px",
-              }}
-              value={activeCategory}
-              onChange={(e) => setActiveCategory(e.target.value)}
-            >
-              <option value="all">{chromeText.allCategories}</option>
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-
-        {/* ── Section heading ── */}
-        <div className="reveal-on-scroll mb-5 flex items-end justify-between gap-4">
-          <div>
-            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-              {chromeText.libraryEyebrow}
-            </p>
-            <h2 className="text-2xl font-extrabold" style={{ color: "var(--text)" }}>
-              {text.pickTitle}
-            </h2>
-          </div>
-          {filteredItems.length > 0 && (
-            <span className="shrink-0 text-sm" style={{ color: "var(--text-muted)" }}>
-              {filteredItems.length} {chromeText.medicinesStat.toLowerCase()}
-            </span>
-          )}
-        </div>
-
-        {/* ── Medicine cards ── */}
-        {filteredItems.length ? (
-          <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {filteredItems.map((item, index) => {
-              const subtitle =
-                (indexData.subtitles[item.slug] &&
-                  (indexData.subtitles[item.slug][language] || indexData.subtitles[item.slug].so)) || "";
-
-              const englishCat = indexData.subtitles[item.slug]?.en || "";
-              const style = CATEGORY_STYLE[englishCat] || DEFAULT_STYLE;
-
-              // ── Use language-specific name if defined, otherwise fall back to item.name ──
-              const displayName = getDisplayName(item.slug, language, item.name);
-
-              return (
-                <li className="reveal-on-scroll" key={item.slug} style={{ transitionDelay: `${Math.min(index * 40, 200)}ms` }}>
-                  <Link
-                    className="group flex h-full overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                    style={{ borderColor: "var(--border)" }}
-                    href={{ pathname: `/${item.href}`, query: { lang: language } }}
-                  >
-                    {/* Left colored accent bar */}
-                    <div className="w-1.5 shrink-0" style={{ background: style.color }} />
-
-                    <div className="flex flex-1 flex-col p-5">
-                      {/* Medicine icon + category */}
-                      <div className="flex items-center gap-2.5">
-                        <span
-                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-                          style={{ background: style.bg, borderColor: `${style.color}22` }}
-                        >
-                          <LibraryMedicineIcon slug={item.slug} color={style.color} size={20} />
-                        </span>
-                        <span
-                          className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
-                          style={{ background: style.bg, color: style.color }}
-                        >
-                          {subtitle || chromeText.medicinePill}
-                        </span>
-                      </div>
-
-                      {/* Medicine name — now language-aware */}
-                      <h3 className="mt-3 text-xl font-bold" style={{ color: "var(--text)" }}>
-                        {displayName}
-                      </h3>
-
-                      {/* CTA */}
-                      <div
-                        className="mt-auto flex items-center justify-between border-t pt-4"
-                        style={{ borderColor: "var(--border)", marginTop: "1rem" }}
-                      >
-                        <span className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
-                          {chromeText.openDetails}
-                        </span>
-                        <span
-                          className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-white transition duration-300 group-hover:scale-110"
-                          style={{ background: style.color }}
-                        >
-                          →
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        ) : (
-          <section className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center" style={{ borderColor: "var(--border)" }}>
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "var(--bg)" }}>
-              <SearchIcon />
-            </div>
-            <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>{chromeText.noResultsTitle}</h3>
-            <p className="mt-2" style={{ color: "var(--text-muted)" }}>{chromeText.noResultsBody}</p>
-          </section>
-        )}
-      </main>
-
-      {/* ── Footer ── */}
-      <footer className="mx-auto max-w-6xl border-t px-4 pb-14 pt-8 text-center text-sm leading-7" style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
-        <span>{text.footer1}</span>
-        {text.footer2 ? <><br />{text.footer2}</> : null}
-        <br /><br />
-        <strong style={{ color: "var(--text)" }}>{text.footerStrong}</strong>
-        {text.footer3 ? <><br />{text.footer3}</> : null}
-      </footer>
-    </div>
-  );
+export function getMedicineSlugs() {
+  return siteData.medicines.map((item) => item.slug);
 }
