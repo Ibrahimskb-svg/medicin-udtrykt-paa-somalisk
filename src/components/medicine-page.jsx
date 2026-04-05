@@ -15,16 +15,16 @@ import {
   uiText,
 } from "../lib/site";
 
-// Farver til cirklerne — matcher sectionIconStyles farverne
+// Farver til cirklerne — matcher sektionerne
 const SECTION_ICON_COLORS = {
-  use:      { bg: "#d1fae5", color: "#065f46" },
-  dose:     { bg: "#e0f2fe", color: "#0369a1" },
-  side:     { bg: "#fef3c7", color: "#92400e" },
-  interact: { bg: "#ede9fe", color: "#5b21b6" },
-  warn:     { bg: "#fee2e2", color: "#991b1b" },
-  ramadan:  { bg: "#fdf4ff", color: "#7e22ce" },
-  food:     { bg: "#dcfce7", color: "#166534" },
-  store:    { bg: "#f1f5f9", color: "#334155" },
+  use:      { bg: "#bbf7d0", color: "#065f46", border: "#16a34a" },
+  dose:     { bg: "#bae6fd", color: "#0369a1", border: "#0284c7" },
+  side:     { bg: "#fde68a", color: "#92400e", border: "#d97706" },
+  interact: { bg: "#ddd6fe", color: "#5b21b6", border: "#7c3aed" },
+  warn:     { bg: "#fecaca", color: "#991b1b", border: "#dc2626" },
+  ramadan:  { bg: "#e9d5ff", color: "#6b21a8", border: "#9333ea" },
+  food:     { bg: "#bbf7d0", color: "#166534", border: "#16a34a" },
+  store:    { bg: "#cbd5e1", color: "#1e293b", border: "#475569" },
 };
 
 function PlayIcon() {
@@ -105,7 +105,6 @@ export function MedicinePage({ medicine, initialLang }) {
           </Link>
 
           <div className="flex items-start gap-4">
-            {/* Medicine icon */}
             <div
               className="hidden shrink-0 items-center justify-center rounded-2xl border p-3 sm:flex"
               style={{ background: "rgba(255,255,255,0.15)", borderColor: "rgba(255,255,255,0.25)", width: 64, height: 64 }}
@@ -132,7 +131,6 @@ export function MedicinePage({ medicine, initialLang }) {
             </div>
           </div>
 
-          {/* Status badges */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="rounded-full bg-white/20 px-4 py-1.5 text-xs font-semibold text-white">
               {data.badgeText}
@@ -146,10 +144,8 @@ export function MedicinePage({ medicine, initialLang }) {
 
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
 
-        {/* Language pills */}
         <LanguageSelect label={data.langLabel} onChange={updateLanguage} value={language} />
 
-        {/* Audio buttons */}
         {medicine.audio.so && language === "so" ? (
           <div className="mb-6">
             {!showSomaliAudio ? (
@@ -204,30 +200,32 @@ export function MedicinePage({ medicine, initialLang }) {
           {medicine.sections.map((section) => {
             const list = data[section.listKey] || [];
             const iconSvg = sectionIcons[section.variant];
-            const iconColor = SECTION_ICON_COLORS[section.variant] || { bg: "#f1f5f9", color: "#334155" };
+            const iconColor = SECTION_ICON_COLORS[section.variant] || { bg: "#f1f5f9", color: "#334155", border: "#475569" };
 
             return (
               <section
                 className={`reveal-on-scroll rounded-2xl border border-transparent px-6 py-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-md ${sectionStyles[section.variant] || "bg-slate-50"}`}
                 key={section.listKey}
               >
-                {/* Header med stor cirkel-ikon + titel */}
+                {/* Header: cirkel-ikon + titel */}
                 <div className="mb-5 flex items-center gap-4">
-                  {/* Stor cirkel med ikon */}
                   <span
                     className="inline-flex shrink-0 items-center justify-center rounded-full"
                     style={{
                       width: 52,
                       height: 52,
                       background: iconColor.bg,
-                      border: `2px solid ${iconColor.color}22`,
+                      border: `2px solid ${iconColor.border}`,
                     }}
                   >
                     {iconSvg ? (
                       <span
                         style={{ color: iconColor.color, display: "flex", alignItems: "center", justifyContent: "center" }}
                         dangerouslySetInnerHTML={{
-                          __html: iconSvg.replace('width="18"', 'width="24"').replace('height="18"', 'height="24"'),
+                          __html: iconSvg
+                            .replace('width="18"', 'width="24"')
+                            .replace('height="18"', 'height="24"')
+                            .replace('stroke-width="2"', 'stroke-width="2.2"'),
                         }}
                       />
                     ) : (
@@ -237,23 +235,27 @@ export function MedicinePage({ medicine, initialLang }) {
                     )}
                   </span>
 
-                  {/* Titel */}
                   <h3 className="text-lg font-bold leading-tight" style={{ color: "var(--text)" }}>
                     {data[section.titleKey]}
                   </h3>
                 </div>
 
-                {/* Indhold */}
-                <ul className="space-y-3 text-[15px] leading-7 pl-1" style={{ color: "var(--text)" }}>
+                {/* Punkter med tydelig farvet prik */}
+                <ul className="space-y-3 pl-1 text-[15px] leading-7" style={{ color: "var(--text)" }}>
                   {list.map((item, index) => (
                     <li
                       key={`${section.listKey}-${index}`}
-                      className="flex items-start gap-2"
+                      className="flex items-start gap-3"
                     >
-                      {/* Lille farvet prik */}
+                      {/* Større og skarpere prik */}
                       <span
-                        className="mt-2.5 shrink-0 rounded-full"
-                        style={{ width: 6, height: 6, background: iconColor.color, opacity: 0.7 }}
+                        className="mt-[10px] shrink-0 rounded-full"
+                        style={{
+                          width: 9,
+                          height: 9,
+                          background: iconColor.border,
+                          flexShrink: 0,
+                        }}
                       />
                       <span dangerouslySetInnerHTML={{ __html: item }} />
                     </li>
