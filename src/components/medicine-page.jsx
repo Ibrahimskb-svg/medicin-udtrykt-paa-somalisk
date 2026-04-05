@@ -193,17 +193,27 @@ export function MedicinePage({ medicine, initialLang }) {
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
           {medicine.sections.map((section) => {
             const list = data[section.listKey] || [];
+            const iconSvg = sectionIcons[section.variant];
+
             return (
               <section
                 className={`reveal-on-scroll rounded-2xl border border-transparent px-6 py-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-md ${sectionStyles[section.variant] || "bg-slate-50"}`}
                 key={section.listKey}
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <span
-                    className={`inline-flex h-9 w-9 items-center justify-center rounded-xl text-xs font-black ${sectionIconStyles[section.variant] || "bg-slate-200 text-slate-700"}`}
-                  >
-                    {sectionIcons[section.variant] || section.icon || "\u2022"}
-                  </span>
+                  {/* SVG ikon — vises hvis defineret, ellers fallback til tekst */}
+                  {iconSvg ? (
+                    <span
+                      className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${sectionIconStyles[section.variant] || "bg-slate-200 text-slate-700"}`}
+                      dangerouslySetInnerHTML={{ __html: iconSvg }}
+                    />
+                  ) : (
+                    <span
+                      className={`inline-flex h-9 w-9 items-center justify-center rounded-xl text-xs font-black ${sectionIconStyles[section.variant] || "bg-slate-200 text-slate-700"}`}
+                    >
+                      {section.icon || "•"}
+                    </span>
+                  )}
                   <h3 className="text-base font-bold" style={{ color: "var(--text)" }}>
                     {data[section.titleKey]}
                   </h3>
