@@ -15,6 +15,18 @@ import {
   uiText,
 } from "../lib/site";
 
+// Farver til cirklerne — matcher sectionIconStyles farverne
+const SECTION_ICON_COLORS = {
+  use:      { bg: "#d1fae5", color: "#065f46" },
+  dose:     { bg: "#e0f2fe", color: "#0369a1" },
+  side:     { bg: "#fef3c7", color: "#92400e" },
+  interact: { bg: "#ede9fe", color: "#5b21b6" },
+  warn:     { bg: "#fee2e2", color: "#991b1b" },
+  ramadan:  { bg: "#fdf4ff", color: "#7e22ce" },
+  food:     { bg: "#dcfce7", color: "#166534" },
+  store:    { bg: "#f1f5f9", color: "#334155" },
+};
+
 function PlayIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -105,9 +117,7 @@ export function MedicinePage({ medicine, initialLang }) {
             </div>
 
             <div>
-              <span
-                className="mb-2 inline-block rounded-full bg-white/20 px-3 py-0.5 text-xs font-semibold text-white/90"
-              >
+              <span className="mb-2 inline-block rounded-full bg-white/20 px-3 py-0.5 text-xs font-semibold text-white/90">
                 {chromeText.medicinePill}
               </span>
               <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl" style={{ lineHeight: 1.1 }}>
@@ -194,33 +204,59 @@ export function MedicinePage({ medicine, initialLang }) {
           {medicine.sections.map((section) => {
             const list = data[section.listKey] || [];
             const iconSvg = sectionIcons[section.variant];
+            const iconColor = SECTION_ICON_COLORS[section.variant] || { bg: "#f1f5f9", color: "#334155" };
 
             return (
               <section
                 className={`reveal-on-scroll rounded-2xl border border-transparent px-6 py-5 transition duration-300 hover:-translate-y-0.5 hover:shadow-md ${sectionStyles[section.variant] || "bg-slate-50"}`}
                 key={section.listKey}
               >
-                <div className="mb-4 flex items-center gap-3">
-                  {/* SVG ikon — vises hvis defineret, ellers fallback til tekst */}
-                  {iconSvg ? (
-                    <span
-                      className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${sectionIconStyles[section.variant] || "bg-slate-200 text-slate-700"}`}
-                      dangerouslySetInnerHTML={{ __html: iconSvg }}
-                    />
-                  ) : (
-                    <span
-                      className={`inline-flex h-9 w-9 items-center justify-center rounded-xl text-xs font-black ${sectionIconStyles[section.variant] || "bg-slate-200 text-slate-700"}`}
-                    >
-                      {section.icon || "•"}
-                    </span>
-                  )}
-                  <h3 className="text-base font-bold" style={{ color: "var(--text)" }}>
+                {/* Header med stor cirkel-ikon + titel */}
+                <div className="mb-5 flex items-center gap-4">
+                  {/* Stor cirkel med ikon */}
+                  <span
+                    className="inline-flex shrink-0 items-center justify-center rounded-full"
+                    style={{
+                      width: 52,
+                      height: 52,
+                      background: iconColor.bg,
+                      border: `2px solid ${iconColor.color}22`,
+                    }}
+                  >
+                    {iconSvg ? (
+                      <span
+                        style={{ color: iconColor.color, display: "flex", alignItems: "center", justifyContent: "center" }}
+                        dangerouslySetInnerHTML={{
+                          __html: iconSvg.replace('width="18"', 'width="24"').replace('height="18"', 'height="24"'),
+                        }}
+                      />
+                    ) : (
+                      <span style={{ color: iconColor.color, fontSize: 20, fontWeight: 900 }}>
+                        {section.icon || "•"}
+                      </span>
+                    )}
+                  </span>
+
+                  {/* Titel */}
+                  <h3 className="text-lg font-bold leading-tight" style={{ color: "var(--text)" }}>
                     {data[section.titleKey]}
                   </h3>
                 </div>
-                <ul className="space-y-2.5 pl-5 text-[15px] leading-7" style={{ color: "var(--text)" }}>
+
+                {/* Indhold */}
+                <ul className="space-y-3 text-[15px] leading-7 pl-1" style={{ color: "var(--text)" }}>
                   {list.map((item, index) => (
-                    <li key={`${section.listKey}-${index}`} dangerouslySetInnerHTML={{ __html: item }} />
+                    <li
+                      key={`${section.listKey}-${index}`}
+                      className="flex items-start gap-2"
+                    >
+                      {/* Lille farvet prik */}
+                      <span
+                        className="mt-2.5 shrink-0 rounded-full"
+                        style={{ width: 6, height: 6, background: iconColor.color, opacity: 0.7 }}
+                      />
+                      <span dangerouslySetInnerHTML={{ __html: item }} />
+                    </li>
                   ))}
                 </ul>
               </section>
