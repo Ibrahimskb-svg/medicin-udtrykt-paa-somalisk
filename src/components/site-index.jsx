@@ -161,6 +161,12 @@ function getPillMeta(label) {
   return CATEGORY_PILL_ICON[label] || { icon:"download.png", color:"#0D9488", bg:"#F0FDFA" };
 }
 
+// Stort begyndelsesbogstav på første ord
+function capitalize(str) {
+  if (!str) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 // Byg unikke category pills — ingen dubletter baseret på oversat label
 function buildCategoryPills(language) {
   const seen = new Set();
@@ -306,7 +312,7 @@ export function SiteIndex({ initialLang }) {
               }}
             >
               <span style={{ width:10, height:10, borderRadius:"50%", display:"inline-block", flexShrink:0, background: activeCategory === "all" ? "#fff" : "#888" }} />
-              {chromeText.allCategories}
+              {capitalize(chromeText.allCategories)}
             </button>
 
             {/* Én pill per unik oversat kategori */}
@@ -338,7 +344,7 @@ export function SiteIndex({ initialLang }) {
                     }}
                     onError={(e) => { e.currentTarget.style.display="none"; }}
                   />
-                  {label}
+                  {capitalize(label)}
                 </button>
               );
             })}
@@ -395,9 +401,9 @@ export function SiteIndex({ initialLang }) {
                         </span>
                         <span
                           className="rounded-full font-semibold"
-                          style={{ background:style.bg, color:style.color, fontSize:"15px", padding:"6px 14px" }}
+                          style={{ background:style.bg, color:style.color, fontSize:"15px", padding:"7px 15px" }}
                         >
-                          {subtitle || chromeText.medicinePill}
+                          {capitalize(subtitle) || capitalize(chromeText.medicinePill)}
                         </span>
                       </div>
 
