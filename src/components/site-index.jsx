@@ -334,6 +334,7 @@ export function SiteIndex({ initialLang }) {
                     style={{
                       width:22, height:22, objectFit:"contain", flexShrink:0,
                       filter: isActive ? "brightness(0) invert(1)" : "none",
+                      mixBlendMode: isActive ? "normal" : "multiply",
                     }}
                     onError={(e) => { e.currentTarget.style.display="none"; }}
                   />
@@ -388,7 +389,7 @@ export function SiteIndex({ initialLang }) {
                           <img
                             src={`${ICON_BASE}${iconFile}`}
                             alt=""
-                            style={{ width:28, height:28, objectFit:"contain" }}
+                            style={{ width:28, height:28, objectFit:"contain", mixBlendMode:"multiply" }}
                             onError={(e) => { e.currentTarget.style.display="none"; }}
                           />
                         </span>
