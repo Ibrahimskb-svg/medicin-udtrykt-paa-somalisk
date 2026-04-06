@@ -41,7 +41,7 @@ function getDisplayName(slug, language, fallback) {
   return translations[language] ?? translations.so ?? fallback;
 }
 
-// ── Category accent colors (one per English category) ──────────────────────
+// ── Category accent colors ──────────────────────────────────────────────────
 const CATEGORY_STYLE = {
   "high blood pressure":          { color: "#DC2626", bg: "#FEF2F2" },
   "blood pressure & palpitations":{ color: "#E11D48", bg: "#FFF1F2" },
@@ -62,226 +62,118 @@ const CATEGORY_STYLE = {
 };
 const DEFAULT_STYLE = { color: "#0D9488", bg: "#F0FDFA" };
 
+// ── Icon base URL from GitHub ───────────────────────────────────────────────
+const ICON_BASE = "https://raw.githubusercontent.com/Ibrahimskb-svg/medicin-udtrykt-paa-somalisk/main/public/icons/";
+
+// ── Map English category → icon filename + pill color ──────────────────────
+const CATEGORY_META = {
+  // Blodtryk
+  "high blood pressure":           { icon: "blood-pressure.png", color: "#DC2626", bg: "#FEF2F2" },
+  "blood pressure & palpitations": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
+  // Blodfortyndende
+  "blood thinner":                 { icon: "line.png",           color: "#7C3AED", bg: "#F5F3FF" },
+  "blood clot prevention":         { icon: "line.png",           color: "#6D28D9", bg: "#EDE9FE" },
+  // Kolesterol
+  "cholesterol":                   { icon: "cholesterol.png",    color: "#D97706", bg: "#FFFBEB" },
+  // Diabetes
+  "diabetes":                      { icon: "blood-test.png",     color: "#0284C7", bg: "#F0F9FF" },
+  // Astma
+  "asthma":                        { icon: "lungs.png",          color: "#0D9488", bg: "#F0FDFA" },
+  // Psykisk
+  "depression & anxiety":          { icon: "mental-health.png",  color: "#8B5CF6", bg: "#F5F3FF" },
+  "psychosis & bipolar":           { icon: "mental-health.png",  color: "#A855F7", bg: "#FAF5FF" },
+  "epilepsy & bipolar":            { icon: "brain.png",          color: "#7C3AED", bg: "#F5F3FF" },
+  // Søvn
+  "sleep":                         { icon: "nighttime.png",      color: "#4F46E5", bg: "#EEF2FF" },
+  "insomnia":                      { icon: "nighttime.png",      color: "#6366F1", bg: "#EEF2FF" },
+  // Smertestillende
+  "pain relief":                   { icon: "download.png",       color: "#059669", bg: "#ECFDF5" },
+  "pain and fever":                { icon: "download.png",       color: "#F59E0B", bg: "#FFFBEB" },
+  "pain and inflammation":         { icon: "download.png",       color: "#EF4444", bg: "#FEF2F2" },
+  // Mave
+  "stomach acid and heartburn":    { icon: "stomach.png",        color: "#10B981", bg: "#ECFDF5" },
+};
+
+// ── Build unique category pills from current language subtitles ─────────────
+// Returns array of { label (translated), englishCat, meta }
+function buildCategoryPills(language) {
+  const seen = new Set();
+  const pills = [];
+  for (const item of indexData.items) {
+    const englishCat = indexData.subtitles[item.slug]?.en || "";
+    const label = indexData.subtitles[item.slug]?.[language]
+      || indexData.subtitles[item.slug]?.so
+      || "";
+    if (!englishCat || seen.has(englishCat)) continue;
+    seen.add(englishCat);
+    const meta = CATEGORY_META[englishCat] || { icon: "download.png", color: "#0D9488", bg: "#F0FDFA" };
+    pills.push({ label, englishCat, meta });
+  }
+  return pills;
+}
+
 const LIBRARY_CAPSULE_SLUGS = new Set([
-  "amlodipin",
-  "atorvastatin",
-  "enalapril",
-  "lamotrigin",
-  "losartan",
-  "zopiclon",
+  "amlodipin", "atorvastatin", "enalapril", "lamotrigin", "losartan", "zopiclon",
 ]);
-
 const LIBRARY_ROUND_TABLET_SLUGS = new Set([
-  "eliquis",
-  "marevan",
-  "melatonin",
-  "metformin",
-  "metoprolol",
-  "paracetamol",
-  "quetiapin",
-  "sertralin",
-  "xarelto",
+  "eliquis", "marevan", "melatonin", "metformin", "metoprolol",
+  "paracetamol", "quetiapin", "sertralin", "xarelto",
 ]);
-
 const LIBRARY_OVAL_TABLET_SLUGS = new Set([
-  "diclofenac",
-  "hjertemagnyl",
-  "ibuprofen",
-  "morfin_tablet",
-  "naproxen",
-  "pantoprazol",
+  "diclofenac", "hjertemagnyl", "ibuprofen", "morfin_tablet", "naproxen", "pantoprazol",
 ]);
 
-// ── Category icons — SVG per medicine type ─────────────────────────────────
 function CategoryIcon({ englishCat, color, size = 20 }) {
   const s = { width: size, height: size };
   const p = { fill: "none", stroke: color, strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" };
 
   switch (englishCat) {
-
     case "high blood pressure":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          <path d="M12 3V1M11 2l1-1 1 1" strokeWidth="1.5" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /><path d="M12 3V1M11 2l1-1 1 1" strokeWidth="1.5" /></svg>);
     case "blood pressure & palpitations":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-          <path d="M5 10h2.5l1.5-2 2 4 1.5-2H17" strokeWidth="1.4" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /><path d="M5 10h2.5l1.5-2 2 4 1.5-2H17" strokeWidth="1.4" /></svg>);
     case "blood thinner":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" />
-          <path d="M8.5 14.5h7" strokeWidth="2" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" /><path d="M8.5 14.5h7" strokeWidth="2" /></svg>);
     case "blood clot prevention":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          <path d="m9 12 2 2 4-4" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>);
     case "cholesterol":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M2 9.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" />
-          <path d="M2 14.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" />
-          <circle cx="8" cy="9.5" r="1.8" fill={color} stroke="none" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M2 9.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" /><path d="M2 14.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" /><circle cx="8" cy="9.5" r="1.8" fill={color} stroke="none" /></svg>);
     case "diabetes":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" />
-          <path d="M12 9v6M9 12h6" strokeWidth="1.6" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" /><path d="M12 9v6M9 12h6" strokeWidth="1.6" /></svg>);
     case "asthma":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M7 8V4H5C3.9 4 3 5.1 3 6.3v6.4C3 15 4.3 17 6 17h1V8" />
-          <path d="M17 8V4h2c1.1 0 2 1.1 2 2.3v6.4C21 15 19.7 17 18 17h-1V8" />
-          <path d="M7 8h10M12 4v4" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M7 8V4H5C3.9 4 3 5.1 3 6.3v6.4C3 15 4.3 17 6 17h1V8" /><path d="M17 8V4h2c1.1 0 2 1.1 2 2.3v6.4C21 15 19.7 17 18 17h-1V8" /><path d="M7 8h10M12 4v4" /></svg>);
     case "depression & anxiety":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
-          <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          <path d="M9 22l1-3h4l1 3" strokeWidth="1.4" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" /><path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" /><path d="M9 22l1-3h4l1 3" strokeWidth="1.4" /></svg>);
     case "psychosis & bipolar":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
-          <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          <path d="M12 19v2" />
-          <circle cx="10" cy="21.5" r="0.6" fill={color} stroke="none" />
-          <circle cx="14" cy="21.5" r="0.6" fill={color} stroke="none" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" /><path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" /><path d="M12 19v2" /><circle cx="10" cy="21.5" r="0.6" fill={color} stroke="none" /><circle cx="14" cy="21.5" r="0.6" fill={color} stroke="none" /></svg>);
     case "epilepsy & bipolar":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" />
-          <path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" />
-          <path d="M13 9l-2.5 4h3.5l-2.5 4" strokeWidth="1.6" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" /><path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" /><path d="M13 9l-2.5 4h3.5l-2.5 4" strokeWidth="1.6" /></svg>);
     case "sleep":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          <path d="M17 4l.5 1 .5-1-.5-1z" fill={color} stroke="none" />
-          <path d="M20 7l.4.8.4-.8-.4-.8z" fill={color} stroke="none" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>);
     case "insomnia":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          <path d="M15 9h3l-3 3h3" strokeWidth="1.3" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /><path d="M15 9h3l-3 3h3" strokeWidth="1.3" /></svg>);
     case "pain relief":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
-          <path d="m8.5 8.5 7 7" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" /></svg>);
     case "pain and fever":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
-          <path d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill={color} stroke="none" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" /><path d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill={color} stroke="none" /></svg>);
     case "pain and inflammation":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></svg>);
     case "stomach acid and heartburn":
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="M6 4c0-1 .9-2 2-2s2 1 2 2v7c0 2.5 1.5 4.5 4 4.5s4-2 4-4.5V5" />
-          <circle cx="10.5" cy="17" r="1" fill={color} stroke="none" />
-          <circle cx="13.5" cy="19" r="0.7" fill={color} stroke="none" />
-          <circle cx="8" cy="19.5" r="0.8" fill={color} stroke="none" />
-        </svg>
-      );
-
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M6 4c0-1 .9-2 2-2s2 1 2 2v7c0 2.5 1.5 4.5 4 4.5s4-2 4-4.5V5" /><circle cx="10.5" cy="17" r="1" fill={color} stroke="none" /><circle cx="13.5" cy="19" r="0.7" fill={color} stroke="none" /><circle cx="8" cy="19.5" r="0.8" fill={color} stroke="none" /></svg>);
     default:
-      return (
-        <svg viewBox="0 0 24 24" style={s} {...p}>
-          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
-          <path d="m8.5 8.5 7 7" />
-        </svg>
-      );
+      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" /></svg>);
   }
 }
 
 function LibraryMedicineIcon({ slug, color, size = 18 }) {
-  const iconProps = {
-    color,
-    size,
-    strokeWidth: 2,
-    absoluteStrokeWidth: true,
-  };
-
-  if (slug === "insulin") {
-    return <PillBottle {...iconProps} />;
-  }
-
-  if (slug === "morfin_injektion") {
-    return <Syringe {...iconProps} />;
-  }
-
-  if (slug === "symbicort") {
-    return <AirVent {...iconProps} />;
-  }
-
-  if (slug === "ventoline") {
-    return <SprayCan {...iconProps} />;
-  }
-
-  if (LIBRARY_CAPSULE_SLUGS.has(slug)) {
-    return <Pill {...iconProps} />;
-  }
-
-  if (LIBRARY_OVAL_TABLET_SLUGS.has(slug)) {
-    return <Tablets {...iconProps} />;
-  }
-
-  if (LIBRARY_ROUND_TABLET_SLUGS.has(slug)) {
-    return <Pill {...iconProps} />;
-  }
-
+  const iconProps = { color, size, strokeWidth: 2, absoluteStrokeWidth: true };
+  if (slug === "insulin") return <PillBottle {...iconProps} />;
+  if (slug === "morfin_injektion") return <Syringe {...iconProps} />;
+  if (slug === "symbicort") return <AirVent {...iconProps} />;
+  if (slug === "ventoline") return <SprayCan {...iconProps} />;
+  if (LIBRARY_CAPSULE_SLUGS.has(slug)) return <Pill {...iconProps} />;
+  if (LIBRARY_OVAL_TABLET_SLUGS.has(slug)) return <Tablets {...iconProps} />;
+  if (LIBRARY_ROUND_TABLET_SLUGS.has(slug)) return <Pill {...iconProps} />;
   return <Pill {...iconProps} />;
 }
 
@@ -306,18 +198,15 @@ export function SiteIndex({ initialLang }) {
     applyLanguageToDocument(language, text.pageTitle);
   }, [language, text.pageTitle]);
 
-  const categories = useMemo(() => {
-    const values = indexData.items
-      .map((item) => indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "")
-      .filter(Boolean);
-    return [...new Set(values)];
-  }, [language]);
+  // ── Build category pills for current language ──
+  const categoryPills = useMemo(() => buildCategoryPills(language), [language]);
 
   const filteredItems = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
     return indexData.items.filter((item) => {
       const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
-      const matchesCategory = activeCategory === "all" || subtitle === activeCategory;
+      const englishCat = indexData.subtitles[item.slug]?.en || "";
+      const matchesCategory = activeCategory === "all" || englishCat === activeCategory;
       const displayName = getDisplayName(item.slug, language, item.name);
       const matchesSearch =
         !query ||
@@ -371,10 +260,9 @@ export function SiteIndex({ initialLang }) {
           <LanguageSelect label={text.langLabel} onChange={updateLanguage} value={language} />
         </div>
 
-        {/* ── Search + Category row ── */}
-        <div className="reveal-on-scroll mb-7 flex flex-col gap-3 sm:flex-row sm:items-end">
-          {/* Search */}
-          <label className="flex-1" htmlFor="medSearch">
+        {/* ── Search ── */}
+        <div className="reveal-on-scroll mb-6">
+          <label htmlFor="medSearch">
             <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
               {chromeText.searchLabel}
             </span>
@@ -398,32 +286,99 @@ export function SiteIndex({ initialLang }) {
               )}
             </div>
           </label>
+        </div>
 
-          {/* Category dropdown */}
-          <label className="sm:w-52" htmlFor="catSelect">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-              {chromeText.categoryLabel}
-            </span>
-            <select
-              id="catSelect"
-              className="w-full appearance-none rounded-2xl border bg-white px-4 py-3.5 text-sm font-medium outline-none transition-shadow duration-200 focus:shadow-lg"
+        {/* ── Category pills ── */}
+        <div className="reveal-on-scroll mb-7">
+          <span className="mb-3 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            {chromeText.categoryLabel}
+          </span>
+          <div className="flex flex-wrap gap-2.5">
+
+            {/* "Alle" pill */}
+            <button
+              type="button"
+              onClick={() => setActiveCategory("all")}
               style={{
-                borderColor: "var(--border)",
-                color: "var(--text)",
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235A6A7A' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")`,
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 14px center",
-                paddingRight: "40px",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                borderRadius: "999px",
+                border: "1.5px solid",
+                padding: "8px 18px",
+                fontSize: "14px",
+                fontWeight: 600,
+                lineHeight: 1,
+                cursor: "pointer",
+                transition: "all 0.2s",
+                whiteSpace: "nowrap",
+                ...(activeCategory === "all"
+                  ? { background: "#1a1a1a", color: "#ffffff", borderColor: "#1a1a1a", boxShadow: "0 2px 8px rgba(0,0,0,0.18)" }
+                  : { background: "var(--surface, #fff)", color: "var(--text)", borderColor: "var(--border)" })
               }}
-              value={activeCategory}
-              onChange={(e) => setActiveCategory(e.target.value)}
             >
-              <option value="all">{chromeText.allCategories}</option>
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>{cat}</option>
-              ))}
-            </select>
-          </label>
+              <span style={{
+                width: 10, height: 10, borderRadius: "50%", display: "inline-block", flexShrink: 0,
+                background: activeCategory === "all" ? "#fff" : "#888"
+              }} />
+              {chromeText.allCategories}
+            </button>
+
+            {/* Category pills med GitHub-ikoner */}
+            {categoryPills.map(({ label, englishCat, meta }) => {
+              const isActive = activeCategory === englishCat;
+              return (
+                <button
+                  key={englishCat}
+                  type="button"
+                  onClick={() => setActiveCategory(isActive ? "all" : englishCat)}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    borderRadius: "999px",
+                    border: "1.5px solid",
+                    padding: "8px 18px",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    lineHeight: 1,
+                    cursor: "pointer",
+                    transition: "all 0.2s",
+                    whiteSpace: "nowrap",
+                    ...(isActive
+                      ? {
+                          background: meta.color,
+                          color: "#ffffff",
+                          borderColor: meta.color,
+                          boxShadow: `0 2px 12px ${meta.color}50`,
+                        }
+                      : {
+                          background: meta.bg,
+                          color: meta.color,
+                          borderColor: `${meta.color}40`,
+                        })
+                  }}
+                >
+                  {/* GitHub ikon — 22px for god balance med 14px tekst */}
+                  <img
+                    src={`${ICON_BASE}${meta.icon}`}
+                    alt=""
+                    style={{
+                      width: 22,
+                      height: 22,
+                      objectFit: "contain",
+                      flexShrink: 0,
+                      filter: isActive
+                        ? "brightness(0) invert(1)"
+                        : "none",
+                    }}
+                    onError={(e) => { e.currentTarget.style.display = "none"; }}
+                  />
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* ── Section heading ── */}
@@ -450,11 +405,8 @@ export function SiteIndex({ initialLang }) {
               const subtitle =
                 (indexData.subtitles[item.slug] &&
                   (indexData.subtitles[item.slug][language] || indexData.subtitles[item.slug].so)) || "";
-
               const englishCat = indexData.subtitles[item.slug]?.en || "";
               const style = CATEGORY_STYLE[englishCat] || DEFAULT_STYLE;
-
-              // ── Use language-specific name if defined, otherwise fall back to item.name ──
               const displayName = getDisplayName(item.slug, language, item.name);
 
               return (
@@ -468,7 +420,7 @@ export function SiteIndex({ initialLang }) {
                     <div className="w-1.5 shrink-0" style={{ background: style.color }} />
 
                     <div className="flex flex-1 flex-col p-5">
-                      {/* Medicine icon + category */}
+                      {/* Medicine icon + category badge */}
                       <div className="flex items-center gap-2.5">
                         <span
                           className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
@@ -484,7 +436,7 @@ export function SiteIndex({ initialLang }) {
                         </span>
                       </div>
 
-                      {/* Medicine name — now language-aware */}
+                      {/* Medicine name */}
                       <h3 className="mt-3 text-xl font-bold" style={{ color: "var(--text)" }}>
                         {displayName}
                       </h3>
