@@ -1,13 +1,5 @@
 "use client";
 
-import {
-  AirVent,
-  Pill,
-  PillBottle,
-  SprayCan,
-  Syringe,
-  Tablets,
-} from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
@@ -19,162 +11,169 @@ import { getIndexData, uiText } from "../lib/site";
 
 const indexData = getIndexData();
 
-// ── Translated display names for slugs that need language-specific names ───
-const SLUG_DISPLAY_NAMES = {
-  morfin_injektion: {
-    da: "Morfin (injektion)",
-    en: "Morphine (injection)",
-    ar: "مورفين (حقن)",
-    so: "Morfin (irbad)",
-  },
-  morfin_tablet: {
-    da: "Morfin (tablet)",
-    en: "Morphine (tablet)",
-    ar: "مورفين (قرص)",
-    so: "Morfin (kiniin)",
-  },
-};
-
-function getDisplayName(slug, language, fallback) {
-  const translations = SLUG_DISPLAY_NAMES[slug];
-  if (!translations) return fallback;
-  return translations[language] ?? translations.so ?? fallback;
-}
-
-// ── Category accent colors ──────────────────────────────────────────────────
-const CATEGORY_STYLE = {
-  "high blood pressure":          { color: "#DC2626", bg: "#FEF2F2" },
-  "blood pressure & palpitations":{ color: "#E11D48", bg: "#FFF1F2" },
-  "blood thinner":                { color: "#7C3AED", bg: "#F5F3FF" },
-  "blood clot prevention":        { color: "#6D28D9", bg: "#EDE9FE" },
-  "cholesterol":                  { color: "#D97706", bg: "#FFFBEB" },
-  "diabetes":                     { color: "#0284C7", bg: "#F0F9FF" },
-  "asthma":                       { color: "#0D9488", bg: "#F0FDFA" },
-  "depression & anxiety":         { color: "#8B5CF6", bg: "#F5F3FF" },
-  "psychosis & bipolar":          { color: "#A855F7", bg: "#FAF5FF" },
-  "epilepsy & bipolar":           { color: "#7C3AED", bg: "#F5F3FF" },
-  "sleep":                        { color: "#4F46E5", bg: "#EEF2FF" },
-  "insomnia":                     { color: "#6366F1", bg: "#EEF2FF" },
-  "pain relief":                  { color: "#059669", bg: "#ECFDF5" },
-  "pain and fever":               { color: "#F59E0B", bg: "#FFFBEB" },
-  "pain and inflammation":        { color: "#EF4444", bg: "#FEF2F2" },
-  "stomach acid and heartburn":   { color: "#10B981", bg: "#ECFDF5" },
-};
-const DEFAULT_STYLE = { color: "#0D9488", bg: "#F0FDFA" };
-
-// ── Icon base URL from GitHub ───────────────────────────────────────────────
 const ICON_BASE = "https://raw.githubusercontent.com/Ibrahimskb-svg/medicin-udtrykt-paa-somalisk/main/public/icons/";
 
-// ── Map English category → icon filename + pill color ──────────────────────
-const CATEGORY_META = {
-  // Blodtryk
-  "high blood pressure":           { icon: "blood-pressure.png", color: "#DC2626", bg: "#FEF2F2" },
-  "blood pressure & palpitations": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
-  // Blodfortyndende
-  "blood thinner":                 { icon: "line.png",           color: "#7C3AED", bg: "#F5F3FF" },
-  "blood clot prevention":         { icon: "line.png",           color: "#6D28D9", bg: "#EDE9FE" },
-  // Kolesterol
-  "cholesterol":                   { icon: "cholesterol.png",    color: "#D97706", bg: "#FFFBEB" },
-  // Diabetes
-  "diabetes":                      { icon: "blood-test.png",     color: "#0284C7", bg: "#F0F9FF" },
-  // Astma
-  "asthma":                        { icon: "lungs.png",          color: "#0D9488", bg: "#F0FDFA" },
-  // Psykisk
-  "depression & anxiety":          { icon: "mental-health.png",  color: "#8B5CF6", bg: "#F5F3FF" },
-  "psychosis & bipolar":           { icon: "mental-health.png",  color: "#A855F7", bg: "#FAF5FF" },
-  "epilepsy & bipolar":            { icon: "brain.png",          color: "#7C3AED", bg: "#F5F3FF" },
-  // Søvn
-  "sleep":                         { icon: "nighttime.png",      color: "#4F46E5", bg: "#EEF2FF" },
-  "insomnia":                      { icon: "nighttime.png",      color: "#6366F1", bg: "#EEF2FF" },
-  // Smertestillende
-  "pain relief":                   { icon: "download.png",       color: "#059669", bg: "#ECFDF5" },
-  "pain and fever":                { icon: "download.png",       color: "#F59E0B", bg: "#FFFBEB" },
-  "pain and inflammation":         { icon: "download.png",       color: "#EF4444", bg: "#FEF2F2" },
-  // Mave
-  "stomach acid and heartburn":    { icon: "stomach.png",        color: "#10B981", bg: "#ECFDF5" },
+// ── Translated display names ───────────────────────────────────────────────
+const SLUG_DISPLAY_NAMES = {
+  morfin_injektion: { da:"Morfin (injektion)", en:"Morphine (injection)", ar:"مورفين (حقن)", so:"Morfin (irbad)" },
+  morfin_tablet:    { da:"Morfin (tablet)",    en:"Morphine (tablet)",    ar:"مورفين (قرص)", so:"Morfin (kiniin)" },
+};
+function getDisplayName(slug, language, fallback) {
+  const t = SLUG_DISPLAY_NAMES[slug];
+  if (!t) return fallback;
+  return t[language] ?? t.so ?? fallback;
+}
+
+// ── GitHub icon per slug ───────────────────────────────────────────────────
+// Hver slug får sit eget ikon fra /public/icons/
+const SLUG_ICON = {
+  amlodipin:        "blood-pressure.png",
+  enalapril:        "blood-pressure.png",
+  losartan:         "blood-pressure.png",
+  metoprolol:       "blood-pressure.png",
+  eliquis:          "line.png",
+  marevan:          "line.png",
+  xarelto:          "line.png",
+  hjertemagnyl:     "line.png",
+  atorvastatin:     "cholesterol.png",
+  metformin:        "blood-test.png",
+  insulin:          "blood-test.png",
+  ventoline:        "lungs.png",
+  symbicort:        "lungs.png",
+  sertralin:        "mental-health.png",
+  quetiapin:        "mental-health.png",
+  lamotrigin:       "brain.png",
+  melatonin:        "nighttime.png",
+  zopiclon:         "nighttime.png",
+  paracetamol:      "download.png",
+  ibuprofen:        "download.png",
+  diclofenac:       "download.png",
+  naproxen:         "download.png",
+  morfin_tablet:    "download.png",
+  morfin_injektion: "download.png",
+  pantoprazol:      "stomach.png",
 };
 
-// ── Build unique category pills from current language subtitles ─────────────
-// Returns array of { label (translated), englishCat, meta }
+// ── Category accent colors per slug ───────────────────────────────────────
+const SLUG_STYLE = {
+  amlodipin:        { color:"#DC2626", bg:"#FEF2F2" },
+  enalapril:        { color:"#DC2626", bg:"#FEF2F2" },
+  losartan:         { color:"#DC2626", bg:"#FEF2F2" },
+  metoprolol:       { color:"#E11D48", bg:"#FFF1F2" },
+  eliquis:          { color:"#7C3AED", bg:"#F5F3FF" },
+  marevan:          { color:"#7C3AED", bg:"#F5F3FF" },
+  xarelto:          { color:"#7C3AED", bg:"#F5F3FF" },
+  hjertemagnyl:     { color:"#6D28D9", bg:"#EDE9FE" },
+  atorvastatin:     { color:"#D97706", bg:"#FFFBEB" },
+  metformin:        { color:"#0284C7", bg:"#F0F9FF" },
+  insulin:          { color:"#0284C7", bg:"#F0F9FF" },
+  ventoline:        { color:"#0D9488", bg:"#F0FDFA" },
+  symbicort:        { color:"#0D9488", bg:"#F0FDFA" },
+  sertralin:        { color:"#8B5CF6", bg:"#F5F3FF" },
+  quetiapin:        { color:"#A855F7", bg:"#FAF5FF" },
+  lamotrigin:       { color:"#7C3AED", bg:"#F5F3FF" },
+  melatonin:        { color:"#4F46E5", bg:"#EEF2FF" },
+  zopiclon:         { color:"#6366F1", bg:"#EEF2FF" },
+  paracetamol:      { color:"#F59E0B", bg:"#FFFBEB" },
+  ibuprofen:        { color:"#EF4444", bg:"#FEF2F2" },
+  diclofenac:       { color:"#EF4444", bg:"#FEF2F2" },
+  naproxen:         { color:"#EF4444", bg:"#FEF2F2" },
+  morfin_tablet:    { color:"#059669", bg:"#ECFDF5" },
+  morfin_injektion: { color:"#059669", bg:"#ECFDF5" },
+  pantoprazol:      { color:"#10B981", bg:"#ECFDF5" },
+};
+const DEFAULT_STYLE = { color:"#0D9488", bg:"#F0FDFA" };
+
+// ── Category pills — grupperet på OVERSAT navn så ingen dubletter ──────────
+// Vi bruger det oversatte navn som nøgle og samler alle engelske cats under det
+const CATEGORY_PILL_ICON = {
+  // dansk label → ikon + farve
+  "forhøjet blodtryk":        { icon:"blood-pressure.png", color:"#DC2626", bg:"#FEF2F2" },
+  "blodtryk & hjertebanken":  { icon:"blood-pressure.png", color:"#E11D48", bg:"#FFF1F2" },
+  "blodfortyndende":          { icon:"line.png",           color:"#7C3AED", bg:"#F5F3FF" },
+  "blodpropforebyggelse":     { icon:"line.png",           color:"#6D28D9", bg:"#EDE9FE" },
+  "kolesterol":               { icon:"cholesterol.png",    color:"#D97706", bg:"#FFFBEB" },
+  "diabetes":                 { icon:"blood-test.png",     color:"#0284C7", bg:"#F0F9FF" },
+  "astma":                    { icon:"lungs.png",          color:"#0D9488", bg:"#F0FDFA" },
+  "depression & angst":       { icon:"mental-health.png",  color:"#8B5CF6", bg:"#F5F3FF" },
+  "psykose & bipolar":        { icon:"mental-health.png",  color:"#A855F7", bg:"#FAF5FF" },
+  "epilepsi & bipolar":       { icon:"brain.png",          color:"#7C3AED", bg:"#F5F3FF" },
+  "søvn":                     { icon:"nighttime.png",      color:"#4F46E5", bg:"#EEF2FF" },
+  "søvnløshed":               { icon:"nighttime.png",      color:"#6366F1", bg:"#EEF2FF" },
+  "smertestillende":          { icon:"download.png",       color:"#059669", bg:"#ECFDF5" },
+  "smerter og feber":         { icon:"download.png",       color:"#F59E0B", bg:"#FFFBEB" },
+  "smerter og betændelse":    { icon:"download.png",       color:"#EF4444", bg:"#FEF2F2" },
+  "mavesyre og halsbrand":    { icon:"stomach.png",        color:"#10B981", bg:"#ECFDF5" },
+  // somalisk
+  "dhiig-karka":              { icon:"blood-pressure.png", color:"#DC2626", bg:"#FEF2F2" },
+  "dhiig-karka & wadne garaac":{ icon:"blood-pressure.png",color:"#E11D48", bg:"#FFF1F2" },
+  "dhiig-khafiifiye":         { icon:"line.png",           color:"#7C3AED", bg:"#F5F3FF" },
+  "dhiig-xinjir ka hortag":   { icon:"line.png",           color:"#6D28D9", bg:"#EDE9FE" },
+  "kolestarool":              { icon:"cholesterol.png",    color:"#D97706", bg:"#FFFBEB" },
+  "sonkoroow":                { icon:"blood-test.png",     color:"#0284C7", bg:"#F0F9FF" },
+  "neef-mareenka":            { icon:"lungs.png",          color:"#0D9488", bg:"#F0FDFA" },
+  "niyad-jab & welwel":       { icon:"mental-health.png",  color:"#8B5CF6", bg:"#F5F3FF" },
+  "cilad dhimirka & laba-cirifood":{ icon:"mental-health.png", color:"#A855F7", bg:"#FAF5FF" },
+  "suuxdin & laba-cirifood":  { icon:"brain.png",          color:"#7C3AED", bg:"#F5F3FF" },
+  "hurdo":                    { icon:"nighttime.png",      color:"#4F46E5", bg:"#EEF2FF" },
+  "hurdo la'aan":             { icon:"nighttime.png",      color:"#6366F1", bg:"#EEF2FF" },
+  "xanuun baabi'iye":         { icon:"download.png",       color:"#059669", bg:"#ECFDF5" },
+  "xanuun & qandho":          { icon:"download.png",       color:"#F59E0B", bg:"#FFFBEB" },
+  "xanuun & barar":           { icon:"download.png",       color:"#EF4444", bg:"#FEF2F2" },
+  "gaastriga iyo laab-jeexa": { icon:"stomach.png",        color:"#10B981", bg:"#ECFDF5" },
+  // engelsk
+  "high blood pressure":      { icon:"blood-pressure.png", color:"#DC2626", bg:"#FEF2F2" },
+  "blood pressure & palpitations":{ icon:"blood-pressure.png", color:"#E11D48", bg:"#FFF1F2" },
+  "blood thinner":            { icon:"line.png",           color:"#7C3AED", bg:"#F5F3FF" },
+  "blood clot prevention":    { icon:"line.png",           color:"#6D28D9", bg:"#EDE9FE" },
+  "cholesterol":              { icon:"cholesterol.png",    color:"#D97706", bg:"#FFFBEB" },
+  "diabetes":                 { icon:"blood-test.png",     color:"#0284C7", bg:"#F0F9FF" },
+  "asthma":                   { icon:"lungs.png",          color:"#0D9488", bg:"#F0FDFA" },
+  "depression & anxiety":     { icon:"mental-health.png",  color:"#8B5CF6", bg:"#F5F3FF" },
+  "psychosis & bipolar":      { icon:"mental-health.png",  color:"#A855F7", bg:"#FAF5FF" },
+  "epilepsy & bipolar":       { icon:"brain.png",          color:"#7C3AED", bg:"#F5F3FF" },
+  "sleep":                    { icon:"nighttime.png",      color:"#4F46E5", bg:"#EEF2FF" },
+  "insomnia":                 { icon:"nighttime.png",      color:"#6366F1", bg:"#EEF2FF" },
+  "pain relief":              { icon:"download.png",       color:"#059669", bg:"#ECFDF5" },
+  "pain and fever":           { icon:"download.png",       color:"#F59E0B", bg:"#FFFBEB" },
+  "pain and inflammation":    { icon:"download.png",       color:"#EF4444", bg:"#FEF2F2" },
+  "stomach acid and heartburn":{ icon:"stomach.png",       color:"#10B981", bg:"#ECFDF5" },
+  // arabisk
+  "ارتفاع ضغط الدم":         { icon:"blood-pressure.png", color:"#DC2626", bg:"#FEF2F2" },
+  "ضغط الدم وخفقان القلب":   { icon:"blood-pressure.png", color:"#E11D48", bg:"#FFF1F2" },
+  "مميع للدم":               { icon:"line.png",           color:"#7C3AED", bg:"#F5F3FF" },
+  "الوقاية من الجلطات":      { icon:"line.png",           color:"#6D28D9", bg:"#EDE9FE" },
+  "الكوليسترول":             { icon:"cholesterol.png",    color:"#D97706", bg:"#FFFBEB" },
+  "السكري":                  { icon:"blood-test.png",     color:"#0284C7", bg:"#F0F9FF" },
+  "الربو":                   { icon:"lungs.png",          color:"#0D9488", bg:"#F0FDFA" },
+  "الاكتئاب والقلق":         { icon:"mental-health.png",  color:"#8B5CF6", bg:"#F5F3FF" },
+  "الذهان وثنائي القطب":     { icon:"mental-health.png",  color:"#A855F7", bg:"#FAF5FF" },
+  "الصرع وثنائي القطب":      { icon:"brain.png",          color:"#7C3AED", bg:"#F5F3FF" },
+  "النوم":                   { icon:"nighttime.png",      color:"#4F46E5", bg:"#EEF2FF" },
+  "الأرق":                   { icon:"nighttime.png",      color:"#6366F1", bg:"#EEF2FF" },
+  "مسكن ألم":                { icon:"download.png",       color:"#059669", bg:"#ECFDF5" },
+  "ألم وحمى":                { icon:"download.png",       color:"#F59E0B", bg:"#FFFBEB" },
+  "ألم والتهاب":             { icon:"download.png",       color:"#EF4444", bg:"#FEF2F2" },
+  "حموضة المعدة وحرقة المعدة":{ icon:"stomach.png",      color:"#10B981", bg:"#ECFDF5" },
+};
+
+function getPillMeta(label) {
+  return CATEGORY_PILL_ICON[label] || { icon:"download.png", color:"#0D9488", bg:"#F0FDFA" };
+}
+
+// Byg unikke category pills — ingen dubletter baseret på oversat label
 function buildCategoryPills(language) {
   const seen = new Set();
   const pills = [];
   for (const item of indexData.items) {
-    const englishCat = indexData.subtitles[item.slug]?.en || "";
     const label = indexData.subtitles[item.slug]?.[language]
       || indexData.subtitles[item.slug]?.so
       || "";
-    if (!englishCat || seen.has(englishCat)) continue;
-    seen.add(englishCat);
-    const meta = CATEGORY_META[englishCat] || { icon: "download.png", color: "#0D9488", bg: "#F0FDFA" };
-    pills.push({ label, englishCat, meta });
+    if (!label || seen.has(label)) continue;
+    seen.add(label);
+    pills.push({ label, language });
   }
   return pills;
-}
-
-const LIBRARY_CAPSULE_SLUGS = new Set([
-  "amlodipin", "atorvastatin", "enalapril", "lamotrigin", "losartan", "zopiclon",
-]);
-const LIBRARY_ROUND_TABLET_SLUGS = new Set([
-  "eliquis", "marevan", "melatonin", "metformin", "metoprolol",
-  "paracetamol", "quetiapin", "sertralin", "xarelto",
-]);
-const LIBRARY_OVAL_TABLET_SLUGS = new Set([
-  "diclofenac", "hjertemagnyl", "ibuprofen", "morfin_tablet", "naproxen", "pantoprazol",
-]);
-
-function CategoryIcon({ englishCat, color, size = 20 }) {
-  const s = { width: size, height: size };
-  const p = { fill: "none", stroke: color, strokeWidth: "1.75", strokeLinecap: "round", strokeLinejoin: "round" };
-
-  switch (englishCat) {
-    case "high blood pressure":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /><path d="M12 3V1M11 2l1-1 1 1" strokeWidth="1.5" /></svg>);
-    case "blood pressure & palpitations":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /><path d="M5 10h2.5l1.5-2 2 4 1.5-2H17" strokeWidth="1.4" /></svg>);
-    case "blood thinner":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" /><path d="M8.5 14.5h7" strokeWidth="2" /></svg>);
-    case "blood clot prevention":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></svg>);
-    case "cholesterol":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M2 9.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" /><path d="M2 14.5c2-2.5 4 0 6 0s4-2.5 6 0 4 2.5 6 0" /><circle cx="8" cy="9.5" r="1.8" fill={color} stroke="none" /></svg>);
-    case "diabetes":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0Z" /><path d="M12 9v6M9 12h6" strokeWidth="1.6" /></svg>);
-    case "asthma":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M7 8V4H5C3.9 4 3 5.1 3 6.3v6.4C3 15 4.3 17 6 17h1V8" /><path d="M17 8V4h2c1.1 0 2 1.1 2 2.3v6.4C21 15 19.7 17 18 17h-1V8" /><path d="M7 8h10M12 4v4" /></svg>);
-    case "depression & anxiety":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" /><path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" /><path d="M9 22l1-3h4l1 3" strokeWidth="1.4" /></svg>);
-    case "psychosis & bipolar":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" /><path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" /><path d="M12 19v2" /><circle cx="10" cy="21.5" r="0.6" fill={color} stroke="none" /><circle cx="14" cy="21.5" r="0.6" fill={color} stroke="none" /></svg>);
-    case "epilepsy & bipolar":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M12 5a2.5 2.5 0 0 0-5 .5C5 6 3.5 7.5 3.5 9.5c0 1.5.7 2.8 1.8 3.6A3.5 3.5 0 0 0 9 19h3" /><path d="M12 5a2.5 2.5 0 0 1 5 .5c2 .5 3.5 2 3.5 4 0 1.5-.7 2.8-1.8 3.6A3.5 3.5 0 0 1 15 19h-3" /><path d="M13 9l-2.5 4h3.5l-2.5 4" strokeWidth="1.6" /></svg>);
-    case "sleep":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /></svg>);
-    case "insomnia":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" /><path d="M15 9h3l-3 3h3" strokeWidth="1.3" /></svg>);
-    case "pain relief":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" /></svg>);
-    case "pain and fever":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" /><path d="M12 18a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" fill={color} stroke="none" /></svg>);
-    case "pain and inflammation":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" /></svg>);
-    case "stomach acid and heartburn":
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="M6 4c0-1 .9-2 2-2s2 1 2 2v7c0 2.5 1.5 4.5 4 4.5s4-2 4-4.5V5" /><circle cx="10.5" cy="17" r="1" fill={color} stroke="none" /><circle cx="13.5" cy="19" r="0.7" fill={color} stroke="none" /><circle cx="8" cy="19.5" r="0.8" fill={color} stroke="none" /></svg>);
-    default:
-      return (<svg viewBox="0 0 24 24" style={s} {...p}><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" /></svg>);
-  }
-}
-
-function LibraryMedicineIcon({ slug, color, size = 18 }) {
-  const iconProps = { color, size, strokeWidth: 2, absoluteStrokeWidth: true };
-  if (slug === "insulin") return <PillBottle {...iconProps} />;
-  if (slug === "morfin_injektion") return <Syringe {...iconProps} />;
-  if (slug === "symbicort") return <AirVent {...iconProps} />;
-  if (slug === "ventoline") return <SprayCan {...iconProps} />;
-  if (LIBRARY_CAPSULE_SLUGS.has(slug)) return <Pill {...iconProps} />;
-  if (LIBRARY_OVAL_TABLET_SLUGS.has(slug)) return <Tablets {...iconProps} />;
-  if (LIBRARY_ROUND_TABLET_SLUGS.has(slug)) return <Pill {...iconProps} />;
-  return <Pill {...iconProps} />;
 }
 
 function SearchIcon() {
@@ -188,55 +187,54 @@ function SearchIcon() {
 
 export function SiteIndex({ initialLang }) {
   const { language, updateLanguage } = useLanguageRouting({ initialLanguage: initialLang });
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm]     = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const text = useMemo(() => indexData.translations[language] || indexData.translations.so, [language]);
+  const text       = useMemo(() => indexData.translations[language] || indexData.translations.so, [language]);
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
 
   useEffect(() => {
     applyLanguageToDocument(language, text.pageTitle);
   }, [language, text.pageTitle]);
 
-  // ── Build category pills for current language ──
+  // Nulstil kategori når sprog skifter
+  useEffect(() => { setActiveCategory("all"); }, [language]);
+
   const categoryPills = useMemo(() => buildCategoryPills(language), [language]);
 
   const filteredItems = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
     return indexData.items.filter((item) => {
-      const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
-      const englishCat = indexData.subtitles[item.slug]?.en || "";
-      const matchesCategory = activeCategory === "all" || englishCat === activeCategory;
+      const subtitle    = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
+      const matchesCat  = activeCategory === "all" || subtitle === activeCategory;
       const displayName = getDisplayName(item.slug, language, item.name);
-      const matchesSearch =
+      const matchSearch =
         !query ||
         displayName.toLowerCase().includes(query) ||
         item.name.toLowerCase().includes(query) ||
         subtitle.toLowerCase().includes(query);
-      return matchesCategory && matchesSearch;
+      return matchesCat && matchSearch;
     });
   }, [activeCategory, language, searchTerm]);
 
   useScrollReveal([language, activeCategory, searchTerm]);
 
   return (
-    <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
+    <div style={{ background:"var(--bg)", color:"var(--text)" }} className="min-h-screen">
 
-      {/* ── Hero banner ── */}
-      <div style={{ background: "var(--heroBg)" }}>
+      {/* ── Hero ── */}
+      <div style={{ background:"var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" /><path d="m8.5 8.5 7 7" />
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>
             </svg>
             {chromeText.heroEyebrow}
           </div>
-          <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl" style={{ lineHeight: 1.1 }}>
+          <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl" style={{ lineHeight:1.1 }}>
             {text.hdrTitle}
           </h1>
-          <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
-            {text.hdrSubtitle}
-          </p>
+          <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">{text.hdrSubtitle}</p>
           <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
             <span className="flex items-center gap-1.5">
               <span className="text-lg font-black text-white">{indexData.items.length}</span>
@@ -260,119 +258,84 @@ export function SiteIndex({ initialLang }) {
           <LanguageSelect label={text.langLabel} onChange={updateLanguage} value={language} />
         </div>
 
-        {/* ── Search ── */}
+        {/* ── Søgefelt — UÆNDRET ── */}
         <div className="reveal-on-scroll mb-6">
           <label htmlFor="medSearch">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color:"var(--text-muted)" }}>
               {chromeText.searchLabel}
             </span>
             <div
               className="flex items-center gap-3 rounded-2xl border bg-white px-5 py-3.5 transition-shadow duration-200 focus-within:shadow-lg"
-              style={{ borderColor: "var(--border)" }}
+              style={{ borderColor:"var(--border)" }}
             >
-              <span className="shrink-0" style={{ color: "var(--text-muted)" }}><SearchIcon /></span>
+              <span className="shrink-0" style={{ color:"var(--text-muted)" }}><SearchIcon /></span>
               <input
                 id="medSearch"
                 className="flex-1 bg-transparent text-base outline-none"
-                style={{ color: "var(--text)" }}
+                style={{ color:"var(--text)" }}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={chromeText.searchPlaceholder}
                 value={searchTerm}
               />
               {searchTerm && (
-                <button type="button" className="shrink-0 rounded-full p-1 text-sm transition hover:bg-gray-100" style={{ color: "var(--text-muted)" }} onClick={() => setSearchTerm("")}>
-                  ✕
-                </button>
+                <button type="button" className="shrink-0 rounded-full p-1 text-sm transition hover:bg-gray-100" style={{ color:"var(--text-muted)" }} onClick={() => setSearchTerm("")}>✕</button>
               )}
             </div>
           </label>
         </div>
 
-        {/* ── Category pills ── */}
+        {/* ── Category pills — ingen dubletter, rigtige ikoner og farver ── */}
         <div className="reveal-on-scroll mb-7">
-          <span className="mb-3 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+          <span className="mb-3 block text-xs font-semibold uppercase tracking-widest" style={{ color:"var(--text-muted)" }}>
             {chromeText.categoryLabel}
           </span>
           <div className="flex flex-wrap gap-2.5">
 
-            {/* "Alle" pill */}
+            {/* Alle */}
             <button
               type="button"
               onClick={() => setActiveCategory("all")}
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                borderRadius: "999px",
-                border: "1.5px solid",
-                padding: "8px 18px",
-                fontSize: "14px",
-                fontWeight: 600,
-                lineHeight: 1,
-                cursor: "pointer",
-                transition: "all 0.2s",
-                whiteSpace: "nowrap",
+                display:"inline-flex", alignItems:"center", gap:"8px",
+                borderRadius:"999px", border:"1.5px solid",
+                padding:"8px 18px", fontSize:"14px", fontWeight:600,
+                lineHeight:1, cursor:"pointer", transition:"all 0.2s", whiteSpace:"nowrap",
                 ...(activeCategory === "all"
-                  ? { background: "#1a1a1a", color: "#ffffff", borderColor: "#1a1a1a", boxShadow: "0 2px 8px rgba(0,0,0,0.18)" }
-                  : { background: "var(--surface, #fff)", color: "var(--text)", borderColor: "var(--border)" })
+                  ? { background:"#1a1a1a", color:"#ffffff", borderColor:"#1a1a1a", boxShadow:"0 2px 8px rgba(0,0,0,0.18)" }
+                  : { background:"var(--surface,#fff)", color:"var(--text)", borderColor:"var(--border)" })
               }}
             >
-              <span style={{
-                width: 10, height: 10, borderRadius: "50%", display: "inline-block", flexShrink: 0,
-                background: activeCategory === "all" ? "#fff" : "#888"
-              }} />
+              <span style={{ width:10, height:10, borderRadius:"50%", display:"inline-block", flexShrink:0, background: activeCategory === "all" ? "#fff" : "#888" }} />
               {chromeText.allCategories}
             </button>
 
-            {/* Category pills med GitHub-ikoner */}
-            {categoryPills.map(({ label, englishCat, meta }) => {
-              const isActive = activeCategory === englishCat;
+            {/* Én pill per unik oversat kategori */}
+            {categoryPills.map(({ label }) => {
+              const isActive = activeCategory === label;
+              const meta     = getPillMeta(label);
               return (
                 <button
-                  key={englishCat}
+                  key={label}
                   type="button"
-                  onClick={() => setActiveCategory(isActive ? "all" : englishCat)}
+                  onClick={() => setActiveCategory(isActive ? "all" : label)}
                   style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    borderRadius: "999px",
-                    border: "1.5px solid",
-                    padding: "8px 18px",
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    lineHeight: 1,
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                    whiteSpace: "nowrap",
+                    display:"inline-flex", alignItems:"center", gap:"8px",
+                    borderRadius:"999px", border:"1.5px solid",
+                    padding:"8px 18px", fontSize:"14px", fontWeight:600,
+                    lineHeight:1, cursor:"pointer", transition:"all 0.2s", whiteSpace:"nowrap",
                     ...(isActive
-                      ? {
-                          background: meta.color,
-                          color: "#ffffff",
-                          borderColor: meta.color,
-                          boxShadow: `0 2px 12px ${meta.color}50`,
-                        }
-                      : {
-                          background: meta.bg,
-                          color: meta.color,
-                          borderColor: `${meta.color}40`,
-                        })
+                      ? { background:meta.color, color:"#ffffff", borderColor:meta.color, boxShadow:`0 2px 12px ${meta.color}50` }
+                      : { background:meta.bg,    color:meta.color, borderColor:`${meta.color}40` })
                   }}
                 >
-                  {/* GitHub ikon — 22px for god balance med 14px tekst */}
                   <img
                     src={`${ICON_BASE}${meta.icon}`}
                     alt=""
                     style={{
-                      width: 22,
-                      height: 22,
-                      objectFit: "contain",
-                      flexShrink: 0,
-                      filter: isActive
-                        ? "brightness(0) invert(1)"
-                        : "none",
+                      width:22, height:22, objectFit:"contain", flexShrink:0,
+                      filter: isActive ? "brightness(0) invert(1)" : "none",
                     }}
-                    onError={(e) => { e.currentTarget.style.display = "none"; }}
+                    onError={(e) => { e.currentTarget.style.display="none"; }}
                   />
                   {label}
                 </button>
@@ -384,74 +347,75 @@ export function SiteIndex({ initialLang }) {
         {/* ── Section heading ── */}
         <div className="reveal-on-scroll mb-5 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest" style={{ color:"var(--text-muted)" }}>
               {chromeText.libraryEyebrow}
             </p>
-            <h2 className="text-2xl font-extrabold" style={{ color: "var(--text)" }}>
-              {text.pickTitle}
-            </h2>
+            <h2 className="text-2xl font-extrabold" style={{ color:"var(--text)" }}>{text.pickTitle}</h2>
           </div>
           {filteredItems.length > 0 && (
-            <span className="shrink-0 text-sm" style={{ color: "var(--text-muted)" }}>
+            <span className="shrink-0 text-sm" style={{ color:"var(--text-muted)" }}>
               {filteredItems.length} {chromeText.medicinesStat.toLowerCase()}
             </span>
           )}
         </div>
 
-        {/* ── Medicine cards ── */}
+        {/* ── Medicine cards — GitHub-ikoner i stedet for Lucide ── */}
         {filteredItems.length ? (
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {filteredItems.map((item, index) => {
-              const subtitle =
-                (indexData.subtitles[item.slug] &&
-                  (indexData.subtitles[item.slug][language] || indexData.subtitles[item.slug].so)) || "";
-              const englishCat = indexData.subtitles[item.slug]?.en || "";
-              const style = CATEGORY_STYLE[englishCat] || DEFAULT_STYLE;
+              const subtitle    = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
+              const style       = SLUG_STYLE[item.slug] || DEFAULT_STYLE;
+              const iconFile    = SLUG_ICON[item.slug]  || "download.png";
               const displayName = getDisplayName(item.slug, language, item.name);
 
               return (
-                <li className="reveal-on-scroll" key={item.slug} style={{ transitionDelay: `${Math.min(index * 40, 200)}ms` }}>
+                <li className="reveal-on-scroll" key={item.slug} style={{ transitionDelay:`${Math.min(index * 40, 200)}ms` }}>
                   <Link
                     className="group flex h-full overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg"
-                    style={{ borderColor: "var(--border)" }}
-                    href={{ pathname: `/${item.href}`, query: { lang: language } }}
+                    style={{ borderColor:"var(--border)" }}
+                    href={{ pathname:`/${item.href}`, query:{ lang:language } }}
                   >
-                    {/* Left colored accent bar */}
-                    <div className="w-1.5 shrink-0" style={{ background: style.color }} />
+                    {/* Farvet streg i venstre side */}
+                    <div className="w-1.5 shrink-0" style={{ background:style.color }} />
 
                     <div className="flex flex-1 flex-col p-5">
-                      {/* Medicine icon + category badge */}
+                      {/* GitHub-ikon + kategori-badge */}
                       <div className="flex items-center gap-2.5">
                         <span
                           className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-                          style={{ background: style.bg, borderColor: `${style.color}22` }}
+                          style={{ background:style.bg, borderColor:`${style.color}22` }}
                         >
-                          <LibraryMedicineIcon slug={item.slug} color={style.color} size={20} />
+                          <img
+                            src={`${ICON_BASE}${iconFile}`}
+                            alt=""
+                            style={{ width:28, height:28, objectFit:"contain" }}
+                            onError={(e) => { e.currentTarget.style.display="none"; }}
+                          />
                         </span>
                         <span
                           className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
-                          style={{ background: style.bg, color: style.color }}
+                          style={{ background:style.bg, color:style.color }}
                         >
                           {subtitle || chromeText.medicinePill}
                         </span>
                       </div>
 
-                      {/* Medicine name */}
-                      <h3 className="mt-3 text-xl font-bold" style={{ color: "var(--text)" }}>
+                      {/* Medicinnavn */}
+                      <h3 className="mt-3 text-xl font-bold" style={{ color:"var(--text)" }}>
                         {displayName}
                       </h3>
 
                       {/* CTA */}
                       <div
                         className="mt-auto flex items-center justify-between border-t pt-4"
-                        style={{ borderColor: "var(--border)", marginTop: "1rem" }}
+                        style={{ borderColor:"var(--border)", marginTop:"1rem" }}
                       >
-                        <span className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
+                        <span className="text-sm font-medium" style={{ color:"var(--text-muted)" }}>
                           {chromeText.openDetails}
                         </span>
                         <span
                           className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-white transition duration-300 group-hover:scale-110"
-                          style={{ background: style.color }}
+                          style={{ background:style.color }}
                         >
                           →
                         </span>
@@ -463,22 +427,22 @@ export function SiteIndex({ initialLang }) {
             })}
           </ul>
         ) : (
-          <section className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center" style={{ borderColor: "var(--border)" }}>
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "var(--bg)" }}>
+          <section className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center" style={{ borderColor:"var(--border)" }}>
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background:"var(--bg)" }}>
               <SearchIcon />
             </div>
-            <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>{chromeText.noResultsTitle}</h3>
-            <p className="mt-2" style={{ color: "var(--text-muted)" }}>{chromeText.noResultsBody}</p>
+            <h3 className="text-xl font-bold" style={{ color:"var(--text)" }}>{chromeText.noResultsTitle}</h3>
+            <p className="mt-2" style={{ color:"var(--text-muted)" }}>{chromeText.noResultsBody}</p>
           </section>
         )}
       </main>
 
       {/* ── Footer ── */}
-      <footer className="mx-auto max-w-6xl border-t px-4 pb-14 pt-8 text-center text-sm leading-7" style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}>
+      <footer className="mx-auto max-w-6xl border-t px-4 pb-14 pt-8 text-center text-sm leading-7" style={{ borderColor:"var(--border)", color:"var(--text-muted)" }}>
         <span>{text.footer1}</span>
         {text.footer2 ? <><br />{text.footer2}</> : null}
         <br /><br />
-        <strong style={{ color: "var(--text)" }}>{text.footerStrong}</strong>
+        <strong style={{ color:"var(--text)" }}>{text.footerStrong}</strong>
         {text.footer3 ? <><br />{text.footer3}</> : null}
       </footer>
     </div>
