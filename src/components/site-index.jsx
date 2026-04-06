@@ -383,19 +383,19 @@ export function SiteIndex({ initialLang }) {
                       {/* GitHub-ikon + kategori-badge */}
                       <div className="flex items-center gap-2.5">
                         <span
-                          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-                          style={{ background:style.bg, borderColor:`${style.color}22` }}
+                          className="flex shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
+                          style={{ width:52, height:52, background:style.bg, borderColor:`${style.color}22` }}
                         >
                           <img
                             src={`${ICON_BASE}${iconFile}`}
                             alt=""
-                            style={{ width:28, height:28, objectFit:"contain", mixBlendMode:"multiply" }}
+                            style={{ width:36, height:36, objectFit:"contain", mixBlendMode:"multiply" }}
                             onError={(e) => { e.currentTarget.style.display="none"; }}
                           />
                         </span>
                         <span
-                          className="rounded-full px-2.5 py-0.5 text-xs font-semibold"
-                          style={{ background:style.bg, color:style.color }}
+                          className="rounded-full font-semibold"
+                          style={{ background:style.bg, color:style.color, fontSize:"13px", padding:"4px 12px" }}
                         >
                           {subtitle || chromeText.medicinePill}
                         </span>
