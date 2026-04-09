@@ -10,9 +10,9 @@ export const siteData = {
         "pickTitle": "Dooro daawada aad rabto oo hoos ka muuqata",
         "pickSmall": "",
         "footer1": "Qoraalladan waa hagitaan guud oo fudud. Ma beddelayso talada tooska ah ee farmashiyaha ama dhakhtarka.",
-        "footer2": "",
-        "footerStrong": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf",
-        "footer3": ""
+        "footer2": "© 2026 Somalimed. Dhammaan xuquuqaha way xifdsan yihiin.",
+        "footerStrong": "Waxaa diyaariyay Ibraahim Dahir Xanaf.",
+        "footer3": "Boggan wuxuu bixiyaa macluumaad guud oo ku saabsan daawooyinka mana beddelayo talada dhakhtarka ama farmashiistaha."
       },
       "da": {
         "pageTitle": "Lægemiddelinformation på somalisk",
@@ -21,10 +21,10 @@ export const siteData = {
         "langLabel": "Vælg sprog:",
         "pickTitle": "Vælg den ønskede medicin nedenfor",
         "pickSmall": "",
-        "footer1": "Teksterne er generel vejledning og erstatter ikke rådgivning fra apoteket eller lægen.",
-        "footer2": "",
-        "footerStrong": "Udarbejdet af farmakonomen: Ibrahim Dahir Hanaf",
-        "footer3": ""
+        "footer1": "Indholdet på denne hjemmeside er generel information om medicin og erstatter ikke rådgivning fra læge eller apotek.",
+        "footer2": "© 2026 Somalimed. Alle rettigheder forbeholdes.",
+        "footerStrong": "Udarbejdet af Ibrahim Dahir Hanaf.",
+        "footer3": "Siden er lavet for at gøre lægemiddelinformation lettere at forstå på flere sprog."
       },
       "en": {
         "pageTitle": "Medicine information in Somali",
@@ -33,10 +33,10 @@ export const siteData = {
         "langLabel": "Choose language:",
         "pickTitle": "Choose the medicine below",
         "pickSmall": "",
-        "footer1": "These texts are general guidance and do not replace advice from your pharmacy or doctor.",
-        "footer2": "",
-        "footerStrong": "Prepared by pharmaconomist: Ibrahim Dahir Hanaf",
-        "footer3": ""
+        "footer1": "This website provides general information about medicines and does not replace advice from a doctor or pharmacist.",
+        "footer2": "© 2026 Somalimed. All rights reserved.",
+        "footerStrong": "Prepared by Ibrahim Dahir Hanaf.",
+        "footer3": "The site is created to make medicine information easier to understand across languages."
       },
       "ar": {
         "pageTitle": "معلومات الأدوية باللغة الصومالية",
@@ -45,10 +45,10 @@ export const siteData = {
         "langLabel": "اختر اللغة:",
         "pickTitle": "اختر الدواء المطلوب أدناه",
         "pickSmall": "",
-        "footer1": "هذه النصوص معلومات عامة ولا تغني عن نصيحة الصيدلية أو الطبيب.",
-        "footer2": "",
-        "footerStrong": "أُعدّ هذا المحتوى بواسطة اختصاصي صيدلة: إبراهيم ظاهر حنف",
-        "footer3": ""
+        "footer1": "يوفر هذا الموقع معلومات عامة عن الأدوية ولا يغني عن نصيحة الطبيب أو الصيدلي.",
+        "footer2": "© 2026 Somalimed. جميع الحقوق محفوظة.",
+        "footerStrong": "أُعدَّ هذا المحتوى بواسطة إبراهيم ظاهر حنف.",
+        "footer3": "تم إنشاء هذا الموقع لتسهيل فهم معلومات الأدوية عبر عدة لغات."
       }
     },
     "subtitles": {
@@ -2494,20 +2494,20 @@ export const siteData = {
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
-          "pageTitle": "Aspirin (Acetylsalicylic acid, ASA) – blood clot prevention",
-          "hdrTitle": "Aspirin (Acetylsalicylic acid, ASA) – blood clot prevention",
+          "pageTitle": "Hjertemagnyl – blood clot prevention",
+          "hdrTitle": "Hjertemagnyl – blood clot prevention",
           "hdrSubtitle": "A clear and patient-friendly explanation of the medicine for patients and families.",
           "backLabel": "Back to medication list",
           "langLabel": "Select language:",
-          "drugName": "Aspirin (Acetylsalicylic acid, ASA) – blood clot prevention",
+          "drugName": "Hjertemagnyl – blood clot prevention",
           "drugForm": "Tablet",
           "badgeText": "Short and easy to read",
-          "introBox": "Aspirin (Acetylsalicylic acid, ASA) is low-dose acetylsalicylic acid that makes blood platelets less likely to stick together. In this setting, it is not used as an ordinary painkiller, but as protection against blood clots in people who need it.",
+          "introBox": "Hjertemagnyl is low-dose acetylsalicylic acid that makes blood platelets less likely to stick together. In this setting, it is not used as an ordinary painkiller, but as protection against blood clots in people who need it.",
           "ibrahimTitle": "Ibrahim's pharmacy advice",
-          "ibrahimText": "I often explain it like this: aspirin is not a medicine you clearly feel from day to day, but it works quietly in the background to lower the risk that the blood forms dangerous clots in the wrong place. That is why regular use matters, especially if it has been prescribed after a heart attack or after a stent.",
+          "ibrahimText": "I often explain it like this: Hjertemagnyl is not a medicine you clearly feel from day to day, but it works quietly in the background to lower the risk that the blood forms dangerous clots in the wrong place. That is why regular use matters, especially if it has been prescribed after a heart attack or after a stent.",
           "useTitle": "Use",
           "useList": [
-            "Aspirin contains low-dose acetylsalicylic acid (ASA).",
+            "Hjertemagnyl contains low-dose acetylsalicylic acid.",
             "It helps reduce the risk of blood clots by making blood platelets less sticky.",
             "It is often used in people with cardiovascular disease or after a stent or heart attack."
           ],
@@ -8952,20 +8952,20 @@ export const siteData = {
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
-          "pageTitle": "Ventolin (Salbutamol) – airways",
-          "hdrTitle": "Ventolin (Salbutamol) – airways",
+          "pageTitle": "Ventoline – airways",
+          "hdrTitle": "Ventoline – airways",
           "hdrSubtitle": "A simple and personal explanation of the medicine for patients and families.",
           "backLabel": "Back to medication list",
           "langLabel": "Select language:",
-          "drugName": "Ventolin (Salbutamol) – airways",
+          "drugName": "Ventoline – airways",
           "drugForm": "Inhaler",
           "badgeText": "Short and easy to read",
-          "introBox": "Ventolin (Salbutamol) is a quick-relief inhaled medicine. It opens the airways to make breathing easier when shortness of breath or wheezing comes on quickly. This medicine is mainly used for fast relief of asthma symptoms or other episodes of narrowed airways.",
+          "introBox": "Ventoline is a quick-relief inhaled medicine. It opens the airways to make breathing easier when shortness of breath or wheezing comes on quickly. This medicine is mainly used for fast relief of asthma symptoms or other episodes of narrowed airways.",
           "ibrahimTitle": "Ibrahim's pharmacy advice",
-          "ibrahimText": "When a patient comes to the pharmacy with Ventolin, I always pay attention to inhaler technique. For a first-time user, I show step by step how to use it correctly. For someone who has used it before, I often ask whether the technique is still correct and whether the medicine is really reaching the lungs well. If the technique is wrong, the fast effect may not come as expected. For some people, a spacer can be very helpful, especially for children and adults who find it hard to coordinate the spray and the inhalation.",
+          "ibrahimText": "When a patient comes to the pharmacy with Ventoline, I always pay attention to inhaler technique. For a first-time user, I show step by step how to use it correctly. For someone who has used it before, I often ask whether the technique is still correct and whether the medicine is really reaching the lungs well. If the technique is wrong, the fast effect may not come as expected. For some people, a spacer can be very helpful, especially for children and adults who find it hard to coordinate the spray and the inhalation.",
           "useTitle": "Use",
           "useList": [
-            "Ventolin is a quick-relief inhaler containing salbutamol.",
+            "Ventoline is a quick-relief inhaler containing salbutamol.",
             "It opens the airways and makes breathing easier during shortness of breath.",
             "It is used for asthma symptoms and, in some people, also for COPD or other narrowing of the airways."
           ],
@@ -8973,7 +8973,7 @@ export const siteData = {
           "doseList": [
             "Follow your doctor's plan. Many people use 1 to 2 inhalations when needed.",
             "If symptoms continue, an extra dose may sometimes be needed according to your clinician's advice.",
-            "If you need Ventolin more often than usual, contact a doctor to review your treatment.",
+            "If you need Ventoline more often than usual, contact a doctor to review your treatment.",
             "Correct inhaler technique is important. If you are unsure, contact your pharmacy or your doctor."
           ],
           "sideTitle": "Side effects",
@@ -8984,13 +8984,13 @@ export const siteData = {
           ],
           "interactTitle": "Drug interactions",
           "interactList": [
-            "Some medicines, such as beta-blockers, may reduce the effect of Ventolin.",
+            "Some medicines, such as beta-blockers, may reduce the effect of Ventoline.",
             "Other medicines that affect the heart or lungs should also be mentioned.",
             "Always tell your doctor or pharmacist about all medicines you use."
           ],
           "warnTitle": "Important warnings",
           "warnList": [
-            "If Ventolin does not help, or if your breathing gets worse, seek medical help.",
+            "If Ventoline does not help, or if your breathing gets worse, seek medical help.",
             "If you need your reliever inhaler often, your regular treatment may need adjustment.",
             "Do not exceed the prescribed dose without medical advice.",
             "If the effect feels weaker than before, your inhaler technique should also be checked."
@@ -9734,20 +9734,20 @@ export const siteData = {
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
-          "pageTitle": "Imovane (Zopiclone) – insomnia",
-          "hdrTitle": "Imovane (Zopiclone) – insomnia",
+          "pageTitle": "Imozop – insomnia",
+          "hdrTitle": "Imozop – insomnia",
           "hdrSubtitle": "A simple and personal explanation of the medicine for patients and families.",
           "backLabel": "Back to medication list",
           "langLabel": "Select language:",
-          "drugName": "Imovane (Zopiclone) – insomnia",
+          "drugName": "Imozop – insomnia",
           "drugForm": "Oral tablet",
           "badgeText": "Short and easy to read",
-          "introBox": "Imovane (Zopiclone) is a sleeping medicine that may help with short-term insomnia. It can make it easier to fall asleep, but in some people the effect may still be felt the next morning. That is why it should be used carefully and preferably only for a limited period.",
+          "introBox": "Imozop is a sleeping medicine that may help with short-term insomnia. It can make it easier to fall asleep, but in some people the effect may still be felt the next morning. That is why it should be used carefully and preferably only for a limited period.",
           "ibrahimTitle": "Ibrahim's pharmacy advice",
           "ibrahimText": "I often explain it like this: this medicine should be seen as a helper for sleep, not as a permanent solution to every sleep problem. If it is used too often or for too long, the body can get used to it. That is why it is important to take it exactly as agreed and only when you actually have enough time to sleep afterwards.",
           "useTitle": "Use",
           "useList": [
-            "Imovane (Zopiclone) is used for short-term insomnia.",
+            "Imozop is used for short-term insomnia.",
             "It may help you fall asleep or stay asleep during the night.",
             "It is usually not intended for long-term treatment."
           ],
@@ -9767,7 +9767,7 @@ export const siteData = {
           "interactTitle": "Drug interactions",
           "interactList": [
             "Avoid alcohol, opioids, and other sleeping or sedating medicines unless agreed with your doctor.",
-            "Some medicines that affect the brain may increase the effect of Imovane (Zopiclone).",
+            "Some medicines that affect the brain may increase the effect of Imozop.",
             "Always tell your doctor or pharmacist about all medicines you use."
           ],
           "warnTitle": "Important warnings",
