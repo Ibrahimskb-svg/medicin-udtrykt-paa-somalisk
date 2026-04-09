@@ -2502,12 +2502,12 @@ export const siteData = {
           "drugName": "Aspirin (Acetylsalicylic acid, ASA) – blood clot prevention",
           "drugForm": "Tablet",
           "badgeText": "Short and easy to read",
-          "introBox": "Hjertemagnyl is low-dose acetylsalicylic acid that makes blood platelets less likely to stick together. In this setting, it is not used as an ordinary painkiller, but as protection against blood clots in people who need it.",
+          "introBox": "Aspirin (Acetylsalicylic acid, ASA) is low-dose acetylsalicylic acid that makes blood platelets less likely to stick together. In this setting, it is not used as an ordinary painkiller, but as protection against blood clots in people who need it.",
           "ibrahimTitle": "Ibrahim's pharmacy advice",
-          "ibrahimText": "I often explain it like this: Hjertemagnyl is not a medicine you clearly feel from day to day, but it works quietly in the background to lower the risk that the blood forms dangerous clots in the wrong place. That is why regular use matters, especially if it has been prescribed after a heart attack or after a stent.",
+          "ibrahimText": "I often explain it like this: aspirin is not a medicine you clearly feel from day to day, but it works quietly in the background to lower the risk that the blood forms dangerous clots in the wrong place. That is why regular use matters, especially if it has been prescribed after a heart attack or after a stent.",
           "useTitle": "Use",
           "useList": [
-            "Hjertemagnyl contains low-dose acetylsalicylic acid.",
+            "Aspirin contains low-dose acetylsalicylic acid (ASA).",
             "It helps reduce the risk of blood clots by making blood platelets less sticky.",
             "It is often used in people with cardiovascular disease or after a stent or heart attack."
           ],
@@ -8960,12 +8960,12 @@ export const siteData = {
           "drugName": "Ventolin (Salbutamol) – airways",
           "drugForm": "Inhaler",
           "badgeText": "Short and easy to read",
-          "introBox": "Ventoline is a quick-relief inhaled medicine. It opens the airways to make breathing easier when shortness of breath or wheezing comes on quickly. This medicine is mainly used for fast relief of asthma symptoms or other episodes of narrowed airways.",
+          "introBox": "Ventolin (Salbutamol) is a quick-relief inhaled medicine. It opens the airways to make breathing easier when shortness of breath or wheezing comes on quickly. This medicine is mainly used for fast relief of asthma symptoms or other episodes of narrowed airways.",
           "ibrahimTitle": "Ibrahim's pharmacy advice",
-          "ibrahimText": "When a patient comes to the pharmacy with Ventoline, I always pay attention to inhaler technique. For a first-time user, I show step by step how to use it correctly. For someone who has used it before, I often ask whether the technique is still correct and whether the medicine is really reaching the lungs well. If the technique is wrong, the fast effect may not come as expected. For some people, a spacer can be very helpful, especially for children and adults who find it hard to coordinate the spray and the inhalation.",
+          "ibrahimText": "When a patient comes to the pharmacy with Ventolin, I always pay attention to inhaler technique. For a first-time user, I show step by step how to use it correctly. For someone who has used it before, I often ask whether the technique is still correct and whether the medicine is really reaching the lungs well. If the technique is wrong, the fast effect may not come as expected. For some people, a spacer can be very helpful, especially for children and adults who find it hard to coordinate the spray and the inhalation.",
           "useTitle": "Use",
           "useList": [
-            "Ventoline is a quick-relief inhaler containing salbutamol.",
+            "Ventolin is a quick-relief inhaler containing salbutamol.",
             "It opens the airways and makes breathing easier during shortness of breath.",
             "It is used for asthma symptoms and, in some people, also for COPD or other narrowing of the airways."
           ],
@@ -8973,7 +8973,7 @@ export const siteData = {
           "doseList": [
             "Follow your doctor's plan. Many people use 1 to 2 inhalations when needed.",
             "If symptoms continue, an extra dose may sometimes be needed according to your clinician's advice.",
-            "If you need Ventoline more often than usual, contact a doctor to review your treatment.",
+            "If you need Ventolin more often than usual, contact a doctor to review your treatment.",
             "Correct inhaler technique is important. If you are unsure, contact your pharmacy or your doctor."
           ],
           "sideTitle": "Side effects",
@@ -8984,13 +8984,13 @@ export const siteData = {
           ],
           "interactTitle": "Drug interactions",
           "interactList": [
-            "Some medicines, such as beta-blockers, may reduce the effect of Ventoline.",
+            "Some medicines, such as beta-blockers, may reduce the effect of Ventolin.",
             "Other medicines that affect the heart or lungs should also be mentioned.",
             "Always tell your doctor or pharmacist about all medicines you use."
           ],
           "warnTitle": "Important warnings",
           "warnList": [
-            "If Ventoline does not help, or if your breathing gets worse, seek medical help.",
+            "If Ventolin does not help, or if your breathing gets worse, seek medical help.",
             "If you need your reliever inhaler often, your regular treatment may need adjustment.",
             "Do not exceed the prescribed dose without medical advice.",
             "If the effect feels weaker than before, your inhaler technique should also be checked."
@@ -9742,12 +9742,12 @@ export const siteData = {
           "drugName": "Imovane (Zopiclone) – insomnia",
           "drugForm": "Oral tablet",
           "badgeText": "Short and easy to read",
-          "introBox": "Imozop is a sleeping medicine that may help with short-term insomnia. It can make it easier to fall asleep, but in some people the effect may still be felt the next morning. That is why it should be used carefully and preferably only for a limited period.",
+          "introBox": "Imovane (Zopiclone) is a sleeping medicine that may help with short-term insomnia. It can make it easier to fall asleep, but in some people the effect may still be felt the next morning. That is why it should be used carefully and preferably only for a limited period.",
           "ibrahimTitle": "Ibrahim's pharmacy advice",
           "ibrahimText": "I often explain it like this: this medicine should be seen as a helper for sleep, not as a permanent solution to every sleep problem. If it is used too often or for too long, the body can get used to it. That is why it is important to take it exactly as agreed and only when you actually have enough time to sleep afterwards.",
           "useTitle": "Use",
           "useList": [
-            "Imozop is used for short-term insomnia.",
+            "Imovane (Zopiclone) is used for short-term insomnia.",
             "It may help you fall asleep or stay asleep during the night.",
             "It is usually not intended for long-term treatment."
           ],
@@ -9767,7 +9767,7 @@ export const siteData = {
           "interactTitle": "Drug interactions",
           "interactList": [
             "Avoid alcohol, opioids, and other sleeping or sedating medicines unless agreed with your doctor.",
-            "Some medicines that affect the brain may increase the effect of Imozop.",
+            "Some medicines that affect the brain may increase the effect of Imovane (Zopiclone).",
             "Always tell your doctor or pharmacist about all medicines you use."
           ],
           "warnTitle": "Important warnings",
