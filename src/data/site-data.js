@@ -207,7 +207,7 @@ export const siteData = {
       {
         "slug": "amlodipin",
         "href": "amlodipin",
-        "name": "Amlodipine",
+        "name": "Amlodipin",
         "icon": "➜"
       },
       {
@@ -237,7 +237,7 @@ export const siteData = {
       {
         "slug": "hjertemagnyl",
         "href": "hjertemagnyl",
-        "name": "Aspirin (Acetylsalicylic acid, ASA)",
+        "name": "Hjertemagnyl (Acetylsalicylsyre, ASA)",
         "icon": "➜"
       },
       {
@@ -249,7 +249,7 @@ export const siteData = {
       {
         "slug": "zopiclon",
         "href": "zopiclon",
-        "name": "Imovane (Zopiclone)",
+        "name": "Imozop (Zopiclon)",
         "icon": "➜"
       },
       {
@@ -261,7 +261,7 @@ export const siteData = {
       {
         "slug": "lamotrigin",
         "href": "lamotrigin",
-        "name": "Lamotrigine",
+        "name": "Lamotrigin",
         "icon": "➜"
       },
       {
@@ -315,7 +315,7 @@ export const siteData = {
       {
         "slug": "pantoprazol",
         "href": "pantoprazol",
-        "name": "Pantoprazole",
+        "name": "Pantoprazol",
         "icon": "➜"
       },
       {
@@ -327,13 +327,13 @@ export const siteData = {
       {
         "slug": "quetiapin",
         "href": "quetiapin",
-        "name": "Quetiapine",
+        "name": "Quetiapin",
         "icon": "➜"
       },
       {
         "slug": "sertralin",
         "href": "sertralin",
-        "name": "Sertraline",
+        "name": "Sertralin",
         "icon": "➜"
       },
       {
@@ -345,7 +345,7 @@ export const siteData = {
       {
         "slug": "ventoline",
         "href": "ventoline",
-        "name": "Ventolin (Salbutamol)",
+        "name": "Ventoline (Salbutamol)",
         "icon": "➜"
       },
       {
