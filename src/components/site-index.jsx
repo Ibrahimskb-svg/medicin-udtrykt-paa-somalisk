@@ -83,8 +83,6 @@ function getDisplayName(slug, language, fallback) {
   return t[language] ?? t.so ?? fallback;
 }
 
-// ── GitHub icon per slug ───────────────────────────────────────────────────
-// Hver slug får sit eget ikon fra /public/icons/
 const SLUG_ICON = {
   amlodipin: "blood-pressure.png",
   enalapril: "blood-pressure.png",
@@ -113,7 +111,6 @@ const SLUG_ICON = {
   pantoprazol: "stomach.png",
 };
 
-// ── Category accent colors per slug ───────────────────────────────────────
 const SLUG_STYLE = {
   amlodipin: { color: "#DC2626", bg: "#FEF2F2" },
   enalapril: { color: "#DC2626", bg: "#FEF2F2" },
@@ -144,9 +141,7 @@ const SLUG_STYLE = {
 
 const DEFAULT_STYLE = { color: "#0D9488", bg: "#F0FDFA" };
 
-// ── Category pills — grupperet på OVERSAT navn så ingen dubletter ──────────
 const CATEGORY_PILL_ICON = {
-  // dansk
   "forhøjet blodtryk": { icon: "blood-pressure.png", color: "#DC2626", bg: "#FEF2F2" },
   "blodtryk & hjertebanken": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
   "blodfortyndende": { icon: "line.png", color: "#7C3AED", bg: "#F5F3FF" },
@@ -164,7 +159,6 @@ const CATEGORY_PILL_ICON = {
   "smerter og betændelse": { icon: "download.png", color: "#EF4444", bg: "#FEF2F2" },
   "mavesyre og halsbrand": { icon: "stomach.png", color: "#10B981", bg: "#ECFDF5" },
 
-  // somalisk
   "dhiig-karka": { icon: "blood-pressure.png", color: "#DC2626", bg: "#FEF2F2" },
   "dhiig-karka & wadne garaac": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
   "dhiig-khafiifiye": { icon: "line.png", color: "#7C3AED", bg: "#F5F3FF" },
@@ -182,7 +176,6 @@ const CATEGORY_PILL_ICON = {
   "xanuun & barar": { icon: "download.png", color: "#EF4444", bg: "#FEF2F2" },
   "gaastriga iyo laab-jeexa": { icon: "stomach.png", color: "#10B981", bg: "#ECFDF5" },
 
-  // engelsk
   "high blood pressure": { icon: "blood-pressure.png", color: "#DC2626", bg: "#FEF2F2" },
   "blood pressure & palpitations": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
   "blood thinner": { icon: "line.png", color: "#7C3AED", bg: "#F5F3FF" },
@@ -200,7 +193,6 @@ const CATEGORY_PILL_ICON = {
   "pain and inflammation": { icon: "download.png", color: "#EF4444", bg: "#FEF2F2" },
   "stomach acid and heartburn": { icon: "stomach.png", color: "#10B981", bg: "#ECFDF5" },
 
-  // arabisk
   "ارتفاع ضغط الدم": { icon: "blood-pressure.png", color: "#DC2626", bg: "#FEF2F2" },
   "ضغط الدم وخفقان القلب": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
   "مميع للدم": { icon: "line.png", color: "#7C3AED", bg: "#F5F3FF" },
@@ -232,10 +224,7 @@ function buildCategoryPills(language) {
   const seen = new Set();
   const pills = [];
   for (const item of indexData.items) {
-    const label =
-      indexData.subtitles[item.slug]?.[language] ||
-      indexData.subtitles[item.slug]?.so ||
-      "";
+    const label = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
     if (!label || seen.has(label)) continue;
     seen.add(label);
     pills.push({ label, language });
@@ -245,19 +234,19 @@ function buildCategoryPills(language) {
 
 function SearchIcon() {
   return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.35-4.35" />
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="7.5" />
+      <path d="m20 20-4.2-4.2" />
+    </svg>
+  );
+}
+
+function ShieldInfoIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z" />
+      <path d="M12 8v4" />
+      <path d="M12 16h.01" />
     </svg>
   );
 }
@@ -267,15 +256,8 @@ export function SiteIndex({ initialLang }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const text = useMemo(
-    () => indexData.translations[language] || indexData.translations.so,
-    [language]
-  );
-
-  const chromeText = useMemo(
-    () => uiText[language] || uiText.so,
-    [language]
-  );
+  const text = useMemo(() => indexData.translations[language] || indexData.translations.so, [language]);
+  const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
 
   useEffect(() => {
     applyLanguageToDocument(language, text.pageTitle);
@@ -291,11 +273,7 @@ export function SiteIndex({ initialLang }) {
     const query = searchTerm.trim().toLowerCase();
 
     return indexData.items.filter((item) => {
-      const subtitle =
-        indexData.subtitles[item.slug]?.[language] ||
-        indexData.subtitles[item.slug]?.so ||
-        "";
-
+      const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
       const matchesCat = activeCategory === "all" || subtitle === activeCategory;
       const displayName = getDisplayName(item.slug, language, item.name);
 
@@ -316,26 +294,14 @@ export function SiteIndex({ initialLang }) {
       <div style={{ background: "var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
               <path d="m8.5 8.5 7 7" />
             </svg>
             {chromeText.heroEyebrow}
           </div>
 
-          <h1
-            className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
-            style={{ lineHeight: 1.1 }}
-          >
+          <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl" style={{ lineHeight: 1.1 }}>
             {text.hdrTitle}
           </h1>
 
@@ -365,50 +331,47 @@ export function SiteIndex({ initialLang }) {
         </div>
 
         <div className="reveal-on-scroll mb-6">
-          <label htmlFor="medSearch">
-            <span
-              className="mb-2 block text-xs font-semibold uppercase tracking-widest"
-              style={{ color: "var(--text-muted)" }}
-            >
+          <label htmlFor="medSearch" className="block">
+            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
               {chromeText.searchLabel}
             </span>
 
             <div
-              className="flex items-center gap-3 rounded-2xl border bg-white px-5 py-3.5 transition-shadow duration-200 focus-within:shadow-lg"
+              className="group flex items-center gap-3 rounded-2xl border bg-white px-4 py-3 shadow-sm transition duration-200 focus-within:-translate-y-0.5 focus-within:shadow-xl"
               style={{ borderColor: "var(--border)" }}
             >
-              <span className="shrink-0" style={{ color: "var(--text-muted)" }}>
+              <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
+                style={{ background: "var(--bg)", color: "var(--accent)" }}
+              >
                 <SearchIcon />
               </span>
 
               <input
                 id="medSearch"
-                className="flex-1 bg-transparent text-base outline-none"
+                className="flex-1 bg-transparent text-base outline-none placeholder:text-slate-400"
                 style={{ color: "var(--text)" }}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder={chromeText.searchPlaceholder}
                 value={searchTerm}
               />
 
-              {searchTerm && (
+              {searchTerm ? (
                 <button
                   type="button"
-                  className="shrink-0 rounded-full p-1 text-sm transition hover:bg-gray-100"
-                  style={{ color: "var(--text-muted)" }}
+                  className="shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90"
+                  style={{ background: "var(--bg)", color: "var(--text-muted)" }}
                   onClick={() => setSearchTerm("")}
                 >
-                  ✕
+                  {chromeText.clearFilters}
                 </button>
-              )}
+              ) : null}
             </div>
           </label>
         </div>
 
         <div className="reveal-on-scroll mb-7">
-          <span
-            className="mb-3 block text-xs font-semibold uppercase tracking-widest"
-            style={{ color: "var(--text-muted)" }}
-          >
+          <span className="mb-3 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
             {chromeText.categoryLabel}
           </span>
 
@@ -430,29 +393,11 @@ export function SiteIndex({ initialLang }) {
                 transition: "all 0.2s",
                 whiteSpace: "nowrap",
                 ...(activeCategory === "all"
-                  ? {
-                      background: "#1a1a1a",
-                      color: "#ffffff",
-                      borderColor: "#1a1a1a",
-                      boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
-                    }
-                  : {
-                      background: "var(--surface,#fff)",
-                      color: "var(--text)",
-                      borderColor: "var(--border)",
-                    }),
+                  ? { background: "#1a1a1a", color: "#ffffff", borderColor: "#1a1a1a", boxShadow: "0 2px 8px rgba(0,0,0,0.18)" }
+                  : { background: "var(--surface,#fff)", color: "var(--text)", borderColor: "var(--border)" }),
               }}
             >
-              <span
-                style={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  display: "inline-block",
-                  flexShrink: 0,
-                  background: activeCategory === "all" ? "#fff" : "#888",
-                }}
-              />
+              <span style={{ width: 10, height: 10, borderRadius: "50%", display: "inline-block", flexShrink: 0, background: activeCategory === "all" ? "#fff" : "#888" }} />
               {capitalize(chromeText.allCategories)}
             </button>
 
@@ -479,17 +424,8 @@ export function SiteIndex({ initialLang }) {
                     transition: "all 0.2s",
                     whiteSpace: "nowrap",
                     ...(isActive
-                      ? {
-                          background: meta.color,
-                          color: "#ffffff",
-                          borderColor: meta.color,
-                          boxShadow: `0 2px 12px ${meta.color}50`,
-                        }
-                      : {
-                          background: meta.bg,
-                          color: meta.color,
-                          borderColor: `${meta.color}40`,
-                        }),
+                      ? { background: meta.color, color: "#ffffff", borderColor: meta.color, boxShadow: `0 2px 12px ${meta.color}50` }
+                      : { background: meta.bg, color: meta.color, borderColor: `${meta.color}40` }),
                   }}
                 >
                   <img
@@ -516,10 +452,7 @@ export function SiteIndex({ initialLang }) {
 
         <div className="reveal-on-scroll mb-5 flex items-end justify-between gap-4">
           <div>
-            <p
-              className="mb-0.5 text-xs font-semibold uppercase tracking-widest"
-              style={{ color: "var(--text-muted)" }}
-            >
+            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
               {chromeText.libraryEyebrow}
             </p>
             <h2 className="text-2xl font-extrabold" style={{ color: "var(--text)" }}>
@@ -537,21 +470,13 @@ export function SiteIndex({ initialLang }) {
         {filteredItems.length ? (
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {filteredItems.map((item, index) => {
-              const subtitle =
-                indexData.subtitles[item.slug]?.[language] ||
-                indexData.subtitles[item.slug]?.so ||
-                "";
-
+              const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
               const style = SLUG_STYLE[item.slug] || DEFAULT_STYLE;
               const iconFile = SLUG_ICON[item.slug] || "download.png";
               const displayName = getDisplayName(item.slug, language, item.name);
 
               return (
-                <li
-                  className="reveal-on-scroll"
-                  key={item.slug}
-                  style={{ transitionDelay: `${Math.min(index * 40, 200)}ms` }}
-                >
+                <li className="reveal-on-scroll" key={item.slug} style={{ transitionDelay: `${Math.min(index * 40, 200)}ms` }}>
                   <Link
                     className="group flex h-full overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                     style={{ borderColor: "var(--border)" }}
@@ -563,12 +488,7 @@ export function SiteIndex({ initialLang }) {
                       <div className="flex items-center gap-3">
                         <span
                           className="flex shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-                          style={{
-                            width: 64,
-                            height: 64,
-                            background: style.bg,
-                            borderColor: `${style.color}22`,
-                          }}
+                          style={{ width: 64, height: 64, background: style.bg, borderColor: `${style.color}22` }}
                         >
                           <img
                             src={`${ICON_BASE}${iconFile}`}
@@ -582,12 +502,7 @@ export function SiteIndex({ initialLang }) {
 
                         <span
                           className="rounded-full font-semibold"
-                          style={{
-                            background: style.bg,
-                            color: style.color,
-                            fontSize: "15px",
-                            padding: "7px 15px",
-                          }}
+                          style={{ background: style.bg, color: style.color, fontSize: "15px", padding: "7px 15px" }}
                         >
                           {capitalize(subtitle) || capitalize(chromeText.medicinePill)}
                         </span>
@@ -597,10 +512,7 @@ export function SiteIndex({ initialLang }) {
                         {displayName}
                       </h3>
 
-                      <div
-                        className="mt-auto flex items-center justify-between border-t pt-4"
-                        style={{ borderColor: "var(--border)", marginTop: "1rem" }}
-                      >
+                      <div className="mt-auto flex items-center justify-between border-t pt-4" style={{ borderColor: "var(--border)", marginTop: "1rem" }}>
                         <span className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
                           {chromeText.openDetails}
                         </span>
@@ -619,48 +531,54 @@ export function SiteIndex({ initialLang }) {
             })}
           </ul>
         ) : (
-          <section
-            className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center"
-            style={{ borderColor: "var(--border)" }}
-          >
-            <div
-              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl"
-              style={{ background: "var(--bg)" }}
-            >
+          <section className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center" style={{ borderColor: "var(--border)" }}>
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "var(--bg)" }}>
               <SearchIcon />
             </div>
-
-            <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>
-              {chromeText.noResultsTitle}
-            </h3>
-
-            <p className="mt-2" style={{ color: "var(--text-muted)" }}>
-              {chromeText.noResultsBody}
-            </p>
+            <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>{chromeText.noResultsTitle}</h3>
+            <p className="mt-2" style={{ color: "var(--text-muted)" }}>{chromeText.noResultsBody}</p>
           </section>
         )}
       </main>
 
-      <footer
-        className="mx-auto max-w-6xl border-t px-4 pb-14 pt-8 text-center text-sm leading-7"
-        style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}
-      >
-        <span>{text.footer1}</span>
-        {text.footer2 ? (
-          <>
-            <br />
-            {text.footer2}
-          </>
-        ) : null}
-        <br />
-        <br />
-        <strong style={{ color: "var(--text)" }}>{text.footerStrong}</strong>
-        {text.footer3 ? (
-          <>
-            <br />
-            {text.footer3}
-          </>
-        ) : null}
+      <footer className="mx-auto max-w-6xl px-4 pb-14 pt-4">
+        <div
+          className="rounded-3xl border bg-white px-5 py-5 shadow-sm sm:px-6"
+          style={{ borderColor: "var(--border)" }}
+        >
+          <div className="flex items-start gap-3">
+            <div
+              className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"
+              style={{ background: "var(--bg)", color: "var(--accent)" }}
+            >
+              <ShieldInfoIcon />
+            </div>
+
+            <div className="min-w-0">
+              <strong className="block text-sm font-semibold" style={{ color: "var(--text)" }}>
+                {text.footerStrong}
+              </strong>
+
+              {text.footer1 ? (
+                <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
+                  {text.footer1}
+                </p>
+              ) : null}
+
+              {text.footer3 ? (
+                <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
+                  {text.footer3}
+                </p>
+              ) : null}
+
+              {text.footer2 ? (
+                <p className="mt-3 text-xs font-medium tracking-wide" style={{ color: "var(--text-muted)" }}>
+                  {text.footer2}
+                </p>
+              ) : null}
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );
