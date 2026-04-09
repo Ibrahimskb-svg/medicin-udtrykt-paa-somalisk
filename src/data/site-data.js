@@ -7727,7 +7727,7 @@ export const siteData = {
           ],
           "foodTitle": "Cunto iyo cabitaan",
           "foodList": [
-            "Kiniinnada caadiga ah waxaa lagu qaadan karaa cunto la jirto ama la'aan.",
+            "Kiniinnada caadiga ah waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Nooca daawada si tartiib ah u sii daaya badanaa waxaa lagu qaataa calool madhan.",
             "Haddii daawadu kordhiso rabitaanka cuntada, cunto dheellitiran iyo dhaqdhaqaaq ayaa caawin kara xakamaynta miisaanka."
           ],
