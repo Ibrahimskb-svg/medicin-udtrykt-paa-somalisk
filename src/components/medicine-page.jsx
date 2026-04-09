@@ -27,6 +27,13 @@ const SECTION_ICON_COLORS = {
   store:    { bg: "#cbd5e1", color: "#1e293b", border: "#475569" },
 };
 
+const overviewLabel = {
+  da: "Overblik",
+  en: "Overview",
+  so: "Guudmar",
+  ar: "نظرة عامة",
+};
+
 function PlayIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -177,7 +184,7 @@ export function MedicinePage({ medicine, initialLang }) {
             style={{ background: "var(--soft)", borderColor: "var(--softBorder)", color: "var(--text)" }}
           >
             <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-              Overblik
+              {overviewLabel[language] || overviewLabel.da}
             </p>
             {data.introBox}
           </section>
