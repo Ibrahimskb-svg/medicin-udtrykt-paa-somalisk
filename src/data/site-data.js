@@ -4273,7 +4273,7 @@ export const siteData = {
           "badgeText": "Akhris fudud oo kooban",
           "introBox": "Marevan waa daawo dhiigga ka dhigta mid aan si sahlan u xinjiroobin. Waxay ka hortagtaa xinjiro halis ah, laakiin sidoo kale waxay kordhin kartaa khatarta dhiig-baxa haddii qiyaasta aan si sax ah loo qaadan ama daawo kale lala isku daro.",
           "ibrahimTitle": "Talo gaar ah oo Ibraahim ka timid",
-          "ibrahimText": "Waxaan bukaan badan ugu sharxaa sidan: Marevan waa daawo ilaaliya jirka oo u baahan miisaan sax ah. Haddii ay yaraato, xinjiro ayaa samaysmi kara; haddii ay badato, dhiig-bax ayaa dhici kara. Sidaas darteed waa daawo u baahan in si joogto ah loo qaato, lana ixtiraamo qiyaasta, cuntada iyo baaritaanka INR.",
+          "ibrahimText": "Waxaan bukaan badan ugu sharxaa sidan: Marevan waa daawo ilaalisa jirka oo u baahan miisaan sax ah. Haddii ay yaraato, xinjiro ayaa samaysmi kara; haddii ay badato, dhiig-bax ayaa dhici kara. Sidaas darteed waa daawo u baahan in si joogto ah loo qaato, lana ixtiraamo qiyaasta, cuntada iyo baaritaanka INR.",
           "useTitle": "Isticmaalka",
           "useList": [
             "Marevan waxaa loo isticmaalaa si loo yareeyo khatarta xinjirowga dhiigga.",
