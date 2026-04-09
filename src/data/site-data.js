@@ -4,7 +4,7 @@ export const siteData = {
     "translations": {
       "so": {
         "pageTitle": "Lægemiddelinformation på somalisk",
-        "hdrTitle": "Warbixin af-Soomaali ku qoran",
+        "hdrTitle": "Macluumaadka daawooyinka af-Soomaali ku qoran",
         "hdrSubtitle": "Liis kooban oo loogu talagalay waalidiinta iyo bukaannada Soomaaliyeed",
         "langLabel": "Dooro luqadda:",
         "pickTitle": "Dooro daawada aad rabto oo hoos ka muuqata",
