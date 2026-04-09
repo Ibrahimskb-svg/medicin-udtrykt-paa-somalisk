@@ -207,7 +207,7 @@ export const siteData = {
       {
         "slug": "amlodipin",
         "href": "amlodipin",
-        "name": "Amlodipin",
+        "name": "Amlodipine",
         "icon": "➜"
       },
       {
@@ -237,7 +237,7 @@ export const siteData = {
       {
         "slug": "hjertemagnyl",
         "href": "hjertemagnyl",
-        "name": "Hjertemagnyl (Acetylsalicylsyre, ASA)",
+        "name": "Aspirin (Acetylsalicylic acid, ASA)",
         "icon": "➜"
       },
       {
@@ -249,7 +249,7 @@ export const siteData = {
       {
         "slug": "zopiclon",
         "href": "zopiclon",
-        "name": "Imozop (Zopiclon)",
+        "name": "Imovane (Zopiclone)",
         "icon": "➜"
       },
       {
@@ -261,7 +261,7 @@ export const siteData = {
       {
         "slug": "lamotrigin",
         "href": "lamotrigin",
-        "name": "Lamotrigin",
+        "name": "Lamotrigine",
         "icon": "➜"
       },
       {
@@ -315,7 +315,7 @@ export const siteData = {
       {
         "slug": "pantoprazol",
         "href": "pantoprazol",
-        "name": "Pantoprazol",
+        "name": "Pantoprazole",
         "icon": "➜"
       },
       {
@@ -327,13 +327,13 @@ export const siteData = {
       {
         "slug": "quetiapin",
         "href": "quetiapin",
-        "name": "Quetiapin",
+        "name": "Quetiapine",
         "icon": "➜"
       },
       {
         "slug": "sertralin",
         "href": "sertralin",
-        "name": "Sertralin",
+        "name": "Sertraline",
         "icon": "➜"
       },
       {
@@ -345,7 +345,7 @@ export const siteData = {
       {
         "slug": "ventoline",
         "href": "ventoline",
-        "name": "Ventoline (Salbutamol)",
+        "name": "Ventolin (Salbutamol)",
         "icon": "➜"
       },
       {
@@ -2494,12 +2494,12 @@ export const siteData = {
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
-          "pageTitle": "Hjertemagnyl – blood clot prevention",
-          "hdrTitle": "Hjertemagnyl – blood clot prevention",
+          "pageTitle": "Aspirin (Acetylsalicylic acid, ASA) – blood clot prevention",
+          "hdrTitle": "Aspirin (Acetylsalicylic acid, ASA) – blood clot prevention",
           "hdrSubtitle": "A clear and patient-friendly explanation of the medicine for patients and families.",
           "backLabel": "Back to medication list",
           "langLabel": "Select language:",
-          "drugName": "Hjertemagnyl – blood clot prevention",
+          "drugName": "Aspirin (Acetylsalicylic acid, ASA) – blood clot prevention",
           "drugForm": "Tablet",
           "badgeText": "Short and easy to read",
           "introBox": "Hjertemagnyl is low-dose acetylsalicylic acid that makes blood platelets less likely to stick together. In this setting, it is not used as an ordinary painkiller, but as protection against blood clots in people who need it.",
@@ -8952,12 +8952,12 @@ export const siteData = {
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
-          "pageTitle": "Ventoline – airways",
-          "hdrTitle": "Ventoline – airways",
+          "pageTitle": "Ventolin (Salbutamol) – airways",
+          "hdrTitle": "Ventolin (Salbutamol) – airways",
           "hdrSubtitle": "A simple and personal explanation of the medicine for patients and families.",
           "backLabel": "Back to medication list",
           "langLabel": "Select language:",
-          "drugName": "Ventoline – airways",
+          "drugName": "Ventolin (Salbutamol) – airways",
           "drugForm": "Inhaler",
           "badgeText": "Short and easy to read",
           "introBox": "Ventoline is a quick-relief inhaled medicine. It opens the airways to make breathing easier when shortness of breath or wheezing comes on quickly. This medicine is mainly used for fast relief of asthma symptoms or other episodes of narrowed airways.",
@@ -9734,12 +9734,12 @@ export const siteData = {
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
-          "pageTitle": "Imozop – insomnia",
-          "hdrTitle": "Imozop – insomnia",
+          "pageTitle": "Imovane (Zopiclone) – insomnia",
+          "hdrTitle": "Imovane (Zopiclone) – insomnia",
           "hdrSubtitle": "A simple and personal explanation of the medicine for patients and families.",
           "backLabel": "Back to medication list",
           "langLabel": "Select language:",
-          "drugName": "Imozop – insomnia",
+          "drugName": "Imovane (Zopiclone) – insomnia",
           "drugForm": "Oral tablet",
           "badgeText": "Short and easy to read",
           "introBox": "Imozop is a sleeping medicine that may help with short-term insomnia. It can make it easier to fall asleep, but in some people the effect may still be felt the next morning. That is why it should be used carefully and preferably only for a limited period.",
