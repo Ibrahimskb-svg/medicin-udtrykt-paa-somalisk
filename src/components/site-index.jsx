@@ -11,7 +11,8 @@ import { getIndexData, uiText } from "../lib/site";
 
 const indexData = getIndexData();
 
-const ICON_BASE = "https://raw.githubusercontent.com/Ibrahimskb-svg/medicin-udtrykt-paa-somalisk/main/public/icons/";
+const ICON_BASE =
+  "https://raw.githubusercontent.com/Ibrahimskb-svg/medicin-udtrykt-paa-somalisk/main/public/icons/";
 
 // ── Translated display names ───────────────────────────────────────────────
 const SLUG_DISPLAY_NAMES = {
@@ -83,6 +84,54 @@ function getDisplayName(slug, language, fallback) {
   return t[language] ?? t.so ?? fallback;
 }
 
+// ── About / Hero side texts ────────────────────────────────────────────────
+const HERO_SIDE_TEXTS = {
+  da: {
+    aboutMeTitle: "Om mig",
+    aboutMeName: "Ibrahim Dahir Hanaf",
+    aboutMeBody:
+      "Jeg hedder Ibrahim Dahir Hanaf, og jeg har en bachelor i Kemi og Medicinalbiologi samt er uddannet Farmakonom. Jeg har stærke naturvidenskabelige kompetencer og en stor passion for at gøre faglig viden mere forståelig, anvendelig og nærværende i praksis. Til daglig arbejder jeg både på privatapotek og vagtapotek, og mødet med mennesker i skranken har tydeligt vist mig, hvor stort behovet er for enkel, klar og brugbar lægemiddelinformation. Jeg brænder for at lære fra mig, dele min viden og gøre en reel forskel for alle, der har brug for en bedre forståelse af deres medicin.",
+    aboutSiteTitle: "Om Somalimed",
+    aboutSiteBody:
+      "Somalimed er skabt for at gøre lægemiddelinformation lettere at forstå på tværs af sprog og baggrunde. De 25 lægemidler på siden er nøje udvalgt ud fra det, jeg ofte møder i praksis ved skranken på apoteket, hvor behovet for tydelig og tryg information er særligt stort. Projektet udvikles stille og roligt i takt med behovet, og der vil løbende komme flere emner og lægemidler til, herunder antibiotika, antivirale behandlinger, antihistaminer m.m. Målet er at gøre noget komplekst mere enkelt, overskueligt og brugbart for patienter, pårørende og alle andre, der søger klar viden om medicin.",
+  },
+
+  en: {
+    aboutMeTitle: "About me",
+    aboutMeName: "Ibrahim Dahir Hanaf",
+    aboutMeBody:
+      "My name is Ibrahim Dahir Hanaf, and I have a bachelor's degree in Chemistry and Medicinal Biology and I am also a trained Pharmaconom. I have a strong foundation in the natural sciences and a deep commitment to making professional knowledge clearer, more practical and more useful in everyday life. Through my daily work in both community pharmacy and emergency pharmacy services, I have seen how great the need is for simple, trustworthy and accessible guidance about medicines. I care deeply about teaching, sharing knowledge and making a real difference for everyone who needs a better understanding of their treatment.",
+    aboutSiteTitle: "About Somalimed",
+    aboutSiteBody:
+      "Somalimed is created to make medicine information easier to understand across languages and backgrounds. The 25 medicines currently included on the site are carefully selected from what I frequently encounter in everyday pharmacy practice, where the need for clear and reassuring guidance is especially visible. The project is growing gradually as the need develops, and more medicines and topics will be added over time, including antibiotics, antiviral treatments, antihistamines and more. The overall aim is to turn something complex into something clearer, more practical and more useful for patients, families and anyone seeking better understanding of medicines.",
+  },
+
+  so: {
+    aboutMeTitle: "Ku saabsan aniga",
+    aboutMeName: "Ibraahim Dahir Xanaf",
+    aboutMeBody:
+      "Magacaygu waa Ibraahim Dahir Xanaf, waxaanan haystaa shahaadada bachelor-ka ee Kimiya iyo Medicinal Biology, sidoo kalena waxaan leeyahay waxbarashada Farmakonom. Waxaan leeyahay aqoon xooggan oo ku saabsan culuumta dabiiciga ah iyo rabitaan weyn oo ah in aqoonta caafimaadka laga dhigo mid cad, sahlan oo waxtar u leh dadka. Shaqadayda maalinlaha ah ee aan ka qabto farmashiyaha gaarka loo leeyahay iyo farmashiyaha heeganka ah ayaa si dhow ii tusay inta ay le’eg tahay baahida loo qabo sharaxaad fudud oo lagu kalsoonaan karo oo ku saabsan daawooyinka. Waxaan aad u jecelahay inaan dadka wax baro, aqoonta la wadaago, isla markaana aan farqi muuqda u sameeyo qof kasta oo u baahan faham wanaagsan oo ku saabsan daawadiisa.",
+    aboutSiteTitle: "Ku saabsan Somalimed",
+    aboutSiteBody:
+      "Somalimed waxaa loo sameeyay in macluumaadka daawooyinka laga dhigo mid sahlan oo la fahmi karo iyadoo la tixgelinayo luqado iyo asallo kala duwan. 25-ka daawo ee hadda bogga ku jira si taxaddar leh ayaa loo doortay, iyaga oo ku salaysan kuwa aan inta badan ku arko shaqada farmashiyaha iyo dadka ka raadsada hagitaan cad skranken-ka. Mashruucani si tartiib ah ayuu u kobcayaa iyadoo lagu salaynayo baahida jirta, waxaana si joogto ah loogu dari doonaa mawduucyo iyo daawooyin kale sida antibiyootikada, dawooyinka fayraska, antihistamiinada m.m. Ujeeddadu waa in wax adag loo rogo wax fudud, cad oo si dhab ah faa’iido ugu leh bukaanka, qoysaskooda iyo cid kasta oo doonaysa faham wanaagsan oo ku saabsan daawooyinka.",
+  },
+
+  ar: {
+    aboutMeTitle: "نبذة عني",
+    aboutMeName: "إبراهيم ظاهر حنف",
+    aboutMeBody:
+      "اسمي إبراهيم ظاهر حنف، ولدي درجة البكالوريوس في الكيمياء وعلم الأحياء الدوائي، كما أنني حاصل على تأهيل فارماكونوم. أمتلك خلفية قوية في العلوم الطبيعية وشغفاً كبيراً بتحويل المعرفة المتخصصة إلى معلومات أوضح وأكثر فائدة وقرباً من الحياة اليومية. ومن خلال عملي اليومي في الصيدلية الخاصة وصيدلية المناوبة، رأيت عن قرب حجم الحاجة إلى شرح أبسط وأكثر وضوحاً وثقة حول الأدوية. كما أؤمن بأهمية التعليم ومشاركة المعرفة وإحداث فرق حقيقي لكل من يحتاج إلى فهم أفضل لدوائه.",
+    aboutSiteTitle: "نبذة عن Somalimed",
+    aboutSiteBody:
+      "تم إنشاء Somalimed لتسهيل فهم معلومات الأدوية عبر لغات وخلفيات مختلفة. وقد تم اختيار الأدوية الخمسة والعشرين الموجودة حالياً بعناية استناداً إلى ما أراه كثيراً في الممارسة اليومية عند شباك الصيدلية، حيث تكون الحاجة إلى معلومات واضحة ومطمئنة كبيرة جداً. ويتطور المشروع تدريجياً مع ازدياد الحاجة، وستتم إضافة المزيد من المواضيع والأدوية مع الوقت، بما في ذلك المضادات الحيوية والعلاجات المضادة للفيروسات ومضادات الهيستامين وغيرها. والهدف هو تبسيط ما هو معقد وجعله أوضح وأكثر فائدة للمرضى وعائلاتهم ولكل من يبحث عن فهم أفضل للمعلومات الدوائية.",
+  },
+};
+
+function getHeroSideText(language) {
+  return HERO_SIDE_TEXTS[language] ?? HERO_SIDE_TEXTS.so;
+}
+
+// ── GitHub icon per slug ───────────────────────────────────────────────────
 const SLUG_ICON = {
   amlodipin: "blood-pressure.png",
   enalapril: "blood-pressure.png",
@@ -111,6 +160,7 @@ const SLUG_ICON = {
   pantoprazol: "stomach.png",
 };
 
+// ── Category accent colors per slug ───────────────────────────────────────
 const SLUG_STYLE = {
   amlodipin: { color: "#DC2626", bg: "#FEF2F2" },
   enalapril: { color: "#DC2626", bg: "#FEF2F2" },
@@ -141,6 +191,7 @@ const SLUG_STYLE = {
 
 const DEFAULT_STYLE = { color: "#0D9488", bg: "#F0FDFA" };
 
+// ── Category pills ─────────────────────────────────────────────────────────
 const CATEGORY_PILL_ICON = {
   "forhøjet blodtryk": { icon: "blood-pressure.png", color: "#DC2626", bg: "#FEF2F2" },
   "blodtryk & hjertebanken": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
@@ -212,7 +263,11 @@ const CATEGORY_PILL_ICON = {
 };
 
 function getPillMeta(label) {
-  return CATEGORY_PILL_ICON[label] || { icon: "download.png", color: "#0D9488", bg: "#F0FDFA" };
+  return CATEGORY_PILL_ICON[label] || {
+    icon: "download.png",
+    color: "#0D9488",
+    bg: "#F0FDFA",
+  };
 }
 
 function capitalize(str) {
@@ -223,18 +278,34 @@ function capitalize(str) {
 function buildCategoryPills(language) {
   const seen = new Set();
   const pills = [];
+
   for (const item of indexData.items) {
-    const label = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
+    const label =
+      indexData.subtitles[item.slug]?.[language] ||
+      indexData.subtitles[item.slug]?.so ||
+      "";
+
     if (!label || seen.has(label)) continue;
     seen.add(label);
     pills.push({ label, language });
   }
+
   return pills;
 }
 
 function SearchIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <circle cx="11" cy="11" r="7.5" />
       <path d="m20 20-4.2-4.2" />
     </svg>
@@ -243,7 +314,17 @@ function SearchIcon() {
 
 function ShieldInfoIcon() {
   return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
       <path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z" />
       <path d="M12 8v4" />
       <path d="M12 16h.01" />
@@ -252,12 +333,20 @@ function ShieldInfoIcon() {
 }
 
 export function SiteIndex({ initialLang }) {
-  const { language, updateLanguage } = useLanguageRouting({ initialLanguage: initialLang });
+  const { language, updateLanguage } = useLanguageRouting({
+    initialLanguage: initialLang,
+  });
+
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const text = useMemo(() => indexData.translations[language] || indexData.translations.so, [language]);
+  const text = useMemo(
+    () => indexData.translations[language] || indexData.translations.so,
+    [language]
+  );
+
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
+  const heroSideText = useMemo(() => getHeroSideText(language), [language]);
 
   useEffect(() => {
     applyLanguageToDocument(language, text.pageTitle);
@@ -273,8 +362,14 @@ export function SiteIndex({ initialLang }) {
     const query = searchTerm.trim().toLowerCase();
 
     return indexData.items.filter((item) => {
-      const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
-      const matchesCat = activeCategory === "all" || subtitle === activeCategory;
+      const subtitle =
+        indexData.subtitles[item.slug]?.[language] ||
+        indexData.subtitles[item.slug]?.so ||
+        "";
+
+      const matchesCat =
+        activeCategory === "all" || subtitle === activeCategory;
+
       const displayName = getDisplayName(item.slug, language, item.name);
 
       const matchSearch =
@@ -290,49 +385,116 @@ export function SiteIndex({ initialLang }) {
   useScrollReveal([language, activeCategory, searchTerm]);
 
   return (
-    <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
+    <div
+      style={{ background: "var(--bg)", color: "var(--text)" }}
+      className="min-h-screen"
+    >
+      {/* ── Hero ───────────────────────────────────────────────────────── */}
       <div style={{ background: "var(--heroBg)" }}>
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
-              <path d="m8.5 8.5 7 7" />
-            </svg>
-            {chromeText.heroEyebrow}
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          {/* Left side */}
+          <div>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
+                <path d="m8.5 8.5 7 7" />
+              </svg>
+              {chromeText.heroEyebrow}
+            </div>
+
+            <h1
+              className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+              style={{ lineHeight: 1.1 }}
+            >
+              {text.hdrTitle}
+            </h1>
+
+            <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
+              {text.hdrSubtitle}
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
+              <span className="flex items-center gap-1.5">
+                <span className="text-lg font-black text-white">
+                  {indexData.items.length}
+                </span>
+                {chromeText.medicinesStat}
+              </span>
+              <span className="text-white/40">·</span>
+              <span className="flex items-center gap-1.5">
+                <span className="text-lg font-black text-white">4</span>
+                {chromeText.languagesStat}
+              </span>
+              <span className="text-white/40">·</span>
+              <span>{chromeText.heroFormatValue}</span>
+            </div>
           </div>
 
-          <h1 className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl" style={{ lineHeight: 1.1 }}>
-            {text.hdrTitle}
-          </h1>
+          {/* Right side hero cards */}
+          <div className="flex flex-col gap-5">
+            <div className="rounded-3xl border border-white/20 bg-white/92 p-5 shadow-2xl backdrop-blur">
+              <div className="flex items-start gap-4">
+                <div className="relative shrink-0">
+                  <div className="absolute inset-[-4px] rounded-full bg-gradient-to-tr from-teal-400 via-sky-500 to-violet-500 opacity-90 blur-[2px]"></div>
+                  <img
+                    src="/ibrahim.jpg"
+                    alt={heroSideText.aboutMeName}
+                    className="relative h-24 w-24 rounded-full border-4 border-white object-cover shadow-lg"
+                  />
+                </div>
 
-          <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
-            {text.hdrSubtitle}
-          </p>
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+                    {heroSideText.aboutMeTitle}
+                  </p>
+                  <h3 className="mt-1 text-lg font-bold text-slate-900">
+                    {heroSideText.aboutMeName}
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    {heroSideText.aboutMeBody}
+                  </p>
+                </div>
+              </div>
+            </div>
 
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
-            <span className="flex items-center gap-1.5">
-              <span className="text-lg font-black text-white">{indexData.items.length}</span>
-              {chromeText.medicinesStat}
-            </span>
-            <span className="text-white/40">·</span>
-            <span className="flex items-center gap-1.5">
-              <span className="text-lg font-black text-white">4</span>
-              {chromeText.languagesStat}
-            </span>
-            <span className="text-white/40">·</span>
-            <span>{chromeText.heroFormatValue}</span>
+            <div className="rounded-3xl border border-white/20 bg-white/92 p-5 shadow-2xl backdrop-blur">
+              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+                {heroSideText.aboutSiteTitle}
+              </p>
+              <p className="mt-3 text-sm leading-7 text-slate-600">
+                {heroSideText.aboutSiteBody}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
+        {/* Language pills */}
         <div className="reveal-on-scroll">
-          <LanguageSelect label={text.langLabel} onChange={updateLanguage} value={language} />
+          <LanguageSelect
+            label={text.langLabel}
+            onChange={updateLanguage}
+            value={language}
+          />
         </div>
 
+        {/* Search */}
         <div className="reveal-on-scroll mb-6">
           <label htmlFor="medSearch" className="block">
-            <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            <span
+              className="mb-2 block text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "var(--text-muted)" }}
+            >
               {chromeText.searchLabel}
             </span>
 
@@ -360,7 +522,10 @@ export function SiteIndex({ initialLang }) {
                 <button
                   type="button"
                   className="shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90"
-                  style={{ background: "var(--bg)", color: "var(--text-muted)" }}
+                  style={{
+                    background: "var(--bg)",
+                    color: "var(--text-muted)",
+                  }}
                   onClick={() => setSearchTerm("")}
                 >
                   {chromeText.clearFilters}
@@ -370,8 +535,12 @@ export function SiteIndex({ initialLang }) {
           </label>
         </div>
 
+        {/* Category pills */}
         <div className="reveal-on-scroll mb-7">
-          <span className="mb-3 block text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+          <span
+            className="mb-3 block text-xs font-semibold uppercase tracking-widest"
+            style={{ color: "var(--text-muted)" }}
+          >
             {chromeText.categoryLabel}
           </span>
 
@@ -393,11 +562,29 @@ export function SiteIndex({ initialLang }) {
                 transition: "all 0.2s",
                 whiteSpace: "nowrap",
                 ...(activeCategory === "all"
-                  ? { background: "#1a1a1a", color: "#ffffff", borderColor: "#1a1a1a", boxShadow: "0 2px 8px rgba(0,0,0,0.18)" }
-                  : { background: "var(--surface,#fff)", color: "var(--text)", borderColor: "var(--border)" }),
+                  ? {
+                      background: "#1a1a1a",
+                      color: "#ffffff",
+                      borderColor: "#1a1a1a",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.18)",
+                    }
+                  : {
+                      background: "var(--surface,#fff)",
+                      color: "var(--text)",
+                      borderColor: "var(--border)",
+                    }),
               }}
             >
-              <span style={{ width: 10, height: 10, borderRadius: "50%", display: "inline-block", flexShrink: 0, background: activeCategory === "all" ? "#fff" : "#888" }} />
+              <span
+                style={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: "50%",
+                  display: "inline-block",
+                  flexShrink: 0,
+                  background: activeCategory === "all" ? "#fff" : "#888",
+                }}
+              />
               {capitalize(chromeText.allCategories)}
             </button>
 
@@ -424,8 +611,17 @@ export function SiteIndex({ initialLang }) {
                     transition: "all 0.2s",
                     whiteSpace: "nowrap",
                     ...(isActive
-                      ? { background: meta.color, color: "#ffffff", borderColor: meta.color, boxShadow: `0 2px 12px ${meta.color}50` }
-                      : { background: meta.bg, color: meta.color, borderColor: `${meta.color}40` }),
+                      ? {
+                          background: meta.color,
+                          color: "#ffffff",
+                          borderColor: meta.color,
+                          boxShadow: `0 2px 12px ${meta.color}50`,
+                        }
+                      : {
+                          background: meta.bg,
+                          color: meta.color,
+                          borderColor: `${meta.color}40`,
+                        }),
                   }}
                 >
                   <img
@@ -450,50 +646,91 @@ export function SiteIndex({ initialLang }) {
           </div>
         </div>
 
+        {/* Section heading */}
         <div className="reveal-on-scroll mb-5 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
+            <p
+              className="mb-0.5 text-xs font-semibold uppercase tracking-widest"
+              style={{ color: "var(--text-muted)" }}
+            >
               {chromeText.libraryEyebrow}
             </p>
-            <h2 className="text-2xl font-extrabold" style={{ color: "var(--text)" }}>
+            <h2
+              className="text-2xl font-extrabold"
+              style={{ color: "var(--text)" }}
+            >
               {text.pickTitle}
             </h2>
           </div>
 
           {filteredItems.length > 0 && (
-            <span className="shrink-0 text-sm" style={{ color: "var(--text-muted)" }}>
+            <span
+              className="shrink-0 text-sm"
+              style={{ color: "var(--text-muted)" }}
+            >
               {filteredItems.length} {chromeText.medicinesStat.toLowerCase()}
             </span>
           )}
         </div>
 
+        {/* Medicine cards */}
         {filteredItems.length ? (
           <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {filteredItems.map((item, index) => {
-              const subtitle = indexData.subtitles[item.slug]?.[language] || indexData.subtitles[item.slug]?.so || "";
+              const subtitle =
+                indexData.subtitles[item.slug]?.[language] ||
+                indexData.subtitles[item.slug]?.so ||
+                "";
+
               const style = SLUG_STYLE[item.slug] || DEFAULT_STYLE;
               const iconFile = SLUG_ICON[item.slug] || "download.png";
-              const displayName = getDisplayName(item.slug, language, item.name);
+              const displayName = getDisplayName(
+                item.slug,
+                language,
+                item.name
+              );
 
               return (
-                <li className="reveal-on-scroll" key={item.slug} style={{ transitionDelay: `${Math.min(index * 40, 200)}ms` }}>
+                <li
+                  className="reveal-on-scroll"
+                  key={item.slug}
+                  style={{
+                    transitionDelay: `${Math.min(index * 40, 200)}ms`,
+                  }}
+                >
                   <Link
                     className="group flex h-full overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                     style={{ borderColor: "var(--border)" }}
-                    href={{ pathname: `/${item.href}`, query: { lang: language } }}
+                    href={{
+                      pathname: `/${item.href}`,
+                      query: { lang: language },
+                    }}
                   >
-                    <div className="w-1.5 shrink-0" style={{ background: style.color }} />
+                    <div
+                      className="w-1.5 shrink-0"
+                      style={{ background: style.color }}
+                    />
 
                     <div className="flex flex-1 flex-col p-5">
                       <div className="flex items-center gap-3">
                         <span
                           className="flex shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]"
-                          style={{ width: 64, height: 64, background: style.bg, borderColor: `${style.color}22` }}
+                          style={{
+                            width: 64,
+                            height: 64,
+                            background: style.bg,
+                            borderColor: `${style.color}22`,
+                          }}
                         >
                           <img
                             src={`${ICON_BASE}${iconFile}`}
                             alt=""
-                            style={{ width: 44, height: 44, objectFit: "contain", mixBlendMode: "multiply" }}
+                            style={{
+                              width: 44,
+                              height: 44,
+                              objectFit: "contain",
+                              mixBlendMode: "multiply",
+                            }}
                             onError={(e) => {
                               e.currentTarget.style.display = "none";
                             }}
@@ -502,18 +739,36 @@ export function SiteIndex({ initialLang }) {
 
                         <span
                           className="rounded-full font-semibold"
-                          style={{ background: style.bg, color: style.color, fontSize: "15px", padding: "7px 15px" }}
+                          style={{
+                            background: style.bg,
+                            color: style.color,
+                            fontSize: "15px",
+                            padding: "7px 15px",
+                          }}
                         >
-                          {capitalize(subtitle) || capitalize(chromeText.medicinePill)}
+                          {capitalize(subtitle) ||
+                            capitalize(chromeText.medicinePill)}
                         </span>
                       </div>
 
-                      <h3 className="mt-3 text-xl font-bold" style={{ color: "var(--text)" }}>
+                      <h3
+                        className="mt-3 text-xl font-bold"
+                        style={{ color: "var(--text)" }}
+                      >
                         {displayName}
                       </h3>
 
-                      <div className="mt-auto flex items-center justify-between border-t pt-4" style={{ borderColor: "var(--border)", marginTop: "1rem" }}>
-                        <span className="text-sm font-medium" style={{ color: "var(--text-muted)" }}>
+                      <div
+                        className="mt-auto flex items-center justify-between border-t pt-4"
+                        style={{
+                          borderColor: "var(--border)",
+                          marginTop: "1rem",
+                        }}
+                      >
+                        <span
+                          className="text-sm font-medium"
+                          style={{ color: "var(--text-muted)" }}
+                        >
                           {chromeText.openDetails}
                         </span>
 
@@ -531,16 +786,30 @@ export function SiteIndex({ initialLang }) {
             })}
           </ul>
         ) : (
-          <section className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center" style={{ borderColor: "var(--border)" }}>
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl" style={{ background: "var(--bg)" }}>
+          <section
+            className="reveal-on-scroll rounded-2xl border bg-white px-8 py-12 text-center"
+            style={{ borderColor: "var(--border)" }}
+          >
+            <div
+              className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl"
+              style={{ background: "var(--bg)" }}
+            >
               <SearchIcon />
             </div>
-            <h3 className="text-xl font-bold" style={{ color: "var(--text)" }}>{chromeText.noResultsTitle}</h3>
-            <p className="mt-2" style={{ color: "var(--text-muted)" }}>{chromeText.noResultsBody}</p>
+            <h3
+              className="text-xl font-bold"
+              style={{ color: "var(--text)" }}
+            >
+              {chromeText.noResultsTitle}
+            </h3>
+            <p className="mt-2" style={{ color: "var(--text-muted)" }}>
+              {chromeText.noResultsBody}
+            </p>
           </section>
         )}
       </main>
 
+      {/* Footer */}
       <footer className="mx-auto max-w-6xl px-4 pb-14 pt-4">
         <div
           className="rounded-3xl border bg-white px-5 py-5 shadow-sm sm:px-6"
@@ -555,24 +824,36 @@ export function SiteIndex({ initialLang }) {
             </div>
 
             <div className="min-w-0">
-              <strong className="block text-sm font-semibold" style={{ color: "var(--text)" }}>
+              <strong
+                className="block text-sm font-semibold"
+                style={{ color: "var(--text)" }}
+              >
                 {text.footerStrong}
               </strong>
 
               {text.footer1 ? (
-                <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
+                <p
+                  className="mt-2 text-sm leading-7"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   {text.footer1}
                 </p>
               ) : null}
 
               {text.footer3 ? (
-                <p className="mt-2 text-sm leading-7" style={{ color: "var(--text-muted)" }}>
+                <p
+                  className="mt-2 text-sm leading-7"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   {text.footer3}
                 </p>
               ) : null}
 
               {text.footer2 ? (
-                <p className="mt-3 text-xs font-medium tracking-wide" style={{ color: "var(--text-muted)" }}>
+                <p
+                  className="mt-3 text-xs font-medium tracking-wide"
+                  style={{ color: "var(--text-muted)" }}
+                >
                   {text.footer2}
                 </p>
               ) : null}
