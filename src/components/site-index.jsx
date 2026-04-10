@@ -47,8 +47,15 @@ const NAV_LABELS = {
   ar: { aboutMe:"نبذة عني", aboutSite:"نبذة عن Somalimed", faq:"الأسئلة الشائعة", feedback:"آراء وملاحظات", contact:"تواصل معي" },
 };
 
-// ── Color themes per language ──────────────────────────────────────────────
-// so=teal, da=blue, en=brown/red, ar=orange
+// ── FAQ modal title — full title shown inside modal ────────────────────────
+const FAQ_MODAL_TITLE = {
+  da: "FAQ — Ofte stillede spørgsmål",
+  en: "FAQ — Frequently Asked Questions",
+  so: "Su'aalaha inta badan la isweydiiyo",
+  ar: "الأسئلة الشائعة",
+};
+
+// ── Color themes ───────────────────────────────────────────────────────────
 const LANG_THEME = {
   so: { primary:"#0D9488", soft:"#F0FDFA", border:"#99f6e4", tagBg:"linear-gradient(135deg,#f0fdfa,#e0f2fe)" },
   da: { primary:"#2563EB", soft:"#EFF6FF", border:"#bfdbfe", tagBg:"linear-gradient(135deg,#eff6ff,#dbeafe)" },
@@ -63,7 +70,6 @@ const BULLET_PALETTES = {
   ar: [{color:"#D97706",bg:"#FFFBEB"},{color:"#B45309",bg:"#FEF3C7"},{color:"#EA580C",bg:"#FFF7ED"},{color:"#F59E0B",bg:"#FFFBEB"}],
 };
 
-// ── Nav tab icon colors per language ───────────────────────────────────────
 const NAV_ICON_COLORS = {
   so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E" },
   da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7" },
@@ -73,33 +79,13 @@ const NAV_ICON_COLORS = {
 
 // ── Contact data ───────────────────────────────────────────────────────────
 const CONTACT_DATA = {
-  da: {
-    intro:"Har du spørgsmål til et lægemiddel, et forslag til siden eller blot lyst til at skrive? Jeg svarer gerne — skriv til mig på e-mail.",
-    emailNote:"Svar inden for 1–2 hverdage",
-    responseTitle:"Hvad kan du skrive om?",
-    topics:["Spørgsmål om et specifikt lægemiddel","Forslag til nye emner eller lægemidler","Fejl eller unøjagtigheder på siden","Generel feedback eller ros"],
-  },
-  en: {
-    intro:"Do you have a question about a medicine, a suggestion for the site, or just want to get in touch? I am happy to help — write to me by email.",
-    emailNote:"Response within 1–2 working days",
-    responseTitle:"What can you write about?",
-    topics:["Questions about a specific medicine","Suggestions for new topics or medicines","Errors or inaccuracies on the site","General feedback or praise"],
-  },
-  so: {
-    intro:"Ma qabtaa su'aal ku saabsan daawooyin, talooyin ku saabsan bogga, mise waxaad rabaan inaad xiriir la yeeshaan? Waxaan ku faraxsanahay inaan kaa caawiyaa — ii qor emailka.",
-    emailNote:"Jawaab ayaad helaysaa 1–2 maalmood gudahood",
-    responseTitle:"Maxaad ka qori kartaa?",
-    topics:["Su'aalaha ku saabsan daawooyin gaar ah","Talooyin ku saabsan mawduucyo ama daawooyin cusub","Khaladaadka ama xog aan saxnayn bogga","Faallo guud ama amaano"],
-  },
-  ar: {
-    intro:"هل لديك سؤال حول دواء معين، أو اقتراح للموقع، أو تريد فقط التواصل؟ يسعدني مساعدتك — راسلني عبر البريد الإلكتروني.",
-    emailNote:"سيتم الرد خلال يوم أو يومين عمل",
-    responseTitle:"عمَّ يمكنك الكتابة؟",
-    topics:["أسئلة حول دواء معين","اقتراحات لموضوعات أو أدوية جديدة","أخطاء أو معلومات غير دقيقة في الموقع","تعليقات عامة أو إطراء"],
-  },
+  da: { intro:"Har du spørgsmål til et lægemiddel, et forslag til siden eller blot lyst til at skrive? Jeg svarer gerne — skriv til mig på e-mail.", emailNote:"Svar inden for 1–2 hverdage", responseTitle:"Hvad kan du skrive om?", topics:["Spørgsmål om et specifikt lægemiddel","Forslag til nye emner eller lægemidler","Fejl eller unøjagtigheder på siden","Generel feedback eller ros"] },
+  en: { intro:"Do you have a question about a medicine, a suggestion for the site, or just want to get in touch? I am happy to help — write to me by email.", emailNote:"Response within 1–2 working days", responseTitle:"What can you write about?", topics:["Questions about a specific medicine","Suggestions for new topics or medicines","Errors or inaccuracies on the site","General feedback or praise"] },
+  so: { intro:"Ma qabtaa su'aal ku saabsan daawooyin, talooyin ku saabsan bogga, mise waxaad rabaan inaad xiriir la yeeshaan? Waxaan ku faraxsanahay inaan kaa caawiyaa — ii qor emailka.", emailNote:"Jawaab ayaad helaysaa 1–2 maalmood gudahood", responseTitle:"Maxaad ka qori kartaa?", topics:["Su'aalaha ku saabsan daawooyin gaar ah","Talooyin ku saabsan mawduucyo ama daawooyin cusub","Khaladaadka ama xog aan saxnayn bogga","Faallo guud ama amaano"] },
+  ar: { intro:"هل لديك سؤال حول دواء معين، أو اقتراح للموقع، أو تريد فقط التواصل؟ يسعدني مساعدتك — راسلني عبر البريد الإلكتروني.", emailNote:"سيتم الرد خلال يوم أو يومين عمل", responseTitle:"عمَّ يمكنك الكتابة؟", topics:["أسئلة حول دواء معين","اقتراحات لموضوعات أو أدوية جديدة","أخطاء أو معلومات غير دقيقة في الموقع","تعليقات عامة أو إطراء"] },
 };
 
-// ── About Me data — new professional combined text ─────────────────────────
+// ── About Me ───────────────────────────────────────────────────────────────
 const ABOUT_ME_META = {
   da: { name:"Ibrahim Dahir Hanaf", title:"Farmakonom, kemiker & faglig formidler" },
   en: { name:"Ibrahim Dahir Hanaf", title:"Pharmaconomist, chemist & science communicator" },
@@ -134,7 +120,6 @@ const ABOUT_ME_BULLETS = {
   ],
 };
 
-// ── About Somalimed ────────────────────────────────────────────────────────
 const ABOUT_SITE_TAGLINE = {
   da:"Lægemiddelinformation på dit eget sprog",
   en:"Medicine information in your own language",
@@ -169,185 +154,213 @@ const ABOUT_SITE_BULLETS = {
   ],
 };
 
-// ── FAQ — specific, medicine-based, all 4 languages ───────────────────────
+// ── FAQ — 12 questions, plain language, medicine-specific ─────────────────
 const FAQ_DATA = {
   da: {
-    title:"Ofte stillede spørgsmål",
     items:[
       {
-        q:"Hvornår på dagen skal jeg tage Lamotrigin, og hvad sker der, hvis jeg springer en dosis over?",
-        a:"Lamotrigin bør tages på samme tidspunkt hver dag for at holde et stabilt niveau i blodet. Det tages typisk én til to gange dagligt — afhængigt af din læges anvisning. Springer du en dosis over, skal du tage den, så snart du husker det — men aldrig tage dobbelt dosis. Et fald i blodkoncentrationen kan øge risikoen for anfald hos patienter med epilepsi. Ophør af Lamotrigin må aldrig ske pludseligt, men skal nedtrappes gradvist under lægelig vejledning."
+        q:"Hvad er Lamotrigin, og hvordan skal jeg tage det?",
+        a:"Lamotrigin er en medicin, der bruges til at forebygge anfald hos mennesker med epilepsi og til at stabilisere humøret hos personer med bipolar lidelse. Det er vigtigt, at du tager det på samme tidspunkt hver dag — morgenen, aftensmaden eller en anden fast tid, som passer dig. Det kan tages med eller uden mad. Springer du en dosis over, skal du tage den, så snart du husker det. Men spring den over, hvis det snart er tid til næste dosis — og tag aldrig dobbelt op. Stop aldrig med Lamotrigin fra den ene dag til den anden uden at tale med din læge først.",
       },
       {
         q:"Kan jeg tage Paracetamol og Ibuprofen på samme tid, og hvad er den maksimale dosis?",
-        a:"Ja, Paracetamol og Ibuprofen kan kombineres, da de virker via forskellig mekanismer — Paracetamol centralt og Ibuprofen antiinflammatorisk. For Paracetamol gælder maks. 1 g (2 tabletter á 500 mg) per dosis, maks. 4 g (8 tabletter) i døgnet og mindst 4–6 timer mellem doserne. For Ibuprofen er den anbefalede enkeltdosis 200–400 mg, maks. 1.200 mg dagligt uden recept, og mindst 6–8 timer mellem doserne. Ibuprofen bør tages til mad for at skåne maveslimhinden."
+        a:"Ja, du kan godt tage begge to på samme tid, da de virker på forskellig måde i kroppen. For Paracetamol gælder det, at du højst må tage 2 tabletter (500 mg hver) ad gangen og maks. 8 tabletter i løbet af et døgn — med mindst 4–6 timer imellem doserne. For Ibuprofen er grænsen 1–2 tabletter ad gangen og maks. 6 tabletter pr. dag uden recept — med mindst 6–8 timer imellem. Ibuprofen skal du altid tage til mad, da det ellers kan give mavegener.",
       },
       {
         q:"Hvad skal jeg undgå, mens jeg er i Marevan-behandling?",
-        a:"Marevan (Warfarin) er en blodfortyndende medicin, der kræver særlig opmærksomhed. Pludselige ændringer i indtagelsen af K-vitaminrige fødevarer — som grønkål, spinat, broccoli og persille — kan påvirke INR-værdien markant. Du bør undgå smertestillende som Ibuprofen og Diclofenac, da disse øger blødningsrisikoen. Alkohol bør begrænses. Det er afgørende at møde op til dine regelmæssige INR-kontroller og altid informere din læge og tandlæge om behandlingen inden indgreb."
+        a:"Marevan er en blodfortyndende medicin, og det kræver lidt ekstra opmærksomhed i hverdagen. Du bør undgå pludselige store ændringer i, hvor meget grønkål, spinat, broccoli og persille du spiser — disse grøntsager indeholder K-vitamin, som kan påvirke, hvor godt Marevan virker. Undgå også smertestillende som Ibuprofen og Diclofenac, da de øger risikoen for blødning. Begræns alkohol. Husk at møde op til dine regelmæssige blodprøver og altid fortælle din læge og tandlæge, at du tager Marevan — særligt inden du skal opereres eller have lavet indgreb.",
       },
       {
         q:"Skal Atorvastatin tages om morgenen eller om aftenen, og kan jeg spise grapefrugt?",
-        a:"Atorvastatin kan tages på alle tidspunkter af døgnet — men det er vigtigst at tage den på samme tidspunkt hver dag. Den er effektiv uanset tidspunkt, da kroppen producerer mest kolesterol om natten. Undgå dog store mængder grapefrugt eller grapefrugtjuice, da den indeholder stoffer der hæmmer nedbrydningen af Atorvastatin i leveren og derved øger koncentrationen i blodet. Dette kan øge risikoen for bivirkninger, særligt muskelsmerte (myopati)."
+        a:"Atorvastatin er en medicin, der sænker dit kolesterol, og du kan tage den på alle tider af døgnet — det vigtigste er, at du tager den på samme tidspunkt hver dag. Den kan tages med eller uden mad. En ting du skal være opmærksom på: undgå at spise store mængder grapefrugt eller drikke grapefrugtjuice, da det kan gøre, at medicinen ophober sig i kroppen og øge risikoen for bivirkninger — særligt muskelsmerter.",
       },
       {
-        q:"Hvordan virker Metformin, og hvornår skal det tages i relation til mad?",
-        a:"Metformin sænker blodsukkeret primært ved at hæmme leverens glukoseproduktion og forbedre kroppens insulinfølsomhed. Det tages altid i forbindelse med et måltid eller umiddelbart efter — dette mindsker risikoen for mave-tarm-bivirkninger som kvalme, diarre og mavesmerter, der er hyppige i opstartsfasen. Metformin nedlægges gradvist, og kroppen vænner sig typisk til det inden for 2–4 uger. Fortæl altid din læge om Metformin-behandlingen inden røntgenundersøgelser med kontrastmiddel."
+        q:"Hvad er Metformin, og hvornår skal jeg tage det i relation til mad?",
+        a:"Metformin er en sukkersygemedicin (diabetes-medicin), der hjælper din krop med at holde blodsukkeret nede. Det er en af de mest brugte og velafprøvede diabetesmediciner, og det tages altid i forbindelse med et måltid eller umiddelbart efter — aldrig på tom mave. Grunden er, at det ellers kan give mavegener som kvalme, diarre og mavesmerter, som mange oplever i starten. Kroppen vænner sig typisk til medicinen inden for 2–4 uger.",
       },
       {
-        q:"Hvad er den vigtigste forskel på blodtryksmedicinerne Amlodipin, Losartan og Enalapril?",
-        a:"Amlodipin er en calciumantagonist, der afslapper blodkarrene og sænker modstanden mod blodstrømmen. Losartan er en angiotensin II-receptorblokker (ARB), der blokerer et hormon som trækker blodkarrene sammen. Enalapril er en ACE-hæmmer, der forhindrer omdannelsen af angiotensin I til angiotensin II. Alle tre sænker blodtrykket, men via forskellige mekanismer. Din læge vælger den mest hensigtsmæssige type ud fra din samlede helbredsprofil, eventuelle andre sygdomme og bivirkningsprofilen."
+        q:"Hvad er blodtryksmedicin, og hvordan tages Amlodipin, Losartan og Enalapril?",
+        a:"Blodtryksmedicin hjælper med at holde dit blodtryk nede og beskytte dit hjerte og dine blodkar over tid. Amlodipin, Losartan og Enalapril er tre forskellige typer blodtryksmedicin — de virker på forskellig måde i kroppen, men målet er det samme: et sundere blodtryk. Alle tre tages normalt én gang dagligt og kan tages med eller uden mad. Det vigtigste er at tage dem på samme tidspunkt hver dag og ikke springe doser over — selv hvis du ikke mærker noget, virker medicinen.",
       },
       {
-        q:"Kan jeg tage Ibuprofen, hvis jeg er i blodtryksmedicinbehandling?",
-        a:"Det frarådes i de fleste tilfælde. Ibuprofen og andre NSAID-præparater kan modvirke virkningen af blodtryksmedicin og i sig selv medføre en stigning i blodtrykket. De kan desuden belaste nyrerne, særligt i kombination med ACE-hæmmere (Enalapril) eller ARB'er (Losartan). Paracetamol er generelt et sikrere alternativ til smertelindring for patienter i blodtryksmedicinbehandling. Spørg altid din apotek eller læge, inden du kombinerer præparater."
+        q:"Kan jeg tage Ibuprofen, hvis jeg allerede tager blodtryksmedicin?",
+        a:"Det frarådes i de fleste tilfælde. Ibuprofen kan modvirke din blodtryksmedicin, så den ikke virker lige så godt — og det kan i sig selv gøre dit blodtryk højere. Det kan også belaste dine nyrer, særligt hvis du tager visse typer blodtryksmedicin. Paracetamol er et langt sikrere valg til smertelindring, hvis du er i blodtryksmedicinbehandling. Spørg altid dit apotek eller din læge, inden du tager noget udover din faste medicin.",
       },
       {
-        q:"Hvad sker der i kroppen, hvis jeg pludseligt stopper med Lamotrigin eller Sertralin?",
-        a:"Pludseligt ophør med Lamotrigin kan udløse alvorlige absensanfald eller generaliserede kramper, selv hos patienter der har været anfaldsfrie i lang tid. Pludseligt ophør med Sertralin kan give såkaldte seponeringsreaktioner, der inkluderer svimmelhed, elektrisk prikkende fornemmelse ('brain zaps'), søvnforstyrrelser, irritabilitet og influenzalignende symptomer. Begge lægemidler skal altid nedtrappes gradvist under lægelig vejledning — aldrig stoppes fra den ene dag til den anden."
+        q:"Hvad sker der, hvis jeg pludseligt stopper med Lamotrigin eller Sertralin?",
+        a:"Det er vigtigt, at du aldrig stopper med disse to mediciner fra den ene dag til den anden — hverken Lamotrigin eller Sertralin. Stopper du brat med Lamotrigin, kan det udløse anfald, selv om du har været anfaldsfri i lang tid. Stopper du pludseligt med Sertralin, kan du opleve svimmelhed, prikkende fornemmelse i kroppen, søvnproblemer og humørsvingninger. Begge mediciner skal trappes ned langsomt og under vejledning fra din læge.",
       },
       {
         q:"Hvad skal jeg gøre, hvis jeg tager for mange Paracetamol-tabletter?",
-        a:"Kontakt straks Giftlinjen på 82 12 12 12 (åben døgnet rundt) eller ring 112. En overdosering af Paracetamol er alvorlig, selv hvis du ikke mærker umiddelbare symptomer — skaden på leveren kan opstå i løbet af 24–72 timer uden tidlige tegn. Forsøg ikke at vente og se, men søg hjælp med det samme. Tag medicin-emballagen med til hospitalet, så personalet ved præcis, hvad og hvor meget du har taget."
+        a:"Ring straks til Giftlinjen på 82 12 12 12 — de er åbne hele døgnet og giver gratis vejledning. Eller ring 112 i akutte tilfælde. En overdosering af Paracetamol er alvorlig, selv hvis du ikke mærker noget med det samme — skaden på leveren kan ske stille og roligt over 24–72 timer. Vent ikke på, at der sker noget. Tag medicin-emballagen med, så personalet kan se præcis, hvad du har taget.",
       },
       {
         q:"Kan Atorvastatin give muskelsmerter, og hvornår skal jeg kontakte min læge?",
-        a:"Ja, muskelsmerte (myalgi) er en velkendt bivirkning til statiner som Atorvastatin. Den opleves typisk som en diffus ømhed eller svaghed i muskler, særligt i lår og overarme. I sjældne tilfælde kan det udvikle sig til rhabdomyolyse — en alvorlig nedbrydning af muskelvæv. Kontakt din læge, hvis du oplever uforklarlig, vedvarende muskelsmerte, muskelsvaghed eller mørk urin. Din læge vil vurdere, om dosis bør justeres eller præparatet skiftes."
+        a:"Ja, det kan det. Muskelsmerter er en velkendt bivirkning ved kolesterolmedicin som Atorvastatin. Det opleves typisk som en dump, spredt ømhed eller svaghedsfornemmelse i musklerne — særligt i lår og overarme. Det er ikke farligt for alle, men du bør kontakte din læge, hvis du oplever vedvarende eller tiltagende muskelsmerter, muskelsvaghed eller mørk urin. Din læge kan vurdere, om din dosis skal justeres eller skiftes til en anden type.",
+      },
+      {
+        q:"Hvilket smertestillende virker bedst, og hvornår skal jeg vælge hvad?",
+        a:"Det afhænger af, hvad du har ondt i. Paracetamol er det mildeste og skånsomste valg — det passer til de fleste former for smerter som hovedpine, feber og lettere smerter, og det er sikkert for langt de fleste. Ibuprofen er stærkere og virker også på betændelse — det er godt ved tandpine, muskelsmerter og led-smerter, men det kan irritere maven og er ikke egnet til alle. Har du ondt i maven, tager blodtryksmedicin eller er gravid, er Paracetamol det sikreste valg. Er du i tvivl, spørg dit apotek.",
+      },
+      {
+        q:"Kan jeg tage min faste medicin, hvis jeg er begyndt at tage et nyt håndkøbsmiddel?",
+        a:"Ikke nødvendigvis — og det er et rigtig vigtigt spørgsmål at stille. Mange håndkøbsmediciner kan påvirke din faste medicin, enten ved at gøre den stærkere, svagere eller ved at give uønskede bivirkninger. For eksempel kan Ibuprofen og visse hostepiller påvirke blodtryksmedicin, og nogle naturlægemidler kan påvirke blodfortyndende medicin. Spørg altid på apoteket, inden du begynder på noget nyt — det er gratis, og personalet er der præcis for at hjælpe dig med den slags.",
       },
     ],
   },
   en: {
-    title:"Frequently Asked Questions",
     items:[
       {
-        q:"When during the day should I take Lamotrigine, and what happens if I miss a dose?",
-        a:"Lamotrigine should be taken at the same time every day to maintain a stable blood level. It is typically taken once or twice daily depending on your doctor's instructions. If you miss a dose, take it as soon as you remember — but never double up. A drop in blood concentration can increase seizure risk in patients with epilepsy. Lamotrigine must never be stopped suddenly — it should always be tapered gradually under medical supervision."
+        q:"What is Lamotrigine, and how should I take it?",
+        a:"Lamotrigine is a medicine used to prevent seizures in people with epilepsy and to stabilise mood in people with bipolar disorder. It is important to take it at the same time every day — morning, evening meal or another fixed time that works for you. It can be taken with or without food. If you miss a dose, take it as soon as you remember. Skip it if it is nearly time for your next dose — and never take a double dose. Never stop Lamotrigine from one day to the next without speaking to your doctor first.",
       },
       {
         q:"Can I take Paracetamol and Ibuprofen at the same time, and what is the maximum dose?",
-        a:"Yes, Paracetamol and Ibuprofen can be combined as they work through different mechanisms — Paracetamol centrally and Ibuprofen as an anti-inflammatory. For Paracetamol, the maximum single dose is 1 g (2 tablets of 500 mg), up to 4 g (8 tablets) per day, with at least 4–6 hours between doses. For Ibuprofen, the recommended single dose is 200–400 mg, up to 1,200 mg daily without prescription, with at least 6–8 hours between doses. Ibuprofen should be taken with food to protect the stomach lining."
+        a:"Yes, you can take both at the same time as they work differently in the body. For Paracetamol, the maximum is 2 tablets (500 mg each) per dose and no more than 8 tablets in a 24-hour period — with at least 4–6 hours between doses. For Ibuprofen, the limit is 1–2 tablets per dose and no more than 6 tablets per day without a prescription — with at least 6–8 hours between doses. Always take Ibuprofen with food to avoid stomach problems.",
       },
       {
         q:"What should I avoid while taking Warfarin (Marevan)?",
-        a:"Warfarin requires particular care. Sudden changes in your intake of vitamin K-rich foods — such as kale, spinach, broccoli and parsley — can significantly affect your INR level. Avoid pain relievers such as Ibuprofen and Diclofenac, as these increase the risk of bleeding. Alcohol should be kept to a minimum. It is essential to attend your regular INR monitoring appointments and always inform your doctor and dentist about your treatment before any procedures."
+        a:"Warfarin is a blood-thinning medicine that requires a little extra attention in daily life. Avoid sudden large changes in how much kale, spinach, broccoli and parsley you eat — these vegetables contain vitamin K, which can affect how well Warfarin works. Also avoid pain relievers such as Ibuprofen and Diclofenac, as they increase the risk of bleeding. Limit alcohol. Remember to attend your regular blood tests and always tell your doctor and dentist that you take Warfarin — especially before any surgery or procedures.",
       },
       {
         q:"Should Atorvastatin be taken in the morning or evening, and can I eat grapefruit?",
-        a:"Atorvastatin can be taken at any time of day — the most important thing is to take it consistently at the same time each day. It is effective regardless of timing, as the body produces most cholesterol overnight. However, avoid large amounts of grapefruit or grapefruit juice, as it contains compounds that inhibit the breakdown of Atorvastatin in the liver, raising its concentration in the blood. This can increase the risk of side effects, particularly muscle pain (myopathy)."
+        a:"Atorvastatin is a cholesterol-lowering medicine, and you can take it at any time of day — the most important thing is to take it at the same time every day. It can be taken with or without food. One thing to be aware of: avoid eating large amounts of grapefruit or drinking grapefruit juice, as it can cause the medicine to build up in your body and increase the risk of side effects — particularly muscle pain.",
       },
       {
-        q:"How does Metformin work, and when should it be taken in relation to meals?",
-        a:"Metformin lowers blood sugar primarily by inhibiting glucose production in the liver and improving the body's sensitivity to insulin. It should always be taken with or immediately after a meal — this reduces the risk of gastrointestinal side effects such as nausea, diarrhoea and stomach pain, which are common during the initial period. The body typically adjusts within 2–4 weeks. Always inform your doctor about Metformin treatment before any X-ray examination involving contrast dye."
+        q:"What is Metformin, and when should I take it in relation to meals?",
+        a:"Metformin is a diabetes medicine that helps your body keep blood sugar levels down. It is one of the most commonly used and well-tested diabetes medicines, and it should always be taken with or immediately after a meal — never on an empty stomach. This is because it can otherwise cause stomach problems such as nausea, diarrhoea and stomach pain, which many people experience at the start. The body usually adjusts to the medicine within 2–4 weeks.",
       },
       {
-        q:"What is the key difference between the blood pressure medicines Amlodipine, Losartan and Enalapril?",
-        a:"Amlodipine is a calcium channel blocker that relaxes blood vessels and reduces resistance to blood flow. Losartan is an angiotensin II receptor blocker (ARB) that blocks a hormone responsible for constricting blood vessels. Enalapril is an ACE inhibitor that prevents the conversion of angiotensin I to angiotensin II. All three lower blood pressure, but through different mechanisms. Your doctor selects the most appropriate based on your overall health profile, any co-existing conditions and the side effect profile."
+        q:"What is blood pressure medicine, and how do I take Amlodipine, Losartan and Enalapril?",
+        a:"Blood pressure medicine helps keep your blood pressure down and protects your heart and blood vessels over time. Amlodipine, Losartan and Enalapril are three different types of blood pressure medicine — they each work in their own way, but the goal is the same: a healthier blood pressure. All three are normally taken once daily and can be taken with or without food. The most important thing is to take them at the same time every day and not skip doses — even if you feel nothing, the medicine is still working.",
       },
       {
-        q:"Can I take Ibuprofen while on blood pressure medicine?",
-        a:"In most cases this is not recommended. Ibuprofen and other NSAIDs can counteract the effect of blood pressure medicines and themselves contribute to a rise in blood pressure. They can also place strain on the kidneys, particularly in combination with ACE inhibitors (Enalapril) or ARBs (Losartan). Paracetamol is generally a safer alternative for pain relief in patients on blood pressure treatment. Always ask your pharmacist or doctor before combining medicines."
+        q:"Can I take Ibuprofen if I am already taking blood pressure medicine?",
+        a:"In most cases this is not recommended. Ibuprofen can counteract your blood pressure medicine, making it less effective — and can itself raise your blood pressure. It can also put strain on your kidneys, particularly with certain types of blood pressure medicine. Paracetamol is a much safer choice for pain relief if you are on blood pressure treatment. Always ask your pharmacist or doctor before taking anything in addition to your regular medicine.",
       },
       {
-        q:"What happens in the body if I suddenly stop Lamotrigine or Sertraline?",
-        a:"Stopping Lamotrigine suddenly can trigger serious absence seizures or generalised convulsions, even in patients who have been seizure-free for a long time. Stopping Sertraline abruptly can cause discontinuation syndrome, including dizziness, electric shock-like sensations ('brain zaps'), sleep disturbances, irritability and flu-like symptoms. Both medicines must always be tapered gradually under medical supervision — never stopped from one day to the next."
+        q:"What happens if I suddenly stop taking Lamotrigine or Sertraline?",
+        a:"It is important never to stop either of these medicines from one day to the next. Stopping Lamotrigine suddenly can trigger seizures, even if you have been seizure-free for a long time. Stopping Sertraline abruptly can cause dizziness, a tingling sensation in the body, sleep problems and mood swings. Both medicines must be tapered down slowly and under the guidance of your doctor.",
       },
       {
         q:"What should I do if I have taken too many Paracetamol tablets?",
-        a:"Contact the Poison Information Centre (Giftlinjen) immediately on 82 12 12 12 (open around the clock) or call 112. A Paracetamol overdose is serious even if you feel no immediate symptoms — liver damage can develop within 24–72 hours without early warning signs. Do not wait to see if symptoms appear. Seek help immediately and bring the medicine packaging to the hospital so staff know exactly what and how much was taken."
+        a:"Call the Poison Information Centre (Giftlinjen) immediately on 82 12 12 12 — they are open around the clock and provide free guidance. Or call 112 in an emergency. A Paracetamol overdose is serious even if you feel nothing at first — liver damage can happen quietly over 24–72 hours. Do not wait for symptoms to appear. Bring the medicine packaging so staff can see exactly what you have taken.",
       },
       {
         q:"Can Atorvastatin cause muscle pain, and when should I contact my doctor?",
-        a:"Yes, muscle pain (myalgia) is a well-recognised side effect of statins such as Atorvastatin. It is typically experienced as a diffuse aching or weakness in the muscles, particularly in the thighs and upper arms. In rare cases it can progress to rhabdomyolysis — a serious breakdown of muscle tissue. Contact your doctor if you experience unexplained, persistent muscle pain, muscle weakness or dark urine. Your doctor will assess whether the dose should be adjusted or the medicine changed."
+        a:"Yes, it can. Muscle pain is a well-known side effect of cholesterol medicines such as Atorvastatin. It is typically felt as a dull, widespread aching or weakness in the muscles — particularly in the thighs and upper arms. It is not dangerous for everyone, but you should contact your doctor if you experience persistent or worsening muscle pain, muscle weakness or dark urine. Your doctor can assess whether your dose needs adjusting or switching to a different type.",
+      },
+      {
+        q:"Which pain reliever works best, and when should I choose which one?",
+        a:"It depends on what is causing your pain. Paracetamol is the mildest and gentlest option — it suits most types of pain such as headache, fever and mild aches, and it is safe for the vast majority of people. Ibuprofen is stronger and also works against inflammation — it is good for toothache, muscle pain and joint pain, but it can irritate the stomach and is not suitable for everyone. If you have stomach problems, take blood pressure medicine or are pregnant, Paracetamol is the safer choice. If in doubt, ask your pharmacist.",
+      },
+      {
+        q:"Can I take my regular medicine if I have started a new over-the-counter product?",
+        a:"Not necessarily — and that is a really important question to ask. Many over-the-counter medicines can affect your regular medicine, either by making it stronger, weaker or by causing unwanted side effects. For example, Ibuprofen and certain cough medicines can affect blood pressure medicine, and some herbal remedies can affect blood-thinning medicine. Always ask at the pharmacy before starting something new — it is free, and the staff are there precisely to help you with questions like this.",
       },
     ],
   },
   so: {
-    title:"Su'aalaha inta badan la isweydiiyo",
     items:[
       {
-        q:"Goorma maalinta ayaan qaadan karaa Lamotrigin, maxaana dhacaya haddaan hilmaamo dosis?",
-        a:"Lamotrigin waa in lagu qaadaa wakht isku mid ah maalin kasta si heerka dhiigga uu u joogtoobo. Caadiga ahaan waxaa lagu qaadaa hal ama laba jeer maalintii — iyada oo ku xidantahay tilmaamaha dhakhtarkaaga. Haddaad hilmaami dosista, qaado markii aad xasuusatid — laakiin ha qaadin laba dosis mar. Hoos u dhac ku yimaada heerka dhiigga waxay kordhin kartaa khatarta qodob-xanuunka bukaanka epilepsy. Lamotrigin weligiis looma joojin karo si lama filaan ah — had iyo jeer waa in si tartiib ah hoos loogu dhigo hagitaanka dhakhtarka.",
+        q:"Maxay tahay Lamotrigin, sidaana loo qaadaa?",
+        a:"Lamotrigin waa daawada loo isticmaalo ka hortagga qodob-xanuunka dadka qaba cudurka epilepsy (guba) iyo sidoo kale dejinta xaalada maskaxda dadka qaba bipolar disorder (laba-cirifood). Waa muhiim in aad qaadato wakht isku mid ah maalin kasta — subaxdii, inta cuntada la cunayo habeenkii, ama wakht kale oo joogto ah oo kuu habboon. Waxaa lagu qaadan karaa cuntada la socota ama la'aanteeda. Haddaad hilmaami dosista, qaadana markii aad xasuusan, laakiin ha qaadin laba dosis mar. Weligaana ha joojiyo Lamotrigin si lama filaan ah — mar walba la tasho dhakhtarkaaga horta.",
       },
       {
         q:"Ma qaadan karaa Paracetamol iyo Ibuprofen isla mar, maxayna tahay qadarka ugu badan?",
-        a:"Haa, Paracetamol iyo Ibuprofen waa la isku dari karaa maadaama ay si kala duwan ugu shaqeeyaan — Paracetamol waxay ku shaqaysaa nidaamka xididdada maskaxda, halka Ibuprofen ay tahay daawada ka hortaga barar. Paracetamol: qadarka ugu badan hal mar waa 1 g (2 kiniin oo 500 mg ah), maalin kasta ugu badan 4 g (8 kiniin), ugu yaraan 4–6 saacadood u dhexeeya. Ibuprofen: qadarka hal mar waa 200–400 mg, ugu badan 1,200 mg maalin kasta la'aanta qoraal dhakhtareed, ugu yaraan 6–8 saacadood u dhexeeya. Ibuprofen waa in la qaadaa cuntada si looga ilaaliyo caloosha.",
+        a:"Haa, waa la isku dari karaa maadaama ay si kala duwan ugu shaqeeyaan jirka. Paracetamol: ugu badan hal mar 2 kiniin (500 mg mid walba), ugu badna 8 kiniin 24 saacadood gudahood — ugu yaraan 4–6 saacadood u dhexeeya. Ibuprofen: 1–2 kiniin hal mar, ugu badna 6 kiniin maalintii la'aanta qoraalka dhakhtarka — ugu yaraan 6–8 saacadood u dhexeeya. Ibuprofen mar walba qaado cuntada la socota si looga fogaado dhibaatada caloosha.",
       },
       {
         q:"Maxaan ka fogaan karaa intaan ku jiro daawaynta Marevan?",
-        a:"Marevan (Warfarin) waa daawada dareere-dhiigga ah oo u baahan dareen gaar ah. Isbedelada lama filaan ah ee cuntada ka kooban vitamin K — sida canabka cagaaran, isbinaashka, barootiinka iyo baarsaleeyo — waxay si weyn u beddeli karaan qiimaha INR-ka. Iska ilaali xanuun-daawooyinka sida Ibuprofen iyo Diclofenac, maadaama ay kordhinayaan khatarta dhiig-baxa. Khamriga waa in la xaddidaa. Waa muhiim in aad si joogto ah u tagto tijaabooyinka INR-ka oo mar walba u sheegto dhakhtarkaaga iyo dacawooyaha ilkaha inaad ku jirto daawayntaan ka hor fal kasta.",
+        a:"Marevan waa daawada dareere-dhiigga ah oo u baahan xoogaa dareen dheeraad ah noloshiisa maalinlaha ah. Iska ilaali isbedelada lama filaan ah ee baaxadda ee cuntada ka kooban K-vitamin — sida canabka cagaaran, isbinaashka, barootiinka iyo baarsaleeyo — maadaama ay saameyn karaan sida Marevan u shaqayso. Sidoo kale iska ilaali xanuun-daawooyinka sida Ibuprofen iyo Diclofenac, maadaama ay kordhinayaan khatarta dhiig-baxa. Xaddid khamriga. Xusuusnow in aad si joogto ah u tagto baaritaanka dhiigga oo mar walba u sheegto dhakhtarkaaga iyo dacawooyaha ilkaha inaad qaadanayso Marevan — gaar ahaan ka hor qalliinka ama falalka caafimaadka.",
       },
       {
-        q:"Atorvastatin ma subaxdii baa lagu qaadaa mise habeenkii, miyaana cirishta lagu cuni karin?",
-        a:"Atorvastatin waxaa lagu qaadi karaa wakht kasta maalinta — waxa ugu muhiimsan waa in si joogto ah wakht isku mid ah lagu qaado maalin kasta. Waxay shaqaysaa waqti kasta, maadaama jiruhu uu inta badan kolestarool u soo saaro habeenkii. Si kastaba ha ahaatee, iska ilaali tirada badan ee cirishta ama cabitaankeedu (grapefruit juice), maadaama ay ka kooban yihiin walxo xannibaya jabinta Atorvastatin ee beer, taas oo kordhinaysa heerkeeda dhiigga. Tani waxay kordhin kartaa khatarta saameynta xumida, gaar ahaan xanuunka muruqyada (myopathy).",
+        q:"Atorvastatin subaxdii baa lagu qaadaa mise habeenkii, miyaana cirishta lagu cuni karin?",
+        a:"Atorvastatin waa daawada hoos u dhigaysa kolestaroolka, waxaana lagu qaadan karaa wakht kasta maalinta — waxa ugu muhiimsan waa in wakht isku mid ah lagu qaado maalin kasta. Waxaa lagu qaadan karaa cuntada la socota ama la'aanteeda. Wax muhiim ah oo la xasuusto: iska ilaali tirada badan ee cirishta ama cabista cabitaankeedu (grapefruit juice), maadaama ay keeni karto in daawadu isu uruursato jirka oo kordhinaysa khatarta saameynta xumida — gaar ahaan xanuunka muruqyada.",
       },
       {
-        q:"Sidee u shaqeeyaa Metformin, goormaana la qaadaa marka la eego cuntada?",
-        a:"Metformin waxay hoos u dhigeysaa sonkoraha dhiigga aasaasiga ahaan iyada oo xannibaysa soo saarka glukooska ee beerta iyo hagaajinta xassaasiyada jiirku u leeyahay insulinka. Marka had iyo jeer waa in la qaadaa cuntada la socota ama isla markiiba ka dib — tani waxay yaraynaysaa khatarta saameynta xumida caloosha sida dareeraha, shuban iyo xanuunka caloosha, oo caadi ah xilliga bilowga. Jiruhu caadiga ahaan wuu qabsadaa 2–4 todobaad gudahood. Mar walba u sheeg dhakhtarkaaga daawynta Metformin ka hor sawiridda X-ray ee isticmaalaya maaddada contrast-ka.",
+        q:"Maxay tahay Metformin, goormaana la qaadaa marka la eego cuntada?",
+        a:"Metformin waa daawada sonkoraha (diabetes) oo caawisa jirkaaga inuu hoos u dhigo heerka sonkoraha dhiigga. Waa mid ka mid ah daawooyinka diabetes ee inta badan la isticmaalo oo si fiican loo tijaabiyay, waxaana lagu qaadaa marka cuntada la cuno ama isla markiiba ka dib — weligeedna calool madhan. Sababtu waxay tahay in kale waxay keeni karto dhibaatooyin caloosha sida dareeraha, shuban iyo xanuunka caloosha, kuwaas oo badan ee bilowga. Jiruhu caadiga ahaan wuu qabsadaa 2–4 todobaad gudahood.",
       },
       {
-        q:"Waa maxay farqiga ugu muhiimsan u dhexeeya daawooyinka dhiig-karka Amlodipin, Losartan iyo Enalapril?",
-        a:"Amlodipin waa xannibaha kalsiiyumka oo dareemaynaya xididdada dhiigga oo yaraynaya iska caabinta socodka dhiigga. Losartan waa xannibaha natiijada angiotensin II (ARB) oo xannibaya hormoon ku soo jiidanaysa xididdada dhiigga. Enalapril waa xannibaha ACE oo ka hortaga beddelida angiotensin I si looga saaro angiotensin II. Saddadkooduba waxay hoos u dhigeeyaan dhiig-karka, laakiin iyagoo maraya jidadyo kala duwan. Dhakhtarkaagu wuxuu dooranayaa kii ku habboon ee ugu habboon xaaladda caafimaadkaaga guud, xanuunada kale ee jira iyo astaamaha saameynta xumida.",
+        q:"Maxay tahay daawooyinka dhiig-karka, sidaana Amlodipin, Losartan iyo Enalapril loo qaadaa?",
+        a:"Daawooyinka dhiig-karka waxay ka caawiyaan in dhiig-karkaagu hoos u dhaco oo ay u ilaaliyaan wadnahaaga iyo xididdada dhiigga waqti ka dib. Amlodipin, Losartan iyo Enalapril waa saddex nooc oo kala duwan oo daawooyinka dhiig-karka ah — mid walba si gaar ah ayuu u shaqeeyaa, laakiin ujeeddadu waa isku mid: dhiig-kar caafimaad leh. Saddadkooduba caadiga ahaan waxaa lagu qaadaa hal mar maalintii, waxaana lagu qaadan karaa cuntada la socota ama la'aanteeda. Waxa ugu muhiimsan waa in wakht isku mid ah lagu qaado maalin kasta oo aan la bixin dosisyada — xitaa haddaanad waxba dareensanayn, daawadu waxay wali shaqaynaysaa.",
       },
       {
         q:"Ma qaadan karaa Ibuprofen haddaan ku jiro daawaynta dhiig-karka?",
-        a:"Inta badan tani laguma talinayo. Ibuprofen iyo daawooyinka NSAID kale waxay ka hor istaagi karaan saameynta daawooyinka dhiig-karka waxayna si madaxbanaan u kordhin karaan dhiig-karka. Sidoo kale waxay culays saari karaan goobahaas kelyaha, gaar ahaan marka la isku daro ACE xannibayaasha (Enalapril) ama ARB-yada (Losartan). Paracetamol guud ahaan waa xulasho ammaan ah oo kale oo xanuun-daaweyn ah bukaanka ku jira daawaynta dhiig-karka. Mar walba weydii farmashiistaha ama dhakhtarkaaga ka hor inaad daawooyin isku darto.",
+        a:"Inta badan tani laguma talinayo. Ibuprofen waxay ka hor istaagi kartaa daawooyinka dhiig-karka oo waxay ka dhigi kartaa inay si wanaagsan u shaqaynayn — waxayna si madaxbanaan u kordhin kartaa dhiig-karka. Sidoo kale waxay culays saari kartaa kelyahaaga, gaar ahaan noocyada qaarkood ee daawooyinka dhiig-karka. Paracetamol waa xulasho aad u ammaan ah ee xanuun-daaweynta haddaad ku jirto daawaynta dhiig-karka. Mar walba weydii farmashiistaha ama dhakhtarkaaga ka hor inaad wax qaadato marka laga reebo daawooyinkaaga caadiga ah.",
       },
       {
-        q:"Maxaa jidhka ku dhacaya haddaan si lama filaan ah u joojiyaa Lamotrigin ama Sertralin?",
-        a:"Joojinta lama filaan ah ee Lamotrigin waxay kicin kartaa qodob-xanuunno cidhibta ah ama kuwa guud oo xooggan, xitaa bukaanka muddo dheer aanay qodob-xanuun lahayn. Joojinta lama filaan ah ee Sertralin waxay keeni kartaa calaamadaha seponeerisaanka, oo ay ku jiraan sharar, dareenkii koronto-gaadha ah ('brain zaps'), dhibaatooyin hurdada, xanaaq iyo calaamadaha la mid ah hargabka. Labada daawoba had iyo jeer waa in si tartiib ah hoos loogu dhigo hagitaanka dhakhtarka — weligoodna looga joojiyo maalinta kastaanka.",
+        q:"Maxaa dhacaya haddaan si lama filaan ah u joojiyaa Lamotrigin ama Sertralin?",
+        a:"Waa muhiim inaadan weligaaba joojiyin labadaas daawoba si lama filaan ah. Joojinta lama filaan ah ee Lamotrigin waxay kicin kartaa qodob-xanuunno, xitaa haddaad muddo dheer ahayd mid aan qodob-xanuun lahayn. Joojinta lama filaan ah ee Sertralin waxay keeni kartaa sharar, dareenkii gubasho ah ee jirka, dhibaatooyin hurdada iyo isbeddelada xaalada. Labada daawoba waa in si tartiib ah hoos loogu dhigo hagitaanka dhakhtarka.",
       },
       {
         q:"Maxaan sameeyaa haddaan qaatay Paracetamol badan?",
-        a:"Si deg-deg ah u la xiriir Giftlinjen lambarka 82 12 12 12 (furan 24 saacadood) ama wac 112. Xad-dhaafka Paracetamol waa xaalad cidhibeed, xitaa haddaanad dareensanayn calaamadaha markiiba — waxyeelada beerta waxay ka dhici kartaa 24–72 saacadood gudahood la'aanta calaamadaha hore. Ha sugin si aad u aragto calaamadaha soo muuqan. Caawimaad raadi isla markiiba waxaadna qaadan doontaa xirmada daawooyinka si shaqaalaha caafimaadka ay u garan karaan waxa iyo tirada aad qaadatay.",
+        a:"Si deg-deg ah u wac Giftlinjen lambarka 82 12 12 12 — waa furan yihiin 24 saacadood oo bixiya hagitaan bilaash ah. Ama wac 112 xaaladaha degdega ah. Xad-dhaafka Paracetamol waa cidhibeed, xitaa haddaanad dareensanayn waxba markiiba — dhaawaca beerta waxay dhici kartaa si aamusan 24–72 saacadood gudahood. Ha sugin calaamadaha. Qaado xirmada daawooyinka si shaqaalaha ay u garanayaan waxa iyo tirada aad qaadatay.",
       },
       {
         q:"Ma Atorvastatin keeni kartaa xanuunka muruqyada, goormaana la la xiriiraa dhakhtarka?",
-        a:"Haa, xanuunka muruqyada (myalgia) waa saameyn xun la yaqaan ee statiinnada sida Atorvastatin. Caadiga ahaan waxaa laga dareemaa xanuun kala firirsan ama daciifnimo muruqyada, gaar ahaan cududaha iyo gacanaha sare. Kiisasyo naadir ah ayuu u kobci karaa rhabdomyolysis — jabis adag oo unugyada muruqyada ah. La xiriir dhakhtarkaaga haddaad dareento xanuun muruq oo aan lagu sharraxi karin, oo joogtaysa, daciifnimo muruq ama kaadi madow. Dhakhtarkaagu wuxuu qiimeyn doonaa haddii qadarka la beddelan doono ama daawada la beddelan doono.",
+        a:"Haa, waxay keeni kartaa. Xanuunka muruqyada waa saameyn xun la yaqaan ee daawooyinka kolestaroolka sida Atorvastatin. Caadiga ahaan waxaa laga dareemaa xanuun kala firirsan oo dullaaday ama daciifnimo muruqyada — gaar ahaan cududaha iyo gacanaha sare. Khatarsan maaha qof kasta, laakiin waa in aad la xiriirtaa dhakhtarkaaga haddaad dareento xanuun muruq oo joogto ah ama sii kordhaya, daciifnimo muruq ama kaadi madow. Dhakhtarkaagu wuxuu qiimeyn doonaa haddii qadarka la beddelan doono ama nooca kale la isku beddeli doono.",
+      },
+      {
+        q:"Kuma daawadu xanuunta ugu fiican, goormaana la doortaa mid kasta?",
+        a:"Waxay ku xidantahay waxa aad ka xanuuneyso. Paracetamol waa xulashada ugu fudud oo ugu naxariis badnaanta — waxay u habboon tahay noocyada badan ee xanuunka sida madax xanuun, qandho iyo xanuun fudud, waxayna ammaan u tahay dadka inta badan. Ibuprofen waa ka xooggan tahay waxayna kaashanaysaa xanuunka barar leh — waxay ku fiican tahay xanuunka ilkaha, muruqyada iyo xubno xanuunka, laakiin waxay irritate gareyn kartaa caloosha mana habboonayn qof kasta. Haddaad qabto dhibaato caloosha, aad qaadanayso daawooyinka dhiig-karka ama aad uur leedahay, Paracetamol waa xulashada ammaan ah. Haddaad shaki qabto, weydii farmashiistaha.",
+      },
+      {
+        q:"Ma qaadan karaa daawooyinkayga caadiga ah haddaan bilaabay daawooyin cusub oo aan qoraal u baahnayn?",
+        a:"Maaha had iyo jeer — taasna waa su'aal muhiim aad isku weydiin. Daawooyin badan oo aan qoraal u baahnayn waxay saameyn karaan daawooyinkaaga caadiga ah, iyagoo ka dhigaya mid xooggan, mid daciif ah ama iyagoo sababa saameynta xumida aan la rabin. Tusaale ahaan, Ibuprofen iyo daawooyinka qaarkood ee qufaca waxay saameyn karaan daawooyinka dhiig-karka, qaarkoodna daawooyinka dabiiciga ah waxay saameyn karaan daawooyinka dareere-dhiigga. Mar walba farmashiistaha weydii ka hor intaadan bilaamin wax cusub — waa bilaash, shaqaaluhuna waxay joogaan si kuu caawiyaan su'aalaha noocan ah.",
       },
     ],
   },
   ar: {
-    title:"الأسئلة الشائعة",
     items:[
       {
-        q:"متى يجب تناول لاموتريجين خلال اليوم، وماذا يحدث إذا فاتتني جرعة؟",
-        a:"يجب تناول لاموتريجين في نفس الوقت كل يوم للحفاظ على مستوى ثابت في الدم. يُؤخذ عادةً مرة أو مرتين يومياً وفقاً لتعليمات طبيبك. إذا فاتتك جرعة، تناولها حال تذكّرك — لكن لا تُضاعف الجرعة أبداً. قد يؤدي انخفاض تركيزه في الدم إلى زيادة خطر النوبات لدى مرضى الصرع. لا يجوز إيقاف لاموتريجين فجأة — يجب دائماً تقليل الجرعة تدريجياً تحت إشراف طبي.",
+        q:"ما هو لاموتريجين وكيف يُؤخذ؟",
+        a:"لاموتريجين دواء يُستخدم للوقاية من نوبات الصرع لدى المصابين بالصرع، وكذلك لاستقرار المزاج لدى المصابين بالاضطراب ثنائي القطب. من الضروري تناوله في نفس الوقت كل يوم — سواء الصباح أو وجبة العشاء أو أي وقت ثابت يناسبك. يمكن تناوله مع الطعام أو بدونه. إذا فاتتك جرعة، تناولها حال تذكّرك — لكن تجاوزها إذا اقترب موعد الجرعة التالية، ولا تُضاعف الجرعة أبداً. لا توقف لاموتريجين فجأة من تلقاء نفسك — تحدث إلى طبيبك أولاً.",
       },
       {
         q:"هل يمكنني تناول الباراسيتامول والإيبوبروفين معاً، وما الجرعة القصوى؟",
-        a:"نعم، يمكن الجمع بينهما لأنهما يعملان عبر آليتين مختلفتين — الباراسيتامول يعمل مركزياً والإيبوبروفين مضاد للالتهاب. بالنسبة للباراسيتامول: الحد الأقصى للجرعة الواحدة 1 غ (قرصان 500 مغ)، بحد أقصى 4 غ (8 أقراص) يومياً مع فاصل لا يقل عن 4–6 ساعات. أما الإيبوبروفين: فالجرعة الواحدة 200–400 مغ، بحد أقصى 1,200 مغ يومياً بدون وصفة، مع فاصل لا يقل عن 6–8 ساعات. يُؤخذ الإيبوبروفين مع الطعام لحماية الغشاء المعدي.",
+        a:"نعم، يمكن تناولهما معاً لأنهما يعملان بطريقتين مختلفتين في الجسم. للباراسيتامول: الحد الأقصى للجرعة الواحدة قرصان (500 مغ لكل منهما)، وحد أقصى 8 أقراص في 24 ساعة — مع فاصل لا يقل عن 4–6 ساعات. للإيبوبروفين: 1–2 قرص في المرة، وحد أقصى 6 أقراص يومياً بدون وصفة — مع فاصل لا يقل عن 6–8 ساعات. تناول الإيبوبروفين دائماً مع الطعام لتجنب مشاكل المعدة.",
       },
       {
         q:"ما الذي يجب تجنبه أثناء علاج الوارفارين (ماريفان)؟",
-        a:"يستلزم الوارفارين عناية خاصة. التغيرات المفاجئة في تناول الأطعمة الغنية بفيتامين K — كاللفت الأخضر والسبانخ والبروكلي والبقدونس — يمكن أن تؤثر تأثيراً بالغاً على مستوى INR. تجنّب مسكنات الألم كالإيبوبروفين والديكلوفيناك لأنها تزيد خطر النزيف. اعتدل في تناول الكحول. من الضروري حضور جلسات مراقبة INR بانتظام وإخبار طبيبك وطبيب أسنانك دائماً بعلاجك قبل أي إجراء.",
+        a:"الوارفارين دواء مُرقِّق للدم يحتاج إلى قدر من الانتباه في الحياة اليومية. تجنّب التغيرات المفاجئة والكبيرة في كمية اللفت الأخضر والسبانخ والبروكلي والبقدونس التي تتناولها — إذ تحتوي هذه الخضروات على فيتامين K الذي يمكن أن يؤثر على فعالية الوارفارين. تجنّب أيضاً مسكنات الألم كالإيبوبروفين والديكلوفيناك لأنها تزيد خطر النزيف. اعتدل في تناول الكحول. احرص على الذهاب لفحوصات الدم المنتظمة وأخبر طبيبك وطبيب أسنانك دائماً بأنك تتناول الوارفارين — خاصةً قبل أي عملية جراحية أو إجراء.",
       },
       {
         q:"هل يُؤخذ أتورفاستاتين صباحاً أم مساءً، وهل يمكنني تناول الجريب فروت؟",
-        a:"يمكن تناول أتورفاستاتين في أي وقت من اليوم — الأهم هو الالتزام بنفس الوقت يومياً. وهو فعّال بغض النظر عن التوقيت، إذ يُنتج الجسم معظم الكوليسترول ليلاً. غير أنه يجب تجنب كميات كبيرة من الجريب فروت أو عصيره، لأنه يحتوي على مركبات تُثبط تكسير أتورفاستاتين في الكبد مما يرفع تركيزه في الدم، وقد يزيد من خطر الآثار الجانبية ولا سيما آلام العضلات (الاعتلال العضلي).",
+        a:"أتورفاستاتين دواء يُخفض الكوليسترول، ويمكن تناوله في أي وقت من اليوم — الأهم هو الالتزام بنفس الوقت يومياً. يمكن تناوله مع الطعام أو بدونه. شيء مهم يجب الانتباه إليه: تجنّب تناول كميات كبيرة من الجريب فروت أو شرب عصيره، لأنه قد يتسبب في تراكم الدواء في الجسم وزيادة خطر الآثار الجانبية — ولا سيما آلام العضلات.",
       },
       {
-        q:"كيف يعمل ميتفورمين ومتى يُؤخذ بالنسبة للوجبات؟",
-        a:"يُخفّض ميتفورمين سكر الدم أساساً عن طريق تثبيط إنتاج الغلوكوز في الكبد وتحسين استجابة الجسم للأنسولين. يجب تناوله دائماً مع الوجبة أو مباشرة بعدها — مما يُقلل خطر الآثار الجانبية الهضمية كالغثيان والإسهال وآلام المعدة، الشائعة في المرحلة الأولى. يعتاد الجسم عليه عادةً خلال 2–4 أسابيع. أخبر طبيبك دائماً بعلاجك بميتفورمين قبل أي فحص بالأشعة السينية مع صبغة التباين.",
+        q:"ما هو ميتفورمين، ومتى يُؤخذ بالنسبة للوجبات؟",
+        a:"ميتفورمين دواء للسكري يساعد جسمك على خفض مستوى السكر في الدم. وهو من أكثر أدوية السكري استخداماً وأفضلها توثيقاً، ويجب تناوله دائماً مع الوجبة أو مباشرة بعدها — وليس على معدة فارغة أبداً. السبب أنه قد يسبب اضطرابات في المعدة كالغثيان والإسهال وآلام البطن، وهي شائعة في البداية. يعتاد الجسم عليه عادةً خلال 2–4 أسابيع.",
       },
       {
-        q:"ما الفرق الجوهري بين أدوية ضغط الدم: أملوديبين، لوسارتان وإيناليبريل؟",
-        a:"أملوديبين هو حاصر لقنوات الكالسيوم يُرخي الأوعية الدموية ويُقلل المقاومة أمام تدفق الدم. لوسارتان هو حاصر لمستقبلات أنجيوتنسين II يمنع هرموناً يُضيّق الأوعية الدموية. إيناليبريل هو مثبط ACE يمنع تحويل أنجيوتنسين I إلى أنجيوتنسين II. الثلاثة تُخفض ضغط الدم لكن عبر آليات مختلفة. يختار طبيبك الأنسب بناءً على ملفك الصحي الكامل والأمراض المصاحبة وملف الآثار الجانبية.",
+        q:"ما هي أدوية ضغط الدم، وكيف يُؤخذ أملوديبين ولوسارتان وإيناليبريل؟",
+        a:"تساعد أدوية ضغط الدم على خفض ضغط دمك وحماية قلبك وأوعيتك الدموية مع مرور الوقت. أملوديبين ولوسارتان وإيناليبريل ثلاثة أنواع مختلفة من أدوية ضغط الدم — كل منها يعمل بطريقته الخاصة، لكن الهدف واحد: ضغط دم أكثر صحة. تُؤخذ الثلاثة عادةً مرة واحدة يومياً ويمكن تناولها مع الطعام أو بدونه. الأهم هو تناولها في نفس الوقت كل يوم وعدم تفويت الجرعات — حتى لو لم تشعر بشيء، الدواء يعمل.",
       },
       {
-        q:"هل يمكنني تناول الإيبوبروفين وأنا على أدوية ضغط الدم؟",
-        a:"في معظم الحالات لا يُنصح بذلك. يمكن للإيبوبروفين وغيره من مضادات الالتهاب اللاستيرويدية أن تُضادّ تأثير أدوية ضغط الدم وترفع ضغط الدم من تلقاء نفسها. كما قد تُجهد الكلى، خاصةً عند تناولها مع مثبطات ACE (إيناليبريل) أو حاصرات ARB (لوسارتان). الباراسيتامول عموماً خيار أكثر أماناً لتسكين الألم لمرضى ضغط الدم. استشر الصيدلي أو طبيبك دائماً قبل دمج الأدوية.",
+        q:"هل يمكنني تناول الإيبوبروفين إذا كنت آخذ دواء لضغط الدم؟",
+        a:"في معظم الحالات لا يُنصح بذلك. يمكن للإيبوبروفين أن يُضعف تأثير دواء ضغط الدم ويجعله أقل فعالية — وقد يرفع ضغط الدم من تلقاء نفسه. كما قد يُجهد الكلى خاصةً مع بعض أنواع أدوية ضغط الدم. الباراسيتامول خيار أكثر أماناً لتسكين الألم إذا كنت تتناول علاجاً لضغط الدم. استشر الصيدلي أو طبيبك دائماً قبل تناول أي شيء إضافي.",
       },
       {
-        q:"ماذا يحدث في الجسم إذا توقفت فجأة عن لاموتريجين أو سيرترالين؟",
-        a:"قد يُفضي التوقف المفاجئ عن لاموتريجين إلى نوبات غياب خطيرة أو تشنجات معممة، حتى لدى مرضى كانوا بلا نوبات لفترة طويلة. أما التوقف المفاجئ عن سيرترالين فقد يُسبب متلازمة الانقطاع، وتشمل الدوخة وإحساساً كهربائياً ('brain zaps') واضطرابات النوم والتهيج وأعراضاً شبيهة بالأنفلونزا. يجب تقليل كلا الدواءين تدريجياً تحت إشراف طبي ولا يُوقفان فجأة أبداً.",
+        q:"ماذا يحدث إذا توقفت فجأة عن لاموتريجين أو سيرترالين؟",
+        a:"من المهم ألا تتوقف عن أي من هذين الدواءين فجأة. قد يؤدي التوقف المفاجئ عن لاموتريجين إلى نوبات صرع، حتى لو كنت بلا نوبات لفترة طويلة. أما التوقف المفاجئ عن سيرترالين فقد يسبب دواراً وإحساساً بالوخز في الجسم ومشاكل في النوم وتقلبات في المزاج. يجب تخفيض كلا الدواءين تدريجياً وتحت إشراف طبيبك.",
       },
       {
         q:"ماذا أفعل إذا تناولت عدداً كبيراً من أقراص الباراسيتامول؟",
-        a:"تواصل فوراً مع مركز السموم Giftlinjen على الرقم 82 12 12 12 (مفتوح على مدار الساعة) أو اتصل بـ 112. جرعة الباراسيتامول الزائدة خطيرة حتى لو لم تشعر بأعراض فورية — فتلف الكبد قد يحدث خلال 24–72 ساعة دون علامات تحذيرية مبكرة. لا تنتظر ظهور الأعراض، واطلب المساعدة فوراً مع إحضار عبوة الدواء إلى المستشفى.",
+        a:"اتصل فوراً بمركز السموم Giftlinjen على الرقم 82 12 12 12 — مفتوح على مدار الساعة ويقدم إرشادات مجانية. أو اتصل بـ 112 في حالات الطوارئ. الجرعة الزائدة من الباراسيتامول خطيرة حتى لو لم تشعر بشيء في البداية — يمكن أن يحدث تلف الكبد بصمت خلال 24–72 ساعة. لا تنتظر ظهور الأعراض. أحضر عبوة الدواء حتى يعرف الكوادر الطبية ما تناولته بالضبط.",
       },
       {
         q:"هل يمكن لأتورفاستاتين أن يسبب آلام عضلية، ومتى أتصل بطبيبي؟",
-        a:"نعم، آلام العضلات (الألم العضلي) من الآثار الجانبية المعروفة للستاتينات كأتورفاستاتين. تظهر عادةً كألم منتشر أو ضعف في العضلات، ولا سيما في الفخذين والذراعين. في حالات نادرة قد تتطور إلى انحلال الربيدات (rhabdomyolysis) — وهو تكسّر خطير لأنسجة العضلات. تواصل مع طبيبك إذا عانيت من آلام عضلية مستمرة غير مبررة، أو ضعف عضلي، أو بول داكن. سيُقيّم طبيبك ما إذا كان يجب تعديل الجرعة أو تغيير الدواء.",
+        a:"نعم، يمكن ذلك. آلام العضلات من الآثار الجانبية المعروفة لأدوية الكوليسترول كأتورفاستاتين. تُحس عادةً كألم منتشر خفيف أو ضعف في العضلات — خاصةً في الفخذين والذراعين. ليست خطيرة على الجميع، لكن يجب الاتصال بطبيبك إذا عانيت من آلام عضلية مستمرة أو متزايدة، أو ضعف عضلي أو بول داكن. سيُقيّم طبيبك ما إذا كانت الجرعة تحتاج إلى تعديل أو تغيير نوع الدواء.",
+      },
+      {
+        q:"أي مسكن للألم هو الأفضل، ومتى أختار كل منهما؟",
+        a:"يعتمد ذلك على سبب الألم. الباراسيتامول هو الخيار الأخف والأكثر لطفاً — يناسب معظم أنواع الألم كالصداع والحمى والآلام الخفيفة، وهو آمن للغالبية العظمى. الإيبوبروفين أقوى ويعمل أيضاً ضد الالتهاب — جيد لآلام الأسنان وآلام العضلات والمفاصل، لكنه قد يُهيج المعدة وليس مناسباً للجميع. إذا كنت تعاني من مشاكل في المعدة أو تتناول أدوية ضغط الدم أو كنتِ حاملاً، فالباراسيتامول هو الخيار الأكثر أماناً. في حال الشك، اسأل الصيدلي.",
+      },
+      {
+        q:"هل يمكنني تناول دوائي المعتاد إذا بدأت دواءً جديداً بدون وصفة؟",
+        a:"ليس بالضرورة — وهذا سؤال مهم جداً. كثير من الأدوية التي لا تحتاج وصفة يمكن أن تؤثر على دوائك المعتاد، إما بجعله أقوى أو أضعف أو بالتسبب في آثار جانبية غير مرغوبة. على سبيل المثال، الإيبوبروفين وبعض أدوية السعال قد تؤثر على أدوية ضغط الدم، وبعض العلاجات العشبية قد تؤثر على مرقِّقات الدم. استشر الصيدلية دائماً قبل البدء بأي شيء جديد — الخدمة مجانية والكوادر موجودون تماماً لمساعدتك في مثل هذه الأسئلة.",
       },
     ],
   },
@@ -374,10 +387,9 @@ function buildCategoryPills(language){const seen=new Set(),pills=[];for(const it
 // ── SVG Icons ──────────────────────────────────────────────────────────────
 function SearchIcon(){return(<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-4.2-4.2"/></svg>);}
 function ShieldIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>);}
-function MailIcon({size=18}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>);}
+function MailIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>);}
 function StarIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>);}
 function QuestionIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>);}
-function MailIconColored({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>);}
 
 // ── Modal shell ────────────────────────────────────────────────────────────
 function ModalShell({title,iconEl,onClose,children,isRtl,wide}){
@@ -393,7 +405,7 @@ function ModalShell({title,iconEl,onClose,children,isRtl,wide}){
         <div style={{background:"var(--heroBg)",borderRadius:"28px 28px 0 0",padding:"22px 24px 20px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:10}}>
           <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
             {iconEl}
-            <span style={{color:"#fff",fontWeight:800,fontSize:"18px",letterSpacing:"-0.01em"}}>{title}</span>
+            <span style={{color:"#fff",fontWeight:800,fontSize:"17px",letterSpacing:"-0.01em"}}>{title}</span>
           </div>
           <button type="button" onClick={onClose} style={{background:"rgba(255,255,255,0.18)",border:"none",borderRadius:"50%",width:36,height:36,cursor:"pointer",color:"#fff",fontSize:"16px",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700}}>✕</button>
         </div>
@@ -425,7 +437,7 @@ function AboutModal({tab,language,onClose}){
   const bullets=tab==="me"?(ABOUT_ME_BULLETS[language]??ABOUT_ME_BULLETS.so):(ABOUT_SITE_BULLETS[language]??ABOUT_SITE_BULLETS.so);
   const siteTagline=ABOUT_SITE_TAGLINE[language]??ABOUT_SITE_TAGLINE.so;
   const title=tab==="me"?navLabels.aboutMe:navLabels.aboutSite;
-  const iconEl=<img src={tab==="me"?P.education:P.pills} alt="" style={{width:26,height:26,objectFit:"contain",filter:"brightness(0) invert(1)"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>;
+  const iconEl=<img src={tab==="me"?P.education:P.pills} alt="" style={{width:24,height:24,objectFit:"contain",filter:"brightness(0) invert(1)"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>;
   return(
     <ModalShell title={title} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
       {tab==="me"&&(
@@ -458,8 +470,7 @@ function ContactModal({language,onClose}){
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const data=CONTACT_DATA[language]??CONTACT_DATA.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
-  const iconColors=NAV_ICON_COLORS[language]??NAV_ICON_COLORS.so;
-  const iconEl=<MailIconColored size={22} color="rgba(255,255,255,0.95)"/>;
+  const iconEl=<MailIcon size={22} color="rgba(255,255,255,0.95)"/>;
   return(
     <ModalShell title={navLabels.contact} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
       <p style={{fontSize:"15px",color:"#475569",lineHeight:1.7,margin:"0 0 20px",textAlign:isRtl?"right":"left"}}>{data.intro}</p>
@@ -490,11 +501,11 @@ function FAQModal({language,onClose}){
   const[open,setOpen]=useState(null);
   const isRtl=language==="ar";
   const data=FAQ_DATA[language]??FAQ_DATA.so;
-  const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
+  const faqTitle=FAQ_MODAL_TITLE[language]??FAQ_MODAL_TITLE.so;
   const iconEl=<QuestionIcon size={22} color="rgba(255,255,255,0.95)"/>;
   return(
-    <ModalShell title={navLabels.faq} iconEl={iconEl} onClose={onClose} isRtl={isRtl} wide>
+    <ModalShell title={faqTitle} iconEl={iconEl} onClose={onClose} isRtl={isRtl} wide>
       <div style={{display:"flex",flexDirection:"column",gap:"8px"}}>
         {data.items.map((item,i)=>(
           <div key={i} style={{background:"#fff",borderRadius:"16px",border:`1.5px solid ${open===i?theme.primary+"55":"#e5e7eb"}`,overflow:"hidden",boxShadow:open===i?`0 4px 16px ${theme.primary}15`:"0 1px 3px rgba(0,0,0,0.04)",transition:"all 0.2s"}}>
@@ -581,27 +592,26 @@ export function SiteIndex({initialLang}){
 
   useScrollReveal([language,activeCategory,searchTerm]);
 
-  // Nav tabs with language-aware colors
   const navTabs=useMemo(()=>[
-    {key:"me",    iconEl:<img src={P.education} alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutMe},
-    {key:"site",  iconEl:<img src={P.work}      alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutSite},
-    {key:"faq",   iconEl:<QuestionIcon size={15} color={iconColors.faq}/>,  label:navLabels.faq},
-    {key:"feedback",iconEl:<StarIcon size={15} color={iconColors.feedback}/>, label:navLabels.feedback},
-    {key:"contact", iconEl:<MailIconColored size={15} color={iconColors.contact}/>, label:navLabels.contact},
+    {key:"me",      iconEl:<img src={P.education} alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutMe},
+    {key:"site",    iconEl:<img src={P.work}      alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutSite},
+    {key:"faq",     iconEl:<QuestionIcon size={15} color={iconColors.faq}/>,       label:navLabels.faq},
+    {key:"feedback",iconEl:<StarIcon     size={15} color={iconColors.feedback}/>,   label:navLabels.feedback},
+    {key:"contact", iconEl:<MailIcon     size={15} color={iconColors.contact}/>,    label:navLabels.contact},
   ],[navLabels,iconColors]);
 
   return(
     <div style={{background:"var(--bg)",color:"var(--text)"}} className="min-h-screen">
 
-      {/* ── Sticky nav ──────────────────────────────────────────────────── */}
+      {/* ── Sticky nav — NO pills logo, only the site's own existing logo ── */}
       <div style={{background:"rgba(255,255,255,0.96)",backdropFilter:"blur(16px)",WebkitBackdropFilter:"blur(16px)",borderBottom:"1px solid rgba(0,0,0,0.07)",position:"sticky",top:0,zIndex:100}}>
         <div style={{maxWidth:"72rem",margin:"0 auto",padding:"0 1rem",display:"flex",alignItems:"center",justifyContent:"space-between",height:"58px",gap:"8px"}}>
-          <div style={{display:"flex",alignItems:"center",gap:"8px",flexShrink:0}}>
-            <div style={{width:32,height:32,borderRadius:"10px",background:"var(--heroBg)",display:"flex",alignItems:"center",justifyContent:"center"}}>
-              <img src={P.pills} alt="" style={{width:20,height:20,objectFit:"contain"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>
-            </div>
-            <span style={{fontWeight:800,fontSize:"17px",color:"var(--accent,#0d9488)",letterSpacing:"-0.02em"}}>Somalimed</span>
-          </div>
+          {/* Logo — text only, no pills icon */}
+          <span style={{fontWeight:800,fontSize:"18px",color:"var(--accent,#0d9488)",letterSpacing:"-0.02em",flexShrink:0}}>
+            Somalimed
+          </span>
+
+          {/* Tab buttons */}
           <div style={{display:"flex",gap:"5px",flexWrap:"wrap",justifyContent:"flex-end"}}>
             {navTabs.map(({key,iconEl,label})=>{
               const active=modalTab===key;
