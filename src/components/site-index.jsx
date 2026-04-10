@@ -604,12 +604,9 @@ export function SiteIndex({initialLang}){
     <div style={{background:"var(--bg)",color:"var(--text)"}} className="min-h-screen">
 
       {/* ── Sticky nav — NO pills logo, only the site's own existing logo ── */}
-      <div style={{background:"rgba(255,255,255,0.96)",backdropFilter:"blur(16px)",WebkitBackdropFilter:"blur(16px)",borderBottom:"1px solid rgba(0,0,0,0.07)",position:"sticky",top:0,zIndex:100}}>
+      <div style={{background:"rgba(255,255,255,0.96)",backdropFilter:"blur(16px)",WebkitBackdropFilter:"blur(16px)",borderBottom:"1px solid rgba(0,0,0,0.07)",position:"sticky",top:"58px",zIndex:90}}>
         <div style={{maxWidth:"72rem",margin:"0 auto",padding:"0 1rem",display:"flex",alignItems:"center",justifyContent:"space-between",height:"58px",gap:"8px"}}>
-          {/* Logo — text only, no pills icon */}
-          <span style={{fontWeight:800,fontSize:"18px",color:"var(--accent,#0d9488)",letterSpacing:"-0.02em",flexShrink:0}}>
-            Somalimed
-          </span>
+          <div />
 
           {/* Tab buttons */}
           <div style={{display:"flex",gap:"5px",flexWrap:"wrap",justifyContent:"flex-end"}}>
