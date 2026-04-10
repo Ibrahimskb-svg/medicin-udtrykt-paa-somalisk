@@ -92,32 +92,31 @@ const BULLET_PALETTES = {
 
 // ── About Me data — precise, grammatically correct per language ────────────
 // Icons: education.png (degree), work.png (job), pills.png (pharmacy/bridge), blood-pressure.png (passion)
-// education.png and work.png live in /public/ root; pills.png in /public/icons/
+// ALL four icons live in /public/ root: school.png, work.png, education.png, pills.png
 const ABOUT_ME_BULLETS = {
   da: [
-    { iconBase: PUBLIC_BASE, icon: "education.png", text: "Bachelor i Kemi og Medicinalbiologi samt uddannet Farmakonom" },
-    { iconBase: PUBLIC_BASE, icon: "work.png",      text: "Daglig praksis på privatapotek og vagtapotek" },
-    { iconBase: ICON_BASE,   icon: "pills.png",     text: "Brobygger mellem faglig viden og mennesker med forskellig baggrund" },
-    { iconBase: ICON_BASE,   icon: "mental-health.png", text: "Brænder for klar, tryg og tilgængelig lægemiddelinformation" },
+    { icon: "education.png", text: "Bachelor i Kemi og Medicinalbiologi samt uddannet Farmakonom" },
+    { icon: "work.png",      text: "Daglig praksis på privatapotek og vagtapotek" },
+    { icon: "pills.png",     text: "Brobygger mellem faglig viden og mennesker med forskellig baggrund" },
+    { icon: "school.png",    text: "Brænder for klar, tryg og tilgængelig lægemiddelinformation" },
   ],
   en: [
-    { iconBase: PUBLIC_BASE, icon: "education.png", text: "Bachelor's degree in Chemistry & Medicinal Biology, trained Pharmaconomist" },
-    { iconBase: PUBLIC_BASE, icon: "work.png",      text: "Daily practice in both community pharmacy and emergency pharmacy" },
-    { iconBase: ICON_BASE,   icon: "pills.png",     text: "Bridge-builder between professional knowledge and diverse communities" },
-    { iconBase: ICON_BASE,   icon: "mental-health.png", text: "Passionate about clear, trustworthy and accessible medicine information" },
+    { icon: "education.png", text: "Bachelor's degree in Chemistry & Medicinal Biology, trained Pharmaconomist" },
+    { icon: "work.png",      text: "Daily practice in both community pharmacy and emergency pharmacy" },
+    { icon: "pills.png",     text: "Bridge-builder between professional knowledge and diverse communities" },
+    { icon: "school.png",    text: "Passionate about clear, trustworthy and accessible medicine information" },
   ],
   so: [
-    // Precise Somali: kimistari = Chemistry, bayoolajiga dawooyinka = Medicinal Biology, farmashiiste = pharmaconomist
-    { iconBase: PUBLIC_BASE, icon: "education.png", text: "Shahaadada koowaad ee Kimistari iyo Bayoolajiga Dawooyinka, oo sidoo kale ah farmashiiste dhameystiray tababarkiisa" },
-    { iconBase: PUBLIC_BASE, icon: "work.png",      text: "Shaqo maalinleh oo ku saabsan farmashiyaha bulshada iyo farmashiyaha xaaladaha degdega ah" },
-    { iconBase: ICON_BASE,   icon: "pills.png",     text: "Xiriir dhexdhexaadiye u dhexeeya aqoonta xirfadeed iyo bulshooyinka asalkoodu kala duwan yahay" },
-    { iconBase: ICON_BASE,   icon: "mental-health.png", text: "Xiise weyn u qabo macluumaadka daawooyinka ee cad, la aamin karo oo dhammaanba u sahlan" },
+    { icon: "education.png", text: "Shahaadada koowaad ee Kimistari iyo Bayoolajiga Dawooyinka, oo sidoo kale ah farmashiiste dhameystiray tababarkiisa" },
+    { icon: "work.png",      text: "Shaqo maalinleh oo ku saabsan farmashiyaha bulshada iyo farmashiyaha xaaladaha degdega ah" },
+    { icon: "pills.png",     text: "Xiriir dhexdhexaadiye u dhexeeya aqoonta xirfadeed iyo bulshooyinka asalkoodu kala duwan yahay" },
+    { icon: "school.png",    text: "Xiise weyn u qabo macluumaadka daawooyinka ee cad, la aamin karo oo dhammaanba u sahlan" },
   ],
   ar: [
-    { iconBase: PUBLIC_BASE, icon: "education.png", text: "بكالوريوس في الكيمياء وعلم الأحياء الدوائي، وحاصل على تأهيل فارماكونوم" },
-    { iconBase: PUBLIC_BASE, icon: "work.png",      text: "ممارسة يومية في الصيدلية الخاصة وصيدلية المناوبة" },
-    { iconBase: ICON_BASE,   icon: "pills.png",     text: "جسر بين المعرفة المتخصصة والمجتمعات ذات الخلفيات المتنوعة" },
-    { iconBase: ICON_BASE,   icon: "mental-health.png", text: "شغف حقيقي بتقديم معلومات دوائية واضحة وموثوقة وسهلة الوصول للجميع" },
+    { icon: "education.png", text: "بكالوريوس في الكيمياء وعلم الأحياء الدوائي، وحاصل على تأهيل فارماكونوم" },
+    { icon: "work.png",      text: "ممارسة يومية في الصيدلية الخاصة وصيدلية المناوبة" },
+    { icon: "pills.png",     text: "جسر بين المعرفة المتخصصة والمجتمعات ذات الخلفيات المتنوعة" },
+    { icon: "school.png",    text: "شغف حقيقي بتقديم معلومات دوائية واضحة وموثوقة وسهلة الوصول للجميع" },
   ],
 };
 
@@ -138,28 +137,28 @@ const ABOUT_SITE_TAGLINE = {
 
 const ABOUT_SITE_BULLETS = {
   da: [
-    { iconBase: ICON_BASE, icon: "pills.png",      text: "25 nøje udvalgte lægemidler fra den daglige apotekspraksis" },
-    { iconBase: ICON_BASE, icon: "lungs.png",       text: "Tilgængelig på dansk, engelsk, somali og arabisk" },
-    { iconBase: PUBLIC_BASE, icon: "education.png", text: "Fagligt funderet — skrevet af en uddannet Farmakonom" },
-    { iconBase: ICON_BASE, icon: "stomach.png",     text: "Løbende udvidelse: antibiotika, antivirale midler, antihistaminer m.m." },
+    { icon: "pills.png",     text: "25 nøje udvalgte lægemidler fra den daglige apotekspraksis" },
+    { icon: "school.png",    text: "Tilgængelig på dansk, engelsk, somali og arabisk" },
+    { icon: "education.png", text: "Fagligt funderet — skrevet af en uddannet Farmakonom" },
+    { icon: "work.png",      text: "Løbende udvidelse: antibiotika, antivirale midler, antihistaminer m.m." },
   ],
   en: [
-    { iconBase: ICON_BASE, icon: "pills.png",       text: "25 carefully selected medicines from everyday pharmacy practice" },
-    { iconBase: ICON_BASE, icon: "lungs.png",        text: "Available in Danish, English, Somali and Arabic" },
-    { iconBase: PUBLIC_BASE, icon: "education.png",  text: "Professionally grounded — written by a trained Pharmaconomist" },
-    { iconBase: ICON_BASE, icon: "stomach.png",      text: "Continuously expanding: antibiotics, antivirals, antihistamines and more" },
+    { icon: "pills.png",     text: "25 carefully selected medicines from everyday pharmacy practice" },
+    { icon: "school.png",    text: "Available in Danish, English, Somali and Arabic" },
+    { icon: "education.png", text: "Professionally grounded — written by a trained Pharmaconomist" },
+    { icon: "work.png",      text: "Continuously expanding: antibiotics, antivirals, antihistamines and more" },
   ],
   so: [
-    { iconBase: ICON_BASE, icon: "pills.png",       text: "25 daawo oo si taxaddar leh loo xushay shaqada maalinlaha ah ee farmashiyaha" },
-    { iconBase: ICON_BASE, icon: "lungs.png",        text: "Ku heli kartaa af-Soomaali, Ingiriisi, Dansk iyo Carabi" },
-    { iconBase: PUBLIC_BASE, icon: "education.png",  text: "Aasaas xirfadeed ah — oo qoray farmashiiste si buuxda u tababaran" },
-    { iconBase: ICON_BASE, icon: "stomach.png",      text: "Kor u qaadista joogtada ah: antibiyootikada, daawooyinka fayraska, antihistamiinnada iwm." },
+    { icon: "pills.png",     text: "25 daawo oo si taxaddar leh loo xushay shaqada maalinlaha ah ee farmashiyaha" },
+    { icon: "school.png",    text: "Ku heli kartaa af-Soomaali, Ingiriisi, Dansk iyo Carabi" },
+    { icon: "education.png", text: "Aasaas xirfadeed ah — oo qoray farmashiiste si buuxda u tababaran" },
+    { icon: "work.png",      text: "Kor u qaadista joogtada ah: antibiyootikada, daawooyinka fayraska, antihistamiinnada iwm." },
   ],
   ar: [
-    { iconBase: ICON_BASE, icon: "pills.png",       text: "25 دواءً مختاراً بعناية من الممارسة اليومية في الصيدلية" },
-    { iconBase: ICON_BASE, icon: "lungs.png",        text: "متاح باللغات الدنماركية والإنجليزية والصومالية والعربية" },
-    { iconBase: PUBLIC_BASE, icon: "education.png",  text: "أساس مهني متين — بقلم فارماكونوم مؤهل تأهيلاً كاملاً" },
-    { iconBase: ICON_BASE, icon: "stomach.png",      text: "توسع مستمر: المضادات الحيوية، مضادات الفيروسات، مضادات الهيستامين وغيرها" },
+    { icon: "pills.png",     text: "25 دواءً مختاراً بعناية من الممارسة اليومية في الصيدلية" },
+    { icon: "school.png",    text: "متاح باللغات الدنماركية والإنجليزية والصومالية والعربية" },
+    { icon: "education.png", text: "أساس مهني متين — بقلم فارماكونوم مؤهل تأهيلاً كاملاً" },
+    { icon: "work.png",      text: "توسع مستمر: المضادات الحيوية، مضادات الفيروسات، مضادات الهيستامين وغيرها" },
   ],
 };
 
@@ -314,9 +313,9 @@ function BulletRow({ bullet, palette }) {
         boxShadow: `0 2px 8px ${palette.color}20`,
       }}>
         <img
-          src={`${bullet.iconBase}${bullet.icon}`}
+          src={`${PUBLIC_BASE}${bullet.icon}`}
           alt=""
-          style={{ width: 28, height: 28, objectFit: "contain", mixBlendMode: "multiply" }}
+          style={{ width: 28, height: 28, objectFit: "contain" }}
           onError={(e) => { e.currentTarget.style.display = "none"; }}
         />
       </span>
@@ -370,7 +369,7 @@ function AboutModal({ tab, language, onClose }) {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <img
-              src={tab === "me" ? `${PUBLIC_BASE}education.png` : `${ICON_BASE}pills.png`}
+              src={tab === "me" ? `${PUBLIC_BASE}education.png` : `${PUBLIC_BASE}pills.png`}
               alt=""
               style={{ width: 26, height: 26, objectFit: "contain", filter: "brightness(0) invert(1)" }}
               onError={(e) => { e.currentTarget.style.display = "none"; }}
@@ -490,7 +489,7 @@ export function SiteIndex({ initialLang }) {
               width: 32, height: 32, borderRadius: "10px", background: "var(--heroBg)",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              <img src={`${ICON_BASE}pills.png`} alt="" style={{ width: 20, height: 20, objectFit: "contain", filter: "brightness(0) invert(1)" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+              <img src={`${PUBLIC_BASE}pills.png`} alt="" style={{ width: 20, height: 20, objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
             </div>
             <span style={{ fontWeight: 800, fontSize: "17px", color: "var(--accent, #0d9488)", letterSpacing: "-0.02em" }}>
               Somalimed
@@ -500,9 +499,9 @@ export function SiteIndex({ initialLang }) {
           {/* Tab buttons — right side only */}
           <div style={{ display: "flex", gap: "8px" }}>
             {[
-              { key: "me",   iconBase: PUBLIC_BASE, icon: "education.png", label: navLabels.aboutMe },
-              { key: "site", iconBase: PUBLIC_BASE,  icon: "work.png",      label: navLabels.aboutSite },
-            ].map(({ key, iconBase, icon, label }) => {
+              { key: "me",   icon: "education.png", label: navLabels.aboutMe },
+              { key: "site", icon: "work.png",      label: navLabels.aboutSite },
+            ].map(({ key, icon, label }) => {
               const active = modalTab === key;
               return (
                 <button key={key} type="button" onClick={() => setModalTab(active ? null : key)} style={{
@@ -516,8 +515,8 @@ export function SiteIndex({ initialLang }) {
                   boxShadow: active ? "0 2px 12px rgba(13,148,136,0.28)" : "0 1px 3px rgba(0,0,0,0.06)",
                 }}>
                   <img
-                    src={`${iconBase}${icon}`} alt=""
-                    style={{ width: 18, height: 18, objectFit: "contain", filter: active ? "brightness(0) invert(1)" : "none", mixBlendMode: active ? "normal" : "multiply" }}
+                    src={`${PUBLIC_BASE}${icon}`} alt=""
+                    style={{ width: 18, height: 18, objectFit: "contain" }}
                     onError={(e) => { e.currentTarget.style.display = "none"; }}
                   />
                   {label}
