@@ -84,52 +84,193 @@ function getDisplayName(slug, language, fallback) {
   return t[language] ?? t.so ?? fallback;
 }
 
-// ── About / Hero side texts ────────────────────────────────────────────────
-const HERO_SIDE_TEXTS = {
+// ── Nav tab labels ─────────────────────────────────────────────────────────
+const NAV_LABELS = {
+  da: { aboutMe: "Om mig", aboutSite: "Om Somalimed" },
+  en: { aboutMe: "About me", aboutSite: "About Somalimed" },
+  so: { aboutMe: "Ku saabsan aniga", aboutSite: "Ku saabsan Somalimed" },
+  ar: { aboutMe: "نبذة عني", aboutSite: "نبذة عن Somalimed" },
+};
+
+// ── About me bullet points ─────────────────────────────────────────────────
+const ABOUT_ME_DATA = {
   da: {
-    aboutMeTitle: "Om mig",
-    aboutMeName: "Ibrahim Dahir Hanaf",
-    aboutMeBody:
-      "Jeg hedder Ibrahim Dahir Hanaf, og jeg har en bachelor i Kemi og Medicinalbiologi samt er uddannet Farmakonom. Jeg har stærke naturvidenskabelige kompetencer og en stor passion for at gøre faglig viden mere forståelig, anvendelig og nærværende i praksis. Til daglig arbejder jeg både på privatapotek og vagtapotek, og mødet med mennesker i skranken har tydeligt vist mig, hvor stort behovet er for enkel, klar og brugbar lægemiddelinformation. Jeg brænder for at lære fra mig, dele min viden og gøre en reel forskel for alle, der har brug for en bedre forståelse af deres medicin.",
-    aboutSiteTitle: "Om Somalimed",
-    aboutSiteBody:
-      "Somalimed er skabt for at gøre lægemiddelinformation lettere at forstå på tværs af sprog og baggrunde. De 25 lægemidler på siden er nøje udvalgt ud fra det, jeg ofte møder i praksis ved skranken på apoteket, hvor behovet for tydelig og tryg information er særligt stort. Projektet udvikles stille og roligt i takt med behovet, og der vil løbende komme flere emner og lægemidler til, herunder antibiotika, antivirale behandlinger, antihistaminer m.m. Målet er at gøre noget komplekst mere enkelt, overskueligt og brugbart for patienter, pårørende og alle andre, der søger klar viden om medicin.",
+    name: "Ibrahim Dahir Hanaf",
+    title: "Farmakonom & naturvidenskabelig formidler",
+    bullets: [
+      {
+        icon: "🎓",
+        text: "Bachelor i Kemi og Medicinalbiologi + uddannet Farmakonom",
+      },
+      {
+        icon: "💊",
+        text: "Daglig praksis på både privatapotek og vagtapotek",
+      },
+      {
+        icon: "🌍",
+        text: "Brobygger mellem faglig viden og mennesker med forskellig baggrund",
+      },
+      {
+        icon: "❤️",
+        text: "Brænder for klar, tryg og tilgængelig lægemiddelinformation",
+      },
+    ],
   },
-
   en: {
-    aboutMeTitle: "About me",
-    aboutMeName: "Ibrahim Dahir Hanaf",
-    aboutMeBody:
-      "My name is Ibrahim Dahir Hanaf, and I have a bachelor's degree in Chemistry and Medicinal Biology and I am also a trained Pharmaconom. I have a strong foundation in the natural sciences and a deep commitment to making professional knowledge clearer, more practical and more useful in everyday life. Through my daily work in both community pharmacy and emergency pharmacy services, I have seen how great the need is for simple, trustworthy and accessible guidance about medicines. I care deeply about teaching, sharing knowledge and making a real difference for everyone who needs a better understanding of their treatment.",
-    aboutSiteTitle: "About Somalimed",
-    aboutSiteBody:
-      "Somalimed is created to make medicine information easier to understand across languages and backgrounds. The 25 medicines currently included on the site are carefully selected from what I frequently encounter in everyday pharmacy practice, where the need for clear and reassuring guidance is especially visible. The project is growing gradually as the need develops, and more medicines and topics will be added over time, including antibiotics, antiviral treatments, antihistamines and more. The overall aim is to turn something complex into something clearer, more practical and more useful for patients, families and anyone seeking better understanding of medicines.",
+    name: "Ibrahim Dahir Hanaf",
+    title: "Pharmaconomist & science communicator",
+    bullets: [
+      {
+        icon: "🎓",
+        text: "Bachelor's in Chemistry & Medicinal Biology + trained Pharmaconomist",
+      },
+      {
+        icon: "💊",
+        text: "Daily practice in both community and emergency pharmacy",
+      },
+      {
+        icon: "🌍",
+        text: "Bridge-builder between expert knowledge and diverse communities",
+      },
+      {
+        icon: "❤️",
+        text: "Passionate about clear, trustworthy and accessible medicine information",
+      },
+    ],
   },
-
   so: {
-    aboutMeTitle: "Ku saabsan aniga",
-    aboutMeName: "Ibraahim Dahir Xanaf",
-    aboutMeBody:
-      "Magacaygu waa Ibraahim Dahir Xanaf, waxaanan haystaa shahaadada bachelor-ka ee Kimiya iyo Medicinal Biology, sidoo kalena waxaan leeyahay waxbarashada Farmakonom. Waxaan leeyahay aqoon xooggan oo ku saabsan culuumta dabiiciga ah iyo rabitaan weyn oo ah in aqoonta caafimaadka laga dhigo mid cad, sahlan oo waxtar u leh dadka. Shaqadayda maalinlaha ah ee aan ka qabto farmashiyaha gaarka loo leeyahay iyo farmashiyaha heeganka ah ayaa si dhow ii tusay inta ay le’eg tahay baahida loo qabo sharaxaad fudud oo lagu kalsoonaan karo oo ku saabsan daawooyinka. Waxaan aad u jecelahay inaan dadka wax baro, aqoonta la wadaago, isla markaana aan farqi muuqda u sameeyo qof kasta oo u baahan faham wanaagsan oo ku saabsan daawadiisa.",
-    aboutSiteTitle: "Ku saabsan Somalimed",
-    aboutSiteBody:
-      "Somalimed waxaa loo sameeyay in macluumaadka daawooyinka laga dhigo mid sahlan oo la fahmi karo iyadoo la tixgelinayo luqado iyo asallo kala duwan. 25-ka daawo ee hadda bogga ku jira si taxaddar leh ayaa loo doortay, iyaga oo ku salaysan kuwa aan inta badan ku arko shaqada farmashiyaha iyo dadka ka raadsada hagitaan cad skranken-ka. Mashruucani si tartiib ah ayuu u kobcayaa iyadoo lagu salaynayo baahida jirta, waxaana si joogto ah loogu dari doonaa mawduucyo iyo daawooyin kale sida antibiyootikada, dawooyinka fayraska, antihistamiinada m.m. Ujeeddadu waa in wax adag loo rogo wax fudud, cad oo si dhab ah faa’iido ugu leh bukaanka, qoysaskooda iyo cid kasta oo doonaysa faham wanaagsan oo ku saabsan daawooyinka.",
+    name: "Ibraahim Dahir Xanaf",
+    title: "Farmakonom & xog-ogaal caafimaad",
+    bullets: [
+      {
+        icon: "🎓",
+        text: "Bachelor Kimiya & Medicinal Biology + waxbarasho Farmakonom",
+      },
+      {
+        icon: "💊",
+        text: "Shaqo maalinleh oo ka farmashiyaha gaarka ah iyo heeganka",
+      },
+      {
+        icon: "🌍",
+        text: "Xidhiidhiye u dhexeeya aqoonta xirfadda iyo bulshooyinka kala duwan",
+      },
+      {
+        icon: "❤️",
+        text: "Xiise weyn u qabo macluumaadka daawooyinka ee cad, la aamin karo oo sahlan",
+      },
+    ],
   },
-
   ar: {
-    aboutMeTitle: "نبذة عني",
-    aboutMeName: "إبراهيم ظاهر حنف",
-    aboutMeBody:
-      "اسمي إبراهيم ظاهر حنف، ولدي درجة البكالوريوس في الكيمياء وعلم الأحياء الدوائي، كما أنني حاصل على تأهيل فارماكونوم. أمتلك خلفية قوية في العلوم الطبيعية وشغفاً كبيراً بتحويل المعرفة المتخصصة إلى معلومات أوضح وأكثر فائدة وقرباً من الحياة اليومية. ومن خلال عملي اليومي في الصيدلية الخاصة وصيدلية المناوبة، رأيت عن قرب حجم الحاجة إلى شرح أبسط وأكثر وضوحاً وثقة حول الأدوية. كما أؤمن بأهمية التعليم ومشاركة المعرفة وإحداث فرق حقيقي لكل من يحتاج إلى فهم أفضل لدوائه.",
-    aboutSiteTitle: "نبذة عن Somalimed",
-    aboutSiteBody:
-      "تم إنشاء Somalimed لتسهيل فهم معلومات الأدوية عبر لغات وخلفيات مختلفة. وقد تم اختيار الأدوية الخمسة والعشرين الموجودة حالياً بعناية استناداً إلى ما أراه كثيراً في الممارسة اليومية عند شباك الصيدلية، حيث تكون الحاجة إلى معلومات واضحة ومطمئنة كبيرة جداً. ويتطور المشروع تدريجياً مع ازدياد الحاجة، وستتم إضافة المزيد من المواضيع والأدوية مع الوقت، بما في ذلك المضادات الحيوية والعلاجات المضادة للفيروسات ومضادات الهيستامين وغيرها. والهدف هو تبسيط ما هو معقد وجعله أوضح وأكثر فائدة للمرضى وعائلاتهم ولكل من يبحث عن فهم أفضل للمعلومات الدوائية.",
+    name: "إبراهيم ظاهر حنف",
+    title: "فارماكونوم ومتخصص في التواصل العلمي",
+    bullets: [
+      {
+        icon: "🎓",
+        text: "بكالوريوس في الكيمياء وعلم الأحياء الدوائي + تأهيل فارماكونوم",
+      },
+      {
+        icon: "💊",
+        text: "ممارسة يومية في الصيدلية الخاصة وصيدلية المناوبة",
+      },
+      {
+        icon: "🌍",
+        text: "جسر بين المعرفة المتخصصة والمجتمعات ذات الخلفيات المتنوعة",
+      },
+      {
+        icon: "❤️",
+        text: "شغف بتقديم معلومات دوائية واضحة وموثوقة وسهلة الوصول",
+      },
+    ],
   },
 };
 
-function getHeroSideText(language) {
-  return HERO_SIDE_TEXTS[language] ?? HERO_SIDE_TEXTS.so;
-}
+// ── About Somalimed bullet points ──────────────────────────────────────────
+const ABOUT_SITE_DATA = {
+  da: {
+    tagline: "Lægemiddelinformation på dit eget sprog",
+    bullets: [
+      {
+        icon: "📋",
+        text: "25 nøje udvalgte lægemidler fra den daglige apotekspraksis",
+      },
+      {
+        icon: "🗣️",
+        text: "Tilgængelig på dansk, engelsk, somali og arabisk",
+      },
+      {
+        icon: "🔬",
+        text: "Fagligt funderet — skrevet af en uddannet Farmakonom",
+      },
+      {
+        icon: "🚀",
+        text: "Løbende udvidelse: antibiotika, antivirale midler, antihistaminer m.m.",
+      },
+    ],
+  },
+  en: {
+    tagline: "Medicine information in your own language",
+    bullets: [
+      {
+        icon: "📋",
+        text: "25 carefully selected medicines from everyday pharmacy practice",
+      },
+      {
+        icon: "🗣️",
+        text: "Available in Danish, English, Somali and Arabic",
+      },
+      {
+        icon: "🔬",
+        text: "Professionally grounded — written by a trained Pharmaconomist",
+      },
+      {
+        icon: "🚀",
+        text: "Continuously expanding: antibiotics, antivirals, antihistamines and more",
+      },
+    ],
+  },
+  so: {
+    tagline: "Macluumaadka daawooyinka luqaddaada hooyo",
+    bullets: [
+      {
+        icon: "📋",
+        text: "25 daawo oo si taxaddar leh loo doortay shaqada farmashiyaha",
+      },
+      {
+        icon: "🗣️",
+        text: "Ku heli kartaa Soomaali, Ingiriisi, Dansk iyo Carabi",
+      },
+      {
+        icon: "🔬",
+        text: "Xirfad ku salaysan — oo qoray Farmakonom tababaran",
+      },
+      {
+        icon: "🚀",
+        text: "Si joogto ah u ballaaranaaya: antibiyootikada, fayraska, antihistamiinada m.m.",
+      },
+    ],
+  },
+  ar: {
+    tagline: "معلومات الدواء بلغتك الأم",
+    bullets: [
+      {
+        icon: "📋",
+        text: "25 دواءً مختاراً بعناية من الممارسة اليومية في الصيدلية",
+      },
+      {
+        icon: "🗣️",
+        text: "متاح باللغات الدنماركية والإنجليزية والصومالية والعربية",
+      },
+      {
+        icon: "🔬",
+        text: "أساس مهني متين — بقلم فارماكونوم مؤهل",
+      },
+      {
+        icon: "🚀",
+        text: "توسع مستمر: المضادات الحيوية، مضادات الفيروسات، مضادات الهيستامين وغيرها",
+      },
+    ],
+  },
+};
 
 // ── GitHub icon per slug ───────────────────────────────────────────────────
 const SLUG_ICON = {
@@ -315,8 +456,8 @@ function SearchIcon() {
 function ShieldInfoIcon() {
   return (
     <svg
-      width="18"
-      height="18"
+      width="20"
+      height="20"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -332,6 +473,254 @@ function ShieldInfoIcon() {
   );
 }
 
+// ── About Modal ────────────────────────────────────────────────────────────
+function AboutModal({ tab, language, onClose }) {
+  const isRtl = language === "ar";
+  const navLabels = NAV_LABELS[language] ?? NAV_LABELS.so;
+  const meData = ABOUT_ME_DATA[language] ?? ABOUT_ME_DATA.so;
+  const siteData = ABOUT_SITE_DATA[language] ?? ABOUT_SITE_DATA.so;
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "16px",
+        background: "rgba(0,0,0,0.55)",
+        backdropFilter: "blur(6px)",
+      }}
+      onClick={onClose}
+    >
+      <div
+        style={{
+          background: "var(--bg, #f8fafc)",
+          borderRadius: "24px",
+          width: "100%",
+          maxWidth: "560px",
+          maxHeight: "90vh",
+          overflowY: "auto",
+          boxShadow: "0 32px 80px rgba(0,0,0,0.25)",
+          direction: isRtl ? "rtl" : "ltr",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Modal header */}
+        <div
+          style={{
+            background: "var(--heroBg)",
+            borderRadius: "24px 24px 0 0",
+            padding: "24px 24px 20px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <span
+            style={{
+              color: "#fff",
+              fontWeight: 700,
+              fontSize: "18px",
+            }}
+          >
+            {tab === "me" ? navLabels.aboutMe : navLabels.aboutSite}
+          </span>
+          <button
+            type="button"
+            onClick={onClose}
+            style={{
+              background: "rgba(255,255,255,0.2)",
+              border: "none",
+              borderRadius: "50%",
+              width: 36,
+              height: 36,
+              cursor: "pointer",
+              color: "#fff",
+              fontSize: "18px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            aria-label="Luk"
+          >
+            ✕
+          </button>
+        </div>
+
+        {/* Modal body */}
+        <div style={{ padding: "24px" }}>
+          {tab === "me" ? (
+            <>
+              {/* Photo + name */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "16px",
+                  marginBottom: "24px",
+                }}
+              >
+                <div style={{ position: "relative", flexShrink: 0 }}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: "-4px",
+                      borderRadius: "50%",
+                      background:
+                        "linear-gradient(135deg, #14b8a6, #38bdf8, #818cf8)",
+                      opacity: 0.85,
+                      filter: "blur(2px)",
+                    }}
+                  />
+                  <img
+                    src="/ibrahim.jpg"
+                    alt={meData.name}
+                    style={{
+                      position: "relative",
+                      width: 80,
+                      height: 80,
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      border: "4px solid white",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
+                    }}
+                  />
+                </div>
+                <div>
+                  <p
+                    style={{
+                      fontWeight: 800,
+                      fontSize: "20px",
+                      color: "var(--text)",
+                      margin: 0,
+                    }}
+                  >
+                    {meData.name}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      color: "var(--text-muted)",
+                      margin: "4px 0 0",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {meData.title}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bullet points */}
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+                {meData.bullets.map((b, i) => (
+                  <li
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "14px",
+                      background: "#fff",
+                      borderRadius: "14px",
+                      padding: "14px 16px",
+                      border: "1px solid var(--border, #e5e7eb)",
+                      boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                    }}
+                  >
+                    <span style={{ fontSize: "22px", lineHeight: 1, flexShrink: 0, marginTop: "1px" }}>
+                      {b.icon}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "15px",
+                        color: "var(--text)",
+                        lineHeight: 1.6,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {b.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : (
+            <>
+              {/* Somalimed tagline */}
+              <div
+                style={{
+                  background: "linear-gradient(135deg, #f0fdfa, #e0f2fe)",
+                  borderRadius: "16px",
+                  padding: "16px 20px",
+                  marginBottom: "20px",
+                  border: "1px solid #99f6e4",
+                }}
+              >
+                <p
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "17px",
+                    color: "#0f766e",
+                    margin: 0,
+                    textAlign: isRtl ? "right" : "left",
+                  }}
+                >
+                  🌐 {siteData.tagline}
+                </p>
+              </div>
+
+              {/* Bullet points */}
+              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
+                {siteData.bullets.map((b, i) => (
+                  <li
+                    key={i}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: "14px",
+                      background: "#fff",
+                      borderRadius: "14px",
+                      padding: "14px 16px",
+                      border: "1px solid var(--border, #e5e7eb)",
+                      boxShadow: "0 1px 4px rgba(0,0,0,0.04)",
+                    }}
+                  >
+                    <span style={{ fontSize: "22px", lineHeight: 1, flexShrink: 0, marginTop: "1px" }}>
+                      {b.icon}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "15px",
+                        color: "var(--text)",
+                        lineHeight: 1.6,
+                        fontWeight: 500,
+                      }}
+                    >
+                      {b.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function SiteIndex({ initialLang }) {
   const { language, updateLanguage } = useLanguageRouting({
     initialLanguage: initialLang,
@@ -339,6 +728,7 @@ export function SiteIndex({ initialLang }) {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [modalTab, setModalTab] = useState(null); // "me" | "site" | null
 
   const text = useMemo(
     () => indexData.translations[language] || indexData.translations.so,
@@ -346,7 +736,7 @@ export function SiteIndex({ initialLang }) {
   );
 
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
-  const heroSideText = useMemo(() => getHeroSideText(language), [language]);
+  const navLabels = useMemo(() => NAV_LABELS[language] ?? NAV_LABELS.so, [language]);
 
   useEffect(() => {
     applyLanguageToDocument(language, text.pageTitle);
@@ -389,91 +779,192 @@ export function SiteIndex({ initialLang }) {
       style={{ background: "var(--bg)", color: "var(--text)" }}
       className="min-h-screen"
     >
+      {/* ── Top nav bar with tabs ──────────────────────────────────────── */}
+      <div
+        style={{
+          background: "rgba(255,255,255,0.92)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid var(--border, #e5e7eb)",
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "72rem",
+            margin: "0 auto",
+            padding: "0 1rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "56px",
+          }}
+        >
+          {/* Logo / brand */}
+          <span
+            style={{
+              fontWeight: 800,
+              fontSize: "18px",
+              color: "var(--accent, #0d9488)",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Somalimed
+          </span>
+
+          {/* Tab buttons */}
+          <div style={{ display: "flex", gap: "8px" }}>
+            <button
+              type="button"
+              onClick={() => setModalTab("me")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "8px 16px",
+                borderRadius: "999px",
+                border: "1.5px solid var(--border, #e5e7eb)",
+                background: modalTab === "me" ? "var(--accent, #0d9488)" : "#fff",
+                color: modalTab === "me" ? "#fff" : "var(--text)",
+                fontWeight: 600,
+                fontSize: "14px",
+                cursor: "pointer",
+                transition: "all 0.2s",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <span style={{ fontSize: "16px" }}>👤</span>
+              {navLabels.aboutMe}
+            </button>
+            <button
+              type="button"
+              onClick={() => setModalTab("site")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "8px 16px",
+                borderRadius: "999px",
+                border: "1.5px solid var(--border, #e5e7eb)",
+                background: modalTab === "site" ? "var(--accent, #0d9488)" : "#fff",
+                color: modalTab === "site" ? "#fff" : "var(--text)",
+                fontWeight: 600,
+                fontSize: "14px",
+                cursor: "pointer",
+                transition: "all 0.2s",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <span style={{ fontSize: "16px" }}>🌐</span>
+              {navLabels.aboutSite}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Modal ─────────────────────────────────────────────────────── */}
+      {modalTab && (
+        <AboutModal
+          tab={modalTab}
+          language={language}
+          onClose={() => setModalTab(null)}
+        />
+      )}
+
       {/* ── Hero ───────────────────────────────────────────────────────── */}
       <div style={{ background: "var(--heroBg)" }}>
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          {/* Left side */}
-          <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
-                <path d="m8.5 8.5 7 7" />
-              </svg>
-              {chromeText.heroEyebrow}
-            </div>
-
-            <h1
-              className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
-              style={{ lineHeight: 1.1 }}
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:py-16">
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              {text.hdrTitle}
-            </h1>
-
-            <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
-              {text.hdrSubtitle}
-            </p>
-
-            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
-              <span className="flex items-center gap-1.5">
-                <span className="text-lg font-black text-white">
-                  {indexData.items.length}
-                </span>
-                {chromeText.medicinesStat}
-              </span>
-              <span className="text-white/40">·</span>
-              <span className="flex items-center gap-1.5">
-                <span className="text-lg font-black text-white">4</span>
-                {chromeText.languagesStat}
-              </span>
-              <span className="text-white/40">·</span>
-              <span>{chromeText.heroFormatValue}</span>
-            </div>
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" />
+              <path d="m8.5 8.5 7 7" />
+            </svg>
+            {chromeText.heroEyebrow}
           </div>
 
-          {/* Right side hero cards */}
-          <div className="flex flex-col gap-5">
-            <div className="rounded-3xl border border-white/20 bg-white/92 p-5 shadow-2xl backdrop-blur">
-              <div className="flex items-start gap-4">
-                <div className="relative shrink-0">
-                  <div className="absolute inset-[-4px] rounded-full bg-gradient-to-tr from-teal-400 via-sky-500 to-violet-500 opacity-90 blur-[2px]"></div>
-                  <img
-                    src="/ibrahim.jpg"
-                    alt={heroSideText.aboutMeName}
-                    className="relative h-24 w-24 rounded-full border-4 border-white object-cover shadow-lg"
-                  />
-                </div>
+          <h1
+            className="max-w-2xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl"
+            style={{ lineHeight: 1.1 }}
+          >
+            {text.hdrTitle}
+          </h1>
 
-                <div className="min-w-0">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-                    {heroSideText.aboutMeTitle}
-                  </p>
-                  <h3 className="mt-1 text-lg font-bold text-slate-900">
-                    {heroSideText.aboutMeName}
-                  </h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">
-                    {heroSideText.aboutMeBody}
-                  </p>
-                </div>
-              </div>
-            </div>
+          <p className="mt-4 max-w-xl text-base leading-7 text-white/80 sm:text-lg">
+            {text.hdrSubtitle}
+          </p>
 
-            <div className="rounded-3xl border border-white/20 bg-white/92 p-5 shadow-2xl backdrop-blur">
-              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-                {heroSideText.aboutSiteTitle}
-              </p>
-              <p className="mt-3 text-sm leading-7 text-slate-600">
-                {heroSideText.aboutSiteBody}
-              </p>
-            </div>
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/80">
+            <span className="flex items-center gap-1.5">
+              <span className="text-lg font-black text-white">
+                {indexData.items.length}
+              </span>
+              {chromeText.medicinesStat}
+            </span>
+            <span className="text-white/40">·</span>
+            <span className="flex items-center gap-1.5">
+              <span className="text-lg font-black text-white">4</span>
+              {chromeText.languagesStat}
+            </span>
+            <span className="text-white/40">·</span>
+            <span>{chromeText.heroFormatValue}</span>
+          </div>
+
+          {/* Hero CTA buttons to open modals */}
+          <div className="mt-8 flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={() => setModalTab("me")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "12px 22px",
+                borderRadius: "999px",
+                background: "rgba(255,255,255,0.18)",
+                border: "1.5px solid rgba(255,255,255,0.35)",
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: "15px",
+                cursor: "pointer",
+                backdropFilter: "blur(8px)",
+                transition: "all 0.2s",
+              }}
+            >
+              <span style={{ fontSize: "18px" }}>👤</span>
+              {navLabels.aboutMe}
+            </button>
+            <button
+              type="button"
+              onClick={() => setModalTab("site")}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "12px 22px",
+                borderRadius: "999px",
+                background: "rgba(255,255,255,0.18)",
+                border: "1.5px solid rgba(255,255,255,0.35)",
+                color: "#fff",
+                fontWeight: 700,
+                fontSize: "15px",
+                cursor: "pointer",
+                backdropFilter: "blur(8px)",
+                transition: "all 0.2s",
+              }}
+            >
+              <span style={{ fontSize: "18px" }}>🌐</span>
+              {navLabels.aboutSite}
+            </button>
           </div>
         </div>
       </div>
@@ -812,29 +1303,47 @@ export function SiteIndex({ initialLang }) {
       {/* Footer */}
       <footer className="mx-auto max-w-6xl px-4 pb-14 pt-4">
         <div
-          className="rounded-3xl border bg-white px-5 py-5 shadow-sm sm:px-6"
+          className="rounded-3xl border bg-white px-6 py-6 shadow-sm"
           style={{ borderColor: "var(--border)" }}
         >
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-4">
             <div
-              className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl"
-              style={{ background: "var(--bg)", color: "var(--accent)" }}
+              style={{
+                marginTop: "2px",
+                display: "flex",
+                height: 48,
+                width: 48,
+                flexShrink: 0,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: "14px",
+                background: "var(--bg)",
+                color: "var(--accent)",
+              }}
             >
               <ShieldInfoIcon />
             </div>
 
             <div className="min-w-0">
               <strong
-                className="block text-sm font-semibold"
-                style={{ color: "var(--text)" }}
+                style={{
+                  display: "block",
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: "var(--text)",
+                }}
               >
                 {text.footerStrong}
               </strong>
 
               {text.footer1 ? (
                 <p
-                  className="mt-2 text-sm leading-7"
-                  style={{ color: "var(--text-muted)" }}
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "15px",
+                    lineHeight: "1.75",
+                    color: "var(--text-muted)",
+                  }}
                 >
                   {text.footer1}
                 </p>
@@ -842,8 +1351,12 @@ export function SiteIndex({ initialLang }) {
 
               {text.footer3 ? (
                 <p
-                  className="mt-2 text-sm leading-7"
-                  style={{ color: "var(--text-muted)" }}
+                  style={{
+                    marginTop: "10px",
+                    fontSize: "15px",
+                    lineHeight: "1.75",
+                    color: "var(--text-muted)",
+                  }}
                 >
                   {text.footer3}
                 </p>
@@ -851,8 +1364,13 @@ export function SiteIndex({ initialLang }) {
 
               {text.footer2 ? (
                 <p
-                  className="mt-3 text-xs font-medium tracking-wide"
-                  style={{ color: "var(--text-muted)" }}
+                  style={{
+                    marginTop: "14px",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    letterSpacing: "0.01em",
+                    color: "var(--text-muted)",
+                  }}
                 >
                   {text.footer2}
                 </p>
