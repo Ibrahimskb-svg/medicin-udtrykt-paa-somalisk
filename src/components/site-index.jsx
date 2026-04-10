@@ -140,7 +140,7 @@ const CHAT_PLUGIN_HINT = {
   },
   so: {
     pill: "La sheekayso Ibraahim",
-    small: "Guji chat-ka hoose ee midig",
+    small: "Fur chat-ka hoose ee midig",
   },
   ar: {
     pill: "تحدث مع إبراهيم",
@@ -988,14 +988,14 @@ const CATEGORY_PILL_ICON = {
   "ضغط الدم وخفقان القلب": { icon: "blood-pressure.png", color: "#E11D48", bg: "#FFF1F2" },
   "مميع للدم": { icon: "line.png", color: "#7C3AED", bg: "#F5F3FF" },
   "الوقاية من الجلطات": { icon: "line.png", color: "#6D28D9", bg: "#EDE9FE" },
-  الكوليسترول: { icon: "cholesterol.png", color: "#D97706", bg: "#FFFBEB" },
-  السكري: { icon: "blood-test.png", color: "#0284C7", bg: "#F0F9FF" },
-  الربو: { icon: "lungs.png", color: "#0D9488", bg: "#F0FDFA" },
+  "الكوليسترول": { icon: "cholesterol.png", color: "#D97706", bg: "#FFFBEB" },
+  "السكري": { icon: "blood-test.png", color: "#0284C7", bg: "#F0F9FF" },
+  "الربو": { icon: "lungs.png", color: "#0D9488", bg: "#F0FDFA" },
   "الاكتئاب والقلق": { icon: "mental-health.png", color: "#8B5CF6", bg: "#F5F3FF" },
   "الذهان وثنائي القطب": { icon: "mental-health.png", color: "#A855F7", bg: "#FAF5FF" },
   "الصرع وثنائي القطب": { icon: "brain.png", color: "#7C3AED", bg: "#F5F3FF" },
-  النوم: { icon: "nighttime.png", color: "#4F46E5", bg: "#EEF2FF" },
-  الأرق: { icon: "nighttime.png", color: "#6366F1", bg: "#EEF2FF" },
+  "النوم": { icon: "nighttime.png", color: "#4F46E5", bg: "#EEF2FF" },
+  "الأرق": { icon: "nighttime.png", color: "#6366F1", bg: "#EEF2FF" },
   "مسكن ألم": { icon: "download.png", color: "#059669", bg: "#ECFDF5" },
   "ألم وحمى": { icon: "download.png", color: "#F59E0B", bg: "#FFFBEB" },
   "ألم والتهاب": { icon: "download.png", color: "#EF4444", bg: "#FEF2F2" },
@@ -1573,7 +1573,7 @@ function ContactModal({ language, onClose }) {
   );
 }
 
-// ── FAQ Modal — bullet-style answers ──────────────────────────────────────
+// ── FAQ Modal — with numbered circles ─────────────────────────────────────
 function FAQModal({ language, onClose }) {
   const [open, setOpen] = useState(null);
   const isRtl = language === "ar";
@@ -1584,111 +1584,161 @@ function FAQModal({ language, onClose }) {
 
   return (
     <ModalShell title={faqTitle} iconEl={iconEl} onClose={onClose} isRtl={isRtl} wide>
-      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        {data.items.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              background: "#fff",
-              borderRadius: "16px",
-              border: `1.5px solid ${open === i ? theme.primary + "55" : "#e5e7eb"}`,
-              overflow: "hidden",
-              boxShadow: open === i ? `0 4px 16px ${theme.primary}15` : "0 1px 3px rgba(0,0,0,0.04)",
-              transition: "all 0.2s",
-            }}
-          >
-            <button
-              type="button"
-              onClick={() => setOpen(open === i ? null : i)}
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        {data.items.map((item, i) => {
+          const active = open === i;
+          return (
+            <div
+              key={i}
               style={{
-                width: "100%",
-                display: "flex",
-                alignItems: "flex-start",
-                justifyContent: "space-between",
-                gap: "12px",
-                padding: "15px 18px",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                textAlign: isRtl ? "right" : "left",
+                background: active ? "#ffffff" : "#ffffff",
+                borderRadius: "18px",
+                border: `1.5px solid ${active ? theme.primary + "55" : "#e5e7eb"}`,
+                overflow: "hidden",
+                boxShadow: active
+                  ? `0 10px 28px ${theme.primary}18`
+                  : "0 4px 14px rgba(15,23,42,0.05)",
+                transition: "all 0.22s ease",
               }}
             >
-              <span
+              <button
+                type="button"
+                onClick={() => setOpen(active ? null : i)}
                 style={{
-                  fontWeight: 700,
-                  fontSize: "15px",
-                  color: open === i ? theme.primary : "#0f172a",
-                  lineHeight: 1.4,
-                  flex: 1,
-                }}
-              >
-                {item.q}
-              </span>
-              <span
-                style={{
-                  flexShrink: 0,
-                  width: 26,
-                  height: 26,
-                  borderRadius: "50%",
-                  background: open === i ? theme.primary : "#f1f5f9",
+                  width: "100%",
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  color: open === i ? "#fff" : theme.primary,
-                  fontSize: "17px",
-                  fontWeight: 700,
-                  transition: "all 0.2s",
-                  marginTop: "1px",
+                  justifyContent: "space-between",
+                  gap: "14px",
+                  padding: "15px 18px",
+                  background: active ? `${theme.primary}06` : "linear-gradient(180deg,#ffffff,#fcfdff)",
+                  border: "none",
+                  cursor: "pointer",
+                  textAlign: isRtl ? "right" : "left",
                 }}
               >
-                {open === i ? "−" : "+"}
-              </span>
-            </button>
-            {open === i && (
-              <div style={{ padding: "4px 18px 16px", borderTop: `1px solid ${theme.primary}20` }}>
-                <ul
+                <div
                   style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
                     display: "flex",
-                    flexDirection: "column",
-                    gap: "6px",
+                    alignItems: "center",
+                    gap: "14px",
+                    flex: 1,
+                    minWidth: 0,
+                    flexDirection: isRtl ? "row-reverse" : "row",
                   }}
                 >
-                  {item.bullets.map((b, bi) => (
-                    <li
-                      key={bi}
-                      style={{
-                        display: "flex",
-                        alignItems: "flex-start",
-                        gap: "10px",
-                        padding: "8px 12px",
-                        borderRadius: "10px",
-                        background: `${theme.primary}08`,
-                        fontSize: "14px",
-                        color: "#334155",
-                        lineHeight: 1.6,
-                      }}
-                    >
-                      <span
+                  <span
+                    style={{
+                      width: 38,
+                      height: 38,
+                      borderRadius: "999px",
+                      flexShrink: 0,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      background: active
+                        ? `linear-gradient(135deg, ${theme.primary}, ${theme.primary}dd)`
+                        : `linear-gradient(135deg, ${theme.soft}, #ffffff)`,
+                      color: active ? "#fff" : theme.primary,
+                      border: `1.5px solid ${active ? theme.primary : theme.border}`,
+                      boxShadow: active
+                        ? `0 8px 18px ${theme.primary}35`
+                        : `0 2px 8px ${theme.primary}12`,
+                      fontWeight: 800,
+                      fontSize: "14px",
+                    }}
+                  >
+                    {i + 1}
+                  </span>
+
+                  <span
+                    style={{
+                      fontWeight: 750,
+                      fontSize: "15px",
+                      color: active ? theme.primary : "#0f172a",
+                      lineHeight: 1.45,
+                      flex: 1,
+                    }}
+                  >
+                    {item.q}
+                  </span>
+                </div>
+
+                <span
+                  style={{
+                    flexShrink: 0,
+                    width: 30,
+                    height: 30,
+                    borderRadius: "999px",
+                    background: active ? theme.primary : "#f1f5f9",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: active ? "#fff" : theme.primary,
+                    fontSize: "18px",
+                    fontWeight: 700,
+                    transition: "all 0.2s",
+                    boxShadow: active ? `0 6px 16px ${theme.primary}25` : "none",
+                  }}
+                >
+                  {active ? "−" : "+"}
+                </span>
+              </button>
+
+              {active && (
+                <div
+                  style={{
+                    padding: "6px 18px 18px",
+                    borderTop: `1px solid ${theme.primary}18`,
+                    background: "#fff",
+                  }}
+                >
+                  <ul
+                    style={{
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "8px",
+                    }}
+                  >
+                    {item.bullets.map((b, bi) => (
+                      <li
+                        key={bi}
                         style={{
-                          width: 6,
-                          height: 6,
-                          borderRadius: "50%",
-                          background: theme.primary,
-                          flexShrink: 0,
-                          marginTop: "6px",
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: "10px",
+                          padding: "10px 12px",
+                          borderRadius: "12px",
+                          background: `${theme.primary}08`,
+                          fontSize: "14px",
+                          color: "#334155",
+                          lineHeight: 1.65,
+                          border: `1px solid ${theme.primary}12`,
                         }}
-                      />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        ))}
+                      >
+                        <span
+                          style={{
+                            width: 7,
+                            height: 7,
+                            borderRadius: "50%",
+                            background: theme.primary,
+                            flexShrink: 0,
+                            marginTop: "7px",
+                            boxShadow: `0 0 0 4px ${theme.primary}12`,
+                          }}
+                        />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </ModalShell>
   );
