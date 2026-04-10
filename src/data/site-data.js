@@ -10,7 +10,7 @@ export const siteData = {
         "pickTitle": "Dooro daawada aad rabto oo hoos ka muuqata",
         "pickSmall": "",
         "footer1": "Qoraalladan waa hagitaan guud oo fudud. Ma beddelayso talada tooska ah ee farmashiyaha ama dhakhtarka.",
-        "footer2": "© 2026 Somalimed. Dhammaan xuquuqaha way xifdsan yihiin.",
+        "footer2": "© 2026 Somalimed. Xuquuqda oo dhan way xafidan tahay.",
         "footerStrong": "Waxaa diyaariyay Ibraahim Dahir Xanaf.",
         "footer3": "Boggan wuxuu bixiyaa macluumaad guud oo ku saabsan daawooyinka mana beddelayo talada dhakhtarka ama farmashiistaha."
       },
