@@ -1,25 +1,20 @@
 "use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
 import { getStoredLanguage, subscribeToLanguageChange } from "../lib/language";
 import { uiText } from "../lib/site";
 
 export function AppNavbar() {
   const [language, setLanguage] = useState("so");
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setLanguage(params.get("lang") || getStoredLanguage() || "so");
     return subscribeToLanguageChange(setLanguage);
   }, []);
-
   const text = uiText[language] || uiText.so;
-
   return (
-    <header className="sticky top-0 z-50">
+    <header className="sticky top-0 z-[110]">
       <nav className="bg-white/90 backdrop-blur-md" style={{ borderBottom: "1px solid rgba(13,148,136,0.13)" }}>
         <div className="mx-auto flex max-w-6xl items-center px-4 py-3">
           <Link
@@ -50,7 +45,6 @@ export function AppNavbar() {
           </Link>
         </div>
       </nav>
-
       {/* Gradient accent line */}
       <div style={{ height: "2px", background: "linear-gradient(to right, #0D9488, #0284C7, #7C3AED)" }} />
     </header>
