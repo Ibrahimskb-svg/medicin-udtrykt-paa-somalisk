@@ -11,13 +11,11 @@ import { getIndexData, uiText } from "../lib/site";
 
 const indexData = getIndexData();
 
-// Icons served from the GitHub raw URL (icons subfolder)
-const ICON_BASE =
-  "https://raw.githubusercontent.com/Ibrahimskb-svg/medicin-udtrykt-paa-somalisk/main/public/icons/";
+// Icons from /public/icons/ — Next.js serves these as /icons/filename
+const ICON_BASE = "/icons/";
 
-// Icons that live in /public/ (root), not /public/icons/
-const PUBLIC_BASE =
-  "https://raw.githubusercontent.com/Ibrahimskb-svg/medicin-udtrykt-paa-somalisk/main/public/";
+// Icons from /public/ root — Next.js serves these as /filename
+const PUBLIC_BASE = "/";
 
 // ── Translated display names ───────────────────────────────────────────────
 const SLUG_DISPLAY_NAMES = {
