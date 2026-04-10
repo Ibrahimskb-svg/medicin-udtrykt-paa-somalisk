@@ -107,10 +107,10 @@ const ABOUT_ME_BULLETS = {
     { icon:"pills",     text:"Passionate about making professional knowledge meaningful and practical — bringing a unique combination of in-depth expertise and lively communication to every context" },
   ],
   so: [
-    { icon:"education", text:"Shahaadada koowaad ee Kimistari iyo Bayoolajiga Dawooyinka, farmashiiste tababaran — leh awood naadir ah oo ah in cilmiga xisaabta, fizikada, kimistarka iyo bayoolajiga laga dhigo mid sahlan oo xiiso leh" },
-    { icon:"work",      text:"Shaqo maalinleh oo ku saabsan farmashiyaha bulshada iyo farmashiyaha xaaladaha degdega ah — xiriirka tooska ah ee bukaanka ayaa si cad u muujiyay muhiimadda macluumaadka daawooyinka ee cad oo la aamin karo" },
-    { icon:"school",    text:"Macalin khibrad leh oo ku caawiyay ardayda dugsiga sare iyo jaamacadda inay ku guuleystaan mawduucyada adag — iyada oo lagu saleynayo dulqaad, dhiirrigelin iyo jawiga barashada ee waxtar leh" },
-    { icon:"pills",     text:"Xiise weyn u qaba in aqoonta xirfadeedka laga dhigo mid macno leh oo la isticmaali karo — oo keena isku darka gaarka ah ee aqoonta qoto dheer iyo xiriirinta firfircoon" },
+    { icon:"education", text:"Shahaadada koowaad ee Kimistari iyo Bayoolajiga Dawooyinka, waxaana sidoo kale ahay farmashiiste tababaran — leh awood u gaar ah oo ah in xisaabta, fizikada, kimistarka iyo bayoolajiga laga dhigo mawduucyo sahlan oo xiiso leh" },
+    { icon:"work",      text:"Shaqo maalinleh oo ku saabsan farmashiyaha bulshada iyo farmashiyaha xaaladaha degdega ah — xiriirka tooska ah ee bukaanka ayaa si cad u muujiyay baahida weyn ee macluumaadka daawooyinka ee cad oo la aamin karo" },
+    { icon:"school",    text:"Macalin khibrad leh oo ku caawiyay ardayda dugsiga sare iyo ardayda jaamacadda inay si wanaagsan ugu guuleystaan mawduucyada adag — isagoo adeegsanaya dulqaad, dhiirrigelin iyo jawi barasho oo waxtar leh" },
+    { icon:"pills",     text:"Wuxuu si gaar ah u xiiseeyaa in aqoonta xirfadeedka laga dhigo mid macno leh, la isticmaali karo — isagoo keena isku darka aqoon qoto dheer iyo xiriirin firfircoon oo nooceedu ka duwan yahay" },
   ],
   ar: [
     { icon:"education", text:"بكالوريوس في الكيمياء وعلم الأحياء الدوائي، وحاصل على تأهيل فارماكونوم — بقدرة نادرة على تحويل المواد المعقدة كالرياضيات والفيزياء والكيمياء وعلم الأحياء إلى مواد سهلة وممتعة" },
@@ -142,9 +142,9 @@ const ABOUT_SITE_BULLETS = {
   ],
   so: [
     { icon:"pills",     text:"25 daawo oo si taxaddar leh loo xushay shaqada maalinlaha ah ee farmashiyaha" },
-    { icon:"school",    text:"Waxaa lagu heli karaa af-Soomaali, Ingiriisi, Dansk iyo Carabi" },
+    { icon:"school",    text:"Waxaa lagu heli karaa af-Soomaali, Ingiriisi, Deenish iyo Carabi" },
     { icon:"education", text:"Waxa qoray farmashiiste xirfad leh oo si buuxda u tababaran" },
-    { icon:"work",      text:"Waxaa si joogto ah loogu dari doonaa: antibiyootikada, daawooyinka fayraska, antihistamiinnada iwm." },
+    { icon:"work",      text:"Waxaa si joogto ah loogu dari doonaa: antibiyootikada, daawooyinka fayraska, kiniinnada xasaasiyadda iwm." },
   ],
   ar: [
     { icon:"pills",     text:"25 دواءً مختاراً بعناية من الممارسة اليومية في الصيدلية" },
