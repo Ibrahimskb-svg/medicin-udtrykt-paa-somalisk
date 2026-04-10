@@ -11,16 +11,14 @@ import { getIndexData, uiText } from "../lib/site";
 
 const indexData = getIndexData();
 
-// Icons from /public/icons/ — Next.js serves as /icons/filename
+// All icons are in /public/icons/ — Next.js serves as /icons/filename
 const ICON_BASE = "/icons/";
 
-// Icons from /public/ root — Next.js serves as /filename
-// school.png, work.png, education.png, pills.png are all in /public/
 const P = {
-  school:    "/school.png",
-  work:      "/work.png",
-  education: "/education.png",
-  pills:     "/pills.png",
+  school:    "/icons/school.png",
+  work:      "/icons/work.png",
+  education: "/icons/education.png",
+  pills:     "/icons/pills.png",
 };
 
 // ── Translated display names ───────────────────────────────────────────────
