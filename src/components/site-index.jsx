@@ -11,11 +11,17 @@ import { getIndexData, uiText } from "../lib/site";
 
 const indexData = getIndexData();
 
-// Icons from /public/icons/ — Next.js serves these as /icons/filename
+// Icons from /public/icons/ — Next.js serves as /icons/filename
 const ICON_BASE = "/icons/";
 
-// Icons from /public/ root — Next.js serves these as /filename
-const PUBLIC_BASE = "/";
+// Icons from /public/ root — Next.js serves as /filename
+// school.png, work.png, education.png, pills.png are all in /public/
+const P = {
+  school:    "/school.png",
+  work:      "/work.png",
+  education: "/education.png",
+  pills:     "/pills.png",
+};
 
 // ── Translated display names ───────────────────────────────────────────────
 const SLUG_DISPLAY_NAMES = {
@@ -311,7 +317,7 @@ function BulletRow({ bullet, palette }) {
         boxShadow: `0 2px 8px ${palette.color}20`,
       }}>
         <img
-          src={`${PUBLIC_BASE}${bullet.icon}`}
+          src={P[bullet.icon.replace(".png","")]}
           alt=""
           style={{ width: 28, height: 28, objectFit: "contain" }}
           onError={(e) => { e.currentTarget.style.display = "none"; }}
@@ -367,7 +373,7 @@ function AboutModal({ tab, language, onClose }) {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <img
-              src={tab === "me" ? `${PUBLIC_BASE}education.png` : `${PUBLIC_BASE}pills.png`}
+              src={tab === "me" ? P.education : P.pills}
               alt=""
               style={{ width: 26, height: 26, objectFit: "contain", filter: "brightness(0) invert(1)" }}
               onError={(e) => { e.currentTarget.style.display = "none"; }}
@@ -487,7 +493,7 @@ export function SiteIndex({ initialLang }) {
               width: 32, height: 32, borderRadius: "10px", background: "var(--heroBg)",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              <img src={`${PUBLIC_BASE}pills.png`} alt="" style={{ width: 20, height: 20, objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
+              <img src={P.pills} alt="" style={{ width: 20, height: 20, objectFit: "contain" }} onError={(e) => { e.currentTarget.style.display = "none"; }} />
             </div>
             <span style={{ fontWeight: 800, fontSize: "17px", color: "var(--accent, #0d9488)", letterSpacing: "-0.02em" }}>
               Somalimed
@@ -497,8 +503,8 @@ export function SiteIndex({ initialLang }) {
           {/* Tab buttons — right side only */}
           <div style={{ display: "flex", gap: "8px" }}>
             {[
-              { key: "me",   icon: "education.png", label: navLabels.aboutMe },
-              { key: "site", icon: "work.png",      label: navLabels.aboutSite },
+              { key: "me",   icon: P.education, label: navLabels.aboutMe },
+              { key: "site", icon: P.work,      label: navLabels.aboutSite },
             ].map(({ key, icon, label }) => {
               const active = modalTab === key;
               return (
@@ -513,7 +519,7 @@ export function SiteIndex({ initialLang }) {
                   boxShadow: active ? "0 2px 12px rgba(13,148,136,0.28)" : "0 1px 3px rgba(0,0,0,0.06)",
                 }}>
                   <img
-                    src={`${PUBLIC_BASE}${icon}`} alt=""
+                    src={icon} alt=""
                     style={{ width: 18, height: 18, objectFit: "contain" }}
                     onError={(e) => { e.currentTarget.style.display = "none"; }}
                   />
