@@ -549,6 +549,13 @@ export function SiteIndex({initialLang}){
   useEffect(()=>{applyLanguageToDocument(language,text.pageTitle);},[language,text.pageTitle]);
   useEffect(()=>{setActiveCategory("all");},[language]);
 
+  // Listen for tab clicks from AppNavbar
+  useEffect(()=>{
+    const handler=(e)=>setModalTab(prev=>prev===e.detail?null:e.detail);
+    window.addEventListener("somalimed-tab",handler);
+    return()=>window.removeEventListener("somalimed-tab",handler);
+  },[]);
+
   const categoryPills=useMemo(()=>buildCategoryPills(language),[language]);
   const filteredItems=useMemo(()=>{
     const query=searchTerm.trim().toLowerCase();
@@ -573,23 +580,6 @@ export function SiteIndex({initialLang}){
 
   return(
     <div style={{background:"var(--bg)",color:"var(--text)"}} className="min-h-screen">
-
-      {/* ── Sticky nav ──────────────────────────────────────────────────── */}
-      <div style={{background:"rgba(255,255,255,0.96)",backdropFilter:"blur(16px)",WebkitBackdropFilter:"blur(16px)",borderBottom:"1px solid rgba(0,0,0,0.07)",position:"sticky",top:"58px",zIndex:90}}>
-        <div style={{maxWidth:"72rem",margin:"0 auto",padding:"0 1rem",display:"flex",alignItems:"center",justifyContent:"flex-end",height:"52px",gap:"8px"}}>
-          <div style={{display:"flex",gap:"5px",flexWrap:"wrap",justifyContent:"flex-end"}}>
-            {navTabs.map(({key,iconEl,label})=>{
-              const active=modalTab===key;
-              return(
-                <button key={key} type="button" onClick={()=>setModalTab(active?null:key)} style={{display:"inline-flex",alignItems:"center",gap:"5px",padding:"7px 12px",borderRadius:"999px",border:"1.5px solid",borderColor:active?"var(--accent,#0d9488)":"#e2e8f0",background:active?"var(--accent,#0d9488)":"#fff",color:active?"#fff":"#334155",fontWeight:600,fontSize:"13px",cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",boxShadow:active?"0 2px 12px rgba(13,148,136,0.28)":"0 1px 3px rgba(0,0,0,0.06)"}}>
-                  <span style={{display:"flex",alignItems:"center"}}>{iconEl}</span>
-                  {label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
 
       {/* ── Modals ─────────────────────────────────────────────────────── */}
       {(modalTab==="me"||modalTab==="site")&&<AboutModal tab={modalTab} language={language} onClose={()=>setModalTab(null)}/>}
