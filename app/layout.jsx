@@ -203,6 +203,12 @@ export default function RootLayout({ children }) {
                 ar: "هل لديك سؤال؟ تحدث مع إبراهيم."
               };
               var names = { so: "Ibraahim", da: "Ibrahim", en: "Ibrahim", ar: "إبراهيم" };
+              var colors = {
+                so: { bg: "linear-gradient(135deg,#0D9488,#0F766E)", tail: "#0F766E", shadow: "rgba(13,148,136,0.45)" },
+                da: { bg: "linear-gradient(135deg,#2563EB,#1D4ED8)", tail: "#1D4ED8", shadow: "rgba(37,99,235,0.45)" },
+                en: { bg: "linear-gradient(135deg,#92400E,#B45309)", tail: "#B45309", shadow: "rgba(146,64,14,0.45)" },
+                ar: { bg: "linear-gradient(135deg,#D97706,#B45309)", tail: "#B45309", shadow: "rgba(217,119,6,0.45)" },
+              };
 
               function getLang() {
                 try {
@@ -228,11 +234,22 @@ export default function RootLayout({ children }) {
                 var lang = getLang();
                 var msg = messages[lang] || messages.so;
                 var name = names[lang] || names.so;
+                var color = colors[lang] || colors.so;
                 var isRtl = lang === "ar";
 
                 var bubble = document.createElement("div");
                 bubble.id = "sm-bubble";
                 bubble.style.direction = isRtl ? "rtl" : "ltr";
+                bubble.style.background = color.bg;
+                bubble.style.boxShadow = "0 8px 28px " + color.shadow + ", 0 2px 8px rgba(0,0,0,0.12)";
+
+                // Override the ::after tail color via a style tag
+                var tailStyle = document.getElementById("sm-bubble-tail-style");
+                if (tailStyle) tailStyle.remove();
+                var ts = document.createElement("style");
+                ts.id = "sm-bubble-tail-style";
+                ts.textContent = "#sm-bubble::after { border-top-color: " + color.tail + " !important; }";
+                document.head.appendChild(ts);
 
                 bubble.innerHTML =
                   '<button id="sm-bubble-close" onclick="event.stopPropagation();this.parentElement.remove()">✕</button>' +
