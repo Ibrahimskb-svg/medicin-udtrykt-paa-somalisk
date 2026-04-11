@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import { AppNavbar } from "../src/components/app-navbar";
 
 export const metadata = {
@@ -23,7 +24,7 @@ export const metadata = {
   metadataBase: new URL("https://www.somalimed.dk"),
   alternates: {
     canonical: "/",
-    languages: { "so":"/?lang=so", "da":"/?lang=da", "en":"/?lang=en", "ar":"/?lang=ar" },
+    languages: { so: "/?lang=so", da: "/?lang=da", en: "/?lang=en", ar: "/?lang=ar" },
   },
   openGraph: {
     type: "website",
@@ -31,9 +32,9 @@ export const metadata = {
     siteName: "Somalimed",
     title: "Somalimed — Lægemiddelinformation på somali, dansk, engelsk og arabisk",
     description: "Gratis og pålidelig medicininformation på 4 sprog — somali, dansk, engelsk og arabisk. Skabt af en uddannet Farmakonom for patienter og pårørende.",
-    images: [{ url:"/somalimed-icon.svg", width:512, height:512, alt:"Somalimed logo" }],
+    images: [{ url: "/somalimed-icon.svg", width: 512, height: 512, alt: "Somalimed logo" }],
     locale: "so_SO",
-    alternateLocale: ["da_DK","en_GB","ar_SA"],
+    alternateLocale: ["da_DK", "en_GB", "ar_SA"],
   },
   twitter: {
     card: "summary",
@@ -42,8 +43,15 @@ export const metadata = {
     images: ["/somalimed-icon.svg"],
   },
   robots: {
-    index: true, follow: true,
-    googleBot: { index:true, follow:true, "max-snippet":-1, "max-image-preview":"large", "max-video-preview":-1 },
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
   category: "health",
   classification: "Medicine Information / Healthcare",
@@ -54,150 +62,247 @@ export default function RootLayout({ children }) {
   return (
     <html lang="so">
       <head>
-        {/* JSON-LD */}
-        <script
+        <Script
+          id="somalimed-jsonld"
           type="application/ld+json"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              "@context":"https://schema.org",
-              "@type":"WebSite",
-              "name":"Somalimed",
-              "url":"https://www.somalimed.dk",
-              "description":"Free medicine information in Somali, Danish, English and Arabic",
-              "inLanguage":["so","da","en","ar"],
-              "author":{ "@type":"Person","name":"Ibrahim Dahir Hanaf","jobTitle":"Pharmaconomist","url":"https://www.somalimed.dk" },
-              "potentialAction":{ "@type":"SearchAction","target":"https://www.somalimed.dk/?search={search_term_string}","query-input":"required name=search_term_string" },
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Somalimed",
+              url: "https://www.somalimed.dk",
+              description: "Free medicine information in Somali, Danish, English and Arabic",
+              inLanguage: ["so", "da", "en", "ar"],
+              author: {
+                "@type": "Person",
+                name: "Ibrahim Dahir Hanaf",
+                jobTitle: "Pharmaconomist",
+                url: "https://www.somalimed.dk",
+              },
+              potentialAction: {
+                "@type": "SearchAction",
+                target: "https://www.somalimed.dk/?search={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
             }),
           }}
         />
 
-        {/* Crisp Chat */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.$crisp=[];
-              window.CRISP_WEBSITE_ID="7e751734-efef-40ed-9087-aaca70200a7e";
-              (function(){
-                var d=document;
-                var s=d.createElement("script");
-                s.src="https://client.crisp.chat/l.js";
-                s.async=1;
-                d.getElementsByTagName("head")[0].appendChild(s);
-              })();
-            `,
-          }}
-        />
-
+        <Script id="crisp-chat" strategy="afterInteractive">
+          {`
+            window.$crisp = window.$crisp || [];
+            window.CRISP_WEBSITE_ID = "7e751734-efef-40ed-9087-aaca70200a7e";
+            (function() {
+              var d = document;
+              var s = d.createElement("script");
+              s.src = "https://client.crisp.chat/l.js";
+              s.async = 1;
+              d.head.appendChild(s);
+            })();
+          `}
+        </Script>
       </head>
+
       <body>
         <AppNavbar />
         {children}
 
-        {/* Animated chat bubble styles */}
-        <style dangerouslySetInnerHTML={{__html:`
-          #somalimed-chat-bubble {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            z-index: 99998;
-            background: #fff;
-            color: #0f172a;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            padding: 10px 16px;
-            border-radius: 20px 20px 4px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            max-width: 200px;
-            line-height: 1.4;
-            animation: bubblePop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards,
-                       bubbleFloat 3s ease-in-out 0.4s infinite;
-            border: 1px solid #e2e8f0;
-            cursor: pointer;
-          }
-          #somalimed-chat-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            right: 18px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 0px solid transparent;
-            border-top: 8px solid #fff;
-            filter: drop-shadow(0 2px 1px rgba(0,0,0,0.08));
-          }
-          #somalimed-chat-bubble-close {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            width: 20px;
-            height: 20px;
-            background: #64748b;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: none;
-            line-height: 1;
-          }
-          @keyframes bubblePop {
-            from { opacity:0; transform: scale(0.5) translateY(10px); }
-            to   { opacity:1; transform: scale(1) translateY(0); }
-          }
-          @keyframes bubbleFloat {
-            0%,100% { transform: translateY(0); }
-            50%      { transform: translateY(-4px); }
-          }
-        `}}/>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              #somalimed-chat-bubble {
+                position: fixed;
+                bottom: 90px;
+                right: 20px;
+                z-index: 99998;
+                background: #fff;
+                color: #0f172a;
+                font-size: 14px;
+                font-weight: 600;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                padding: 10px 16px;
+                border-radius: 20px 20px 4px 20px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                max-width: 220px;
+                line-height: 1.4;
+                animation: bubblePop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards,
+                           bubbleFloat 3s ease-in-out 0.4s infinite;
+                border: 1px solid #e2e8f0;
+                cursor: pointer;
+              }
 
-        {/* Chat bubble script */}
-        <script dangerouslySetInnerHTML={{__html:`
-          (function() {
-            var messages = {
-              so: "Su'aal ma qabtaa? La sheekeyso Ibraahim.",
-              da: "Har du et spørgsmål? Chat med Ibraahim.",
-              en: "Do you have a question? Chat with Ibraahim.",
-              ar: "هل لديك سؤال؟ تحدث مع إبراهيم."
-            };
-            function getLang() {
-              try {
-                var p = new URLSearchParams(window.location.search).get('lang');
-                if (p) return p;
-                var s = localStorage.getItem('somalimed_lang');
-                if (s) return s;
-              } catch(e) {}
-              return 'so';
-            }
-            function createBubble() {
-              if (document.getElementById('somalimed-chat-bubble')) return;
-              var lang = getLang();
-              var msg = messages[lang] || messages['so'];
-              var bubble = document.createElement('div');
-              bubble.id = 'somalimed-chat-bubble';
-              bubble.innerHTML =
-                '<button id="somalimed-chat-bubble-close" onclick="event.stopPropagation();document.getElementById(\'somalimed-chat-bubble\').remove()">✕</button>' +
-                msg;
-              bubble.addEventListener('click', function() {
-                if (window.$crisp) window.$crisp.push(['do', 'chat:open']);
-                bubble.remove();
+              #somalimed-chat-bubble::after {
+                content: "";
+                position: absolute;
+                bottom: -8px;
+                right: 18px;
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 0 solid transparent;
+                border-top: 8px solid #fff;
+                filter: drop-shadow(0 2px 1px rgba(0,0,0,0.08));
+              }
+
+              #somalimed-chat-bubble-close {
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                width: 20px;
+                height: 20px;
+                background: #64748b;
+                border-radius: 50%;
+                color: #fff;
+                font-size: 11px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border: none;
+                line-height: 1;
+              }
+
+              @keyframes bubblePop {
+                from { opacity: 0; transform: scale(0.5) translateY(10px); }
+                to { opacity: 1; transform: scale(1) translateY(0); }
+              }
+
+              @keyframes bubbleFloat {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-4px); }
+              }
+
+              @media (max-width: 640px) {
+                #somalimed-chat-bubble {
+                  right: 14px;
+                  bottom: 84px;
+                  max-width: 190px;
+                  font-size: 13px;
+                  padding: 9px 14px;
+                }
+              }
+            `,
+          }}
+        />
+
+        <Script id="somalimed-chat-bubble-script" strategy="afterInteractive">
+          {`
+            (function () {
+              var messages = {
+                so: "Su'aal ma qabtaa? La sheekeyso Ibraahim.",
+                da: "Har du et spørgsmål? Chat med Ibrahim.",
+                en: "Do you have a question? Chat with Ibrahim.",
+                ar: "هل لديك سؤال؟ تحدث مع إبراهيم."
+              };
+
+              function getLang() {
+                try {
+                  var urlLang = new URLSearchParams(window.location.search).get("lang");
+                  if (urlLang) return urlLang;
+
+                  var htmlLang = document.documentElement.getAttribute("lang");
+                  if (htmlLang && messages[htmlLang]) return htmlLang;
+
+                  var storedLang =
+                    localStorage.getItem("somalimed_lang") ||
+                    localStorage.getItem("lang");
+
+                  if (storedLang && messages[storedLang]) return storedLang;
+                } catch (e) {}
+
+                return "so";
+              }
+
+              function removeBubble() {
+                var existing = document.getElementById("somalimed-chat-bubble");
+                if (existing) existing.remove();
+              }
+
+              function openCrispChat() {
+                try {
+                  if (window.$crisp) {
+                    window.$crisp.push(["do", "chat:open"]);
+                  }
+                } catch (e) {}
+              }
+
+              function createBubble() {
+                if (!document.body) return;
+                if (document.getElementById("somalimed-chat-bubble")) return;
+
+                var lang = getLang();
+                var msg = messages[lang] || messages.so;
+
+                var bubble = document.createElement("div");
+                bubble.id = "somalimed-chat-bubble";
+                bubble.setAttribute("role", "button");
+                bubble.setAttribute("aria-label", msg);
+
+                var closeBtn = document.createElement("button");
+                closeBtn.id = "somalimed-chat-bubble-close";
+                closeBtn.type = "button";
+                closeBtn.innerHTML = "✕";
+                closeBtn.setAttribute("aria-label", "Close chat bubble");
+                closeBtn.onclick = function (event) {
+                  event.stopPropagation();
+                  removeBubble();
+                };
+
+                var textNode = document.createElement("span");
+                textNode.textContent = msg;
+
+                bubble.appendChild(closeBtn);
+                bubble.appendChild(textNode);
+
+                bubble.addEventListener("click", function () {
+                  openCrispChat();
+                  removeBubble();
+                });
+
+                document.body.appendChild(bubble);
+
+                setTimeout(function () {
+                  var b = document.getElementById("somalimed-chat-bubble");
+                  if (!b) return;
+                  b.style.transition = "opacity 0.5s ease";
+                  b.style.opacity = "0";
+
+                  setTimeout(function () {
+                    removeBubble();
+                  }, 500);
+                }, 8000);
+              }
+
+              function scheduleBubble() {
+                removeBubble();
+                setTimeout(createBubble, 3000);
+              }
+
+              if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", scheduleBubble);
+              } else {
+                scheduleBubble();
+              }
+
+              window.addEventListener("popstate", function () {
+                setTimeout(scheduleBubble, 400);
               });
-              document.body.appendChild(bubble);
-              setTimeout(function() {
-                var b = document.getElementById('somalimed-chat-bubble');
-                if (b) { b.style.transition = 'opacity 0.5s'; b.style.opacity = '0'; }
-                setTimeout(function() {
-                  var b2 = document.getElementById('somalimed-chat-bubble');
-                  if (b2) b2.remove();
-                }, 500);
-              }, 8000);
-            }
-            setTimeout(createBubble, 3000);
-          })();
-        `}}/>
+
+              var originalPushState = history.pushState;
+              history.pushState = function () {
+                originalPushState.apply(this, arguments);
+                setTimeout(scheduleBubble, 400);
+              };
+
+              var originalReplaceState = history.replaceState;
+              history.replaceState = function () {
+                originalReplaceState.apply(this, arguments);
+                setTimeout(scheduleBubble, 400);
+              };
+            })();
+          `}
+        </Script>
       </body>
     </html>
   );
