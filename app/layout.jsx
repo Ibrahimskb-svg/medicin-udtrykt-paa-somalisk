@@ -56,6 +56,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="so">
       <head>
+        {/* Google Search Console verification */}
+        <meta name="google-site-verification" content="DIN_VERIFICATION_KODE_HER" />
+
+        {/* Google Analytics GA4 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-D69NS55FP0"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-D69NS55FP0');
+          `}
+        </Script>
+
         <Script
           id="somalimed-jsonld"
           type="application/ld+json"
