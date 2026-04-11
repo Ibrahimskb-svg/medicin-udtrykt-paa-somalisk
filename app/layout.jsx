@@ -45,13 +45,7 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1,
-    },
+    googleBot: { index: true, follow: true, "max-snippet": -1, "max-image-preview": "large", "max-video-preview": -1 },
   },
   category: "health",
   classification: "Medicine Information / Healthcare",
@@ -74,21 +68,11 @@ export default function RootLayout({ children }) {
               url: "https://www.somalimed.dk",
               description: "Free medicine information in Somali, Danish, English and Arabic",
               inLanguage: ["so", "da", "en", "ar"],
-              author: {
-                "@type": "Person",
-                name: "Ibrahim Dahir Hanaf",
-                jobTitle: "Pharmaconomist",
-                url: "https://www.somalimed.dk",
-              },
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://www.somalimed.dk/?search={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
+              author: { "@type": "Person", name: "Ibrahim Dahir Hanaf", jobTitle: "Pharmaconomist", url: "https://www.somalimed.dk" },
+              potentialAction: { "@type": "SearchAction", target: "https://www.somalimed.dk/?search={search_term_string}", "query-input": "required name=search_term_string" },
             }),
           }}
         />
-
         <Script id="crisp-chat" strategy="afterInteractive">
           {`
             window.$crisp = window.$crisp || [];
@@ -108,85 +92,108 @@ export default function RootLayout({ children }) {
         <AppNavbar />
         {children}
 
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              #somalimed-chat-bubble {
-                position: fixed;
-                bottom: 90px;
-                right: 20px;
-                z-index: 99998;
-                background: #fff;
-                color: #0f172a;
-                font-size: 14px;
-                font-weight: 600;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-                padding: 10px 16px;
-                border-radius: 20px 20px 4px 20px;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-                max-width: 220px;
-                line-height: 1.4;
-                animation: bubblePop 0.4s cubic-bezier(0.34,1.56,0.64,1) forwards,
-                           bubbleFloat 3s ease-in-out 0.4s infinite;
-                border: 1px solid #e2e8f0;
-                cursor: pointer;
-              }
+        <style dangerouslySetInnerHTML={{ __html: `
+          #sm-bubble {
+            position: fixed;
+            bottom: 86px;
+            right: 16px;
+            z-index: 99998;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: linear-gradient(135deg, #0D9488, #0284C7);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 12px 14px 12px 12px;
+            border-radius: 18px 18px 4px 18px;
+            box-shadow: 0 8px 28px rgba(13,148,136,0.45), 0 2px 8px rgba(0,0,0,0.12);
+            max-width: 220px;
+            line-height: 1.45;
+            cursor: pointer;
+            animation: smPop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards,
+                       smFloat 3s ease-in-out 0.5s infinite;
+            border: none;
+          }
+          #sm-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -7px;
+            right: 22px;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 0 solid transparent;
+            border-top: 7px solid #0284C7;
+          }
+          #sm-bubble-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.5);
+            flex-shrink: 0;
+            margin-top: 1px;
+          }
+          #sm-bubble-avatar-fallback {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+          }
+          #sm-bubble-text {
+            flex: 1;
+          }
+          #sm-bubble-name {
+            font-size: 11px;
+            font-weight: 700;
+            opacity: 0.85;
+            margin-bottom: 2px;
+            letter-spacing: 0.02em;
+          }
+          #sm-bubble-msg {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.4;
+          }
+          #sm-bubble-close {
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            width: 20px;
+            height: 20px;
+            background: #475569;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 2px solid #fff;
+            line-height: 1;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+          }
+          @keyframes smPop {
+            from { opacity: 0; transform: scale(0.6) translateY(12px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+          }
+          @keyframes smFloat {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-5px); }
+          }
+          @media (max-width: 640px) {
+            #sm-bubble { right: 12px; bottom: 80px; max-width: 195px; font-size: 12px; padding: 10px 12px 10px 10px; }
+          }
+        ` }} />
 
-              #somalimed-chat-bubble::after {
-                content: "";
-                position: absolute;
-                bottom: -8px;
-                right: 18px;
-                width: 0;
-                height: 0;
-                border-left: 8px solid transparent;
-                border-right: 0 solid transparent;
-                border-top: 8px solid #fff;
-                filter: drop-shadow(0 2px 1px rgba(0,0,0,0.08));
-              }
-
-              #somalimed-chat-bubble-close {
-                position: absolute;
-                top: -8px;
-                right: -8px;
-                width: 20px;
-                height: 20px;
-                background: #64748b;
-                border-radius: 50%;
-                color: #fff;
-                font-size: 11px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                border: none;
-                line-height: 1;
-              }
-
-              @keyframes bubblePop {
-                from { opacity: 0; transform: scale(0.5) translateY(10px); }
-                to { opacity: 1; transform: scale(1) translateY(0); }
-              }
-
-              @keyframes bubbleFloat {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-4px); }
-              }
-
-              @media (max-width: 640px) {
-                #somalimed-chat-bubble {
-                  right: 14px;
-                  bottom: 84px;
-                  max-width: 190px;
-                  font-size: 13px;
-                  padding: 9px 14px;
-                }
-              }
-            `,
-          }}
-        />
-
-        <Script id="somalimed-chat-bubble-script" strategy="afterInteractive">
+        <Script id="sm-bubble-script" strategy="afterInteractive">
           {`
             (function () {
               var messages = {
@@ -195,111 +202,80 @@ export default function RootLayout({ children }) {
                 en: "Do you have a question? Chat with Ibrahim.",
                 ar: "هل لديك سؤال؟ تحدث مع إبراهيم."
               };
+              var names = { so: "Ibraahim", da: "Ibrahim", en: "Ibrahim", ar: "إبراهيم" };
 
               function getLang() {
                 try {
-                  var urlLang = new URLSearchParams(window.location.search).get("lang");
-                  if (urlLang) return urlLang;
-
-                  var htmlLang = document.documentElement.getAttribute("lang");
-                  if (htmlLang && messages[htmlLang]) return htmlLang;
-
-                  var storedLang =
-                    localStorage.getItem("somalimed_lang") ||
-                    localStorage.getItem("lang");
-
-                  if (storedLang && messages[storedLang]) return storedLang;
+                  var u = new URLSearchParams(window.location.search).get("lang");
+                  if (u && messages[u]) return u;
+                  var s = localStorage.getItem("somalimed_lang") || localStorage.getItem("lang");
+                  if (s && messages[s]) return s;
                 } catch (e) {}
-
                 return "so";
               }
 
-              function removeBubble() {
-                var existing = document.getElementById("somalimed-chat-bubble");
-                if (existing) existing.remove();
+              function remove() {
+                var el = document.getElementById("sm-bubble");
+                if (el) el.remove();
               }
 
-              function openCrispChat() {
-                try {
-                  if (window.$crisp) {
-                    window.$crisp.push(["do", "chat:open"]);
-                  }
-                } catch (e) {}
+              function openChat() {
+                try { if (window.$crisp) window.$crisp.push(["do", "chat:open"]); } catch(e) {}
               }
 
-              function createBubble() {
-                if (!document.body) return;
-                if (document.getElementById("somalimed-chat-bubble")) return;
-
+              function create() {
+                if (!document.body || document.getElementById("sm-bubble")) return;
                 var lang = getLang();
                 var msg = messages[lang] || messages.so;
+                var name = names[lang] || names.so;
+                var isRtl = lang === "ar";
 
                 var bubble = document.createElement("div");
-                bubble.id = "somalimed-chat-bubble";
-                bubble.setAttribute("role", "button");
-                bubble.setAttribute("aria-label", msg);
+                bubble.id = "sm-bubble";
+                bubble.style.direction = isRtl ? "rtl" : "ltr";
 
-                var closeBtn = document.createElement("button");
-                closeBtn.id = "somalimed-chat-bubble-close";
-                closeBtn.type = "button";
-                closeBtn.innerHTML = "✕";
-                closeBtn.setAttribute("aria-label", "Close chat bubble");
-                closeBtn.onclick = function (event) {
-                  event.stopPropagation();
-                  removeBubble();
+                bubble.innerHTML =
+                  '<button id="sm-bubble-close" onclick="event.stopPropagation();this.parentElement.remove()">✕</button>' +
+                  '<div id="sm-bubble-avatar-fallback">💬</div>' +
+                  '<div id="sm-bubble-text">' +
+                    '<div id="sm-bubble-name">' + name + '</div>' +
+                    '<div id="sm-bubble-msg">' + msg + '</div>' +
+                  '</div>';
+
+                bubble.addEventListener("click", function() { openChat(); remove(); });
+
+                // Try to load Ibrahim's photo
+                var img = document.createElement("img");
+                img.id = "sm-bubble-avatar";
+                img.src = "/Ibrahim.png";
+                img.alt = name;
+                img.onload = function() {
+                  var fb = document.getElementById("sm-bubble-avatar-fallback");
+                  if (fb) fb.replaceWith(img);
                 };
-
-                var textNode = document.createElement("span");
-                textNode.textContent = msg;
-
-                bubble.appendChild(closeBtn);
-                bubble.appendChild(textNode);
-
-                bubble.addEventListener("click", function () {
-                  openCrispChat();
-                  removeBubble();
-                });
 
                 document.body.appendChild(bubble);
 
-                setTimeout(function () {
-                  var b = document.getElementById("somalimed-chat-bubble");
+                setTimeout(function() {
+                  var b = document.getElementById("sm-bubble");
                   if (!b) return;
                   b.style.transition = "opacity 0.5s ease";
                   b.style.opacity = "0";
-
-                  setTimeout(function () {
-                    removeBubble();
-                  }, 500);
+                  setTimeout(remove, 500);
                 }, 8000);
               }
 
-              function scheduleBubble() {
-                removeBubble();
-                setTimeout(createBubble, 3000);
-              }
+              function schedule() { remove(); setTimeout(create, 3000); }
 
               if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", scheduleBubble);
-              } else {
-                scheduleBubble();
-              }
+                document.addEventListener("DOMContentLoaded", schedule);
+              } else { schedule(); }
 
-              window.addEventListener("popstate", function () {
-                setTimeout(scheduleBubble, 400);
-              });
-
-              var originalPushState = history.pushState;
-              history.pushState = function () {
-                originalPushState.apply(this, arguments);
-                setTimeout(scheduleBubble, 400);
-              };
-
-              var originalReplaceState = history.replaceState;
-              history.replaceState = function () {
-                originalReplaceState.apply(this, arguments);
-                setTimeout(scheduleBubble, 400);
-              };
+              window.addEventListener("popstate", function() { setTimeout(schedule, 400); });
+              var oPS = history.pushState;
+              history.pushState = function() { oPS.apply(this, arguments); setTimeout(schedule, 400); };
+              var oRS = history.replaceState;
+              history.replaceState = function() { oRS.apply(this, arguments); setTimeout(schedule, 400); };
             })();
           `}
         </Script>
