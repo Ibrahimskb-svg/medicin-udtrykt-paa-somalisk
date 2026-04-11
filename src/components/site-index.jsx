@@ -566,9 +566,9 @@ export function SiteIndex({initialLang}){
   const navTabs=useMemo(()=>[
     {key:"me",      iconEl:<img src={P.education} alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutMe},
     {key:"site",    iconEl:<img src={P.work}      alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutSite},
-    {key:"faq",     iconEl:<QuestionIcon size={15} color={iconColors.faq}/>,       label:navLabels.faq},
-    {key:"feedback",iconEl:<StarIcon     size={15} color={iconColors.feedback}/>,   label:navLabels.feedback},
-    {key:"contact", iconEl:<MailIcon     size={15} color={iconColors.contact}/>,    label:navLabels.contact},
+    {key:"faq",     iconEl:<svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="13" height="10" rx="3" fill={iconColors.faq}/><path d="M2 10 L2 13 L6 10Z" fill={iconColors.faq}/><text x="6.5" y="7.5" fontFamily="-apple-system,sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">Q</text><rect x="8" y="5" width="13" height="10" rx="3" fill={iconColors.faq} opacity="0.65"/><path d="M19 15 L19 18 L15 15Z" fill={iconColors.faq} opacity="0.65"/><text x="14.5" y="12.5" fontFamily="-apple-system,sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">A</text></svg>, label:navLabels.faq},
+    {key:"feedback",iconEl:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={iconColors.feedback} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>, label:navLabels.feedback},
+    {key:"contact", iconEl:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={iconColors.contact} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>, label:navLabels.contact},
   ],[navLabels,iconColors]);
 
   return(
