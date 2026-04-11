@@ -88,7 +88,12 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        {/* Animated chat bubble above Crisp icon */}
+      </head>
+      <body>
+        <AppNavbar />
+        {children}
+
+        {/* Animated chat bubble styles */}
         <style dangerouslySetInnerHTML={{__html:`
           #somalimed-chat-bubble {
             position: fixed;
@@ -149,7 +154,7 @@ export default function RootLayout({ children }) {
           }
         `}}/>
 
-        {/* Chat bubble logic — detects language and shows correct text */}
+        {/* Chat bubble script */}
         <script dangerouslySetInnerHTML={{__html:`
           (function() {
             var messages = {
@@ -158,7 +163,6 @@ export default function RootLayout({ children }) {
               en: "Do you have a question? Chat with Ibraahim.",
               ar: "هل لديك سؤال؟ تحدث مع إبراهيم."
             };
-
             function getLang() {
               try {
                 var p = new URLSearchParams(window.location.search).get('lang');
@@ -168,51 +172,32 @@ export default function RootLayout({ children }) {
               } catch(e) {}
               return 'so';
             }
-
             function createBubble() {
               if (document.getElementById('somalimed-chat-bubble')) return;
               var lang = getLang();
               var msg = messages[lang] || messages['so'];
-
               var bubble = document.createElement('div');
               bubble.id = 'somalimed-chat-bubble';
               bubble.innerHTML =
                 '<button id="somalimed-chat-bubble-close" onclick="event.stopPropagation();document.getElementById(\'somalimed-chat-bubble\').remove()">✕</button>' +
                 msg;
-
               bubble.addEventListener('click', function() {
                 if (window.$crisp) window.$crisp.push(['do', 'chat:open']);
                 bubble.remove();
               });
-
               document.body.appendChild(bubble);
-
-              // Auto-hide after 8 seconds
               setTimeout(function() {
                 var b = document.getElementById('somalimed-chat-bubble');
-                if (b) b.style.transition = 'opacity 0.5s';
-                if (b) b.style.opacity = '0';
+                if (b) { b.style.transition = 'opacity 0.5s'; b.style.opacity = '0'; }
                 setTimeout(function() {
                   var b2 = document.getElementById('somalimed-chat-bubble');
                   if (b2) b2.remove();
                 }, 500);
               }, 8000);
             }
-
-            // Show bubble after 3 seconds
-            if (document.readyState === 'loading') {
-              document.addEventListener('DOMContentLoaded', function() {
-                setTimeout(createBubble, 3000);
-              });
-            } else {
-              setTimeout(createBubble, 3000);
-            }
+            setTimeout(createBubble, 3000);
           })();
         `}}/>
-      </head>
-      <body>
-        <AppNavbar />
-        {children}
       </body>
     </html>
   );
