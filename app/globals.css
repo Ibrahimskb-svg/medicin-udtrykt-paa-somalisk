@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #F0F4F8;
+  --surface: #FFFFFF;
+  --text: #0F1923;
+  --text-muted: #5A6A7A;
+  --border: #DDE3EA;
+  /* Per-language accent vars (overridden by JS) */
+  --accent1: #0D9488;
+  --accent2: #0284C7;
+  --accent: #0D9488;
+  --flash: #CCFBF1;
+  --badgeBg: #CCFBF1;
+  --badgeText: #0F766E;
+  --soft: #F0FDFA;
+  --softBorder: #99F6E4;
+  --link: #0284C7;
+  --drugIconBg: #F0FDFA;
+  --drugIconBorder: #99F6E4;
+  --langBarAccent: #0D9488;
+  --sourceBorderAccent: #0D9488;
+  --heroBg: linear-gradient(135deg, #0A7A73 0%, #0D9488 40%, #0E7FC0 100%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", "Segoe UI Variable", ui-sans-serif, system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(13, 148, 136, 0.18);
+}
+
+/* Hide scrollbar for category pill row */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 480ms ease,
+    transform 480ms ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

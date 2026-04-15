@@ -1,0 +1,77 @@
+Jeg <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Subtle inner shadow via layered rects -->
+    <filter id="innerShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
+      <feOffset dx="0" dy="4" result="offsetBlur"/>
+      <feComposite in="offsetBlur" in2="SourceAlpha" operator="in" result="shadow"/>
+      <feColorMatrix in="shadow" type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.18 0" result="coloredShadow"/>
+      <feMerge>
+        <feMergeNode in="coloredShadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle gradient for background depth -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#127a5e"/>
+      <stop offset="100%" stop-color="#0a5940"/>
+    </linearGradient>
+
+    <!-- Very subtle cross highlight -->
+    <linearGradient id="crossGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#e8f8f2" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Clip for rounded rect -->
+    <clipPath id="roundedClip">
+      <rect width="512" height="512" rx="112" ry="112"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" ry="112" fill="url(#bgGrad)"/>
+
+  <!-- Subtle noise-like texture overlay using very light cross-hatch pattern -->
+  <rect width="512" height="512" rx="112" ry="112" fill="white" opacity="0.03"/>
+
+  <!-- Top highlight edge (glass effect) -->
+  <rect x="0" y="0" width="512" height="180" rx="112" ry="112" fill="white" opacity="0.04" clip-path="url(#roundedClip)"/>
+
+  <!-- === MEDICAL CROSS === -->
+  <!-- Vertical bar of cross -->
+  <rect x="186" y="100" width="140" height="312" rx="24" ry="24" fill="url(#crossGrad)" filter="url(#innerShadow)"/>
+  <!-- Horizontal bar of cross -->
+  <rect x="100" y="186" width="312" height="140" rx="24" ry="24" fill="url(#crossGrad)" filter="url(#innerShadow)"/>
+
+  <!-- === HEART in centre of cross === -->
+  <!-- Heart path centred at 256,268 -->
+  <path d="
+    M256 300
+    C 232 278, 196 264, 196 236
+    C 196 216, 212 204, 228 204
+    C 238 204, 248 210, 256 220
+    C 264 210, 274 204, 284 204
+    C 300 204, 316 216, 316 236
+    C 316 264, 280 278, 256 300
+    Z"
+    fill="url(#bgGrad)"
+    opacity="0.95"/>
+
+  <!-- Thin highlight rim on heart for depth -->
+  <path d="
+    M256 300
+    C 232 278, 196 264, 196 236
+    C 196 216, 212 204, 228 204
+    C 238 204, 248 210, 256 220
+    C 264 210, 274 204, 284 204
+    C 300 204, 316 216, 316 236
+    C 316 264, 280 278, 256 300
+    Z"
+    fill="none"
+    stroke="white"
+    stroke-width="3"
+    opacity="0.15"/>
+</svg>
