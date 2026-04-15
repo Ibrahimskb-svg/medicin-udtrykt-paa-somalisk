@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { LanguageSelect } from "./language-select";
+import { InhalerGuide } from "./inhaler-guide";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -271,6 +272,11 @@ export function MedicinePage({ medicine, initialLang }) {
             </p>
           </section>
         </div>
+
+        {/* ── INHALATIONSTEKNIK (kun Ventoline + Symbicort) ── */}
+        {(medicine.slug === "ventoline" || medicine.slug === "symbicort") && (
+          <InhalerGuide slug={medicine.slug} language={language} />
+        )}
 
         {/* ── SEKTIONSKORT (Brug, Dosis, Bivirkninger osv.) ── */}
         <div className="mt-5 grid gap-4 lg:grid-cols-2">
