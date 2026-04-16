@@ -69,6 +69,12 @@ const SCENE_COPY = {
     so: "ilbiriqsi",
     ar: "ثوانٍ",
   },
+  waitSeconds: {
+    da: "30–60 sek",
+    en: "30–60 sec",
+    so: "30–60 ilbiriqsi",
+    ar: "30–60 ثانية",
+  },
   replaceCap: {
     da: "Sæt låget på",
     en: "Replace cap",
@@ -76,10 +82,10 @@ const SCENE_COPY = {
     ar: "أعد الغطاء",
   },
   neverIntoInhaler: {
-    da: "Pust ikke ind i inhalatoren",
-    en: "Do not breathe into the inhaler",
-    so: "Ha ku neefsan gudaha buufinta",
-    ar: "لا تنفخ داخل البخاخ",
+    da: ["Pust ikke ind", "i inhalatoren"],
+    en: ["Do not breathe", "into the inhaler"],
+    so: ["Ha ku neefsan", "gudaha buufinta"],
+    ar: ["لا تنفخ", "داخل البخاخ"],
   },
   rinseAndSpit: {
     da: "SKYL + SPYT",
@@ -90,7 +96,7 @@ const SCENE_COPY = {
   click: {
     da: "KLIK!",
     en: "CLICK!",
-    so: "KLIK!",
+    so: "GUJIN!",
     ar: "طَق!",
   },
 };
@@ -163,7 +169,7 @@ const STEPS = {
       { title: "Rinse your mouth – important!",           body: "Spit out and rinse your mouth thoroughly with water. This prevents oral thrush and hoarseness." },
     ],
     so: [
-      { title: "Si toosan u qabo oo diyaari",            body: "Buufinta si toosan u qabo. Giraanta casaanka ah si buuxda ugu wareeji midig, dabadeedna bidix ilaa aad ka maqasho cod klik ah. Hadda waa diyaar." },
+      { title: "Si toosan u qabo oo diyaari",            body: "Buufinta si toosan u qabo. Giraanta casaanka ah si buuxda ugu wareeji midig, dabadeedna bidix ilaa aad ka maqasho cod gujin ah. Hadda waa diyaar." },
       { title: "Dibadda u neefso, kana fogee buufinta",  body: "Si tartiib ah oo buuxda hawada dibadda ugu saar, adigoo buufinta ka fogeynaya afkaaga. Waligaa gudaha ha ugu neefsan buufinta." },
       { title: "Bushimaha ku qabso afdhiga",             body: "Afdhiga afka geli oo bushimaha si adag ugu qabso. Hubi in carrabku uusan xannibin furitaanka." },
       { title: "Si xoog leh oo degdeg ah u neefso",      body: "Afka si xoog leh oo degdeg ah uga neefso. Turbuhaler-ku wuxuu u baahan yahay neefsasho ka xoog badan tan buufinta caadiga ah si budadu u soo baxdo." },
@@ -433,7 +439,9 @@ function VS5({ language }) {
       <line x1={208} y1={96} x2={208} y2={64} stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
       <line x1={208} y1={96} x2={230} y2={96} stroke="#dc2626" strokeWidth={2.2} strokeLinecap="round"
         style={{ animation: "ig-clock 5s linear infinite", transformBox: "fill-box", transformOrigin: "208px 96px" }} />
-      <text x={208} y={152} textAnchor="middle" fill="#64748b" fontSize={13} fontWeight={700}>30 – 60s</text>
+      <text x={208} y={152} textAnchor="middle" fill="#64748b" fontSize={13} fontWeight={700}>
+        {SCENE_COPY.waitSeconds[language] ?? SCENE_COPY.waitSeconds.en}
+      </text>
       {/* Cap-on indicator */}
       <rect x={166} y={166} width={84} height={26} rx={9} fill="#dbeafe" />
       <text x={208} y={183} textAnchor="middle" fill="#0284c7" fontSize={11} fontWeight={800}>
@@ -477,6 +485,7 @@ function SS0({ language }) {
 }
 
 function SS1({ language }) {
+  const inhalerWarning = SCENE_COPY.neverIntoInhaler[language] ?? SCENE_COPY.neverIntoInhaler.en;
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
@@ -490,9 +499,10 @@ function SS1({ language }) {
         <SymbBody />
       </g>
       {/* NEVER into inhaler label */}
-      <rect x={136} y={173} width={132} height={22} rx={7} fill="#fef2f2" stroke="#fecaca" strokeWidth={1.5} />
-      <text x={202} y={188} textAnchor="middle" fill="#dc2626" fontSize={10} fontWeight="800">
-        {`✕ ${SCENE_COPY.neverIntoInhaler[language] ?? SCENE_COPY.neverIntoInhaler.en}`}
+      <rect x={128} y={162} width={144} height={34} rx={10} fill="#fef2f2" stroke="#fecaca" strokeWidth={1.5} />
+      <text x={200} y={176} textAnchor="middle" fill="#dc2626" fontSize={9} fontWeight="800">
+        <tspan x={200} dy={0}>{`✕ ${inhalerWarning[0]}`}</tspan>
+        <tspan x={200} dy={11}>{inhalerWarning[1]}</tspan>
       </text>
       {/* Step badge */}
       <circle cx={32} cy={32} r={20} fill="#ea580c" />
