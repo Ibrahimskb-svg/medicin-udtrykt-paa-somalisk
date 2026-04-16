@@ -258,6 +258,47 @@ function Lips({ cx = 140, cy = 160, anim = false }) {
   );
 }
 
+function PatientProfile({
+  x = 214,
+  y = 104,
+  scale = 1,
+  skin = "#fde68a",
+  stroke = "#d97706",
+  shirt = "#bfdbfe",
+  mouthOpen = false,
+  airway = false,
+  airwayColor = "#0284c7",
+}) {
+  return (
+    <g transform={`translate(${x} ${y}) scale(${scale})`}>
+      <ellipse cx="-8" cy="58" rx="34" ry="20" fill={shirt} opacity={0.95} />
+      <rect x="-22" y="34" width={22} height={24} rx={10} fill={skin} stroke={stroke} strokeWidth={2} />
+      <path
+        d="M-4 -46 C16 -46 30 -31 33 -8 C35 8 31 22 23 33 C14 46 -1 55 -18 55 C-35 55 -47 45 -51 28 C-55 10 -51 -8 -39 -22 C-30 -33 -20 -46 -4 -46Z"
+        fill={skin}
+        stroke={stroke}
+        strokeWidth={2.2}
+        strokeLinejoin="round"
+      />
+      <circle cx="-10" cy="-10" r="2.8" fill="#1f2937" />
+      <path d="M-30 2 Q-39 7 -45 11" fill="none" stroke={stroke} strokeWidth={2.4} strokeLinecap="round" />
+      <path d="M-30 11 Q-39 18 -45 19" fill="none" stroke={stroke} strokeWidth={2.1} strokeLinecap="round" />
+      <path d="M-34 -1 Q-43 4 -48 10 Q-42 13 -34 14" fill="none" stroke={stroke} strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round" />
+      {mouthOpen ? (
+        <ellipse cx="-46" cy="15" rx="4.6" ry="5.8" fill="#991b1b" stroke="#ef4444" strokeWidth={1.4} />
+      ) : (
+        <path d="M-34 10 Q-40 14 -47 15" fill="none" stroke="#b91c1c" strokeWidth={2.1} strokeLinecap="round" />
+      )}
+      {airway ? (
+        <>
+          <path d="M-42 15 C-26 22 -14 31 -8 43" fill="none" stroke={airwayColor} strokeWidth={2.6} strokeDasharray="6 5" strokeLinecap="round" opacity={0.8} />
+          <circle cx="-8" cy="43" r="3.5" fill={airwayColor} opacity={0.22} />
+        </>
+      ) : null}
+    </g>
+  );
+}
+
 /* Lung pair with optional pulse */
 function Lungs({ pulse = false, fill = "#bae6fd", stroke = "#0284c7" }) {
   const style = pulse ? { animation: "ig-lung 2s ease-in-out infinite", transformBox: "fill-box", transformOrigin: "140px 108px" } : {};
@@ -325,13 +366,10 @@ function VS1() {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#EFF6FF" rx={18} />
-      {/* Mouth on left */}
-      <ellipse cx={52} cy={104} rx={28} ry={19} fill="#fef9c3" stroke="#d97706" strokeWidth={2} />
-      <path d="M33 104 Q52 115 71 104" fill="#fbbf24" />
-      {/* Exhale arrows */}
-      <ExhaleArrows x0={86} color="#0284c7" />
+      <PatientProfile x={84} y={96} scale={0.95} mouthOpen airwayColor="#0284c7" shirt="#cfe8ff" />
+      <ExhaleArrows x0={40} color="#0284c7" />
       {/* Small inhaler right – kept far away */}
-      <g transform="translate(195 55) scale(0.4)" opacity={0.5}>
+      <g transform="translate(188 53) scale(0.42)" opacity={0.5}>
         <VentBody />
         <rect x={112} y={26} width={56} height={26} rx={13} fill="#0369a1" />
       </g>
@@ -348,15 +386,13 @@ function VS2() {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#EFF6FF" rx={18} />
-      {/* Mouthpiece close-up */}
-      <rect x={105} y={100} width={70} height={22} rx={11} fill="#7dd3fc" stroke="#0284c7" strokeWidth={2.5} />
-      <ellipse cx={140} cy={122} rx={8} ry={5} fill="#0284c7" />
-      {/* Actuator stub */}
-      <rect x={112} y={72} width={56} height={34} rx={10} fill="#bae6fd" stroke="#0284c7" strokeWidth={2} />
-      {/* Canister stub */}
-      <rect x={116} y={34} width={48} height={44} rx={10} fill="#0284c7" />
-      {/* Lips animating close */}
-      <Lips cx={140} cy={130} anim />
+      <PatientProfile x={218} y={98} scale={0.98} mouthOpen={false} shirt="#dbeafe" />
+      <g transform="translate(-10 10) rotate(-90 140 100)">
+        <VentBody />
+      </g>
+      <rect x={165} y={105} width={14} height={10} rx={5} fill="#0284c7" opacity={0.7} />
+      <circle cx={212} cy={107} r={26} fill="none" stroke="#bfdbfe" strokeWidth={3} opacity={0.7} />
+      <path d="M186 107 L200 107" stroke="#0284c7" strokeWidth={2.2} strokeDasharray="5 4" strokeLinecap="round" />
       {/* Green check */}
       <circle cx={212} cy={50} r={19} fill="#16a34a" />
       <path d="M202 50 L209 58 L222 43" fill="none" stroke="white" strokeWidth={3.2}
@@ -372,23 +408,25 @@ function VS3({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#EFF6FF" rx={18} />
-      {/* Inhaler shifted left */}
-      <VentBody ox={-30} />
+      <PatientProfile x={220} y={98} scale={1} mouthOpen airway airwayColor="#0284c7" shirt="#dbeafe" />
+      <g transform="translate(-18 10) rotate(-90 140 100)">
+        <VentBody />
+      </g>
       {/* Finger pressing canister */}
-      <g style={{ animation: "ig-press 1.1s ease-in-out 0.2s infinite", transformBox: "fill-box", transformOrigin: "110px 48px" }}>
-        <ellipse cx={110} cy={44} rx={15} ry={10} fill="#fde68a" stroke="#d97706" strokeWidth={2} />
-        <rect x={103} y={50} width={14} height={18} rx={7} fill="#fde68a" stroke="#d97706" strokeWidth={2} />
+      <g style={{ animation: "ig-press 1.1s ease-in-out 0.2s infinite", transformBox: "fill-box", transformOrigin: "82px 102px" }}>
+        <ellipse cx={82} cy={98} rx={15} ry={10} fill="#fde68a" stroke="#d97706" strokeWidth={2} />
+        <rect x={75} y={104} width={14} height={18} rx={7} fill="#fde68a" stroke="#d97706" strokeWidth={2} />
       </g>
       {/* Mist particles */}
-      {[[-16, -20], [0, -24], [16, -20], [-9, -13], [9, -13]].map(([dx, dy], i) => (
-        <circle key={i} cx={110} cy={162} r={4} fill="#7dd3fc" opacity={0.75}
+      {[[-12, -12], [0, -18], [15, -10], [8, -3], [18, 2]].map(([dx, dy], i) => (
+        <circle key={i} cx={176} cy={104} r={4} fill="#7dd3fc" opacity={0.75}
           style={{ animation: `ig-mist 1.5s ease-out ${i * 0.17}s infinite`, ["--dx"]: `${dx}px`, ["--dy"]: `${dy}px` }} />
       ))}
       {/* Slow curved inhale arrow */}
-      <path d="M130 172 Q195 155 235 112" fill="none" stroke="#0284c7" strokeWidth={3.2}
+      <path d="M178 104 Q203 104 218 112" fill="none" stroke="#0284c7" strokeWidth={3.2}
         strokeDasharray="9 6" strokeLinecap="round"
-        style={{ animation: "ig-arc 2s ease-in-out 0.5s infinite", strokeDashoffset: 120 }} />
-      <polygon points="230,104 242,116 228,120" fill="#0284c7" />
+        style={{ animation: "ig-arc 1.8s ease-in-out 0.5s infinite", strokeDashoffset: 70 }} />
+      <polygon points="213,106 225,113 213,120" fill="#0284c7" />
       {/* SLOW badge */}
       <rect x={188} y={68} width={66} height={28} rx={9} fill="#dbeafe" />
       <text x={221} y={87} textAnchor="middle" fill="#0284c7" fontSize={13} fontWeight="800">
@@ -489,13 +527,10 @@ function SS1({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
-      {/* Mouth on left */}
-      <ellipse cx={44} cy={104} rx={26} ry={18} fill="#fef9c3" stroke="#d97706" strokeWidth={2} />
-      <path d="M26 104 Q44 115 62 104" fill="#fbbf24" />
-      {/* Exhale arrows (orange) */}
-      <ExhaleArrows x0={76} color="#ea580c" />
+      <PatientProfile x={84} y={96} scale={0.95} mouthOpen airwayColor="#ea580c" shirt="#fde8d7" />
+      <ExhaleArrows x0={40} color="#ea580c" />
       {/* Symbicort to the right, away */}
-      <g transform="translate(55 0) scale(0.82)" opacity={0.85}>
+      <g transform="translate(68 0) scale(0.82)" opacity={0.85}>
         <SymbBody />
       </g>
       {/* NEVER into inhaler label */}
@@ -515,10 +550,12 @@ function SS2() {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
-      {/* Turbuhaler pushed down so mouthpiece is in centre */}
-      <SymbBody oy={38} />
-      {/* Lips animated around mouthpiece (top of shifted body = y≈51) */}
-      <Lips cx={140} cy={82} anim />
+      <PatientProfile x={140} y={106} scale={1.02} mouthOpen={false} shirt="#fde8d7" />
+      <g transform="translate(0 8)">
+        <SymbBody oy={42} />
+      </g>
+      <circle cx={140} cy={96} r={22} fill="none" stroke="#fed7aa" strokeWidth={3} opacity={0.8} />
+      <path d="M140 98 L140 116" stroke="#ea580c" strokeWidth={2.4} strokeDasharray="5 4" strokeLinecap="round" />
       {/* Green check */}
       <circle cx={212} cy={50} r={19} fill="#16a34a" />
       <path d="M202 50 L209 58 L222 43" fill="none" stroke="white" strokeWidth={3.2}
@@ -534,18 +571,20 @@ function SS3({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
-      {/* Turbuhaler shifted left */}
-      <SymbBody ox={-30} />
+      <PatientProfile x={214} y={98} scale={1} mouthOpen airway airwayColor="#ea580c" shirt="#fde8d7" />
+      <g transform="translate(-6 8)">
+        <SymbBody ox={-10} oy={18} />
+      </g>
       {/* Fast bold inhale arrows */}
-      {[{ y: 40, d: "0s", w: 6 }, { y: 56, d: "0.1s", w: 5 }, { y: 72, d: "0.2s", w: 4 }].map((a, i) => (
+      {[{ y: 90, d: "0s", w: 6 }, { y: 102, d: "0.1s", w: 5 }, { y: 114, d: "0.2s", w: 4 }].map((a, i) => (
         <g key={i} style={{ animation: `ig-flow-fast 0.75s ${a.d} ease-out infinite` }}>
-          <line x1={170} y1={a.y} x2={226} y2={a.y} stroke="#ea580c" strokeWidth={a.w} strokeLinecap="round" />
-          <polygon points={`${222},${a.y - 8} ${238},${a.y} ${222},${a.y + 8}`} fill="#ea580c" />
+          <line x1={120} y1={a.y} x2={168} y2={a.y} stroke="#ea580c" strokeWidth={a.w} strokeLinecap="round" />
+          <polygon points={`${163},${a.y - 8} ${179},${a.y} ${163},${a.y + 8}`} fill="#ea580c" />
         </g>
       ))}
       {/* Speed streaks */}
       {[-14, -5, 4, 13, 22].map((oy, i) => (
-        <line key={i} x1={186} y1={90 + oy} x2={222} y2={90 + oy}
+        <line key={i} x1={132} y1={102 + oy} x2={166} y2={102 + oy}
           stroke="#fed7aa" strokeWidth={2.2} strokeLinecap="round"
           style={{ animation: `ig-flow-fast 0.55s ${i * 0.07}s ease-out infinite` }} />
       ))}
