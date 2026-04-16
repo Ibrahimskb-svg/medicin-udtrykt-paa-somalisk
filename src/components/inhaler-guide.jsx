@@ -30,22 +30,82 @@ const TITLE = {
   ar: "كيفية استخدام البخاخ — خطوة بخطوة",
 };
 
+const SUBTITLE = {
+  ventoline: {
+    da: "Ventoline (Salbutamol) – MDI-spray",
+    en: "Ventoline (Salbutamol) – MDI inhaler",
+    so: "Ventoline (Salbutamol) – buufin la riixo",
+    ar: "فنتولين (سالبوتامول) — بخاخ مضغوط",
+  },
+  symbicort: {
+    da: "Symbicort – Turbuhaler (tørt pulver)",
+    en: "Symbicort – Turbuhaler (dry powder)",
+    so: "Symbicort – Turbuhaler (budo qallalan)",
+    ar: "سيمبيكورت — توربوهيلر (مسحوق جاف)",
+  },
+};
+
 const NAV_PREV = { da: "Forrige", en: "Previous", so: "Hore",      ar: "السابق" };
 const NAV_NEXT = { da: "Næste",   en: "Next",     so: "Xiga",      ar: "التالي" };
-const STEP_LBL = { da: "Trin",    en: "Step",     so: "Talaabo",   ar: "خطوة"   };
+const STEP_LBL = { da: "Trin",    en: "Step",     so: "Tallaabo",  ar: "خطوة"   };
 const STEP_OF  = { da: "af",      en: "of",       so: "ka",        ar: "من"     };
+
+const SCENE_COPY = {
+  slow: {
+    da: "LANGSOMT",
+    en: "SLOW",
+    so: "TARTIIB",
+    ar: "ببطء",
+  },
+  fast: {
+    da: "HURTIGT",
+    en: "FAST",
+    so: "DEGDEG",
+    ar: "بسرعة",
+  },
+  seconds: {
+    da: "sek",
+    en: "sec",
+    so: "ilbiriqsi",
+    ar: "ثوانٍ",
+  },
+  replaceCap: {
+    da: "Sæt låget på",
+    en: "Replace cap",
+    so: "Daboolka saar",
+    ar: "أعد الغطاء",
+  },
+  neverIntoInhaler: {
+    da: "Pust ikke ind i inhalatoren",
+    en: "Do not breathe into the inhaler",
+    so: "Ha ku neefsan gudaha buufinta",
+    ar: "لا تنفخ داخل البخاخ",
+  },
+  rinseAndSpit: {
+    da: "SKYL + SPYT",
+    en: "RINSE + SPIT",
+    so: "DHAQ + TUF",
+    ar: "اغسل + ابصق",
+  },
+  click: {
+    da: "KLIK!",
+    en: "CLICK!",
+    so: "KLIK!",
+    ar: "طَق!",
+  },
+};
 
 const WARNING = {
   ventoline: {
     da: "Ventoline er akutmedicin. Virker den ikke inden 10–15 min, søg straks lægehjælp.",
     en: "Ventoline is a reliever. If it does not work within 10–15 min, seek urgent medical help.",
-    so: "Ventoline waa daawo xaaladaha neef-qabsiga. Haddii aysan 10–15 daqiiqo gudahood shaqayn, guri caafimaad deg-deg ah raadi.",
+    so: "Ventoline waa daawo degdeg ah oo loo isticmaalo neef-qabatin kedis ah. Haddii aysan ku anfacin 10–15 daqiiqo gudahood, raadi gargaar caafimaad oo degdeg ah.",
     ar: "فنتولين دواء للنوبات. إذا لم يفد خلال 10–15 دقيقة، اطلب مساعدة طبية طارئة فورًا.",
   },
   symbicort: {
     da: "Symbicort er ikke akutmedicin – brug Ventoline ved akut åndenød. Symbicort skal tages fast hver dag.",
     en: "Symbicort is not a reliever – use Ventoline for acute breathlessness. Symbicort must be taken every single day.",
-    so: "Symbicort ma aha daawo neef-qabsiga – neef-qabsiga xaaladda deg-degga ah, Ventoline isticmaal. Symbicort maalin kasta si joogto ah u qaado.",
+    so: "Symbicort ma aha daawo degdeg ah. Marka neef-qabatin kedis ahi kugu timaado, isticmaal Ventoline. Symbicort waa in maalin kasta si joogto ah loo qaataa.",
     ar: "سيمبيكورت ليس لعلاج النوبات — استخدم فنتولين لضيق النفس المفاجئ. يجب أخذ سيمبيكورت يوميًا بانتظام.",
   },
 };
@@ -69,12 +129,12 @@ const STEPS = {
       { title: "Breathe out and wait",              body: "Breathe out slowly and wait 30–60 seconds before taking another puff. Replace the cap." },
     ],
     so: [
-      { title: "Ka qaad daboolka oo gariir",             body: "Ka qaad daboolka buufinta oo si xoog leh u gariir 4–5 jeer. Haddii aad 3 maalmood ka badan isticmaalin weydo, hal laab u saar hawada horta." },
-      { title: "Sambabada si buuxda u madheeso",          body: "Si tartiib ah oo buuxda u neefsaaso dibadda – buufintana uga fog afkaaga intaad sidaas samaynayso." },
-      { title: "Bushimaha ku xidh afdhiga",               body: "Afdhiga afka ku rid oo bushimaha si adag ugu xidh – carrabkana ha xidnin daaqa." },
-      { title: "Riix oo si tartiib ah u neefsaaso",       body: "Hoostiisa riix isla markaana si tartiib ah oo qoto dheer ugu neefsoo afka – 3 ilaa 5 ilbiriqsi." },
-      { title: "10 ilbiriqsi neefsashada ku hay",         body: "Neefsashada 10 ilbiriqsi ku hay – daawada waqti siid ay sambabada ku degto." },
-      { title: "U neefsaaso dibadda oo sug",              body: "Si tartiib ah u neefsaaso dibadda oo sug 30–60 ilbiriqsi ka hor intaadan labin kale qaadanin. Daboolka saar." },
+      { title: "Ka qaad daboolka oo rux",                 body: "Ka qaad daboolka buufinta oo si fiican u rux 4 ilaa 5 jeer. Haddii aadan isticmaalin in ka badan 3 maalmood, hal mar hawada ku buufi marka hore." },
+      { title: "Sambabada faaruji",                       body: "Si tartiib ah oo buuxda hawada dibadda ugu saar, adigoo buufinta ka fogeynaya afkaaga inta aad sidaas samaynayso." },
+      { title: "Bushimaha ku qabso afdhiga",              body: "Afdhiga afka geli oo bushimaha si adag ugu qabso. Hubi in carrabku uusan xannibin furitaanka." },
+      { title: "Riix oo si tartiib ah u neefso",          body: "Hoosta riix isla waqtigaasna si tartiib ah oo qoto dheer afka uga neefso 3 ilaa 5 ilbiriqsi." },
+      { title: "Neefta hay 10 ilbiriqsi",                body: "Neefta hay 10 ilbiriqsi, ama inta aad awooddo. Tani waxay daawada siinaysaa waqti ay sambabada ugu degto." },
+      { title: "Dibadda u neefso oo sug",                body: "Si tartiib ah dibadda ugu neefso oo sug 30 ilaa 60 ilbiriqsi ka hor intaadan buufin kale qaadan. Daboolka dib u saar." },
     ],
     ar: [
       { title: "أزل الغطاء وارجّ",                  body: "أزل الغطاء وارجّ البخاخ بقوة 4–5 مرات. إذا لم تستخدمه أكثر من 3 أيام، أطلق بخة واحدة في الهواء أولًا." },
@@ -103,12 +163,12 @@ const STEPS = {
       { title: "Rinse your mouth – important!",           body: "Spit out and rinse your mouth thoroughly with water. This prevents oral thrush and hoarseness." },
     ],
     so: [
-      { title: "Si toos ah u taag oo soo dejiso",         body: "Buufinta si toos ah u taag. Geediga cas si buuxda u wareejí midigta, kadibna bidixda, ilaa aad maqasho cod. Qiyaastii waa la dejiyay." },
-      { title: "U neefsaaso dibadda – buufintana ka fog", body: "Si tartiib ah oo buuxda u neefsaaso dibadda – buufintana uga fog afkaaga. Ha u neefsanin gudaha buufinta abid." },
-      { title: "Bushimaha ku xidh afdhiga",               body: "Afdhiga afka ku rid oo bushimaha si adag ugu xidh – carrabkana ha xidnin daaqa." },
-      { title: "Si xoog leh oo degdeg ah u neefsaaso",    body: "Si xoog leh oo dhaqso leh ugu neefsoo afka – buufintani waxay u baahan tahay neefsasho ka xooggan buuryaha kale si boorka u sii daayo." },
-      { title: "10 ilbiriqsi neefsashada ku hay",         body: "Neefsashada 10 ilbiriqsi ku hay – daawada waqti siid ay marinnada hawada yaryar u gaarto." },
-      { title: "Afka dhaq – muhiim ah!",                  body: "Ku tuf oo biyo ku dhaq afkaaga si buuxda. Tani waxay ka hortagtaa cayriyaha afka iyo codka xaabeexida." },
+      { title: "Si toosan u qabo oo diyaari",            body: "Buufinta si toosan u qabo. Giraanta casaanka ah si buuxda ugu wareeji midig, dabadeedna bidix ilaa aad ka maqasho cod klik ah. Hadda waa diyaar." },
+      { title: "Dibadda u neefso, kana fogee buufinta",  body: "Si tartiib ah oo buuxda hawada dibadda ugu saar, adigoo buufinta ka fogeynaya afkaaga. Waligaa gudaha ha ugu neefsan buufinta." },
+      { title: "Bushimaha ku qabso afdhiga",             body: "Afdhiga afka geli oo bushimaha si adag ugu qabso. Hubi in carrabku uusan xannibin furitaanka." },
+      { title: "Si xoog leh oo degdeg ah u neefso",      body: "Afka si xoog leh oo degdeg ah uga neefso. Turbuhaler-ku wuxuu u baahan yahay neefsasho ka xoog badan tan buufinta caadiga ah si budadu u soo baxdo." },
+      { title: "Neefta hay 10 ilbiriqsi",                body: "Neefta hay 10 ilbiriqsi, ama inta aad awooddo. Tani waxay daawada ka caawisaa inay gaarto marinnada hawada ee yaryar." },
+      { title: "Afka dhaq, dabadeed tuf",                body: "Isticmaal kasta ka dib afka si fiican biyo ugu dhaq dabadeedna tuf. Tani waxay ka hortagtaa fangaska afka iyo xabeebta codka." },
     ],
     ar: [
       { title: "أمسكه عموديًا وحمّله",               body: "أمسك الجهاز عموديًا. أدر الحلقة الحمراء تمامًا إلى اليمين ثم إلى اليسار حتى تسمع صوتًا. الجهاز الآن محمّل." },
@@ -302,7 +362,7 @@ function VS2() {
   );
 }
 
-function VS3() {
+function VS3({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#EFF6FF" rx={18} />
@@ -325,7 +385,9 @@ function VS3() {
       <polygon points="230,104 242,116 228,120" fill="#0284c7" />
       {/* SLOW badge */}
       <rect x={188} y={68} width={66} height={28} rx={9} fill="#dbeafe" />
-      <text x={221} y={87} textAnchor="middle" fill="#0284c7" fontSize={13} fontWeight="800">SLOW 🐢</text>
+      <text x={221} y={87} textAnchor="middle" fill="#0284c7" fontSize={13} fontWeight="800">
+        {`${SCENE_COPY.slow[language] ?? SCENE_COPY.slow.en} 🐢`}
+      </text>
       {/* Step badge */}
       <circle cx={32} cy={32} r={20} fill="#0284c7" />
       <text x={32} y={39} textAnchor="middle" fill="white" fontWeight="800" fontSize={18}>4</text>
@@ -333,7 +395,7 @@ function VS3() {
   );
 }
 
-function VS4() {
+function VS4({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#EFF6FF" rx={18} />
@@ -346,7 +408,9 @@ function VS4() {
         style={{ animation: "ig-arc 3s linear 0.4s infinite", transformOrigin: "140px 108px", transform: "rotate(-90deg)" }} />
       {/* Central text */}
       <text x={140} y={100} textAnchor="middle" fill="#0284c7" fontSize={42} fontWeight="900">10</text>
-      <text x={140} y={122} textAnchor="middle" fill="#0284c7" fontSize={12} fontWeight={600}>sek · sec · ثانية</text>
+      <text x={140} y={122} textAnchor="middle" fill="#0284c7" fontSize={12} fontWeight={600}>
+        {SCENE_COPY.seconds[language] ?? SCENE_COPY.seconds.en}
+      </text>
       {/* Step badge */}
       <circle cx={32} cy={32} r={20} fill="#0284c7" />
       <text x={32} y={39} textAnchor="middle" fill="white" fontWeight="800" fontSize={18}>5</text>
@@ -354,7 +418,7 @@ function VS4() {
   );
 }
 
-function VS5() {
+function VS5({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#EFF6FF" rx={18} />
@@ -372,7 +436,9 @@ function VS5() {
       <text x={208} y={152} textAnchor="middle" fill="#64748b" fontSize={13} fontWeight={700}>30 – 60s</text>
       {/* Cap-on indicator */}
       <rect x={166} y={166} width={84} height={26} rx={9} fill="#dbeafe" />
-      <text x={208} y={183} textAnchor="middle" fill="#0284c7" fontSize={11} fontWeight={800}>🔒 Sæt låget på</text>
+      <text x={208} y={183} textAnchor="middle" fill="#0284c7" fontSize={11} fontWeight={800}>
+        {`🔒 ${SCENE_COPY.replaceCap[language] ?? SCENE_COPY.replaceCap.en}`}
+      </text>
       {/* Step badge */}
       <circle cx={32} cy={32} r={20} fill="#0284c7" />
       <text x={32} y={39} textAnchor="middle" fill="white" fontWeight="800" fontSize={18}>6</text>
@@ -382,7 +448,7 @@ function VS5() {
 
 /* ─── Symbicort SVG scenes ──────────────────────────────────────────────── */
 
-function SS0() {
+function SS0({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
@@ -396,7 +462,9 @@ function SS0() {
       {/* Click effect */}
       <g style={{ animation: "ig-click 2.2s ease-out 1.8s infinite", transformBox: "fill-box", transformOrigin: "194px 138px" }}>
         <text x={194} y={138} fontSize={24} textAnchor="middle">✦</text>
-        <text x={194} y={155} fill="#16a34a" fontSize={11} fontWeight="800" textAnchor="middle">KLIK!</text>
+        <text x={194} y={155} fill="#16a34a" fontSize={11} fontWeight="800" textAnchor="middle">
+          {SCENE_COPY.click[language] ?? SCENE_COPY.click.en}
+        </text>
       </g>
       {/* Upright arrow (left side) */}
       <line x1={76} y1={175} x2={76} y2={46} stroke="#ea580c" strokeWidth={3.5} strokeLinecap="round" opacity={0.55} />
@@ -408,7 +476,7 @@ function SS0() {
   );
 }
 
-function SS1() {
+function SS1({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
@@ -423,7 +491,9 @@ function SS1() {
       </g>
       {/* NEVER into inhaler label */}
       <rect x={136} y={173} width={132} height={22} rx={7} fill="#fef2f2" stroke="#fecaca" strokeWidth={1.5} />
-      <text x={202} y={188} textAnchor="middle" fill="#dc2626" fontSize={10} fontWeight="800">✕ Ha u neefsanin gudaha</text>
+      <text x={202} y={188} textAnchor="middle" fill="#dc2626" fontSize={10} fontWeight="800">
+        {`✕ ${SCENE_COPY.neverIntoInhaler[language] ?? SCENE_COPY.neverIntoInhaler.en}`}
+      </text>
       {/* Step badge */}
       <circle cx={32} cy={32} r={20} fill="#ea580c" />
       <text x={32} y={39} textAnchor="middle" fill="white" fontWeight="800" fontSize={18}>2</text>
@@ -450,7 +520,7 @@ function SS2() {
   );
 }
 
-function SS3() {
+function SS3({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
@@ -471,7 +541,9 @@ function SS3() {
       ))}
       {/* FAST badge */}
       <rect x={172} y={120} width={82} height={30} rx={10} fill="#ea580c" />
-      <text x={213} y={140} textAnchor="middle" fill="white" fontSize={14} fontWeight="900">FAST ⚡</text>
+      <text x={213} y={140} textAnchor="middle" fill="white" fontSize={14} fontWeight="900">
+        {`${SCENE_COPY.fast[language] ?? SCENE_COPY.fast.en} ⚡`}
+      </text>
       {/* Step badge */}
       <circle cx={32} cy={32} r={20} fill="#ea580c" />
       <text x={32} y={39} textAnchor="middle" fill="white" fontWeight="800" fontSize={18}>4</text>
@@ -479,7 +551,7 @@ function SS3() {
   );
 }
 
-function SS4() {
+function SS4({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
@@ -489,14 +561,16 @@ function SS4() {
         strokeDasharray="465" strokeLinecap="round"
         style={{ animation: "ig-arc 3s linear 0.4s infinite", transformOrigin: "140px 108px", transform: "rotate(-90deg)" }} />
       <text x={140} y={100} textAnchor="middle" fill="#ea580c" fontSize={42} fontWeight="900">10</text>
-      <text x={140} y={122} textAnchor="middle" fill="#ea580c" fontSize={12} fontWeight={600}>sek · sec · ثانية</text>
+      <text x={140} y={122} textAnchor="middle" fill="#ea580c" fontSize={12} fontWeight={600}>
+        {SCENE_COPY.seconds[language] ?? SCENE_COPY.seconds.en}
+      </text>
       <circle cx={32} cy={32} r={20} fill="#ea580c" />
       <text x={32} y={39} textAnchor="middle" fill="white" fontWeight="800" fontSize={18}>5</text>
     </svg>
   );
 }
 
-function SS5() {
+function SS5({ language }) {
   return (
     <svg viewBox="0 0 280 210" width="100%" style={{ maxHeight: 210, display: "block" }}>
       <rect width={280} height={210} fill="#FFF7ED" rx={18} />
@@ -517,7 +591,9 @@ function SS5() {
       <polygon points="228,105 240,115 226,119" fill="#7dd3fc" />
       {/* Warning badge */}
       <rect x={86} y={170} width={108} height={26} rx={9} fill="#dc2626" />
-      <text x={140} y={187} textAnchor="middle" fill="white" fontSize={11} fontWeight="800">⚠ SKYL + SPYT</text>
+      <text x={140} y={187} textAnchor="middle" fill="white" fontSize={11} fontWeight="800">
+        {`⚠ ${SCENE_COPY.rinseAndSpit[language] ?? SCENE_COPY.rinseAndSpit.en}`}
+      </text>
       {/* Step badge */}
       <circle cx={32} cy={32} r={20} fill="#ea580c" />
       <text x={32} y={39} textAnchor="middle" fill="white" fontWeight="800" fontSize={18}>6</text>
@@ -561,7 +637,7 @@ export function InhalerGuide({ slug, language }) {
               {TITLE[language] ?? TITLE.da}
             </h2>
             <p style={{ margin: "3px 0 0", fontSize: 12, color: "#64748b", fontWeight: 600 }}>
-              {isVent ? "Ventoline (Salbutamol) – MDI spray" : "Symbicort – Turbuhaler (tørt pulver)"}
+              {SUBTITLE[slug]?.[language] ?? SUBTITLE[slug]?.en}
             </p>
           </div>
         </div>
@@ -596,7 +672,7 @@ export function InhalerGuide({ slug, language }) {
           key={`${slug}-scene-${step}`}
           style={{ borderRadius: 14, overflow: "hidden", border: `1.5px solid ${theme.border}` }}
         >
-          <Scene />
+          <Scene language={language} />
         </div>
       </div>
 
