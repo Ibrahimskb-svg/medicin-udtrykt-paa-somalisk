@@ -438,7 +438,7 @@ const FAQ_DATA = {
     { q:"Ma qaadan karaa Ibuprofen haddii aan qaadanayo daawada dhiig-karka?",
       bullets:["Inta badan laguma taliyo — Ibuprofen waxay daciifin kartaa saameynta daawada dhiig-karka.","Waxay sidoo kale culays saari kartaa kelyaha, gaar ahaan noocyo ka mid ah daawooyinka dhiig-karka.","Paracetamol ayaa badanaa ka ammaan badan.","Mar walba la tasho farmashiistahaaga ama dhakhtarkaaga."] },
     { q:"Maxaa dhici kara haddii aan si kedis ah u joojiyo Lamotrigin ama Sertralin?",
-      bullets:["Lamotrigin: waxay keeni kartaa in suuxdintu dib u soo noqoto, xitaa haddii aad muddo dheer fiicnayd.","Sertralin: waxay keeni kartaa dawakh, dareen mudid ama gubasho ah, hurdo-xumo og isbeddel niyadeed.","Labadan daawo waa in si tartiib tartiib ah loo yareeyaa, iyadoo uu dhakhtar hagayo."] },
+      bullets:["Lamotrigin: waxay keeni kartaa in suuxdintu dib u soo noqoto, xitaa haddii aad muddo dheer fiicnayd.","Sertralin: waxay keeni kartaa dawakh, dareen mudid ama gubasho ah, hurdo-xumo iyo isbeddel niyadeed.","Labadan daawo waa in si tartiib tartiib ah loo yareeyaa, iyadoo uu dhakhtar hagayo."] },
     { q:"Maxaan sameeyaa haddii aan qaatay Paracetamol ka badan intii la rabay?",
       bullets:["Isla markiiba wac Giftlinjen: 82 12 12 12 — waxay furan tahay 24 saacadood, waana bilaash.","Wac 112 haddii ay xaaladdu degdeg tahay.","Dhaawaca beerka wuxuu soo bixi karaa 24 ilaa 72 saacadood gudahood — ha sugin calaamadaha.","Qaado baakadka daawada si shaqaalaha caafimaadku u arkaan waxa aad qaadatay."] },
     { q:"Atorvastatin ma keeni kartaa murqo-xanuun?",
