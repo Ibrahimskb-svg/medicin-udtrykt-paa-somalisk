@@ -433,7 +433,7 @@ const FAQ_DATA = {
       bullets:["Waxaa la qaatan karaa wakhti kasta — waxa ugu muhiimsan waa in maalin kasta la qaato wakhti isku mid ah.","Daawadan waxaa la qaatan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.","Ka fogow xaddi badan oo canab-guduudan ah — waxay kordhin kartaa khatarta waxyeellada daawada, gaar ahaan murqo-xanuunka."] },
     { q:"Waa maxay Metformin, goormase la qaataa?",
       bullets:["Waa daawo sonkorow oo si fiican loo tijaabiyay, kana caawisa hoos u dhigista sonkorta dhiigga.","Mar walba ku qaado cunto ama isla markiiba cuntada ka dib — ha ku qaadan calool madhan.","Dhibaatooyinka caloosha ee bilowga ah waa wax caadi ah — badanaa jirku wuu la qabsadaa 2 ilaa 4 toddobaad gudahood."] },
-    { q:"Waa maxay daawooyinka dhiig-karka, sideese loo qaataa Amlodipin, Losartan og Enalapril?",
+    { q:"Waa maxay daawooyinka dhiig-karka, sideese loo qaataa Amlodipin, Losartan iyo Enalapril?",
       bullets:["Waxay hoos u dhigaan dhiig-karka, waxayna muddo dheer ilaaliyaan wadnaha og xididdada dhiigga.","Saddexdaba hal mar ayaa la qaataa maalin kasta.","Daawadan waxaa la qaatan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.","Ku qaado wakhti isku mid ah maalin kasta, xitaa haddii aadan wax calaamado ah dareemayn."] },
     { q:"Ma qaadan karaa Ibuprofen haddii aan qaadanayo daawada dhiig-karka?",
       bullets:["Inta badan laguma taliyo — Ibuprofen waxay daciifin kartaa saameynta daawada dhiig-karka.","Waxay sidoo kale culays saari kartaa kelyaha, gaar ahaan noocyo ka mid ah daawooyinka dhiig-karka.","Paracetamol ayaa badanaa ka ammaan badan.","Mar walba la tasho farmashiistahaaga ama dhakhtarkaaga."] },
@@ -545,7 +545,9 @@ function VentolineSVG({ step }) {
   );
 }
 
-function SymbicortSVG({ step }) {
+const TWIST_LABEL = { da:"↺ DREJ", en:"↺ TURN", so:"↺ JARIIR", ar:"↺ أدر" };
+
+function SymbicortSVG({ step, language="da" }) {
   // step 0=load/twist, 1=breathe out, 2=seal, 3=inhale fast, 4=hold, 5=rinse
   const isLoading = step === 0;
   const isInhaling = step === 3;
@@ -565,7 +567,7 @@ function SymbicortSVG({ step }) {
         {/* Red twist ring */}
         <rect x="52" y="128" width="56" height="18" rx="8" fill="#ea580c"
           style={{ transform: isLoading ? "rotate(15deg)" : "rotate(0deg)", transformOrigin: "80px 137px", transition: "transform 0.4s ease" }}/>
-        <text x="80" y="140" textAnchor="middle" fontSize="7" fill="white" fontWeight="700">↺ DREJ</text>
+        <text x="80" y="140" textAnchor="middle" fontSize="7" fill="white" fontWeight="700">{TWIST_LABEL[language]??TWIST_LABEL.da}</text>
         {/* Mouthpiece */}
         <rect x="58" y="142" width="44" height="28" rx="10" fill="#fed7aa" stroke="#ea580c" strokeWidth="2"/>
         <rect x="66" y="162" width="28" height="14" rx="7" fill="#fb923c" stroke="#ea580c" strokeWidth="1.5"/>
@@ -679,7 +681,7 @@ function TPIModal({ language, onClose }) {
             <div style={{ marginBottom:"16px" }}>
               {inhaler === "ventoline"
                 ? <VentolineSVG step={activeStep} />
-                : <SymbicortSVG step={activeStep} />}
+                : <SymbicortSVG step={activeStep} language={language} />}
             </div>
 
             {/* Step dots */}
