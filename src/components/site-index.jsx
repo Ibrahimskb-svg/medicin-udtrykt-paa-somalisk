@@ -545,7 +545,7 @@ function VentolineSVG({ step }) {
   );
 }
 
-const TWIST_LABEL = { da:"↺ DREJ", en:"↺ TURN", so:"↺ JARIIR", ar:"↺ أدر" };
+const TWIST_LABEL = { da:"↺ DREJ", en:"↺ TURN", so:"↺ LEEXI", ar:"↺ أدر" };
 
 function SymbicortSVG({ step, language="da" }) {
   // step 0=load/twist, 1=breathe out, 2=seal, 3=inhale fast, 4=hold, 5=rinse
