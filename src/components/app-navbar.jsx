@@ -13,6 +13,14 @@ const NAV_LABELS = {
   ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق" },
 };
 
+// Kortere labels til mobil bottom-nav
+const NAV_LABELS_SHORT = {
+  da: { me:"Om mig",   site:"Om siden",   faq:"FAQ",      contact:"Kontakt" },
+  en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact" },
+  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir"  },
+  ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل"   },
+};
+
 const NAV_ICON_COLORS = {
   so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E" },
   da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7" },
@@ -71,8 +79,10 @@ export function AppNavbar() {
     };
   }, []);
 
+  const isRtl = language === "ar";
   const text = uiText[language] || uiText.so;
   const navLabels = NAV_LABELS[language] ?? NAV_LABELS.so;
+  const navLabelsShort = NAV_LABELS_SHORT[language] ?? NAV_LABELS_SHORT.so;
   const iconColors = NAV_ICON_COLORS[language] ?? NAV_ICON_COLORS.so;
 
   const navTabs = [
@@ -131,8 +141,49 @@ export function AppNavbar() {
         </nav>
       </header>
 
-      {/* Mobile Top & Bottom bar (Samme logik) */}
-      {/* ... (Resten af din mobile kode herfra, med handleTabClick implementeret) */}
+      {/* Mobile Top Bar */}
+      <header className="sticky top-0 z-[110] block sm:hidden bg-white/90 backdrop-blur-md border-b border-teal-500/10">
+        <div className="flex items-center justify-between px-4 h-14" dir={isRtl ? "rtl" : "ltr"}>
+          <Link className="flex items-center gap-2" href={{ pathname: "/", query: { lang: language } }}>
+            <Image src="/somalimed-icon.svg" alt="logo" width={30} height={30} className="rounded-xl" priority />
+            <span className="text-[19px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-blue-600">
+              {text.navbarTitle}
+            </span>
+          </Link>
+        </div>
+      </header>
+
+      {/* Mobile Bottom Nav */}
+      <nav
+        className="block sm:hidden fixed bottom-0 inset-x-0 z-[110] bg-white/95 backdrop-blur-md border-t border-slate-100"
+        style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+        dir={isRtl ? "rtl" : "ltr"}
+      >
+        <div className="flex">
+          {navTabs.map(({ key, iconEl }) => {
+            const isActive = activeTab === key;
+            return (
+              <button
+                key={key}
+                onClick={() => handleTabClick(key)}
+                className="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors"
+                style={{
+                  minHeight: 56,
+                  color: isActive ? "var(--accent)" : "#94a3b8",
+                  background: isActive ? "var(--flash)" : "transparent",
+                }}
+              >
+                <span style={{ transform: "scale(1.25)", display: "flex", alignItems: "center" }}>
+                  {iconEl}
+                </span>
+                <span style={{ fontSize: 10, fontWeight: 600, lineHeight: 1.2, textAlign: "center" }}>
+                  {navLabelsShort[key]}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
     </>
   );
 }

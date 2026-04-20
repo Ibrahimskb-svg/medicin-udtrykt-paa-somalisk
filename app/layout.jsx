@@ -1,6 +1,12 @@
 import "./globals.css";
 import Script from "next/script";
-import { AppNavbar } from "../src/components/app-navbar";
+import { LayoutShell } from "../src/components/layout-shell";
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata = {
   title: {
@@ -106,8 +112,7 @@ export default function RootLayout({ children }) {
       </head>
 
       <body>
-        <AppNavbar />
-        {children}
+        <LayoutShell>{children}</LayoutShell>
 
         <style dangerouslySetInnerHTML={{ __html: `
           #sm-bubble {
@@ -206,7 +211,7 @@ export default function RootLayout({ children }) {
             50%      { transform: translateY(-5px); }
           }
           @media (max-width: 640px) {
-            #sm-bubble { right: 12px; bottom: 80px; max-width: 195px; font-size: 12px; padding: 10px 12px 10px 10px; }
+            #sm-bubble { right: 12px; bottom: calc(68px + env(safe-area-inset-bottom, 0px)); max-width: 195px; font-size: 12px; padding: 10px 12px 10px 10px; }
           }
         ` }} />
 

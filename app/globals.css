@@ -71,3 +71,9 @@ a {
   opacity: 1;
   transform: translateY(0);
 }
+
+@media (max-width: 639px) {
+  body {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  }
+}
