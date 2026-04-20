@@ -187,7 +187,7 @@ const TPI_DATA = {
       tips: [
         "Turbuhaler badanaa waxaa ku jira 60 ama 120 qiyaas. Daaqad cas oo ku jirta tirada qiyaasha waxay la macno tahay: hada dalbo mid cusub.",
         "Dhadhan ama dareen yar ayaad dareemi kartaa — tani waa caadi. Boorka qiyaastu aad ayay u yar tahay.",
-        "Turbuhaler ku kaydso daboolka saaran, meel qalalan oo ka fog kulaylka og qoyaanka.",
+        "Turbuhaler ku kaydso daboolka saaran, meel qalalan oo ka fog kulaylka iyo qoyaanka.",
         "Symbicort ku qaado waqti isku mid ah maalin kasta — xataa maalmaha aad is leedahay fiicantahay.",
       ],
     },
@@ -323,7 +323,7 @@ const ABOUT_ME_BULLETS = {
   so: [
     { icon:"education", text:"Shahaadada koowaad ee Kimistari iyo Bayoolajiga Dawooyinka, waxaana sidoo kale ahay farmashiiste tababaran — leh awood u gaar ah oo ah in xisaabta, fizikada, kimistarka iyo bayoolajiga laga dhigo mawduucyo sahlan oo xiiso leh" },
     { icon:"work",      text:"Shaqo maalinleh oo ku saabsan farmashiyaha bulshada iyo farmashiyaha xaaladaha degdega ah — xiriirka tooska ah ee bukaanka ayaa si cad u muujiyay baahida weyn ee macluumaadka daawooyinka ee cad oo la aamin karo" },
-    { icon:"school",    text:"Macalin khibrad leh oo ku caawiyay ardayda dugsiga sare iyo ardayda jaamacadda inay si wanaagsan ugu guuleystaan mawduucyada adag — isagoo adeegsanaya dulqaad, dhiirrigelin og jawi barasho oo waxtar leh" },
+    { icon:"school",    text:"Macalin khibrad leh oo ku caawiyay ardayda dugsiga sare iyo ardayda jaamacadda inay si wanaagsan ugu guuleystaan mawduucyada adag — isagoo adeegsanaya dulqaad, dhiirrigelin iyo jawi barasho oo waxtar leh" },
     { icon:"pills",     text:"Wuxuu si gaar ah u xiiseeyaa in aqoonta xirfadeedka laga dhigo mid macno leh, la isticmaali karo — isagoo keena isku darka aqoon qoto dheer iyo xiriirin firfircoon oo nooceedu ka duwan yahay" },
   ],
   ar: [
@@ -358,7 +358,7 @@ const ABOUT_SITE_BULLETS = {
     { icon:"pills",     text:"25 daawo oo si taxaddar leh loo xulay — kuwa aan inta badan ku aragno farmashiyaha oo aan talo ka bixino" },
     { icon:"school",    text:"Waxaa lagu heli karaa Af-Soomaali, Af-Ingiriisi, Af-Daanish iyo Af-Carabi" },
     { icon:"education", text:"Waxay ku dhisan tahay aqoon xirfadeed, waxaana lagu qoray si cad oo kalsooni leh" },
-    { icon:"work",      text:"Si joogto ah ayaa loogu kordhinayaa daawooyin iyo mawduucyo kale og ka soo baxay la-talinta maalinlaha ah ee farmashiyaha" },
+    { icon:"work",      text:"Si joogto ah ayaa loogu kordhinayaa daawooyin iyo mawduucyo kale oo ka soo baxay la-talinta maalinlaha ah ee farmashiyaha" },
   ],
   ar: [
     { icon:"pills",     text:"25 دواء تم اختيارها بعناية — من الأدوية التي نراها يوميا في الصيدلية ونقدم بشأنها المشورة" },
