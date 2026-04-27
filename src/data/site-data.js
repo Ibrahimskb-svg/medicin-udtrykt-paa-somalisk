@@ -12,7 +12,7 @@ export const siteData = {
         "footer1": "Qoraalladan waa hagitaan guud oo fudud. Ma beddelayso talada tooska ah ee farmashiyaha ama dhakhtarka.",
         "footer2": "© 2026 Somalimed. Xuquuqda oo dhan way xafidan tahay.",
         "footerStrong": "Waxaa diyaariyay Ibraahim Dahir Xanaf.",
-        "footer3": "Boggan wuxuu bixiyaa macluumaad guud oo ku saabsan daawooyinka mana beddelayo talada dhakhtarka ama farmashiistaha."
+        "footer3": "Boggan wuxuu bixiyaa macluumaad guud oo ku saabsan daawooyinka mana beddelayo talada dhakhtarka ama farmashiyaha."
       },
       "da": {
         "pageTitle": "Lægemiddelinformation på somalisk",
@@ -494,7 +494,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Amlodipin – mod forhøjet blodtryk",
@@ -874,7 +874,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Atorvastatin – kolesterol",
@@ -1251,7 +1251,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Diclofenac – smerter og betændelse",
@@ -1632,7 +1632,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Eliquis (apixaban) – blodfortyndende",
@@ -2024,7 +2024,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertesvigt/hjertesvigt-oversigt/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Enalapril – forhøjet blodtryk",
@@ -2411,7 +2411,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertekrampe-og-blodprop-i-hjertet/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Hjertemagnyl – blodpropforebyggelse",
@@ -2792,7 +2792,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Ibuprofen – smerter, betændelse og feber",
@@ -3179,7 +3179,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-1-hvad-er-det/hypoglykaemi-ved-diabetes-mellitus-lavt-blodsukker/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Insulin – behandling af diabetes",
@@ -3579,7 +3579,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Lamotrigin – epilepsi og bipolar lidelse",
@@ -3920,7 +3920,7 @@ export const siteData = {
           "interactList": [
             "Ka taxaddar kaabisyada potassium iyo dawooyinka kordhiya potassium-ka.",
             "Daawooyinka xanuunka qaarkood sida ibuprofen ama diclofenac, haddii muddo dheer la qaato, waxay culays saari karaan kelyaha.",
-            "U sheeg dhakhtarkaaga ama farmashiistaha dhammaan daawooyinka aad qaadato."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -3962,7 +3962,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Losartan – forhøjet blodtryk",
@@ -4345,7 +4345,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Marevan – blodfortyndende",
@@ -4740,7 +4740,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Melatonin – søvnbesvær",
@@ -5123,7 +5123,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Metformin – type 2-diabetes",
@@ -5523,7 +5523,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Metoprolol – hjerte & blodtryk",
@@ -5913,7 +5913,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/narkotiske-stoffer/heroin-og-andre-opiater/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Morfin – behandling af stærke smerter",
@@ -6282,7 +6282,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/kraeft/sygdomme/behandlingsmetoder/hvordan-behandler-man-smerter/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Morfin – behandling af stærke smerter",
@@ -6651,7 +6651,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Naproxen – behandling af smerter og betændelse",
@@ -6979,7 +6979,7 @@ export const siteData = {
           "interactTitle": "Isdhexgalka daawooyinka",
           "interactList": [
             "Pantoprazol wuxuu beddeli karaa nuugista daawooyin qaarkood oo u baahan aashitada caloosha.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha haddii aad isticmaasho daawooyinka dhiig-khafiifiya ama daawooyin kale oo joogto ah.",
+            "U sheeg dhakhtarkaaga ama farmashiyaha haddii aad isticmaasho daawooyinka dhiiga khafiifiya ama daawooyin kale oo joogto ah.",
             "Haddii aad qaadato daawooyin badan, had iyo jeer sheeg dhammaantood si loo hubiyo inay is waafaqayaan."
           ],
           "warnTitle": "Digniino muhiim ah",
@@ -7018,7 +7018,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/laegehaandbogen/mave-tarm/tilstande-og-sygdomme/spiseroer/gastrooesofageal-reflukssygdom/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Pantoprazol – mavesyre og refluks",
@@ -7381,7 +7381,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Paracetamol – smerter og feber",
@@ -7750,7 +7750,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/antipsykotisk-medicin/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Quetiapin – psykose og bipolar lidelse",
@@ -8120,7 +8120,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/laegemidler/ssri-antidepressivum/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Sertralin – depression og angst",
@@ -8434,7 +8434,7 @@ export const siteData = {
             "Raac qorshaha dhakhtarkaaga, sababtoo ah qiyaastu way ku kala duwanaan kartaa qofba qofka kale.",
             "Dad badan waxay qaataan 1 ilaa 2 neefsi 1 ilaa 2 jeer maalintii, laakiin mar walba raac tilmaamaha laguu siiyay.",
             "Qaar ka mid ah dadka qaba neefta waxaa loogu qori karaa in Symbicort loo isticmaalo si joogto ah iyo marka calaamado soo baxaan, laakiin tani waa in si cad laguu faro.",
-            "Farsamada neefsashada saxda ah waa muhiim. Haddii aadan hubin, la xiriir farmashiistahaaga ama kalkaaliyaha caafimaadka."
+            "Farsamada neefsashada saxda ah waa muhiim. Haddii aadan hubin, la xiriir farmashiyaha ama kalkaaliyaha caafimaadka."
           ],
           "sideTitle": "Waxyeellooyinka",
           "sideList": [
@@ -8446,7 +8446,7 @@ export const siteData = {
           "interactList": [
             "Daawooyin qaarkood sida qaar ka mid ah antibiyootigga, daawooyinka fangaska iyo beta-blockers-ka waxay saameyn karaan Symbicort.",
             "Daawooyinka kale ee saameeya wadnaha ama neefsashada waa muhiim in la sheego.",
-            "U sheeg dhakhtarkaaga ama farmashiistahaaga dhammaan daawooyinka aad qaadanayso."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadanayso."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -8490,7 +8490,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Symbicort – luftveje",
@@ -8870,7 +8870,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Ventoline – luftveje",
@@ -9228,7 +9228,7 @@ export const siteData = {
           "sec6": [
             "Daawooyinka xanuun-joojinta qaarkood sida <span class='highlight'>ibuprofen</span> iyo <span class='highlight'>naproxen</span>, iyo sidoo kale daawooyinka kale ee ka hortaga xinjirowga dhiigga, waxay kordhin karaan khatarta dhiig-baxa.",
             "Qaar ka mid ah antibiyootigyada iyo daawooyinka fangaska ayaa beddeli kara saameynta daawadan.",
-            "U sheeg dhakhtarkaaga ama farmashiistaha dhammaan daawooyinka, daawooyinka dhirta laga sameeyo iyo waxyaabaha kale ee aad isticmaasho."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka, daawooyinka dhirta laga sameeyo iyo waxyaabaha kale ee aad isticmaasho."
           ],
           "sec7Title": "Ramadaan iyo soonka",
           "sec7": [
@@ -9258,7 +9258,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Xarelto (rivaroxaban) – blodfortyndende medicin",
@@ -9651,7 +9651,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiistahaaga."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Imozop – søvnløshed",
