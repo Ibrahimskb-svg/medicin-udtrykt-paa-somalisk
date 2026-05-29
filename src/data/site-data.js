@@ -1620,16 +1620,16 @@ export const siteData = {
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Apixaban",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/8110"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Blodfortyndende behandling",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Atrieflimren",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
@@ -1703,16 +1703,16 @@ export const siteData = {
           "sourcesText": "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Apixaban",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/8110"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Blodfortyndende behandling",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Atrieflimren",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
@@ -1786,16 +1786,16 @@ export const siteData = {
           "sourcesText": "This text is written in a simple and personal style, but the medical information is based on official sources.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Apixaban",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/8110"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Blood-thinning treatment",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Atrial fibrillation",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – Anticoagulation treatment (blood-thinning medicine)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
@@ -1869,16 +1869,16 @@ export const siteData = {
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Apixaban",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/8110"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – العلاج المميع للدم",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – الرجفان الأذيني",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – مضادات التخثر (الأدوية المميعة للدم)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
@@ -2012,8 +2012,8 @@ export const siteData = {
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Enalapril",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/181"
+              "text": "sundhed.dk – Forhøjet blodtryk, behandling",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             },
             {
               "text": "sundhed.dk – Forhøjet blodtryk",
@@ -2021,7 +2021,7 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Hjertesvigt",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertesvigt/hjertesvigt-oversigt/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
           "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
@@ -2094,8 +2094,8 @@ export const siteData = {
           "sourcesText": "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Enalapril",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/181"
+              "text": "sundhed.dk – Forhøjet blodtryk, behandling",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             },
             {
               "text": "sundhed.dk – Forhøjet blodtryk",
@@ -2103,7 +2103,7 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Hjertesvigt",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertesvigt/hjertesvigt-oversigt/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
@@ -2176,8 +2176,8 @@ export const siteData = {
           "sourcesText": "This text is written in a simple and personal style, but the medical information is based on official sources.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Enalapril",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/181"
+              "text": "sundhed.dk – Forhøjet blodtryk, behandling",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             },
             {
               "text": "sundhed.dk – High blood pressure",
@@ -2185,7 +2185,7 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Heart failure",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertesvigt/hjertesvigt-oversigt/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
           "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
@@ -2258,8 +2258,8 @@ export const siteData = {
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Enalapril",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/181"
+              "text": "sundhed.dk – Forhøjet blodtryk, behandling",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             },
             {
               "text": "sundhed.dk – Forhøjet blodtryk",
@@ -2267,7 +2267,7 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Hjertesvigt",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertesvigt/hjertesvigt-oversigt/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
           "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
@@ -2404,11 +2404,11 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Blodfortyndende behandling",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Hjertekrampe og blodprop i hjertet",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertekrampe-og-blodprop-i-hjertet/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
           "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
@@ -2484,11 +2484,11 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Blodfortyndende behandling",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Hjertekrampe og blodprop i hjertet",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertekrampe-og-blodprop-i-hjertet/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
@@ -2564,11 +2564,11 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Blood-thinning treatment",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Angina and heart attack",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertekrampe-og-blodprop-i-hjertet/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
           "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
@@ -2644,11 +2644,11 @@ export const siteData = {
             },
             {
               "text": "sundhed.dk – Blodfortyndende behandling",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Hjertekrampe og blodprop i hjertet",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hjertekrampe-og-blodprop-i-hjertet/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
           "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
@@ -2780,8 +2780,8 @@ export const siteData = {
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Ibuprofen",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/438"
+              "text": "sundhed.dk – NSAID (ibuprofen, naproxen m.fl.)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             },
             {
               "text": "sundhed.dk – NSAID",
@@ -2860,8 +2860,8 @@ export const siteData = {
           "sourcesText": "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Ibuprofen",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/438"
+              "text": "sundhed.dk – NSAID (ibuprofen, naproxen m.fl.)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             },
             {
               "text": "sundhed.dk – NSAID",
@@ -2940,8 +2940,8 @@ export const siteData = {
           "sourcesText": "This text is written in a simple and personal style, but the medical information is based on official sources.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Ibuprofen",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/438"
+              "text": "sundhed.dk – NSAID (ibuprofen, naproxen m.fl.)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             },
             {
               "text": "sundhed.dk – NSAID",
@@ -3020,8 +3020,8 @@ export const siteData = {
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Ibuprofen",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/438"
+              "text": "sundhed.dk – NSAID (ibuprofen, naproxen m.fl.)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             },
             {
               "text": "sundhed.dk – NSAID",
@@ -4333,16 +4333,16 @@ export const siteData = {
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Warfarin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1112"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Blodfortyndende behandling",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Atrieflimren",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
@@ -4418,16 +4418,16 @@ export const siteData = {
           "sourcesText": "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Warfarin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1112"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Blodfortyndende behandling",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Atrieflimren",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
@@ -4503,16 +4503,16 @@ export const siteData = {
           "sourcesText": "This text is written in a personal and simple style, but the medical information is based on official sources.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Warfarin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1112"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Blood-thinning treatment",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Atrial fibrillation",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – Anticoagulation treatment (blood-thinning medicine)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
@@ -4588,16 +4588,16 @@ export const siteData = {
           "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Warfarin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1112"
+              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – العلاج المميع للدم",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/diverse/blodfortyndende-behandling/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – الرجفان الأذيني",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/rytmeforstyrrelser/atrieflimren/"
+              "text": "sundhed.dk – مضادات التخثر (الأدوية المميعة للدم)",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
@@ -4728,8 +4728,8 @@ export const siteData = {
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Melatonin",
-              "href": "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199"
+              "text": "sundhed.dk – Søvnproblemer og søvnløshed",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/"
             },
             {
               "text": "sundhed.dk – Søvnproblemer og søvnløshed",
@@ -4807,8 +4807,8 @@ export const siteData = {
           "sourcesText": "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Melatonin",
-              "href": "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199"
+              "text": "sundhed.dk – Søvnproblemer og søvnløshed",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/"
             },
             {
               "text": "sundhed.dk – Søvnproblemer og søvnløshed",
@@ -4886,8 +4886,8 @@ export const siteData = {
           "sourcesText": "This text is written in a personal and simple style, but the medical information is based on official sources.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Melatonin",
-              "href": "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199"
+              "text": "sundhed.dk – Søvnproblemer og søvnløshed",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/"
             },
             {
               "text": "sundhed.dk – Sleep problems and insomnia",
@@ -4965,8 +4965,8 @@ export const siteData = {
           "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Melatonin",
-              "href": "https://pro.medicin.dk/Laegemiddelgrupper/Grupper/318199"
+              "text": "sundhed.dk – Søvnproblemer og søvnløshed",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/"
             },
             {
               "text": "sundhed.dk – مشاكل النوم والأرق",
@@ -5111,16 +5111,16 @@ export const siteData = {
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Metformin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/520"
+              "text": "sundhed.dk – Type 2-diabetes",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
               "text": "sundhed.dk – Type 2-diabetes",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/type-2-diabetes/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
-              "text": "sundhed.dk – Diabetes, oversigt",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/"
+              "text": "sundhed.dk – Type 2-diabetes, oversigt",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
           "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
@@ -5196,16 +5196,16 @@ export const siteData = {
           "sourcesText": "Teksten er skrevet i et personligt og let sprog, men bygger fagligt på officielle kilder.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Metformin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/520"
+              "text": "sundhed.dk – Type 2-diabetes",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
               "text": "sundhed.dk – Type 2-diabetes",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/type-2-diabetes/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
-              "text": "sundhed.dk – Diabetes, oversigt",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/"
+              "text": "sundhed.dk – Type 2-diabetes, oversigt",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
           "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
@@ -5281,16 +5281,16 @@ export const siteData = {
           "sourcesText": "This text is written in a personal and simple style, but the medical information is based on official sources.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Metformin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/520"
+              "text": "sundhed.dk – Type 2-diabetes",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
               "text": "sundhed.dk – Type 2 diabetes",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/type-2-diabetes/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
-              "text": "sundhed.dk – Diabetes, overview",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/"
+              "text": "sundhed.dk – Type 2 diabetes, overview",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
           "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
@@ -5366,16 +5366,16 @@ export const siteData = {
           "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Metformin",
-              "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/520"
+              "text": "sundhed.dk – Type 2-diabetes",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
               "text": "sundhed.dk – السكري من النوع الثاني",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/type-2-diabetes/"
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
-              "text": "sundhed.dk – نظرة عامة على السكري",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes/"
+              "text": "sundhed.dk – نظرة عامة على السكري من النوع الثاني",
+              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
           "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
