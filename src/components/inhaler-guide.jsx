@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { HumanInhalerSVG } from "./human-inhaler-svg";
 
 /* ─── Global keyframes (injected once into DOM) ─────────────────────────── */
 const KF = `
@@ -661,9 +662,8 @@ export function InhalerGuide({ slug, language }) {
   const steps   = STEPS[slug]?.[language] ?? STEPS[slug]?.da ?? [];
   const isRtl   = language === "ar";
   const isVent  = slug === "ventoline";
-  const Scenes  = isVent ? VENT_SCENES : SYMB_SCENES;
-  const Scene   = Scenes[Math.min(step, Scenes.length - 1)];
   const warning = WARNING[slug]?.[language] ?? WARNING[slug]?.da;
+  const type    = isVent ? "ventoline" : "symbicort";
 
   const theme = isVent
     ? { primary: "#0284c7", bg: "#EFF6FF", border: "#bae6fd", soft: "#dbeafe" }
@@ -716,12 +716,9 @@ export function InhalerGuide({ slug, language }) {
             />
           ))}
         </div>
-        {/* Scene – remounted on step change to restart animations */}
-        <div
-          key={`${slug}-scene-${step}`}
-          style={{ borderRadius: 14, overflow: "hidden", border: `1.5px solid ${theme.border}` }}
-        >
-          <Scene language={language} />
+        {/* Human figure animation */}
+        <div style={{ borderRadius: 14, overflow: "hidden", border: `1.5px solid ${theme.border}`, background: "#f8fafc", padding: "8px 0" }}>
+          <HumanInhalerSVG step={step} type={type} language={language} />
         </div>
       </div>
 
