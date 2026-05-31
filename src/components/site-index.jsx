@@ -580,7 +580,7 @@ function TPIModal({ language, onClose }) {
 
           {/* Animated inhaler + step navigator */}
           <div style={{ background:"#fff",borderRadius:"20px",border:`1.5px solid ${theme.border}`,padding:"20px",marginBottom:"20px",boxShadow:`0 4px 16px ${theme.primary}10` }}>
-            {/* Step dots */
+            {/* Step dots */}
             <div style={{ display:"flex",justifyContent:"center",gap:"8px",marginBottom:"16px" }}>
               {inhalerData.steps.map((_, i) => (
                 <button key={i} type="button" onClick={() => setActiveStep(i)}
