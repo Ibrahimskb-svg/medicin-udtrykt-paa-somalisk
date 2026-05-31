@@ -785,10 +785,13 @@ function HumanInhalerSVG({ step, type = "ventoline", language = "da" }) {
 
         {/* ─── HOLD BADGE ─── */}
         {isHolding && (
-          <g transform="translate(10, 168)">
-            <rect x="0" y="0" width="70" height="26" rx="13" fill="#DCFCE7" stroke="#86EFAC" strokeWidth="1.5"/>
-            <text x="35" y="18" textAnchor="middle" fontSize="12" fontWeight="800" fill="#15803D">
-              {language==="so"?"✓ Hayso":language==="da"?"✓ Hold vejret":language==="en"?"✓ Hold breath":"✓ امسك النفس"}
+          <g transform="translate(-5, 168)">
+            <rect x="0" y="0" width="136" height="28" rx="14" fill="#DCFCE7" stroke="#86EFAC" strokeWidth="1.5"/>
+            <text x="68" y="19" textAnchor="middle" fontSize="11" fontWeight="800" fill="#15803D">
+              {language==="so" ? "✓ Neefta hayso" :
+               language==="da" ? "✓ Hold vejret" :
+               language==="en" ? "✓ Hold your breath" :
+               "✓ احبس أنفاسك"}
             </text>
           </g>
         )}
