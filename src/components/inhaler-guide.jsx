@@ -651,8 +651,6 @@ function SS5({ language }) {
   );
 }
 
-const VENT_SCENES = [VS0, VS1, VS2, VS3, VS4, VS5];
-const SYMB_SCENES = [SS0, SS1, SS2, SS3, SS4, SS5];
 
 /* ─── Main InhalerGuide component ───────────────────────────────────────── */
 
