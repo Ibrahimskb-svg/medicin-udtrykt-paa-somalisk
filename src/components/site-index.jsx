@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { LanguageSelect } from "./language-select";
 import { useLanguageRouting } from "../hooks/use-language-routing";
@@ -874,6 +874,69 @@ function FeedbackModal({language,onClose}){
   );
 }
 
+// ── Video Guide Component ──────────────────────────────────────────────────
+function VideoGuide({ chromeText, language }) {
+  const [playing, setPlaying] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const videoRef = useRef(null);
+
+  function handlePlay() {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setPlaying(true);
+    }
+  }
+
+  return (
+    <div className="mx-auto max-w-6xl px-4 pt-8 pb-2">
+      <div className="reveal-on-scroll rounded-3xl border bg-white overflow-hidden" style={{borderColor:"var(--border)",boxShadow:"0 4px 24px rgba(0,0,0,0.07)"}}>
+        <div className="px-5 pt-6 pb-4 sm:px-8 sm:pt-7 sm:pb-5" style={{direction:language==="ar"?"rtl":"ltr"}}>
+          <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest" style={{color:"var(--text-muted)"}}>{chromeText.videoGuideEyebrow}</p>
+          <h2 className="text-xl font-extrabold sm:text-2xl" style={{color:"var(--text)"}}>{chromeText.videoGuideTitle}</h2>
+          <p className="mt-1.5 text-sm leading-6" style={{color:"var(--text-muted)"}}>{chromeText.videoGuideSubtitle}</p>
+        </div>
+        <div className="px-5 pb-6 sm:px-8 sm:pb-7">
+          <div
+            style={{position:"relative",borderRadius:"16px",overflow:"hidden",background:"#0f172a",cursor:playing?"default":"pointer"}}
+            onClick={!playing ? handlePlay : undefined}
+          >
+            <video
+              ref={videoRef}
+              src="/guide.mp4"
+              controls={playing}
+              playsInline
+              preload="none"
+              onPause={()=>setPlaying(false)}
+              onEnded={()=>setPlaying(false)}
+              style={{width:"100%",display:"block",maxHeight:"480px",objectFit:"contain"}}
+            />
+            {!playing && (
+              <div
+                onMouseEnter={()=>setHovered(true)}
+                onMouseLeave={()=>setHovered(false)}
+                style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",background:"rgba(0,0,0,0.22)"}}
+              >
+                <div style={{
+                  width:76,height:76,borderRadius:"50%",
+                  background:"var(--heroBg,#0D9488)",
+                  display:"flex",alignItems:"center",justifyContent:"center",
+                  boxShadow:"0 8px 32px rgba(0,0,0,0.35)",
+                  transform:hovered?"scale(1.12)":"scale(1)",
+                  transition:"transform 0.2s ease",
+                }}>
+                  <svg width="30" height="30" viewBox="0 0 24 24" fill="white" style={{marginLeft:"4px"}}>
+                    <polygon points="5,3 19,12 5,21"/>
+                  </svg>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main ───────────────────────────────────────────────────────────────────
 export function SiteIndex({initialLang}){
   const{language,updateLanguage}=useLanguageRouting({initialLanguage:initialLang});
@@ -946,6 +1009,9 @@ export function SiteIndex({initialLang}){
           </div>
         </div>
       </div>
+
+      {/* ── Video Guide ──────────────────────────────────────────────────── */}
+      <VideoGuide chromeText={chromeText} language={language} />
 
       {/* ── Main ─────────────────────────────────────────────────────────── */}
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:pt-8">
