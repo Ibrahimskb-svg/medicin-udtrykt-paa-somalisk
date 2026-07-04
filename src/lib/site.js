@@ -99,9 +99,6 @@ export const uiText = {
     noResultsBody: "Isku day magac kale ama ka saar filtarrada.",
     medicinesStat: "Daawooyin",
     languagesStat: "Luuqado",
-    videoGuideEyebrow: "Muuqaal",
-    videoGuideTitle: "Arag sida loo isticmaalo Somalimed",
-    videoGuideSubtitle: "Muuqaal gaaban oo ku tusinaya sida bogga loogu shaqeysto",
   },
   da: {
     navbarTitle: "somalimed",
@@ -123,9 +120,6 @@ export const uiText = {
     noResultsBody: "Prøv et andet søgeord eller fjern filtrene.",
     medicinesStat: "Mediciner",
     languagesStat: "Sprog",
-    videoGuideEyebrow: "Guide",
-    videoGuideTitle: "Se hvordan du bruger Somalimed",
-    videoGuideSubtitle: "En kort video der guider dig rundt på siden",
   },
   en: {
     navbarTitle: "somalimed",
@@ -147,9 +141,6 @@ export const uiText = {
     noResultsBody: "Try another keyword or remove the filters.",
     medicinesStat: "Medicines",
     languagesStat: "Languages",
-    videoGuideEyebrow: "Guide",
-    videoGuideTitle: "See how to use Somalimed",
-    videoGuideSubtitle: "A short video walking you through the site",
   },
   ar: {
     navbarEyebrow: "دليل رقمي",
@@ -172,9 +163,6 @@ export const uiText = {
     noResultsBody: "جرب كلمة أخرى أو أزل الفلاتر.",
     medicinesStat: "أدوية",
     languagesStat: "لغات",
-    videoGuideEyebrow: "دليل",
-    videoGuideTitle: "شاهد كيف تستخدم Somalimed",
-    videoGuideSubtitle: "فيديو قصير يشرح لك كيفية استخدام الموقع",
   },
 };
 
