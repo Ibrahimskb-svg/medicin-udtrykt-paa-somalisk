@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { LanguageSelect } from "./language-select";
 import { useLanguageRouting } from "../hooks/use-language-routing";
@@ -874,6 +874,124 @@ function FeedbackModal({language,onClose}){
   );
 }
 
+// ── Video Guide Component ──────────────────────────────────────────────────
+function VideoPlayer({ src }) {
+  const [playing, setPlaying] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    setPlaying(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.load();
+    }
+  }, [src]);
+
+  function handlePlay() {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setPlaying(true);
+    }
+  }
+
+  return (
+    <div
+      style={{ position:"relative", borderRadius:"14px", overflow:"hidden", background:"#0f172a", cursor: playing ? "default" : "pointer", aspectRatio:"16/9" }}
+      onClick={!playing ? handlePlay : undefined}
+    >
+      <video
+        ref={videoRef}
+        src={src}
+        controls={playing}
+        playsInline
+        preload="none"
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+        style={{ width:"100%", height:"100%", display:"block", objectFit:"contain" }}
+      />
+      {!playing && (
+        <div
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(0,0,0,0.25)" }}
+        >
+          <div style={{
+            width:72, height:72, borderRadius:"50%",
+            background:"var(--heroBg,#0D9488)",
+            display:"flex", alignItems:"center", justifyContent:"center",
+            boxShadow:"0 8px 32px rgba(0,0,0,0.4)",
+            transform: hovered ? "scale(1.12)" : "scale(1)",
+            transition:"transform 0.2s ease",
+          }}>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style={{ marginLeft:"4px" }}>
+              <polygon points="5,3 19,12 5,21"/>
+            </svg>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function VideoGuide({ chromeText, language }) {
+  const [activeTab, setActiveTab] = useState("so");
+  const isRtl = language === "ar";
+
+  const tabs = [
+    { key:"so", label: chromeText.videoTabSo, src:"/guide-so.mp4" },
+    { key:"da", label: chromeText.videoTabDa, src:"/guide-da.mp4" },
+  ];
+
+  const activeVideo = tabs.find(t => t.key === activeTab);
+
+  return (
+    <div className="mx-auto max-w-6xl px-4 pt-8 pb-2">
+      <div className="reveal-on-scroll rounded-3xl border bg-white overflow-hidden" style={{ borderColor:"var(--border)", boxShadow:"0 4px 24px rgba(0,0,0,0.07)" }}>
+
+        {/* Header */}
+        <div className="px-5 pt-6 pb-4 sm:px-8 sm:pt-7" style={{ direction: isRtl ? "rtl" : "ltr" }}>
+          <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest" style={{ color:"var(--text-muted)" }}>{chromeText.videoEyebrow}</p>
+          <h2 className="text-xl font-extrabold sm:text-2xl" style={{ color:"var(--text)" }}>{chromeText.videoTitle}</h2>
+          <p className="mt-1 text-sm leading-6" style={{ color:"var(--text-muted)" }}>{chromeText.videoSubtitle}</p>
+        </div>
+
+        {/* Tabs */}
+        <div className="px-5 pb-4 sm:px-8" style={{ direction: isRtl ? "rtl" : "ltr" }}>
+          <div className="inline-flex gap-2 rounded-2xl p-1" style={{ background:"var(--bg)" }}>
+            {tabs.map(tab => {
+              const isActive = activeTab === tab.key;
+              return (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setActiveTab(tab.key)}
+                  style={{
+                    padding:"9px 20px", borderRadius:"14px", border:"none",
+                    fontSize:"14px", fontWeight:700, cursor:"pointer",
+                    transition:"all 0.2s ease",
+                    background: isActive ? "var(--heroBg,#0D9488)" : "transparent",
+                    color: isActive ? "#fff" : "var(--text-muted)",
+                    boxShadow: isActive ? "0 2px 12px rgba(13,148,136,0.35)" : "none",
+                  }}
+                >
+                  {tab.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Video */}
+        <div className="px-5 pb-6 sm:px-8 sm:pb-7">
+          <VideoPlayer src={activeVideo.src} />
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
 // ── Main ───────────────────────────────────────────────────────────────────
 export function SiteIndex({initialLang}){
   const{language,updateLanguage}=useLanguageRouting({initialLanguage:initialLang});
@@ -946,6 +1064,9 @@ export function SiteIndex({initialLang}){
           </div>
         </div>
       </div>
+
+      {/* ── Video Guide ──────────────────────────────────────────────────── */}
+      <VideoGuide chromeText={chromeText} language={language} />
 
       {/* ── Main ─────────────────────────────────────────────────────────── */}
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:pt-8">
