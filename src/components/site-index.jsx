@@ -941,6 +941,8 @@ function VideoGuide({ chromeText, language }) {
   const tabs = [
     { key:"so", label: chromeText.videoTabSo, src:"/guide-so.mp4" },
     { key:"da", label: chromeText.videoTabDa, src:"/guide-da.mp4" },
+    { key:"en", label: chromeText.videoTabEn, src:"/guide-en.mp4" },
+    { key:"ar", label: chromeText.videoTabAr, src:"/guide-ar.mp4" },
   ];
 
   const activeVideo = tabs.find(t => t.key === activeTab);

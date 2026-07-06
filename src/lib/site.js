@@ -104,6 +104,8 @@ export const uiText = {
     videoSubtitle: "Dooro luuqaddaada oo arag muuqaal gaaban",
     videoTabSo: "Af-Soomaali",
     videoTabDa: "Af-Deenish",
+    videoTabEn: "Af-Ingiriis",
+    videoTabAr: "Af-caraabi",
   },
   da: {
     navbarTitle: "somalimed",
@@ -130,6 +132,8 @@ export const uiText = {
     videoSubtitle: "Vælg dit sprog og se en kort videoguide",
     videoTabSo: "Somalisk",
     videoTabDa: "Dansk",
+    videoTabEn: "Engelsk",
+    videoTabAr: "Arabisk",
   },
   en: {
     navbarTitle: "somalimed",
@@ -156,6 +160,8 @@ export const uiText = {
     videoSubtitle: "Choose your language and watch a short video guide",
     videoTabSo: "Somali",
     videoTabDa: "Danish",
+    videoTabEn: "English",
+    videoTabAr: "Arabic",
   },
   ar: {
     navbarEyebrow: "دليل رقمي",
@@ -183,6 +189,8 @@ export const uiText = {
     videoSubtitle: "اختر لغتك وشاهد دليل فيديو قصير",
     videoTabSo: "الصومالية",
     videoTabDa: "الدنماركية",
+    videoTabEn: "الإنجليزية",
+    videoTabAr: "العربية",
   },
 };
 
