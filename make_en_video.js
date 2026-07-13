@@ -1,20 +1,22 @@
 /**
- * guide-en.mp4 — synkroniseret med lydspor (99.19s)
+ * guide-en.mp4 — 100% synkroniseret med lydspor (99.19s)
  *
- * Timing baseret på Whisper-transskription:
- *  0-12s:  Homepage hero (Welcome + "how to use")
+ * Whisper-transskription timing:
+ *  0-12s:  Homepage hero ("Welcome... how to use")
  * 12-19s:  About me modal  ("created by Ibrahim Dahir Hanaf")
  * 19-24s:  About Somalimed modal  ("to help Somali patients")
- * 24-36s:  Sprog-vælger synlig
- * 36-40s:  Scroll til søgefelt ("Below the language selector, search bar")
- * 40-44s:  Skriv "ibuprofen" ("type the name")
- * 44-58s:  Resultater + kategori-knapper
- * 58-62s:  Klik ibuprofen, naviger, hold
- * 62-72s:  Ibuprofen-side scroller ned
+ * 24-36s:  Sprog-vælger synlig  ("language selector... tap language")
+ * 36-40s:  Scroll til søgefelt  ("search bar")
+ * 40-44s:  Skriv ibuprofen  ("type the name")
+ * 44-58s:  Resultater + kategorier  ("category buttons")
+ * 58-72s:  Klik ibuprofen → ibuprofen-side scrolles  ("simply tap on it... clear info")
+ * 72s:     Naviger TILBAGE til forsiden
  * 72-79s:  FAQ modal  ("frequently asked questions")
- * 79-80s:  Overgang
  * 80-85s:  Contact modal  ("contact button")
- * 85-99s:  Ibuprofen afslutning
+ * 85-99s:  Forside scrolles ned (kvalitet, gratis, tak)
+ *
+ * NOTE: FAQ og Contact-modaler kræver forsiden (SiteIndex-komponent).
+ * Vi navigerer derfor TILBAGE til forsiden ved t=72s og åbner dem dér.
  */
 const { chromium } = require('playwright');
 const { spawnSync } = require('child_process');
@@ -22,7 +24,7 @@ const fs = require('fs');
 const path = require('path');
 
 const FFMPEG  = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1';
-const EXISTING_VIDEO = '/Users/ibrahimdahirhanaf/medicin-udtrykt-paa-somalisk/public/guide-en.mp4';
+const EXISTING = '/Users/ibrahimdahirhanaf/medicin-udtrykt-paa-somalisk/public/guide-en.mp4';
 const OUTPUT  = '/Users/ibrahimdahirhanaf/medicin-udtrykt-paa-somalisk/public/guide-en.mp4';
 const AUDIO_TMP = '/tmp/en_guide_audio.aac';
 const VID_DIR = '/tmp/pw_video_en/';
@@ -66,7 +68,7 @@ async function smoothScroll(page, fromY, toY, ms) {
   }
 }
 
-// Åbn nav-modal fra sticky header, vis indhold, luk
+// Klik nav-knap, vis modal, scroll i den, luk
 async function showModal(page, btnText, durationMs) {
   await page.click(`button:has-text("${btnText}")`);
   await sleep(600);
@@ -81,19 +83,13 @@ async function showModal(page, btnText, durationMs) {
 }
 
 (async () => {
-  // ── Udtræk lyd fra eksisterende video til temp-fil ────────────────────────
-  console.log('🔊 Udtrækker lyd fra eksisterende guide-en.mp4...');
+  // Udtræk lyd fra eksisterende video
+  console.log('🔊 Udtrækker lyd fra guide-en.mp4...');
   const audioExt = spawnSync(FFMPEG, [
-    '-y', '-i', EXISTING_VIDEO,
-    '-vn', '-acodec', 'copy', AUDIO_TMP
+    '-y', '-i', EXISTING, '-vn', '-acodec', 'copy', AUDIO_TMP
   ], { encoding: 'utf8', stdio: ['ignore','pipe','pipe'] });
-  if (audioExt.status !== 0) {
-    console.error('Kunne ikke udtrække lyd:', audioExt.stderr.slice(-500));
-    process.exit(1);
-  }
-  console.log('  Lyd udtrukket til', AUDIO_TMP);
+  if (audioExt.status !== 0) { console.error('Lydfejl:', audioExt.stderr.slice(-300)); process.exit(1); }
 
-  // ── Opsæt video-optagelse ─────────────────────────────────────────────────
   if (fs.existsSync(VID_DIR)) fs.rmSync(VID_DIR, { recursive: true });
   fs.mkdirSync(VID_DIR);
 
@@ -116,88 +112,99 @@ async function showModal(page, btnText, durationMs) {
   });
   await page.route(/crisp\.chat/, r => r.abort());
 
-  // ── Buffer (klippes væk med -ss TRIM) ────────────────────────────────────
-  console.log('  Indlæser forside...');
+  // ── Buffer (klippes med -ss 8) ────────────────────────────────────────────
   await page.goto('http://localhost:3000/?lang=en', { waitUntil: 'networkidle' });
   await removeDev(page);
   await scrollReveal(page);
   await page.waitForFunction(() => document.body.innerText.includes('About me'), { timeout: 15000 }).catch(() => {});
-  await sleep(TRIM * 1000);  // 8s buffer
+  await sleep(TRIM * 1000);
 
-  // ── t=0–4s: Homepage hero ─────────────────────────────────────────────────
-  console.log('  [0-4s] Homepage hero');
+  // ── t=0–4s: Hero ─────────────────────────────────────────────────────────
+  console.log('  [0-4s] Hero');
   await sleep(4000);
 
-  // ── t=4–12s: Hero ("how to use this website") ────────────────────────────
+  // ── t=4–12s: Hero ────────────────────────────────────────────────────────
   console.log('  [4-12s] Hero');
   await sleep(8000);
 
   // ── t=12–19s: ABOUT ME ────────────────────────────────────────────────────
-  // Narrator: "Somalimedi was created by Ibrahim Dahir Hanaf, a trained farm economist"
+  // "Somalimedi was created by Ibrahim Dahir Hanaf, a trained farm economist"
   console.log('  [12-19s] About me modal');
   await showModal(page, 'About me', 6500);
 
   // ── t=19–24s: ABOUT SOMALIMED ─────────────────────────────────────────────
-  // Narrator: "to help Somalis speaking patients and their families understand medicines"
+  // "to help Somalis speaking patients and their families understand medicines"
   console.log('  [19-24s] About Somalimed modal');
   await showModal(page, 'About Somalimed', 4500);
 
-  // ── t=24–36s: Sprog-vælger synlig ─────────────────────────────────────────
-  // Narrator: "language selector... tap the language you prefer"
+  // ── t=24–36s: Sprog-vælger ────────────────────────────────────────────────
+  // "The first thing you will notice is the language selector... tap the language"
   console.log('  [24-36s] Language selector');
   await sleep(12000);
 
-  // ── t=36–40s: Scroll ned til søgefelt ────────────────────────────────────
-  // Narrator: "Below the language selector, you will find a search bar"
+  // ── t=36–40s: Scroll til søgefelt ────────────────────────────────────────
+  // "Below the language selector, you will find a search bar"
   console.log('  [36-40s] Scroll to search bar');
   await smoothScroll(page, 0, 1054, 4000);
 
-  // ── t=40–44s: Skriv "ibuprofen" ──────────────────────────────────────────
-  // Narrator: "Type the name of any medicine and it will appear immediately"
+  // ── t=40–44s: Skriv ibuprofen ─────────────────────────────────────────────
+  // "Type the name of any medicine and it will appear immediately"
   console.log('  [40-44s] Type ibuprofen');
   await page.click('#medSearch');
   await sleep(200);
   await page.keyboard.type('ibuprofen', { delay: 190 });
   await sleep(1700);
 
-  // ── t=44–58s: Kategori-knapper + resultater ───────────────────────────────
-  // Narrator: "category buttons... Tap a category to filter"
+  // ── t=44–58s: Resultater + kategorier ────────────────────────────────────
+  // "category buttons... blood pressure, diabetes... Tap a category to filter"
   console.log('  [44-58s] Results + categories');
   await sleep(14000);
 
-  // ── t=58s: Klik ibuprofen ─────────────────────────────────────────────────
-  // Narrator: "To read about a specific medicine, simply tap on it"
-  console.log('  [58s] Click ibuprofen → navigate');
+  // ── t=58s: Klik ibuprofen, naviger ────────────────────────────────────────
+  // "To read about a specific medicine, simply tap on it"
+  console.log('  [58s] Click ibuprofen');
   await page.click('a[href*="ibuprofen"]');
   await page.waitForLoadState('networkidle');
   await removeDev(page);
-  await sleep(4000);  // hold øverst t=58-62s
+
+  // ── t=58–62s: Hold øverst på ibuprofen ───────────────────────────────────
+  // "You will find clear and reliable information about what the medicine is used for"
+  console.log('  [58-62s] Ibuprofen top');
+  await sleep(4000);
 
   // ── t=62–72s: Scroll ibuprofen ────────────────────────────────────────────
-  // Narrator: "clear and reliable information... how and when to take it"
-  console.log('  [62-72s] Scrolling ibuprofen');
+  // "How and when to take it, important things to be aware of..."
+  console.log('  [62-72s] Scroll ibuprofen page');
   const ibupH = await page.evaluate(() => document.body.scrollHeight);
-  const midY = Math.round((ibupH - H) * 0.42);
-  await smoothScroll(page, 0, midY, 10000);
+  await smoothScroll(page, 0, Math.round((ibupH - H) * 0.5), 10000);
+
+  // ── t=72s: TILBAGE TIL FORSIDEN ───────────────────────────────────────────
+  // "At the bottom of the page, you will also find a section for frequently asked questions"
+  // Modaler er kun tilgængelige via SiteIndex-komponenten på forsiden
+  console.log('  [72s] Navigate back to homepage for FAQ + Contact modals');
+  await page.goto('http://localhost:3000/?lang=en', { waitUntil: 'networkidle' });
+  await removeDev(page);
+  await page.waitForFunction(() => document.body.innerText.includes('About me'), { timeout: 10000 }).catch(() => {});
+  await sleep(500);
 
   // ── t=72–79s: FAQ MODAL ───────────────────────────────────────────────────
-  // Narrator: "a section for frequently asked questions"
-  console.log('  [72-79s] FAQ modal (sticky nav)');
+  // "a section for frequently asked questions"
+  console.log('  [72-79s] FAQ modal');
   await showModal(page, 'FAQ', 6500);
 
   // ── t=79–80s: Overgang ────────────────────────────────────────────────────
   await sleep(1000);
 
   // ── t=80–85s: CONTACT MODAL ───────────────────────────────────────────────
-  // Narrator: "a contact button if you want to reach Ibrahim directly"
-  console.log('  [80-85s] Contact modal (sticky nav)');
+  // "a contact button if you want to reach Ibrahim directly"
+  console.log('  [80-85s] Contact modal');
   await showModal(page, 'Contact', 4500);
 
-  // ── t=85–99.19s: Afslut ibuprofen ────────────────────────────────────────
-  // Narrator: "professional knowledge... free to use... Thank you"
-  console.log('  [85-99s] Final ibuprofen scroll');
-  const curY = await page.evaluate(() => window.scrollY);
-  await smoothScroll(page, curY, ibupH - H, 11000);
+  // ── t=85–99s: Scroll forside ned ──────────────────────────────────────────
+  // "professional knowledge... free to use... Thank you for watching"
+  console.log('  [85-99s] Homepage scroll to bottom');
+  const homeH = await page.evaluate(() => document.body.scrollHeight);
+  await smoothScroll(page, 0, homeH - H, 11000);
   await sleep(3190);
 
   console.log('  Afslutter optagelse...');
@@ -205,32 +212,25 @@ async function showModal(page, btnText, durationMs) {
   await browser.close();
 
   const files = fs.readdirSync(VID_DIR).filter(f => f.endsWith('.webm'));
-  if (!files.length) { console.error('❌ Ingen .webm fundet!'); process.exit(1); }
+  if (!files.length) { console.error('❌ Ingen .webm!'); process.exit(1); }
   const webm = path.join(VID_DIR, files[0]);
   console.log(`  Rå video: ${(fs.statSync(webm).size/1024/1024).toFixed(1)} MB`);
 
-  // ── ffmpeg: trim buffer + tilføj original lyd ─────────────────────────────
-  console.log('\n🎞️  Konverterer og tilføjer lyd...');
+  console.log('\n🎞️  Konverterer + lyd...');
   const r = spawnSync(FFMPEG, [
     '-y',
     '-ss', String(TRIM),
     '-i', webm,
     '-i', AUDIO_TMP,
-    '-map', '0:v:0',
-    '-map', '1:a:0',
+    '-map', '0:v:0', '-map', '1:a:0',
     '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
     '-pix_fmt', 'yuv420p',
     '-c:a', 'aac', '-b:a', '128k',
     '-t', String(DUR),
     '-shortest',
     OUTPUT
-  ], { encoding: 'utf8', stdio: ['ignore', 'inherit', 'pipe'] });
+  ], { encoding: 'utf8', stdio: ['ignore','inherit','pipe'] });
 
-  if (r.status !== 0) {
-    console.error('❌ ffmpeg fejl:', r.stderr.slice(-800));
-    process.exit(1);
-  }
-
-  const mb = (fs.statSync(OUTPUT).size/1024/1024).toFixed(1);
-  console.log(`\n✅ guide-en.mp4 klar: ${mb} MB (${DUR}s)`);
+  if (r.status !== 0) { console.error('❌ ffmpeg fejl:', r.stderr.slice(-500)); process.exit(1); }
+  console.log(`\n✅ guide-en.mp4 klar: ${(fs.statSync(OUTPUT).size/1024/1024).toFixed(1)} MB`);
 })();
