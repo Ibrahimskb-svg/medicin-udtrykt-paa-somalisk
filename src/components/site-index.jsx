@@ -368,6 +368,14 @@ const ABOUT_SITE_BULLETS = {
   ],
 };
 
+// ── Revision date ──────────────────────────────────────────────────────────
+const LAST_REVISED = {
+  da: "Sidst revideret: 13. juli 2026",
+  en: "Last revised: 13 July 2026",
+  so: "La cusbooneysiiyay: 13 Luulyo 2026",
+  ar: "آخر مراجعة: 13 يوليو 2026",
+};
+
 // ── FAQ ────────────────────────────────────────────────────────────────────
 const FAQ_DATA = {
   da: { items:[
@@ -434,7 +442,7 @@ const FAQ_DATA = {
     { q:"Waa maxay Metformin, goormase la qaataa?",
       bullets:["Waa daawo sonkorow oo si fiican loo tijaabiyay, kana caawisa hoos u dhigista sonkorta dhiigga.","Mar walba ku qaado cunto ama isla markiiba cuntada ka dib — ha ku qaadan calool madhan.","Dhibaatooyinka caloosha ee bilowga ah waa wax caadi ah — badanaa jirku wuu la qabsadaa 2 ilaa 4 toddobaad gudahood."] },
     { q:"Waa maxay daawooyinka dhiig-karka, sideese loo qaataa Amlodipin, Losartan iyo Enalapril?",
-      bullets:["Waxay hoos u dhigaan dhiig-karka, waxayna muddo dheer ilaaliyaan wadnaha og xididdada dhiigga.","Saddexdaba hal mar ayaa la qaataa maalin kasta.","Daawadan waxaa la qaatan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.","Ku qaado wakhti isku mid ah maalin kasta, xitaa haddii aadan wax calaamado ah dareemayn."] },
+      bullets:["Waxay hoos u dhigaan dhiig-karka, waxayna muddo dheer ilaaliyaan wadnaha iyo xididdada dhiigga.","Saddexdaba hal mar ayaa la qaataa maalin kasta.","Daawadan waxaa la qaatan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.","Ku qaado wakhti isku mid ah maalin kasta, xitaa haddii aadan wax calaamado ah dareemayn."] },
     { q:"Ma qaadan karaa Ibuprofen haddii aan qaadanayo daawada dhiig-karka?",
       bullets:["Inta badan laguma taliyo — Ibuprofen waxay daciifin kartaa saameynta daawada dhiig-karka.","Waxay sidoo kale culays saari kartaa kelyaha, gaar ahaan noocyo ka mid ah daawooyinka dhiig-karka.","Paracetamol ayaa badanaa ka ammaan badan.","Mar walba la tasho farmashiyaha ama dhakhtarkaaga."] },
     { q:"Maxaa dhici kara haddii aan si kedis ah u joojiyo Lamotrigin ama Sertralin?",
@@ -444,7 +452,7 @@ const FAQ_DATA = {
     { q:"Atorvastatin ma keeni kartaa murqo-xanuun?",
       bullets:["Haa — murqo-xanuun ama murqo-daciifnimo waa waxyeello la yaqaan.","La xiriir dhakhtarkaaga haddii murqo-xanuunku sii socdo, aad dareento murqo-daciifnimo ama kaadidu noqoto madow.","Dhakhtarkaagu wuxuu beddeli karaa qiyaasta ama nooca daawada."] },
     { q:"Daawada xanuun-baabi'iyaha ah kee fiican?",
-      bullets:["Paracetamol: waxay ku fiican tahay madax-xanuun, qandho og xanuun fudud — dad badan ayay ammaan u tahay.","Ibuprofen: way ka xoog badan tahay, waxayna ku fiican tahay ilko-xanuun, murqo-xanuun og kala-goysyo xanuunaya — ku qaado cunto.","Haddii aad leedahay dhibaato caloosha ah, aad qaadato daawo dhiig-kar ama aad uur leedahay, Paracetamol ayaa badanaa ka habboon.","Haddii aad shaki qabto, weydii farmashiyaha."] },
+      bullets:["Paracetamol: waxay ku fiican tahay madax-xanuun, qandho iyo xanuun fudud — dad badan ayay ammaan u tahay.","Ibuprofen: way ka xoog badan tahay, waxayna ku fiican tahay ilko-xanuun, murqo-xanuun iyo kala-goysyo xanuunaya — ku qaado cunto.","Haddii aad leedahay dhibaato caloosha ah, aad qaadato daawo dhiig-kar ama aad uur leedahay, Paracetamol ayaa badanaa ka habboon.","Haddii aad shaki qabto, weydii farmashiyaha."] },
     { q:"Ma qaadan karaa daawo cusub oo farmashiyaha laga helo anigoo qaadanaya daawooyinkayga caadiga ah?",
       bullets:["Mar walba ma aha — daawooyin badan oo aan warqad dhakhtar u baahnayn waxay saameyn karaan daawooyinkaaga kale.","Ibuprofen waxay daciifin kartaa daawooyinka dhiig-karka.","Daawooyinka dabiiciga ah qaarkood waxay saameyn karaan dawooyinka dhiiga cafiifiya.","Mar walba weydii farmashiyaha — waa bilaash, waana degdeg."] },
   ]},
@@ -1170,6 +1178,25 @@ export function SiteIndex({initialLang}){
           </div>
         </div>
       </footer>
+
+      {/* ── Revision date bar — bottom of entire page ── */}
+      <div style={{
+        width:"100%",
+        background:`linear-gradient(90deg,${(LANG_THEME[language]??LANG_THEME.so).primary}12,${(LANG_THEME[language]??LANG_THEME.so).primary}22,${(LANG_THEME[language]??LANG_THEME.so).primary}12)`,
+        borderTop:`2px solid ${(LANG_THEME[language]??LANG_THEME.so).primary}30`,
+        padding:"10px 24px",
+        display:"flex",alignItems:"center",justifyContent:"center",gap:"8px",
+      }}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={(LANG_THEME[language]??LANG_THEME.so).primary} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+        <span style={{
+          fontSize:"12px",fontWeight:700,letterSpacing:"0.03em",
+          color:(LANG_THEME[language]??LANG_THEME.so).primary,
+        }}>
+          {LAST_REVISED[language]??LAST_REVISED.so}
+        </span>
+      </div>
     </div>
   );
 }
