@@ -654,7 +654,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "أملوديبين – لارتفاع ضغط الدم",
@@ -734,7 +734,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -1032,7 +1032,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "أتورفاستاتين – الكوليسترول",
@@ -1111,7 +1111,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -1409,7 +1409,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "ديكلوفيناك – الألم والالتهاب",
@@ -1488,7 +1488,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -1798,7 +1798,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "إليكويس (أبيكسابان) – مميع للدم",
@@ -1881,7 +1881,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -2188,7 +2188,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "إنالابريل – ارتفاع ضغط الدم",
@@ -2270,7 +2270,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -2571,7 +2571,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "هيارتماغنيل – الوقاية من الجلطات",
@@ -2651,7 +2651,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -2952,7 +2952,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "إيبوبروفين – الألم والالتهاب والحمى",
@@ -3032,7 +3032,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -3351,7 +3351,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-1-hvad-er-det/hypoglykaemi-ved-diabetes-mellitus-lavt-blodsukker/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "الإنسولين – علاج السكري",
@@ -3437,7 +3437,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-1-hvad-er-det/hypoglykaemi-ved-diabetes-mellitus-lavt-blodsukker/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -3741,7 +3741,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "لاموتريجين – الصرع والاضطراب ثنائي القطب",
@@ -3822,7 +3822,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -4120,7 +4120,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "لوسارتان – ارتفاع ضغط الدم",
@@ -4199,7 +4199,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -4515,7 +4515,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "ماريفان – مميع للدم",
@@ -4600,7 +4600,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -4898,7 +4898,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "الميلاتونين – صعوبة النوم",
@@ -4977,7 +4977,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -5293,7 +5293,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "ميتفورمين – السكري من النوع الثاني",
@@ -5378,7 +5378,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -5691,7 +5691,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "ميتوبرولول – القلب وضغط الدم",
@@ -5775,7 +5775,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -6067,7 +6067,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/narkotiske-stoffer/heroin-og-andre-opiater/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "المورفين – علاج الألم الشديد",
@@ -6144,7 +6144,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/narkotiske-stoffer/heroin-og-andre-opiater/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -6436,7 +6436,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/kraeft/sygdomme/behandlingsmetoder/hvordan-behandler-man-smerter/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "المورفين – علاج الألم الشديد",
@@ -6513,7 +6513,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/kraeft/sygdomme/behandlingsmetoder/hvordan-behandler-man-smerter/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -6805,7 +6805,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "نابروكسين – علاج الألم والالتهاب",
@@ -6882,7 +6882,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -7168,7 +7168,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/laegehaandbogen/mave-tarm/tilstande-og-sygdomme/spiseroer/gastrooesofageal-reflukssygdom/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "بانتوبرازول – حموضة المعدة والارتجاع",
@@ -7243,7 +7243,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/laegehaandbogen/mave-tarm/tilstande-og-sygdomme/spiseroer/gastrooesofageal-reflukssygdom/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -7535,7 +7535,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "باراسيتامول – الألم والحمى",
@@ -7612,7 +7612,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -7904,7 +7904,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/antipsykotisk-medicin/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "كويتيابين – الذهان والاضطراب ثنائي القطب",
@@ -7981,7 +7981,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/antipsykotisk-medicin/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -8276,7 +8276,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/laegemidler/ssri-antidepressivum/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "سيرترالين – الاكتئاب والقلق",
@@ -8354,7 +8354,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/laegemidler/ssri-antidepressivum/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -8652,7 +8652,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "سيمبيكورت – الجهاز التنفسي",
@@ -8733,7 +8733,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي.",
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي.",
           "audioLabel": "استمع إلى التسجيل الصوتي",
           "audioFile": "audio/Symbicort-arabisk.mp3"
         }
@@ -9028,7 +9028,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "فنتولين – الشعب الهوائية",
@@ -9107,7 +9107,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -9426,7 +9426,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "زاريلتو (ريفاروكسابان) – دواء يمنع تجلط الدم",
@@ -9510,7 +9510,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -9811,7 +9811,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/"
             }
           ],
-          "footerNote": "This text was prepared by pharmaconomist: Ibraahim Dahir Xanaf. It is educational and does not replace advice from your doctor or pharmacist."
+          "footerNote": "This text was prepared by pharmaconomist Ibrahim Dahir Hanaf. It is educational and does not replace advice from your doctor or pharmacist."
         },
         "ar": {
           "pageTitle": "إيموزوب – الأرق",
@@ -9891,7 +9891,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ضاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     }
