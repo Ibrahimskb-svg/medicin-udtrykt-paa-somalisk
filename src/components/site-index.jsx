@@ -947,13 +947,13 @@ function VideoGuide({ chromeText, language }) {
   const isRtl = language === "ar";
 
   const tabs = [
-    { key:"so", label: chromeText.videoTabSo, src:"/guide-so.mp4" },
-    { key:"da", label: chromeText.videoTabDa, src:"/guide-da.mp4" },
-    { key:"en", label: chromeText.videoTabEn, src:"/guide-en.mp4" },
-    { key:"ar", label: chromeText.videoTabAr, src:"/guide-ar.mp4" },
+    { key:"so", label: chromeText.videoTabSo, video:"/guide-so.mp4" },
+    { key:"da", label: chromeText.videoTabDa, video:"/guide-da.mp4" },
+    { key:"en", label: chromeText.videoTabEn, iframe:"/ibuprofen?lang=en" },
+    { key:"ar", label: chromeText.videoTabAr, iframe:"/ibuprofen?lang=ar" },
   ];
 
-  const activeVideo = tabs.find(t => t.key === activeTab);
+  const active = tabs.find(t => t.key === activeTab);
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-8 pb-2">
@@ -992,9 +992,20 @@ function VideoGuide({ chromeText, language }) {
           </div>
         </div>
 
-        {/* Video */}
+        {/* Video eller live ibuprofen-side */}
         <div className="px-5 pb-6 sm:px-8 sm:pb-7">
-          <VideoPlayer src={activeVideo.src} />
+          {active.video ? (
+            <VideoPlayer src={active.video} />
+          ) : (
+            <div style={{ borderRadius:"14px", overflow:"hidden", border:"1px solid var(--border)", height:"520px" }}>
+              <iframe
+                key={activeTab}
+                src={active.iframe}
+                style={{ width:"100%", height:"100%", border:"none", display:"block" }}
+                title={`Ibuprofen – ${activeTab}`}
+              />
+            </div>
+          )}
         </div>
 
       </div>
