@@ -1180,17 +1180,26 @@ export function SiteIndex({initialLang}){
       </footer>
 
       {/* ── Revision date bar — bottom of entire page, medicin.dk style ── */}
+      {/* ── Revision date bar — bottom of entire page ── */}
       <div style={{
         width:"100%",
-        background:"#e8e8e8",
-        borderTop:"1px solid #cccccc",
-        padding:"9px 24px",
-        display:"flex",alignItems:"center",justifyContent:"center",gap:"7px",
+        background:"linear-gradient(90deg,#e6faf6 0%,#ccf5ec 50%,#e6faf6 100%)",
+        borderTop:"2px solid #5eead4",
+        padding:"11px 24px",
+        display:"flex",alignItems:"center",justifyContent:"center",
       }}>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-        </svg>
-        <span style={{fontSize:"12px",color:"#444444",fontWeight:500,letterSpacing:"0.01em"}}>
+        <span style={{
+          display:"inline-flex",alignItems:"center",gap:"8px",
+          padding:"6px 20px",borderRadius:"999px",
+          background:"#ffffff",
+          border:"1.5px solid #5eead4",
+          boxShadow:"0 1px 6px rgba(13,148,136,0.12)",
+          fontSize:"12px",fontWeight:700,
+          color:"#0f766e",letterSpacing:"0.02em",
+        }}>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f766e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
           {LAST_REVISED[language]??LAST_REVISED.so}
         </span>
       </div>

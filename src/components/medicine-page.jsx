@@ -50,10 +50,17 @@ const LAST_REVISED = {
 };
 
 const EMERGENCY = {
-  da: { label: "Nødsituationer", poison: "Giftlinjen", emergency: "Akut nødsituation" },
-  en: { label: "Emergencies", poison: "Poison Helpline (DK)", emergency: "Emergency" },
-  so: { label: "Xaaladaha degdegga ah", poison: "Giftlinjen (Danemark)", emergency: "Xaalad degdeg ah" },
-  ar: { label: "حالات الطوارئ", poison: "خط السموم (الدنمارك)", emergency: "طوارئ" },
+  da: { label: "Nødsituationer", poison: "Giftlinjen – ring ved mistanke om forgiftning", emergency: "Akut nødsituation" },
+  en: { label: "Emergencies", poison: "Poison Helpline – call if you suspect poisoning", emergency: "Emergency" },
+  so: { label: "Xaaladaha degdegga ah", poison: "Khadka Sunta – wac haddii qof sun ku sumoobay", emergency: "Xaalad degdeg ah" },
+  ar: { label: "حالات الطوارئ", poison: "خط السموم – اتصل عند الاشتباه بالتسمم", emergency: "طوارئ" },
+};
+
+const SHARE_LABELS = {
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page" },
+  so: { whatsapp: "Ku wadaag WhatsApp", print: "Daabac bogga" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة" },
 };
 
 // ── 2. IKONER ──────────────────────────────────────────────────────────────────
@@ -236,6 +243,47 @@ export function MedicinePage({ medicine, initialLang }) {
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
         <LanguageSelect label={data.langLabel} onChange={updateLanguage} value={language} />
 
+        {/* ── SHARE + PRINT ── */}
+        <div style={{
+          display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px",
+          justifyContent: isRtl ? "flex-end" : "flex-start",
+          direction: isRtl ? "rtl" : "ltr",
+        }}>
+          <a
+            href={"https://wa.me/?text=" + encodeURIComponent((data.drugName || medicine.slug) + " – Somalimed\nhttps://www.somalimed.dk/" + medicine.slug)}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: "#25D366", color: "#fff",
+              fontWeight: 700, fontSize: "13px", textDecoration: "none",
+              border: "none", cursor: "pointer",
+            }}
+          >
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L.057 23.886a.75.75 0 0 0 .918.919l6.086-1.453A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 0 1-5.116-1.41l-.367-.217-3.793.906.924-3.7-.239-.381A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+            </svg>
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).whatsapp}
+          </a>
+          <button
+            onClick={() => window.print()}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: "var(--surface)", color: "var(--text)",
+              fontWeight: 600, fontSize: "13px",
+              border: "1.5px solid var(--border)", cursor: "pointer",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).print}
+          </button>
+        </div>
+
         {/* ── SOMALI LYDFIL ── */}
         {medicine.audio.so && language === "so" ? (
           <div className="mb-6">
@@ -402,16 +450,20 @@ export function MedicinePage({ medicine, initialLang }) {
             </div>
           </div>
 
-          {/* Revision date */}
-          <div style={{
-            marginTop: "16px", display: "flex", alignItems: "center",
-            justifyContent: "center", gap: "6px",
-            padding: "7px 0", borderTop: "1px solid var(--border)",
-          }}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-            </svg>
-            <span style={{ fontSize: "12px", color: "#94a3b8" }}>
+          {/* Revision date badge */}
+          <div style={{ marginTop: "18px", display: "flex", justifyContent: "center" }}>
+            <span style={{
+              display: "inline-flex", alignItems: "center", gap: "7px",
+              padding: "7px 18px", borderRadius: "999px",
+              background: "linear-gradient(135deg, #e6faf6 0%, #d1f5ec 100%)",
+              border: "1.5px solid #5eead4",
+              color: "#0f766e", fontSize: "12px", fontWeight: 700,
+              letterSpacing: "0.02em",
+              boxShadow: "0 1px 4px rgba(13,148,136,0.10)",
+            }}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f766e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+              </svg>
               {LAST_REVISED[language] ?? LAST_REVISED.da}
             </span>
           </div>
