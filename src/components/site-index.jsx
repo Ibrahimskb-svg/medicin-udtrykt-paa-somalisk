@@ -1179,31 +1179,20 @@ export function SiteIndex({initialLang}){
         </div>
       </footer>
 
-      {/* ── Revision date bar — bottom of entire page ── */}
+      {/* ── Revision date bar — bottom of entire page, medicin.dk style ── */}
       <div style={{
         width:"100%",
-        background:`linear-gradient(90deg,${(LANG_THEME[language]??LANG_THEME.so).primary}0a,${(LANG_THEME[language]??LANG_THEME.so).primary}18,${(LANG_THEME[language]??LANG_THEME.so).primary}0a)`,
-        borderTop:`2px solid ${(LANG_THEME[language]??LANG_THEME.so).primary}30`,
-        padding:"14px 24px",
-        display:"flex",alignItems:"center",justifyContent:"center",
+        background:"#e8e8e8",
+        borderTop:"1px solid #cccccc",
+        padding:"9px 24px",
+        display:"flex",alignItems:"center",justifyContent:"center",gap:"7px",
       }}>
-        <div style={{
-          display:"inline-flex",alignItems:"center",gap:"9px",
-          padding:"8px 22px",borderRadius:"10px",
-          background:"#ffffff",
-          border:`2px solid ${(LANG_THEME[language]??LANG_THEME.so).primary}55`,
-          boxShadow:`0 2px 10px ${(LANG_THEME[language]??LANG_THEME.so).primary}22`,
-        }}>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={(LANG_THEME[language]??LANG_THEME.so).primary} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
-          </svg>
-          <span style={{
-            fontSize:"13px",fontWeight:800,letterSpacing:"0.02em",
-            color:(LANG_THEME[language]??LANG_THEME.so).primary,
-          }}>
-            {LAST_REVISED[language]??LAST_REVISED.so}
-          </span>
-        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#555555" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+        </svg>
+        <span style={{fontSize:"12px",color:"#444444",fontWeight:500,letterSpacing:"0.01em"}}>
+          {LAST_REVISED[language]??LAST_REVISED.so}
+        </span>
       </div>
     </div>
   );
