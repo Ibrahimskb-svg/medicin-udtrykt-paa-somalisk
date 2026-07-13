@@ -42,6 +42,20 @@ const overviewLabel = {
   ar: "نظرة عامة",
 };
 
+const LAST_REVISED = {
+  da: "Sidst revideret: 13. juli 2026",
+  en: "Last revised: 13 July 2026",
+  so: "La cusbooneysiiyay: 13 Luulyo 2026",
+  ar: "آخر مراجعة: 13 يوليو 2026",
+};
+
+const EMERGENCY = {
+  da: { label: "Nødsituationer", poison: "Giftlinjen", emergency: "Akut nødsituation" },
+  en: { label: "Emergencies", poison: "Poison Helpline (DK)", emergency: "Emergency" },
+  so: { label: "Xaaladaha degdegga ah", poison: "Giftlinjen (Danemark)", emergency: "Xaalad degdeg ah" },
+  ar: { label: "حالات الطوارئ", poison: "خط السموم (الدنمارك)", emergency: "طوارئ" },
+};
+
 // ── 2. IKONER ──────────────────────────────────────────────────────────────────
 
 function PlayIcon() {
@@ -364,6 +378,43 @@ export function MedicinePage({ medicine, initialLang }) {
           style={{ borderColor: "var(--border)", color: "var(--text-muted)" }}
         >
           {data.footerNote}
+
+          {/* Emergency numbers */}
+          <div style={{
+            marginTop: "20px", padding: "14px 18px", borderRadius: "10px",
+            background: "#fff5f5", border: "1.5px solid #fca5a5",
+            display: "flex", alignItems: "flex-start", gap: "10px",
+            textAlign: language === "ar" ? "right" : "left",
+            direction: language === "ar" ? "rtl" : "ltr",
+          }}>
+            <span style={{ fontSize: "20px", flexShrink: 0 }}>🚨</span>
+            <div>
+              <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: "13px", color: "#991b1b" }}>
+                {(EMERGENCY[language] ?? EMERGENCY.da).label}
+              </p>
+              <p style={{ margin: 0, fontSize: "13px", color: "#7f1d1d", lineHeight: 1.7 }}>
+                {(EMERGENCY[language] ?? EMERGENCY.da).poison}:{" "}
+                <a href="tel:82121212" style={{ fontWeight: 700, color: "#dc2626", textDecoration: "none" }}>82 12 12 12</a>
+                {"  ·  "}
+                {(EMERGENCY[language] ?? EMERGENCY.da).emergency}:{" "}
+                <a href="tel:112" style={{ fontWeight: 700, color: "#dc2626", textDecoration: "none" }}>112</a>
+              </p>
+            </div>
+          </div>
+
+          {/* Revision date */}
+          <div style={{
+            marginTop: "16px", display: "flex", alignItems: "center",
+            justifyContent: "center", gap: "6px",
+            padding: "7px 0", borderTop: "1px solid var(--border)",
+          }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            <span style={{ fontSize: "12px", color: "#94a3b8" }}>
+              {LAST_REVISED[language] ?? LAST_REVISED.da}
+            </span>
+          </div>
         </footer>
       </main>
     </div>

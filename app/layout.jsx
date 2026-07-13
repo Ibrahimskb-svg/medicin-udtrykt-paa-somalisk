@@ -1,6 +1,7 @@
 import "./globals.css";
 import Script from "next/script";
 import { LayoutShell } from "../src/components/layout-shell";
+import { ConsentManager } from "../src/components/consent-manager";
 
 export const viewport = {
   width: "device-width",
@@ -65,19 +66,7 @@ export default function RootLayout({ children }) {
         {/* Google Search Console verification */}
         <meta name="google-site-verification" content="DIN_VERIFICATION_KODE_HER" />
 
-        {/* Google Analytics GA4 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-D69NS55FP0"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-D69NS55FP0');
-          `}
-        </Script>
+        {/* GA4 + Crisp loaded by ConsentManager after cookie consent */}
 
         <Script
           id="somalimed-jsonld"
@@ -96,23 +85,11 @@ export default function RootLayout({ children }) {
             }),
           }}
         />
-        <Script id="crisp-chat" strategy="afterInteractive">
-          {`
-            window.$crisp = window.$crisp || [];
-            window.CRISP_WEBSITE_ID = "7e751734-efef-40ed-9087-aaca70200a7e";
-            (function() {
-              var d = document;
-              var s = d.createElement("script");
-              s.src = "https://client.crisp.chat/l.js";
-              s.async = 1;
-              d.head.appendChild(s);
-            })();
-          `}
-        </Script>
       </head>
 
       <body>
         <LayoutShell>{children}</LayoutShell>
+        <ConsentManager />
 
         <style dangerouslySetInnerHTML={{ __html: `
           #sm-bubble {
