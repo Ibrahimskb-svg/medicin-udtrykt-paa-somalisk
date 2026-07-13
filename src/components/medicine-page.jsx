@@ -59,7 +59,7 @@ const EMERGENCY = {
 const SHARE_LABELS = {
   da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden" },
   en: { whatsapp: "Share on WhatsApp", print: "Print page" },
-  so: { whatsapp: "Ku wadaag WhatsApp", print: "Daabac bogga" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga" },
   ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة" },
 };
 
