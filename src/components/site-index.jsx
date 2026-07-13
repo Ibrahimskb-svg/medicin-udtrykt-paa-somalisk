@@ -356,7 +356,7 @@ const ABOUT_SITE_BULLETS = {
   ],
   so: [
     { icon:"pills",     text:"25 daawo oo si taxaddar leh loo xulay — kuwa aan inta badan ku aragno farmashiyaha oo aan talo ka bixino" },
-    { icon:"school",    text:"Waxaa lagu heli karaa Af-Soomaali, Af-Ingiriisi, Af-Daanish iyo Af-Carabi" },
+    { icon:"school",    text:"Waxaa lagu heli karaa Af-Soomaali, Af-Ingiriis, Af-Deenish iyo Af-Caraabi" },
     { icon:"education", text:"Waxay ku dhisan tahay aqoon xirfadeed, waxaana lagu qoray si cad oo kalsooni leh" },
     { icon:"work",      text:"Si joogto ah ayaa loogu kordhinayaa daawooyin iyo mawduucyo kale oo ka soo baxay la-talinta maalinlaha ah ee farmashiyaha" },
   ],

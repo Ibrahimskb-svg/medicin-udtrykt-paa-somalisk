@@ -105,7 +105,7 @@ export const uiText = {
     videoTabSo: "Af-Soomaali",
     videoTabDa: "Af-Deenish",
     videoTabEn: "Af-Ingiriis",
-    videoTabAr: "Af-caraabi",
+    videoTabAr: "Af-Caraabi",
   },
   da: {
     navbarTitle: "somalimed",
