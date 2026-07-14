@@ -271,14 +271,6 @@ export default function RootLayout({ children }) {
                 };
 
                 document.body.appendChild(bubble);
-
-                setTimeout(function() {
-                  var b = document.getElementById("sm-bubble");
-                  if (!b) return;
-                  b.style.transition = "opacity 0.5s ease";
-                  b.style.opacity = "0";
-                  setTimeout(remove, 500);
-                }, 8000);
               }
 
               function schedule() { remove(); setTimeout(create, 3000); }

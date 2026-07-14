@@ -35,6 +35,7 @@ const TEXTS = {
 
 export function ConsentManager() {
   const [consent, setConsent] = useState(null);
+  const [checked, setChecked] = useState(false);
   const [lang, setLang] = useState("da");
 
   useEffect(() => {
@@ -42,6 +43,7 @@ export function ConsentManager() {
     if (stored) setConsent(stored);
     const l = localStorage.getItem("selectedLanguage") || "da";
     setLang(TEXTS[l] ? l : "da");
+    setChecked(true);
   }, []);
 
   function accept() {
@@ -84,7 +86,7 @@ export function ConsentManager() {
         </>
       )}
 
-      {consent === null && (
+      {checked && consent === null && (
         <div
           role="dialog"
           aria-label={t.title}

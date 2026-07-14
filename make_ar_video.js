@@ -57,11 +57,16 @@ async function scrollReveal(page) {
 }
 
 async function smoothScroll(page, fromY, toY, ms) {
-  const steps = Math.max(1, Math.round(ms / 16));
-  for (let i = 0; i <= steps; i++) {
-    const t = i / steps;
+  // Tidsbaseret (ikke step-baseret): page.evaluate() har selv rundturs-
+  // overhead, så en fast sleep(16) pr. step lader det akkumulere til
+  // sekunders drift over en hel video. Vi måler forløbet realtid i stedet.
+  const start = Date.now();
+  while (true) {
+    const elapsed = Date.now() - start;
+    const t = Math.min(1, elapsed / ms);
     const e = t < 0.5 ? 2*t*t : 1-(-2*t+2)**2/2;
     await page.evaluate(y => window.scrollTo(0, y), Math.round(fromY + (toY-fromY)*e));
+    if (t >= 1) break;
     await sleep(16);
   }
 }
@@ -70,10 +75,11 @@ async function showModal(page, btnText, durationMs) {
   await page.click(`button:has-text("${btnText}")`);
   await sleep(600);
   await page.mouse.move(640, 380);
-  const steps = Math.max(2, Math.round(durationMs / 700));
-  for (let i = 0; i < steps; i++) {
+  const wheelStart = Date.now();
+  while (Date.now() - wheelStart < durationMs) {
     await page.mouse.wheel(0, 55);
-    await sleep(durationMs / steps);
+    const remaining = durationMs - (Date.now() - wheelStart);
+    await sleep(Math.min(700, Math.max(0, remaining)));
   }
   await page.keyboard.press('Escape');
   await sleep(400);
@@ -186,24 +192,27 @@ async function showModal(page, btnText, durationMs) {
 
   // ── t=58–65s: Drift ned fra toppen mod lydknap ───────────────────────────
   // Ingen sleep — konstant bevægelse hele vejen
-  console.log('  [58-65s] Ibuprofen — smooth drift to audio button');
-  const ibupH = await page.evaluate(() => document.body.scrollHeight);
-  await smoothScroll(page, 0, 310, 6500);  // 6.5s langsom drift til lydknap
+  console.log('  [58-64s] Ibuprofen — smooth drift to audio button');
+  await smoothScroll(page, 0, 310, 5500);  // drift til lydknap
 
-  // ── t=65s: KLIK LYDKNAP ───────────────────────────────────────────────────
-  console.log('  [65s] Click audio button ← synced with narrator');
+  // ── t=64s: KLIK LYDKNAP ───────────────────────────────────────────────────
+  console.log('  [64s] Click audio button ← synced with narrator');
   await page.click('button:has-text("استمع إلى التسجيل")').catch(() => {
     console.log('  (Lydknap ikke fundet — springer over)');
   });
   await sleep(200);
 
-  // ── t=65–70s: Vis afspiller — blød drift ─────────────────────────────────
-  console.log('  [65-70s] Audio player — gentle drift');
-  await smoothScroll(page, 310, 420, 4800);  // blød drift, afspiller synlig
+  // Mål højden EFTER lydafspilleren er foldet ud, ellers scroller vi ikke
+  // langt nok ned til at vise resten af siden (afspilleren tilføjer højde).
+  const ibupH = await page.evaluate(() => document.body.scrollHeight);
 
-  // ── t=70–72s: Fortsæt scroll ──────────────────────────────────────────────
-  console.log('  [70-72s] Continue scroll');
-  await smoothScroll(page, 420, Math.round((ibupH - H) * 0.30), 2000);
+  // ── t=64–68s: Vis afspiller — blød drift ─────────────────────────────────
+  console.log('  [64-68s] Audio player — gentle drift');
+  await smoothScroll(page, 310, 420, 3500);  // blød drift, afspiller synlig
+
+  // ── t=68–72s: Scroll resten af siden ned til bunden ──────────────────────
+  console.log('  [68-72s] Scroll to bottom of full Ibuprofen page');
+  await smoothScroll(page, 420, ibupH - H, 4000);
 
   // ── t=72s: TILBAGE TIL FORSIDEN (stilhed i lydsporet 72-75s) ─────────────
   console.log('  [72s] Navigate back to homepage');
@@ -211,17 +220,19 @@ async function showModal(page, btnText, durationMs) {
   await removeDev(page);
   await sleep(500);
 
-  // ── t=75–88s: Scroll forside ned + afslutningsord ─────────────────────────
-  // "سوماليميد يقدم معلومات طبية موثوقة... خمسة وعشرين دواءً باللغات الأربع"
-  console.log('  [75-88s] Homepage scroll — closing words part 1');
+  // ── t=75–99.19s: Scroll forside ned + afslutningsord ─────────────────────
+  // Dynamisk resttid: uanset evt. akkumuleret drift ovenfor bruges den
+  // faktiske resterende tid til slutsekvensen, så videoen altid fylder
+  // hele lydsporets varighed og "tak for at se med" ikke bliver klippet af.
+  // "سوماليميد يقدم معلومات طبية موثوقة... شكراً جزيلاً لمشاهدتكم"
+  const elapsedPostTrim = Date.now() - recordStart - TRIM * 1000;
+  const remaining = Math.max(4000, DUR * 1000 - elapsedPostTrim - 300);
+  console.log(`  [75-99s] Homepage scroll — resterende tid: ${(remaining/1000).toFixed(2)}s`);
   const homeH = await page.evaluate(() => document.body.scrollHeight);
-  await smoothScroll(page, 0, Math.round((homeH - H) * 0.6), 11000);
-
-  // ── t=86–99.19s: Fortsæt scroll + tak ────────────────────────────────────
-  // "سوماليميد مجاني تماماً... شكراً جزيلاً لمشاهدتكم"
-  console.log('  [86-99s] Homepage scroll to bottom + thank you');
-  await smoothScroll(page, Math.round((homeH - H) * 0.6), homeH - H, 7000);
-  await sleep(2190);
+  const scrollPhase = Math.round(remaining * 0.85);
+  const freeze = remaining - scrollPhase;
+  await smoothScroll(page, 0, homeH - H, scrollPhase);
+  await sleep(Math.max(0, freeze));
 
   console.log('  Afslutter optagelse...');
   await context.close();
