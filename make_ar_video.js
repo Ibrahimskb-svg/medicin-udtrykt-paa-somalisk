@@ -3,21 +3,20 @@
  *
  * Whisper-transskription timing:
  *  0-22s:  Homepage hero (velkomst, 4 sprog, Ibrahim)
- * 22-50s:  Video-guide sektion, sprog-skift, lyd-funktion
- * 50-54s:  Søgefelt  ("استخدم شريط البحث")
- * 54-58s:  Skriv ibuprofen  ("ابدأ بالكتابة")
- * 58-68s:  Kategori-knapper  ("تصفح الأدوية حسب الفئة")
- * 68-80s:  Ibuprofen-siden: hold + scroll igennem indhold
- * 80s:     TILBAGE TIL FORSIDEN (narrator: "في أعلى الصفحة في القائمة")
- * 80-83s:  About me modal  ("نبذة عني")
- * 83-86s:  About Somalimed modal  ("حول Somalimed")
- * 86-89s:  FAQ modal  ("الأسئلة الشائعة")
- * 89-92s:  Contact modal  ("وزر التواصل")
- * 92-99s:  Ibuprofen-siden igen → hop til kilde-sektionen ("til sidst")
- *
- * NOTE: Alle 4 modaler kræver forsiden (SiteIndex). Vi navigerer
- * tilbage til forsiden ved t=80s og viser modalerne der.
- * Til allersidst navigeres til ibuprofen-kildesektionen.
+ * 22-35s:  Video-guide sektion ("في الجزء العلوي من الصفحة")
+ * 35-50s:  Sprog-skift + lydfunktion ("يمكنكم الاستماع لتسجيلات صوتية")
+ * 50-54s:  Søgefelt ("استخدم شريط البحث")
+ * 54-58s:  Skriv ibuprofen ("ابدأ بالكتابة")
+ * 58-68s:  Kategorier ("تصفح الأدوية حسب الفئة")
+ * 68-70s:  Naviger til ibuprofen, hold øverst
+ * 70-75s:  KLIK LYDKNAP → vis arabisk lyd-afspiller (narrator taler om lyd)
+ * 75-77s:  Scroll ibuprofen indhold kortvarigt
+ * 77s:     TILBAGE TIL FORSIDEN (domcontentloaded, klar til 80s)
+ * 80-83s:  About me modal ("نبذة عني") ← narrator: 80.1s
+ * 83-86s:  About Somalimed modal ("حول Somalimed") ← narrator: ~83s
+ * 86-89s:  FAQ modal ("الأسئلة الشائعة") ← narrator: 86.6s
+ * 89-92s:  Contact modal ("تواصل") ← narrator: ~87-88s
+ * 92-99s:  Ibuprofen igen → hop til kildesektionen til allersidst
  */
 const { chromium } = require('playwright');
 const { spawnSync } = require('child_process');
@@ -82,14 +81,11 @@ async function showModal(page, btnText, durationMs) {
 }
 
 (async () => {
-  if (!fs.existsSync(AUDIO)) {
-    console.error(`❌ Arabisk lydfil mangler: ${AUDIO}`);
-    process.exit(1);
-  }
+  if (!fs.existsSync(AUDIO)) { console.error(`❌ Mangler: ${AUDIO}`); process.exit(1); }
   if (fs.existsSync(VID_DIR)) fs.rmSync(VID_DIR, { recursive: true });
   fs.mkdirSync(VID_DIR);
 
-  console.log('🎬 Starter arabisk video-optagelse...');
+  console.log('🎬 Arabisk video — starter...');
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext({
     viewport: { width: W, height: H },
@@ -108,8 +104,7 @@ async function showModal(page, btnText, durationMs) {
   });
   await page.route(/crisp\.chat/, r => r.abort());
 
-  // ── Buffer (klippes med -ss 8) ────────────────────────────────────────────
-  console.log('  Indlæser arabisk forside...');
+  // ── Buffer 8s (klippes med -ss 8) ────────────────────────────────────────
   await page.goto('http://localhost:3000/?lang=ar', { waitUntil: 'networkidle' });
   await removeDev(page);
   await scrollReveal(page);
@@ -117,22 +112,24 @@ async function showModal(page, btnText, durationMs) {
   await sleep(TRIM * 1000);
 
   // ── t=0–22s: Hero ─────────────────────────────────────────────────────────
-  // "مرحباً بكم... بأربع لغات... أنشأه إبراهيم ضاهر حنف"
   console.log('  [0-22s] Hero');
   await sleep(22000);
 
-  // ── t=22–50s: Video-guide + sprog-skift + lyd ─────────────────────────────
-  // "قسم الدليل المرئي... اضغط على تبويب... التسجيل الصوتي... تغيير اللغة"
-  console.log('  [22-50s] Language/features');
-  await sleep(28000);
+  // ── t=22–35s: Video-guide sektion ─────────────────────────────────────────
+  console.log('  [22-35s] Video guide section');
+  await sleep(13000);
+
+  // ── t=35–50s: Sprog-skift + lydfunktion ──────────────────────────────────
+  // Narrator: "يمكنكم الاستماع لتسجيلات صوتية لكل دواء باللغة العربية"
+  // (Vi demonstrerer lyden på ibuprofen-siden ved t≈70s)
+  console.log('  [35-50s] Language + audio features');
+  await sleep(15000);
 
   // ── t=50–54s: Scroll til søgefelt ────────────────────────────────────────
-  // "استخدم شريط البحث للعثور على أي دواء بسرعة"
-  console.log('  [50-54s] Scroll to search bar');
+  console.log('  [50-54s] Scroll to search');
   await smoothScroll(page, 0, 1054, 4000);
 
   // ── t=54–58s: Skriv ibuprofen ─────────────────────────────────────────────
-  // "فقط ابدأ بالكتابة وستظهر النتائج فوراً"
   console.log('  [54-58s] Type ibuprofen');
   await page.click('#medSearch');
   await sleep(200);
@@ -140,61 +137,62 @@ async function showModal(page, btnText, durationMs) {
   await sleep(1600);
 
   // ── t=58–68s: Kategori-knapper ────────────────────────────────────────────
-  // "يمكنكم أيضاً تصفح الأدوية حسب الفئة... ضغط الدم... السكري..."
   console.log('  [58-68s] Categories');
   await sleep(10000);
 
-  // ── t=68s: Klik ibuprofen, naviger ────────────────────────────────────────
-  // "انقر على أي دواء مثلاً إيبوبروفين"
+  // ── t=68s: Naviger til ibuprofen ──────────────────────────────────────────
   console.log('  [68s] Click ibuprofen → navigate');
   await page.click('a[href*="ibuprofen"]');
   await page.waitForLoadState('networkidle');
   await removeDev(page);
+  await sleep(2000); // hold øverst 68-70s
 
-  // ── t=68–72s: Hold øverst på ibuprofen ───────────────────────────────────
-  // "لفتح صفحة مع معلومات كاملة..."
-  console.log('  [68-72s] Ibuprofen top');
-  const ibupH = await page.evaluate(() => document.body.scrollHeight);
-  await sleep(4000);
+  // ── t=70–75s: VIS LYDAFSPILLER ────────────────────────────────────────────
+  // Scroll forbi hero-sektionen for at vise lydknappen øverst på siden
+  console.log('  [70-75s] Show audio player button on ibuprofen page');
+  await smoothScroll(page, 0, 320, 800);
+  await sleep(500);
+  // Klik på den arabiske lydknap: "استمع إلى التسجيل"
+  await page.click('button:has-text("استمع إلى التسجيل")').catch(() => {
+    console.log('  (Lydknap ikke fundet — springer over)');
+  });
+  await sleep(3700); // vis afspilleren i ~4s
 
-  // ── t=72–80s: Scroll ibuprofen-siden ─────────────────────────────────────
-  // "المؤشرات والجرعة والآثار الجانبية والمصادر"
-  console.log('  [72-80s] Scroll ibuprofen content');
-  await smoothScroll(page, 0, Math.round((ibupH - H) * 0.55), 8000);
+  // ── t=75–77s: Scroll lidt videre ned i ibuprofen ─────────────────────────
+  console.log('  [75-77s] Brief ibuprofen scroll');
+  await smoothScroll(page, 320, 900, 2000);
 
-  // ── t=80s: TILBAGE TIL FORSIDEN ───────────────────────────────────────────
-  // "في أعلى الصفحة في القائمة ستجدون أزرار..."
-  // Modaler kræver SiteIndex som kun er på forsiden
-  console.log('  [80s] Navigate back to homepage for all 4 modals');
-  await page.goto('http://localhost:3000/?lang=ar', { waitUntil: 'networkidle' });
+  // ── t=77s: TILBAGE TIL FORSIDEN (3s tidligt for at nå at loade) ──────────
+  // Narrator ved 80.1s: "في أعلى الصفحة في القائمة ستجدون أزرار..."
+  console.log('  [77s] Navigate back to homepage for modals');
+  await page.goto('http://localhost:3000/?lang=ar', { waitUntil: 'domcontentloaded' });
   await removeDev(page);
-  await page.waitForFunction(() => document.body.innerText.includes('نبذة عني'), { timeout: 10000 }).catch(() => {});
-  await sleep(400);
+  await page.waitForFunction(() => document.body.innerText.includes('نبذة عني'), { timeout: 8000 }).catch(() => {});
+  await sleep(300); // klar ved ~80s
 
-  // ── t=80–83s: ABOUT ME  نبذة عني ─────────────────────────────────────────
-  // "ستجدون أزرار نبذة عني"
+  // ── t=80–83s: ABOUT ME ────────────────────────────────────────────────────
+  // Narrator 80.1s: "ستجدون أزرار نبذة عني"
   console.log('  [80-83s] About me modal');
   await showModal(page, 'نبذة عني', 2500);
 
-  // ── t=83–86s: ABOUT SOMALIMED  حول Somalimed ─────────────────────────────
-  // "وحول Somalimed"
+  // ── t=83–86s: ABOUT SOMALIMED ─────────────────────────────────────────────
+  // Narrator ~83s: "وحول Somalimed"
   console.log('  [83-86s] About Somalimed modal');
   await showModal(page, 'حول Somalimed', 2500);
 
-  // ── t=86–89s: FAQ  الأسئلة الشائعة ──────────────────────────────────────
-  // "والأسئلة الشائعة"
+  // ── t=86–89s: FAQ ─────────────────────────────────────────────────────────
+  // Narrator 86.6s: "والأسئلة الشائعة"
   console.log('  [86-89s] FAQ modal');
   await showModal(page, 'الأسئلة الشائعة', 2500);
 
-  // ── t=89–92s: Contact  تواصل ──────────────────────────────────────────────
-  // "وزر التواصل للتواصل مع إبراهيم مباشرة"
+  // ── t=89–92s: CONTACT ─────────────────────────────────────────────────────
+  // Narrator ~87-88s: "وزر التواصل للتواصل مع إبراهيم مباشرة"
   console.log('  [89-92s] Contact modal');
   await showModal(page, 'تواصل', 2500);
 
-  // ── t=92s: IBUPROFEN IGEN → hop til kildesektionen ─────────────────────
-  // "سوماليميد مجاني تماماً... شكراً لزيارتكم"
-  // Vis kilderne til allersidst som brugeren bad om
-  console.log('  [92-99s] Ibuprofen → sources section');
+  // ── t=92–99.10s: Ibuprofen-kildesektion ──────────────────────────────────
+  // Narrator: "سوماليميد مجاني تماماً... شكراً لزيارتكم"
+  console.log('  [92-99s] Ibuprofen → sources at bottom');
   await page.goto('http://localhost:3000/ibuprofen?lang=ar', { waitUntil: 'domcontentloaded' });
   await removeDev(page);
   const srcH = await page.evaluate(() => document.body.scrollHeight);
@@ -202,7 +200,7 @@ async function showModal(page, btnText, durationMs) {
   await page.evaluate(y => window.scrollTo(0, y), nearSrc);
   await sleep(300);
   await smoothScroll(page, nearSrc, srcH - H, 4000);
-  await sleep(2100); // hold ved bunden (kilder synlige)
+  await sleep(2300);
 
   console.log('  Afslutter optagelse...');
   await context.close();
@@ -211,23 +209,18 @@ async function showModal(page, btnText, durationMs) {
   const files = fs.readdirSync(VID_DIR).filter(f => f.endsWith('.webm'));
   if (!files.length) { console.error('❌ Ingen .webm!'); process.exit(1); }
   const webm = path.join(VID_DIR, files[0]);
-  console.log(`  Rå video: ${(fs.statSync(webm).size/1024/1024).toFixed(1)} MB`);
+  console.log(`  Rå: ${(fs.statSync(webm).size/1024/1024).toFixed(1)} MB`);
 
-  console.log('\n🎞️  Konverterer + arabisk lyd...');
+  console.log('\n🎞️  ffmpeg + arabisk lyd...');
   const r = spawnSync(FFMPEG, [
-    '-y',
-    '-ss', String(TRIM),
-    '-i', webm,
-    '-i', AUDIO,
+    '-y', '-ss', String(TRIM), '-i', webm, '-i', AUDIO,
     '-map', '0:v:0', '-map', '1:a:0',
     '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
     '-pix_fmt', 'yuv420p',
     '-c:a', 'aac', '-b:a', '128k',
-    '-t', String(DUR),
-    '-shortest',
-    OUTPUT
+    '-t', String(DUR), '-shortest', OUTPUT
   ], { encoding: 'utf8', stdio: ['ignore','inherit','pipe'] });
 
-  if (r.status !== 0) { console.error('❌ ffmpeg fejl:', r.stderr.slice(-500)); process.exit(1); }
-  console.log(`\n✅ guide-ar.mp4 klar: ${(fs.statSync(OUTPUT).size/1024/1024).toFixed(1)} MB`);
+  if (r.status !== 0) { console.error('❌ ffmpeg:', r.stderr.slice(-400)); process.exit(1); }
+  console.log(`\n✅ guide-ar.mp4: ${(fs.statSync(OUTPUT).size/1024/1024).toFixed(1)} MB`);
 })();
