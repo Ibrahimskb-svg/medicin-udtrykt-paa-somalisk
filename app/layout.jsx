@@ -225,7 +225,36 @@ export default function RootLayout({ children }) {
               }
 
               function openChat() {
-                try { if (window.$crisp) window.$crisp.push(["do", "chat:open"]); } catch(e) {}
+                try {
+                  if (window.$crisp) { window.$crisp.push(["do", "chat:open"]); return true; }
+                } catch (e) {}
+                return false;
+              }
+
+              // window.$crisp findes så snart scriptet er indlæst, men det er
+              // ingen garanti for at Crisp-widget'en faktisk fungerer (fx hvis
+              // kontoen/website-ID'et er fejlkonfigureret dukker der aldrig noget
+              // op). Tjek om der reelt er dukket et Crisp-element op i DOM'en.
+              function crispWidgetPresent() {
+                try {
+                  return !!document.querySelector(
+                    '.crisp-client, [class*="crisp-client"], #crisp-chatbox, iframe[src*="crisp"], crisp-chat-app, crisp-client'
+                  );
+                } catch (e) { return false; }
+              }
+
+              // Cookiebanneret (role="dialog", bottom-fixed) kan overlappe boblen —
+              // flyt boblen op over banneret så den altid er klikbar.
+              function repositionBubble() {
+                var b = document.getElementById("sm-bubble");
+                if (!b) return;
+                var banner = document.querySelector('div[role="dialog"]');
+                if (banner) {
+                  var h = banner.getBoundingClientRect().height;
+                  b.style.bottom = (h + 16) + "px";
+                } else {
+                  b.style.bottom = "";
+                }
               }
 
               function create() {
@@ -258,7 +287,19 @@ export default function RootLayout({ children }) {
                     '<div id="sm-bubble-msg">' + msg + '</div>' +
                   '</div>';
 
-                bubble.addEventListener("click", function() { openChat(); remove(); });
+                bubble.addEventListener("click", function() {
+                  var pushed = openChat();
+                  // Giv Crisp et par sekunder til reelt at vise widget'en, og
+                  // fald tilbage til mailto hvis den aldrig dukker op —
+                  // uanset om det skyldes manglende samtykke eller en fejl
+                  // i Crisp-opsætningen.
+                  setTimeout(function () {
+                    if (!pushed || !crispWidgetPresent()) {
+                      window.location.href = "mailto:Ibrahim_skb@live.dk";
+                    }
+                  }, 2500);
+                  remove();
+                });
 
                 // Try to load Ibrahim's photo
                 var img = document.createElement("img");
@@ -271,6 +312,7 @@ export default function RootLayout({ children }) {
                 };
 
                 document.body.appendChild(bubble);
+                repositionBubble();
               }
 
               function schedule() { remove(); setTimeout(create, 3000); }
@@ -284,6 +326,10 @@ export default function RootLayout({ children }) {
               history.pushState = function() { oPS.apply(this, arguments); setTimeout(schedule, 400); };
               var oRS = history.replaceState;
               history.replaceState = function() { oRS.apply(this, arguments); setTimeout(schedule, 400); };
+
+              // Hold boblen over cookiebanneret, uanset hvornår det vises/lukkes/ændrer højde
+              new MutationObserver(repositionBubble).observe(document.documentElement, { childList: true, subtree: true });
+              window.addEventListener("resize", repositionBubble);
             })();
           `}
         </Script>
