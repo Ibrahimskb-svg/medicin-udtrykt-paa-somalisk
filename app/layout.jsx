@@ -295,7 +295,7 @@ export default function RootLayout({ children }) {
                   // i Crisp-opsætningen.
                   setTimeout(function () {
                     if (!pushed || !crispWidgetPresent()) {
-                      window.location.href = "mailto:Ibrahim_skb@live.dk";
+                      window.location.href = "mailto:197IDH@apoteket.dk";
                     }
                   }, 2500);
                   remove();

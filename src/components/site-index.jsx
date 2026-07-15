@@ -768,12 +768,12 @@ function ContactModal({language,onClose}){
         </div>
       </div>
       <p style={{fontWeight:700,fontSize:"13px",color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",margin:"0 0 10px",textAlign:isRtl?"right":"left"}}>{data.emailLabel}</p>
-      <a href="mailto:Ibrahim_skb@live.dk" style={{display:"flex",alignItems:"center",gap:"12px",padding:"14px 16px",borderRadius:"16px",background:"#fff",border:`1.5px solid ${theme.border}`,textDecoration:"none",marginBottom:"18px",boxShadow:`0 2px 8px ${theme.primary}10`}}>
+      <a href="mailto:197IDH@apoteket.dk" style={{display:"flex",alignItems:"center",gap:"12px",padding:"14px 16px",borderRadius:"16px",background:"#fff",border:`1.5px solid ${theme.border}`,textDecoration:"none",marginBottom:"18px",boxShadow:`0 2px 8px ${theme.primary}10`}}>
         <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:"10px",background:theme.primary,flexShrink:0}}>
           <MailIcon size={18} color="#fff"/>
         </span>
         <div>
-          <p style={{fontWeight:700,fontSize:"15px",color:theme.primary,margin:0}}>Ibrahim_skb@live.dk</p>
+          <p style={{fontWeight:700,fontSize:"15px",color:theme.primary,margin:0}}>197IDH@apoteket.dk</p>
           <p style={{fontSize:"12px",color:"#94a3b8",margin:"2px 0 0"}}>{data.emailNote}</p>
         </div>
       </a>
@@ -854,7 +854,7 @@ function FeedbackModal({language,onClose}){
     if(!msg.trim())return;
     const subject=encodeURIComponent(`[Somalimed ${data[type]||type}]`);
     const body=encodeURIComponent(`Type: ${data[type]||type}\n\n${msg}${email?`\n\nFra: ${email}`:""}`);
-    window.open(`mailto:Ibrahim_skb@live.dk?subject=${subject}&body=${body}`);
+    window.open(`mailto:197IDH@apoteket.dk?subject=${subject}&body=${body}`);
     setSent(true);
   };
   const iconEl=<StarIcon size={22} color="rgba(255,255,255,0.95)"/>;
