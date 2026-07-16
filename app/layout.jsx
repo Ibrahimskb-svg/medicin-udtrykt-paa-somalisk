@@ -289,16 +289,21 @@ export default function RootLayout({ children }) {
 
                 bubble.addEventListener("click", function() {
                   var pushed = openChat();
-                  // Giv Crisp et par sekunder til reelt at vise widget'en, og
-                  // fald tilbage til mailto hvis den aldrig dukker op —
-                  // uanset om det skyldes manglende samtykke eller en fejl
-                  // i Crisp-opsætningen.
+                  if (!pushed) {
+                    // Crisp er ikke indlæst (fx cookies ikke accepteret endnu) —
+                    // gå direkte til mailto.
+                    window.location.href = "mailto:197IDH@apoteket.dk";
+                    return;
+                  }
+                  // Crisp er indlæst, men widget'en kan stadig fejle at vise sig
+                  // (fx pga. konto-opsætning) — fald tilbage til mailto hvis den
+                  // aldrig dukker op. Boblen selv fjernes IKKE — den skal blive
+                  // stående, så man altid kan nå Ibrahim.
                   setTimeout(function () {
-                    if (!pushed || !crispWidgetPresent()) {
+                    if (!crispWidgetPresent()) {
                       window.location.href = "mailto:197IDH@apoteket.dk";
                     }
                   }, 2500);
-                  remove();
                 });
 
                 // Try to load Ibrahim's photo
@@ -326,6 +331,11 @@ export default function RootLayout({ children }) {
               history.pushState = function() { oPS.apply(this, arguments); setTimeout(schedule, 400); };
               var oRS = history.replaceState;
               history.replaceState = function() { oRS.apply(this, arguments); setTimeout(schedule, 400); };
+
+              // Boblen skal aldrig forsvinde for godt — hvis nogen lukker den
+              // med ✕, dukker den op igen efter kort tid. create() no-op'er
+              // hvis den allerede findes, så det her skader ikke noget.
+              setInterval(create, 45000);
 
               // Hold boblen over cookiebanneret, uanset hvornår det vises/lukkes/ændrer højde
               new MutationObserver(repositionBubble).observe(document.documentElement, { childList: true, subtree: true });

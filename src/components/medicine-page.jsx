@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import QRCode from "qrcode";
 
 import { LanguageSelect } from "./language-select";
 import { InhalerGuide } from "./inhaler-guide";
@@ -57,10 +58,49 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR" },
+};
+
+const QR_LABELS = {
+  da: {
+    title: "QR-kode",
+    instructions: "Udskriv denne kode og sæt den på medicinæsken, eller kopiér billedet ind i jeres eget system.",
+    print: "Udskriv etiket",
+    copy: "Kopiér billede",
+    copied: "Kopieret!",
+    sms: "Send via sms",
+    close: "Luk",
+  },
+  en: {
+    title: "QR code",
+    instructions: "Print this code and attach it to the medicine box, or copy the image into your own system.",
+    print: "Print label",
+    copy: "Copy image",
+    copied: "Copied!",
+    sms: "Send via SMS",
+    close: "Close",
+  },
+  so: {
+    title: "Koodhka QR",
+    instructions: "Daabac koodhkan oo ku dhig sanduuqa daawada, ama koobiyee sawirka oo geli nidaamkiinna.",
+    print: "Daabac summad",
+    copy: "Koobiyee sawirka",
+    copied: "Waa la koobiyeeyay!",
+    sms: "U dir SMS",
+    close: "Xir",
+  },
+  ar: {
+    title: "رمز QR",
+    instructions: "اطبع هذا الرمز وضعه على علبة الدواء، أو انسخ الصورة إلى نظامكم الخاص.",
+    print: "طباعة الملصق",
+    copy: "نسخ الصورة",
+    copied: "تم النسخ!",
+    sms: "إرسال كرسالة نصية",
+    close: "إغلاق",
+  },
 };
 
 // ── 2. IKONER ──────────────────────────────────────────────────────────────────
@@ -134,6 +174,9 @@ export function MedicinePage({ medicine, initialLang }) {
   const [activeInhaler, setActiveInhaler] = useState(medicine.slug === "symbicort" ? "symbicort" : "ventoline");
   const [showSomaliAudio, setShowSomaliAudio] = useState(false);
   const [showArabicAudio, setShowArabicAudio] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
+  const [qrDataUrl, setQrDataUrl] = useState(null);
+  const [qrCopied, setQrCopied] = useState(false);
   const somaliAudioRef = useRef(null);
   const arabicAudioRef = useRef(null);
 
@@ -141,6 +184,49 @@ export function MedicinePage({ medicine, initialLang }) {
   const data = useMemo(() => medicine.translations[language] || medicine.translations.so, [language, medicine]);
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
   const isRtl = language === "ar";
+  const qrText = QR_LABELS[language] ?? QR_LABELS.da;
+  const pageUrl = `https://www.somalimed.dk/${medicine.slug}?lang=${language}`;
+
+  async function openQr() {
+    setQrOpen(true);
+    setQrCopied(false);
+    const dataUrl = await QRCode.toDataURL(pageUrl, { width: 320, margin: 2 });
+    setQrDataUrl(dataUrl);
+  }
+
+  function printQr() {
+    const win = window.open("", "_blank", "width=380,height=520");
+    if (!win) return;
+    win.document.write(`
+      <html><head><title>${data.drugName}</title>
+      <style>
+        body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;text-align:center;padding:24px;}
+        img{width:220px;height:220px;}
+        h1{font-size:16px;margin:14px 0 4px;}
+        p{font-size:11px;color:#64748b;margin:0;}
+      </style>
+      </head><body>
+        <img src="${qrDataUrl}" alt="QR" />
+        <h1>${data.drugName}</h1>
+        <p>Somalimed.dk</p>
+        <script>window.onload=function(){window.print();};</script>
+      </body></html>
+    `);
+    win.document.close();
+  }
+
+  async function copyQrImage() {
+    try {
+      const res = await fetch(qrDataUrl);
+      const blob = await res.blob();
+      await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+      setQrCopied(true);
+      setTimeout(() => setQrCopied(false), 2000);
+    } catch (e) {
+      // Clipboard-API for billeder er ikke understøttet i alle browsere —
+      // brugeren kan i stedet højreklikke billedet og vælge "Kopiér billede".
+    }
+  }
 
   // Lyt efter navbar-events (TPI-modal)
   useEffect(() => {
@@ -150,6 +236,14 @@ export function MedicinePage({ medicine, initialLang }) {
     window.addEventListener("somalimed-tab", handler);
     return () => window.removeEventListener("somalimed-tab", handler);
   }, []);
+
+  // Luk QR-modal med Escape (tastaturtilgængelighed)
+  useEffect(() => {
+    if (!qrOpen) return;
+    const onKey = (e) => { if (e.key === "Escape") setQrOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [qrOpen]);
 
   // Nulstil lyd og side-titel ved sprogskift
   useEffect(() => {
@@ -170,6 +264,96 @@ export function MedicinePage({ medicine, initialLang }) {
 
   return (
     <div style={{ background: "var(--bg)", color: "var(--text)" }} className="min-h-screen">
+
+      {/* ── QR-KODE MODAL ── */}
+      {qrOpen && (
+        <div
+          onClick={() => setQrOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={qrText.title}
+          style={{ position:"fixed", inset:0, zIndex:9999, display:"flex", alignItems:"flex-end", justifyContent:"center", background:"rgba(0,0,0,0.6)", backdropFilter:"blur(10px)", WebkitBackdropFilter:"blur(10px)" }}
+          className="sm:items-center sm:p-4"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{ background:"#f8fafc", borderRadius:"28px 28px 0 0", width:"100%", maxWidth:"420px", direction: isRtl ? "rtl" : "ltr", overflow:"hidden" }}
+            className="sm:rounded-[28px] shadow-2xl"
+          >
+            <div style={{ background:"linear-gradient(135deg,#0D9488,#0284C7)", padding:"20px", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+              <span style={{ color:"white", fontWeight:800, fontSize:"18px" }}>{qrText.title}</span>
+              <button onClick={() => setQrOpen(false)} aria-label={qrText.close} style={{ color:"white", background:"rgba(255,255,255,0.2)", border:"none", width:36, height:36, borderRadius:"50%", cursor:"pointer", fontWeight:"bold" }}>✕</button>
+            </div>
+
+            <div style={{ padding:"28px 24px", textAlign:"center" }}>
+              <div style={{
+                display:"inline-block", padding:"16px", borderRadius:"20px",
+                background:"#fff", border:"2px solid #e2e8f0",
+                boxShadow:"0 8px 24px rgba(13,148,136,0.15)",
+              }}>
+                {qrDataUrl ? (
+                  <img src={qrDataUrl} alt={`QR – ${data.drugName}`} width={220} height={220} style={{ display:"block", width:220, height:220 }} />
+                ) : (
+                  <div style={{ width:220, height:220, display:"flex", alignItems:"center", justifyContent:"center", color:"#94a3b8", fontSize:"13px" }} aria-live="polite">…</div>
+                )}
+              </div>
+
+              <p style={{ fontWeight:800, fontSize:"16px", margin:"16px 0 2px", color:"var(--text)" }}>{data.drugName}</p>
+              <p style={{ fontSize:"12px", color:"#94a3b8", margin:"0 0 18px" }}>Somalimed.dk</p>
+              <p style={{ fontSize:"13px", color:"#64748b", lineHeight:1.6, margin:"0 0 20px" }}>{qrText.instructions}</p>
+
+              <div style={{ display:"flex", flexDirection:"column", gap:"10px" }}>
+                <button
+                  onClick={printQr}
+                  disabled={!qrDataUrl}
+                  style={{
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
+                    padding:"12px", borderRadius:"12px", border:"none",
+                    background:"#0D9488", color:"#fff", fontWeight:700, fontSize:"14px",
+                    cursor: qrDataUrl ? "pointer" : "default", opacity: qrDataUrl ? 1 : 0.6,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
+                  </svg>
+                  {qrText.print}
+                </button>
+
+                <button
+                  onClick={copyQrImage}
+                  disabled={!qrDataUrl}
+                  style={{
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
+                    padding:"12px", borderRadius:"12px",
+                    border:"1.5px solid var(--border)", background:"var(--surface)", color:"var(--text)",
+                    fontWeight:700, fontSize:"14px", cursor: qrDataUrl ? "pointer" : "default",
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                  {qrCopied ? qrText.copied : qrText.copy}
+                </button>
+
+                <a
+                  href={`sms:?body=${encodeURIComponent(`${data.drugName} – Somalimed\n${pageUrl}`)}`}
+                  style={{
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
+                    padding:"12px", borderRadius:"12px",
+                    border:"1.5px solid var(--border)", background:"var(--surface)", color:"var(--text)",
+                    fontWeight:700, fontSize:"14px", textDecoration:"none",
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  </svg>
+                  {qrText.sms}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* ── TPI-MODAL (inhalationsteknik) ── */}
       {modalTab === "tpi" && (
@@ -281,6 +465,22 @@ export function MedicinePage({ medicine, initialLang }) {
               <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
             </svg>
             {(SHARE_LABELS[language] ?? SHARE_LABELS.da).print}
+          </button>
+          <button
+            onClick={openQr}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: "var(--surface)", color: "var(--text)",
+              fontWeight: 600, fontSize: "13px",
+              border: "1.5px solid var(--border)", cursor: "pointer",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+              <line x1="14" y1="14" x2="14" y2="17"/><line x1="14" y1="20" x2="14" y2="21"/><line x1="17" y1="14" x2="21" y2="14"/><line x1="17" y1="17" x2="21" y2="17"/><line x1="17" y1="20" x2="21" y2="20"/><line x1="20" y1="17" x2="20" y2="21"/>
+            </svg>
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).qr}
           </button>
         </div>
 

@@ -2,6 +2,10 @@
 import { useState, useEffect } from "react";
 import Script from "next/script";
 
+const BANNER_LANG_KEY = "cookieBannerLang";
+const LANG_NAMES = { da: "Dansk", so: "Soomaali", en: "English", ar: "العربية" };
+const LANG_ORDER = ["da", "so", "en", "ar"];
+
 const TEXTS = {
   da: {
     title: "Vi bruger cookies",
@@ -41,10 +45,18 @@ export function ConsentManager() {
   useEffect(() => {
     const stored = localStorage.getItem("cookieConsent");
     if (stored) setConsent(stored);
-    const l = localStorage.getItem("selectedLanguage") || "da";
+    // Banneret vælger bevidst sit eget sprog (default dansk) i stedet for
+    // sitets indholdssprog ("selectedLanguage") — besøgende der ikke forstår
+    // somalisk skal ikke mødes af et somalisk cookie-banner.
+    const l = localStorage.getItem(BANNER_LANG_KEY);
     setLang(TEXTS[l] ? l : "da");
     setChecked(true);
   }, []);
+
+  function changeLang(l) {
+    setLang(l);
+    localStorage.setItem(BANNER_LANG_KEY, l);
+  }
 
   function accept() {
     localStorage.setItem("cookieConsent", "accepted");
@@ -110,6 +122,24 @@ export function ConsentManager() {
                 {t.policy}
               </a>
             </p>
+            <div style={{ display: "flex", gap: "6px", marginTop: "10px", flexWrap: "wrap" }}>
+              {LANG_ORDER.map((l) => (
+                <button
+                  key={l}
+                  onClick={() => changeLang(l)}
+                  aria-pressed={l === lang}
+                  style={{
+                    padding: "3px 10px", borderRadius: "999px", fontSize: "11px", fontWeight: 600,
+                    border: l === lang ? "1.5px solid #0D9488" : "1.5px solid #e2e8f0",
+                    background: l === lang ? "#0D948815" : "#fff",
+                    color: l === lang ? "#0D9488" : "#64748b",
+                    cursor: "pointer",
+                  }}
+                >
+                  {LANG_NAMES[l]}
+                </button>
+              ))}
+            </div>
           </div>
           <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
             <button
