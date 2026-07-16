@@ -13,6 +13,7 @@ const TEXTS = {
     accept: "Accepter alle",
     reject: "Kun nødvendige",
     policy: "Cookiepolitik",
+    settings: "Cookie- og sprogindstillinger",
   },
   en: {
     title: "We use cookies",
@@ -20,6 +21,7 @@ const TEXTS = {
     accept: "Accept all",
     reject: "Essential only",
     policy: "Cookie policy",
+    settings: "Cookie and language settings",
   },
   so: {
     title: "Waxaan isticmaalnaa cookies",
@@ -27,6 +29,7 @@ const TEXTS = {
     accept: "Aqbal oo dhan",
     reject: "Kuwa lagama maarmaanka ah oo keliya",
     policy: "Siyaasadda cookies",
+    settings: "Dejinta cookies iyo luuqadda",
   },
   ar: {
     title: "نستخدم ملفات تعريف الارتباط",
@@ -34,6 +37,7 @@ const TEXTS = {
     accept: "قبول الكل",
     reject: "الضرورية فقط",
     policy: "سياسة الكوكيز",
+    settings: "إعدادات الكوكيز واللغة",
   },
 };
 
@@ -41,6 +45,7 @@ export function ConsentManager() {
   const [consent, setConsent] = useState(null);
   const [checked, setChecked] = useState(false);
   const [lang, setLang] = useState("da");
+  const [reopened, setReopened] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("cookieConsent");
@@ -61,11 +66,13 @@ export function ConsentManager() {
   function accept() {
     localStorage.setItem("cookieConsent", "accepted");
     setConsent("accepted");
+    setReopened(false);
   }
 
   function reject() {
     localStorage.setItem("cookieConsent", "rejected");
     setConsent("rejected");
+    setReopened(false);
   }
 
   const t = TEXTS[lang] ?? TEXTS.da;
@@ -98,7 +105,25 @@ export function ConsentManager() {
         </>
       )}
 
-      {checked && consent === null && (
+      {checked && consent !== null && !reopened && (
+        <button
+          onClick={() => setReopened(true)}
+          aria-label={t.settings}
+          title={t.settings}
+          style={{
+            position: "fixed", bottom: 16, left: 16, zIndex: 99997,
+            width: 40, height: 40, borderRadius: "50%",
+            background: "#ffffff", border: "1.5px solid #e2e8f0",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.14)",
+            fontSize: "18px", lineHeight: 1, cursor: "pointer",
+            display: "flex", alignItems: "center", justifyContent: "center",
+          }}
+        >
+          🍪
+        </button>
+      )}
+
+      {checked && (consent === null || reopened) && (
         <div
           role="dialog"
           aria-label={t.title}

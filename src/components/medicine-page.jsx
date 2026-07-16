@@ -89,7 +89,7 @@ const QR_LABELS = {
     print: "Daabac summad",
     copy: "Koobiyee sawirka",
     copied: "Waa la koobiyeeyay!",
-    sms: "U dir SMS",
+    sms: "U dir qoraal",
     close: "Xir",
   },
   ar: {
