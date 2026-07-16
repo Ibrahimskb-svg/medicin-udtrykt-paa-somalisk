@@ -260,6 +260,26 @@ export function getIndexData() {
   return siteData.index;
 }
 
+// ── Translated display names ───────────────────────────────────────────────
+export const SLUG_DISPLAY_NAMES = {
+  amlodipin:        { da:"Amlodipin",                             en:"Amlodipine",                          ar:"أملوديبين",                              so:"Amlodipin" },
+  hjertemagnyl:     { da:"Hjertemagnyl (Acetylsalicylsyre, ASA)", en:"Aspirin (Acetylsalicylic acid, ASA)", ar:"أسبرين (حمض أسيتيل الساليسيليك، ASA)", so:"Hjertemagnyl (Acetylsalicylsyre, ASA)" },
+  zopiclon:         { da:"Imozop (Zopiclon)",                     en:"Imovane (Zopiclone)",                 ar:"إيموفان (زوبيكلون)",                     so:"Imozop (Zopiclon)" },
+  lamotrigin:       { da:"Lamotrigin",                            en:"Lamotrigine",                         ar:"لاموتريجين",                             so:"Lamotrigin" },
+  pantoprazol:      { da:"Pantoprazol",                           en:"Pantoprazole",                        ar:"بانتوبرازول",                            so:"Pantoprazol" },
+  quetiapin:        { da:"Quetiapin",                             en:"Quetiapine",                          ar:"كويتيابين",                              so:"Quetiapin" },
+  sertralin:        { da:"Sertralin",                             en:"Sertraline",                          ar:"سيرترالين",                              so:"Sertralin" },
+  ventoline:        { da:"Ventoline (Salbutamol)",                en:"Ventolin (Salbutamol)",               ar:"فنتولين (سالبوتامول)",                   so:"Ventoline (Salbutamol)" },
+  morfin_injektion: { da:"Morfin (injektion)",                    en:"Morphine (injection)",                ar:"مورفين (حقن)",                           so:"Morfin (irbad)" },
+  morfin_tablet:    { da:"Morfin (tablet)",                       en:"Morphine (tablet)",                   ar:"مورفين (قرص)",                           so:"Morfin (kiniin)" },
+};
+
+export function getDisplayName(slug, language, fallback) {
+  const t = SLUG_DISPLAY_NAMES[slug];
+  if (!t) return fallback;
+  return t[language] ?? t.so ?? fallback;
+}
+
 export function getMedicine(slug) {
   return siteData.medicines.find((item) => item.slug === slug) ?? null;
 }

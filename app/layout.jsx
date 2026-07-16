@@ -96,7 +96,7 @@ export default function RootLayout({ children }) {
             position: fixed;
             bottom: 86px;
             right: 16px;
-            z-index: 99998;
+            z-index: 500;
             display: flex;
             align-items: flex-start;
             gap: 10px;

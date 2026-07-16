@@ -7,25 +7,25 @@ import { uiText } from "../lib/site";
 
 // Sørger for at labels matcher modal-titlerne i SiteIndex
 const NAV_LABELS = {
-  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik" },
-  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique" },
-  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta" },
-  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق" },
+  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin" },
+  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", mylist:"My medicine" },
+  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga" },
+  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", mylist:"أدويتي" },
 };
 
 // Kortere labels til mobil bottom-nav
 const NAV_LABELS_SHORT = {
-  da: { me:"Om mig",   site:"Om siden",   faq:"FAQ",      contact:"Kontakt" },
-  en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact" },
-  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir"  },
-  ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل"   },
+  da: { me:"Om mig",   site:"Om siden",   faq:"FAQ",      contact:"Kontakt",  mylist:"Min medicin" },
+  en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds" },
+  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo" },
+  ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل",    mylist:"أدويتي" },
 };
 
 const NAV_ICON_COLORS = {
-  so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E" },
-  da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7" },
-  en: { faq:"#92400E", feedback:"#B45309", contact:"#C2410C" },
-  ar: { faq:"#D97706", feedback:"#B45309", contact:"#EA580C" },
+  so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E", mylist:"#0F766E" },
+  da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7", mylist:"#0284C7" },
+  en: { faq:"#92400E", feedback:"#B45309", contact:"#C2410C", mylist:"#C2410C" },
+  ar: { faq:"#D97706", feedback:"#B45309", contact:"#EA580C", mylist:"#EA580C" },
 };
 
 const P = {
@@ -54,6 +54,14 @@ function LungsIcon({ size=15, color="currentColor" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 4v4"/><path d="M6 8c-1.5 0-4 1.5-4 6 0 3 2 5 4 5 1.3 0 2.4-.5 3.2-1.4"/><path d="M18 8c1.5 0 4 1.5 4 6 0 3-2 5-4 5-1.3 0-2.4-.5-3.2-1.4"/><path d="M12 8c-2 0-3 1-3 3v6"/><path d="M12 8c2 0 3 1 3 3v6"/>
+    </svg>
+  );
+}
+
+function ListIcon({ size=15, color="currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><path d="M4.5 6h.01"/><path d="M4.5 12h.01"/><path d="M4.5 18h.01"/>
     </svg>
   );
 }
@@ -102,6 +110,7 @@ export function AppNavbar() {
     },
     
     { key: "contact", iconEl: <MailIcon size={16} color={iconColors.contact}/>, label: navLabels.contact },
+    { key: "mylist", iconEl: <ListIcon size={16} color={iconColors.mylist}/>, label: navLabels.mylist },
   ];
 
   const handleTabClick = (key) => {

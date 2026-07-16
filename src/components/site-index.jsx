@@ -7,7 +7,9 @@ import { LanguageSelect } from "./language-select";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
-import { getIndexData, uiText } from "../lib/site";
+import { getIndexData, getDisplayName, uiText } from "../lib/site";
+import { ModalShell, LANG_THEME } from "./modal-shell";
+import { MyListModal } from "./my-list-modal";
 
 const indexData = getIndexData();
 
@@ -18,26 +20,6 @@ const P = {
   education: "/icons/education.png",
   pills:     "/icons/pills.png",
 };
-
-// ── Translated display names ───────────────────────────────────────────────
-const SLUG_DISPLAY_NAMES = {
-  amlodipin:        { da:"Amlodipin",                             en:"Amlodipine",                          ar:"أملوديبين",                              so:"Amlodipin" },
-  hjertemagnyl:     { da:"Hjertemagnyl (Acetylsalicylsyre, ASA)", en:"Aspirin (Acetylsalicylic acid, ASA)", ar:"أسبرين (حمض أسيتيل الساليسيليك، ASA)", so:"Hjertemagnyl (Acetylsalicylsyre, ASA)" },
-  zopiclon:         { da:"Imozop (Zopiclon)",                     en:"Imovane (Zopiclone)",                 ar:"إيموفان (زوبيكلون)",                     so:"Imozop (Zopiclon)" },
-  lamotrigin:       { da:"Lamotrigin",                            en:"Lamotrigine",                         ar:"لاموتريجين",                             so:"Lamotrigin" },
-  pantoprazol:      { da:"Pantoprazol",                           en:"Pantoprazole",                        ar:"بانتوبرازول",                            so:"Pantoprazol" },
-  quetiapin:        { da:"Quetiapin",                             en:"Quetiapine",                          ar:"كويتيابين",                              so:"Quetiapin" },
-  sertralin:        { da:"Sertralin",                             en:"Sertraline",                          ar:"سيرترالين",                              so:"Sertralin" },
-  ventoline:        { da:"Ventoline (Salbutamol)",                en:"Ventolin (Salbutamol)",               ar:"فنتولين (سالبوتامول)",                   so:"Ventoline (Salbutamol)" },
-  morfin_injektion: { da:"Morfin (injektion)",                    en:"Morphine (injection)",                ar:"مورفين (حقن)",                           so:"Morfin (irbad)" },
-  morfin_tablet:    { da:"Morfin (tablet)",                       en:"Morphine (tablet)",                   ar:"مورفين (قرص)",                           so:"Morfin (kiniin)" },
-};
-
-function getDisplayName(slug, language, fallback) {
-  const t = SLUG_DISPLAY_NAMES[slug];
-  if (!t) return fallback;
-  return t[language] ?? t.so ?? fallback;
-}
 
 // ── Nav labels ─────────────────────────────────────────────────────────────
 const NAV_LABELS = {
@@ -238,13 +220,6 @@ const TPI_DATA = {
 };
 
 // ── Color themes ───────────────────────────────────────────────────────────
-const LANG_THEME = {
-  so: { primary:"#0D9488", soft:"#F0FDFA", border:"#99f6e4", tagBg:"linear-gradient(135deg,#f0fdfa,#e0f2fe)" },
-  da: { primary:"#2563EB", soft:"#EFF6FF", border:"#bfdbfe", tagBg:"linear-gradient(135deg,#eff6ff,#dbeafe)" },
-  en: { primary:"#92400E", soft:"#FEF3C7", border:"#92400E", tagBg:"linear-gradient(135deg,#d4a373,#c8843a)" },
-  ar: { primary:"#D97706", soft:"#FFF7ED", border:"#F97316", tagBg:"linear-gradient(135deg,#fed7aa,#fb923c)" },
-};
-
 const BULLET_PALETTES = {
   so: [{color:"#0D9488",bg:"#F0FDFA"},{color:"#059669",bg:"#ECFDF5"},{color:"#0F766E",bg:"#CCFBF1"},{color:"#0284C7",bg:"#F0F9FF"}],
   da: [{color:"#2563EB",bg:"#EFF6FF"},{color:"#1D4ED8",bg:"#DBEAFE"},{color:"#3B82F6",bg:"#EFF6FF"},{color:"#0284C7",bg:"#F0F9FF"}],
@@ -672,33 +647,6 @@ function TPIModal({ language, onClose }) {
   );
 }
 
-// ── Modal shell ────────────────────────────────────────────────────────────
-function ModalShell({title,iconEl,onClose,children,isRtl,wide}){
-  useEffect(()=>{
-    const onKey=(e)=>{if(e.key==="Escape")onClose();};
-    document.addEventListener("keydown",onKey);
-    document.body.style.overflow="hidden";
-    return()=>{document.removeEventListener("keydown",onKey);document.body.style.overflow="";};
-  },[onClose]);
-  return(
-    <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:9999,display:"flex",alignItems:"flex-end",justifyContent:"center",padding:"0",background:"rgba(0,0,0,0.52)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)"}}
-      className="sm:items-center sm:p-4">
-      <div onClick={(e)=>e.stopPropagation()} style={{background:"#f8fafc",borderRadius:"28px 28px 0 0",width:"100%",maxWidth:wide?"660px":"560px",maxHeight:"92vh",overflowY:"auto",boxShadow:"0 -8px 40px rgba(0,0,0,0.22)",direction:isRtl?"rtl":"ltr"}}
-        className="sm:rounded-[28px] sm:shadow-[0_40px_100px_rgba(0,0,0,0.28)]">
-        <div style={{background:"var(--heroBg)",borderRadius:"28px 28px 0 0",padding:"18px 20px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:10}}
-          className="sm:rounded-t-[28px]">
-          <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
-            {iconEl}
-            <span style={{color:"#fff",fontWeight:800,fontSize:"16px",letterSpacing:"-0.01em"}}>{title}</span>
-          </div>
-          <button type="button" onClick={onClose} style={{background:"rgba(255,255,255,0.18)",border:"none",borderRadius:"50%",width:44,height:44,cursor:"pointer",color:"#fff",fontSize:"18px",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,minWidth:44,minHeight:44}}>✕</button>
-        </div>
-        <div style={{padding:"20px 20px 32px"}}>{children}</div>
-      </div>
-    </div>
-  );
-}
-
 // ── Bullet row ─────────────────────────────────────────────────────────────
 function BulletRow({bullet,palette}){
   return(
@@ -1055,6 +1003,7 @@ export function SiteIndex({initialLang}){
       {modalTab==="tpi"      &&<TPIModal      language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="feedback" &&<FeedbackModal language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="contact"  &&<ContactModal  language={language} onClose={()=>setModalTab(null)}/>}
+      {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>setModalTab(null)}/>}
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div style={{background:"var(--heroBg)"}}>

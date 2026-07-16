@@ -6,9 +6,11 @@ import QRCode from "qrcode";
 
 import { LanguageSelect } from "./language-select";
 import { InhalerGuide } from "./inhaler-guide";
+import { MyListModal } from "./my-list-modal";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
+import { getMyList, toggleMyList, subscribeMyList } from "../lib/my-list";
 import {
   arabicAudioLabel,
   sectionIcons,
@@ -58,10 +60,10 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code", addToList: "Add to my list", onList: "On your list" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك" },
 };
 
 const QR_LABELS = {
@@ -177,6 +179,7 @@ export function MedicinePage({ medicine, initialLang }) {
   const [qrOpen, setQrOpen] = useState(false);
   const [qrDataUrl, setQrDataUrl] = useState(null);
   const [qrCopied, setQrCopied] = useState(false);
+  const [inMyList, setInMyList] = useState(false);
   const somaliAudioRef = useRef(null);
   const arabicAudioRef = useRef(null);
 
@@ -185,7 +188,13 @@ export function MedicinePage({ medicine, initialLang }) {
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
   const isRtl = language === "ar";
   const qrText = QR_LABELS[language] ?? QR_LABELS.da;
+  const shareText = SHARE_LABELS[language] ?? SHARE_LABELS.da;
   const pageUrl = `https://www.somalimed.dk/${medicine.slug}?lang=${language}`;
+
+  useEffect(() => {
+    setInMyList(getMyList().includes(medicine.slug));
+    return subscribeMyList((list) => setInMyList(list.includes(medicine.slug)));
+  }, [medicine.slug]);
 
   async function openQr() {
     setQrOpen(true);
@@ -356,6 +365,8 @@ export function MedicinePage({ medicine, initialLang }) {
       )}
 
       {/* ── TPI-MODAL (inhalationsteknik) ── */}
+      {modalTab === "mylist" && <MyListModal language={language} onClose={() => setModalTab(null)} />}
+
       {modalTab === "tpi" && (
         <div
           onClick={() => setModalTab(null)}
@@ -481,6 +492,24 @@ export function MedicinePage({ medicine, initialLang }) {
               <line x1="14" y1="14" x2="14" y2="17"/><line x1="14" y1="20" x2="14" y2="21"/><line x1="17" y1="14" x2="21" y2="14"/><line x1="17" y1="17" x2="21" y2="17"/><line x1="17" y1="20" x2="21" y2="20"/><line x1="20" y1="17" x2="20" y2="21"/>
             </svg>
             {(SHARE_LABELS[language] ?? SHARE_LABELS.da).qr}
+          </button>
+          <button
+            onClick={() => toggleMyList(medicine.slug)}
+            aria-pressed={inMyList}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: inMyList ? "#0D9488" : "var(--surface)",
+              color: inMyList ? "#fff" : "var(--text)",
+              fontWeight: 600, fontSize: "13px",
+              border: inMyList ? "1.5px solid #0D9488" : "1.5px solid var(--border)",
+              cursor: "pointer",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              {inMyList ? <path d="M20 6 9 17l-5-5" /> : <><path d="M9 6h11" /><path d="M9 12h11" /><path d="M9 18h11" /><path d="M4.5 6h.01" /><path d="M4.5 12h.01" /><path d="M4.5 18h.01" /></>}
+            </svg>
+            {inMyList ? shareText.onList : shareText.addToList}
           </button>
         </div>
 
