@@ -77,3 +77,21 @@ a {
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 }
+
+@media print {
+  /* Content only fades in once scrolled into view (see use-scroll-reveal.js).
+     Anything never scrolled to before printing would otherwise print blank. */
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  header,
+  nav,
+  #sm-bubble,
+  [role="dialog"],
+  .no-print {
+    display: none !important;
+  }
+}

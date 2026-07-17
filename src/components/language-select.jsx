@@ -1,7 +1,7 @@
 import { languageLabels, languages } from "../lib/site";
 export function LanguageSelect({ label, value, onChange }) {
   return (
-    <div className="mb-5 sm:mb-6">
+    <div className="no-print mb-5 sm:mb-6">
       <p
         className="mb-2 sm:mb-3 text-xs font-semibold uppercase tracking-widest"
         style={{ color: "var(--text-muted)" }}

@@ -439,7 +439,7 @@ export function MedicinePage({ medicine, initialLang }) {
         <LanguageSelect label={data.langLabel} onChange={updateLanguage} value={language} />
 
         {/* ── SHARE + PRINT ── */}
-        <div style={{
+        <div className="no-print" style={{
           display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px",
           justifyContent: isRtl ? "flex-end" : "flex-start",
           direction: isRtl ? "rtl" : "ltr",
