@@ -574,7 +574,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Amlodipine – for high blood pressure",
@@ -953,7 +953,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Atorvastatin – cholesterol",
@@ -1330,7 +1330,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Diclofenac – pain and inflammation",
@@ -1715,7 +1715,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Eliquis (apixaban) – blood thinner",
@@ -2106,7 +2106,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Enalapril – high blood pressure",
@@ -2491,7 +2491,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Hjertemagnyl – blood clot prevention",
@@ -2872,7 +2872,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Ibuprofen – pain, inflammation and fever",
@@ -3265,7 +3265,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-1-hvad-er-det/hypoglykaemi-ved-diabetes-mellitus-lavt-blodsukker/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Insulin – treatment of diabetes",
@@ -3660,7 +3660,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Lamotrigine – epilepsy and bipolar disorder",
@@ -4041,7 +4041,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Losartan – high blood pressure",
@@ -4430,7 +4430,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Marevan – blood thinner",
@@ -4819,7 +4819,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Melatonin – sleep problems",
@@ -5208,7 +5208,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Metformin – type 2 diabetes",
@@ -5607,7 +5607,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Metoprolol – heart & blood pressure",
@@ -5990,7 +5990,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/narkotiske-stoffer/heroin-og-andre-opiater/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Morphine – treatment of severe pain",
@@ -6359,7 +6359,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/kraeft/sygdomme/behandlingsmetoder/hvordan-behandler-man-smerter/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Morphine – treatment of severe pain",
@@ -6728,7 +6728,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Naproxen – treatment of pain and inflammation",
@@ -7093,7 +7093,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/laegehaandbogen/mave-tarm/tilstande-og-sygdomme/spiseroer/gastrooesofageal-reflukssygdom/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Pantoprazole – stomach acid and reflux",
@@ -7458,7 +7458,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Paracetamol – pain and fever",
@@ -7827,7 +7827,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/antipsykotisk-medicin/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Quetiapine – psychosis and bipolar disorder",
@@ -8198,7 +8198,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/laegemidler/ssri-antidepressivum/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Sertraline – depression and anxiety",
@@ -8571,7 +8571,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Symbicort – airways",
@@ -8949,7 +8949,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Ventoline – airways",
@@ -9342,7 +9342,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Xarelto (rivaroxaban) – blood thinner",
@@ -9731,7 +9731,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/"
             }
           ],
-          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibraahim Dahir Xanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
+          "footerNote": "Denne tekst er udarbejdet af farmakonom: Ibrahim Dahir Hanaf. Teksten er vejledende og erstatter ikke lægens eller apotekets rådgivning."
         },
         "en": {
           "pageTitle": "Imozop – insomnia",

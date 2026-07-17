@@ -111,7 +111,7 @@ export function ConsentManager() {
           aria-label={t.settings}
           title={t.settings}
           style={{
-            position: "fixed", bottom: 16, left: 16, zIndex: 99997,
+            position: "fixed", bottom: "calc(68px + env(safe-area-inset-bottom, 0px))", left: 16, zIndex: 500,
             width: 40, height: 40, borderRadius: "50%",
             background: "#ffffff", border: "1.5px solid #e2e8f0",
             boxShadow: "0 2px 10px rgba(0,0,0,0.14)",
