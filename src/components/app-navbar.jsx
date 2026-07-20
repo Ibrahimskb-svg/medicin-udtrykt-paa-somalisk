@@ -7,7 +7,7 @@ import { uiText } from "../lib/site";
 
 // Sørger for at labels matcher modal-titlerne i SiteIndex
 const NAV_LABELS = {
-  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin" },
+  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin" },
   en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", mylist:"My medicine" },
   so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga" },
   ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", mylist:"أدويتي" },
@@ -15,7 +15,7 @@ const NAV_LABELS = {
 
 // Kortere labels til mobil bottom-nav
 const NAV_LABELS_SHORT = {
-  da: { me:"Om mig",   site:"Om siden",   faq:"FAQ",      contact:"Kontakt",  mylist:"Min medicin" },
+  da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin" },
   en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds" },
   so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo" },
   ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل",    mylist:"أدويتي" },

@@ -17,7 +17,7 @@ if (!['da', 'en', 'ar', 'so'].includes(LANG)) {
 }
 
 const NAV_LABELS = {
-  da: { aboutMe: "Om mig", aboutSite: "Om Somalimed", faq: "FAQ", contact: "Kontakt", mylist: "Min medicin" },
+  da: { aboutMe: "Om mig", aboutSite: "Om Somalimed", faq: "Ofte stillede spørgsmål", contact: "Kontakt", mylist: "Min medicin" },
   en: { aboutMe: "About me", aboutSite: "About Somalimed", faq: "FAQ", contact: "Contact", mylist: "My medicine" },
   so: { aboutMe: "Ku saabsan aniga", aboutSite: "Ku saabsan Somalimed", faq: "Su'aalaha", contact: "Xiriir", mylist: "Daawooyinkayga" },
   ar: { aboutMe: "نبذة عني", aboutSite: "حول Somalimed", faq: "الأسئلة الشائعة", contact: "تواصل", mylist: "أدويتي" },

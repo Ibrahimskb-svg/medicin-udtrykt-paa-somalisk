@@ -8,14 +8,14 @@ import asyncio, subprocess, os, tempfile, sys, json
 
 FFMPEG = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1'
 VOICE  = 'ar-QA-MoazNeural'
-RATE   = '-10%'
+RATE   = '+3%'
 OUTPUT = '/tmp/ar_audio_new.m4a'
 MANIFEST = '/tmp/ar_timing.json'
 
 SEGMENTS = [
     ("speech",  "مرحبًا بكم في سوماليميد. في هذا الفيديو سنوضح لكم كيفية استخدام الموقع خطوة بخطوة، لتتمكنوا من العثور بسرعة على معلومات دوائية موثوقة.", "hero"),
     ("silence", 0.6, "hero_pause"),
-    ("speech",  "أعلى القائمة: 'نبذة عني' — إبراهيم ضاهر حنف، مساعد صيدلي مؤهل من الدنمارك.", "nav_me"),
+    ("speech",  "أعلى القائمة: 'نبذة عني' — إبراهيم ظاهر حنف، فارماكونوم وكيميائي من الدنمارك.", "nav_me"),
     ("silence", 0.8, "nav_me_pause"),
     ("speech",  "'حول Somalimed' يوضح الهدف — مساعدة الناطقين بالصومالية وعائلاتهم على فهم أدويتهم.", "nav_site"),
     ("silence", 0.7, "nav_site_pause"),

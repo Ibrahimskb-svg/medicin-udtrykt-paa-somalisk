@@ -12,7 +12,7 @@ import asyncio, subprocess, os, tempfile, sys, json
 
 FFMPEG = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1'
 VOICE  = 'da-DK-JeppeNeural'
-RATE   = '-10%'
+RATE   = '+3%'
 OUTPUT = '/tmp/da_audio_new.m4a'
 MANIFEST = '/tmp/da_timing.json'
 
@@ -20,17 +20,17 @@ MANIFEST = '/tmp/da_timing.json'
 SEGMENTS = [
     ("speech",  "Velkommen til Somalimed. Sådan bruger du hjemmesiden trin for trin, så du hurtigt finder pålidelig information om din medicin.", "hero"),
     ("silence", 0.6, "hero_pause"),
-    ("speech",  "Øverst i menuen: 'Om mig' — Ibrahim Dahir Hanaf, uddannet farmakonom fra Danmark.", "nav_me"),
+    ("speech",  "Øverst i menuen: 'Om mig' — Ibrahim Daahir Hanaf, uddannet farmakonom fra Danmark.", "nav_me"),
     ("silence", 0.8, "nav_me_pause"),
     ("speech",  "'Om Somalimed' fortæller om formålet — at hjælpe somaliere og deres familier med at forstå deres medicin.", "nav_site"),
     ("silence", 0.7, "nav_site_pause"),
-    ("speech",  "'FAQ' giver svar på ofte stillede spørgsmål.", "nav_faq"),
+    ("speech",  "Under 'Ofte stillede spørgsmål' finder du svar på det, du undrer dig over.", "nav_faq"),
     ("silence", 0.6, "nav_faq_pause"),
     ("speech",  "'Kontakt' lader dig skrive direkte til Ibrahim.", "nav_contact"),
     ("silence", 0.6, "nav_contact_pause"),
     ("speech",  "Og 'Min medicin' åbner din egen medicinliste — det vender vi tilbage til om lidt.", "nav_mylist"),
     ("silence", 0.8, "nav_mylist_pause"),
-    ("speech",  "Under menuen finder du sprogvælgeren, med fire sprog — somali, dansk, engelsk og arabisk.", "langsel"),
+    ("speech",  "Under menuen finder du sprogvælgeren, med fire sprog — somalisk, dansk, engelsk og arabisk.", "langsel"),
     ("silence", 0.8, "langsel_pause"),
     ("speech",  "Herunder finder du søgefeltet.", "search_intro"),
     ("silence", 1.5, "search_scroll"),

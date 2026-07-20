@@ -7,14 +7,14 @@ import asyncio, subprocess, os, tempfile, sys, json
 
 FFMPEG = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1'
 VOICE  = 'en-US-ChristopherNeural'
-RATE   = '-10%'
+RATE   = '+3%'
 OUTPUT = '/tmp/en_audio_new.m4a'
 MANIFEST = '/tmp/en_timing.json'
 
 SEGMENTS = [
     ("speech",  "Welcome to Somalimed. Here's how to use the site step by step, so you can quickly find reliable information about your medicine.", "hero"),
     ("silence", 0.6, "hero_pause"),
-    ("speech",  "At the top of the menu: 'About me' — Ibrahim Dahir Hanaf, a trained pharmacy technician from Denmark.", "nav_me"),
+    ("speech",  "At the top of the menu: 'About me' — Ibrahim Daahir Hanaf, Pharmaconomist and chemist from Denmark.", "nav_me"),
     ("silence", 0.8, "nav_me_pause"),
     ("speech",  "'About Somalimed' explains the purpose — helping Somali speakers and their families understand their medicine.", "nav_site"),
     ("silence", 0.7, "nav_site_pause"),
