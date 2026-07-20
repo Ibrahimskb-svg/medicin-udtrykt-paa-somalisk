@@ -13,6 +13,7 @@ export function useLanguageRouting({ initialLanguage }) {
     const params = new URLSearchParams(window.location.search);
     const resolvedLanguage = resolveInitialLanguage(initialLanguage, params.get("lang"));
     setLanguage(resolvedLanguage);
+    notifyLanguageChange(resolvedLanguage);
   }, [initialLanguage]);
 
   function updateLanguage(nextLanguage) {
