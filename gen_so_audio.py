@@ -1,67 +1,67 @@
 """
 Genererer nyt somalisk lydspor til guide-so.mp4
-Stemme: so-SO-MuuseNeural (mandsstemme), -10% tempo
-Se gen_da_audio.py for arkitektur-forklaring. Inkluderer ekstra segment om
-lydoplæsningsfunktionen, som kun findes på arabisk og somalisk.
+Stemme: so-SO-MuuseNeural (eneste somaliske mandsstemme i Microsofts system),
+tempo +3% (skarpere/mere naturligt end tidligere -10% opbremsning).
 
-VENTER PÅ BRUGER-GODKENDELSE AF SOMALISK TEKST FØR KØRSEL.
+Tekst er brugerens egen (native speaker) korrektur af manuskriptet — ikke
+oversat/omskrevet af Claude. Se gen_da_audio.py for arkitektur-forklaring.
 """
 import asyncio, subprocess, os, tempfile, sys, json
 
 FFMPEG = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1'
 VOICE  = 'so-SO-MuuseNeural'
-RATE   = '-10%'
+RATE   = '+3%'
 OUTPUT = '/tmp/so_audio_new.m4a'
 MANIFEST = '/tmp/so_timing.json'
 
 SEGMENTS = [
-    ("speech",  "Ku soo dhawoow Somalimed. Muuqaalkan wuxuu ku tusayaa sida aad u isticmaasho boggan tallaabo tallaabo, si aad si degdeg ah macluumaad daawo oo la isku halayn karo u hesho.", "hero"),
-    ("silence", 0.6, "hero_pause"),
-    ("speech",  "Sare bogga: 'Ku saabsan aniga' — Ibraahim Dahir Hanaf, oo ah farmakoonoomi qalin ah oo ka soo baxay Denmark.", "nav_me"),
-    ("silence", 0.8, "nav_me_pause"),
-    ("speech",  "'Ku saabsan Somalimed' wuxuu sharaxayaa ujeeddada — caawinta dadka ku hadla Soomaaliga iyo qoysaskooda si ay u fahmaan daawooyinkooda.", "nav_site"),
-    ("silence", 0.7, "nav_site_pause"),
-    ("speech",  "'Su'aalaha' waxeey ka turjumaan su'aalaha inta badan la isweydiiyo.", "nav_faq"),
-    ("silence", 0.6, "nav_faq_pause"),
-    ("speech",  "'Xiriir' wuxuu kuu ogolaanayaa inaad si toos ah ula soo xiriirto Ibraahim.", "nav_contact"),
-    ("silence", 0.6, "nav_contact_pause"),
-    ("speech",  "'Daawooyinkayga' waxay kuu furaysaa liiskaaga daawooyinka gaarka ah — waan ku soo noqon doonaa tan hadhow.", "nav_mylist"),
-    ("silence", 0.8, "nav_mylist_pause"),
-    ("speech",  "Hoosta menu-ga waxaad ka heli doontaa badalaha luqadda, oo leh afar luqadood — Soomaali, Deenish, Ingiriis iyo Caraabi.", "langsel"),
-    ("silence", 0.8, "langsel_pause"),
-    ("speech",  "Hoosta taas waxaad ka heli doontaa sanduuqa raadinta.", "search_intro"),
-    ("silence", 1.5, "search_scroll"),
-    ("speech",  "Qor magaca daawadaada — tusaale ahaan ibuprofen.", "search_type_text"),
-    ("silence", 3.2, "search_type_action"),
-    ("speech",  "Ama u kala eeg qaybaha, sida cadaadiska dhiigga, sonkorowga, antibiyootikada, ama xanuunnada wadnaha — riix qayb si aad liiska u shaandheyso.", "categories"),
-    ("silence", 1.8, "categories_pause"),
-    ("speech",  "Riix daawo si aad u furto boggeeda. Halkan ayaad mar kale ka heli doontaa badalaha luqadda, si aad wakhti kasta luqadda u bedesho.", "click_med"),
-    ("silence", 1.8, "click_med_load"),
-    ("speech",  "Hoos badalaha luqadda si toos ah waxaad ka heli doontaa afar badhan. Kii ugu horreeyay wuxuu si toos ah ugu wadaagaa bogga WhatsApp.", "btn_whatsapp"),
-    ("silence", 1.2, "btn_whatsapp_pause"),
-    ("speech",  "Kii labaad wuxuu daabacaa bogga daawada — waxtar leh markaad joogto dhakhtarka ama farmashiga.", "btn_print"),
-    ("silence", 1.2, "btn_print_pause"),
-    ("speech",  "Kii saddexaad wuxuu tusayaa koodh QR oo si toos ah ugu xiran bogga. Waxaad u daabici kartaa summad loogu talagalay sanduuqa daawada, u koobiyeyn kartaa sawirka nidaam kale, ama u diri kartaa fariin qoraal ah.", "btn_qr"),
-    ("silence", 3.5, "btn_qr_demo"),
-    ("speech",  "Badhanka afaraad wuxuu daawada ku daraa liiskaaga gaarka ah.", "btn_addlist"),
-    ("silence", 1.5, "btn_addlist_action"),
-    ("speech",  "Halkan waxaad sidoo kale dhageysan kartaa duub cod ah, oo nin ku akhriyo qoraalka si cad kuugu.", "audio_readout"),
-    ("silence", 1.5, "audio_readout_action"),
-    ("speech",  "Hoosta waxaad ka heli doontaa guudmar, iyo sidoo kale talooyinka gaarka ah iyo faallooyinka Ibraahim ee ku saabsan daawada.", "overview"),
-    ("silence", 1.5, "overview_scroll"),
-    ("speech",  "Hoos ka bax waxaa ku yaal qaybo faahfaahsan oo ku saabsan qaadashada, waxyeelaha dhinaca, isdhexgalka, digniinaha, iyo sida daawada loo kaydiyo.", "sections"),
-    ("silence", 2.0, "sections_scroll"),
-    ("speech",  "Bogga meesha ugu hoosaysa waxaad ka heli doontaa ilaha macluumaadka, lambarrada muhiimka ah sida Khadka Sunta iyo 112, iyo taariikhda cusbooneysiinta ugu dambeysay.", "sources"),
-    ("silence", 2.0, "sources_scroll"),
-    ("speech",  "Aan hadda ka furno 'Daawooyinkayga' menu-ga. Halkan waxaad ka raadin kartaa daawadaada, calaamadin kartaa kuwa aad qaadanayso, oo mar kale ka saari kartaa.", "mylist_modal"),
-    ("silence", 4.0, "mylist_modal_demo"),
-    ("speech",  "Ugu hoosaysa liiska waxaad daabici kartaa, si aad si fudud ugu tusto shaqaalaha farmashiga ama dhakhtarka.", "mylist_print"),
-    ("silence", 2.0, "mylist_print_action"),
-    ("speech",  "Aynu hadda ku noqonno bogga hore.", "back_home"),
-    ("silence", 1.5, "back_home_nav"),
-    ("speech",  "Somalimed wuxuu bixiyaa macluumaad daawo oo la isku halayn karo, oo ku salaysan aqoon xirfadeed — bilaash ah oo aan qoraal loo baahnayn.", "closing1"),
-    ("silence", 0.8, "closing1_pause"),
-    ("speech",  "Waxaan rajeyneynaa inuu waxtar kuu leeyahay adiga iyo qoyskaaga. Aad baad ugu mahadsan tahay daawashada.", "closing2"),
+    ("speech",  "Ku soo dhawoow Somalimed. Muuqaalkan wuxuu ku tusayaa, tallaabo tallaabo, sida loo isticmaalo boggan si aad si fudud oo degdeg ah ugu hesho macluumaad daawo oo la isku halayn karo.", "hero"),
+    ("silence", 0.4, "hero_pause"),
+    ("speech",  "Dusha sare ee bogga waxaad ka heli doontaa \"Ku Saabsan Aniga\", halkaas oo aad ka akhrisan karto xog ku saabsan farmashiiste Ibraahim Dahir Xanaf, oo wax ku bartay kana qalin jabiyay Danmark.", "nav_me"),
+    ("silence", 0.5, "nav_me_pause"),
+    ("speech",  "Qaybta \"Ku Saabsan Somalimed\" waxay sharxaysaa ujeeddada boggan, oo ah in dadka ku hadla af-Soomaaliga iyo qoysaskoodu ay si fudud u fahmaan daawooyinkooda iyo isticmaalkooda.", "nav_site"),
+    ("silence", 0.4, "nav_site_pause"),
+    ("speech",  "Qaybta \"Su'aalaha Inta Badan La Isweydiiyo\" waxaad ka heli doontaa jawaabaha su'aalaha ugu badan ee la iska weydiiyo.", "nav_faq"),
+    ("silence", 0.4, "nav_faq_pause"),
+    ("speech",  "Qaybta \"Xiriir\" waxay kuu oggolaanaysaa inaad si toos ah ula xiriirto Ibraahim.", "nav_contact"),
+    ("silence", 0.4, "nav_contact_pause"),
+    ("speech",  "Qaybta \"Daawooyinkayga\" waxay kuu furaysaa liiskaaga gaarka ah ee daawooyinka. Qaybtan dib ayaan uga hadli doonnaa.", "nav_mylist"),
+    ("silence", 0.5, "nav_mylist_pause"),
+    ("speech",  "Hoosta menu-ga waxaad ka heli doontaa badhanka beddelka luqadda, kaas oo kuu oggolaanaya inaad doorato af-Soomaali, Deenish, Ingiriisi ama Carabi.", "langsel"),
+    ("silence", 0.5, "langsel_pause"),
+    ("speech",  "Wax yar ka hooseeya waxaa ku yaal sanduuqa raadinta.", "search_intro"),
+    ("silence", 1.0, "search_scroll"),
+    ("speech",  "Waxaad geli kartaa magaca daawadaada, tusaale ahaan Ibuprofen.", "search_type_text"),
+    ("silence", 2.6, "search_type_action"),
+    ("speech",  "Sidoo kale waxaad ka dhex raadin kartaa qaybaha kala duwan, sida daawooyinka dhiig-karka, sonkorowga, antibiyootigyada ama cudurrada wadnaha. Riix qayb kasta si aad u shaandhayso liiska daawooyinka.", "categories"),
+    ("silence", 1.2, "categories_pause"),
+    ("speech",  "Markaad gujiso daawo, waxaa kuu furmaya boggeeda. Halkaas waxaad mar kale ka heli doontaa badhanka beddelka luqadda, si aad luqadda ugu beddesho wakhti kasta.", "click_med"),
+    ("silence", 1.3, "click_med_load"),
+    ("speech",  "Isla hoosta badhanka luqadda waxaa ku yaal afar badhan: badhanka koowaad wuxuu kuu oggolaanayaa inaad bogga si toos ah ula wadaagto WhatsApp.", "btn_whatsapp"),
+    ("silence", 0.8, "btn_whatsapp_pause"),
+    ("speech",  "Badhanka labaad wuxuu kuu oggolaanayaa inaad daabacdo bogga daawada, taas oo faa'iido leh markaad booqanayso dhakhtarka ama farmashiyaha.", "btn_print"),
+    ("silence", 0.8, "btn_print_pause"),
+    ("speech",  "Badhanka saddexaad wuxuu soo bandhigayaa koodhka QR ee ku xiran bogga daawada. Waxaad u daabacan kartaa summad aad ku dhejiso sanduuqa daawada, waxaad koobiyayn kartaa sawirka, ama waxaad ugu diri kartaa qof kale fariin ahaan.", "btn_qr"),
+    ("silence", 2.5, "btn_qr_demo"),
+    ("speech",  "Badhanka afraad wuxuu daawada ku darayaa liiskaaga gaarka ah ee daawooyinka.", "btn_addlist"),
+    ("silence", 1.0, "btn_addlist_action"),
+    ("speech",  "Waxaad sidoo kale dhageysan kartaa cod duuban oo qoraalka oo dhan si cad kuugu akhrinaya.", "audio_readout"),
+    ("silence", 1.0, "audio_readout_action"),
+    ("speech",  "Hoosta waxaad ka heli doontaa dulmar guud oo ku saabsan daawada, iyo sidoo kale talooyinka iyo faallooyinka gaarka ah ee Ibraahim.", "overview"),
+    ("silence", 1.0, "overview_scroll"),
+    ("speech",  "Intaa ka dib waxaa ku xiga qaybo faahfaahsan oo sharxaya sida daawada loo qaato, waxyeellooyinka suurtagalka ah, isdhexgalka daawooyinka kale, digniinaha muhiimka ah iyo habka saxda ah ee loo kaydiyo daawada.", "sections"),
+    ("silence", 1.5, "sections_scroll"),
+    ("speech",  "Qeybta ugu hooseysa ee bogga waxaad ka heli doontaa ilaha macluumaadka, lambarrada muhiimka ah sida Khadka Sunta iyo 112, iyo taariikhda markii ugu dambeysay ee bogga la cusboonaysiiyay.", "sources"),
+    ("silence", 1.5, "sources_scroll"),
+    ("speech",  "Hadda aan furno qaybta \"Daawooyinkayga\". Halkaas waxaad ka raadin kartaa daawooyinkaaga, waxaad calaamadin kartaa kuwa aad isticmaasho, isla markaana waad ka saari kartaa marka loo baahdo.", "mylist_modal"),
+    ("silence", 3.0, "mylist_modal_demo"),
+    ("speech",  "Qeybta ugu hooseysa ee liiska waxaad ka heli doontaa badhanka daabacaadda, si aad si fudud ugu tusi karto liiska daawooyinkaaga farmashiistaha ama dhakhtarka.", "mylist_print"),
+    ("silence", 1.5, "mylist_print_action"),
+    ("speech",  "Hadda aan ku noqonno bogga hore.", "back_home"),
+    ("silence", 1.0, "back_home_nav"),
+    ("speech",  "Somalimed wuxuu ku siinayaa macluumaad daawo oo sax ah, la isku halayn karo, kuna salaysan aqoon xirfadeed. Adeeggu waa bilaash, mana jiro wax isdiiwaangelin ama gelitaan loo baahan yahay.", "closing1"),
+    ("silence", 0.5, "closing1_pause"),
+    ("speech",  "Waxaan rajaynaynaa in Somalimed uu waxtar kuu noqon doono adiga iyo qoyskaagaba. Aad baad ugu mahadsan tahay daawashada.", "closing2"),
 ]
 
 def ffmpeg_run(*args):
