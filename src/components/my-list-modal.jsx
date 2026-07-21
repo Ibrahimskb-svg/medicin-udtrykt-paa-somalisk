@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { getIndexData, getDisplayName } from "../lib/site";
+import { getIndexData, getDisplayName, getMedicine } from "../lib/site";
 import { getMyList, addToMyList, removeFromMyList, subscribeMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 
@@ -17,6 +17,9 @@ const TEXTS = {
     printedOn: "Udskrevet fra Somalimed.dk",
     disclaimer: "Listen bygger på dine egne valg og er ikke en officiel medicinliste. Brug den som udgangspunkt for en samtale med personalet.",
     remove: "Fjern",
+    interactionsTitle: "Interaktioner og advarsler for din liste",
+    interactionsIntro: "Her er interaktions- og advarselspunkterne for hver medicin på din liste, samlet ét sted — brug det som udgangspunkt for en samtale med apoteket eller lægen.",
+    interactionsEmpty: "Ingen interaktions- eller advarselsoplysninger fundet for denne medicin.",
   },
   en: {
     title: "My medicine list",
@@ -28,6 +31,9 @@ const TEXTS = {
     printedOn: "Printed from Somalimed.dk",
     disclaimer: "This list is based on your own choices and is not an official medicine list. Use it as a starting point for a conversation with staff.",
     remove: "Remove",
+    interactionsTitle: "Interactions and warnings for your list",
+    interactionsIntro: "Here are the interaction and warning notes for each medicine on your list, gathered in one place — use it as a starting point for a conversation with the pharmacy or doctor.",
+    interactionsEmpty: "No interaction or warning information found for this medicine.",
   },
   so: {
     title: "Liiska daawooyinkayga",
@@ -39,6 +45,9 @@ const TEXTS = {
     printedOn: "Waxaa laga daabacay Somalimed.dk",
     disclaimer: "Liiskani wuxuu ku salaysan yahay doorashadaada gaarka ah, mana aha liis daawooyin oo rasmi ah. U isticmaal si aad wax uga hadasho shaqaalaha.",
     remove: "Ka saar",
+    interactionsTitle: "Isdhexgalka iyo digniinaha liiskaaga",
+    interactionsIntro: "Halkan waxaa ku yaal qoraallada isdhexgalka iyo digniinaha ee daawo kasta oo ku jirta liiskaaga, oo la isku soo ururiyay meel — u isticmaal si aad wax uga hadasho farmashiga ama dhakhtarka.",
+    interactionsEmpty: "Lama helin macluumaad isdhexgal ama digniin ah oo ku saabsan daawadan.",
   },
   ar: {
     title: "قائمة أدويتي",
@@ -50,6 +59,9 @@ const TEXTS = {
     printedOn: "تمت الطباعة من Somalimed.dk",
     disclaimer: "تعتمد هذه القائمة على اختيارك الخاص وليست قائمة أدوية رسمية. استخدمها كنقطة بداية للحديث مع الموظفين.",
     remove: "إزالة",
+    interactionsTitle: "التفاعلات والتحذيرات لقائمتك",
+    interactionsIntro: "فيما يلي ملاحظات التفاعلات والتحذيرات لكل دواء في قائمتك، مجمّعة في مكان واحد — استخدمها كنقطة بداية للحديث مع الصيدلية أو الطبيب.",
+    interactionsEmpty: "لم يتم العثور على معلومات تفاعل أو تحذير لهذا الدواء.",
   },
 };
 
@@ -125,6 +137,17 @@ export function MyListModal({ language, onClose }) {
     () => list.map((slug) => indexData.items.find((i) => i.slug === slug)).filter(Boolean),
     [list]
   );
+
+  const interactionNotes = useMemo(() => {
+    return selectedItems.map((item) => {
+      const medicine = getMedicine(item.slug);
+      const data = medicine?.translations?.[language] || medicine?.translations?.so;
+      const bullets = (medicine?.sections || [])
+        .filter((section) => section.variant === "interact" || section.variant === "warn")
+        .flatMap((section) => data?.[section.listKey] || []);
+      return { slug: item.slug, name: item.name, bullets };
+    });
+  }, [selectedItems, language]);
 
   function toggle(slug) {
     if (list.includes(slug)) removeFromMyList(slug);
@@ -283,6 +306,39 @@ export function MyListModal({ language, onClose }) {
             );
           })}
         </ul>
+      )}
+
+      {selectedItems.length >= 2 && (
+        <div style={{ marginBottom: "22px" }}>
+          <p style={{ fontWeight: 700, fontSize: "13px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
+            {t.interactionsTitle}
+          </p>
+          <p style={{ fontSize: "13.5px", color: "#475569", lineHeight: 1.6, margin: "0 0 14px", textAlign: isRtl ? "right" : "left" }}>
+            {t.interactionsIntro}
+          </p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {interactionNotes.map(({ slug, name, bullets }) => (
+              <div
+                key={slug}
+                style={{
+                  borderRadius: "14px", border: "1.5px solid #ddd6fe", background: "#f5f3ff",
+                  padding: "12px 14px", textAlign: isRtl ? "right" : "left",
+                }}
+              >
+                <p style={{ fontWeight: 700, fontSize: "14px", color: "#5b21b6", margin: "0 0 6px" }}>{name}</p>
+                {bullets.length === 0 ? (
+                  <p style={{ fontSize: "13px", color: "#7c6fa8", margin: 0 }}>{t.interactionsEmpty}</p>
+                ) : (
+                  <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 18px", paddingRight: isRtl ? "18px" : 0, display: "flex", flexDirection: "column", gap: "4px" }}>
+                    {bullets.map((bullet, i) => (
+                      <li key={i} style={{ fontSize: "13px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
       )}
 
       <button
