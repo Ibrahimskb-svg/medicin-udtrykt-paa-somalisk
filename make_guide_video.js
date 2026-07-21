@@ -55,6 +55,20 @@ const TRIM = 6; // buffersekunder klippet fra start af rå optagelse
 
 function sleep(ms) { return new Promise(r => setTimeout(r, Math.max(0, ms))); }
 
+// Selv-korrigerende timing: reelle handlinger (klik, sideindlæsning, netværk)
+// tager variabel realtid, som IKKE er budgetteret i lydsporets nominelle
+// segment-varigheder. Uden korrektion ophobes den forskel gennem hele
+// videoen, så skærmhandlinger gradvist kommer bagud i forhold til lyden.
+// sleepToTarget sover kun til det ABSOLUTTE tidspunkt et segment skal
+// slutte (fra tidsplanen), uanset hvor meget tid der reelt er brugt på
+// handlinger forinden — så driften nulstilles ved hver eneste segmentgrænse.
+let timelineStart = 0;
+function sleepToTarget(seg, label) {
+  const targetMs = seg[label].end * 1000;
+  const elapsed = Date.now() - timelineStart;
+  return sleep(targetMs - elapsed);
+}
+
 function loadManifest() {
   if (!fs.existsSync(MANIFEST)) {
     console.error(`❌ Mangler tidsplan: ${MANIFEST} — kør gen_${LANG}_audio.py først`);
@@ -166,101 +180,99 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   await page.waitForFunction((t) => document.body.innerText.includes(t), NAV_LABELS.aboutMe, { timeout: 15000 }).catch(() => {});
   const prepElapsed = Date.now() - recordStart;
   await sleep(TRIM * 1000 - prepElapsed);
+  timelineStart = Date.now(); // t=0 på lydsporets tidslinje
 
   // ── hero ──────────────────────────────────────────────────────────────
   console.log('  [hero] Homepage hero');
-  await sleep(dur('hero') * 1000);
-  await sleep(dur('hero_pause') * 1000);
+  await sleepToTarget(seg, 'hero');
+  await sleepToTarget(seg, 'hero_pause');
 
   // ── navbar modaler ───────────────────────────────────────────────────
   console.log('  [nav_me] About me modal');
   await showNavModal(page, NAV_LABELS.aboutMe, dur('nav_me') * 1000, 500);
-  await sleep(dur('nav_me_pause') * 1000);
+  await sleepToTarget(seg, 'nav_me_pause');
 
   console.log('  [nav_site] About Somalimed modal');
   await showNavModal(page, NAV_LABELS.aboutSite, dur('nav_site') * 1000, 500);
-  await sleep(dur('nav_site_pause') * 1000);
+  await sleepToTarget(seg, 'nav_site_pause');
 
   console.log('  [nav_faq] FAQ modal');
   await showNavModal(page, NAV_LABELS.faq, dur('nav_faq') * 1000, 500);
-  await sleep(dur('nav_faq_pause') * 1000);
+  await sleepToTarget(seg, 'nav_faq_pause');
 
   console.log('  [nav_contact] Contact modal');
   await showNavModal(page, NAV_LABELS.contact, dur('nav_contact') * 1000, 500);
-  await sleep(dur('nav_contact_pause') * 1000);
+  await sleepToTarget(seg, 'nav_contact_pause');
 
   console.log('  [nav_mylist] My list nav mention (no click yet — demoed later)');
-  await sleep(dur('nav_mylist') * 1000);
-  await sleep(dur('nav_mylist_pause') * 1000);
+  await sleepToTarget(seg, 'nav_mylist');
+  await sleepToTarget(seg, 'nav_mylist_pause');
 
   // ── sprogvælger ──────────────────────────────────────────────────────
   console.log('  [langsel] Language selector');
   await smoothScroll(page, 0, 40, Math.round(dur('langsel') * 500));
   await smoothScroll(page, 40, 0, Math.round(dur('langsel') * 500));
-  await sleep(dur('langsel_pause') * 1000);
+  await sleepToTarget(seg, 'langsel_pause');
 
   // ── søgefelt ─────────────────────────────────────────────────────────
   console.log('  [search_intro] Scroll to search bar');
   await smoothScroll(page, 0, 1054, dur('search_intro') * 1000);
-  await sleep(dur('search_scroll') * 1000);
+  await sleepToTarget(seg, 'search_scroll');
 
   console.log('  [search_type] Type ibuprofen');
-  await sleep(dur('search_type_text') * 1000);
+  await sleepToTarget(seg, 'search_type_text');
   await page.click('#medSearch');
-  await sleep(150);
   await page.keyboard.type('ibuprofen', { delay: 180 });
-  await sleep(Math.max(0, dur('search_type_action') * 1000 - 150 - 180 * 9));
+  await sleepToTarget(seg, 'search_type_action');
 
   // ── kategorier ───────────────────────────────────────────────────────
   console.log('  [categories] Results + category buttons');
-  await sleep(dur('categories') * 1000);
-  await sleep(dur('categories_pause') * 1000);
+  await sleepToTarget(seg, 'categories');
+  await sleepToTarget(seg, 'categories_pause');
 
   // ── klik medicin ─────────────────────────────────────────────────────
   console.log('  [click_med] Click ibuprofen');
-  await sleep(Math.round(dur('click_med') * 1000 * 0.4));
   await page.click('a[href*="ibuprofen"]');
   await page.waitForLoadState('networkidle');
   await removeDev(page);
-  await sleep(Math.round(dur('click_med') * 1000 * 0.3));
-  await sleep(dur('click_med_load') * 1000);
+  await sleepToTarget(seg, 'click_med');
+  await sleepToTarget(seg, 'click_med_load');
 
   // ── 4-knap-række ─────────────────────────────────────────────────────
   console.log('  [btn_whatsapp] WhatsApp button (hover only)');
   const waBtn = page.locator(`a:has-text("${SHARE_LABELS.whatsapp}")`).first();
   await waBtn.scrollIntoViewIfNeeded().catch(() => {});
   await waBtn.hover().catch(() => {});
-  await sleep(dur('btn_whatsapp') * 1000);
-  await sleep(dur('btn_whatsapp_pause') * 1000);
+  await sleepToTarget(seg, 'btn_whatsapp');
+  await sleepToTarget(seg, 'btn_whatsapp_pause');
 
   console.log('  [btn_print] Print button (safe click, window.print stubbed)');
   await page.click(`button:has-text("${SHARE_LABELS.print}")`).catch(() => {});
-  await sleep(dur('btn_print') * 1000);
-  await sleep(dur('btn_print_pause') * 1000);
+  await sleepToTarget(seg, 'btn_print');
+  await sleepToTarget(seg, 'btn_print_pause');
 
   console.log('  [btn_qr] QR code modal');
   await page.click(`button:has-text("${SHARE_LABELS.qr}")`).catch(() => {});
-  await sleep(dur('btn_qr') * 1000);
+  await sleepToTarget(seg, 'btn_qr');
   // Demo: klik "kopiér billede" midt i stilheden, luk derefter modal
   const qrDemoMs = dur('btn_qr_demo') * 1000;
   await sleep(Math.round(qrDemoMs * 0.5));
   await page.click(`button:has-text("${QR_LABELS.copy}")`).catch(() => {});
-  await sleep(Math.round(qrDemoMs * 0.3));
   await page.keyboard.press('Escape');
-  await sleep(Math.round(qrDemoMs * 0.2));
+  await sleepToTarget(seg, 'btn_qr_demo');
 
   console.log('  [btn_addlist] Add to list button');
   await page.click(`button:has-text("${SHARE_LABELS.addToList}")`).catch(() => {});
-  await sleep(dur('btn_addlist') * 1000);
-  await sleep(dur('btn_addlist_action') * 1000);
+  await sleepToTarget(seg, 'btn_addlist');
+  await sleepToTarget(seg, 'btn_addlist_action');
 
   // ── lydoplæsning (kun ar/so) ─────────────────────────────────────────
   if (seg.audio_readout) {
     console.log('  [audio_readout] Audio playback button');
     const audioBtnText = LANG === 'so' ? 'Dhageyso codkan' : 'استمع إلى التسجيل';
     await page.click(`button:has-text("${audioBtnText}")`).catch(() => {});
-    await sleep(dur('audio_readout') * 1000);
-    await sleep(dur('audio_readout_action') * 1000);
+    await sleepToTarget(seg, 'audio_readout');
+    await sleepToTarget(seg, 'audio_readout_action');
   }
 
   // ── overblik + sektioner + kilder ───────────────────────────────────
@@ -268,58 +280,68 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   const pageH1 = await page.evaluate(() => document.body.scrollHeight);
   const curY1 = await page.evaluate(() => window.scrollY);
   await smoothScroll(page, curY1, Math.round(pageH1 * 0.35), dur('overview') * 1000);
-  await sleep(dur('overview_scroll') * 1000);
+  await sleepToTarget(seg, 'overview_scroll');
 
   console.log('  [sections] Dosage/side effects/warnings sections');
   await smoothScroll(page, Math.round(pageH1 * 0.35), Math.round(pageH1 * 0.65), dur('sections') * 1000);
-  await sleep(dur('sections_scroll') * 1000);
+  await sleepToTarget(seg, 'sections_scroll');
 
   console.log('  [sources] Sources + emergency numbers + revision date');
   await smoothScroll(page, Math.round(pageH1 * 0.65), pageH1 - H, dur('sources') * 1000);
-  await sleep(dur('sources_scroll') * 1000);
+  await sleepToTarget(seg, 'sources_scroll');
 
   // ── Min medicinliste-modal ──────────────────────────────────────────
   console.log('  [mylist_modal] Open My list modal, search + check items');
   await page.click(`button:has-text("${NAV_LABELS.mylist}")`).catch(() => {});
-  await sleep(600);
-  const mylistMs = dur('mylist_modal') * 1000;
   const searchInput = page.locator(`input[placeholder="${MYLIST_LABELS.search}"]`).first();
   await searchInput.click().catch(() => {});
   await page.keyboard.type('ibu', { delay: 150 }).catch(() => {});
-  await sleep(Math.round(mylistMs * 0.35));
-  await page.keyboard.press('Control+A').catch(() => {});
-  await page.keyboard.press('Backspace').catch(() => {});
-  // Sæt flueben ved de første par synlige checkbokse i listen
-  const checkboxes = page.locator('input[type="checkbox"]');
+  // NB: Ctrl+A markerer ikke alt i et tekstfelt på Mac (flytter i stedet
+  // markøren til linjestart) — brug .fill('') for pålideligt at rydde feltet.
+  await searchInput.fill('').catch(() => {});
+  await sleep(400); // lad React nå at gen-rendere den fulde, ufiltrerede liste
+  // Checklisten bruger knapper med aria-pressed, IKKE native <input type="checkbox">
+  // — det gamle checkbox-selectorsvar matchede intet, så listen fik reelt
+  // aldrig sat flueben på noget her.
+  const checkboxes = page.locator('button[aria-pressed="false"]');
   const cbCount = await checkboxes.count().catch(() => 0);
   for (let i = 0; i < Math.min(2, cbCount); i++) {
     await checkboxes.nth(i).click({ force: true }).catch(() => {});
-    await sleep(400);
   }
-  await sleep(Math.max(0, mylistMs - 600 - 150 * 3 - 800));
-  const demoMs = dur('mylist_modal_demo') * 1000;
-  await sleep(demoMs);
+  await sleepToTarget(seg, 'mylist_modal');
+  await sleepToTarget(seg, 'mylist_modal_demo');
+
+  if (seg.mylist_interact) {
+    console.log('  [mylist_interact] Scroll to interactions/warnings section');
+    await page.evaluate(() => {
+      const scrollable = [...document.querySelectorAll('div')].find(
+        (d) => d.scrollHeight > d.clientHeight + 50 && d.getBoundingClientRect().height > 200
+      );
+      if (scrollable) scrollable.scrollTop = scrollable.scrollHeight * 0.55;
+    }).catch(() => {});
+    await sleepToTarget(seg, 'mylist_interact');
+    await sleepToTarget(seg, 'mylist_interact_scroll');
+  }
 
   console.log('  [mylist_print] Print list button (safe, window.open stubbed elsewhere)');
   await page.click(`button:has-text("${MYLIST_LABELS.print}")`).catch(() => {});
-  await sleep(dur('mylist_print') * 1000);
-  await sleep(dur('mylist_print_action') * 1000);
+  await sleepToTarget(seg, 'mylist_print');
+  await sleepToTarget(seg, 'mylist_print_action');
   await page.keyboard.press('Escape');
 
   // ── tilbage til forsiden ─────────────────────────────────────────────
   console.log('  [back_home] Navigate back to homepage');
-  await sleep(dur('back_home') * 1000);
   await page.goto(`http://localhost:3000/?lang=${LANG}`, { waitUntil: 'networkidle' });
   await removeDev(page);
-  await sleep(300);
-  await sleep(Math.max(0, dur('back_home_nav') * 1000 - 300));
+  await sleepToTarget(seg, 'back_home');
+  await sleepToTarget(seg, 'back_home_nav');
 
   // ── afslutning ───────────────────────────────────────────────────────
   console.log('  [closing] Scroll homepage to bottom, closing remarks');
   const homeH = await page.evaluate(() => document.body.scrollHeight);
-  const closingMs = (dur('closing1') + dur('closing1_pause') + dur('closing2')) * 1000;
-  await smoothScroll(page, 0, homeH - H, Math.round(closingMs * 0.85));
-  await sleep(Math.round(closingMs * 0.15));
+  const closingRemainingMs = Math.max(2000, seg.closing2.end * 1000 - (Date.now() - timelineStart));
+  await smoothScroll(page, 0, homeH - H, Math.round(closingRemainingMs * 0.85));
+  await sleep(Math.round(closingRemainingMs * 0.15));
 
   console.log('  Afslutter optagelse...');
   await context.close();
