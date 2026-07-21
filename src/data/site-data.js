@@ -367,24 +367,24 @@ export const siteData = {
       },
       "dosagePictogram": {
         "da": [
-          { "icon": "💊", "text": "1 gang dagligt" },
-          { "icon": "☀", "text": "Morgen eller aften" },
-          { "icon": "🔁", "text": "Samme tidspunkt hver dag" }
+          { "type": "amount", "text": "1 gang dagligt" },
+          { "type": "evening", "text": "Morgen eller aften" },
+          { "type": "repeat", "text": "Samme tidspunkt hver dag" }
         ],
         "en": [
-          { "icon": "💊", "text": "Once daily" },
-          { "icon": "☀", "text": "Morning or evening" },
-          { "icon": "🔁", "text": "Same time each day" }
+          { "type": "amount", "text": "Once daily" },
+          { "type": "evening", "text": "Morning or evening" },
+          { "type": "repeat", "text": "Same time each day" }
         ],
         "so": [
-          { "icon": "💊", "text": "Hal jeer maalintii" },
-          { "icon": "☀", "text": "Subax ama fiid" },
-          { "icon": "🔁", "text": "Isla wakhtiga maalin kasta" }
+          { "type": "amount", "text": "Hal jeer maalintii" },
+          { "type": "evening", "text": "Subax ama fiid" },
+          { "type": "repeat", "text": "Isla wakhtiga maalin kasta" }
         ],
         "ar": [
-          { "icon": "💊", "text": "مرة واحدة يوميًا" },
-          { "icon": "☀", "text": "صباحًا أو مساءً" },
-          { "icon": "🔁", "text": "في نفس الوقت كل يوم" }
+          { "type": "amount", "text": "مرة واحدة يوميًا" },
+          { "type": "evening", "text": "صباحًا أو مساءً" },
+          { "type": "repeat", "text": "في نفس الوقت كل يوم" }
         ]
       },
       "sections": [
@@ -768,6 +768,32 @@ export const siteData = {
         "so": "audio/Atorvastatin.mp3",
         "ar": "audio/Atorvastatin-arabisk.mp3.mpeg"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "1 gang dagligt" },
+          { "type": "evening", "text": "Morgen eller aften" },
+          { "type": "food", "text": "Med eller uden mad" },
+          { "type": "repeat", "text": "Samme tidspunkt hver dag" }
+        ],
+        "en": [
+          { "type": "amount", "text": "Once daily" },
+          { "type": "evening", "text": "Morning or evening" },
+          { "type": "food", "text": "With or without food" },
+          { "type": "repeat", "text": "Same time each day" }
+        ],
+        "so": [
+          { "type": "amount", "text": "Hal jeer maalintii" },
+          { "type": "evening", "text": "Subax ama fiid" },
+          { "type": "food", "text": "Cunto la yeelato ama la'aan" },
+          { "type": "repeat", "text": "Isla wakhtiga maalin kasta" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "مرة واحدة يوميًا" },
+          { "type": "evening", "text": "صباحًا أو مساءً" },
+          { "type": "food", "text": "مع الطعام أو بدونه" },
+          { "type": "repeat", "text": "في نفس الوقت كل يوم" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -1145,6 +1171,28 @@ export const siteData = {
         "so": "audio/Diclofenac.mp3",
         "ar": "audio/Diclofenac-arabisk.mp3.mpeg"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "frequency", "text": "Som aftalt med lægen" },
+          { "type": "warn", "text": "Ikke mere end aftalt" },
+          { "type": "warn", "text": "Lavest mulige dosis, kortest mulig tid" }
+        ],
+        "en": [
+          { "type": "frequency", "text": "As agreed with your doctor" },
+          { "type": "warn", "text": "Not more than agreed" },
+          { "type": "warn", "text": "Lowest dose, shortest time" }
+        ],
+        "so": [
+          { "type": "frequency", "text": "Sida dhakhtarka kula heshiiyeen" },
+          { "type": "warn", "text": "Ha dhaafin waxa la isku raacay" },
+          { "type": "warn", "text": "Qadarka ugu yar, mudada ugu gaaban" }
+        ],
+        "ar": [
+          { "type": "frequency", "text": "حسب اتفاقكم مع الطبيب" },
+          { "type": "warn", "text": "لا تتجاوز المتفق عليه" },
+          { "type": "warn", "text": "أقل جرعة لأقصر مدة ممكنة" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -1521,6 +1569,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Eliquis.mp3",
         "ar": "audio/Eliquis-arabisk.mp3.mpeg"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "frequency", "text": "Ofte 2 gange dagligt" },
+          { "type": "repeat", "text": "Tag den regelmæssigt" },
+          { "type": "warn", "text": "Undgå dobbeltdosis" }
+        ],
+        "en": [
+          { "type": "frequency", "text": "Often twice daily" },
+          { "type": "repeat", "text": "Take it regularly" },
+          { "type": "warn", "text": "Avoid a double dose" }
+        ],
+        "so": [
+          { "type": "frequency", "text": "Badanaa laba jeer maalintii" },
+          { "type": "repeat", "text": "Si joogto ah u qaado" },
+          { "type": "warn", "text": "Ka fogow qadar labanlaab ah" }
+        ],
+        "ar": [
+          { "type": "frequency", "text": "غالبًا مرتين يوميًا" },
+          { "type": "repeat", "text": "تناوله بانتظام" },
+          { "type": "warn", "text": "تجنب الجرعة المضاعفة" }
+        ]
       },
       "sections": [
         {
@@ -1915,6 +1985,28 @@ export const siteData = {
         "so": "audio/Enalapril.mp3",
         "ar": "audio/Enalapril-arabisk.mp3.mpeg"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "frequency", "text": "1–2 gange dagligt" },
+          { "type": "trending", "text": "Dosis øges gradvist" },
+          { "type": "warn", "text": "Rejs dig roligt op" }
+        ],
+        "en": [
+          { "type": "frequency", "text": "1–2 times daily" },
+          { "type": "trending", "text": "Dose increased gradually" },
+          { "type": "warn", "text": "Stand up slowly" }
+        ],
+        "so": [
+          { "type": "frequency", "text": "1-2 jeer maalintii" },
+          { "type": "trending", "text": "Qadarka si tartiib ah ayaa loo kordhiyaa" },
+          { "type": "warn", "text": "Si tartiib ah u kac" }
+        ],
+        "ar": [
+          { "type": "frequency", "text": "1–2 مرة يوميًا" },
+          { "type": "trending", "text": "تُزاد الجرعة تدريجيًا" },
+          { "type": "warn", "text": "انهض ببطء" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -2304,6 +2396,28 @@ export const siteData = {
         "so": "audio/Hjertemagnyl.mp3",
         "ar": "audio/Hjertemagnyl-arabisk.mp3.mpeg"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "1 gang dagligt" },
+          { "type": "repeat", "text": "Samme tidspunkt hver dag" },
+          { "type": "warn", "text": "Ikke dobbeltdosis" }
+        ],
+        "en": [
+          { "type": "amount", "text": "Once daily" },
+          { "type": "repeat", "text": "Same time each day" },
+          { "type": "warn", "text": "Don't double the dose" }
+        ],
+        "so": [
+          { "type": "amount", "text": "Hal jeer maalintii" },
+          { "type": "repeat", "text": "Isla wakhtiga maalin kasta" },
+          { "type": "warn", "text": "Ha labanlaabin qadarka" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "مرة واحدة يوميًا" },
+          { "type": "repeat", "text": "في نفس الوقت كل يوم" },
+          { "type": "warn", "text": "لا تضاعف الجرعة" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -2687,28 +2801,28 @@ export const siteData = {
       },
       "dosagePictogram": {
         "da": [
-          { "icon": "💊", "text": "200–400 mg" },
-          { "icon": "⏰", "text": "Hver 4.–6. time, efter behov" },
-          { "icon": "🍽", "text": "Med mad" },
-          { "icon": "⚠", "text": "Ikke over anbefalet døgndosis" }
+          { "type": "amount", "text": "200–400 mg" },
+          { "type": "frequency", "text": "Hver 4.–6. time, efter behov" },
+          { "type": "food", "text": "Med mad" },
+          { "type": "warn", "text": "Ikke over anbefalet døgndosis" }
         ],
         "en": [
-          { "icon": "💊", "text": "200–400 mg" },
-          { "icon": "⏰", "text": "Every 4–6 hours, as needed" },
-          { "icon": "🍽", "text": "With food" },
-          { "icon": "⚠", "text": "Don't exceed the daily limit" }
+          { "type": "amount", "text": "200–400 mg" },
+          { "type": "frequency", "text": "Every 4–6 hours, as needed" },
+          { "type": "food", "text": "With food" },
+          { "type": "warn", "text": "Don't exceed the daily limit" }
         ],
         "so": [
-          { "icon": "💊", "text": "200–400 mg" },
-          { "icon": "⏰", "text": "4-6 saacadood mar, marka loo baahdo" },
-          { "icon": "🍽", "text": "La cunto cunto" },
-          { "icon": "⚠", "text": "Ha dhaafin qadarka maalinlaha ah" }
+          { "type": "amount", "text": "200–400 mg" },
+          { "type": "frequency", "text": "4-6 saacadood mar, marka loo baahdo" },
+          { "type": "food", "text": "La cunto cunto" },
+          { "type": "warn", "text": "Ha dhaafin qadarka maalinlaha ah" }
         ],
         "ar": [
-          { "icon": "💊", "text": "200–400 ملغ" },
-          { "icon": "⏰", "text": "كل 4–6 ساعات، عند الحاجة" },
-          { "icon": "🍽", "text": "مع الطعام" },
-          { "icon": "⚠", "text": "لا تتجاوز الجرعة اليومية الموصى بها" }
+          { "type": "amount", "text": "200–400 ملغ" },
+          { "type": "frequency", "text": "كل 4–6 ساعات، عند الحاجة" },
+          { "type": "food", "text": "مع الطعام" },
+          { "type": "warn", "text": "لا تتجاوز الجرعة اليومية الموصى بها" }
         ]
       },
       "sections": [
@@ -3091,6 +3205,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Insulin.mp3",
         "ar": "audio/Insulin-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "injection", "text": "Individuel dosis" },
+          { "type": "food", "text": "Ofte tæt knyttet til måltider" },
+          { "type": "repeat", "text": "Skift stiksted" }
+        ],
+        "en": [
+          { "type": "injection", "text": "Individual dose" },
+          { "type": "food", "text": "Often closely tied to meals" },
+          { "type": "repeat", "text": "Rotate injection site" }
+        ],
+        "so": [
+          { "type": "injection", "text": "Qadar shakhsi ah" },
+          { "type": "food", "text": "Badanaa waxay xiriirtaa cunnada" },
+          { "type": "repeat", "text": "Bedel meesha lagu duro" }
+        ],
+        "ar": [
+          { "type": "injection", "text": "جرعة فردية" },
+          { "type": "food", "text": "غالبًا مرتبطة بالوجبات" },
+          { "type": "repeat", "text": "غيّر موضع الحقن" }
+        ]
       },
       "sections": [
         {
@@ -3497,6 +3633,24 @@ export const siteData = {
         "so": "audio/Lamotrigin.mp3",
         "ar": "audio/Lamotrigin-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "trending", "text": "Optrappes langsomt over uger" },
+          { "type": "warn", "text": "Stop ikke pludseligt" }
+        ],
+        "en": [
+          { "type": "trending", "text": "Increased slowly over weeks" },
+          { "type": "warn", "text": "Don't stop suddenly" }
+        ],
+        "so": [
+          { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa muddo toddobaadyo ah" },
+          { "type": "warn", "text": "Ha si kediso u joojin" }
+        ],
+        "ar": [
+          { "type": "trending", "text": "تُزاد ببطء على مدى أسابيع" },
+          { "type": "warn", "text": "لا تتوقف فجأة" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -3882,6 +4036,28 @@ export const siteData = {
         "so": "audio/Losartan.mp3",
         "ar": "audio/Losartan-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "1 gang dagligt" },
+          { "type": "food", "text": "Med eller uden mad" },
+          { "type": "warn", "text": "Rejs dig roligt op" }
+        ],
+        "en": [
+          { "type": "amount", "text": "Once daily" },
+          { "type": "food", "text": "With or without food" },
+          { "type": "warn", "text": "Stand up slowly" }
+        ],
+        "so": [
+          { "type": "amount", "text": "Hal jeer maalintii" },
+          { "type": "food", "text": "Cunto la yeelato ama la'aan" },
+          { "type": "warn", "text": "Si tartiib ah u kac" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "مرة واحدة يوميًا" },
+          { "type": "food", "text": "مع الطعام أو بدونه" },
+          { "type": "warn", "text": "انهض ببطء" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -4258,6 +4434,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Marevan.mp3",
         "ar": "audio/Marevan-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "evening", "text": "Ofte om aftenen" },
+          { "type": "frequency", "text": "Individuel dosis" },
+          { "type": "warn", "text": "INR-blodprøver er vigtige" }
+        ],
+        "en": [
+          { "type": "evening", "text": "Often in the evening" },
+          { "type": "frequency", "text": "Individual dose" },
+          { "type": "warn", "text": "INR blood tests are important" }
+        ],
+        "so": [
+          { "type": "evening", "text": "Badanaa fiidkii" },
+          { "type": "frequency", "text": "Qadar shakhsi ah" },
+          { "type": "warn", "text": "Baaritaannada dhiigga ee INR waa muhiim" }
+        ],
+        "ar": [
+          { "type": "evening", "text": "غالبًا مساءً" },
+          { "type": "frequency", "text": "جرعة فردية" },
+          { "type": "warn", "text": "فحوصات INR للدم مهمة" }
+        ]
       },
       "sections": [
         {
@@ -4660,6 +4858,24 @@ export const siteData = {
         "so": "audio/Melatonin.mp3",
         "ar": "audio/Melatonin-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "evening", "text": "30–60 min før sengetid" },
+          { "type": "repeat", "text": "Samme tidspunkt hver aften" }
+        ],
+        "en": [
+          { "type": "evening", "text": "30–60 min before bedtime" },
+          { "type": "repeat", "text": "Same time each evening" }
+        ],
+        "so": [
+          { "type": "evening", "text": "30-60 daqiiqo ka hor seexashada" },
+          { "type": "repeat", "text": "Isla wakhtiga habeen kasta" }
+        ],
+        "ar": [
+          { "type": "evening", "text": "30–60 دقيقة قبل النوم" },
+          { "type": "repeat", "text": "في نفس الوقت كل مساء" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -5036,6 +5252,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Metformin.mp3",
         "ar": "audio/Metformin-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "trending", "text": "Øges gradvist" },
+          { "type": "frequency", "text": "1–2 gange dagligt" },
+          { "type": "food", "text": "Sammen med mad" }
+        ],
+        "en": [
+          { "type": "trending", "text": "Increased gradually" },
+          { "type": "frequency", "text": "1–2 times daily" },
+          { "type": "food", "text": "Together with food" }
+        ],
+        "so": [
+          { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa" },
+          { "type": "frequency", "text": "1-2 jeer maalintii" },
+          { "type": "food", "text": "Cunto la yeelato" }
+        ],
+        "ar": [
+          { "type": "trending", "text": "تُزاد تدريجيًا" },
+          { "type": "frequency", "text": "1–2 مرة يوميًا" },
+          { "type": "food", "text": "مع الطعام" }
+        ]
       },
       "sections": [
         {
@@ -5438,6 +5676,28 @@ export const siteData = {
         "so": "audio/Metoprolol.mp3",
         "ar": "audio/Metoprolol-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "frequency", "text": "1–2 gange dagligt" },
+          { "type": "repeat", "text": "Samme tidspunkt hver dag" },
+          { "type": "warn", "text": "Stop ikke pludseligt" }
+        ],
+        "en": [
+          { "type": "frequency", "text": "1–2 times daily" },
+          { "type": "repeat", "text": "Same time each day" },
+          { "type": "warn", "text": "Don't stop suddenly" }
+        ],
+        "so": [
+          { "type": "frequency", "text": "1-2 jeer maalintii" },
+          { "type": "repeat", "text": "Isla wakhtiga maalin kasta" },
+          { "type": "warn", "text": "Ha si kediso u joojin" }
+        ],
+        "ar": [
+          { "type": "frequency", "text": "1–2 مرة يوميًا" },
+          { "type": "repeat", "text": "في نفس الوقت كل يوم" },
+          { "type": "warn", "text": "لا تتوقف فجأة" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -5835,6 +6095,28 @@ export const siteData = {
         "so": "audio/Morfin.mp3",
         "ar": "audio/Morfin_injektion-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "injection", "text": "Gives af sundhedspersonale" },
+          { "type": "frequency", "text": "Individuel dosis" },
+          { "type": "warn", "text": "Følg planen nøje" }
+        ],
+        "en": [
+          { "type": "injection", "text": "Given by healthcare staff" },
+          { "type": "frequency", "text": "Individual dose" },
+          { "type": "warn", "text": "Follow the plan closely" }
+        ],
+        "so": [
+          { "type": "injection", "text": "Waxaa bixiya shaqaale caafimaad" },
+          { "type": "frequency", "text": "Qadar shakhsi ah" },
+          { "type": "warn", "text": "Si taxaddar leh u raac qorshaha" }
+        ],
+        "ar": [
+          { "type": "injection", "text": "يُعطى بواسطة طاقم طبي" },
+          { "type": "frequency", "text": "جرعة فردية" },
+          { "type": "warn", "text": "اتبع الخطة بدقة" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -6203,6 +6485,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Morfin2.mp3",
         "ar": "audio/Morfin_tablet-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "Individuel dosis" },
+          { "type": "warn", "text": "Følg behandlingsplanen nøje" },
+          { "type": "warn", "text": "Depottabletter må ikke knuses" }
+        ],
+        "en": [
+          { "type": "amount", "text": "Individual dose" },
+          { "type": "warn", "text": "Follow the treatment plan closely" },
+          { "type": "warn", "text": "Don't crush slow-release tablets" }
+        ],
+        "so": [
+          { "type": "amount", "text": "Qadar shakhsi ah" },
+          { "type": "frequency", "text": "Si taxaddar leh u raac qorshaha daawaynta" },
+          { "type": "warn", "text": "Ha burburin kiniinada daahfurka" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "جرعة فردية" },
+          { "type": "warn", "text": "اتبع خطة العلاج بدقة" },
+          { "type": "warn", "text": "لا تسحق أقراص الإطلاق البطيء" }
+        ]
       },
       "sections": [
         {
@@ -6573,6 +6877,28 @@ export const siteData = {
         "so": "audio/Naproxen.mp3",
         "ar": "audio/Naproxen-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "250–500 mg" },
+          { "type": "frequency", "text": "1–2 gange dagligt" },
+          { "type": "warn", "text": "Ikke dobbeltdosis" }
+        ],
+        "en": [
+          { "type": "amount", "text": "250–500 mg" },
+          { "type": "frequency", "text": "1–2 times daily" },
+          { "type": "warn", "text": "Don't double the dose" }
+        ],
+        "so": [
+          { "type": "amount", "text": "250–500 mg" },
+          { "type": "frequency", "text": "1-2 jeer maalintii" },
+          { "type": "warn", "text": "Ha labanlaabin qadarka" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "250–500 ملغ" },
+          { "type": "frequency", "text": "1–2 مرة يوميًا" },
+          { "type": "warn", "text": "لا تضاعف الجرعة" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -6942,6 +7268,28 @@ export const siteData = {
         "so": "audio/Pantoprazol.mp3",
         "ar": "audio/Pantoprazol-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "frequency", "text": "Ofte 1 gang dagligt" },
+          { "type": "morning", "text": "Bedst før et måltid" },
+          { "type": "warn", "text": "Må ikke tygges/deles" }
+        ],
+        "en": [
+          { "type": "frequency", "text": "Often once daily" },
+          { "type": "morning", "text": "Best before a meal" },
+          { "type": "warn", "text": "Don't chew or split" }
+        ],
+        "so": [
+          { "type": "frequency", "text": "Badanaa hal jeer maalintii" },
+          { "type": "morning", "text": "Fiican in cuntada ka hor la qaato" },
+          { "type": "warn", "text": "Ha kalgoyn ama qeybin" }
+        ],
+        "ar": [
+          { "type": "frequency", "text": "غالبًا مرة واحدة يوميًا" },
+          { "type": "morning", "text": "يفضل قبل الوجبة" },
+          { "type": "warn", "text": "لا تمضغ أو تقسم القرص" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -7302,6 +7650,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Paracetamol.mp3",
         "ar": "audio/Paracetamol-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "500–1000 mg" },
+          { "type": "frequency", "text": "Min. 4 timers mellemrum" },
+          { "type": "warn", "text": "Maks. 4000 mg i døgnet" }
+        ],
+        "en": [
+          { "type": "amount", "text": "500–1000 mg" },
+          { "type": "frequency", "text": "At least 4 hours apart" },
+          { "type": "warn", "text": "Max 4000 mg per day" }
+        ],
+        "so": [
+          { "type": "amount", "text": "500–1000 mg" },
+          { "type": "frequency", "text": "Ugu yaraan 4 saacadood dhexdood" },
+          { "type": "warn", "text": "Ugu badnaan 4000 mg maalintii" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "500–1000 ملغ" },
+          { "type": "frequency", "text": "فاصل 4 ساعات على الأقل" },
+          { "type": "warn", "text": "الحد الأقصى 4000 ملغ يوميًا" }
+        ]
       },
       "sections": [
         {
@@ -7672,6 +8042,28 @@ export const siteData = {
         "so": "audio/Quetiapin.mp3",
         "ar": "audio/Quetiapin-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "trending", "text": "Optrappes langsomt" },
+          { "type": "food", "text": "Afhænger af tablettype" },
+          { "type": "warn", "text": "Ret ikke selv dosis" }
+        ],
+        "en": [
+          { "type": "trending", "text": "Increased slowly" },
+          { "type": "food", "text": "Depends on tablet type" },
+          { "type": "warn", "text": "Don't adjust the dose yourself" }
+        ],
+        "so": [
+          { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa" },
+          { "type": "food", "text": "Waxay kuxiran tahay nooca kiniinka" },
+          { "type": "warn", "text": "Ha isbeddelin qadarka adigu keligaa" }
+        ],
+        "ar": [
+          { "type": "trending", "text": "تُزاد ببطء" },
+          { "type": "food", "text": "يعتمد على نوع القرص" },
+          { "type": "warn", "text": "لا تغيّر الجرعة بنفسك" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -8040,6 +8432,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Sertralin.mp3",
         "ar": "audio/Sertralin-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "1 gang dagligt" },
+          { "type": "frequency", "text": "Fuld effekt efter flere uger" },
+          { "type": "warn", "text": "Stop ikke selv" }
+        ],
+        "en": [
+          { "type": "amount", "text": "Once daily" },
+          { "type": "frequency", "text": "Full effect after several weeks" },
+          { "type": "warn", "text": "Don't stop on your own" }
+        ],
+        "so": [
+          { "type": "amount", "text": "Hal jeer maalintii" },
+          { "type": "frequency", "text": "Saameynta buuxda todobaadyo ka dib" },
+          { "type": "warn", "text": "Adigu keligaa ha joojin" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "مرة واحدة يوميًا" },
+          { "type": "frequency", "text": "المفعول الكامل بعد عدة أسابيع" },
+          { "type": "warn", "text": "لا تتوقف من تلقاء نفسك" }
+        ]
       },
       "sections": [
         {
@@ -8413,6 +8827,24 @@ export const siteData = {
       "audio": {
         "so": "audio/Symbicort.mp3",
         "ar": "audio/Symbicort-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "frequency", "text": "1–2 pust, 1–2 gange dagligt" },
+          { "type": "warn", "text": "Følg din recept" }
+        ],
+        "en": [
+          { "type": "frequency", "text": "1–2 puffs, 1–2 times daily" },
+          { "type": "warn", "text": "Follow your prescription" }
+        ],
+        "so": [
+          { "type": "frequency", "text": "1-2 neefsasho, 1-2 jeer maalintii" },
+          { "type": "warn", "text": "Raac qoraalka dawada" }
+        ],
+        "ar": [
+          { "type": "frequency", "text": "1–2 نفخة، 1–2 مرة يوميًا" },
+          { "type": "warn", "text": "اتبع وصفتك الطبية" }
+        ]
       },
       "sections": [
         {
@@ -8795,6 +9227,24 @@ export const siteData = {
         "so": "audio/Ventoline.mp3",
         "ar": "audio/Ventoline-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "type": "frequency", "text": "1–2 pust efter behov" },
+          { "type": "warn", "text": "Kontakt lægen ved hyppigt behov" }
+        ],
+        "en": [
+          { "type": "frequency", "text": "1–2 puffs as needed" },
+          { "type": "warn", "text": "Contact your doctor if needed often" }
+        ],
+        "so": [
+          { "type": "frequency", "text": "1-2 neefsasho marka loo baahdo" },
+          { "type": "warn", "text": "La xiriir dhakhtarka haddii aad inta badan u baahato" }
+        ],
+        "ar": [
+          { "type": "frequency", "text": "1–2 نفخة عند الحاجة" },
+          { "type": "warn", "text": "اتصل بالطبيب إذا احتجته كثيرًا" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -9166,6 +9616,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Xarelto.mp3",
         "ar": "audio/Xarelto-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "amount", "text": "Som ordineret af lægen" },
+          { "type": "repeat", "text": "Samme tidspunkt hver dag" },
+          { "type": "warn", "text": "Ikke dobbeltdosis" }
+        ],
+        "en": [
+          { "type": "amount", "text": "As prescribed by your doctor" },
+          { "type": "repeat", "text": "Same time each day" },
+          { "type": "warn", "text": "Don't double the dose" }
+        ],
+        "so": [
+          { "type": "amount", "text": "Sida dhakhtarku ku qoray" },
+          { "type": "repeat", "text": "Isla wakhtiga maalin kasta" },
+          { "type": "warn", "text": "Ha labanlaabin qadarka" }
+        ],
+        "ar": [
+          { "type": "amount", "text": "حسب وصفة الطبيب" },
+          { "type": "repeat", "text": "في نفس الوقت كل يوم" },
+          { "type": "warn", "text": "لا تضاعف الجرعة" }
+        ]
       },
       "sections": [
         {
@@ -9569,6 +10041,28 @@ export const siteData = {
       "audio": {
         "so": "audio/Imozop.mp3",
         "ar": "audio/Imozop-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "type": "evening", "text": "15–30 min før sengetid" },
+          { "type": "amount", "text": "7,5 mg (3,75 mg for ældre)" },
+          { "type": "warn", "text": "Ikke ekstra dosis samme nat" }
+        ],
+        "en": [
+          { "type": "evening", "text": "15–30 min before bedtime" },
+          { "type": "amount", "text": "7.5 mg (3.75 mg for elderly)" },
+          { "type": "warn", "text": "No extra dose the same night" }
+        ],
+        "so": [
+          { "type": "evening", "text": "15-30 daqiiqo ka hor seexashada" },
+          { "type": "amount", "text": "7.5 mg (3.75 mg dadka waaweyn)" },
+          { "type": "warn", "text": "Ha qaadan qadar dheeraad ah habeenkaas" }
+        ],
+        "ar": [
+          { "type": "evening", "text": "15–30 دقيقة قبل النوم" },
+          { "type": "amount", "text": "7.5 ملغ (3.75 ملغ لكبار السن)" },
+          { "type": "warn", "text": "لا جرعة إضافية في نفس الليلة" }
+        ]
       },
       "sections": [
         {

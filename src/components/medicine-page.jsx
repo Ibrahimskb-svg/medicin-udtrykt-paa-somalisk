@@ -123,22 +123,44 @@ function BackIcon() {
   );
 }
 
+// Samme streg-ikon-stil (Lucide, 18px, stroke-width 2) som sectionIcons i lib/site.js —
+// piktogram-chips genbruger nogle af de eksisterende ikoner samt tre nye (sol, sprøjte, stigende kurve).
+const PICTOGRAM_ICON_STYLE = {
+  amount:    { bg: "#dcfce7", color: "#166534", border: "#16a34a", svg: sectionIcons.use },
+  frequency: { bg: "#dbeafe", color: "#1e40af", border: "#3b82f6", svg: sectionIcons.dose },
+  morning:   { bg: "#fef3c7", color: "#92400e", border: "#f59e0b", svg: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>` },
+  evening:   { bg: "#ede9fe", color: "#5b21b6", border: "#8b5cf6", svg: sectionIcons.ramadan },
+  food:      { bg: "#dcfce7", color: "#166534", border: "#16a34a", svg: sectionIcons.food },
+  repeat:    { bg: "#e0e7ff", color: "#3730a3", border: "#6366f1", svg: sectionIcons.interact },
+  warn:      { bg: "#fee2e2", color: "#991b1b", border: "#ef4444", svg: sectionIcons.warn },
+  injection: { bg: "#ccfbf1", color: "#0f766e", border: "#14b8a6", svg: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg>` },
+  trending:  { bg: "#fce7f3", color: "#9d174d", border: "#ec4899", svg: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>` },
+};
+
 function DosagePictogram({ chips, isRtl }) {
   return (
     <div
       className="mb-4 flex flex-wrap gap-2"
       style={{ direction: isRtl ? "rtl" : "ltr" }}
     >
-      {chips.map((chip, i) => (
-        <span
-          key={i}
-          className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1.5 text-[13.5px] font-semibold"
-          style={{ borderColor: "#cbd5e1", color: "#0f172a" }}
-        >
-          <span aria-hidden="true" style={{ fontSize: "16px" }}>{chip.icon}</span>
-          {chip.text}
-        </span>
-      ))}
+      {chips.map((chip, i) => {
+        const style = PICTOGRAM_ICON_STYLE[chip.type] || PICTOGRAM_ICON_STYLE.frequency;
+        return (
+          <span
+            key={i}
+            className="inline-flex items-center gap-2 rounded-full border bg-white py-1.5 pl-1.5 pr-3.5 text-[13.5px] font-semibold"
+            style={{ borderColor: "#e2e8f0", color: "#0f172a" }}
+          >
+            <span
+              aria-hidden="true"
+              className="inline-flex shrink-0 items-center justify-center rounded-full"
+              style={{ width: 26, height: 26, background: style.bg, border: `1.5px solid ${style.border}`, color: style.color }}
+              dangerouslySetInnerHTML={{ __html: style.svg.replace(/width="18"/, 'width="14"').replace(/height="18"/, 'height="14"') }}
+            />
+            {chip.text}
+          </span>
+        );
+      })}
     </div>
   );
 }
