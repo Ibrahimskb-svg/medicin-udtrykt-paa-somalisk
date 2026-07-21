@@ -20,6 +20,8 @@ const TEXTS = {
     interactionsTitle: "Interaktioner og advarsler for din liste",
     interactionsIntro: "Her er interaktions- og advarselspunkterne for hver medicin på din liste, samlet ét sted — brug det som udgangspunkt for en samtale med apoteket eller lægen.",
     interactionsEmpty: "Ingen interaktions- eller advarselsoplysninger fundet for denne medicin.",
+    interactLabel: "Interaktioner",
+    warnLabel: "Advarsler",
   },
   en: {
     title: "My medicine list",
@@ -34,6 +36,8 @@ const TEXTS = {
     interactionsTitle: "Interactions and warnings for your list",
     interactionsIntro: "Here are the interaction and warning notes for each medicine on your list, gathered in one place — use it as a starting point for a conversation with the pharmacy or doctor.",
     interactionsEmpty: "No interaction or warning information found for this medicine.",
+    interactLabel: "Interactions",
+    warnLabel: "Warnings",
   },
   so: {
     title: "Liiska daawooyinkayga",
@@ -48,6 +52,8 @@ const TEXTS = {
     interactionsTitle: "Isdhexgalka iyo digniinaha liiskaaga",
     interactionsIntro: "Halkan waxaa ku yaal qoraallada isdhexgalka iyo digniinaha ee daawo kasta oo ku jirta liiskaaga, oo la isku soo ururiyay meel — u isticmaal si aad wax uga hadasho farmashiga ama dhakhtarka.",
     interactionsEmpty: "Lama helin macluumaad isdhexgal ama digniin ah oo ku saabsan daawadan.",
+    interactLabel: "Isdhexgalka",
+    warnLabel: "Digniinaha",
   },
   ar: {
     title: "قائمة أدويتي",
@@ -62,6 +68,8 @@ const TEXTS = {
     interactionsTitle: "التفاعلات والتحذيرات لقائمتك",
     interactionsIntro: "فيما يلي ملاحظات التفاعلات والتحذيرات لكل دواء في قائمتك، مجمّعة في مكان واحد — استخدمها كنقطة بداية للحديث مع الصيدلية أو الطبيب.",
     interactionsEmpty: "لم يتم العثور على معلومات تفاعل أو تحذير لهذا الدواء.",
+    interactLabel: "التفاعلات",
+    warnLabel: "التحذيرات",
   },
 };
 
@@ -142,10 +150,18 @@ export function MyListModal({ language, onClose }) {
     return selectedItems.map((item) => {
       const medicine = getMedicine(item.slug);
       const data = medicine?.translations?.[language] || medicine?.translations?.so;
-      const bullets = (medicine?.sections || [])
-        .filter((section) => section.variant === "interact" || section.variant === "warn")
-        .flatMap((section) => data?.[section.listKey] || []);
-      return { slug: item.slug, name: item.name, bullets };
+      const groupFor = (variant) => {
+        const sections = (medicine?.sections || []).filter((s) => s.variant === variant);
+        const bullets = sections.flatMap((s) => data?.[s.listKey] || []);
+        const title = sections.map((s) => data?.[s.titleKey]).find(Boolean);
+        return { title, bullets };
+      };
+      return {
+        slug: item.slug,
+        name: item.name,
+        interact: groupFor("interact"),
+        warn: groupFor("warn"),
+      };
     });
   }, [selectedItems, language]);
 
@@ -317,26 +333,44 @@ export function MyListModal({ language, onClose }) {
             {t.interactionsIntro}
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {interactionNotes.map(({ slug, name, bullets }) => (
-              <div
-                key={slug}
-                style={{
-                  borderRadius: "14px", border: "1.5px solid #ddd6fe", background: "#f5f3ff",
-                  padding: "12px 14px", textAlign: isRtl ? "right" : "left",
-                }}
-              >
-                <p style={{ fontWeight: 700, fontSize: "14px", color: "#5b21b6", margin: "0 0 6px" }}>{name}</p>
-                {bullets.length === 0 ? (
-                  <p style={{ fontSize: "13px", color: "#7c6fa8", margin: 0 }}>{t.interactionsEmpty}</p>
-                ) : (
-                  <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 18px", paddingRight: isRtl ? "18px" : 0, display: "flex", flexDirection: "column", gap: "4px" }}>
-                    {bullets.map((bullet, i) => (
-                      <li key={i} style={{ fontSize: "13px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ))}
+            {interactionNotes.map(({ slug, name, interact, warn }) => {
+              const hasAny = interact.bullets.length > 0 || warn.bullets.length > 0;
+              return (
+                <div
+                  key={slug}
+                  style={{
+                    borderRadius: "14px", border: "1.5px solid #e2e8f0", background: "#fff",
+                    padding: "12px 14px", textAlign: isRtl ? "right" : "left",
+                  }}
+                >
+                  <p style={{ fontWeight: 700, fontSize: "14px", color: "#0f172a", margin: "0 0 8px" }}>{name}</p>
+
+                  {!hasAny && <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0 }}>{t.interactionsEmpty}</p>}
+
+                  {interact.bullets.length > 0 && (
+                    <div style={{ borderRadius: "10px", border: "1.5px solid #ddd6fe", background: "#f5f3ff", padding: "9px 11px", marginBottom: warn.bullets.length > 0 ? "8px" : 0 }}>
+                      <p style={{ fontWeight: 700, fontSize: "12px", color: "#5b21b6", margin: "0 0 5px" }}>⇄ {interact.title || t.interactLabel}</p>
+                      <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 16px", paddingRight: isRtl ? "16px" : 0, display: "flex", flexDirection: "column", gap: "3px" }}>
+                        {interact.bullets.map((bullet, i) => (
+                          <li key={i} style={{ fontSize: "12.5px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {warn.bullets.length > 0 && (
+                    <div style={{ borderRadius: "10px", border: "1.5px solid #fecaca", background: "#fef2f2", padding: "9px 11px" }}>
+                      <p style={{ fontWeight: 700, fontSize: "12px", color: "#991b1b", margin: "0 0 5px" }}>! {warn.title || t.warnLabel}</p>
+                      <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 16px", paddingRight: isRtl ? "16px" : 0, display: "flex", flexDirection: "column", gap: "3px" }}>
+                        {warn.bullets.map((bullet, i) => (
+                          <li key={i} style={{ fontSize: "12.5px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
