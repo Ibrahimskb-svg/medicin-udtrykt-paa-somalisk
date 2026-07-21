@@ -31,7 +31,7 @@ SEGMENTS = [
     ("silence", 0.5, "langsel_pause"),
     ("speech",  "Wax yar ka hooseeya waxaa ku yaal sanduuqa raadinta.", "search_intro"),
     ("silence", 1.0, "search_scroll"),
-    ("speech",  "Waxaad geli kartaa magaca daawadaada, tusaale ahaan Ibuprofen.", "search_type_text"),
+    ("speech",  "Waxaad geli kartaa magaca daawadaada, tusaale ahaan Ibuprofeen.", "search_type_text"),
     ("silence", 2.6, "search_type_action"),
     ("speech",  "Sidoo kale waxaad ka dhex raadin kartaa qaybaha kala duwan, sida daawooyinka dhiig-karka, sonkorowga, antibiyootigyada ama cudurrada wadnaha. Riix qayb kasta si aad u shaandhayso liiska daawooyinka.", "categories"),
     ("silence", 1.2, "categories_pause"),

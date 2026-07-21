@@ -34,7 +34,7 @@ SEGMENTS = [
     ("silence", 0.8, "langsel_pause"),
     ("speech",  "Herunder finder du søgefeltet.", "search_intro"),
     ("silence", 1.5, "search_scroll"),
-    ("speech",  "Skriv navnet på din medicin — for eksempel ibuprofen.", "search_type_text"),
+    ("speech",  "Skriv navnet på din medicin — for eksempel ibu-profen.", "search_type_text"),
     ("silence", 3.2, "search_type_action"),
     ("speech",  "Eller browse efter kategori, som blodtryk, diabetes, antibiotika eller hjertesygdomme — tryk på en kategori for at filtrere listen.", "categories"),
     ("silence", 1.8, "categories_pause"),

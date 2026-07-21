@@ -28,7 +28,7 @@ SEGMENTS = [
     ("silence", 0.8, "langsel_pause"),
     ("speech",  "Below that, you'll find the search bar.", "search_intro"),
     ("silence", 1.5, "search_scroll"),
-    ("speech",  "Type the name of your medicine — for example ibuprofen.", "search_type_text"),
+    ("speech",  "Type the name of your medicine — for example eye-byoo-pro-fen.", "search_type_text"),
     ("silence", 3.2, "search_type_action"),
     ("speech",  "Or browse by category, such as blood pressure, diabetes, antibiotics, or heart disease — tap a category to filter the list.", "categories"),
     ("silence", 1.8, "categories_pause"),
