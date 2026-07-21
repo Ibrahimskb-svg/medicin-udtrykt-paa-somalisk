@@ -123,6 +123,26 @@ function BackIcon() {
   );
 }
 
+function DosagePictogram({ chips, isRtl }) {
+  return (
+    <div
+      className="mb-4 flex flex-wrap gap-2"
+      style={{ direction: isRtl ? "rtl" : "ltr" }}
+    >
+      {chips.map((chip, i) => (
+        <span
+          key={i}
+          className="inline-flex items-center gap-2 rounded-full border bg-white px-3 py-1.5 text-[13.5px] font-semibold"
+          style={{ borderColor: "#cbd5e1", color: "#0f172a" }}
+        >
+          <span aria-hidden="true" style={{ fontSize: "16px" }}>{chip.icon}</span>
+          {chip.text}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 // ── 3. LYDFIL-KNAP ────────────────────────────────────────────────────────────
 
 function AudioButton({ label, tone = "primary", onClick }) {
@@ -604,6 +624,10 @@ export function MedicinePage({ medicine, initialLang }) {
                     {data[section.titleKey]}
                   </h3>
                 </div>
+
+                {section.variant === "dose" && medicine.dosagePictogram?.[language] && (
+                  <DosagePictogram chips={medicine.dosagePictogram[language]} isRtl={isRtl} />
+                )}
 
                 <ul className="space-y-3 pl-1 text-[15px] leading-7" style={{ color: "var(--text)" }}>
                   {list.map((item, index) => (

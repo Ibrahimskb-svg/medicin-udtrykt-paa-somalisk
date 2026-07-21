@@ -365,6 +365,28 @@ export const siteData = {
         "so": "audio/Amlodipin.mp3",
         "ar": "audio/Amlodipin-arabisk.mp3"
       },
+      "dosagePictogram": {
+        "da": [
+          { "icon": "💊", "text": "1 gang dagligt" },
+          { "icon": "☀", "text": "Morgen eller aften" },
+          { "icon": "🔁", "text": "Samme tidspunkt hver dag" }
+        ],
+        "en": [
+          { "icon": "💊", "text": "Once daily" },
+          { "icon": "☀", "text": "Morning or evening" },
+          { "icon": "🔁", "text": "Same time each day" }
+        ],
+        "so": [
+          { "icon": "💊", "text": "Hal jeer maalintii" },
+          { "icon": "☀", "text": "Subax ama fiid" },
+          { "icon": "🔁", "text": "Isla wakhtiga maalin kasta" }
+        ],
+        "ar": [
+          { "icon": "💊", "text": "مرة واحدة يوميًا" },
+          { "icon": "☀", "text": "صباحًا أو مساءً" },
+          { "icon": "🔁", "text": "في نفس الوقت كل يوم" }
+        ]
+      },
       "sections": [
         {
           "variant": "use",
@@ -2662,6 +2684,32 @@ export const siteData = {
       "audio": {
         "so": "audio/Ibuprofen.mp3",
         "ar": "audio/Ibuprofen-arabisk.mp3"
+      },
+      "dosagePictogram": {
+        "da": [
+          { "icon": "💊", "text": "200–400 mg" },
+          { "icon": "⏰", "text": "Hver 4.–6. time, efter behov" },
+          { "icon": "🍽", "text": "Med mad" },
+          { "icon": "⚠", "text": "Ikke over anbefalet døgndosis" }
+        ],
+        "en": [
+          { "icon": "💊", "text": "200–400 mg" },
+          { "icon": "⏰", "text": "Every 4–6 hours, as needed" },
+          { "icon": "🍽", "text": "With food" },
+          { "icon": "⚠", "text": "Don't exceed the daily limit" }
+        ],
+        "so": [
+          { "icon": "💊", "text": "200–400 mg" },
+          { "icon": "⏰", "text": "4-6 saacadood mar, marka loo baahdo" },
+          { "icon": "🍽", "text": "La cunto cunto" },
+          { "icon": "⚠", "text": "Ha dhaafin qadarka maalinlaha ah" }
+        ],
+        "ar": [
+          { "icon": "💊", "text": "200–400 ملغ" },
+          { "icon": "⏰", "text": "كل 4–6 ساعات، عند الحاجة" },
+          { "icon": "🍽", "text": "مع الطعام" },
+          { "icon": "⚠", "text": "لا تتجاوز الجرعة اليومية الموصى بها" }
+        ]
       },
       "sections": [
         {
