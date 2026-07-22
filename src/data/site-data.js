@@ -784,7 +784,7 @@ export const siteData = {
         "so": [
           { "type": "amount", "text": "Hal jeer maalintii" },
           { "type": "evening", "text": "Subax ama fiid" },
-          { "type": "food", "text": "Cunto la yeelato ama la'aan" },
+          { "type": "food", "text": "Waxaa lagu qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya" },
           { "type": "repeat", "text": "Isla wakhtiga maalin kasta" }
         ],
         "ar": [
@@ -1183,9 +1183,9 @@ export const siteData = {
           { "type": "warn", "text": "Lowest dose, shortest time" }
         ],
         "so": [
-          { "type": "frequency", "text": "Sida dhakhtarka kula heshiiyeen" },
+          { "type": "frequency", "text": "Sida uu dhakhtarku kuugu faray" },
           { "type": "warn", "text": "Ha dhaafin waxa la isku raacay" },
-          { "type": "warn", "text": "Qadarka ugu yar, mudada ugu gaaban" }
+          { "type": "warn", "text": "Qiyaasta ugu yar, mudada ugu gaaban" }
         ],
         "ar": [
           { "type": "frequency", "text": "حسب اتفاقكم مع الطبيب" },
@@ -1584,7 +1584,7 @@ export const siteData = {
         "so": [
           { "type": "frequency", "text": "Badanaa laba jeer maalintii" },
           { "type": "repeat", "text": "Si joogto ah u qaado" },
-          { "type": "warn", "text": "Ka fogow qadar labanlaab ah" }
+          { "type": "warn", "text": "Ha qaadan laba qiyaas" }
         ],
         "ar": [
           { "type": "frequency", "text": "غالبًا مرتين يوميًا" },
@@ -1998,7 +1998,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "frequency", "text": "1-2 jeer maalintii" },
-          { "type": "trending", "text": "Qadarka si tartiib ah ayaa loo kordhiyaa" },
+          { "type": "trending", "text": "Qiyaasta si tartiib ah ayaa loo kordhiyaa" },
           { "type": "warn", "text": "Si tartiib ah u kac" }
         ],
         "ar": [
@@ -2410,7 +2410,7 @@ export const siteData = {
         "so": [
           { "type": "amount", "text": "Hal jeer maalintii" },
           { "type": "repeat", "text": "Isla wakhtiga maalin kasta" },
-          { "type": "warn", "text": "Ha labanlaabin qadarka" }
+          { "type": "warn", "text": "Ha qaadan laba qiyaas" }
         ],
         "ar": [
           { "type": "amount", "text": "مرة واحدة يوميًا" },
@@ -2815,8 +2815,8 @@ export const siteData = {
         "so": [
           { "type": "amount", "text": "200–400 mg" },
           { "type": "frequency", "text": "4-6 saacadood mar, marka loo baahdo" },
-          { "type": "food", "text": "La cunto cunto" },
-          { "type": "warn", "text": "Ha dhaafin qadarka maalinlaha ah" }
+          { "type": "food", "text": "Qaado cunto si caloosha loo ilaaliyo" },
+          { "type": "warn", "text": "Ha dhaafin qiyaasta maalinlaha ah" }
         ],
         "ar": [
           { "type": "amount", "text": "200–400 ملغ" },
@@ -3218,7 +3218,7 @@ export const siteData = {
           { "type": "repeat", "text": "Rotate injection site" }
         ],
         "so": [
-          { "type": "injection", "text": "Qadar shakhsi ah" },
+          { "type": "injection", "text": "Qiyaas shakhsi ah" },
           { "type": "food", "text": "Badanaa waxay xiriirtaa cunnada" },
           { "type": "repeat", "text": "Bedel meesha lagu duro" }
         ],
@@ -3644,7 +3644,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa muddo toddobaadyo ah" },
-          { "type": "warn", "text": "Ha si kediso u joojin" }
+          { "type": "warn", "text": "Ha si kedis ah u joojin" }
         ],
         "ar": [
           { "type": "trending", "text": "تُزاد ببطء على مدى أسابيع" },
@@ -4049,7 +4049,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "amount", "text": "Hal jeer maalintii" },
-          { "type": "food", "text": "Cunto la yeelato ama la'aan" },
+          { "type": "food", "text": "Waxaa lagu qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya" },
           { "type": "warn", "text": "Si tartiib ah u kac" }
         ],
         "ar": [
@@ -4448,7 +4448,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "evening", "text": "Badanaa fiidkii" },
-          { "type": "frequency", "text": "Qadar shakhsi ah" },
+          { "type": "frequency", "text": "Qiyaas shakhsi ah" },
           { "type": "warn", "text": "Baaritaannada dhiigga ee INR waa muhiim" }
         ],
         "ar": [
@@ -5267,7 +5267,7 @@ export const siteData = {
         "so": [
           { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa" },
           { "type": "frequency", "text": "1-2 jeer maalintii" },
-          { "type": "food", "text": "Cunto la yeelato" }
+          { "type": "food", "text": "Qaado adigoo cunto la qaadanaya" }
         ],
         "ar": [
           { "type": "trending", "text": "تُزاد تدريجيًا" },
@@ -5690,7 +5690,7 @@ export const siteData = {
         "so": [
           { "type": "frequency", "text": "1-2 jeer maalintii" },
           { "type": "repeat", "text": "Isla wakhtiga maalin kasta" },
-          { "type": "warn", "text": "Ha si kediso u joojin" }
+          { "type": "warn", "text": "Ha si kedis ah u joojin" }
         ],
         "ar": [
           { "type": "frequency", "text": "1–2 مرة يوميًا" },
@@ -6108,7 +6108,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "injection", "text": "Waxaa bixiya shaqaale caafimaad" },
-          { "type": "frequency", "text": "Qadar shakhsi ah" },
+          { "type": "frequency", "text": "Qiyaas shakhsi ah" },
           { "type": "warn", "text": "Si taxaddar leh u raac qorshaha" }
         ],
         "ar": [
@@ -6498,7 +6498,7 @@ export const siteData = {
           { "type": "warn", "text": "Don't crush slow-release tablets" }
         ],
         "so": [
-          { "type": "amount", "text": "Qadar shakhsi ah" },
+          { "type": "amount", "text": "Qiyaas shakhsi ah" },
           { "type": "frequency", "text": "Si taxaddar leh u raac qorshaha daawaynta" },
           { "type": "warn", "text": "Ha burburin kiniinada daahfurka" }
         ],
@@ -6891,7 +6891,7 @@ export const siteData = {
         "so": [
           { "type": "amount", "text": "250–500 mg" },
           { "type": "frequency", "text": "1-2 jeer maalintii" },
-          { "type": "warn", "text": "Ha labanlaabin qadarka" }
+          { "type": "warn", "text": "Ha qaadan laba qiyaas" }
         ],
         "ar": [
           { "type": "amount", "text": "250–500 ملغ" },
@@ -7281,7 +7281,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "frequency", "text": "Badanaa hal jeer maalintii" },
-          { "type": "morning", "text": "Fiican in cuntada ka hor la qaato" },
+          { "type": "morning", "text": "Waa fiican in cuntada ka hor la qaato" },
           { "type": "warn", "text": "Ha kalgoyn ama qeybin" }
         ],
         "ar": [
@@ -8055,8 +8055,8 @@ export const siteData = {
         ],
         "so": [
           { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa" },
-          { "type": "food", "text": "Waxay kuxiran tahay nooca kiniinka" },
-          { "type": "warn", "text": "Ha isbeddelin qadarka adigu keligaa" }
+          { "type": "food", "text": "Waxay ku xiran tahay nooca kiniinka" },
+          { "type": "warn", "text": "Ha isbeddelin qiyaasta adigu keligaa" }
         ],
         "ar": [
           { "type": "trending", "text": "تُزاد ببطء" },
@@ -9631,7 +9631,7 @@ export const siteData = {
         "so": [
           { "type": "amount", "text": "Sida dhakhtarku ku qoray" },
           { "type": "repeat", "text": "Isla wakhtiga maalin kasta" },
-          { "type": "warn", "text": "Ha labanlaabin qadarka" }
+          { "type": "warn", "text": "Ha qaadan laba qiyaas" }
         ],
         "ar": [
           { "type": "amount", "text": "حسب وصفة الطبيب" },
@@ -10056,7 +10056,7 @@ export const siteData = {
         "so": [
           { "type": "evening", "text": "15-30 daqiiqo ka hor seexashada" },
           { "type": "amount", "text": "7.5 mg (3.75 mg dadka waaweyn)" },
-          { "type": "warn", "text": "Ha qaadan qadar dheeraad ah habeenkaas" }
+          { "type": "warn", "text": "Ha qaadan qiyaas dheeraad ah habeenkaas" }
         ],
         "ar": [
           { "type": "evening", "text": "15–30 دقيقة قبل النوم" },
