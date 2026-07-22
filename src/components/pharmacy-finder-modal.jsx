@@ -25,14 +25,14 @@ const TEXTS = {
     langLabels: { so: "Somali", ar: "Arabic", da: "Danish", en: "English" },
   },
   so: {
-    title: "Raadi farmashi",
+    title: "Raadi farmashiye",
     intro: "Farmashiyada shaqaalaha ku hadla afkaaga — si aad ugu hadasho tooska ah daawadaada, adigoon turjubaan u baahnayn.",
     searchPlaceholder: "Raadi magaalada ama koodhka boostada…",
     filterAll: "Dhammaan luqadaha",
     empty: "Wali lama darin farmashi. Liiska si joogto ah ayaa loo balaadhinayaa.",
     call: "Wac",
     askFor: "Weydii",
-    langLabels: { so: "Soomaali", ar: "Carabi", da: "Deenish", en: "Ingiriisi" },
+    langLabels: { so: "Soomaali", ar: "Caraabi", da: "Deenish", en: "Ingiriisi" },
   },
   ar: {
     title: "ابحث عن صيدلية",
@@ -61,6 +61,12 @@ function PhoneIcon({ size = 15, color = "currentColor" }) {
       <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   );
+}
+
+function contactNamesFor(p, language) {
+  if (!p.contactFirstNames) return [];
+  if (Array.isArray(p.contactFirstNames)) return p.contactFirstNames;
+  return p.contactFirstNames[language] ?? p.contactFirstNames.en ?? [];
 }
 
 export function PharmacyFinderModal({ language, onClose }) {
@@ -165,9 +171,9 @@ export function PharmacyFinderModal({ language, onClose }) {
                   <PhoneIcon size={14} color={theme.primary} /> {t.call}: {p.phone}
                 </a>
               )}
-              {p.contactFirstNames?.length > 0 && (
+              {contactNamesFor(p, language).length > 0 && (
                 <p style={{ fontSize: "12.5px", color: "#64748b", margin: "8px 0 0" }}>
-                  {t.askFor}: {p.contactFirstNames.join(isRtl ? "، " : ", ")}
+                  {t.askFor}: {contactNamesFor(p, language).join(isRtl ? "، " : ", ")}
                 </p>
               )}
             </li>

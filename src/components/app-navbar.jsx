@@ -9,7 +9,7 @@ import { uiText } from "../lib/site";
 const NAV_LABELS = {
   da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin", findPharmacy:"Find apotek" },
   en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", mylist:"My medicine", findPharmacy:"Find a pharmacy" },
-  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga", findPharmacy:"Raadi farmashi" },
+  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga", findPharmacy:"Raadi farmashiye" },
   ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", mylist:"أدويتي", findPharmacy:"ابحث عن صيدلية" },
 };
 

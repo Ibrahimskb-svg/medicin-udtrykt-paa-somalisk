@@ -27,7 +27,7 @@ SEGMENTS = [
     ("silence", 0.4, "nav_contact_pause"),
     ("speech",  "Qaybta \"Daawooyinkayga\" waxay kuu furaysaa liiskaaga gaarka ah ee daawooyinka. Qaybtan dib ayaan uga hadli doonnaa.", "nav_mylist"),
     ("silence", 0.5, "nav_mylist_pause"),
-    ("speech",  "Badhanka ugu dambeeya, \"Raadi farmashi\", wuxuu ku tusayaa farmashiyada shaqaalahoodu ku hadlaan afkaaga — si aad ugu hadasho tooska ah adigoon turjubaan u baahnayn.", "nav_findpharmacy"),
+    ("speech",  "Badhanka ugu dambeeya, \"Raadi farmashiye\", wuxuu ku tusayaa farmashiyada shaqaalahoodu ku hadlaan afkaaga — si aad ugu hadasho tooska ah adigoon turjubaan u baahnayn.", "nav_findpharmacy"),
     ("silence", 0.5, "nav_findpharmacy_pause"),
     ("speech",  "Hoosta menu-ga waxaad ka heli doontaa badhanka beddelka luqadda, kaas oo kuu oggolaanaya inaad doorato af-Soomaali, Deenish, Ingiriisi ama Carabi.", "langsel"),
     ("silence", 0.5, "langsel_pause"),

@@ -8,8 +8,13 @@ export const PHARMACIES = [
     city: "København N",
     postalCode: "2200",
     phone: "+45 35 39 83 82",
-    languages: ["so"],
-    contactFirstNames: ["Abdullahi", "Abdishakur"],
+    languages: ["so", "ar"],
+    contactFirstNames: {
+      so: ["Cabdullahi", "Cabdishakur"],
+      da: ["Abdullahi", "Abdishakur"],
+      en: ["Abdullahi", "Abdishakur"],
+      ar: ["أحمد"],
+    },
   },
   {
     name: "Budolfi Apotek",
@@ -17,7 +22,12 @@ export const PHARMACIES = [
     postalCode: "9000",
     phone: "+45 98 12 06 77",
     languages: ["so"],
-    contactFirstNames: ["Mohamed"],
+    contactFirstNames: {
+      so: ["Maxammad"],
+      da: ["Mohamed"],
+      en: ["Mohamed"],
+      ar: ["محمد"],
+    },
   },
   {
     name: "Taastrup Apotek",
@@ -25,7 +35,7 @@ export const PHARMACIES = [
     postalCode: "2630",
     phone: "+45 43 99 00 98",
     languages: ["so"],
-    contactFirstNames: ["Yakub"],
+    contactFirstNames: { so: ["Yacquub"], da: ["Yakub"], en: ["Yakub"], ar: ["يعقوب"] },
   },
   {
     name: "Aarhus City Vest Apotek",
@@ -33,6 +43,11 @@ export const PHARMACIES = [
     postalCode: "8220",
     phone: "+45 86 25 15 33",
     languages: ["so"],
-    contactFirstNames: ["Abdirisaaq"],
+    contactFirstNames: {
+      so: ["Cabdirisaaq"],
+      da: ["Abdirizak"],
+      en: ["Abdirizak"],
+      ar: ["عبد الرزاق"],
+    },
   },
 ];
