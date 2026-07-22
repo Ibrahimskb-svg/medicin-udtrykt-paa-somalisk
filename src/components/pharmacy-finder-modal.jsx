@@ -12,7 +12,7 @@ const TEXTS = {
     empty: "Ingen apoteker fundet endnu. Listen udvides løbende.",
     call: "Ring",
     askFor: "Spørg efter",
-    langLabels: { so: "Somali", ar: "Arabisk", da: "Dansk", en: "Engelsk" },
+    langLabels: { so: "Somalisk", ar: "Arabisk", da: "Dansk", en: "Engelsk" },
   },
   en: {
     title: "Find a pharmacy",
