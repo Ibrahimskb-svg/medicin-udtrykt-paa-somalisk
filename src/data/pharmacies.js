@@ -1,53 +1,60 @@
 // Apoteker med personale, der taler somali og/eller arabisk.
 // Tilføj nye apoteker her — én linje pr. apotek.
-// languages: liste af sprogkoder personalet taler ("so", "ar", "da", "en")
-// contactFirstNames: valgfrit — kun fornavne (ikke fulde navne, af hensyn til privatliv)
+// contacts: liste over kontaktpersoner. Hver kontakt har:
+//   - speaks: det sprog PERSONEN taler ("so" eller "ar")
+//   - names: personens fornavn(e) stavet korrekt for hvert visningssprog (so/da/en/ar)
+// (kun fornavne, ikke fulde navne, af hensyn til kollegernes privatliv)
 export const PHARMACIES = [
   {
     name: "Nørrebro Apotek",
     city: "København N",
     postalCode: "2200",
     phone: "+45 35 39 83 82",
-    languages: ["so", "ar"],
-    contactFirstNames: {
-      so: ["Cabdullahi", "Cabdishakur"],
-      da: ["Abdullahi", "Abdishakur"],
-      en: ["Abdullahi", "Abdishakur"],
-      ar: ["أحمد"],
-    },
+    contacts: [
+      {
+        speaks: "so",
+        names: { so: ["Cabdullahi", "Cabdishakur"], da: ["Abdullahi", "Abdishakur"], en: ["Abdullahi", "Abdishakur"], ar: ["Abdullahi", "Abdishakur"] },
+      },
+      {
+        speaks: "ar",
+        names: { so: ["Ahmed"], da: ["Ahmed"], en: ["Ahmed"], ar: ["أحمد"] },
+      },
+    ],
   },
   {
     name: "Budolfi Apotek",
     city: "Aalborg",
     postalCode: "9000",
     phone: "+45 98 12 06 77",
-    languages: ["so"],
-    contactFirstNames: {
-      so: ["Maxammad"],
-      da: ["Mohamed"],
-      en: ["Mohamed"],
-      ar: ["محمد"],
-    },
+    contacts: [
+      {
+        speaks: "so",
+        names: { so: ["Maxammad"], da: ["Mohamed"], en: ["Mohamed"], ar: ["محمد"] },
+      },
+    ],
   },
   {
     name: "Taastrup Apotek",
     city: "Taastrup",
     postalCode: "2630",
     phone: "+45 43 99 00 98",
-    languages: ["so"],
-    contactFirstNames: { so: ["Yacquub"], da: ["Yakub"], en: ["Yakub"], ar: ["يعقوب"] },
+    contacts: [
+      {
+        speaks: "so",
+        names: { so: ["Yacquub"], da: ["Yakub"], en: ["Yakub"], ar: ["يعقوب"] },
+      },
+    ],
   },
   {
     name: "Aarhus City Vest Apotek",
     city: "Brabrand",
     postalCode: "8220",
     phone: "+45 86 25 15 33",
-    languages: ["so"],
-    contactFirstNames: {
-      so: ["Cabdirisaaq"],
-      da: ["Abdirizak"],
-      en: ["Abdirizak"],
-      ar: ["عبد الرزاق"],
-    },
+    contacts: [
+      {
+        speaks: "so",
+        names: { so: ["Cabdirisaaq"], da: ["Abdirizak"], en: ["Abdirizak"], ar: ["عبد الرزاق"] },
+      },
+    ],
   },
 ];

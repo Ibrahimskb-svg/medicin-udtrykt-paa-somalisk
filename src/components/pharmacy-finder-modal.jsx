@@ -63,16 +63,8 @@ function PhoneIcon({ size = 15, color = "currentColor" }) {
   );
 }
 
-function activeLangKey(p, language, langFilter) {
-  const key = langFilter && langFilter !== "all" ? langFilter : language;
-  return p.languages.includes(key) ? key : p.languages[0];
-}
-
-function contactNamesFor(p, language, langFilter) {
-  if (!p.contactFirstNames) return [];
-  if (Array.isArray(p.contactFirstNames)) return p.contactFirstNames;
-  const key = langFilter && langFilter !== "all" ? langFilter : language;
-  return p.contactFirstNames[key] ?? p.contactFirstNames[language] ?? p.contactFirstNames.en ?? [];
+function namesFor(contact, language) {
+  return contact.names[language] ?? contact.names.en ?? [];
 }
 
 export function PharmacyFinderModal({ language, onClose }) {
@@ -86,7 +78,7 @@ export function PharmacyFinderModal({ language, onClose }) {
     const q = query.trim().toLowerCase();
     return PHARMACIES.filter((p) => {
       const matchesQuery = !q || p.city.toLowerCase().includes(q) || p.postalCode.includes(q) || p.name.toLowerCase().includes(q);
-      const matchesLang = langFilter === "all" || p.languages.includes(langFilter);
+      const matchesLang = langFilter === "all" || p.contacts.some((c) => c.speaks === langFilter);
       return matchesQuery && matchesLang;
     });
   }, [query, langFilter]);
@@ -150,20 +142,7 @@ export function PharmacyFinderModal({ language, onClose }) {
               }}
             >
               <p style={{ fontWeight: 700, fontSize: "15px", color: "#0f172a", margin: "0 0 2px" }}>{p.name}</p>
-              <p style={{ fontSize: "13px", color: "#64748b", margin: "0 0 8px" }}>{p.city}{p.postalCode ? ` — ${p.postalCode}` : ""}</p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "10px" }}>
-                {[activeLangKey(p, language, langFilter)].map((l) => (
-                  <span
-                    key={l}
-                    style={{
-                      fontSize: "11.5px", fontWeight: 700, padding: "3px 10px", borderRadius: "999px",
-                      background: theme.primary, color: "#fff",
-                    }}
-                  >
-                    {t.langLabels[l] || l}
-                  </span>
-                ))}
-              </div>
+              <p style={{ fontSize: "13px", color: "#64748b", margin: "0 0 10px" }}>{p.city}{p.postalCode ? ` — ${p.postalCode}` : ""}</p>
               {p.phone && (
                 <a
                   href={`tel:${p.phone.replace(/\s/g, "")}`}
@@ -171,17 +150,36 @@ export function PharmacyFinderModal({ language, onClose }) {
                     display: "inline-flex", alignItems: "center", gap: "8px",
                     padding: "8px 14px", borderRadius: "10px", fontSize: "13px", fontWeight: 700,
                     background: "#fff", border: `1.5px solid ${theme.primary}`, color: theme.primary,
-                    textDecoration: "none",
+                    textDecoration: "none", marginBottom: "10px",
                   }}
                 >
                   <PhoneIcon size={14} color={theme.primary} /> {t.call}: {p.phone}
                 </a>
               )}
-              {contactNamesFor(p, language, langFilter).length > 0 && (
-                <p style={{ fontSize: "12.5px", color: "#64748b", margin: "8px 0 0" }}>
-                  {t.askFor}: {contactNamesFor(p, language, langFilter).join(isRtl ? "، " : ", ")}
-                </p>
-              )}
+              <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                {p.contacts.map((c, ci) => (
+                  <div
+                    key={ci}
+                    style={{
+                      display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap",
+                      padding: "7px 10px", borderRadius: "10px",
+                      background: "#fff", border: "1px solid rgba(15,23,42,0.06)",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "11px", fontWeight: 700, padding: "3px 9px", borderRadius: "999px",
+                        background: theme.primary, color: "#fff", flexShrink: 0,
+                      }}
+                    >
+                      {t.langLabels[c.speaks] || c.speaks}
+                    </span>
+                    <span style={{ fontSize: "12.5px", color: "#475569" }}>
+                      {t.askFor}: {namesFor(c, language).join(isRtl ? "، " : ", ")}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </li>
           ))}
         </ul>
