@@ -3223,7 +3223,7 @@ export const siteData = {
           { "type": "repeat", "text": "Bedel meesha lagu duro" }
         ],
         "ar": [
-          { "type": "injection", "text": "جرعة فردية" },
+          { "type": "injection", "text": "تختلف من شخص لآخر" },
           { "type": "food", "text": "غالبًا مرتبطة بالوجبات" },
           { "type": "repeat", "text": "غيّر موضع الحقن" }
         ]
@@ -4453,7 +4453,7 @@ export const siteData = {
         ],
         "ar": [
           { "type": "evening", "text": "غالبًا مساءً" },
-          { "type": "frequency", "text": "جرعة فردية" },
+          { "type": "frequency", "text": "تختلف من شخص لآخر" },
           { "type": "warn", "text": "فحوصات INR للدم مهمة" }
         ]
       },
@@ -6113,8 +6113,8 @@ export const siteData = {
         ],
         "ar": [
           { "type": "injection", "text": "يُعطى بواسطة طاقم طبي" },
-          { "type": "frequency", "text": "جرعة فردية" },
-          { "type": "warn", "text": "اتبع الخطة بدقة" }
+          { "type": "frequency", "text": "تختلف من شخص لآخر" },
+          { "type": "warn", "text": "اتبع الخطة العلاجية بدقة" }
         ]
       },
       "sections": [
@@ -6503,8 +6503,8 @@ export const siteData = {
           { "type": "warn", "text": "Ha burburin kiniinada daahfurka" }
         ],
         "ar": [
-          { "type": "amount", "text": "جرعة فردية" },
-          { "type": "warn", "text": "اتبع خطة العلاج بدقة" },
+          { "type": "amount", "text": "تختلف من شخص لآخر" },
+          { "type": "warn", "text": "اتبع الخطة العلاجية بدقة" },
           { "type": "warn", "text": "لا تسحق أقراص الإطلاق البطيء" }
         ]
       },
@@ -7271,12 +7271,12 @@ export const siteData = {
       "dosagePictogram": {
         "da": [
           { "type": "frequency", "text": "Ofte 1 gang dagligt" },
-          { "type": "morning", "text": "Bedst før et måltid" },
+          { "type": "morning", "text": "Bedst 15–30 minutter før et måltid" },
           { "type": "warn", "text": "Må ikke tygges/deles" }
         ],
         "en": [
           { "type": "frequency", "text": "Often once daily" },
-          { "type": "morning", "text": "Best before a meal" },
+          { "type": "morning", "text": "Best 15–30 minutes before a meal" },
           { "type": "warn", "text": "Don't chew or split" }
         ],
         "so": [
@@ -7286,7 +7286,7 @@ export const siteData = {
         ],
         "ar": [
           { "type": "frequency", "text": "غالبًا مرة واحدة يوميًا" },
-          { "type": "morning", "text": "يفضل قبل الوجبة" },
+          { "type": "morning", "text": "يفضل قبل الوجبة بـ15-30 دقيقة" },
           { "type": "warn", "text": "لا تمضغ أو تقسم القرص" }
         ]
       },
