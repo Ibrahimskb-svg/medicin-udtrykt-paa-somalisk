@@ -63,10 +63,11 @@ function PhoneIcon({ size = 15, color = "currentColor" }) {
   );
 }
 
-function contactNamesFor(p, language) {
+function contactNamesFor(p, language, langFilter) {
   if (!p.contactFirstNames) return [];
   if (Array.isArray(p.contactFirstNames)) return p.contactFirstNames;
-  return p.contactFirstNames[language] ?? p.contactFirstNames.en ?? [];
+  const key = langFilter && langFilter !== "all" ? langFilter : language;
+  return p.contactFirstNames[key] ?? p.contactFirstNames[language] ?? p.contactFirstNames.en ?? [];
 }
 
 export function PharmacyFinderModal({ language, onClose }) {
@@ -171,9 +172,9 @@ export function PharmacyFinderModal({ language, onClose }) {
                   <PhoneIcon size={14} color={theme.primary} /> {t.call}: {p.phone}
                 </a>
               )}
-              {contactNamesFor(p, language).length > 0 && (
+              {contactNamesFor(p, language, langFilter).length > 0 && (
                 <p style={{ fontSize: "12.5px", color: "#64748b", margin: "8px 0 0" }}>
-                  {t.askFor}: {contactNamesFor(p, language).join(isRtl ? "، " : ", ")}
+                  {t.askFor}: {contactNamesFor(p, language, langFilter).join(isRtl ? "، " : ", ")}
                 </p>
               )}
             </li>
