@@ -11,6 +11,7 @@ const TEXTS = {
     filterAll: "Alle sprog",
     empty: "Ingen apoteker fundet endnu. Listen udvides løbende.",
     call: "Ring",
+    askFor: "Spørg efter",
     langLabels: { so: "Somali", ar: "Arabisk", da: "Dansk", en: "Engelsk" },
   },
   en: {
@@ -20,6 +21,7 @@ const TEXTS = {
     filterAll: "All languages",
     empty: "No pharmacies added yet. The list is growing.",
     call: "Call",
+    askFor: "Ask for",
     langLabels: { so: "Somali", ar: "Arabic", da: "Danish", en: "English" },
   },
   so: {
@@ -29,6 +31,7 @@ const TEXTS = {
     filterAll: "Dhammaan luqadaha",
     empty: "Wali lama darin farmashi. Liiska si joogto ah ayaa loo balaadhinayaa.",
     call: "Wac",
+    askFor: "Weydii",
     langLabels: { so: "Soomaali", ar: "Carabi", da: "Deenish", en: "Ingiriisi" },
   },
   ar: {
@@ -38,6 +41,7 @@ const TEXTS = {
     filterAll: "كل اللغات",
     empty: "لم تتم إضافة أي صيدليات بعد. القائمة تتوسع باستمرار.",
     call: "اتصال",
+    askFor: "اسأل عن",
     langLabels: { so: "الصومالية", ar: "العربية", da: "الدنماركية", en: "الإنجليزية" },
   },
 };
@@ -160,6 +164,11 @@ export function PharmacyFinderModal({ language, onClose }) {
                 >
                   <PhoneIcon size={14} color={theme.primary} /> {t.call}: {p.phone}
                 </a>
+              )}
+              {p.contactFirstNames?.length > 0 && (
+                <p style={{ fontSize: "12.5px", color: "#64748b", margin: "8px 0 0" }}>
+                  {t.askFor}: {p.contactFirstNames.join(isRtl ? "، " : ", ")}
+                </p>
               )}
             </li>
           ))}
