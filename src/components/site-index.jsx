@@ -10,6 +10,7 @@ import { applyLanguageToDocument } from "../lib/language";
 import { getIndexData, getDisplayName, uiText } from "../lib/site";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { MyListModal } from "./my-list-modal";
+import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 
 const indexData = getIndexData();
 
@@ -1004,6 +1005,7 @@ export function SiteIndex({initialLang}){
       {modalTab==="feedback" &&<FeedbackModal language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="contact"  &&<ContactModal  language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>setModalTab(null)}/>}
+      {modalTab==="findPharmacy" &&<PharmacyFinderModal language={language} onClose={()=>setModalTab(null)}/>}
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div style={{background:"var(--heroBg)"}}>

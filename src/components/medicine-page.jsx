@@ -7,6 +7,7 @@ import QRCode from "qrcode";
 import { LanguageSelect } from "./language-select";
 import { InhalerGuide } from "./inhaler-guide";
 import { MyListModal } from "./my-list-modal";
+import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -408,6 +409,7 @@ export function MedicinePage({ medicine, initialLang }) {
 
       {/* ── TPI-MODAL (inhalationsteknik) ── */}
       {modalTab === "mylist" && <MyListModal language={language} onClose={() => setModalTab(null)} />}
+      {modalTab === "findPharmacy" && <PharmacyFinderModal language={language} onClose={() => setModalTab(null)} />}
 
       {modalTab === "tpi" && (
         <div

@@ -7,25 +7,25 @@ import { uiText } from "../lib/site";
 
 // Sørger for at labels matcher modal-titlerne i SiteIndex
 const NAV_LABELS = {
-  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin" },
-  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", mylist:"My medicine" },
-  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga" },
-  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", mylist:"أدويتي" },
+  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin", findPharmacy:"Find apotek" },
+  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", mylist:"My medicine", findPharmacy:"Find a pharmacy" },
+  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga", findPharmacy:"Raadi farmashi" },
+  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", mylist:"أدويتي", findPharmacy:"ابحث عن صيدلية" },
 };
 
 // Kortere labels til mobil bottom-nav
 const NAV_LABELS_SHORT = {
-  da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin" },
-  en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds" },
-  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo" },
-  ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل",    mylist:"أدويتي" },
+  da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin", findPharmacy:"Apotek" },
+  en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds", findPharmacy:"Pharmacy" },
+  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Farmashi" },
+  ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية" },
 };
 
 const NAV_ICON_COLORS = {
-  so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E", mylist:"#0F766E" },
-  da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7", mylist:"#0284C7" },
-  en: { faq:"#92400E", feedback:"#B45309", contact:"#C2410C", mylist:"#C2410C" },
-  ar: { faq:"#D97706", feedback:"#B45309", contact:"#EA580C", mylist:"#EA580C" },
+  so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E", mylist:"#0F766E", findPharmacy:"#0F766E" },
+  da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7", mylist:"#0284C7", findPharmacy:"#0284C7" },
+  en: { faq:"#92400E", feedback:"#B45309", contact:"#C2410C", mylist:"#C2410C", findPharmacy:"#C2410C" },
+  ar: { faq:"#D97706", feedback:"#B45309", contact:"#EA580C", mylist:"#EA580C", findPharmacy:"#EA580C" },
 };
 
 const P = {
@@ -62,6 +62,14 @@ function ListIcon({ size=15, color="currentColor" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><path d="M4.5 6h.01"/><path d="M4.5 12h.01"/><path d="M4.5 18h.01"/>
+    </svg>
+  );
+}
+
+function PinIcon({ size=15, color="currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
     </svg>
   );
 }
@@ -111,6 +119,7 @@ export function AppNavbar() {
     
     { key: "contact", iconEl: <MailIcon size={16} color={iconColors.contact}/>, label: navLabels.contact },
     { key: "mylist", iconEl: <ListIcon size={16} color={iconColors.mylist}/>, label: navLabels.mylist },
+    { key: "findPharmacy", iconEl: <PinIcon size={16} color={iconColors.findPharmacy}/>, label: navLabels.findPharmacy },
   ];
 
   const handleTabClick = (key) => {
