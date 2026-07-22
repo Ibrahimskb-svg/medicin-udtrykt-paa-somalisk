@@ -1188,7 +1188,7 @@ export const siteData = {
           { "type": "warn", "text": "Qiyaasta ugu yar, mudada ugu gaaban" }
         ],
         "ar": [
-          { "type": "frequency", "text": "حسب اتفاقكم مع الطبيب" },
+          { "type": "frequency", "text": "حسب اتفاقك مع الطبيب" },
           { "type": "warn", "text": "لا تتجاوز المتفق عليه" },
           { "type": "warn", "text": "أقل جرعة لأقصر مدة ممكنة" }
         ]
