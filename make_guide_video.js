@@ -17,10 +17,10 @@ if (!['da', 'en', 'ar', 'so'].includes(LANG)) {
 }
 
 const NAV_LABELS = {
-  da: { aboutMe: "Om mig", aboutSite: "Om Somalimed", faq: "Ofte stillede spørgsmål", contact: "Kontakt", mylist: "Min medicin" },
-  en: { aboutMe: "About me", aboutSite: "About Somalimed", faq: "FAQ", contact: "Contact", mylist: "My medicine" },
-  so: { aboutMe: "Ku saabsan aniga", aboutSite: "Ku saabsan Somalimed", faq: "Su'aalaha", contact: "Xiriir", mylist: "Daawooyinkayga" },
-  ar: { aboutMe: "نبذة عني", aboutSite: "حول Somalimed", faq: "الأسئلة الشائعة", contact: "تواصل", mylist: "أدويتي" },
+  da: { aboutMe: "Om mig", aboutSite: "Om Somalimed", faq: "Ofte stillede spørgsmål", contact: "Kontakt", mylist: "Min medicin", findPharmacy: "Find apotek" },
+  en: { aboutMe: "About me", aboutSite: "About Somalimed", faq: "FAQ", contact: "Contact", mylist: "My medicine", findPharmacy: "Find a pharmacy" },
+  so: { aboutMe: "Ku saabsan aniga", aboutSite: "Ku saabsan Somalimed", faq: "Su'aalaha", contact: "Xiriir", mylist: "Daawooyinkayga", findPharmacy: "Raadi farmashi" },
+  ar: { aboutMe: "نبذة عني", aboutSite: "حول Somalimed", faq: "الأسئلة الشائعة", contact: "تواصل", mylist: "أدويتي", findPharmacy: "ابحث عن صيدلية" },
 }[LANG];
 
 const SHARE_LABELS = {
@@ -207,6 +207,10 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   console.log('  [nav_mylist] My list nav mention (no click yet — demoed later)');
   await sleepToTarget(seg, 'nav_mylist');
   await sleepToTarget(seg, 'nav_mylist_pause');
+
+  console.log('  [nav_findpharmacy] Find pharmacy modal');
+  await showNavModal(page, NAV_LABELS.findPharmacy, dur('nav_findpharmacy') * 1000, 500);
+  await sleepToTarget(seg, 'nav_findpharmacy_pause');
 
   // ── sprogvælger ──────────────────────────────────────────────────────
   console.log('  [langsel] Language selector');

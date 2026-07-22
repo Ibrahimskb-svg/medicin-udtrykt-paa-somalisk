@@ -25,6 +25,8 @@ SEGMENTS = [
     ("silence", 0.6, "nav_contact_pause"),
     ("speech",  "و'ادوياتي' يفتح قائمة أدويتكم الخاصة — سنعود إليها بعد قليل.", "nav_mylist"),
     ("silence", 0.8, "nav_mylist_pause"),
+    ("speech",  "الزر الأخير، 'ابحث عن صيدلية'، يعرض صيدليات يتحدث موظفوها لغتكم — لتتمكنوا من التحدث معهم مباشرة دون الحاجة لمترجم.", "nav_findpharmacy"),
+    ("silence", 0.8, "nav_findpharmacy_pause"),
     ("speech",  "أسفل القائمة الرئيسية يوجد مبدّل اللغة، بأربع لغات — الصومالية والدنماركية والإنجليزية والعربية.", "langsel"),
     ("silence", 0.8, "langsel_pause"),
     ("speech",  "أسفله تجدون شريط البحث.", "search_intro"),

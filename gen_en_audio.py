@@ -24,6 +24,8 @@ SEGMENTS = [
     ("silence", 0.6, "nav_contact_pause"),
     ("speech",  "And 'My medicine' opens your own medicine list — we'll come back to that shortly.", "nav_mylist"),
     ("silence", 0.8, "nav_mylist_pause"),
+    ("speech",  "The last button, 'Find a pharmacy', shows pharmacies where staff speak your language — so you can talk to them directly, without an interpreter.", "nav_findpharmacy"),
+    ("silence", 0.8, "nav_findpharmacy_pause"),
     ("speech",  "Below the menu is the language selector, with four languages — Somali, Danish, English, and Arabic.", "langsel"),
     ("silence", 0.8, "langsel_pause"),
     ("speech",  "Below that, you'll find the search bar.", "search_intro"),

@@ -30,6 +30,8 @@ SEGMENTS = [
     ("silence", 0.6, "nav_contact_pause"),
     ("speech",  "Og 'Min medicin' åbner din egen medicinliste — det vender vi tilbage til om lidt.", "nav_mylist"),
     ("silence", 0.8, "nav_mylist_pause"),
+    ("speech",  "Den sidste knap, 'Find apotek', viser apoteker hvor personalet taler dit sprog — så du kan tale direkte med dem uden tolk.", "nav_findpharmacy"),
+    ("silence", 0.8, "nav_findpharmacy_pause"),
     ("speech",  "Under menuen finder du sprogvælgeren, med fire sprog — somalisk, dansk, engelsk og arabisk.", "langsel"),
     ("silence", 0.8, "langsel_pause"),
     ("speech",  "Herunder finder du søgefeltet.", "search_intro"),
