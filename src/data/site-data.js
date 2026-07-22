@@ -2816,7 +2816,7 @@ export const siteData = {
           { "type": "amount", "text": "200–400 mg" },
           { "type": "frequency", "text": "4-6 saacadood mar, marka loo baahdo" },
           { "type": "food", "text": "Qaado cunto si caloosha loo ilaaliyo" },
-          { "type": "warn", "text": "Ha dhaafin qiyaasta maalinlaha ah" }
+          { "type": "warn", "text": "Ha dhaafin qiyaasta laguu qoray" }
         ],
         "ar": [
           { "type": "amount", "text": "200–400 ملغ" },
@@ -2897,7 +2897,7 @@ export const siteData = {
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
             "Dadka waaweyn badanaa waxay qaataan 200 ilaa 400 mg mar kasta, iyadoo u dhexeysa ugu yaraan 4 ilaa 6 saacadood sida loo baahdo.",
-            "Ha dhaafin qiyaasta maalinlaha ah ee lagu faray.",
+            "Ha dhaafin qiyaasta laguu qoray.",
             "Waxaa fiican in lagu qaato cunto si caloosha loo ilaaliyo.",
             "Haddii xanuunku sii socdo maalmo badan, la xiriir dhakhtarkaaga halkii aad si joogto ah u sii qaadan lahayd."
           ],
