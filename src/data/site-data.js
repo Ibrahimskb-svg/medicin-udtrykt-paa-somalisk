@@ -7281,7 +7281,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "frequency", "text": "Badanaa hal jeer maalintii" },
-          { "type": "morning", "text": "Waa fiican in cuntada ka hor la qaato" },
+          { "type": "morning", "text": "Waxaa fiican in cuntada/quraacda ka hor la qaato — 15-30 min ka hor" },
           { "type": "warn", "text": "Ha kalgoyn ama qeybin" }
         ],
         "ar": [
