@@ -63,6 +63,11 @@ function PhoneIcon({ size = 15, color = "currentColor" }) {
   );
 }
 
+function activeLangKey(p, language, langFilter) {
+  const key = langFilter && langFilter !== "all" ? langFilter : language;
+  return p.languages.includes(key) ? key : p.languages[0];
+}
+
 function contactNamesFor(p, language, langFilter) {
   if (!p.contactFirstNames) return [];
   if (Array.isArray(p.contactFirstNames)) return p.contactFirstNames;
@@ -147,7 +152,7 @@ export function PharmacyFinderModal({ language, onClose }) {
               <p style={{ fontWeight: 700, fontSize: "15px", color: "#0f172a", margin: "0 0 2px" }}>{p.name}</p>
               <p style={{ fontSize: "13px", color: "#64748b", margin: "0 0 8px" }}>{p.city}{p.postalCode ? ` — ${p.postalCode}` : ""}</p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "10px" }}>
-                {p.languages.map((l) => (
+                {[activeLangKey(p, language, langFilter)].map((l) => (
                   <span
                     key={l}
                     style={{
