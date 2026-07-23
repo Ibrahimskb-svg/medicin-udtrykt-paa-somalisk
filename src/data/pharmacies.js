@@ -13,7 +13,7 @@ export const PHARMACIES = [
     contacts: [
       {
         speaks: "so",
-        names: { so: ["Cabdullahi", "Cabdishakur"], da: ["Abdullahi", "Abdishakur"], en: ["Abdullahi", "Abdishakur"], ar: ["Abdullahi", "Abdishakur"] },
+        names: { so: ["Cabdullahi", "Cabdishakur"], da: ["Abdullahi", "Abdishakur"], en: ["Abdullahi", "Abdishakur"], ar: ["عبد الله", "عبد الشكور"] },
       },
       {
         speaks: "ar",

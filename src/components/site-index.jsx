@@ -916,7 +916,7 @@ function VideoGuide({ chromeText, language }) {
         </div>
 
         {/* Tabs */}
-        <div className="px-5 pb-4 sm:px-8" style={{ direction: isRtl ? "rtl" : "ltr" }}>
+        <div className="px-5 pb-4 sm:px-8 overflow-x-auto" style={{ direction: isRtl ? "rtl" : "ltr", WebkitOverflowScrolling: "touch" }}>
           <div className="inline-flex gap-2 rounded-2xl p-1" style={{ background:"var(--bg)" }}>
             {tabs.map(tab => {
               const isActive = activeTab === tab.key;

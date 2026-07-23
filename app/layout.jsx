@@ -209,6 +209,15 @@ export default function RootLayout({ children }) {
                 ar: { bg: "linear-gradient(135deg,#D97706,#B45309)", tail: "#B45309", shadow: "rgba(217,119,6,0.45)" },
               };
 
+              var DISMISS_KEY = "sm_bubble_dismissed";
+              function isDismissed() {
+                try { return localStorage.getItem(DISMISS_KEY) === "1"; } catch (e) { return false; }
+              }
+              function markDismissed() {
+                try { localStorage.setItem(DISMISS_KEY, "1"); } catch (e) {}
+              }
+              window.__smBubbleDismiss = markDismissed;
+
               function getLang() {
                 try {
                   var u = new URLSearchParams(window.location.search).get("lang");
@@ -258,7 +267,7 @@ export default function RootLayout({ children }) {
               }
 
               function create() {
-                if (!document.body || document.getElementById("sm-bubble")) return;
+                if (!document.body || document.getElementById("sm-bubble") || isDismissed()) return;
                 var lang = getLang();
                 var msg = messages[lang] || messages.so;
                 var name = names[lang] || names.so;
@@ -280,7 +289,7 @@ export default function RootLayout({ children }) {
                 document.head.appendChild(ts);
 
                 bubble.innerHTML =
-                  '<button id="sm-bubble-close" onclick="event.stopPropagation();this.parentElement.remove()">✕</button>' +
+                  '<button id="sm-bubble-close" onclick="event.stopPropagation();window.__smBubbleDismiss();this.parentElement.remove()">✕</button>' +
                   '<div id="sm-bubble-avatar-fallback">💬</div>' +
                   '<div id="sm-bubble-text">' +
                     '<div id="sm-bubble-name">' + name + '</div>' +
@@ -288,6 +297,7 @@ export default function RootLayout({ children }) {
                   '</div>';
 
                 bubble.addEventListener("click", function() {
+                  markDismissed();
                   var pushed = openChat();
                   if (!pushed) {
                     // Crisp er ikke indlæst (fx cookies ikke accepteret endnu) —
@@ -331,11 +341,6 @@ export default function RootLayout({ children }) {
               history.pushState = function() { oPS.apply(this, arguments); setTimeout(schedule, 400); };
               var oRS = history.replaceState;
               history.replaceState = function() { oRS.apply(this, arguments); setTimeout(schedule, 400); };
-
-              // Boblen skal aldrig forsvinde for godt — hvis nogen lukker den
-              // med ✕, dukker den op igen efter kort tid. create() no-op'er
-              // hvis den allerede findes, så det her skader ikke noget.
-              setInterval(create, 45000);
 
               // Hold boblen over cookiebanneret, uanset hvornår det vises/lukkes/ændrer højde
               new MutationObserver(repositionBubble).observe(document.documentElement, { childList: true, subtree: true });
