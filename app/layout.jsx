@@ -266,6 +266,36 @@ export default function RootLayout({ children }) {
                 }
               }
 
+              // Crisps eget chatikon docker altid nederst til højre med et højt
+              // z-index, og overlapper vores egen mobile bundmenu (som også er
+              // fixed bottom-0). Flyt ikonet op over bundmenuen på mobil.
+              function repositionCrisp() {
+                try {
+                  var root = document.getElementById("crisp-chatbox");
+                  if (!root) return;
+                  var navEl = document.querySelector("nav.fixed.bottom-0");
+                  var navVisible = navEl && getComputedStyle(navEl).display !== "none" && navEl.offsetHeight > 0;
+                  var divs = root.querySelectorAll("div");
+                  for (var i = 0; i < divs.length; i++) {
+                    var el = divs[i];
+                    var cs = getComputedStyle(el);
+                    if (
+                      cs.position === "fixed" &&
+                      parseInt(cs.bottom || "0", 10) < 40 &&
+                      el.offsetWidth > 40 && el.offsetWidth < 80 &&
+                      el.offsetHeight > 40 && el.offsetHeight < 80
+                    ) {
+                      if (navVisible) {
+                        el.style.setProperty("bottom", (navEl.getBoundingClientRect().height + 12) + "px", "important");
+                      } else {
+                        el.style.removeProperty("bottom");
+                      }
+                      break;
+                    }
+                  }
+                } catch (e) {}
+              }
+
               function create() {
                 if (!document.body || document.getElementById("sm-bubble") || isDismissed()) return;
                 var lang = getLang();
@@ -343,8 +373,10 @@ export default function RootLayout({ children }) {
               history.replaceState = function() { oRS.apply(this, arguments); setTimeout(schedule, 400); };
 
               // Hold boblen over cookiebanneret, uanset hvornår det vises/lukkes/ændrer højde
-              new MutationObserver(repositionBubble).observe(document.documentElement, { childList: true, subtree: true });
-              window.addEventListener("resize", repositionBubble);
+              function repositionAll() { repositionBubble(); repositionCrisp(); }
+              new MutationObserver(repositionAll).observe(document.documentElement, { childList: true, subtree: true });
+              window.addEventListener("resize", repositionAll);
+              setInterval(repositionCrisp, 1000);
             })();
           `}
         </Script>
