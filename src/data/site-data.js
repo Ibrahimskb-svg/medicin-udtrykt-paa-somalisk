@@ -867,7 +867,6 @@ export const siteData = {
           "doseList": [
             "Badanaa waxaa la qaataa hal mar maalintii, isla saacad u dhow maalin kasta.",
             "Waxaad qaadan kartaa subax ama fiid, laakiin waxa ugu muhiimsan waa inaad joogto ka dhigto.",
-            "Daawadan waxaa lagu qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Ha joojin daawada adigoon la tashan dhakhtarkaaga, xataa haddii aad is leedahay wax dhibaato ah ma qabo."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -1686,7 +1685,7 @@ export const siteData = {
             "Raadi gargaar degdeg ah haddii aad aragto dhiig ku jira kaadida ama saxarada, saxaro madow, dhiig ku jira mataggaaga ama nabarro badan oo aan caadi ahayn.",
             "U sheeg dhakhtarkaaga ama dhakhtarka ilkaha ka hor qalliin ama daaweynta ilkaha.",
             "Haddii aad si xun u dhacdo ama madaxa ku dhacdo adigoo qaadanaya Eliquis, waa muhiim in dhakhtarkaagu si gaar ah kuu qiimeeyo.",
-            "Ha joojin daawada adigoon talo ka helin dhakhtarkaaga."
+            "Haddii Eliquis si kedis ah loo joojiyo, waxay kordhin kartaa khatarta xinjiro dhiig ama istaroog."
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
           "ramadanList": [
@@ -2511,7 +2510,7 @@ export const siteData = {
             "Waxay kuu fududayn kartaa inaad yeelato nabarro fudud iyo dhiig-bax yar.",
             "La xiriir dhakhtarkaaga haddii aad aragto saxaro madow, dhiig ku jira mataggaaga, ama dhiig-bax aan joogsanayn.",
             "Haddii aad hore u lahayd boogo caloosha ah ama xasaasiyad aspirin ah, la hadal dhakhtarkaaga ka hor.",
-            "Ha joojin daawada adigoon talo ka helin dhakhtarkaaga, gaar ahaan haddii aad leedahay stent ama aad hore u qabtay xinjiro dhiig."
+            "Haddii aad leedahay stent ama aad hore u qabtay xinjiro dhiig, joojinta daawadan si kedis ah waxay kordhin kartaa khatarta xinjiro cusub."
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
           "ramadanList": [
@@ -2898,7 +2897,6 @@ export const siteData = {
           "doseList": [
             "Dadka waaweyn badanaa waxay qaataan 200 ilaa 400 mg mar kasta, iyadoo u dhexeysa ugu yaraan 4 ilaa 6 saacadood sida loo baahdo.",
             "Ha dhaafin qiyaasta laguu qoray.",
-            "Waxaa fiican in lagu qaato cunto si caloosha loo ilaaliyo.",
             "Haddii xanuunku sii socdo maalmo badan, la xiriir dhakhtarkaaga halkii aad si joogto ah u sii qaadan lahayd."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -3644,7 +3642,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa muddo toddobaadyo ah" },
-          { "type": "warn", "text": "Ha si kedis ah u joojin" }
+          { "type": "warn", "text": "Ha joojin si kedis ah" }
         ],
         "ar": [
           { "type": "trending", "text": "تُزاد ببطء على مدى أسابيع" },
@@ -4131,7 +4129,6 @@ export const siteData = {
           "doseList": [
             "Badanaa waxaa la qaataa hal mar maalintii, isla waqtigaas maalin kasta.",
             "Dadka badankood waxay bilaabaan qiyaas hoose, kadibna si tartiib ah ayaa loo kordhiyaa iyadoo ku xiran jawaabta jirka.",
-            "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Haddii aad bilowga dareento dawakh, si tartiib ah u kac markaad ka soo kacayso fadhi ama jiif."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -5690,7 +5687,7 @@ export const siteData = {
         "so": [
           { "type": "frequency", "text": "1-2 jeer maalintii" },
           { "type": "repeat", "text": "Isla wakhtiga maalin kasta" },
-          { "type": "warn", "text": "Ha si kedis ah u joojin" }
+          { "type": "warn", "text": "Ha joojin si kedis ah" }
         ],
         "ar": [
           { "type": "frequency", "text": "1–2 مرة يوميًا" },
@@ -5793,7 +5790,7 @@ export const siteData = {
             "La xiriir dhakhtarkaaga haddii garaaca wadnahaagu aad u gaabiyo, aad suuxdo, neefsashadu kugu adkaato ama aad yeelato laab-xanuun cusub.",
             "U sheeg dhakhtarkaaga haddii aad qabto neef, COPD, sonkorow ama dhibaatooyin wareegga dhiigga ah.",
             "Daawadu waxay qarin kartaa calaamadaha sonkorta dhiigga oo hoos u dhacda dadka sonkorowga qaba.",
-            "Daawadan lama joojiyo si kedis ah adigoon la tashan dhakhtarkaaga."
+            "Haddii daawadan si kedis ah loo joojiyo, garaaca wadnaha iyo cadaadiska dhiigga waxay si degdeg ah ugu kici karaan, taasoo kordhin karta khatarta wadnaha."
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
           "ramadanList": [
@@ -6599,7 +6596,7 @@ export const siteData = {
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
             "Ha wadin gaari hana isticmaalin mashiin haddii aad hurdo dareemayso ama aad wareersan tahay.",
-            "Isticmaalka muddada dheer wuxuu keeni karaa la-qabsi iyo ku-tiirsanaan, sidaas darteed daawada si kedis ah ha u joojin haddii si joogto ah loo isticmaalay.",
+            "Isticmaalka muddada dheer wuxuu keeni karaa la-qabsi iyo ku-tiirsanaan, sidaas darteed ha joojin daawada si kedis ah haddii si joogto ah loo isticmaalay.",
             "Raadi gargaar degdeg ah haddii neefsashadu gaabiso, qofku aad u hurdo bato, ama ay adkaato in la toosiyo.",
             "Khatarta waxyeelladu way sii badan kartaa haddii aad tahay qof waayeel ah ama aad qabto dhibaato sambab ama kelyo."
           ],
@@ -8136,8 +8133,7 @@ export const siteData = {
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
             "Qiyaasta waxaa go'aamiya dhakhtarka, waxaana badanaa si tartiib ah loo kordhiyaa maalmaha hore.",
-            "Kiniinnada caadiga ah waxaa la qaadan karaa cunto la jirto ama la'aan.",
-            "Nooca daawada si tartiib ah u sii daaya badanaa waxaa lagu qaataa calool madhan, ugu yaraan hal saac ka hor cuntada, mana aha in la jebiyo ama la calaliyo.",
+            "Nooca daawada si tartiib ah u sii daaya mana aha in la jebiyo ama la calaliyo — waa in la liqaa iyadoo dhan.",
             "Ha beddelin qiyaasta adigoon helin talo caafimaad."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -8168,7 +8164,7 @@ export const siteData = {
           "foodTitle": "Cunto iyo cabitaan",
           "foodList": [
             "Kiniinnada caadiga ah waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
-            "Nooca daawada si tartiib ah u sii daaya badanaa waxaa lagu qaataa calool madhan.",
+            "Nooca daawada si tartiib ah u sii daaya badanaa waxaa lagu qaataa calool madhan, ugu yaraan hal saac ka hor cuntada.",
             "Haddii daawadu kordhiso rabitaanka cuntada, cunto dheellitiran iyo dhaqdhaqaaq ayaa caawin kara xakamaynta miisaanka."
           ],
           "storeTitle": "Kaydinta daawada",
@@ -8932,7 +8928,6 @@ export const siteData = {
           "warnList": [
             "Haddii calaamadaha neefta ay ka sii daraan ama aad u baahato daawo degdeg ah si ka badan caadiga, la xiriir dhakhtarkaaga.",
             "Ha joojin daawada adigoon talo ka helin dhakhtarkaaga.",
-            "Ka dib isticmaalka, afka biyo ku luqluqo si loo yareeyo khatarta fangaska afka iyo cuncunka cunaha.",
             "Haddii aad dareento calaamado daran ama aan caadi ahayn, la xiriir dhakhtarkaaga."
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
