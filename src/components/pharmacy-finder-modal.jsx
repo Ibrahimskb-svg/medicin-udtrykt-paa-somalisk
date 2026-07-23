@@ -132,28 +132,37 @@ export function PharmacyFinderModal({ language, onClose }) {
       {filtered.length === 0 ? (
         <p style={{ fontSize: "14px", color: "#94a3b8", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>{t.empty}</p>
       ) : (
-        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "10px" }}>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
           {filtered.map((p, i) => (
             <li
               key={i}
               style={{
-                borderRadius: "14px", border: `1.5px solid ${theme.border}`, background: theme.soft,
-                padding: "14px 16px", textAlign: isRtl ? "right" : "left",
+                borderRadius: "16px", background: "#fff",
+                border: `1px solid ${theme.border}`,
+                borderInlineStart: `4px solid ${theme.primary}`,
+                boxShadow: "0 1px 2px rgba(15,23,42,0.04), 0 6px 16px rgba(15,23,42,0.05)",
+                padding: "16px 18px", textAlign: isRtl ? "right" : "left",
               }}
             >
-              <p style={{ fontWeight: 700, fontSize: "15px", color: "#0f172a", margin: "0 0 2px" }}>{p.name}</p>
-              <p style={{ fontSize: "13px", color: "#64748b", margin: "0 0 10px" }}>{p.city}{p.postalCode ? ` — ${p.postalCode}` : ""}</p>
+              <p style={{ fontWeight: 800, fontSize: "16px", color: "#0f172a", margin: "0 0 4px", letterSpacing: "-0.01em" }}>{p.name}</p>
+              <p style={{
+                display: "flex", alignItems: "center", gap: "5px", justifyContent: isRtl ? "flex-end" : "flex-start",
+                fontSize: "13px", color: "#64748b", margin: "0 0 12px",
+              }}>
+                <PinIcon size={12} color="#94a3b8" />
+                {p.city}{p.postalCode ? ` — ${p.postalCode}` : ""}
+              </p>
               {p.phone && (
                 <a
                   href={`tel:${p.phone.replace(/\s/g, "")}`}
                   style={{
-                    display: "inline-flex", alignItems: "center", gap: "8px",
-                    padding: "8px 14px", borderRadius: "10px", fontSize: "13px", fontWeight: 700,
-                    background: "#fff", border: `1.5px solid ${theme.primary}`, color: theme.primary,
-                    textDecoration: "none", marginBottom: "10px",
+                    display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                    padding: "10px 14px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700,
+                    background: theme.primary, color: "#fff",
+                    textDecoration: "none", marginBottom: "12px", boxShadow: `0 2px 10px ${theme.primary}40`,
                   }}
                 >
-                  <PhoneIcon size={14} color={theme.primary} /> {t.call}: {p.phone}
+                  <PhoneIcon size={14} color="#fff" /> {t.call}: {p.phone}
                 </a>
               )}
               <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
@@ -162,8 +171,8 @@ export function PharmacyFinderModal({ language, onClose }) {
                     key={ci}
                     style={{
                       display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap",
-                      padding: "7px 10px", borderRadius: "10px",
-                      background: "#fff", border: "1px solid rgba(15,23,42,0.06)",
+                      padding: "8px 10px", borderRadius: "10px",
+                      background: theme.soft, border: `1px solid ${theme.border}`,
                     }}
                   >
                     <span
@@ -174,7 +183,7 @@ export function PharmacyFinderModal({ language, onClose }) {
                     >
                       {t.langLabels[c.speaks] || c.speaks}
                     </span>
-                    <span style={{ fontSize: "12.5px", color: "#475569" }}>
+                    <span style={{ fontSize: "12.5px", color: "#334155", fontWeight: 500 }}>
                       {t.askFor}: {namesFor(c, language).join(isRtl ? "، " : ", ")}
                     </span>
                   </div>

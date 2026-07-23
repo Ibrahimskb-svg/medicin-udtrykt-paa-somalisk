@@ -15,6 +15,14 @@ export const PHARMACIES = [
         speaks: "so",
         names: { so: ["Cabdullahi", "Cabdishakur"], da: ["Abdullahi", "Abdishakur"], en: ["Abdullahi", "Abdishakur"], ar: ["عبد الله", "عبد الشكور"] },
       },
+    ],
+  },
+  {
+    name: "Lyngby Løve Apotek",
+    city: "Kongens Lyngby",
+    postalCode: "2800",
+    phone: "+45 45 87 08 20",
+    contacts: [
       {
         speaks: "ar",
         names: { so: ["Ahmed"], da: ["Ahmed"], en: ["Ahmed"], ar: ["أحمد"] },
