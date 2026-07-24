@@ -12,6 +12,7 @@ import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
 import { getMyList, toggleMyList, subscribeMyList } from "../lib/my-list";
+import { getLastRevisedText } from "../lib/last-revised";
 import {
   arabicAudioLabel,
   sectionIcons,
@@ -46,12 +47,21 @@ const overviewLabel = {
   ar: "نظرة عامة",
 };
 
-const LAST_REVISED = {
-  da: "Sidst revideret: 13. juli 2026",
-  en: "Last revised: 13 July 2026",
-  so: "La cusbooneysiiyay: 13 Luulyo 2026",
-  ar: "آخر مراجعة: 13 يوليو 2026",
+const QUALITY_NOTE = {
+  da: "Denne side gennemgås og opdateres løbende for at rette fejl og mangler.",
+  en: "This site is continuously reviewed and updated to correct errors and gaps.",
+  so: "Boggan waa la dib-eegaa oo la cusboonaysiiyaa si joogto ah si loo saxo khaladaad iyo waxa maqan.",
+  ar: "تتم مراجعة هذا الموقع وتحديثه باستمرار لتصحيح الأخطاء والنواقص.",
 };
+
+function ShieldCheckIcon({ size = 14, color = "#94a3b8" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
 
 const EMERGENCY = {
   da: { label: "Nødsituationer", poison: "Giftlinjen – ring ved mistanke om forgiftning", emergency: "Akut nødsituation" },
@@ -741,8 +751,23 @@ export function MedicinePage({ medicine, initialLang }) {
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f766e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
               </svg>
-              {LAST_REVISED[language] ?? LAST_REVISED.da}
+              {getLastRevisedText(language)}
             </span>
+          </div>
+
+          {/* Quality-assurance note */}
+          <div style={{ marginTop: "10px", display: "flex", justifyContent: "center" }}>
+            <div style={{
+              display: "inline-flex", alignItems: "center", gap: "8px",
+              padding: "9px 16px", borderRadius: "12px", maxWidth: "440px",
+              background: "#f8fafc", border: "1px solid #e2e8f0",
+              color: "#64748b", fontSize: "12px", lineHeight: 1.6,
+              textAlign: language === "ar" ? "right" : "left",
+              direction: language === "ar" ? "rtl" : "ltr",
+            }}>
+              <ShieldCheckIcon size={15} color="#94a3b8" />
+              <span>{QUALITY_NOTE[language] ?? QUALITY_NOTE.da}</span>
+            </div>
           </div>
         </footer>
       </main>

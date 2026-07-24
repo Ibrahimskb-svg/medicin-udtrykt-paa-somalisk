@@ -11,6 +11,7 @@ import { getIndexData, getDisplayName, uiText } from "../lib/site";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
+import { getLastRevisedText } from "../lib/last-revised";
 
 const indexData = getIndexData();
 
@@ -243,7 +244,7 @@ const CONTACT_DATA = {
     chatDesc: "Du kan skrive via chat-ikonet nederst til højre.",
     emailLabel: "Eller skriv via e-mail",
     emailNote: "Svar inden for 1–2 hverdage",
-    responseTitle: "Du kan fx skrive om:",
+    responseTitle: "Du kan f.eks. skrive om:",
     topics: ["Spørgsmål om et lægemiddel", "Forslag til nye emner", "Fejl eller mangler", "Generel feedback"],
   },
   en: {
@@ -345,12 +346,21 @@ const ABOUT_SITE_BULLETS = {
 };
 
 // ── Revision date ──────────────────────────────────────────────────────────
-const LAST_REVISED = {
-  da: "Sidst revideret: 13. juli 2026",
-  en: "Last revised: 13 July 2026",
-  so: "La cusbooneysiiyay: 13 Luulyo 2026",
-  ar: "آخر مراجعة: 13 يوليو 2026",
+const QUALITY_NOTE = {
+  da: "Denne side gennemgås og opdateres løbende for at rette fejl og mangler.",
+  en: "This site is continuously reviewed and updated to correct errors and gaps.",
+  so: "Boggan waa la dib-eegaa oo la cusboonaysiiyaa si joogto ah si loo saxo khaladaad iyo waxa maqan.",
+  ar: "تتم مراجعة هذا الموقع وتحديثه باستمرار لتصحيح الأخطاء والنواقص.",
 };
+
+function ShieldCheckIcon({ size = 14, color = "#94a3b8" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
 
 // ── FAQ ────────────────────────────────────────────────────────────────────
 const FAQ_DATA = {
@@ -378,7 +388,7 @@ const FAQ_DATA = {
     { q:"Hvilket smertestillende virker bedst?",
       bullets:["Paracetamol: bedst til hovedpine, feber og lettere smerter — sikkert for de fleste","Ibuprofen: stærkere, god ved tandpine, muskelsmerter og ledsmerter — tag til mad","Har du mavegener, tager blodtryksmedicin eller er gravid? Brug Paracetamol","Er du i tvivl? Spørg dit apotek"] },
     { q:"Kan jeg tage et nyt håndkøbsmiddel sammen med min faste medicin?",
-      bullets:["Ikke nødvendigvis — mange håndkøbsmediciner påvirker din faste medicin","Ibuprofen kan fx svække blodtryksmedicin","Naturlægemidler kan påvirke blodfortyndende medicin","Spørg altid på apoteket — det er gratis og tager 2 minutter"] },
+      bullets:["Ikke nødvendigvis — mange håndkøbsmediciner påvirker din faste medicin","Ibuprofen kan f.eks. svække blodtryksmedicin","Naturlægemidler kan påvirke blodfortyndende medicin","Spørg altid på apoteket — det er gratis og tager 2 minutter"] },
   ]},
   en: { items:[
     { q:"What is Lamotrigine, and how is it taken?",
@@ -462,10 +472,10 @@ const FAQ_DATA = {
 
 // ── Feedback data ──────────────────────────────────────────────────────────
 const FEEDBACK_DATA = {
-  da: { subtitle:"Din mening betyder noget. Del gerne din oplevelse med Somalimed.", praise:"Ros 👍", criticism:"Ris 👎", suggestion:"Forslag 💡", placeholder:"Skriv din besked her...", send:"Send besked", sent:"Tak for din besked! 🙏", emailLabel:"Din e-mail (valgfri)" },
-  en: { subtitle:"Your opinion matters. Feel free to share your experience with Somalimed.", praise:"Praise 👍", criticism:"Criticism 👎", suggestion:"Suggestion 💡", placeholder:"Write your message here...", send:"Send message", sent:"Thank you for your message! 🙏", emailLabel:"Your email (optional)" },
-  so: { subtitle:"Ra'yaagaagu waa muhiim. Nala wadaag khibradaada Somalimed.", praise:"Amaano 👍", criticism:"Dhaleeceyn 👎", suggestion:"Talooyin 💡", placeholder:"Halkan ku qor fariintaada...", send:"Dir fariinta", sent:"Mahadsanid fariintaada! 🙏", emailLabel:"Emailkaaga (ikhtiyaari)" },
-  ar: { subtitle:"رأيك يهمنا. شاركنا تجربتك مع Somalimed.", praise:"إطراء 👍", criticism:"نقد 👎", suggestion:"اقتراح 💡", placeholder:"اكتب رسالتك هنا...", send:"إرسال الرسالة", sent:"شكرا على رسالتك! 🙏", emailLabel:"بريدك الإلكتروني (اختياري)" },
+  da: { formTitle:"Send mig ris, ros eller forslag", subtitle:"Din mening betyder noget. Del gerne din oplevelse med Somalimed.", praise:"Ros 👍", criticism:"Ris 👎", suggestion:"Forslag 💡", placeholder:"Skriv din besked her...", send:"Send besked", sent:"Tak for din besked! 🙏", nameLabel:"Dit navn", cityLabel:"Din by", emailLabel:"Din e-mail (valgfri)", phoneLabel:"Telefonnummer (valgfri)", requiredHint:"* skal udfyldes" },
+  en: { formTitle:"Send me praise, criticism or suggestions", subtitle:"Your opinion matters. Feel free to share your experience with Somalimed.", praise:"Praise 👍", criticism:"Criticism 👎", suggestion:"Suggestion 💡", placeholder:"Write your message here...", send:"Send message", sent:"Thank you for your message! 🙏", nameLabel:"Your name", cityLabel:"Your city", emailLabel:"Your email (optional)", phoneLabel:"Phone number (optional)", requiredHint:"* required" },
+  so: { formTitle:"Ii dir amaano, dhaleeceyn ama talo", subtitle:"Ra'yaagaagu waa muhiim. Ila wadaag khibradaada Somalimed.", praise:"Amaano 👍", criticism:"Dhaleeceyn 👎", suggestion:"Talooyin 💡", placeholder:"Halkan ku qor fariintaada...", send:"Dir fariinta", sent:"Mahadsanid fariintaada! 🙏", nameLabel:"Magacaaga", cityLabel:"Magaalada aad ku nooshahay", emailLabel:"Emailkaaga (ikhtiyaari)", phoneLabel:"Lambarka taleefanka (ikhtiyaari)", requiredHint:"* waa lagama maarmaan" },
+  ar: { formTitle:"أرسل لي إطراءً أو نقدًا أو اقتراحًا", subtitle:"رأيك يهمني. شاركني تجربتك مع Somalimed.", praise:"إطراء 👍", criticism:"نقد 👎", suggestion:"اقتراح 💡", placeholder:"اكتب رسالتك هنا...", send:"إرسال الرسالة", sent:"شكرا على رسالتك! 🙏", nameLabel:"اسمك", cityLabel:"مدينتك", emailLabel:"بريدك الإلكتروني (اختياري)", phoneLabel:"رقم الهاتف (اختياري)", requiredHint:"* مطلوب" },
 };
 
 // ── Medicine maps ──────────────────────────────────────────────────────────
@@ -482,7 +492,6 @@ function buildCategoryPills(language){const seen=new Set(),pills=[];for(const it
 function SearchIcon(){return(<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-4.2-4.2"/></svg>);}
 function ShieldIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>);}
 function MailIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>);}
-function StarIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>);}
 function QuestionIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>);}
 function ChatIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>);}
 function LungsIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v4"/><path d="M6 8c-1.5 0-4 1.5-4 6 0 3 2 5 4 5 1.3 0 2.4-.5 3.2-1.4"/><path d="M18 8c1.5 0 4 1.5 4 6 0 3-2 5-4 5-1.3 0-2.4-.5-3.2-1.4"/><path d="M10.8 17.8A3 3 0 0 1 9 20v0a3 3 0 0 1-3-3"/><path d="M13.2 17.8A3 3 0 0 0 15 20v0a3 3 0 0 0 3-3"/><path d="M12 8c-2 0-3 1-3 3v6"/><path d="M12 8c2 0 3 1 3 3v6"/></svg>);}
@@ -702,8 +711,44 @@ function ContactModal({language,onClose}){
   const isRtl=language==="ar";
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const data=CONTACT_DATA[language]??CONTACT_DATA.so;
+  const fb=FEEDBACK_DATA[language]??FEEDBACK_DATA.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
   const iconEl=<MailIcon size={22} color="rgba(255,255,255,0.95)"/>;
+
+  const[type,setType]=useState("praise");
+  const[name,setName]=useState("");
+  const[city,setCity]=useState("");
+  const[email,setEmail]=useState("");
+  const[phone,setPhone]=useState("");
+  const[msg,setMsg]=useState("");
+  const[sent,setSent]=useState(false);
+  const[showErrors,setShowErrors]=useState(false);
+
+  const nameMissing=!name.trim();
+  const cityMissing=!city.trim();
+
+  const handleSend=()=>{
+    if(nameMissing||cityMissing||!msg.trim()){setShowErrors(true);return;}
+    const subject=encodeURIComponent(`[Somalimed ${fb[type]||type}]`);
+    const lines=[
+      `${fb.nameLabel}: ${name}`,
+      `${fb.cityLabel}: ${city}`,
+      email?`${fb.emailLabel}: ${email}`:null,
+      phone?`${fb.phoneLabel}: ${phone}`:null,
+      "",
+      msg,
+    ].filter(Boolean);
+    const body=encodeURIComponent(lines.join("\n"));
+    window.open(`mailto:197IDH@apoteket.dk?subject=${subject}&body=${body}`);
+    setSent(true);
+  };
+
+  const inputStyle=(missing)=>({
+    padding:"12px 14px",borderRadius:"14px",fontSize:"16px",outline:"none",fontFamily:"inherit",
+    border:`1.5px solid ${missing&&showErrors?"#ef4444":"#e2e8f0"}`,
+    direction:isRtl?"rtl":"ltr",minHeight:"48px",width:"100%",boxSizing:"border-box",
+  });
+
   return(
     <ModalShell title={navLabels.contact} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
       <p style={{fontSize:"15px",color:"#475569",lineHeight:1.7,margin:"0 0 18px",textAlign:isRtl?"right":"left"}}>{data.intro}</p>
@@ -727,7 +772,7 @@ function ContactModal({language,onClose}){
         </div>
       </a>
       <p style={{fontWeight:700,fontSize:"14px",color:"#0f172a",margin:"0 0 10px",textAlign:isRtl?"right":"left"}}>{data.responseTitle}</p>
-      <ul style={{listStyle:"none",padding:0,margin:0,display:"flex",flexDirection:"column",gap:"7px"}}>
+      <ul style={{listStyle:"none",padding:0,margin:"0 0 22px",display:"flex",flexDirection:"column",gap:"7px"}}>
         {data.topics.map((t,i)=>(
           <li key={i} style={{display:"flex",alignItems:"center",gap:"10px",padding:"11px 14px",background:"#fff",borderRadius:"12px",border:"1px solid #e5e7eb",fontSize:"14px",color:"#334155",fontWeight:500}}>
             <span style={{width:7,height:7,borderRadius:"50%",background:theme.primary,flexShrink:0}}/>
@@ -735,6 +780,47 @@ function ContactModal({language,onClose}){
           </li>
         ))}
       </ul>
+
+      {/* Feedback form (Ris/Ros/Forslag) */}
+      <div style={{borderTop:"1.5px solid #e5e7eb",paddingTop:"20px"}}>
+        {sent?(
+          <div style={{textAlign:"center",padding:"24px 0"}}>
+            <div style={{fontSize:"40px",marginBottom:"12px"}}>🙏</div>
+            <p style={{fontWeight:700,fontSize:"16px",color:"#0f172a"}}>{fb.sent}</p>
+          </div>
+        ):(
+          <div style={{display:"flex",flexDirection:"column",gap:"12px"}}>
+            <p style={{fontWeight:700,fontSize:"14px",color:"#0f172a",margin:0,textAlign:isRtl?"right":"left"}}>{fb.formTitle}</p>
+            <p style={{fontSize:"13px",color:"#64748b",margin:0,textAlign:isRtl?"right":"left"}}>{fb.subtitle}</p>
+            <div style={{display:"flex",gap:"8px",flexWrap:"wrap"}}>
+              {[["praise",fb.praise],["criticism",fb.criticism],["suggestion",fb.suggestion]].map(([key,label])=>(
+                <button key={key} type="button" onClick={()=>setType(key)} style={{padding:"10px 18px",borderRadius:"999px",border:"1.5px solid",fontWeight:600,fontSize:"14px",cursor:"pointer",transition:"all 0.2s",borderColor:type===key?theme.primary:"#e2e8f0",background:type===key?theme.primary:"#fff",color:type===key?"#fff":"#334155",minHeight:"44px"}}>{label}</button>
+              ))}
+            </div>
+            <div>
+              <label style={{display:"block",fontSize:"12.5px",fontWeight:600,color:"#475569",marginBottom:"5px",textAlign:isRtl?"right":"left"}}>
+                {fb.nameLabel} <span style={{color:"#ef4444"}}>*</span>
+              </label>
+              <input value={name} onChange={(e)=>setName(e.target.value)} style={inputStyle(nameMissing)}/>
+            </div>
+            <div>
+              <label style={{display:"block",fontSize:"12.5px",fontWeight:600,color:"#475569",marginBottom:"5px",textAlign:isRtl?"right":"left"}}>
+                {fb.cityLabel} <span style={{color:"#ef4444"}}>*</span>
+              </label>
+              <input value={city} onChange={(e)=>setCity(e.target.value)} style={inputStyle(cityMissing)}/>
+            </div>
+            <div style={{display:"flex",gap:"10px",flexWrap:"wrap"}}>
+              <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder={fb.emailLabel} type="email" style={{...inputStyle(false),flex:"1 1 160px"}}/>
+              <input value={phone} onChange={(e)=>setPhone(e.target.value)} placeholder={fb.phoneLabel} type="tel" style={{...inputStyle(false),flex:"1 1 160px"}}/>
+            </div>
+            <textarea value={msg} onChange={(e)=>setMsg(e.target.value)} placeholder={fb.placeholder} rows={4} style={{...inputStyle(showErrors&&!msg.trim()),resize:"vertical"}}/>
+            {showErrors&&(nameMissing||cityMissing||!msg.trim())&&(
+              <p style={{fontSize:"12.5px",color:"#ef4444",margin:0,textAlign:isRtl?"right":"left"}}>{fb.requiredHint}</p>
+            )}
+            <button type="button" onClick={handleSend} style={{padding:"15px",borderRadius:"14px",background:theme.primary,color:"#fff",fontWeight:700,fontSize:"16px",border:"none",cursor:"pointer",boxShadow:`0 4px 14px ${theme.primary}40`,minHeight:"52px"}}>{fb.send}</button>
+          </div>
+        )}
+      </div>
     </ModalShell>
   );
 }
@@ -785,48 +871,6 @@ function FAQModal({language,onClose}){
           </div>
         ))}
       </div>
-    </ModalShell>
-  );
-}
-
-// ── Feedback Modal ─────────────────────────────────────────────────────────
-function FeedbackModal({language,onClose}){
-  const[type,setType]=useState("praise");
-  const[msg,setMsg]=useState("");
-  const[email,setEmail]=useState("");
-  const[sent,setSent]=useState(false);
-  const isRtl=language==="ar";
-  const data=FEEDBACK_DATA[language]??FEEDBACK_DATA.so;
-  const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
-  const theme=LANG_THEME[language]??LANG_THEME.so;
-  const handleSend=()=>{
-    if(!msg.trim())return;
-    const subject=encodeURIComponent(`[Somalimed ${data[type]||type}]`);
-    const body=encodeURIComponent(`Type: ${data[type]||type}\n\n${msg}${email?`\n\nFra: ${email}`:""}`);
-    window.open(`mailto:197IDH@apoteket.dk?subject=${subject}&body=${body}`);
-    setSent(true);
-  };
-  const iconEl=<StarIcon size={22} color="rgba(255,255,255,0.95)"/>;
-  return(
-    <ModalShell title={navLabels.feedback} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
-      {sent?(
-        <div style={{textAlign:"center",padding:"32px 0"}}>
-          <div style={{fontSize:"48px",marginBottom:"16px"}}>🙏</div>
-          <p style={{fontWeight:700,fontSize:"18px",color:"#0f172a"}}>{data.sent}</p>
-        </div>
-      ):(
-        <div style={{display:"flex",flexDirection:"column",gap:"14px"}}>
-          <p style={{fontSize:"14px",color:"#64748b",margin:0,textAlign:isRtl?"right":"left"}}>{data.subtitle}</p>
-          <div style={{display:"flex",gap:"8px",flexWrap:"wrap"}}>
-            {[["praise",data.praise],["criticism",data.criticism],["suggestion",data.suggestion]].map(([key,label])=>(
-              <button key={key} type="button" onClick={()=>setType(key)} style={{padding:"10px 18px",borderRadius:"999px",border:"1.5px solid",fontWeight:600,fontSize:"14px",cursor:"pointer",transition:"all 0.2s",borderColor:type===key?theme.primary:"#e2e8f0",background:type===key?theme.primary:"#fff",color:type===key?"#fff":"#334155",minHeight:"44px"}}>{label}</button>
-            ))}
-          </div>
-          <textarea value={msg} onChange={(e)=>setMsg(e.target.value)} placeholder={data.placeholder} rows={4} style={{width:"100%",padding:"12px 14px",borderRadius:"14px",border:"1.5px solid #e2e8f0",fontSize:"16px",resize:"vertical",outline:"none",fontFamily:"inherit",boxSizing:"border-box",direction:isRtl?"rtl":"ltr"}}/>
-          <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder={data.emailLabel} type="email" style={{padding:"12px 14px",borderRadius:"14px",border:"1.5px solid #e2e8f0",fontSize:"16px",outline:"none",fontFamily:"inherit",direction:isRtl?"rtl":"ltr",minHeight:"48px"}}/>
-          <button type="button" onClick={handleSend} style={{padding:"15px",borderRadius:"14px",background:theme.primary,color:"#fff",fontWeight:700,fontSize:"16px",border:"none",cursor:"pointer",boxShadow:`0 4px 14px ${theme.primary}40`,minHeight:"52px"}}>{data.send}</button>
-        </div>
-      )}
     </ModalShell>
   );
 }
@@ -1002,7 +1046,6 @@ export function SiteIndex({initialLang}){
       {(modalTab==="me"||modalTab==="site")&&<AboutModal tab={modalTab} language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="faq"      &&<FAQModal      language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="tpi"      &&<TPIModal      language={language} onClose={()=>setModalTab(null)}/>}
-      {modalTab==="feedback" &&<FeedbackModal language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="contact"  &&<ContactModal  language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="findPharmacy" &&<PharmacyFinderModal language={language} onClose={()=>setModalTab(null)}/>}
@@ -1136,8 +1179,8 @@ export function SiteIndex({initialLang}){
         width:"100%",
         background:"linear-gradient(90deg,#e6faf6 0%,#ccf5ec 50%,#e6faf6 100%)",
         borderTop:"2px solid #5eead4",
-        padding:"11px 24px",
-        display:"flex",alignItems:"center",justifyContent:"center",
+        padding:"14px 24px",
+        display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:"10px",
       }}>
         <span style={{
           display:"inline-flex",alignItems:"center",gap:"8px",
@@ -1151,8 +1194,19 @@ export function SiteIndex({initialLang}){
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0f766e" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
             <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
           </svg>
-          {LAST_REVISED[language]??LAST_REVISED.so}
+          {getLastRevisedText(language)}
         </span>
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: "8px",
+          padding: "9px 16px", borderRadius: "12px", maxWidth: "440px",
+          background: "rgba(255,255,255,0.6)", border: "1px solid rgba(94,234,212,0.5)",
+          color: "#0f766e", fontSize: "12px", lineHeight: 1.6,
+          textAlign: language === "ar" ? "right" : "left",
+          direction: language === "ar" ? "rtl" : "ltr",
+        }}>
+          <ShieldCheckIcon size={15} color="#0f766e" />
+          <span>{QUALITY_NOTE[language] ?? QUALITY_NOTE.da}</span>
+        </div>
       </div>
     </div>
   );

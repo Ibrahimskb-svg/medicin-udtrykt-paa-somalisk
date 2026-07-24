@@ -3396,7 +3396,7 @@ export const siteData = {
           ],
           "interactTitle": "Interaktioner",
           "interactList": [
-            "Nogle lægemidler, fx steroidbehandling, visse vanddrivende midler og beta-blokkere, kan ændre behovet for insulin.",
+            "Nogle lægemidler, f.eks. steroidbehandling, visse vanddrivende midler og beta-blokkere, kan ændre behovet for insulin.",
             "Sygdom, infektion eller større ændringer i kost og motion kan også påvirke blodsukkeret.",
             "Fortæl lægen eller apoteket om al medicin, du tager, og mål blodsukker efter aftale."
           ],
@@ -3417,7 +3417,7 @@ export const siteData = {
           "foodTitle": "Mad og drikke",
           "foodList": [
             "Hvis du bruger hurtigtvirkende insulin, er tidspunktet for måltidet vigtigt.",
-            "Hav altid hurtig sukker ved hånden, fx druesukker eller lidt juice, hvis blodsukkeret falder.",
+            "Hav altid hurtig sukker ved hånden, f.eks. druesukker eller lidt juice, hvis blodsukkeret falder.",
             "Mængden af kulhydrat i maden påvirker direkte behovet for insulin."
           ],
           "storeTitle": "Opbevaring",
@@ -7831,7 +7831,7 @@ export const siteData = {
           ],
           "interactTitle": "Interaktioner",
           "interactList": [
-            "Vær opmærksom på andre produkter, der også indeholder paracetamol, fx nogle forkølelses- og influenzamidler.",
+            "Vær opmærksom på andre produkter, der også indeholder paracetamol, f.eks. nogle forkølelses- og influenzamidler.",
             "Fortæl lægen eller apoteket om anden fast medicin, hvis du bruger paracetamol ofte eller i længere tid.",
             "Ved stort alkoholforbrug eller leversygdom kan der være behov for særlig forsigtighed."
           ],

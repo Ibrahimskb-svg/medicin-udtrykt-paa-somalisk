@@ -2,7 +2,8 @@
   "name": "medicin-udtrykt-paa-somalisk",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node scripts/generate-last-revised.js && next dev",
+    "prebuild": "node scripts/generate-last-revised.js",
     "build": "next build",
     "start": "next start"
   },
