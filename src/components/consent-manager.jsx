@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Script from "next/script";
 
 const BANNER_LANG_KEY = "cookieBannerLang";
@@ -42,6 +43,7 @@ const TEXTS = {
 };
 
 export function ConsentManager() {
+  const pathname = usePathname();
   const [consent, setConsent] = useState(null);
   const [checked, setChecked] = useState(false);
   const [lang, setLang] = useState("da");
@@ -77,6 +79,8 @@ export function ConsentManager() {
 
   const t = TEXTS[lang] ?? TEXTS.da;
   const isRtl = lang === "ar";
+
+  if (pathname?.startsWith("/dashboard")) return null;
 
   return (
     <>

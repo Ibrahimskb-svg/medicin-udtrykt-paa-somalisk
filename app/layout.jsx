@@ -297,6 +297,7 @@ export default function RootLayout({ children }) {
               }
 
               function create() {
+                if (location.pathname.startsWith("/dashboard")) return;
                 if (!document.body || document.getElementById("sm-bubble") || isDismissed()) return;
                 var lang = getLang();
                 var msg = messages[lang] || messages.so;
