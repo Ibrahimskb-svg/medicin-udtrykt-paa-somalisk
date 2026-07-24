@@ -71,6 +71,18 @@ export async function GET(request) {
       metrics: [{ name: "activeUsers" }, { name: "screenPageViews" }],
     });
 
+    const [realtimeReport] = await client.runRealtimeReport({
+      property,
+      metrics: [{ name: "activeUsers" }],
+    });
+
+    // Prior 28-day window immediately before the current one, for period-over-period growth.
+    const [previousPeriodReport] = await client.runReport({
+      property,
+      dateRanges: [{ startDate: "55daysAgo", endDate: "28daysAgo" }],
+      metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
+    });
+
     const timeseries = rowsOf(timeseriesReport).map((row) => ({
       date: toDateLabel(row.dimensionValues[0].value),
       users: Number(row.metricValues[0].value),
@@ -109,15 +121,40 @@ export async function GET(request) {
         }
       : { users: 0, pageviews: 0 };
 
+    const activeNow = Number(rowsOf(realtimeReport)[0]?.metricValues[0]?.value || 0);
+
+    const prevRow = rowsOf(previousPeriodReport)[0];
+    const previous28d = prevRow
+      ? {
+          users: Number(prevRow.metricValues[0].value),
+          sessions: Number(prevRow.metricValues[1].value),
+          pageviews: Number(prevRow.metricValues[2].value),
+        }
+      : { users: 0, sessions: 0, pageviews: 0 };
+
+    function growthPct(current, previous) {
+      if (previous === 0) return current === 0 ? 0 : null;
+      return ((current - previous) / previous) * 100;
+    }
+
+    const growth28d = {
+      users: growthPct(totals28d.users, previous28d.users),
+      sessions: growthPct(totals28d.sessions, previous28d.sessions),
+      pageviews: growthPct(totals28d.pageviews, previous28d.pageviews),
+    };
+
     return NextResponse.json({
       ok: true,
       generatedAt: new Date().toISOString(),
       timeseries,
       totals28d,
+      previous28d,
+      growth28d,
       countries,
       cities,
       devices,
       allTime,
+      activeNow,
     });
   } catch (err) {
     console.error("GA4 analytics fetch failed:", err);

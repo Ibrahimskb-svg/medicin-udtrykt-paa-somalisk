@@ -28,25 +28,38 @@ function Card({ title, subtitle, children }) {
   );
 }
 
+const REFRESH_INTERVAL_MS = 120_000;
+
 export function AnalyticsDashboard() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
+  const [showTable, setShowTable] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    fetch("/api/analytics")
-      .then((res) => {
-        if (!res.ok) throw new Error("fetch-failed");
-        return res.json();
-      })
-      .then((json) => {
-        if (!cancelled) setData(json);
-      })
-      .catch(() => {
-        if (!cancelled) setError(true);
-      });
+
+    function load() {
+      fetch("/api/analytics")
+        .then((res) => {
+          if (!res.ok) throw new Error("fetch-failed");
+          return res.json();
+        })
+        .then((json) => {
+          if (!cancelled) {
+            setData(json);
+            setError(false);
+          }
+        })
+        .catch(() => {
+          if (!cancelled) setError(true);
+        });
+    }
+
+    load();
+    const interval = setInterval(load, REFRESH_INTERVAL_MS);
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
   }, []);
 
@@ -115,10 +128,69 @@ export function AnalyticsDashboard() {
 
         {data && data.ok && (
           <>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "9px",
+                background: "#FFFFFF",
+                border: "1px solid #DDE3EA",
+                borderRadius: "12px",
+                padding: "12px 18px",
+                marginBottom: "14px",
+                width: "fit-content",
+              }}
+            >
+              <span style={{ position: "relative", width: "10px", height: "10px", flexShrink: 0 }}>
+                <span
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "50%",
+                    background: "#0ca30c",
+                    animation: "sm-pulse-ring 2s ease-out infinite",
+                  }}
+                />
+                <span
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "50%",
+                    background: "#0ca30c",
+                  }}
+                />
+              </span>
+              <span style={{ fontSize: "13.5px", color: "#0F1923" }}>
+                <strong>{data.activeNow}</strong> aktive på siden lige nu
+              </span>
+              <style>{`
+                @keyframes sm-pulse-ring {
+                  0% { transform: scale(1); opacity: 0.6; }
+                  100% { transform: scale(2.6); opacity: 0; }
+                }
+              `}</style>
+            </div>
+
             <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", marginBottom: "20px" }}>
-              <StatTile label="Besøgende (28 dage)" value={data.totals28d.users} hint="Sidste 4 uger" />
-              <StatTile label="Sidevisninger (28 dage)" value={data.totals28d.pageviews} />
-              <StatTile label="Sessioner (28 dage)" value={data.totals28d.sessions} />
+              <StatTile
+                label="Besøgende (28 dage)"
+                value={data.totals28d.users}
+                hint="Sidste 4 uger"
+                deltaPct={data.growth28d?.users ?? null}
+                deltaLabel="vs. forrige 4 uger"
+              />
+              <StatTile
+                label="Sidevisninger (28 dage)"
+                value={data.totals28d.pageviews}
+                deltaPct={data.growth28d?.pageviews ?? null}
+                deltaLabel="vs. forrige 4 uger"
+              />
+              <StatTile
+                label="Sessioner (28 dage)"
+                value={data.totals28d.sessions}
+                deltaPct={data.growth28d?.sessions ?? null}
+                deltaLabel="vs. forrige 4 uger"
+              />
               <StatTile
                 label="Gns. besøgstid"
                 value={formatDuration(data.totals28d.avgSessionSeconds)}
@@ -133,6 +205,133 @@ export function AnalyticsDashboard() {
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
               <Card title="Besøgende de sidste 30 dage" subtitle="Daglige aktive brugere">
                 <TrendLineChart data={data.timeseries} />
+
+                <button
+                  onClick={() => setShowTable((v) => !v)}
+                  style={{
+                    marginTop: "14px",
+                    background: "none",
+                    border: "none",
+                    color: "#0D9488",
+                    fontSize: "12.5px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    padding: 0,
+                  }}
+                >
+                  {showTable ? "Skjul tabel" : "Vis som tabel"}
+                </button>
+
+                {showTable && (
+                  <div style={{ marginTop: "12px", maxHeight: "260px", overflowY: "auto" }}>
+                    <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
+                      <thead>
+                        <tr>
+                          <th
+                            style={{
+                              textAlign: "left",
+                              padding: "6px 8px",
+                              color: "#5A6A7A",
+                              fontWeight: 600,
+                              borderBottom: "1px solid #DDE3EA",
+                              position: "sticky",
+                              top: 0,
+                              background: "#fff",
+                            }}
+                          >
+                            Dato
+                          </th>
+                          <th
+                            style={{
+                              textAlign: "right",
+                              padding: "6px 8px",
+                              color: "#5A6A7A",
+                              fontWeight: 600,
+                              borderBottom: "1px solid #DDE3EA",
+                              position: "sticky",
+                              top: 0,
+                              background: "#fff",
+                            }}
+                          >
+                            Besøgende
+                          </th>
+                          <th
+                            style={{
+                              textAlign: "right",
+                              padding: "6px 8px",
+                              color: "#5A6A7A",
+                              fontWeight: 600,
+                              borderBottom: "1px solid #DDE3EA",
+                              position: "sticky",
+                              top: 0,
+                              background: "#fff",
+                            }}
+                          >
+                            Ændring vs. dagen før
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {data.timeseries
+                          .map((d, i) => {
+                            const prev = data.timeseries[i - 1];
+                            let changePct = null;
+                            if (prev) {
+                              changePct =
+                                prev.users === 0
+                                  ? d.users === 0
+                                    ? 0
+                                    : null
+                                  : ((d.users - prev.users) / prev.users) * 100;
+                            }
+                            return { ...d, changePct };
+                          })
+                          .slice()
+                          .reverse()
+                          .map((d) => (
+                            <tr key={d.date}>
+                              <td style={{ padding: "6px 8px", borderBottom: "1px solid #F0F4F8", color: "#0F1923" }}>
+                                {d.date}
+                              </td>
+                              <td
+                                style={{
+                                  padding: "6px 8px",
+                                  borderBottom: "1px solid #F0F4F8",
+                                  textAlign: "right",
+                                  fontVariantNumeric: "tabular-nums",
+                                  color: "#0F1923",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {d.users}
+                              </td>
+                              <td
+                                style={{
+                                  padding: "6px 8px",
+                                  borderBottom: "1px solid #F0F4F8",
+                                  textAlign: "right",
+                                  fontVariantNumeric: "tabular-nums",
+                                  fontWeight: 600,
+                                  color:
+                                    d.changePct === null
+                                      ? "#898781"
+                                      : d.changePct > 0
+                                        ? "#006300"
+                                        : d.changePct < 0
+                                          ? "#e34948"
+                                          : "#898781",
+                                }}
+                              >
+                                {d.changePct === null
+                                  ? "–"
+                                  : `${d.changePct > 0 ? "+" : ""}${d.changePct.toFixed(0)}%`}
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
               </Card>
             </div>
 
@@ -152,7 +351,8 @@ export function AnalyticsDashboard() {
             </div>
 
             <p style={{ fontSize: "11.5px", color: "#898781", marginTop: "24px" }}>
-              Sidst opdateret: {new Date(data.generatedAt).toLocaleString("da-DK")}
+              Sidst opdateret: {new Date(data.generatedAt).toLocaleString("da-DK")} · opdateres automatisk
+              hvert 2. minut
             </p>
           </>
         )}
