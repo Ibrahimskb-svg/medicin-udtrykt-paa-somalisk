@@ -24,10 +24,24 @@ const NAV_LABELS = {
 }[LANG];
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode", addToList: "Tilføj til min liste" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code", addToList: "Add to my list" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR", addToList: "Ku dar liiskaaga" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR", addToList: "أضف إلى قائمتي" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode", addToList: "Tilføj til min liste", remind: "Påmind mig" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code", addToList: "Add to my list", remind: "Remind me" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", remind: "I xasuusi" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR", addToList: "أضف إلى قائمتي", remind: "ذكّرني" },
+}[LANG];
+
+const SYMPTOM_LABELS = {
+  da: "Skriv et symptom…",
+  en: "Type a symptom…",
+  so: "Qor calaamad…",
+  ar: "اكتب عرضًا…",
+}[LANG];
+
+const SYMPTOM_WORDS = {
+  da: "svimmelhed",
+  en: "dizziness",
+  so: "wareer",
+  ar: "دوخة",
 }[LANG];
 
 const QR_LABELS = {
@@ -229,6 +243,20 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   await page.keyboard.type('ibuprofen', { delay: 180 });
   await sleepToTarget(seg, 'search_type_action');
 
+  // ── stemme-søgning (visuel demo, ingen rigtig mikrofon i headless) ────
+  if (seg.voice_search) {
+    console.log('  [voice_search] Microphone button (visual only)');
+    const micBtn = page.locator('[aria-label="Voice search"]');
+    if (await micBtn.count().catch(() => 0)) {
+      await micBtn.scrollIntoViewIfNeeded().catch(() => {});
+      await micBtn.click().catch(() => {});
+      await sleep(600);
+      await micBtn.click().catch(() => {});
+    }
+    await sleepToTarget(seg, 'voice_search');
+    await sleepToTarget(seg, 'voice_search_action');
+  }
+
   // ── kategorier ───────────────────────────────────────────────────────
   console.log('  [categories] Results + category buttons');
   await sleepToTarget(seg, 'categories');
@@ -269,6 +297,13 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   await page.click(`button:has-text("${SHARE_LABELS.addToList}")`).catch(() => {});
   await sleepToTarget(seg, 'btn_addlist');
   await sleepToTarget(seg, 'btn_addlist_action');
+
+  if (seg.btn_remind) {
+    console.log('  [btn_remind] Remind me button (downloads .ics, safe)');
+    await page.click(`button:has-text("${SHARE_LABELS.remind}")`).catch(() => {});
+    await sleepToTarget(seg, 'btn_remind');
+    await sleepToTarget(seg, 'btn_remind_action');
+  }
 
   // ── lydoplæsning (kun ar/so) ─────────────────────────────────────────
   if (seg.audio_readout) {
@@ -316,15 +351,45 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   await sleepToTarget(seg, 'mylist_modal_demo');
 
   if (seg.mylist_interact) {
-    console.log('  [mylist_interact] Scroll to interactions/warnings section');
+    console.log('  [mylist_interact] Scroll to interactions/warnings section, expand first card');
     await page.evaluate(() => {
       const scrollable = [...document.querySelectorAll('div')].find(
         (d) => d.scrollHeight > d.clientHeight + 50 && d.getBoundingClientRect().height > 200
       );
-      if (scrollable) scrollable.scrollTop = scrollable.scrollHeight * 0.55;
+      if (scrollable) scrollable.scrollTop = scrollable.scrollHeight * 0.4;
     }).catch(() => {});
     await sleepToTarget(seg, 'mylist_interact');
+    const firstCard = page.locator('button[aria-expanded="false"]').first();
+    await firstCard.click({ force: true }).catch(() => {});
     await sleepToTarget(seg, 'mylist_interact_scroll');
+  }
+
+  if (seg.mylist_paircheck) {
+    console.log('  [mylist_paircheck] Scroll to real combination check + official database link');
+    await page.evaluate(() => {
+      const scrollable = [...document.querySelectorAll('div')].find(
+        (d) => d.scrollHeight > d.clientHeight + 50 && d.getBoundingClientRect().height > 200
+      );
+      if (scrollable) scrollable.scrollTop = scrollable.scrollHeight * 0.22;
+    }).catch(() => {});
+    await sleepToTarget(seg, 'mylist_paircheck');
+    await sleepToTarget(seg, 'mylist_paircheck_scroll');
+  }
+
+  if (seg.symptom_check) {
+    console.log('  [symptom_check] Scroll to symptom checker, type a symptom');
+    await page.evaluate(() => {
+      const scrollable = [...document.querySelectorAll('div')].find(
+        (d) => d.scrollHeight > d.clientHeight + 50 && d.getBoundingClientRect().height > 200
+      );
+      if (scrollable) scrollable.scrollTop = scrollable.scrollHeight;
+    }).catch(() => {});
+    const symptomInput = page.locator(`input[placeholder="${SYMPTOM_LABELS}"]`).first();
+    await symptomInput.scrollIntoViewIfNeeded().catch(() => {});
+    await symptomInput.click().catch(() => {});
+    await page.keyboard.type(SYMPTOM_WORDS, { delay: 150 }).catch(() => {});
+    await sleepToTarget(seg, 'symptom_check');
+    await sleepToTarget(seg, 'symptom_check_action');
   }
 
   console.log('  [mylist_print] Print list button (safe, window.open stubbed elsewhere)');
