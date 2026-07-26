@@ -71,11 +71,61 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code", addToList: "Add to my list", onList: "On your list" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير" },
 };
+
+function downloadReminderICS(medicineName, language) {
+  const now = new Date();
+  const pad = (n) => String(n).padStart(2, "0");
+  const todayStr = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
+  const stampStr =
+    `${now.getUTCFullYear()}${pad(now.getUTCMonth() + 1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}Z`;
+  const uid = `somalimed-${Date.now()}@somalimed.dk`;
+
+  const summaryByLang = {
+    da: `Tag din medicin: ${medicineName}`,
+    en: `Take your medicine: ${medicineName}`,
+    so: `Qaado daawadaada: ${medicineName}`,
+    ar: `تناول دواءك: ${medicineName}`,
+  };
+  const descByLang = {
+    da: "Daglig påmindelse fra Somalimed.dk. Du kan ændre klokkeslættet i din kalender-app.",
+    en: "Daily reminder from Somalimed.dk. You can change the time in your calendar app.",
+    so: "Xasuusin maalinle ah oo ka timid Somalimed.dk. Waxaad ka bedeli kartaa saacadda app-kaaga jadwalka.",
+    ar: "تذكير يومي من Somalimed.dk. يمكنك تغيير الوقت في تطبيق التقويم الخاص بك.",
+  };
+  const summary = summaryByLang[language] || summaryByLang.da;
+  const description = descByLang[language] || descByLang.da;
+
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Somalimed//Medicine Reminder//DA",
+    "BEGIN:VEVENT",
+    `UID:${uid}`,
+    `DTSTAMP:${stampStr}`,
+    `DTSTART;TZID=Europe/Copenhagen:${todayStr}T080000`,
+    `DTEND;TZID=Europe/Copenhagen:${todayStr}T081500`,
+    "RRULE:FREQ=DAILY",
+    `SUMMARY:${summary}`,
+    `DESCRIPTION:${description}`,
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `Somalimed-paamindelse-${medicineName.replace(/\s+/g, "-")}.ics`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
 const QR_LABELS = {
   da: {
@@ -233,6 +283,7 @@ export function MedicinePage({ medicine, initialLang }) {
   const [qrDataUrl, setQrDataUrl] = useState(null);
   const [qrCopied, setQrCopied] = useState(false);
   const [inMyList, setInMyList] = useState(false);
+  const [reminded, setReminded] = useState(false);
   const somaliAudioRef = useRef(null);
   const arabicAudioRef = useRef(null);
 
@@ -564,6 +615,26 @@ export function MedicinePage({ medicine, initialLang }) {
               {inMyList ? <path d="M20 6 9 17l-5-5" /> : <><path d="M9 6h11" /><path d="M9 12h11" /><path d="M9 18h11" /><path d="M4.5 6h.01" /><path d="M4.5 12h.01" /><path d="M4.5 18h.01" /></>}
             </svg>
             {inMyList ? shareText.onList : shareText.addToList}
+          </button>
+          <button
+            onClick={() => {
+              downloadReminderICS(data.drugName || medicine.slug, language);
+              setReminded(true);
+            }}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: reminded ? "#0D9488" : "var(--surface)",
+              color: reminded ? "#fff" : "var(--text)",
+              fontWeight: 600, fontSize: "13px",
+              border: reminded ? "1.5px solid #0D9488" : "1.5px solid var(--border)",
+              cursor: "pointer",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 0 1-3.46 0" />
+            </svg>
+            {reminded ? shareText.reminded : shareText.remind}
           </button>
         </div>
 
