@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { getIndexData, getDisplayName, getMedicine } from "../lib/site";
 import { getMyList, addToMyList, removeFromMyList, subscribeMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
+import { knownInteractions, pairKey, CHECKED_DATE } from "../data/interactions";
 
 const indexData = getIndexData();
 
@@ -22,6 +23,20 @@ const TEXTS = {
     interactionsEmpty: "Ingen interaktions- eller advarselsoplysninger fundet for denne medicin.",
     interactLabel: "Interaktioner",
     warnLabel: "Advarsler",
+    officialCheckLabel: "Tjek din kombination på Lægemiddelstyrelsens officielle Interaktionsdatabase ↗",
+    pairCheckTitle: "Kombinationstjek",
+    pairCheckIntro: "Disse specifikke kombinationer er slået op direkte i Lægemiddelstyrelsens Interaktionsdatabase:",
+    levelGreen: "Kan bruges sammen",
+    levelOrange: "Kan bruges med forsigtighed",
+    levelRed: "Bør undgås sammen",
+    pairSourceLabel: "Kilde: Interaktionsdatabasen.dk",
+    pairViewSource: "Se opslaget ↗",
+    symptomTitle: "Er det en bivirkning?",
+    symptomIntro: "Skriv det du mærker (f.eks. \"kvalme\" eller \"svimmelhed\"), så tjekker vi om det allerede står som en kendt bivirkning på et af dine gemte medicin.",
+    symptomPlaceholder: "Skriv et symptom…",
+    symptomNoMatch: "Ingen af dine gemte medicin nævner det som en bivirkning — men kontakt altid apoteket eller lægen, hvis du er bekymret.",
+    symptomMatchIntro: "Det står nævnt som en mulig bivirkning her:",
+    symptomDisclaimer: "Dette er ikke en diagnose — brug det som udgangspunkt for en samtale med apoteket eller lægen.",
   },
   en: {
     title: "My medicine list",
@@ -38,6 +53,20 @@ const TEXTS = {
     interactionsEmpty: "No interaction or warning information found for this medicine.",
     interactLabel: "Interactions",
     warnLabel: "Warnings",
+    officialCheckLabel: "Check your combination on the Danish Medicines Agency's official Interaction Database ↗",
+    pairCheckTitle: "Combination check",
+    pairCheckIntro: "These specific combinations have been looked up directly in the Danish Medicines Agency's Interaction Database:",
+    levelGreen: "Can be used together",
+    levelOrange: "Can be used with caution",
+    levelRed: "Should be avoided together",
+    pairSourceLabel: "Source: Interaktionsdatabasen.dk",
+    pairViewSource: "View the lookup ↗",
+    symptomTitle: "Is this a side effect?",
+    symptomIntro: "Type what you're feeling (e.g. \"nausea\" or \"dizziness\"), and we'll check if it's already listed as a known side effect of one of your saved medicines.",
+    symptomPlaceholder: "Type a symptom…",
+    symptomNoMatch: "None of your saved medicines mention that as a side effect — but always contact the pharmacy or doctor if you're worried.",
+    symptomMatchIntro: "It's mentioned as a possible side effect here:",
+    symptomDisclaimer: "This is not a diagnosis — use it as a starting point for a conversation with the pharmacy or doctor.",
   },
   so: {
     title: "Liiska daawooyinkayga",
@@ -54,6 +83,20 @@ const TEXTS = {
     interactionsEmpty: "Lama helin macluumaad isdhexgal ama digniin ah oo ku saabsan daawadan.",
     interactLabel: "Isdhexgalka",
     warnLabel: "Digniinaha",
+    officialCheckLabel: "Ku hubi isdhexgalka daawooyinkaaga bogga rasmiga ah ee Interaktionsdatabasen ↗",
+    pairCheckTitle: "Hubinta Isku-darka",
+    pairCheckIntro: "Isku-darrada hoos ku qoran waxaa si toos ah looga hubiyay bogga rasmiga ah ee Interaktionsdatabasen:",
+    levelGreen: "Waa la isticmaali karaa labadaba",
+    levelOrange: "Waa la isticmaali karaa si taxadar leh",
+    levelRed: "Waa in laga fogaado isku-darkooda",
+    pairSourceLabel: "Isha: Interaktionsdatabasen.dk",
+    pairViewSource: "Eeg raadinta ↗",
+    symptomTitle: "Waxyeello ma tahay?",
+    symptomIntro: "Qor waxa aad dareemayso (tusaale: \"lallabo\" ama \"madax wareer\"), oo aan hubino haddii ay horey ugu qoran tahay sidii waxyeello la yaqaan oo ku socota mid ka mid ah daawooyinka aad ku darsatay liiskaaga.",
+    symptomPlaceholder: "Qor calaamad…",
+    symptomNoMatch: "Midna kama mid aha daawooyinka aad liiska ku darsatay lama sheegin sidaas — laakiin had iyo jeer la xiriir farmashiga ama dhakhtarka haddii aad walaacsan tahay.",
+    symptomMatchIntro: "Waxaa lagu sheegay sidii waxyeello suurtagal ah halkan:",
+    symptomDisclaimer: "Tani ma aha ogaanshaha cudur — u isticmaal sidii bilow wax looga hadlayo farmashiga ama dhakhtarka.",
   },
   ar: {
     title: "قائمة أدويتي",
@@ -70,6 +113,20 @@ const TEXTS = {
     interactionsEmpty: "لم يتم العثور على معلومات تفاعل أو تحذير لهذا الدواء.",
     interactLabel: "التفاعلات",
     warnLabel: "التحذيرات",
+    officialCheckLabel: "تحقّق من مجموعتك الدوائية على قاعدة بيانات التفاعلات الدوائية الرسمية التابعة لهيئة الأدوية الدنماركية ↗",
+    pairCheckTitle: "فحص التوليفة",
+    pairCheckIntro: "تم البحث عن هذه التوليفات المحددة مباشرة في قاعدة بيانات التفاعلات الدوائية التابعة لهيئة الأدوية الدنماركية:",
+    levelGreen: "يمكن استخدامهما معًا",
+    levelOrange: "يمكن استخدامهما بحذر",
+    levelRed: "يجب تجنب الجمع بينهما",
+    pairSourceLabel: "المصدر: Interaktionsdatabasen.dk",
+    pairViewSource: "عرض نتيجة البحث ↗",
+    symptomTitle: "هل هذا عرض جانبي؟",
+    symptomIntro: "اكتب ما تشعر به (مثلاً \"غثيان\" أو \"دوخة\")، وسنتحقق مما إذا كان مذكورًا بالفعل كعرض جانبي معروف لأحد أدويتك المحفوظة.",
+    symptomPlaceholder: "اكتب عرضًا…",
+    symptomNoMatch: "لا يذكر أي من أدويتك المحفوظة ذلك كعرض جانبي — لكن تواصل دائمًا مع الصيدلية أو الطبيب إذا كنت قلقًا.",
+    symptomMatchIntro: "مذكور كعرض جانبي محتمل هنا:",
+    symptomDisclaimer: "هذا ليس تشخيصًا — استخدمه كنقطة بداية للحديث مع الصيدلية أو الطبيب.",
   },
 };
 
@@ -129,6 +186,8 @@ export function MyListModal({ language, onClose }) {
   const t = TEXTS[language] ?? TEXTS.so;
   const [list, setList] = useState(() => getMyList());
   const [query, setQuery] = useState("");
+  const [openSlug, setOpenSlug] = useState(null);
+  const [symptomQuery, setSymptomQuery] = useState("");
 
   useEffect(() => subscribeMyList(setList), []);
 
@@ -146,6 +205,19 @@ export function MyListModal({ language, onClose }) {
     [list]
   );
 
+  const pairChecks = useMemo(() => {
+    const results = [];
+    for (let i = 0; i < selectedItems.length; i++) {
+      for (let j = i + 1; j < selectedItems.length; j++) {
+        const a = selectedItems[i];
+        const b = selectedItems[j];
+        const known = knownInteractions[pairKey(a.slug, b.slug)];
+        if (known) results.push({ a, b, ...known });
+      }
+    }
+    return results;
+  }, [selectedItems]);
+
   const interactionNotes = useMemo(() => {
     return selectedItems.map((item) => {
       const medicine = getMedicine(item.slug);
@@ -159,11 +231,25 @@ export function MyListModal({ language, onClose }) {
       return {
         slug: item.slug,
         name: item.name,
+        dose: groupFor("dose"),
         interact: groupFor("interact"),
         warn: groupFor("warn"),
+        side: groupFor("side"),
       };
     });
   }, [selectedItems, language]);
+
+  const symptomMatches = useMemo(() => {
+    const q = symptomQuery.trim().toLowerCase();
+    if (!q) return null;
+    return interactionNotes
+      .map(({ slug, name, side }) => ({
+        slug,
+        name,
+        hits: side.bullets.filter((b) => b.toLowerCase().includes(q)),
+      }))
+      .filter((entry) => entry.hits.length > 0);
+  }, [symptomQuery, interactionNotes]);
 
   function toggle(slug) {
     if (list.includes(slug)) removeFromMyList(slug);
@@ -173,11 +259,20 @@ export function MyListModal({ language, onClose }) {
   function printList() {
     const win = window.open("", "_blank", "width=420,height=640");
     if (!win) return;
+
+    const escapeHtml = (s) =>
+      String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
     const rows = selectedItems
       .map((item) => {
         const danish = item.name;
         const local = getDisplayName(item.slug, language, item.name);
-        return `<li><strong>${danish}</strong>${local !== danish ? `<br><span>${local}</span>` : ""}</li>`;
+        const notes = interactionNotes.find((n) => n.slug === item.slug);
+        const doseBullets = notes?.dose?.bullets || [];
+        const doseHtml = doseBullets.length
+          ? `<ul class="dose">${doseBullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
+          : "";
+        return `<li><strong>${escapeHtml(danish)}</strong>${local !== danish ? `<br><span>${escapeHtml(local)}</span>` : ""}${doseHtml}</li>`;
       })
       .join("");
     win.document.write(`
@@ -190,6 +285,8 @@ export function MyListModal({ language, onClose }) {
         ul{list-style:none;padding:0;margin:0;}
         li{padding:13px 0;border-bottom:1px solid #e2e8f0;font-size:16px;}
         li span{display:block;font-size:13px;color:#64748b;margin-top:3px;}
+        ul.dose{list-style:disc;padding:${isRtl ? "0 18px 0 0" : "0 0 0 18px"};margin-top:8px;}
+        ul.dose li{padding:2px 0;border-bottom:none;font-size:13px;color:#334155;}
         footer{margin-top:28px;font-size:11px;color:#94a3b8;}
       </style>
       </head><body>
@@ -332,46 +429,192 @@ export function MyListModal({ language, onClose }) {
           <p style={{ fontSize: "13.5px", color: "#475569", lineHeight: 1.6, margin: "0 0 14px", textAlign: isRtl ? "right" : "left" }}>
             {t.interactionsIntro}
           </p>
+
+          {pairChecks.length > 0 && (
+            <div style={{ marginBottom: "14px" }}>
+              <p style={{ fontWeight: 700, fontSize: "13px", color: "#0f172a", margin: "0 0 6px", textAlign: isRtl ? "right" : "left" }}>
+                {t.pairCheckTitle}
+              </p>
+              <p style={{ fontSize: "12.5px", color: "#475569", lineHeight: 1.5, margin: "0 0 10px", textAlign: isRtl ? "right" : "left" }}>
+                {t.pairCheckIntro}
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                {pairChecks.map(({ a, b, level, sourceUrl }) => {
+                  const colors = {
+                    green: { bg: "#f0fdf4", border: "#bbf7d0", text: "#166534", dot: "#16a34a", emoji: "🟢" },
+                    orange: { bg: "#fff7ed", border: "#fed7aa", text: "#9a3412", dot: "#ea580c", emoji: "🟠" },
+                    red: { bg: "#fef2f2", border: "#fecaca", text: "#991b1b", dot: "#dc2626", emoji: "🔴" },
+                  }[level];
+                  const levelLabel = { green: t.levelGreen, orange: t.levelOrange, red: t.levelRed }[level];
+                  return (
+                    <div
+                      key={`${a.slug}-${b.slug}`}
+                      style={{ borderRadius: "12px", border: `1.5px solid ${colors.border}`, background: colors.bg, padding: "10px 12px", textAlign: isRtl ? "right" : "left" }}
+                    >
+                      <p style={{ fontWeight: 700, fontSize: "13px", color: "#0f172a", margin: "0 0 4px" }}>
+                        {a.name} + {b.name}
+                      </p>
+                      <p style={{ fontSize: "12.5px", fontWeight: 700, color: colors.text, margin: "0 0 6px" }}>
+                        {colors.emoji} {levelLabel}
+                      </p>
+                      <p style={{ fontSize: "11px", color: "#94a3b8", margin: 0 }}>
+                        {t.pairSourceLabel} ({CHECKED_DATE}) ·{" "}
+                        <a href={sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: theme.primary, fontWeight: 700 }}>
+                          {t.pairViewSource}
+                        </a>
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          <a
+            href="https://interaktionsdatabasen.dk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: "flex", alignItems: "center", gap: "10px",
+              borderRadius: "14px", border: `1.5px solid ${theme.border}`, background: theme.soft,
+              padding: "12px 14px", marginBottom: "14px", textDecoration: "none",
+              fontSize: "13px", fontWeight: 700, color: theme.primary, lineHeight: 1.5,
+              textAlign: isRtl ? "right" : "left",
+            }}
+          >
+            🔗 {t.officialCheckLabel}
+          </a>
+
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {interactionNotes.map(({ slug, name, interact, warn }) => {
               const hasAny = interact.bullets.length > 0 || warn.bullets.length > 0;
+              const isOpen = openSlug === slug;
               return (
                 <div
                   key={slug}
                   style={{
                     borderRadius: "14px", border: "1.5px solid #e2e8f0", background: "#fff",
-                    padding: "12px 14px", textAlign: isRtl ? "right" : "left",
+                    overflow: "hidden",
                   }}
                 >
-                  <p style={{ fontWeight: 700, fontSize: "14px", color: "#0f172a", margin: "0 0 8px" }}>{name}</p>
+                  <button
+                    type="button"
+                    onClick={() => setOpenSlug(isOpen ? null : slug)}
+                    aria-expanded={isOpen}
+                    style={{
+                      width: "100%", display: "flex", alignItems: "center", gap: "10px",
+                      padding: "12px 14px", background: "transparent", border: "none", cursor: "pointer",
+                      textAlign: isRtl ? "right" : "left",
+                    }}
+                  >
+                    <span style={{ fontWeight: 700, fontSize: "14px", color: "#0f172a", flex: 1 }}>{name}</span>
+                    {warn.bullets.length > 0 && (
+                      <span
+                        aria-hidden="true"
+                        style={{ width: 9, height: 9, borderRadius: "50%", background: "#dc2626", flexShrink: 0 }}
+                      />
+                    )}
+                    {interact.bullets.length > 0 && (
+                      <span
+                        aria-hidden="true"
+                        style={{ width: 9, height: 9, borderRadius: "50%", background: "#16a34a", flexShrink: 0 }}
+                      />
+                    )}
+                    <span
+                      aria-hidden="true"
+                      style={{
+                        display: "inline-block", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                        transition: "transform 0.15s ease", color: "#94a3b8", fontSize: "12px",
+                      }}
+                    >
+                      ▼
+                    </span>
+                  </button>
 
-                  {!hasAny && <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0 }}>{t.interactionsEmpty}</p>}
+                  {isOpen && (
+                    <div style={{ padding: "0 14px 14px", textAlign: isRtl ? "right" : "left" }}>
+                      {!hasAny && <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0 }}>{t.interactionsEmpty}</p>}
 
-                  {interact.bullets.length > 0 && (
-                    <div style={{ borderRadius: "10px", border: "1.5px solid #ddd6fe", background: "#f5f3ff", padding: "9px 11px", marginBottom: warn.bullets.length > 0 ? "8px" : 0 }}>
-                      <p style={{ fontWeight: 700, fontSize: "12px", color: "#5b21b6", margin: "0 0 5px" }}>⇄ {interact.title || t.interactLabel}</p>
-                      <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 16px", paddingRight: isRtl ? "16px" : 0, display: "flex", flexDirection: "column", gap: "3px" }}>
-                        {interact.bullets.map((bullet, i) => (
-                          <li key={i} style={{ fontSize: "12.5px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                      {warn.bullets.length > 0 && (
+                        <div style={{ borderRadius: "10px", border: "1.5px solid #fecaca", background: "#fef2f2", padding: "9px 11px", marginBottom: interact.bullets.length > 0 ? "8px" : 0 }}>
+                          <p style={{ fontWeight: 700, fontSize: "12px", color: "#991b1b", margin: "0 0 5px" }}>⚠️ {warn.title || t.warnLabel}</p>
+                          <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 16px", paddingRight: isRtl ? "16px" : 0, display: "flex", flexDirection: "column", gap: "3px" }}>
+                            {warn.bullets.map((bullet, i) => (
+                              <li key={i} style={{ fontSize: "12.5px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
 
-                  {warn.bullets.length > 0 && (
-                    <div style={{ borderRadius: "10px", border: "1.5px solid #fecaca", background: "#fef2f2", padding: "9px 11px" }}>
-                      <p style={{ fontWeight: 700, fontSize: "12px", color: "#991b1b", margin: "0 0 5px" }}>! {warn.title || t.warnLabel}</p>
-                      <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 16px", paddingRight: isRtl ? "16px" : 0, display: "flex", flexDirection: "column", gap: "3px" }}>
-                        {warn.bullets.map((bullet, i) => (
-                          <li key={i} style={{ fontSize: "12.5px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
-                        ))}
-                      </ul>
+                      {interact.bullets.length > 0 && (
+                        <div style={{ borderRadius: "10px", border: "1.5px solid #bbf7d0", background: "#f0fdf4", padding: "9px 11px" }}>
+                          <p style={{ fontWeight: 700, fontSize: "12px", color: "#166534", margin: "0 0 5px" }}>🟢 {interact.title || t.interactLabel}</p>
+                          <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 16px", paddingRight: isRtl ? "16px" : 0, display: "flex", flexDirection: "column", gap: "3px" }}>
+                            {interact.bullets.map((bullet, i) => (
+                              <li key={i} style={{ fontSize: "12.5px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
               );
             })}
           </div>
+        </div>
+      )}
+
+      {selectedItems.length >= 1 && (
+        <div style={{ marginBottom: "22px" }}>
+          <p style={{ fontWeight: 700, fontSize: "13px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
+            {t.symptomTitle}
+          </p>
+          <p style={{ fontSize: "13.5px", color: "#475569", lineHeight: 1.6, margin: "0 0 12px", textAlign: isRtl ? "right" : "left" }}>
+            {t.symptomIntro}
+          </p>
+
+          <div
+            style={{
+              display: "flex", alignItems: "center", gap: "10px",
+              borderRadius: "14px", border: "1.5px solid #e2e8f0", background: "#fff",
+              padding: "11px 14px", marginBottom: "12px",
+            }}
+          >
+            <span style={{ color: "#94a3b8", display: "flex" }}><SearchIcon /></span>
+            <input
+              value={symptomQuery}
+              onChange={(e) => setSymptomQuery(e.target.value)}
+              placeholder={t.symptomPlaceholder}
+              style={{ flex: 1, border: "none", outline: "none", fontSize: "15px", background: "transparent", color: "#0f172a" }}
+            />
+          </div>
+
+          {symptomMatches !== null && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              {symptomMatches.length === 0 ? (
+                <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0, textAlign: isRtl ? "right" : "left" }}>{t.symptomNoMatch}</p>
+              ) : (
+                symptomMatches.map(({ slug, name, hits }) => (
+                  <div
+                    key={slug}
+                    style={{ borderRadius: "10px", border: "1.5px solid #fed7aa", background: "#fff7ed", padding: "9px 11px", textAlign: isRtl ? "right" : "left" }}
+                  >
+                    <p style={{ fontWeight: 700, fontSize: "13px", color: "#0f172a", margin: "0 0 4px" }}>{name}</p>
+                    <p style={{ fontSize: "11.5px", color: "#9a3412", fontWeight: 600, margin: "0 0 5px" }}>🟠 {t.symptomMatchIntro}</p>
+                    <ul style={{ margin: 0, padding: isRtl ? 0 : "0 0 0 16px", paddingRight: isRtl ? "16px" : 0, display: "flex", flexDirection: "column", gap: "3px" }}>
+                      {hits.map((bullet, i) => (
+                        <li key={i} style={{ fontSize: "12.5px", color: "#334155", lineHeight: 1.5 }}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))
+              )}
+              <p style={{ fontSize: "11px", color: "#94a3b8", lineHeight: 1.5, margin: 0, textAlign: isRtl ? "right" : "left" }}>
+                {t.symptomDisclaimer}
+              </p>
+            </div>
+          )}
         </div>
       )}
 
