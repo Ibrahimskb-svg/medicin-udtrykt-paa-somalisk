@@ -83,6 +83,24 @@ export async function GET(request) {
       metrics: [{ name: "activeUsers" }, { name: "sessions" }, { name: "screenPageViews" }],
     });
 
+    const [sourceReport] = await client.runReport({
+      property,
+      dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+      dimensions: [{ name: "sessionDefaultChannelGroup" }],
+      metrics: [{ name: "sessions" }],
+      orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+      limit: 6,
+    });
+
+    const [topPagesReport] = await client.runReport({
+      property,
+      dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+      dimensions: [{ name: "pageTitle" }],
+      metrics: [{ name: "screenPageViews" }],
+      orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
+      limit: 8,
+    });
+
     const timeseries = rowsOf(timeseriesReport).map((row) => ({
       date: toDateLabel(row.dimensionValues[0].value),
       users: Number(row.metricValues[0].value),
@@ -143,6 +161,16 @@ export async function GET(request) {
       pageviews: growthPct(totals28d.pageviews, previous28d.pageviews),
     };
 
+    const sources = rowsOf(sourceReport).map((row) => ({
+      name: row.dimensionValues[0].value,
+      sessions: Number(row.metricValues[0].value),
+    }));
+
+    const topPages = rowsOf(topPagesReport).map((row) => ({
+      name: row.dimensionValues[0].value,
+      views: Number(row.metricValues[0].value),
+    }));
+
     return NextResponse.json({
       ok: true,
       generatedAt: new Date().toISOString(),
@@ -155,6 +183,8 @@ export async function GET(request) {
       devices,
       allTime,
       activeNow,
+      sources,
+      topPages,
     });
   } catch (err) {
     console.error("GA4 analytics fetch failed:", err);

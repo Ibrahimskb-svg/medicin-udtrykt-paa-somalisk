@@ -3,8 +3,20 @@ import { useEffect, useState } from "react";
 import { StatTile } from "./stat-tile";
 import { TrendLineChart } from "./trend-line-chart";
 import { BarListChart } from "./bar-list-chart";
-import { DeviceSplitChart } from "./device-split-chart";
+import { DonutChart } from "./donut-chart";
+import { ColumnChart } from "./column-chart";
 import { formatCompact, formatDuration, formatThousands } from "../../lib/format-number";
+
+const DEVICE_LABELS = { desktop: "Computer", mobile: "Mobil", tablet: "Tablet" };
+const CHANNEL_LABELS = {
+  "Organic Search": "Google-søgning",
+  Direct: "Direkte besøg",
+  Referral: "Henvisning fra andre sider",
+  "Organic Social": "Sociale medier",
+  "Paid Search": "Betalt søgning",
+  Unassigned: "Ukendt kilde",
+  Email: "E-mail",
+};
 
 function Card({ title, subtitle, children }) {
   return (
@@ -344,9 +356,27 @@ export function AnalyticsDashboard() {
               </Card>
             </div>
 
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
+              <Card title="Enhedstype" subtitle="Besøgende, sidste 28 dage">
+                <DonutChart
+                  items={data.devices.map((d) => ({ name: d.name, value: d.users }))}
+                  labelMap={DEVICE_LABELS}
+                />
+              </Card>
+              <Card title="Trafikkilder" subtitle="Sessioner, sidste 28 dage">
+                <DonutChart
+                  items={(data.sources || []).map((s) => ({ name: s.name, value: s.sessions }))}
+                  labelMap={CHANNEL_LABELS}
+                />
+              </Card>
+            </div>
+
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
-              <Card title="Enhedstype" subtitle="Mobil vs. computer vs. tablet">
-                <DeviceSplitChart items={data.devices} />
+              <Card title="Mest besøgte sider" subtitle="Sidevisninger, sidste 28 dage">
+                <ColumnChart
+                  items={(data.topPages || []).map((p) => ({ name: p.name, value: p.views }))}
+                  color="#0284C7"
+                />
               </Card>
             </div>
 
