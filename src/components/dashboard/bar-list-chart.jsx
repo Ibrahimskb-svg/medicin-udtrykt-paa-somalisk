@@ -1,6 +1,6 @@
 "use client";
 
-const COUNTRY_NAMES_DA = {
+export const COUNTRY_NAMES_DA = {
   Denmark: "Danmark",
   Somalia: "Somalia",
   Sweden: "Sverige",

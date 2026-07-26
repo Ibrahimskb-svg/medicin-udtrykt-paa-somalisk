@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { StatTile } from "./stat-tile";
 import { TrendLineChart } from "./trend-line-chart";
-import { BarListChart } from "./bar-list-chart";
+import { BarListChart, COUNTRY_NAMES_DA } from "./bar-list-chart";
 import { DonutChart } from "./donut-chart";
 import { ColumnChart } from "./column-chart";
 import { formatCompact, formatDuration, formatThousands } from "../../lib/format-number";
@@ -181,6 +181,17 @@ export function AnalyticsDashboard() {
               </span>
               <span style={{ fontSize: "13.5px", color: "#0F1923" }}>
                 <strong>{data.activeNow}</strong> aktive på siden lige nu
+                {data.activeNowRows && data.activeNowRows.length > 0 && (
+                  <span style={{ color: "#5A6A7A", fontWeight: 400 }}>
+                    {" — "}
+                    {data.activeNowRows
+                      .map(
+                        (r) =>
+                          `${r.users} fra ${COUNTRY_NAMES_DA[r.country] || r.country} (${DEVICE_LABELS[r.device] || r.device})`
+                      )
+                      .join(", ")}
+                  </span>
+                )}
               </span>
               <style>{`
                 @keyframes sm-pulse-ring {
