@@ -48,8 +48,16 @@ export function ConsentManager() {
   const [checked, setChecked] = useState(false);
   const [lang, setLang] = useState("da");
   const [reopened, setReopened] = useState(false);
+  const [isAutomatedTraffic, setIsAutomatedTraffic] = useState(false);
 
   useEffect(() => {
+    // Udelukker automatiserede test-browsere (bruges til at verificere ændringer
+    // før udgivelse) fra at blive talt med i Google Analytics — deres user-agent
+    // afslører dem (indeholder "Claude" og/eller "Electron", som en almindelig
+    // besøgendes browser aldrig har).
+    const ua = navigator.userAgent || "";
+    setIsAutomatedTraffic(/Claude\/|Electron\//.test(ua));
+
     const stored = localStorage.getItem("cookieConsent");
     if (stored) setConsent(stored);
     // Banneret vælger bevidst sit eget sprog (default dansk) i stedet for
@@ -84,7 +92,7 @@ export function ConsentManager() {
 
   return (
     <>
-      {consent === "accepted" && (
+      {consent === "accepted" && !isAutomatedTraffic && (
         <>
           <Script
             src="https://www.googletagmanager.com/gtag/js?id=G-D69NS55FP0"
