@@ -17,6 +17,13 @@ const CHANNEL_LABELS = {
   Unassigned: "Ukendt kilde",
   Email: "E-mail",
 };
+const LOYALTY_LABELS = { new: "Nye besøgende", returning: "Tilbagevendende", "(not set)": "Ukendt", "": "Ukendt" };
+const LANGUAGE_LABELS = {
+  da: "Dansk", "da-dk": "Dansk", danish: "Dansk",
+  en: "Engelsk", "en-us": "Engelsk", "en-gb": "Engelsk", english: "Engelsk",
+  so: "Somali", "so-so": "Somali", somali: "Somali",
+  ar: "Arabisk", "ar-sa": "Arabisk", "ar-qa": "Arabisk", "ar-ae": "Arabisk", arabic: "Arabisk",
+};
 
 function Card({ title, subtitle, children }) {
   return (
@@ -371,11 +378,28 @@ export function AnalyticsDashboard() {
               </Card>
             </div>
 
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
               <Card title="Mest besøgte sider" subtitle="Sidevisninger, sidste 28 dage">
                 <ColumnChart
                   items={(data.topPages || []).map((p) => ({ name: p.name, value: p.views }))}
                   color="#0284C7"
+                />
+              </Card>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+              <Card title="Nye vs. tilbagevendende" subtitle="Besøgende, sidste 28 dage">
+                <DonutChart
+                  items={(data.loyalty || []).map((l) => ({ name: l.name, value: l.users }))}
+                  labelMap={LOYALTY_LABELS}
+                />
+              </Card>
+              <Card title="Sprog (browser)" subtitle="Besøgende, sidste 28 dage">
+                <DonutChart
+                  items={(data.languages || []).map((l) => ({
+                    name: LANGUAGE_LABELS[l.name?.toLowerCase()] || l.name,
+                    value: l.users,
+                  }))}
                 />
               </Card>
             </div>

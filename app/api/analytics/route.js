@@ -1,9 +1,20 @@
 import { NextResponse } from "next/server";
 import { getAnalyticsClient, getProperty } from "../../../src/lib/analytics-client";
 import { isValidSession, DASHBOARD_COOKIE } from "../../../src/lib/dashboard-auth";
+import { getIndexData } from "../../../src/lib/site";
 
 function rowsOf(report) {
   return report?.rows || [];
+}
+
+// Maps a GA4 pagePath (e.g. "/amlodipin") to a single, language-independent
+// label — GA4's pageTitle varies per visitor language, which fragmented this
+// list into duplicates (same page, different titles) instead of one row per page.
+function pagePathToLabel(path) {
+  const slug = path.replace(/^\//, "").split("?")[0];
+  if (!slug) return "Forsiden";
+  const item = getIndexData().items.find((i) => i.slug === slug);
+  return item ? item.name : slug;
 }
 
 function toDateLabel(yyyymmdd) {
@@ -95,10 +106,27 @@ export async function GET(request) {
     const [topPagesReport] = await client.runReport({
       property,
       dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
-      dimensions: [{ name: "pageTitle" }],
+      dimensions: [{ name: "pagePath" }],
       metrics: [{ name: "screenPageViews" }],
       orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
-      limit: 8,
+      limit: 12,
+    });
+
+    const [loyaltyReport] = await client.runReport({
+      property,
+      dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+      dimensions: [{ name: "newVsReturning" }],
+      metrics: [{ name: "activeUsers" }],
+      orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+    });
+
+    const [languageReport] = await client.runReport({
+      property,
+      dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+      dimensions: [{ name: "language" }],
+      metrics: [{ name: "activeUsers" }],
+      orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+      limit: 6,
     });
 
     const timeseries = rowsOf(timeseriesReport).map((row) => ({
@@ -166,9 +194,27 @@ export async function GET(request) {
       sessions: Number(row.metricValues[0].value),
     }));
 
-    const topPages = rowsOf(topPagesReport).map((row) => ({
+    const topPagesByLabel = new Map();
+    for (const row of rowsOf(topPagesReport)) {
+      const label = pagePathToLabel(row.dimensionValues[0].value);
+      const views = Number(row.metricValues[0].value);
+      topPagesByLabel.set(label, (topPagesByLabel.get(label) || 0) + views);
+    }
+    const topPages = [...topPagesByLabel.entries()]
+      .map(([name, views]) => ({ name, views }))
+      .sort((a, b) => b.views - a.views)
+      .slice(0, 8);
+
+    const loyalty = rowsOf(loyaltyReport).map((row) => ({
       name: row.dimensionValues[0].value,
-      views: Number(row.metricValues[0].value),
+      users: Number(row.metricValues[0].value),
+    }));
+
+    // GA4's "language" dimension is the visitor's browser/OS language (a proxy for
+    // audience reach), not the in-site language toggle the site itself doesn't track yet.
+    const languages = rowsOf(languageReport).map((row) => ({
+      name: row.dimensionValues[0].value,
+      users: Number(row.metricValues[0].value),
     }));
 
     return NextResponse.json({
@@ -185,6 +231,8 @@ export async function GET(request) {
       activeNow,
       sources,
       topPages,
+      loyalty,
+      languages,
     });
   } catch (err) {
     console.error("GA4 analytics fetch failed:", err);
