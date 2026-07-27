@@ -230,7 +230,7 @@ export function MyListModal({ language, onClose }) {
       };
       return {
         slug: item.slug,
-        name: item.name,
+        name: getDisplayName(item.slug, language, item.name),
         dose: groupFor("dose"),
         interact: groupFor("interact"),
         warn: groupFor("warn"),
@@ -265,14 +265,13 @@ export function MyListModal({ language, onClose }) {
 
     const rows = selectedItems
       .map((item) => {
-        const danish = item.name;
         const local = getDisplayName(item.slug, language, item.name);
         const notes = interactionNotes.find((n) => n.slug === item.slug);
         const doseBullets = notes?.dose?.bullets || [];
         const doseHtml = doseBullets.length
           ? `<ul class="dose">${doseBullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
           : "";
-        return `<li><strong>${escapeHtml(danish)}</strong>${local !== danish ? `<br><span>${escapeHtml(local)}</span>` : ""}${doseHtml}</li>`;
+        return `<li><strong>${escapeHtml(local)}</strong>${doseHtml}</li>`;
       })
       .join("");
     win.document.write(`
@@ -352,10 +351,7 @@ export function MyListModal({ language, onClose }) {
               >
                 {initialsBadge(item.name, theme)}
                 <span style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ display: "block", fontWeight: 700, fontSize: "14.5px", color: "#0f172a" }}>{item.name}</span>
-                  {local !== item.name && (
-                    <span style={{ display: "block", fontSize: "12.5px", color: "#64748b", marginTop: "1px" }}>{local}</span>
-                  )}
+                  <span style={{ display: "block", fontWeight: 700, fontSize: "14.5px", color: "#0f172a" }}>{local}</span>
                 </span>
                 <span
                   aria-hidden="true"
@@ -398,10 +394,7 @@ export function MyListModal({ language, onClose }) {
               >
                 {initialsBadge(item.name, theme)}
                 <span style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ display: "block", fontWeight: 700, fontSize: "14.5px", color: "#0f172a" }}>{item.name}</span>
-                  {local !== item.name && (
-                    <span style={{ display: "block", fontSize: "12.5px", color: "#64748b", marginTop: "1px" }}>{local}</span>
-                  )}
+                  <span style={{ display: "block", fontWeight: 700, fontSize: "14.5px", color: "#0f172a" }}>{local}</span>
                 </span>
                 <button
                   type="button"
@@ -452,7 +445,7 @@ export function MyListModal({ language, onClose }) {
                       style={{ borderRadius: "12px", border: `1.5px solid ${colors.border}`, background: colors.bg, padding: "10px 12px", textAlign: isRtl ? "right" : "left" }}
                     >
                       <p style={{ fontWeight: 700, fontSize: "13px", color: "#0f172a", margin: "0 0 4px" }}>
-                        {a.name} + {b.name}
+                        {getDisplayName(a.slug, language, a.name)} + {getDisplayName(b.slug, language, b.name)}
                       </p>
                       <p style={{ fontSize: "12.5px", fontWeight: 700, color: colors.text, margin: "0 0 6px" }}>
                         {colors.emoji} {levelLabel}

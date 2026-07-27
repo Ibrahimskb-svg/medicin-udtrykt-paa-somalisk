@@ -77,9 +77,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="so">
       <head>
-        {/* Google Search Console verification */}
-        <meta name="google-site-verification" content="DIN_VERIFICATION_KODE_HER" />
-
         {/* GA4 + Crisp loaded by ConsentManager after cookie consent */}
 
         <Script

@@ -479,6 +479,13 @@ const FEEDBACK_DATA = {
   ar: { formTitle:"أرسل لي إطراءً أو نقدًا أو اقتراحًا", subtitle:"رأيك يهمني. شاركني تجربتك مع Somalimed.", praise:"إطراء 👍", criticism:"نقد 👎", suggestion:"اقتراح 💡", placeholder:"اكتب رسالتك هنا...", send:"إرسال الرسالة", sent:"شكرا على رسالتك! 🙏", nameLabel:"اسمك", cityLabel:"مدينتك", emailLabel:"بريدك الإلكتروني (اختياري)", phoneLabel:"رقم الهاتف (اختياري)", requiredHint:"* مطلوب" },
 };
 
+const LEGAL_LABELS = {
+  da: { cookie: "Cookiepolitik", privacy: "Persondatapolitik" },
+  en: { cookie: "Cookie Policy", privacy: "Privacy Policy" },
+  so: { cookie: "Siyaasadda Cookies", privacy: "Siyaasadda Xogta Shakhsiga" },
+  ar: { cookie: "سياسة ملفات تعريف الارتباط", privacy: "سياسة الخصوصية" },
+};
+
 // ── Medicine maps ──────────────────────────────────────────────────────────
 const SLUG_ICON={amlodipin:"blood-pressure.png",enalapril:"blood-pressure.png",losartan:"blood-pressure.png",metoprolol:"blood-pressure.png",eliquis:"line.png",marevan:"line.png",xarelto:"line.png",hjertemagnyl:"line.png",atorvastatin:"cholesterol.png",metformin:"blood-test.png",insulin:"blood-test.png",ventoline:"lungs.png",symbicort:"lungs.png",sertralin:"mental-health.png",quetiapin:"mental-health.png",lamotrigin:"brain.png",melatonin:"nighttime.png",zopiclon:"nighttime.png",paracetamol:"download.png",ibuprofen:"download.png",diclofenac:"download.png",naproxen:"download.png",morfin_tablet:"download.png",morfin_injektion:"download.png",pantoprazol:"stomach.png"};
 const SLUG_STYLE={amlodipin:{color:"#DC2626",bg:"#FEF2F2"},enalapril:{color:"#DC2626",bg:"#FEF2F2"},losartan:{color:"#DC2626",bg:"#FEF2F2"},metoprolol:{color:"#E11D48",bg:"#FFF1F2"},eliquis:{color:"#7C3AED",bg:"#F5F3FF"},marevan:{color:"#7C3AED",bg:"#F5F3FF"},xarelto:{color:"#7C3AED",bg:"#F5F3FF"},hjertemagnyl:{color:"#6D28D9",bg:"#EDE9FE"},atorvastatin:{color:"#D97706",bg:"#FFFBEB"},metformin:{color:"#0284C7",bg:"#F0F9FF"},insulin:{color:"#0284C7",bg:"#F0F9FF"},ventoline:{color:"#0D9488",bg:"#F0FDFA"},symbicort:{color:"#0D9488",bg:"#F0FDFA"},sertralin:{color:"#8B5CF6",bg:"#F5F3FF"},quetiapin:{color:"#A855F7",bg:"#FAF5FF"},lamotrigin:{color:"#7C3AED",bg:"#F5F3FF"},melatonin:{color:"#4F46E5",bg:"#EEF2FF"},zopiclon:{color:"#6366F1",bg:"#EEF2FF"},paracetamol:{color:"#F59E0B",bg:"#FFFBEB"},ibuprofen:{color:"#EF4444",bg:"#FEF2F2"},diclofenac:{color:"#EF4444",bg:"#FEF2F2"},naproxen:{color:"#EF4444",bg:"#FEF2F2"},morfin_tablet:{color:"#059669",bg:"#ECFDF5"},morfin_injektion:{color:"#059669",bg:"#ECFDF5"},pantoprazol:{color:"#10B981",bg:"#ECFDF5"}};
@@ -1171,6 +1178,10 @@ export function SiteIndex({initialLang}){
           <div style={{marginTop:"16px",paddingTop:"14px",borderTop:`1px solid ${(LANG_THEME[language]??LANG_THEME.so).border}`,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"8px"}}>
             {text.footer2&&<p style={{fontSize:"13px",fontWeight:700,color:(LANG_THEME[language]??LANG_THEME.so).primary,margin:0}}>{text.footer2}</p>}
             <p style={{fontSize:"13px",color:"#64748b",margin:0}}>© 2026 Somalimed</p>
+          </div>
+          <div style={{marginTop:"10px",display:"flex",gap:"14px",flexWrap:"wrap"}}>
+            <a href="/cookiepolitik" style={{fontSize:"12px",color:"#64748b",textDecoration:"underline"}}>{(LEGAL_LABELS[language]??LEGAL_LABELS.so).cookie}</a>
+            <a href="/persondatapolitik" style={{fontSize:"12px",color:"#64748b",textDecoration:"underline"}}>{(LEGAL_LABELS[language]??LEGAL_LABELS.so).privacy}</a>
           </div>
         </div>
       </footer>

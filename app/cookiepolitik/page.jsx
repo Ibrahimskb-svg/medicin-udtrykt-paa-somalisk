@@ -1,5 +1,8 @@
+import { COOKIE_REVISED_ISO } from "../../src/data/legal-revised.generated";
+import { formatRevisedDate } from "../../src/lib/format-revised-date";
+
 export const metadata = {
-  title: "Cookiepolitik | SomaliMed",
+  title: "Cookiepolitik",
   description: "Somalimeds cookiepolitik — hvilke cookies vi bruger og hvorfor.",
 };
 
@@ -9,7 +12,7 @@ export default function CookiePolitik() {
 
       {/* DA */}
       <h1 style={{ fontSize: "26px", fontWeight: 800, color: "#0D9488", marginBottom: "8px" }}>Cookiepolitik</h1>
-      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "32px" }}>Sidst revideret: 13. juli 2026</p>
+      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "32px" }}>Sidst revideret: {formatRevisedDate(COOKIE_REVISED_ISO, "da")}</p>
 
       <Section title="Hvad er cookies?">
         Cookies er små tekstfiler, der gemmes på din enhed, når du besøger en hjemmeside. De bruges til at huske dine præferencer og til at indsamle statistik om, hvordan siden bruges.
