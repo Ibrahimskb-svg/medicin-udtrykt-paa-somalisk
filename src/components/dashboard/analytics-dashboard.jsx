@@ -390,10 +390,14 @@ export function AnalyticsDashboard() {
             </div>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
-              <Card title="Mest besøgte sider" subtitle="Sidevisninger, sidste 28 dage">
+              <Card
+                title="Mest besøgte sider"
+                subtitle="Antal sidevisninger pr. side, sidste 28 dage — ikke antal personer (én person kan se en side flere gange)"
+              >
                 <ColumnChart
                   items={(data.topPages || []).map((p) => ({ name: p.name, value: p.views }))}
                   color="#0284C7"
+                  unit="visninger"
                 />
               </Card>
             </div>

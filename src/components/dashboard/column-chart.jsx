@@ -8,7 +8,7 @@ const PAD_TOP = 24;
 const PAD_BOTTOM = 46;
 const BAR_GAP = 10;
 
-export function ColumnChart({ items, color = "#0D9488" }) {
+export function ColumnChart({ items, color = "#0D9488", unit }) {
   const [hoverIdx, setHoverIdx] = useState(null);
 
   if (!items || items.length === 0) {
@@ -33,6 +33,11 @@ export function ColumnChart({ items, color = "#0D9488" }) {
   return (
     <div style={{ overflowX: "auto" }}>
       <svg viewBox={`0 0 ${width} ${HEIGHT}`} style={{ width: "100%", minWidth: `${width}px`, height: "auto", display: "block" }}>
+        {unit && (
+          <text x={PAD_LEFT} y={12} fontSize="10" fill="#898781">
+            antal {unit}
+          </text>
+        )}
         {gridLines.map((g, i) => (
           <line key={i} x1={PAD_LEFT} x2={width - PAD_RIGHT} y1={g.yy} y2={g.yy} stroke="#e1e0d9" strokeWidth="1" />
         ))}
