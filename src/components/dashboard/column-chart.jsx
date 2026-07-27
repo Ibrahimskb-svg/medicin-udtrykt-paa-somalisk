@@ -69,6 +69,7 @@ export function ColumnChart({ items, color = "#0D9488", unit, legend }) {
               </text>
               <foreignObject x={cx - slotW / 2 + 2} y={HEIGHT - PAD_BOTTOM + 8} width={slotW - 4} height={PAD_BOTTOM - 8}>
                 <div
+                  title={item.name}
                   style={{
                     fontSize: "10.5px",
                     color: "#5A6A7A",
@@ -76,9 +77,9 @@ export function ColumnChart({ items, color = "#0D9488", unit, legend }) {
                     textAlign: "center",
                     overflow: "hidden",
                     display: "-webkit-box",
-                    WebkitLineClamp: 3,
+                    WebkitLineClamp: 2,
                     WebkitBoxOrient: "vertical",
-                    wordBreak: "break-word",
+                    textOverflow: "ellipsis",
                   }}
                 >
                   {item.name}
