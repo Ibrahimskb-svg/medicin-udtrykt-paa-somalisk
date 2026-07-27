@@ -7,6 +7,7 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  themeColor: "#0D9488",
 };
 
 export const metadata = {
@@ -57,6 +58,19 @@ export const metadata = {
   category: "health",
   classification: "Medicine Information / Healthcare",
   referrer: "origin-when-cross-origin",
+  manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/icon-192.png", sizes: "192x192", type: "image/png" }],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Somalimed",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -381,6 +395,19 @@ export default function RootLayout({ children }) {
             })();
           `}
         </Script>
+
+        <Script id="sw-register" strategy="afterInteractive">{`
+          if ("serviceWorker" in navigator) {
+            function registerSW() {
+              navigator.serviceWorker.register("/sw.js").catch(function () {});
+            }
+            if (document.readyState === "complete") {
+              registerSW();
+            } else {
+              window.addEventListener("load", registerSW);
+            }
+          }
+        `}</Script>
       </body>
     </html>
   );
