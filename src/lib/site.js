@@ -11,6 +11,13 @@ export const languageLabels = {
   ar: "Arabisk",
 };
 
+export const languageFlags = {
+  so: "🇸🇴",
+  da: "🇩🇰",
+  en: "🇬🇧",
+  ar: "🇸🇦",
+};
+
 export const languageThemes = {
   so: {
     accent1: "#00a676",

@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { getStoredLanguage, subscribeToLanguageChange } from "../lib/language";
-import { uiText } from "../lib/site";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { getStoredLanguage, notifyLanguageChange, subscribeToLanguageChange } from "../lib/language";
+import { languageFlags, languageLabels, languages, languageThemes, uiText } from "../lib/site";
 
 // Sørger for at labels matcher modal-titlerne i SiteIndex
 const NAV_LABELS = {
@@ -74,9 +75,21 @@ function PinIcon({ size=15, color="currentColor" }) {
   );
 }
 
+function ChevronDownIcon({ size=13, color="currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m6 9 6 6 6-6"/>
+    </svg>
+  );
+}
+
 export function AppNavbar() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [language, setLanguage] = useState("so");
   const [activeTab, setActiveTab] = useState(null);
+  const [contactMenuOpen, setContactMenuOpen] = useState(false);
+  const contactMenuRef = useRef(null);
 
   // Lyt efter om modaler lukkes udefra (så knappen i navbaren ikke lyser når modalen er lukket)
   useEffect(() => {
@@ -94,6 +107,18 @@ export function AppNavbar() {
       unsubscribeLanguage();
     };
   }, []);
+
+  // Luk Kontakt/Apotek-dropdown ved klik udenfor
+  useEffect(() => {
+    if (!contactMenuOpen) return;
+    const handleClickOutside = (e) => {
+      if (contactMenuRef.current && !contactMenuRef.current.contains(e.target)) {
+        setContactMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [contactMenuOpen]);
 
   const isRtl = language === "ar";
   const text = uiText[language] || uiText.so;
@@ -125,8 +150,22 @@ export function AppNavbar() {
   const handleTabClick = (key) => {
     const newTab = activeTab === key ? null : key;
     setActiveTab(newTab);
+    setContactMenuOpen(false);
     // Dette sender signalet til SiteIndex filen:
     window.dispatchEvent(new CustomEvent("somalimed-tab", { detail: newTab }));
+  };
+
+  // Desktop: Xiriir + Raadi farmashiye samles i 1 dropdown for at give plads i toppen
+  const desktopNavTabs = navTabs.filter(({ key }) => key !== "contact" && key !== "findPharmacy");
+  const isContactGroupActive = activeTab === "contact" || activeTab === "findPharmacy";
+
+  const handleLanguageSelect = (code) => {
+    if (code === language) return;
+    setLanguage(code);
+    const params = new URLSearchParams(window.location.search);
+    params.set("lang", code);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    notifyLanguageChange(code);
   };
 
   return (
@@ -142,8 +181,8 @@ export function AppNavbar() {
               </span>
             </Link>
 
-            <div className="flex gap-1.5">
-              {navTabs.map(({ key, iconEl, label }) => (
+            <div className="flex gap-1.5 items-center">
+              {desktopNavTabs.map(({ key, iconEl, label }) => (
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
@@ -154,6 +193,75 @@ export function AppNavbar() {
                   {iconEl} {label}
                 </button>
               ))}
+
+              {/* Sprogvalg — farvet flag pr. sprog, så alle kan finde deres sprog med det samme */}
+              <div className="flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
+                {languages.map((code) => {
+                  const isActive = code === language;
+                  const theme = languageThemes[code] ?? languageThemes.so;
+                  return (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => handleLanguageSelect(code)}
+                      title={languageLabels[code]}
+                      aria-label={languageLabels[code]}
+                      aria-pressed={isActive}
+                      className="flex items-center justify-center rounded-full transition-all"
+                      style={{
+                        width: 32,
+                        height: 32,
+                        fontSize: "16px",
+                        lineHeight: 1,
+                        background: isActive ? theme.accent1 : "transparent",
+                        boxShadow: isActive ? `0 1px 4px ${theme.accent1}80` : "none",
+                      }}
+                    >
+                      {languageFlags[code]}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Kontakt + Raadi farmashiye samlet i 1 dropdown */}
+              <div className="relative" ref={contactMenuRef}>
+                <button
+                  onClick={() => setContactMenuOpen((open) => !open)}
+                  aria-expanded={contactMenuOpen}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
+                    isContactGroupActive || contactMenuOpen ? "bg-teal-600 border-teal-600 text-white shadow-md" : "bg-white border-slate-200 text-slate-600 hover:border-teal-200"
+                  }`}
+                >
+                  <MailIcon size={16} color={isContactGroupActive || contactMenuOpen ? "#ffffff" : iconColors.contact} />
+                  {navLabels.contact}
+                  <ChevronDownIcon size={13} color={isContactGroupActive || contactMenuOpen ? "#ffffff" : "#94a3b8"} />
+                </button>
+
+                {contactMenuOpen && (
+                  <div
+                    className="absolute mt-2 w-56 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden z-50"
+                    style={isRtl ? { left: 0 } : { right: 0 }}
+                    dir={isRtl ? "rtl" : "ltr"}
+                  >
+                    <button
+                      onClick={() => handleTabClick("contact")}
+                      className={`flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors ${
+                        activeTab === "contact" ? "bg-teal-50 text-teal-700" : "text-slate-700 hover:bg-slate-50"
+                      }`}
+                    >
+                      <MailIcon size={15} color={iconColors.contact} /> {navLabels.contact}
+                    </button>
+                    <button
+                      onClick={() => handleTabClick("findPharmacy")}
+                      className={`flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors border-t border-slate-100 ${
+                        activeTab === "findPharmacy" ? "bg-teal-50 text-teal-700" : "text-slate-700 hover:bg-slate-50"
+                      }`}
+                    >
+                      <PinIcon size={15} color={iconColors.findPharmacy} /> {navLabels.findPharmacy}
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </nav>
@@ -168,6 +276,35 @@ export function AppNavbar() {
               {text.navbarTitle}
             </span>
           </Link>
+
+          {/* Sprogvalg — farvet flag pr. sprog */}
+          <div className="flex items-center gap-0.5 rounded-full border border-slate-200 bg-slate-50 p-0.5">
+            {languages.map((code) => {
+              const isActive = code === language;
+              const theme = languageThemes[code] ?? languageThemes.so;
+              return (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={() => handleLanguageSelect(code)}
+                  title={languageLabels[code]}
+                  aria-label={languageLabels[code]}
+                  aria-pressed={isActive}
+                  className="flex items-center justify-center rounded-full transition-all"
+                  style={{
+                    width: 30,
+                    height: 30,
+                    fontSize: "15px",
+                    lineHeight: 1,
+                    background: isActive ? theme.accent1 : "transparent",
+                    boxShadow: isActive ? `0 1px 4px ${theme.accent1}80` : "none",
+                  }}
+                >
+                  {languageFlags[code]}
+                </button>
+              );
+            })}
+          </div>
         </div>
       </header>
 

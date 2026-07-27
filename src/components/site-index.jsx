@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { LanguageSelect } from "./language-select";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -1082,8 +1081,6 @@ export function SiteIndex({initialLang}){
 
       {/* ── Main ─────────────────────────────────────────────────────────── */}
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:pt-8">
-        <div className="reveal-on-scroll"><LanguageSelect label={text.langLabel} onChange={updateLanguage} value={language}/></div>
-
         <div className="reveal-on-scroll mb-5 sm:mb-6">
           <label htmlFor="medSearch" className="block">
             <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{color:"var(--text-muted)"}}>{chromeText.searchLabel}</span>
