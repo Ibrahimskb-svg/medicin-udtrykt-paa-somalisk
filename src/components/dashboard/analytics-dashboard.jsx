@@ -226,6 +226,11 @@ export function AnalyticsDashboard() {
                 value={formatDuration(data.totals28d.avgSessionSeconds)}
               />
               <StatTile
+                label="Engagement rate"
+                value={`${Math.round((data.totals28d.engagementRate || 0) * 100)}%`}
+                hint="Andel der bruger siden aktivt"
+              />
+              <StatTile
                 label="Besøgende i alt"
                 value={data.allTime.users}
                 hint={`${formatCompact(data.allTime.pageviews)} sidevisninger`}
@@ -379,12 +384,14 @@ export function AnalyticsDashboard() {
                 <DonutChart
                   items={data.devices.map((d) => ({ name: d.name, value: d.users }))}
                   labelMap={DEVICE_LABELS}
+                  unit="besøgende"
                 />
               </Card>
               <Card title="Trafikkilder" subtitle="Sessioner, sidste 28 dage">
                 <DonutChart
                   items={(data.sources || []).map((s) => ({ name: s.name, value: s.sessions }))}
                   labelMap={CHANNEL_LABELS}
+                  unit="sessioner"
                 />
               </Card>
             </div>
@@ -395,9 +402,16 @@ export function AnalyticsDashboard() {
                 subtitle="Antal sidevisninger pr. side, sidste 28 dage — ikke antal personer (én person kan se en side flere gange)"
               >
                 <ColumnChart
-                  items={(data.topPages || []).map((p) => ({ name: p.name, value: p.views }))}
-                  color="#0284C7"
+                  items={(data.topPages || []).map((p) => ({
+                    name: p.name,
+                    value: p.views,
+                    color: p.name === "Forsiden" ? "#0284C7" : "#0D9488",
+                  }))}
                   unit="visninger"
+                  legend={[
+                    { label: "Forsiden", color: "#0284C7" },
+                    { label: "Medicinside", color: "#0D9488" },
+                  ]}
                 />
               </Card>
             </div>
@@ -407,6 +421,7 @@ export function AnalyticsDashboard() {
                 <DonutChart
                   items={(data.loyalty || []).map((l) => ({ name: l.name, value: l.users }))}
                   labelMap={LOYALTY_LABELS}
+                  unit="besøgende"
                 />
               </Card>
               <Card title="Sprog (browser)" subtitle="Besøgende, sidste 28 dage">
@@ -415,6 +430,7 @@ export function AnalyticsDashboard() {
                     name: LANGUAGE_LABELS[l.name?.toLowerCase()] || l.name,
                     value: l.users,
                   }))}
+                  unit="besøgende"
                 />
               </Card>
             </div>

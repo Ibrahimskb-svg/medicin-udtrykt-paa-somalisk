@@ -8,7 +8,7 @@ const PAD_TOP = 24;
 const PAD_BOTTOM = 46;
 const BAR_GAP = 10;
 
-export function ColumnChart({ items, color = "#0D9488", unit }) {
+export function ColumnChart({ items, color = "#0D9488", unit, legend }) {
   const [hoverIdx, setHoverIdx] = useState(null);
 
   if (!items || items.length === 0) {
@@ -60,7 +60,7 @@ export function ColumnChart({ items, color = "#0D9488", unit }) {
                 width={barW}
                 height={Math.max(barH, 1)}
                 rx="4"
-                fill={color}
+                fill={item.color || color}
                 opacity={hoverIdx === null || isHover ? 1 : 0.55}
                 style={{ transition: "opacity 0.12s ease" }}
               />
@@ -88,6 +88,16 @@ export function ColumnChart({ items, color = "#0D9488", unit }) {
           );
         })}
       </svg>
+      {legend && legend.length > 0 && (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "14px", marginTop: "10px" }}>
+          {legend.map((entry) => (
+            <div key={entry.label} style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+              <span style={{ width: 10, height: 10, borderRadius: "3px", background: entry.color, flexShrink: 0 }} />
+              <span style={{ fontSize: "12px", color: "#5A6A7A", fontWeight: 600 }}>{entry.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

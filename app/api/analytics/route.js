@@ -49,6 +49,7 @@ export async function GET(request) {
             { name: "sessions" },
             { name: "screenPageViews" },
             { name: "averageSessionDuration" },
+            { name: "engagementRate" },
           ],
         },
         {
@@ -142,8 +143,9 @@ export async function GET(request) {
           sessions: Number(totalsRow.metricValues[1].value),
           pageviews: Number(totalsRow.metricValues[2].value),
           avgSessionSeconds: Number(totalsRow.metricValues[3].value),
+          engagementRate: Number(totalsRow.metricValues[4].value),
         }
-      : { users: 0, sessions: 0, pageviews: 0, avgSessionSeconds: 0 };
+      : { users: 0, sessions: 0, pageviews: 0, avgSessionSeconds: 0, engagementRate: 0 };
 
     const countries = rowsOf(countryReport).map((row) => ({
       name: row.dimensionValues[0].value,

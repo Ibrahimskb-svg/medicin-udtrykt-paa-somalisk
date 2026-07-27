@@ -10,7 +10,7 @@ const STROKE = 26;
 const RADIUS = (SIZE - STROKE) / 2;
 const CIRC = 2 * Math.PI * RADIUS;
 
-export function DonutChart({ items, labelMap = {} }) {
+export function DonutChart({ items, labelMap = {}, unit }) {
   const [hoverIdx, setHoverIdx] = useState(null);
 
   if (!items || items.length === 0) {
@@ -51,7 +51,7 @@ export function DonutChart({ items, labelMap = {} }) {
         ))}
         <text
           x={SIZE / 2}
-          y={SIZE / 2 + 5}
+          y={unit && hoverIdx === null ? SIZE / 2 : SIZE / 2 + 5}
           textAnchor="middle"
           fontSize="18"
           fontWeight="700"
@@ -59,6 +59,11 @@ export function DonutChart({ items, labelMap = {} }) {
         >
           {hoverIdx !== null ? `${Math.round(segments[hoverIdx].pct * 100)}%` : total}
         </text>
+        {unit && hoverIdx === null && (
+          <text x={SIZE / 2} y={SIZE / 2 + 16} textAnchor="middle" fontSize="10" fill="#898781">
+            {unit}
+          </text>
+        )}
       </svg>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "7px", flex: 1, minWidth: "140px" }}>
