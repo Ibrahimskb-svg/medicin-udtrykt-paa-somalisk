@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import QRCode from "qrcode";
 
-import { LanguageSelect } from "./language-select";
 import { InhalerGuide } from "./inhaler-guide";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
@@ -287,7 +286,7 @@ export function MedicinePage({ medicine, initialLang }) {
   const somaliAudioRef = useRef(null);
   const arabicAudioRef = useRef(null);
 
-  const { language, updateLanguage } = useLanguageRouting({ initialLanguage: initialLang });
+  const { language } = useLanguageRouting({ initialLanguage: initialLang });
   const data = useMemo(() => medicine.translations[language] || medicine.translations.so, [language, medicine]);
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
   const isRtl = language === "ar";
@@ -541,8 +540,6 @@ export function MedicinePage({ medicine, initialLang }) {
       </div>
 
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-8">
-        <LanguageSelect label={data.langLabel} onChange={updateLanguage} value={language} />
-
         {/* ── SHARE + PRINT ── */}
         <div className="no-print" style={{
           display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "20px",
