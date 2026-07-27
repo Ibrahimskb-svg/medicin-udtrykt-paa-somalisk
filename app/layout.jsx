@@ -344,7 +344,7 @@ export default function RootLayout({ children }) {
                   if (!pushed) {
                     // Crisp er ikke indlæst (fx cookies ikke accepteret endnu) —
                     // gå direkte til mailto.
-                    window.location.href = "mailto:197IDH@apoteket.dk";
+                    window.location.href = "mailto:Ibrahim_skb@live.dk";
                     return;
                   }
                   // Crisp er indlæst, men widget'en kan stadig fejle at vise sig
@@ -353,7 +353,7 @@ export default function RootLayout({ children }) {
                   // stående, så man altid kan nå Ibrahim.
                   setTimeout(function () {
                     if (!crispWidgetPresent()) {
-                      window.location.href = "mailto:197IDH@apoteket.dk";
+                      window.location.href = "mailto:Ibrahim_skb@live.dk";
                     }
                   }, 2500);
                 });
