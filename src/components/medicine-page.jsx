@@ -12,12 +12,17 @@ import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
 import { getMyList, toggleMyList, subscribeMyList } from "../lib/my-list";
 import { getLastRevisedText } from "../lib/last-revised";
+import { saveHtmlAsPdf } from "../lib/save-pdf";
 import {
   arabicAudioLabel,
   sectionIcons,
   sectionStyles,
   uiText,
 } from "../lib/site";
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
 
 // ── 1. KONSTANTER ─────────────────────────────────────────────────────────────
 
@@ -70,10 +75,10 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير" },
 };
 
 function downloadReminderICS(medicineName, language) {
@@ -131,6 +136,7 @@ const QR_LABELS = {
     title: "QR-kode",
     instructions: "Udskriv denne kode og sæt den på medicinæsken, eller kopiér billedet ind i jeres eget system.",
     print: "Udskriv etiket",
+    pdf: "Gem som PDF",
     copy: "Kopiér billede",
     copied: "Kopieret!",
     sms: "Send via sms",
@@ -140,6 +146,7 @@ const QR_LABELS = {
     title: "QR code",
     instructions: "Print this code and attach it to the medicine box, or copy the image into your own system.",
     print: "Print label",
+    pdf: "Save as PDF",
     copy: "Copy image",
     copied: "Copied!",
     sms: "Send via SMS",
@@ -149,6 +156,7 @@ const QR_LABELS = {
     title: "Koodhka QR",
     instructions: "Daabac koodhkan oo ku dhig sanduuqa daawada, ama koobiyee sawirka oo geli nidaamkiinna.",
     print: "Daabac summad",
+    pdf: "Keyd sida PDF",
     copy: "Koobiyee sawirka",
     copied: "Waa la koobiyeeyay!",
     sms: "U dir qoraal",
@@ -158,6 +166,7 @@ const QR_LABELS = {
     title: "رمز QR",
     instructions: "اطبع هذا الرمز وضعه على علبة الدواء، أو انسخ الصورة إلى نظامكم الخاص.",
     print: "طباعة الملصق",
+    pdf: "احفظ كملف PDF",
     copy: "نسخ الصورة",
     copied: "تم النسخ!",
     sms: "إرسال كرسالة نصية",
@@ -327,6 +336,121 @@ export function MedicinePage({ medicine, initialLang }) {
     win.document.close();
   }
 
+  async function saveQrPdf() {
+    if (!qrDataUrl) return;
+    // Bygget direkte med jsPDF (ikke html2canvas) — html2canvas kan ikke altid
+    // rasterisere billeder sat via en base64 data-URL, så QR-koden endte som
+    // en tom hvid boks. Native tegning giver også et skarpere resultat.
+    const { default: jsPDF } = await import("jspdf");
+    const pdf = new jsPDF({ unit: "pt", format: "a4" });
+    const pageWidth = pdf.internal.pageSize.getWidth();
+
+    pdf.setFillColor(13, 148, 136);
+    pdf.rect(0, 0, pageWidth, 110, "F");
+    pdf.setTextColor(255, 255, 255);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(18);
+    pdf.text(data.drugName, pageWidth / 2, 60, { align: "center" });
+
+    const boxSize = 220;
+    const boxX = (pageWidth - boxSize) / 2;
+    const boxY = 150;
+    pdf.setDrawColor(226, 232, 240);
+    pdf.setLineWidth(1.5);
+    pdf.roundedRect(boxX - 16, boxY - 16, boxSize + 32, boxSize + 32, 14, 14, "S");
+    pdf.addImage(qrDataUrl, "PNG", boxX, boxY, boxSize, boxSize);
+
+    pdf.setTextColor(148, 163, 184);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(12);
+    pdf.text("Somalimed.dk", pageWidth / 2, boxY + boxSize + 40, { align: "center" });
+
+    pdf.save(`Somalimed-QR-${medicine.slug}.pdf`);
+  }
+
+  async function saveMedicinePagePdf() {
+    const isRtlDoc = language === "ar";
+    const dir = isRtlDoc ? "rtl" : "ltr";
+    const align = isRtlDoc ? "right" : "left";
+    const padSide = isRtlDoc ? "padding-right" : "padding-left";
+    const borderSide = isRtlDoc ? "border-right" : "border-left";
+
+    const pictogramHtml = (medicine.dosagePictogram?.[language] || [])
+      .map((chip) => {
+        const style = PICTOGRAM_ICON_STYLE[chip.type] || PICTOGRAM_ICON_STYLE.frequency;
+        return `<span style="display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1.5px solid ${style.border};background:${style.bg};color:${style.color};padding:4px 12px;font-size:12px;font-weight:600;margin:${isRtlDoc ? "0 0 6px 6px" : "0 6px 6px 0"};">${escapeHtml(chip.text)}</span>`;
+      })
+      .join("");
+
+    const sectionsHtml = medicine.sections
+      .map((section) => {
+        const list = data[section.listKey] || [];
+        const title = data[section.titleKey] || "";
+        const colors = SECTION_ICON_COLORS[section.variant] || { bg: "#f1f5f9", color: "#334155", border: "#475569" };
+        const items = list
+          .map(
+            (item) => `
+              <li style="display:flex;gap:9px;align-items:flex-start;margin-bottom:8px;">
+                <span style="flex-shrink:0;margin-top:7px;width:7px;height:7px;border-radius:50%;background:${colors.border};display:inline-block;"></span>
+                <span>${item}</span>
+              </li>
+            `
+          )
+          .join("");
+        const pictogram = section.variant === "dose" && pictogramHtml
+          ? `<div style="margin-bottom:10px;">${pictogramHtml}</div>`
+          : "";
+        return `
+          <div class="pdf-block" style="margin-bottom:16px;padding:16px 20px;border-radius:14px;background:${colors.bg}55;${borderSide}:5px solid ${colors.border};">
+            <h3 style="font-size:15px;font-weight:700;color:${colors.color};margin:0 0 10px;">${escapeHtml(title)}</h3>
+            ${pictogram}
+            <ul style="margin:0;padding:0;list-style:none;font-size:13px;color:#293241;line-height:1.55;">${items}</ul>
+          </div>
+        `;
+      })
+      .join("");
+
+    const sourcesHtml = (data.sourcesList || [])
+      .map((item) => `<li style="margin-bottom:4px;">${escapeHtml(item.text)}</li>`)
+      .join("");
+
+    const emergency = EMERGENCY[language] ?? EMERGENCY.da;
+
+    const html = `
+      <div dir="${dir}" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-align:${align};color:#0f172a;">
+        <div style="background:linear-gradient(135deg,#0A7A73 0%,#0D9488 50%,#0E7FC0 100%);padding:32px 36px;">
+          <h1 style="font-size:24px;font-weight:800;margin:0 0 4px;color:#ffffff;">${escapeHtml(data.drugName)}</h1>
+          <p style="font-size:13px;color:rgba(255,255,255,0.85);margin:0;">${escapeHtml(data.drugForm || "")}</p>
+        </div>
+        <div style="padding:28px 36px 36px;">
+          <div class="pdf-block" style="display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:16px;">
+            <div style="padding:16px 20px;border-radius:14px;background:var(--soft, #ecfdf5);border:1.5px solid var(--softBorder, #6ee7b7);">
+              <p style="font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted, #64748b);margin:0 0 6px;">${escapeHtml(overviewLabel[language] || overviewLabel.da)}</p>
+              <p style="font-size:14px;line-height:1.6;margin:0;color:var(--text, #0f172a);">${data.introBox || ""}</p>
+            </div>
+            <div style="padding:16px 20px;border-radius:14px;background:#FFFBF0;border:1.5px solid #E8C96A;">
+              <p style="font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#92671B;margin:0 0 6px;">${escapeHtml(data.ibrahimTitle || "")}</p>
+              <p style="font-size:14px;line-height:1.6;margin:0;color:#5C3D0A;">${escapeHtml(data.ibrahimText || "")}</p>
+            </div>
+          </div>
+          ${sectionsHtml}
+          <div class="pdf-block" style="margin-top:10px;padding:16px 20px;border-radius:14px;background:#f8fafc;${borderSide}:4px solid #0D9488;">
+            <h3 style="font-size:14px;font-weight:700;margin:0 0 8px;color:#0f172a;">${escapeHtml(data.sourcesTitle || "")}</h3>
+            <ul style="margin:0;${padSide}:20px;font-size:12px;color:#64748b;">${sourcesHtml}</ul>
+          </div>
+          <p class="pdf-block" style="margin-top:22px;font-size:12px;color:#64748b;line-height:1.6;text-align:center;">${escapeHtml(data.footerNote || "")}</p>
+          <div class="pdf-block" style="margin-top:16px;padding:14px 18px;border-radius:10px;background:#fff5f5;border:1.5px solid #fca5a5;">
+            <p style="margin:0 0 6px;font-weight:700;font-size:13px;color:#991b1b;">🚨 ${escapeHtml(emergency.label)}</p>
+            <p style="margin:0;font-size:13px;color:#7f1d1d;line-height:1.7;">${escapeHtml(emergency.poison)}: 82 12 12 12 · ${escapeHtml(emergency.emergency)}: 112</p>
+          </div>
+          <p class="pdf-block" style="margin-top:22px;font-size:11px;color:#94a3b8;text-align:center;">${escapeHtml(getLastRevisedText(language))} · Somalimed.dk</p>
+        </div>
+      </div>
+    `;
+
+    await saveHtmlAsPdf(html, `Somalimed-${medicine.slug}-${language}.pdf`);
+  }
+
   async function copyQrImage() {
     try {
       const res = await fetch(qrDataUrl);
@@ -429,6 +553,23 @@ export function MedicinePage({ medicine, initialLang }) {
                     <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
                   </svg>
                   {qrText.print}
+                </button>
+
+                <button
+                  onClick={saveQrPdf}
+                  disabled={!qrDataUrl}
+                  style={{
+                    display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
+                    padding:"12px", borderRadius:"12px",
+                    background:"#fff", color:"#0D9488", fontWeight:700, fontSize:"14px",
+                    border:"1.5px solid #0D9488",
+                    cursor: qrDataUrl ? "pointer" : "default", opacity: qrDataUrl ? 1 : 0.6,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  {qrText.pdf}
                 </button>
 
                 <button
@@ -578,6 +719,21 @@ export function MedicinePage({ medicine, initialLang }) {
               <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
             </svg>
             {(SHARE_LABELS[language] ?? SHARE_LABELS.da).print}
+          </button>
+          <button
+            onClick={saveMedicinePagePdf}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: "var(--surface)", color: "var(--text)",
+              fontWeight: 600, fontSize: "13px",
+              border: "1.5px solid var(--border)", cursor: "pointer",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).pdf}
           </button>
           <button
             onClick={openQr}

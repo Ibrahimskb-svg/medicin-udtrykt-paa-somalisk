@@ -287,6 +287,31 @@ export function getDisplayName(slug, language, fallback) {
   return t[language] ?? t.so ?? fallback;
 }
 
+// Samme farve pr. medicin som bruges i "Vælg medicin"-listen på forsiden —
+// genbruges her så fx PDF'er af "Min medicinliste" matcher appens eget farveskema.
+export const SLUG_ACCENT_COLORS = {
+  amlodipin: "#DC2626", enalapril: "#DC2626", losartan: "#DC2626",
+  metoprolol: "#E11D48",
+  eliquis: "#7C3AED", marevan: "#7C3AED", xarelto: "#7C3AED",
+  hjertemagnyl: "#6D28D9",
+  atorvastatin: "#D97706",
+  metformin: "#0284C7", insulin: "#0284C7",
+  ventoline: "#0D9488", symbicort: "#0D9488",
+  sertralin: "#8B5CF6",
+  quetiapin: "#A855F7",
+  lamotrigin: "#7C3AED",
+  melatonin: "#4F46E5",
+  zopiclon: "#6366F1",
+  paracetamol: "#F59E0B",
+  ibuprofen: "#EF4444", diclofenac: "#EF4444", naproxen: "#EF4444",
+  morfin_tablet: "#059669", morfin_injektion: "#059669",
+  pantoprazol: "#10B981",
+};
+
+export function getAccentColor(slug) {
+  return SLUG_ACCENT_COLORS[slug] || "#0D9488";
+}
+
 export function getMedicine(slug) {
   return siteData.medicines.find((item) => item.slug === slug) ?? null;
 }

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { getIndexData, getDisplayName, getMedicine } from "../lib/site";
+import { getIndexData, getDisplayName, getMedicine, getAccentColor } from "../lib/site";
 import { getMyList, addToMyList, removeFromMyList, subscribeMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { knownInteractions, pairKey, CHECKED_DATE } from "../data/interactions";
@@ -15,6 +15,7 @@ const TEXTS = {
     yourListTitle: "Din liste",
     empty: "Du har endnu ikke tilføjet nogen medicin.",
     printBtn: "Print / vis til personalet",
+    pdfBtn: "Gem som PDF",
     printedOn: "Udskrevet fra Somalimed.dk",
     disclaimer: "Listen bygger på dine egne valg og er ikke en officiel medicinliste. Brug den som udgangspunkt for en samtale med personalet.",
     remove: "Fjern",
@@ -45,6 +46,7 @@ const TEXTS = {
     yourListTitle: "Your list",
     empty: "You haven't added any medicine yet.",
     printBtn: "Print / show to staff",
+    pdfBtn: "Save as PDF",
     printedOn: "Printed from Somalimed.dk",
     disclaimer: "This list is based on your own choices and is not an official medicine list. Use it as a starting point for a conversation with staff.",
     remove: "Remove",
@@ -75,6 +77,7 @@ const TEXTS = {
     yourListTitle: "Liiskaaga",
     empty: "Wali lama darin daawo liiska.",
     printBtn: "Daabac / tus shaqaalaha",
+    pdfBtn: "Keyd sida PDF",
     printedOn: "Waxaa laga daabacay Somalimed.dk",
     disclaimer: "Liiskani wuxuu ku salaysan yahay doorashadaada gaarka ah, mana aha liis daawooyin oo rasmi ah. U isticmaal si aad wax uga hadasho shaqaalaha.",
     remove: "Ka saar",
@@ -105,6 +108,7 @@ const TEXTS = {
     yourListTitle: "قائمتك",
     empty: "لم تُضِف أي دواء إلى القائمة بعد.",
     printBtn: "طباعة / إظهار للموظفين",
+    pdfBtn: "احفظ كملف PDF",
     printedOn: "تمت الطباعة من Somalimed.dk",
     disclaimer: "تعتمد هذه القائمة على اختيارك الخاص وليست قائمة أدوية رسمية. استخدمها كنقطة بداية للحديث مع الموظفين.",
     remove: "إزالة",
@@ -256,14 +260,12 @@ export function MyListModal({ language, onClose }) {
     else addToMyList(slug);
   }
 
-  function printList() {
-    const win = window.open("", "_blank", "width=420,height=640");
-    if (!win) return;
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
 
-    const escapeHtml = (s) =>
-      String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-
-    const rows = selectedItems
+  function buildListRowsHtml() {
+    return selectedItems
       .map((item) => {
         const local = getDisplayName(item.slug, language, item.name);
         const notes = interactionNotes.find((n) => n.slug === item.slug);
@@ -274,6 +276,13 @@ export function MyListModal({ language, onClose }) {
         return `<li><strong>${escapeHtml(local)}</strong>${doseHtml}</li>`;
       })
       .join("");
+  }
+
+  function printList() {
+    const win = window.open("", "_blank", "width=420,height=640");
+    if (!win) return;
+
+    const rows = buildListRowsHtml();
     win.document.write(`
       <html><head><title>${t.title}</title>
       <meta charset="utf-8">
@@ -297,6 +306,111 @@ export function MyListModal({ language, onClose }) {
       </body></html>
     `);
     win.document.close();
+  }
+
+  function hexToRgb(hex) {
+    const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [15, 23, 42];
+  }
+
+  async function saveListPdf() {
+    // Bygget direkte med jsPDF (vektor-tekst) i stedet for html2canvas —
+    // giver skarpere, korrekt justeret tekst og undgår at skulle rasterisere
+    // hele listen som ét billede.
+    const { default: jsPDF } = await import("jspdf");
+    const pdf = new jsPDF({ unit: "pt", format: "a4" });
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 40;
+    const contentWidth = pageWidth - margin * 2;
+    const align = isRtl ? "right" : "left";
+
+    // Badge (cirkel med forbogstav) sidder nærmest kant-siden; navnet starter
+    // med god afstand efter badge'n. Bullet-prikken har sin egen kolonne til
+    // venstre for teksten, så prik og bogstav aldrig kan overlappe.
+    const badgeX = isRtl ? pageWidth - margin - 28 : margin + 28;
+    const nameX = isRtl ? badgeX - 24 : badgeX + 24;
+    const bulletDotX = isRtl ? pageWidth - margin - 24 : margin + 24;
+    const bulletTextX = isRtl ? bulletDotX - 14 : bulletDotX + 14;
+    const bulletTextWidth = contentWidth - 24 - 14 - 20;
+
+    const primaryRgb = hexToRgb(theme.primary);
+    const borderRgb = hexToRgb(theme.border);
+
+    pdf.setFillColor(...hexToRgb(theme.soft));
+    pdf.rect(0, 0, pageWidth, 76, "F");
+    pdf.setTextColor(...primaryRgb);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(17);
+    pdf.text(t.title, isRtl ? pageWidth - margin : margin, 40, { align });
+    pdf.setTextColor(100, 116, 139);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.text(t.printedOn, isRtl ? pageWidth - margin : margin, 58, { align });
+
+    let y = 100;
+
+    const ensureSpace = (height) => {
+      if (y + height > pageHeight - margin) {
+        pdf.addPage();
+        y = margin;
+      }
+    };
+
+    selectedItems.forEach((item) => {
+      const local = getDisplayName(item.slug, language, item.name);
+      const notes = interactionNotes.find((n) => n.slug === item.slug);
+      const doseBullets = notes?.dose?.bullets || [];
+      const accentRgb = hexToRgb(getAccentColor(item.slug));
+
+      const bulletLines = doseBullets.map((b) => pdf.setFontSize(11.5).splitTextToSize(b, bulletTextWidth));
+      const totalBulletLines = bulletLines.reduce((sum, lines) => sum + lines.length, 0);
+      const cardHeight = 46 + totalBulletLines * 15 + doseBullets.length * 4 + 12;
+
+      ensureSpace(cardHeight);
+
+      pdf.setFillColor(250, 250, 251);
+      pdf.setDrawColor(...borderRgb);
+      pdf.setLineWidth(1);
+      pdf.roundedRect(margin, y, contentWidth, cardHeight, 10, 10, "FD");
+      pdf.setFillColor(...accentRgb);
+      pdf.roundedRect(isRtl ? pageWidth - margin - 4 : margin, y, 4, cardHeight, 2, 2, "F");
+
+      const badgeY = y + 24;
+      pdf.setFillColor(...accentRgb);
+      pdf.circle(badgeX, badgeY, 12, "F");
+      pdf.setTextColor(255, 255, 255);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(11);
+      pdf.text(local.trim().charAt(0).toUpperCase(), badgeX, badgeY + 4, { align: "center" });
+
+      pdf.setTextColor(15, 23, 42);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(13.5);
+      pdf.text(local, nameX, y + 28, { align });
+
+      let by = y + 24 + 24;
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(11.5);
+      pdf.setTextColor(71, 85, 105);
+      bulletLines.forEach((lines) => {
+        pdf.setFillColor(...accentRgb);
+        pdf.circle(bulletDotX, by - 4, 2, "F");
+        lines.forEach((line, i) => {
+          pdf.text(line, bulletTextX, by + i * 15, { align });
+        });
+        by += lines.length * 15 + 4;
+      });
+
+      y += cardHeight + 14;
+    });
+
+    pdf.setTextColor(148, 163, 184);
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.text("Somalimed.dk", pageWidth / 2, y + 10, { align: "center" });
+
+    pdf.save("Somalimed-medicinliste.pdf");
   }
 
   const iconEl = <ListIcon size={22} color="rgba(255,255,255,0.95)" />;
@@ -624,6 +738,22 @@ export function MyListModal({ language, onClose }) {
         }}
       >
         {t.printBtn}
+      </button>
+
+      <button
+        type="button"
+        onClick={saveListPdf}
+        disabled={selectedItems.length === 0}
+        style={{
+          width: "100%", padding: "14px 20px", borderRadius: "14px",
+          border: `1.5px solid ${selectedItems.length === 0 ? "#cbd5e1" : theme.primary}`,
+          background: "#fff", color: selectedItems.length === 0 ? "#cbd5e1" : theme.primary,
+          fontWeight: 700, fontSize: "15px",
+          cursor: selectedItems.length === 0 ? "not-allowed" : "pointer",
+          marginBottom: "18px",
+        }}
+      >
+        {t.pdfBtn}
       </button>
 
       <p style={{ fontSize: "11.5px", color: "#94a3b8", lineHeight: 1.6, margin: 0, textAlign: isRtl ? "right" : "left" }}>
