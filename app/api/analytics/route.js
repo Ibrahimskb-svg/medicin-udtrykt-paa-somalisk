@@ -131,6 +131,17 @@ export async function GET(request) {
       limit: 6,
     });
 
+    // Hvilket af sitets 4 sprog (so/da/en/ar) folk faktisk læser siden på —
+    // udledt af "?lang="-parameteren i URL'en, da GA4's egen "language"-dimension
+    // kun viser browserens/OS'ets sprog, ikke sprogvalget inde på siden selv.
+    const [siteLanguageReport] = await client.runReport({
+      property,
+      dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+      dimensions: [{ name: "pagePathPlusQueryString" }],
+      metrics: [{ name: "screenPageViews" }],
+      limit: 10000,
+    });
+
     const timeseries = rowsOf(timeseriesReport).map((row) => ({
       date: toDateLabel(row.dimensionValues[0].value),
       users: Number(row.metricValues[0].value),
@@ -225,6 +236,20 @@ export async function GET(request) {
       users: Number(row.metricValues[0].value),
     }));
 
+    const SITE_LANG_LABELS = { so: "Somalisk", da: "Dansk", en: "Engelsk", ar: "Arabisk" };
+    const siteLangCounts = { so: 0, da: 0, en: 0, ar: 0 };
+    for (const row of rowsOf(siteLanguageReport)) {
+      const path = row.dimensionValues[0].value;
+      const views = Number(row.metricValues[0].value);
+      const match = /[?&]lang=(so|da|en|ar)\b/.exec(path);
+      const lang = match ? match[1] : "so"; // "so" er sitets standardsprog uden "?lang="-parameter
+      siteLangCounts[lang] += views;
+    }
+    const siteLanguages = Object.entries(siteLangCounts)
+      .map(([code, views]) => ({ name: SITE_LANG_LABELS[code], views }))
+      .filter((l) => l.views > 0)
+      .sort((a, b) => b.views - a.views);
+
     return NextResponse.json({
       ok: true,
       generatedAt: new Date().toISOString(),
@@ -242,6 +267,7 @@ export async function GET(request) {
       topPages,
       loyalty,
       languages,
+      siteLanguages,
     });
   } catch (err) {
     console.error("GA4 analytics fetch failed:", err);

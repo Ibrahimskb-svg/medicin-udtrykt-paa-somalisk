@@ -424,7 +424,19 @@ export function AnalyticsDashboard() {
                   unit="besøgende"
                 />
               </Card>
-              <Card title="Sprog (browser)" subtitle="Besøgende, sidste 28 dage">
+              <Card
+                title="Sprog på sitet"
+                subtitle="Sidevisninger fordelt på Somalisk/Dansk/Engelsk/Arabisk, sidste 28 dage"
+              >
+                <DonutChart
+                  items={(data.siteLanguages || []).map((l) => ({ name: l.name, value: l.views }))}
+                  unit="visninger"
+                />
+              </Card>
+              <Card
+                title="Sprog (browser/OS)"
+                subtitle="Besøgendes browsersprog, sidste 28 dage — viser rækkevidde, ikke hvilket sprog de læser siden på"
+              >
                 <DonutChart
                   items={(data.languages || []).map((l) => ({
                     name: LANGUAGE_LABELS[l.name?.toLowerCase()] || l.name,
