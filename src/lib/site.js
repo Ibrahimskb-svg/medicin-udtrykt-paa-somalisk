@@ -113,6 +113,11 @@ export const uiText = {
     videoTabDa: "Af-Deenish",
     videoTabEn: "Af-Ingiriis",
     videoTabAr: "Af-Caraabi",
+    voiceLabel: "Codka raadi",
+    voiceListening: "Waan dhegaysanayaa...",
+    voiceErrorDenied: "Idanka mikirifoonka lama helin. Fadlan ogolow.",
+    voiceErrorNoSpeech: "Wax cod ah lama helin. Isku day mar kale.",
+    voiceErrorGeneric: "Wax baa qaldamay. Isku day mar kale.",
   },
   da: {
     navbarTitle: "somalimed",
@@ -141,6 +146,11 @@ export const uiText = {
     videoTabDa: "Dansk",
     videoTabEn: "Engelsk",
     videoTabAr: "Arabisk",
+    voiceLabel: "Søg med stemme",
+    voiceListening: "Lytter...",
+    voiceErrorDenied: "Mikrofonadgang blev ikke givet. Tillad venligst adgang.",
+    voiceErrorNoSpeech: "Hørte ikke noget. Prøv igen.",
+    voiceErrorGeneric: "Noget gik galt. Prøv igen.",
   },
   en: {
     navbarTitle: "somalimed",
@@ -169,6 +179,11 @@ export const uiText = {
     videoTabDa: "Danish",
     videoTabEn: "English",
     videoTabAr: "Arabic",
+    voiceLabel: "Search by voice",
+    voiceListening: "Listening...",
+    voiceErrorDenied: "Microphone access wasn't granted. Please allow access.",
+    voiceErrorNoSpeech: "Didn't catch that. Try again.",
+    voiceErrorGeneric: "Something went wrong. Try again.",
   },
   ar: {
     navbarEyebrow: "دليل رقمي",
@@ -198,6 +213,11 @@ export const uiText = {
     videoTabDa: "الدنماركية",
     videoTabEn: "الإنجليزية",
     videoTabAr: "العربية",
+    voiceLabel: "البحث بالصوت",
+    voiceListening: "جارٍ الاستماع...",
+    voiceErrorDenied: "لم يتم منح إذن الميكروفون. يرجى السماح بالوصول.",
+    voiceErrorNoSpeech: "لم يتم التقاط أي صوت. حاول مرة أخرى.",
+    voiceErrorGeneric: "حدث خطأ ما. حاول مرة أخرى.",
   },
 };
 

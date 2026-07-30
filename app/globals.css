@@ -72,6 +72,17 @@ a {
   transform: translateY(0);
 }
 
+@keyframes mic-pulse-ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.45);
+  }
+}
+
 @media (max-width: 639px) {
   body {
     padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));

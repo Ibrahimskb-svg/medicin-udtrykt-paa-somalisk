@@ -1087,7 +1087,7 @@ export function SiteIndex({initialLang}){
             <div className="group flex items-center gap-3 rounded-2xl border bg-white px-4 py-3 shadow-sm transition duration-200 focus-within:-translate-y-0.5 focus-within:shadow-xl" style={{borderColor:"var(--border)"}}>
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" style={{background:"var(--bg)",color:"var(--accent)"}}><SearchIcon/></span>
               <input id="medSearch" className="flex-1 bg-transparent outline-none placeholder:text-slate-400" style={{color:"var(--text)",fontSize:"16px"}} onChange={(e)=>setSearchTerm(e.target.value)} placeholder={chromeText.searchPlaceholder} value={searchTerm}/>
-              <VoiceSearchButton language={language} onResult={(transcript)=>setSearchTerm(transcript)} />
+              <VoiceSearchButton language={language} onResult={(transcript)=>setSearchTerm(transcript)} text={chromeText} />
               {searchTerm?(<button type="button" className="shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90" style={{background:"var(--bg)",color:"var(--text-muted)",minHeight:"36px"}} onClick={()=>setSearchTerm("")}>{chromeText.clearFilters}</button>):null}
             </div>
           </label>
