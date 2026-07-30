@@ -1037,6 +1037,22 @@ export function SiteIndex({initialLang}){
 
   useScrollReveal([language,activeCategory,searchTerm]);
 
+  // Logger søgeord der giver 0 resultater til GA4, så det kan ses i dashboardet
+  // hvilken medicin folk leder efter, som endnu ikke er på siden. Debounced, så
+  // det kun logges når brugeren er holdt op med at skrive (ikke pr. tastetryk),
+  // og kun når "Alle" kategorier er valgt (ellers er 0 resultater bare et
+  // kategori-filter, ikke et reelt hul i indholdet).
+  useEffect(() => {
+    const query = searchTerm.trim();
+    if (!query || query.length < 2 || activeCategory !== "all" || filteredItems.length > 0) return;
+    const handle = setTimeout(() => {
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "search_no_results", { search_term: query.toLowerCase() });
+      }
+    }, 1200);
+    return () => clearTimeout(handle);
+  }, [searchTerm, activeCategory, filteredItems.length]);
+
   const navTabs=useMemo(()=>[
     {key:"me",      iconEl:<img src={P.education} alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutMe},
     {key:"site",    iconEl:<img src={P.work}      alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutSite},

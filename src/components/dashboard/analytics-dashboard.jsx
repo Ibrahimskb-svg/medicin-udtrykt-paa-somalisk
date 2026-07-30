@@ -474,6 +474,47 @@ export function AnalyticsDashboard() {
               </Card>
             </div>
 
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+              <Card
+                title="Søgninger uden resultat"
+                subtitle="Hvad folk har ledt efter, som ikke er på siden endnu, sidste 28 dage"
+              >
+                {data.noResultSearchesUnavailable ? (
+                  <p style={{ color: "#5A6A7A", fontSize: "13px", lineHeight: 1.6 }}>
+                    Ikke sat op endnu i Google Analytics. Opret en custom dimension i GA4: Admin →
+                    Custom definitions → Create custom dimension → navn "search_term", scope "Event",
+                    event-parameter "search_term". Det kan tage op til et døgn efter oprettelse, før
+                    data begynder at dukke op her.
+                  </p>
+                ) : (data.noResultSearches || []).length === 0 ? (
+                  <p style={{ color: "#5A6A7A", fontSize: "13px" }}>
+                    Ingen søgninger uden resultat endnu de sidste 28 dage.
+                  </p>
+                ) : (
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    {data.noResultSearches.map((s) => (
+                      <div
+                        key={s.term}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "9px 14px",
+                          borderRadius: "10px",
+                          background: "#F7F6F2",
+                        }}
+                      >
+                        <p style={{ margin: 0, fontSize: "14px", fontWeight: 700, color: "#0F1923" }}>{s.term}</p>
+                        <p style={{ margin: 0, fontSize: "13px", color: "#5A6A7A" }}>
+                          {s.count} {s.count === 1 ? "søgning" : "søgninger"}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </Card>
+            </div>
+
             <p style={{ fontSize: "11.5px", color: "#898781", marginTop: "24px" }}>
               Sidst opdateret: {new Date(data.generatedAt).toLocaleString("da-DK")} · opdateres automatisk
               hvert 2. minut

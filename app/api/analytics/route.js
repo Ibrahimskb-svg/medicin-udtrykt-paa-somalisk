@@ -296,6 +296,33 @@ export async function GET(request) {
     }
     const siteLanguageTrend = [...trendByDate.values()].sort((a, b) => (a.date < b.date ? -1 : 1));
 
+    // Søgeord der gav 0 resultater — fortæller hvilken medicin folk leder efter,
+    // som endnu ikke er på siden. Kører isoleret fra batch'en: kræver at en
+    // "search_term"-custom dimension (event-scope) er oprettet i GA4 admin
+    // (Admin → Custom definitions), ellers fejler kaldet — men skal ikke vælte
+    // resten af dashboardet, hvis det endnu ikke er sat op.
+    let noResultSearches = [];
+    let noResultSearchesUnavailable = false;
+    try {
+      const [noResultReport] = await client.runReport({
+        property,
+        dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+        dimensions: [{ name: "customEvent:search_term" }],
+        metrics: [{ name: "eventCount" }],
+        dimensionFilter: {
+          filter: { fieldName: "eventName", stringFilter: { matchType: "EXACT", value: "search_no_results" } },
+        },
+        orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
+        limit: 25,
+      });
+      noResultSearches = rowsOf(noResultReport)
+        .map((row) => ({ term: row.dimensionValues[0].value, count: Number(row.metricValues[0].value) }))
+        .filter((r) => r.term && r.term !== "(not set)");
+    } catch (err) {
+      console.error("GA4 no-result-search fetch failed (custom dimension may not be registered yet):", err.message);
+      noResultSearchesUnavailable = true;
+    }
+
     return NextResponse.json({
       ok: true,
       generatedAt: new Date().toISOString(),
@@ -316,6 +343,8 @@ export async function GET(request) {
       siteLanguages,
       topPageByLanguage,
       siteLanguageTrend,
+      noResultSearches,
+      noResultSearchesUnavailable,
     });
   } catch (err) {
     console.error("GA4 analytics fetch failed:", err);
