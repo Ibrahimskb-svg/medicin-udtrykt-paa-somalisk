@@ -1,57 +1,33 @@
 // Kører automatisk før hver build (se "prebuild" i package.json) og før hver
-// "npm run dev". Finder datoen for sidste ændring af hver kildefil og skriver
-// den til en genereret fil, så "Sidst revideret"-datoen på siderne altid
-// matcher virkeligheden uden at nogen skal huske at opdatere den manuelt.
+// "npm run dev". Skriver dagens dato til en genereret fil, så "Sidst
+// revideret"-badgen altid matcher hvornår siden sidst blev bygget/deployet —
+// uden at nogen skal huske at opdatere den manuelt.
 //
-// Hvis filen har ikke-committede ændringer (git status viser den som
-// modified/untracked), bruges dagens dato — så en redigering du laver nu med
-// det samme afspejles, selvom du endnu ikke har committet den.
-const { execSync } = require("child_process");
+// Brugte tidligere "git log" til at finde datoen for sidste ændring af en
+// bestemt kildefil, men det viste sig upålideligt i Vercels build-miljø
+// (formentlig for lidt git-historik i et shallow clone), så den deployede
+// side viste en forkert, fastfrosset dato i stedet for at følge med. Løsningen
+// er simpelthen at bruge byggedatoen direkte — den kan ikke fejle, uanset om
+// git er tilgængeligt i miljøet der bygger siden.
 const fs = require("fs");
 const path = require("path");
 
 const REPO_ROOT = path.join(__dirname, "..");
-const TODAY = new Date().toISOString().slice(0, 10);
-
-function hasUncommittedChanges(relPath) {
-  try {
-    const out = execSync(`git status --porcelain -- ${JSON.stringify(relPath)}`, {
-      cwd: REPO_ROOT,
-      encoding: "utf8",
-    }).trim();
-    return out.length > 0;
-  } catch (e) {
-    return false;
-  }
-}
-
-function getLastRevisedDate(relPath) {
-  if (hasUncommittedChanges(relPath)) return TODAY;
-  try {
-    const out = execSync(
-      `git log -1 --format=%cd --date=short -- ${JSON.stringify(relPath)}`,
-      { cwd: REPO_ROOT, encoding: "utf8" }
-    ).trim();
-    if (/^\d{4}-\d{2}-\d{2}$/.test(out)) return out;
-  } catch (e) {
-    // git ikke tilgængelig (fx nogle CI-miljøer) — falder tilbage nedenfor
-  }
-  return TODAY;
-}
+// Bruger dagens dato i København-tid frem for UTC — Vercels build-servere kører
+// i UTC, så en ren "toISOString()" kunne i et par timer omkring midnat vise
+// gårsdagens dato for danske læsere.
+const TODAY = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Copenhagen" }).format(new Date());
 
 // ── Medicinsk indhold (bruges i JSON-LD "lastReviewed" på lægemiddelsider) ──
-const medicineDate = getLastRevisedDate("src/data/site-data.js");
 fs.writeFileSync(
   path.join(REPO_ROOT, "src", "data", "last-revised.generated.js"),
-  `// Auto-genereret af scripts/generate-last-revised.js — rediger ikke manuelt.\nexport const LAST_REVISED_ISO = ${JSON.stringify(medicineDate)};\n`
+  `// Auto-genereret af scripts/generate-last-revised.js — rediger ikke manuelt.\nexport const LAST_REVISED_ISO = ${JSON.stringify(TODAY)};\n`
 );
 
 // ── Juridiske sider (Cookiepolitik + Persondatapolitik) ─────────────────────
-const cookieDate = getLastRevisedDate("app/cookiepolitik/page.jsx");
-const privacyDate = getLastRevisedDate("app/persondatapolitik/page.jsx");
 fs.writeFileSync(
   path.join(REPO_ROOT, "src", "data", "legal-revised.generated.js"),
-  `// Auto-genereret af scripts/generate-last-revised.js — rediger ikke manuelt.\nexport const COOKIE_REVISED_ISO = ${JSON.stringify(cookieDate)};\nexport const PRIVACY_REVISED_ISO = ${JSON.stringify(privacyDate)};\n`
+  `// Auto-genereret af scripts/generate-last-revised.js — rediger ikke manuelt.\nexport const COOKIE_REVISED_ISO = ${JSON.stringify(TODAY)};\nexport const PRIVACY_REVISED_ISO = ${JSON.stringify(TODAY)};\n`
 );
 
-console.log(`Sidst revideret-datoer genereret: medicin=${medicineDate}, cookiepolitik=${cookieDate}, persondatapolitik=${privacyDate}`);
+console.log(`Sidst revideret-dato genereret: ${TODAY}`);

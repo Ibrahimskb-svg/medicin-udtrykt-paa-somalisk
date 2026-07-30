@@ -10,7 +10,7 @@ export const siteData = {
         "pickTitle": "Dooro daawada aad rabto oo hoos ka muuqata",
         "pickSmall": "",
         "footer1": "Qoraalladan waa hagitaan guud oo fudud. Ma beddelayso talada tooska ah ee farmashiyaha ama dhakhtarka.",
-        "footer2": "© 2026 Somalimed. Xuquuqda oo dhan way xafidan tahay.",
+        "footer2": "Xuquuqda oo dhan way xafidan tahay.",
         "footerStrong": "Waxaa diyaariyay Ibraahim Dahir Xanaf.",
         "footer3": "Boggan wuxuu bixiyaa macluumaad guud oo ku saabsan daawooyinka mana beddelayo talada dhakhtarka ama farmashiyaha."
       },
@@ -22,7 +22,7 @@ export const siteData = {
         "pickTitle": "Vælg den ønskede medicin nedenfor",
         "pickSmall": "",
         "footer1": "Indholdet på denne hjemmeside er generel information om medicin og erstatter ikke rådgivning fra læge eller apotek.",
-        "footer2": "© 2026 Somalimed. Alle rettigheder forbeholdes.",
+        "footer2": "Alle rettigheder forbeholdes.",
         "footerStrong": "Udarbejdet af Ibrahim Dahir Hanaf.",
         "footer3": "Siden er lavet for at gøre lægemiddelinformation lettere at forstå på flere sprog."
       },
@@ -34,7 +34,7 @@ export const siteData = {
         "pickTitle": "Choose the medicine below",
         "pickSmall": "",
         "footer1": "This website provides general information about medicines and does not replace advice from a doctor or pharmacy.",
-        "footer2": "© 2026 Somalimed. All rights reserved.",
+        "footer2": "All rights reserved.",
         "footerStrong": "Prepared by Ibrahim Dahir Hanaf.",
         "footer3": "The site is created to make medicine information easier to understand across languages."
       },
@@ -46,7 +46,7 @@ export const siteData = {
         "pickTitle": "اختر الدواء المطلوب أدناه",
         "pickSmall": "",
         "footer1": "يوفر هذا الموقع معلومات عامة عن الأدوية ولا يغني عن نصيحة الطبيب أو الصيدلي.",
-        "footer2": "© 2026 Somalimed. جميع الحقوق محفوظة.",
+        "footer2": "جميع الحقوق محفوظة.",
         "footerStrong": "أعد هذا المحتوى بواسطة إبراهيم ظاهر حنف.",
         "footer3": "تم إنشاء هذا الموقع لتسهيل فهم معلومات الأدوية عبر عدة لغات."
       }

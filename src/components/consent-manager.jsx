@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
+import { LANG_THEME } from "./modal-shell";
 
 const BANNER_LANG_KEY = "cookieBannerLang";
 const LANG_NAMES = { da: "Dansk", so: "Soomaali", en: "English", ar: "العربية" };
@@ -87,6 +88,7 @@ export function ConsentManager() {
 
   const t = TEXTS[lang] ?? TEXTS.da;
   const isRtl = lang === "ar";
+  const theme = LANG_THEME[lang] ?? LANG_THEME.da;
 
   if (pathname?.startsWith("/dashboard")) return null;
 
@@ -140,42 +142,49 @@ export function ConsentManager() {
           role="dialog"
           aria-label={t.title}
           style={{
-            position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 99999,
-            background: "#ffffff", borderTop: "2px solid #0D9488",
-            padding: "16px 24px",
+            position: "fixed",
+            bottom: "calc(16px + env(safe-area-inset-bottom, 0px))",
+            left: "16px", right: "16px", zIndex: 99999,
+            maxWidth: "920px", margin: "0 auto",
+            background: "#ffffff", border: `2px solid ${theme.primary}`,
+            borderRadius: "20px",
+            padding: "18px 22px",
             display: "flex", alignItems: "center",
             justifyContent: "space-between", flexWrap: "wrap", gap: "12px",
-            boxShadow: "0 -4px 24px rgba(0,0,0,0.10)",
+            boxShadow: "0 12px 36px rgba(15,23,42,0.16)",
             direction: isRtl ? "rtl" : "ltr",
           }}
         >
           <div style={{ flex: 1, minWidth: "260px", maxWidth: "680px" }}>
-            <p style={{ fontWeight: 700, margin: "0 0 4px 0", color: "#0D9488", fontSize: "14px" }}>
+            <p style={{ fontWeight: 700, margin: "0 0 4px 0", color: theme.primary, fontSize: "14px" }}>
               🍪 {t.title}
             </p>
             <p style={{ margin: 0, fontSize: "13px", color: "#334155", lineHeight: 1.6 }}>
               {t.body}{" "}
-              <a href="/cookiepolitik" style={{ color: "#0D9488", textDecoration: "underline", fontWeight: 600 }}>
+              <a href="/cookiepolitik" style={{ color: theme.primary, textDecoration: "underline", fontWeight: 600 }}>
                 {t.policy}
               </a>
             </p>
             <div style={{ display: "flex", gap: "6px", marginTop: "10px", flexWrap: "wrap" }}>
-              {LANG_ORDER.map((l) => (
-                <button
-                  key={l}
-                  onClick={() => changeLang(l)}
-                  aria-pressed={l === lang}
-                  style={{
-                    padding: "3px 10px", borderRadius: "999px", fontSize: "11px", fontWeight: 600,
-                    border: l === lang ? "1.5px solid #0D9488" : "1.5px solid #e2e8f0",
-                    background: l === lang ? "#0D948815" : "#fff",
-                    color: l === lang ? "#0D9488" : "#64748b",
-                    cursor: "pointer",
-                  }}
-                >
-                  {LANG_NAMES[l]}
-                </button>
-              ))}
+              {LANG_ORDER.map((l) => {
+                const btnTheme = LANG_THEME[l] ?? LANG_THEME.da;
+                return (
+                  <button
+                    key={l}
+                    onClick={() => changeLang(l)}
+                    aria-pressed={l === lang}
+                    style={{
+                      padding: "3px 10px", borderRadius: "999px", fontSize: "11px", fontWeight: 600,
+                      border: l === lang ? `1.5px solid ${btnTheme.primary}` : "1.5px solid #e2e8f0",
+                      background: l === lang ? `${btnTheme.primary}15` : "#fff",
+                      color: l === lang ? btnTheme.primary : "#64748b",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {LANG_NAMES[l]}
+                  </button>
+                );
+              })}
             </div>
           </div>
           <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
@@ -194,7 +203,7 @@ export function ConsentManager() {
               onClick={accept}
               style={{
                 padding: "9px 20px", borderRadius: "8px",
-                border: "none", background: "#0D9488",
+                border: "none", background: theme.primary,
                 color: "#ffffff", fontWeight: 700, cursor: "pointer",
                 fontSize: "13px", whiteSpace: "nowrap",
               }}

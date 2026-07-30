@@ -1188,9 +1188,10 @@ export function SiteIndex({initialLang}){
               {text.footer1&&<p style={{fontSize:"14px",lineHeight:"1.75",color:"#334155",margin:0}}>{text.footer1}</p>}
             </div>
           </div>
-          <div style={{marginTop:"16px",paddingTop:"14px",borderTop:`1px solid ${(LANG_THEME[language]??LANG_THEME.so).border}`,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:"8px"}}>
-            {text.footer2&&<p style={{fontSize:"13px",fontWeight:700,color:(LANG_THEME[language]??LANG_THEME.so).primary,margin:0}}>{text.footer2}</p>}
-            <p style={{fontSize:"13px",color:"#64748b",margin:0}}>© 2026 Somalimed</p>
+          <div style={{marginTop:"16px",paddingTop:"14px",borderTop:`1px solid ${(LANG_THEME[language]??LANG_THEME.so).border}`}}>
+            <p style={{fontSize:"13.5px",fontWeight:700,color:(LANG_THEME[language]??LANG_THEME.so).primary,margin:0,letterSpacing:"0.01em"}}>
+              © {new Date().getFullYear()} Somalimed{text.footer2 ? ` — ${text.footer2}` : ""}
+            </p>
           </div>
           <div style={{marginTop:"10px",display:"flex",gap:"14px",flexWrap:"wrap"}}>
             <a href="/cookiepolitik" style={{fontSize:"12px",color:"#64748b",textDecoration:"underline"}}>{(LEGAL_LABELS[language]??LEGAL_LABELS.so).cookie}</a>
@@ -1199,7 +1200,6 @@ export function SiteIndex({initialLang}){
         </div>
       </footer>
 
-      {/* ── Revision date bar — bottom of entire page, medicin.dk style ── */}
       {/* ── Revision date bar — bottom of entire page ── */}
       <div style={{
         width:"100%",
