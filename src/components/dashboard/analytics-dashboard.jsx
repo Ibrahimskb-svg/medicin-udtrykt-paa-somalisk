@@ -5,6 +5,7 @@ import { TrendLineChart } from "./trend-line-chart";
 import { BarListChart, COUNTRY_NAMES_DA } from "./bar-list-chart";
 import { DonutChart } from "./donut-chart";
 import { ColumnChart } from "./column-chart";
+import { LanguageTrendChart } from "./language-trend-chart";
 import { formatCompact, formatDuration, formatThousands } from "../../lib/format-number";
 
 const DEVICE_LABELS = { desktop: "Computer", mobile: "Mobil", tablet: "Tablet" };
@@ -18,12 +19,6 @@ const CHANNEL_LABELS = {
   Email: "E-mail",
 };
 const LOYALTY_LABELS = { new: "Nye besøgende", returning: "Tilbagevendende", "(not set)": "Ukendt", "": "Ukendt" };
-const LANGUAGE_LABELS = {
-  da: "Dansk", "da-dk": "Dansk", danish: "Dansk",
-  en: "Engelsk", "en-us": "Engelsk", "en-gb": "Engelsk", english: "Engelsk",
-  so: "Somali", "so-so": "Somali", somali: "Somali",
-  ar: "Arabisk", "ar-sa": "Arabisk", "ar-qa": "Arabisk", "ar-ae": "Arabisk", arabic: "Arabisk",
-};
 
 function Card({ title, subtitle, children }) {
   return (
@@ -433,17 +428,49 @@ export function AnalyticsDashboard() {
                   unit="visninger"
                 />
               </Card>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
               <Card
-                title="Sprog (browser/OS)"
-                subtitle="Besøgendes browsersprog, sidste 28 dage — viser rækkevidde, ikke hvilket sprog de læser siden på"
+                title="Sprog på sitet over tid"
+                subtitle="Sidevisninger pr. sprog, dag for dag, sidste 28 dage"
               >
-                <DonutChart
-                  items={(data.languages || []).map((l) => ({
-                    name: LANGUAGE_LABELS[l.name?.toLowerCase()] || l.name,
-                    value: l.users,
-                  }))}
-                  unit="besøgende"
-                />
+                <LanguageTrendChart data={data.siteLanguageTrend} />
+              </Card>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+              <Card
+                title="Mest læste medicinside pr. sprog"
+                subtitle="Den medicinside der har flest sidevisninger på hvert sprog, sidste 28 dage"
+              >
+                {(data.topPageByLanguage || []).length === 0 ? (
+                  <p style={{ color: "#5A6A7A", fontSize: "13px" }}>Ingen data endnu.</p>
+                ) : (
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                    {(data.topPageByLanguage || []).map((p) => (
+                      <div
+                        key={p.lang}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "10px 14px",
+                          borderRadius: "10px",
+                          background: "#F7F6F2",
+                        }}
+                      >
+                        <div>
+                          <p style={{ margin: 0, fontSize: "11.5px", fontWeight: 700, color: "#898781", textTransform: "uppercase", letterSpacing: "0.03em" }}>
+                            {p.lang}
+                          </p>
+                          <p style={{ margin: "2px 0 0", fontSize: "14px", fontWeight: 700, color: "#0F1923" }}>{p.name}</p>
+                        </div>
+                        <p style={{ margin: 0, fontSize: "13px", color: "#5A6A7A" }}>{p.views} visninger</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </Card>
             </div>
 

@@ -142,6 +142,16 @@ export async function GET(request) {
       limit: 10000,
     });
 
+    // Samme sprog-udledning, men dag for dag, så vi kan se om fordelingen
+    // mellem sprogene ændrer sig over tid (ikke kun et snapshot).
+    const [siteLanguageTrendReport] = await client.runReport({
+      property,
+      dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+      dimensions: [{ name: "date" }, { name: "pagePathPlusQueryString" }],
+      metrics: [{ name: "screenPageViews" }],
+      limit: 100000,
+    });
+
     const timeseries = rowsOf(timeseriesReport).map((row) => ({
       date: toDateLabel(row.dimensionValues[0].value),
       users: Number(row.metricValues[0].value),
@@ -250,6 +260,42 @@ export async function GET(request) {
       .filter((l) => l.views > 0)
       .sort((a, b) => b.views - a.views);
 
+    // Mest læste medicinside pr. sprog — samme rækker som siteLanguages, bare
+    // grupperet på (sprog, side) i stedet for kun sprog. "Forsiden" tælles ikke
+    // med, da spørgsmålet er hvilken medicin der læses mest, ikke forsiden.
+    const pagesByLang = { so: new Map(), da: new Map(), en: new Map(), ar: new Map() };
+    for (const row of rowsOf(siteLanguageReport)) {
+      const path = row.dimensionValues[0].value;
+      const views = Number(row.metricValues[0].value);
+      const match = /[?&]lang=(so|da|en|ar)\b/.exec(path);
+      const lang = match ? match[1] : "so";
+      const label = pagePathToLabel(path);
+      if (label === "Forsiden") continue;
+      const bucket = pagesByLang[lang];
+      bucket.set(label, (bucket.get(label) || 0) + views);
+    }
+    const topPageByLanguage = Object.entries(pagesByLang)
+      .map(([code, pages]) => {
+        const sorted = [...pages.entries()].sort((a, b) => b[1] - a[1]);
+        if (sorted.length === 0) return null;
+        return { lang: SITE_LANG_LABELS[code], name: sorted[0][0], views: sorted[0][1] };
+      })
+      .filter(Boolean);
+
+    // Sprogfordeling dag for dag, så man kan se om andelen af fx somalisk/arabisk
+    // stiger eller falder over tid, i stedet for kun et snapshot af de sidste 28 dage.
+    const trendByDate = new Map();
+    for (const row of rowsOf(siteLanguageTrendReport)) {
+      const date = toDateLabel(row.dimensionValues[0].value);
+      const path = row.dimensionValues[1].value;
+      const views = Number(row.metricValues[0].value);
+      const match = /[?&]lang=(so|da|en|ar)\b/.exec(path);
+      const lang = match ? match[1] : "so";
+      if (!trendByDate.has(date)) trendByDate.set(date, { date, so: 0, da: 0, en: 0, ar: 0 });
+      trendByDate.get(date)[lang] += views;
+    }
+    const siteLanguageTrend = [...trendByDate.values()].sort((a, b) => (a.date < b.date ? -1 : 1));
+
     return NextResponse.json({
       ok: true,
       generatedAt: new Date().toISOString(),
@@ -268,6 +314,8 @@ export async function GET(request) {
       loyalty,
       languages,
       siteLanguages,
+      topPageByLanguage,
+      siteLanguageTrend,
     });
   } catch (err) {
     console.error("GA4 analytics fetch failed:", err);
