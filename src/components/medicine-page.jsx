@@ -76,10 +76,10 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "🕌 Tilpas til bønnetider" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "🕌 Align to prayer times" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "🕌 Ku habayn waqtiyada salaadda" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "🕌 موائمة مع أوقات الصلاة" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "Bønnetider" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "Prayer times" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة" },
 };
 
 const PRAYER_PERIOD_LABEL = {
@@ -837,6 +837,9 @@ export function MedicinePage({ medicine, initialLang }) {
                 cursor: "pointer",
               }}
             >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
               {shareText.alignPrayer}
             </button>
           )}
