@@ -7,6 +7,7 @@ import QRCode from "qrcode";
 import { InhalerGuide } from "./inhaler-guide";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
+import { PrayerReminderModal } from "./prayer-reminder-modal";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -75,19 +76,25 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "🕌 Tilpas til bønnetider" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "🕌 Align to prayer times" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "🕌 Ku habayn waqtiyada salaadda" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "🕌 موائمة مع أوقات الصلاة" },
 };
 
-function downloadReminderICS(medicineName, language) {
+const PRAYER_PERIOD_LABEL = {
+  suhoor: { da: "Sahur", en: "Suhoor", so: "Sahuur", ar: "السحور" },
+  iftar: { da: "Iftar", en: "Iftar", so: "Iftar", ar: "الإفطار" },
+};
+
+// customTimes (valgfri): [{hour, minute, period: "suhoor"|"iftar"}] — bruges til at
+// generere flere begivenheder aligned med bønnetider i stedet for det faste kl. 08:00.
+function downloadReminderICS(medicineName, language, customTimes) {
   const now = new Date();
   const pad = (n) => String(n).padStart(2, "0");
   const todayStr = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
   const stampStr =
     `${now.getUTCFullYear()}${pad(now.getUTCMonth() + 1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}Z`;
-  const uid = `somalimed-${Date.now()}@somalimed.dk`;
 
   const summaryByLang = {
     da: `Tag din medicin: ${medicineName}`,
@@ -101,24 +108,29 @@ function downloadReminderICS(medicineName, language) {
     so: "Xasuusin maalinle ah oo ka timid Somalimed.dk. Waxaad ka bedeli kartaa saacadda app-kaaga jadwalka.",
     ar: "تذكير يومي من Somalimed.dk. يمكنك تغيير الوقت في تطبيق التقويم الخاص بك.",
   };
-  const summary = summaryByLang[language] || summaryByLang.da;
+  const baseSummary = summaryByLang[language] || summaryByLang.da;
   const description = descByLang[language] || descByLang.da;
 
-  const ics = [
-    "BEGIN:VCALENDAR",
-    "VERSION:2.0",
-    "PRODID:-//Somalimed//Medicine Reminder//DA",
-    "BEGIN:VEVENT",
-    `UID:${uid}`,
-    `DTSTAMP:${stampStr}`,
-    `DTSTART;TZID=Europe/Copenhagen:${todayStr}T080000`,
-    `DTEND;TZID=Europe/Copenhagen:${todayStr}T081500`,
-    "RRULE:FREQ=DAILY",
-    `SUMMARY:${summary}`,
-    `DESCRIPTION:${description}`,
-    "END:VEVENT",
-    "END:VCALENDAR",
-  ].join("\r\n");
+  const events = (customTimes?.length ? customTimes : [{ hour: 8, minute: 0, period: null }]).map((entry, i) => {
+    const start = `${pad(entry.hour)}${pad(entry.minute)}00`;
+    const endMinute = entry.minute + 15;
+    const end = `${pad(entry.hour + Math.floor(endMinute / 60))}${pad(endMinute % 60)}00`;
+    const periodLabel = entry.period ? PRAYER_PERIOD_LABEL[entry.period]?.[language] : null;
+    const summary = periodLabel ? `${periodLabel} – ${baseSummary}` : baseSummary;
+    return [
+      "BEGIN:VEVENT",
+      `UID:somalimed-${Date.now()}-${i}@somalimed.dk`,
+      `DTSTAMP:${stampStr}`,
+      `DTSTART;TZID=Europe/Copenhagen:${todayStr}T${start}`,
+      `DTEND;TZID=Europe/Copenhagen:${todayStr}T${end}`,
+      "RRULE:FREQ=DAILY",
+      `SUMMARY:${summary}`,
+      `DESCRIPTION:${description}`,
+      "END:VEVENT",
+    ].join("\r\n");
+  });
+
+  const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Somalimed//Medicine Reminder//DA", ...events, "END:VCALENDAR"].join("\r\n");
 
   const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
   const url = URL.createObjectURL(blob);
@@ -292,6 +304,7 @@ export function MedicinePage({ medicine, initialLang }) {
   const [qrCopied, setQrCopied] = useState(false);
   const [inMyList, setInMyList] = useState(false);
   const [reminded, setReminded] = useState(false);
+  const [prayerModalOpen, setPrayerModalOpen] = useState(false);
   const somaliAudioRef = useRef(null);
   const arabicAudioRef = useRef(null);
 
@@ -299,6 +312,10 @@ export function MedicinePage({ medicine, initialLang }) {
   const data = useMemo(() => medicine.translations[language] || medicine.translations.so, [language, medicine]);
   const chromeText = useMemo(() => uiText[language] || uiText.so, [language]);
   const isRtl = language === "ar";
+  const hasFoodTiming = useMemo(
+    () => (medicine.dosagePictogram?.[language] || []).some((chip) => chip.type === "food"),
+    [medicine, language]
+  );
   const qrText = QR_LABELS[language] ?? QR_LABELS.da;
   const shareText = SHARE_LABELS[language] ?? SHARE_LABELS.da;
   const pageUrl = `https://www.somalimed.dk/${medicine.slug}?lang=${language}`;
@@ -608,6 +625,25 @@ export function MedicinePage({ medicine, initialLang }) {
         </div>
       )}
 
+      {/* ── BØNNETIDS-MODAL (Suhoor/Iftar-tilpasset påmindelse) ── */}
+      {prayerModalOpen && (
+        <PrayerReminderModal
+          language={language}
+          isRtl={isRtl}
+          onClose={() => setPrayerModalOpen(false)}
+          onConfirm={({ fajr, maghrib }) => {
+            const [fh, fm] = fajr.split(":").map(Number);
+            const [mh, mm] = maghrib.split(":").map(Number);
+            downloadReminderICS(data.drugName || medicine.slug, language, [
+              { hour: fh, minute: fm, period: "suhoor" },
+              { hour: mh, minute: mm, period: "iftar" },
+            ]);
+            setReminded(true);
+            setPrayerModalOpen(false);
+          }}
+        />
+      )}
+
       {/* ── TPI-MODAL (inhalationsteknik) ── */}
       {modalTab === "mylist" && <MyListModal language={language} onClose={() => setModalTab(null)} />}
       {modalTab === "findPharmacy" && <PharmacyFinderModal language={language} onClose={() => setModalTab(null)} />}
@@ -789,6 +825,21 @@ export function MedicinePage({ medicine, initialLang }) {
             </svg>
             {reminded ? shareText.reminded : shareText.remind}
           </button>
+          {hasFoodTiming && (
+            <button
+              onClick={() => setPrayerModalOpen(true)}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "6px",
+                padding: "7px 14px", borderRadius: "8px",
+                background: "var(--surface)", color: "var(--text)",
+                fontWeight: 600, fontSize: "13px",
+                border: "1.5px solid var(--border)",
+                cursor: "pointer",
+              }}
+            >
+              {shareText.alignPrayer}
+            </button>
+          )}
         </div>
 
         {/* ── SOMALI LYDFIL ── */}
