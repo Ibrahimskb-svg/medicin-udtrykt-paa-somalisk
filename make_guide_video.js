@@ -145,6 +145,28 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   await sleep(closeMs);
 }
 
+// Kontakt + Find apotek er nu samlet i 1 dropdown i navbaren (i stedet for to
+// separate knapper) — åbn dropdown'en først, klik så det ønskede menupunkt,
+// og gør derefter det samme scroll+Escape som showNavModal.
+async function showContactDropdownItem(page, itemText, totalMs, closeMs) {
+  await page.locator('button[aria-expanded]').first().click();
+  await sleep(300);
+  // Scopet til panelet der er en DIREKTE sibling af trigger-knappen — ellers
+  // kan ".last()" fejlagtigt ramme den skjulte mobil-bundnav-knap, som har
+  // samme korte label ("Kontakt") som panel-punktet, men er usynlig på desktop.
+  await page.locator(`button[aria-expanded] + div button:has-text("${itemText}")`).first().click();
+  await sleep(500);
+  await page.mouse.move(640, 380);
+  const scrollMs = Math.max(500, totalMs - 800 - closeMs);
+  const wStart = Date.now();
+  while (Date.now() - wStart < scrollMs) {
+    await page.mouse.wheel(0, 45);
+    await sleep(Math.min(650, Math.max(0, scrollMs - (Date.now() - wStart))));
+  }
+  await page.keyboard.press('Escape');
+  await sleep(closeMs);
+}
+
 (async () => {
   if (!fs.existsSync(AUDIO)) {
     console.error(`❌ Lydspor mangler: ${AUDIO} — kør gen_${LANG}_audio.py først`);
@@ -214,22 +236,28 @@ async function showNavModal(page, btnText, totalMs, closeMs) {
   await showNavModal(page, NAV_LABELS.faq, dur('nav_faq') * 1000, 500);
   await sleepToTarget(seg, 'nav_faq_pause');
 
-  console.log('  [nav_contact] Contact modal');
-  await showNavModal(page, NAV_LABELS.contact, dur('nav_contact') * 1000, 500);
+  console.log('  [nav_contact] Contact modal (via Kontakt/Apotek dropdown)');
+  await showContactDropdownItem(page, NAV_LABELS.contact, dur('nav_contact') * 1000, 500);
   await sleepToTarget(seg, 'nav_contact_pause');
 
   console.log('  [nav_mylist] My list nav mention (no click yet — demoed later)');
   await sleepToTarget(seg, 'nav_mylist');
   await sleepToTarget(seg, 'nav_mylist_pause');
 
-  console.log('  [nav_findpharmacy] Find pharmacy modal');
-  await showNavModal(page, NAV_LABELS.findPharmacy, dur('nav_findpharmacy') * 1000, 500);
+  console.log('  [nav_findpharmacy] Find pharmacy modal (via Kontakt/Apotek dropdown)');
+  await showContactDropdownItem(page, NAV_LABELS.findPharmacy, dur('nav_findpharmacy') * 1000, 500);
   await sleepToTarget(seg, 'nav_findpharmacy_pause');
 
-  // ── sprogvælger ──────────────────────────────────────────────────────
-  console.log('  [langsel] Language selector');
-  await smoothScroll(page, 0, 40, Math.round(dur('langsel') * 500));
-  await smoothScroll(page, 40, 0, Math.round(dur('langsel') * 500));
+  // ── sprogvælger (nu farvede flag i navbaren, ikke længere en sektion man skal scrolle til) ──
+  console.log('  [langsel] Language selector (flags in navbar)');
+  {
+    const flagLabels = ['Somalisk', 'Dansk', 'Engelsk', 'Arabisk'];
+    const perFlag = Math.max(200, Math.round((dur('langsel') * 1000) / flagLabels.length));
+    for (const label of flagLabels) {
+      await page.locator(`button[aria-label="${label}"]`).first().hover().catch(() => {});
+      await sleep(perFlag);
+    }
+  }
   await sleepToTarget(seg, 'langsel_pause');
 
   // ── søgefelt ─────────────────────────────────────────────────────────
