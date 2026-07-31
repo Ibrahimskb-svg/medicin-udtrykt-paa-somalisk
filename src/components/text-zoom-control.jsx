@@ -15,10 +15,14 @@ const DEFAULT_ZOOM = 100;
 const STORAGE_KEY = "somalimed-zoom-level";
 
 const LABELS = {
-  da: { short: "Forstør", zoomOut: "Formindsk siden", zoomIn: "Forstør siden", reset: "Nulstil til 100%" },
-  en: { short: "Enlarge", zoomOut: "Shrink page", zoomIn: "Enlarge page", reset: "Reset to 100%" },
-  so: { short: "Weyneey", zoomOut: "Yareey bogga", zoomIn: "Weyneey bogga", reset: "Dib ugu celi 100%" },
-  ar: { short: "تكبير", zoomOut: "تصغير الصفحة", zoomIn: "تكبير الصفحة", reset: "إعادة الضبط إلى 100%" },
+  // "caption" er en altid-synlig tekst (ikke kun tooltip/aria-label) — en
+  // tooltip virker slet ikke på mobil/touch, og en ældre eller
+  // ikke-tech-vant bruger skal kunne se med det samme hvad knappen gør,
+  // uden at skulle gætte ud fra kun "−"/"+"-symboler.
+  da: { caption: "Forstør / formindsk siden", zoomOut: "Formindsk siden", zoomIn: "Forstør siden", reset: "Nulstil til 100%" },
+  en: { caption: "Enlarge / shrink page", zoomOut: "Shrink page", zoomIn: "Enlarge page", reset: "Reset to 100%" },
+  so: { caption: "Weyneey / yareey bogga", zoomOut: "Yareey bogga", zoomIn: "Weyneey bogga", reset: "Dib ugu celi 100%" },
+  ar: { caption: "تكبير / تصغير الصفحة", zoomOut: "تصغير الصفحة", zoomIn: "تكبير الصفحة", reset: "إعادة الضبط إلى 100%" },
 };
 
 function clamp(v) {
@@ -76,67 +80,82 @@ export default function TextZoomControl() {
         [isRtl ? "left" : "right"]: "12px",
         zIndex: 400,
         display: "flex",
+        flexDirection: "column",
         alignItems: "center",
-        gap: "2px",
-        padding: "4px",
-        borderRadius: "999px",
+        gap: "4px",
+        padding: "8px 10px 6px",
+        borderRadius: "16px",
         background: "#ffffff",
         border: `1.5px solid ${active ? theme.primary : theme.border}`,
         boxShadow: active ? `0 4px 14px ${theme.primary}33` : "0 2px 10px rgba(15,23,42,0.10)",
         direction: "ltr",
       }}
     >
-      <button
-        type="button"
-        onClick={zoomOut}
-        disabled={zoom <= MIN_ZOOM}
-        aria-label={t.zoomOut}
-        title={t.zoomOut}
+      <span
         style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          width: "26px", height: "26px", borderRadius: "50%", border: "none",
-          background: "transparent", color: zoom <= MIN_ZOOM ? "#cbd5e1" : theme.primary,
-          fontSize: "16px", fontWeight: 700, cursor: zoom <= MIN_ZOOM ? "default" : "pointer",
-        }}
-      >
-        −
-      </button>
-
-      <button
-        type="button"
-        onClick={reset}
-        aria-label={`${t.short} — ${t.reset}`}
-        title={t.reset}
-        style={{
-          minWidth: "44px",
-          padding: "6px 4px",
-          borderRadius: "999px",
-          border: "none",
-          background: active ? theme.primary : "transparent",
-          color: active ? "#ffffff" : "#64748b",
+          fontSize: "10.5px",
           fontWeight: 700,
-          fontSize: "12px",
-          cursor: "pointer",
+          color: theme.primary,
+          whiteSpace: "nowrap",
+          direction: isRtl ? "rtl" : "ltr",
         }}
       >
-        {zoom}%
-      </button>
+        {t.caption}
+      </span>
 
-      <button
-        type="button"
-        onClick={zoomIn}
-        disabled={zoom >= MAX_ZOOM}
-        aria-label={t.zoomIn}
-        title={t.zoomIn}
-        style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          width: "26px", height: "26px", borderRadius: "50%", border: "none",
-          background: "transparent", color: zoom >= MAX_ZOOM ? "#cbd5e1" : theme.primary,
-          fontSize: "16px", fontWeight: 700, cursor: zoom >= MAX_ZOOM ? "default" : "pointer",
-        }}
-      >
-        +
-      </button>
+      <div style={{ display: "flex", alignItems: "center", gap: "2px" }}>
+        <button
+          type="button"
+          onClick={zoomOut}
+          disabled={zoom <= MIN_ZOOM}
+          aria-label={t.zoomOut}
+          title={t.zoomOut}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            width: "26px", height: "26px", borderRadius: "50%", border: "none",
+            background: "transparent", color: zoom <= MIN_ZOOM ? "#cbd5e1" : theme.primary,
+            fontSize: "16px", fontWeight: 700, cursor: zoom <= MIN_ZOOM ? "default" : "pointer",
+          }}
+        >
+          −
+        </button>
+
+        <button
+          type="button"
+          onClick={reset}
+          aria-label={`${t.caption} — ${t.reset}`}
+          title={t.reset}
+          style={{
+            minWidth: "44px",
+            padding: "6px 4px",
+            borderRadius: "999px",
+            border: "none",
+            background: active ? theme.primary : "transparent",
+            color: active ? "#ffffff" : "#64748b",
+            fontWeight: 700,
+            fontSize: "12px",
+            cursor: "pointer",
+          }}
+        >
+          {zoom}%
+        </button>
+
+        <button
+          type="button"
+          onClick={zoomIn}
+          disabled={zoom >= MAX_ZOOM}
+          aria-label={t.zoomIn}
+          title={t.zoomIn}
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            width: "26px", height: "26px", borderRadius: "50%", border: "none",
+            background: "transparent", color: zoom >= MAX_ZOOM ? "#cbd5e1" : theme.primary,
+            fontSize: "16px", fontWeight: 700, cursor: zoom >= MAX_ZOOM ? "default" : "pointer",
+          }}
+        >
+          +
+        </button>
+      </div>
     </div>
   );
 }
