@@ -18,7 +18,7 @@ const NAV_LABELS = {
 const NAV_LABELS_SHORT = {
   da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin", findPharmacy:"Apotek" },
   en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds", findPharmacy:"Pharmacy" },
-  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Farmashi" },
+  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Raadi farmashiye" },
   ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية" },
 };
 

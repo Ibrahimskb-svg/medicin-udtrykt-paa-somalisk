@@ -2,6 +2,7 @@ import "./globals.css";
 import Script from "next/script";
 import { LayoutShell } from "../src/components/layout-shell";
 import { ConsentManager } from "../src/components/consent-manager";
+import TextZoomControl from "../src/components/text-zoom-control";
 
 export const viewport = {
   width: "device-width",
@@ -101,6 +102,7 @@ export default function RootLayout({ children }) {
       <body>
         <LayoutShell>{children}</LayoutShell>
         <ConsentManager />
+        <TextZoomControl />
 
         <style dangerouslySetInnerHTML={{ __html: `
           #sm-bubble {
