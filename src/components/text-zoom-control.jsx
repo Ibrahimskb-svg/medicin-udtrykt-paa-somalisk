@@ -21,7 +21,7 @@ const LABELS = {
   // uden at skulle gætte ud fra kun "−"/"+"-symboler.
   da: { caption: "Forstør / formindsk siden", zoomOut: "Formindsk siden", zoomIn: "Forstør siden", reset: "Nulstil til 100%" },
   en: { caption: "Enlarge / shrink page", zoomOut: "Shrink page", zoomIn: "Enlarge page", reset: "Reset to 100%" },
-  so: { caption: "Weyneey / yareey bogga", zoomOut: "Yareey bogga", zoomIn: "Weyneey bogga", reset: "Dib ugu celi 100%" },
+  so: { caption: "Weynee / Yaree bogga", zoomOut: "Yaree bogga", zoomIn: "Weynee bogga", reset: "Dib ugu celi 100%" },
   ar: { caption: "تكبير / تصغير الصفحة", zoomOut: "تصغير الصفحة", zoomIn: "تكبير الصفحة", reset: "إعادة الضبط إلى 100%" },
 };
 
