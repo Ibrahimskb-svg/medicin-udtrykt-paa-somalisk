@@ -3,7 +3,7 @@ import { PersondatapolitikContent } from "../../src/components/persondatapolitik
 
 export const metadata = {
   title: "Persondatapolitik",
-  description: "Somalimeds persondatapolitik — hvilke persondata vi behandler, hvorfor, og dine rettigheder.",
+  description: "Somalimeds persondatapolitik — hvilke persondata jeg behandler, hvorfor, og dine rettigheder.",
   robots: { index: false, follow: true },
 };
 

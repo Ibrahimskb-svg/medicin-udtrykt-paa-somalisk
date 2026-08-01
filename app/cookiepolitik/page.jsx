@@ -3,7 +3,7 @@ import { CookiePolicyContent } from "../../src/components/cookie-policy-content"
 
 export const metadata = {
   title: "Cookiepolitik",
-  description: "Somalimeds cookiepolitik — hvilke cookies vi bruger og hvorfor.",
+  description: "Somalimeds cookiepolitik — hvilke cookies jeg bruger og hvorfor.",
 };
 
 export default async function CookiePolitik({ searchParams }) {

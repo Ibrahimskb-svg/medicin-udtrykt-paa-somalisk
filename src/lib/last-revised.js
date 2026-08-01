@@ -3,7 +3,7 @@ import { LAST_REVISED_ISO } from "../data/last-revised.generated";
 const MONTHS = {
   da: ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"],
   en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  so: ["Janaayo", "Febraayo", "Maarso", "Abriil", "Maajo", "Juun", "Luulyo", "Ogost", "Sebtembar", "Oktoobar", "Nofembar", "Diseembar"],
+  so: ["Janaayo", "Febraayo", "Maarso", "Abriil", "Maajo", "Juun", "Luulyo", "Ogoosto", "Sebtembar", "Oktoobar", "Nofembar", "Diseembar"],
   ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
 };
 

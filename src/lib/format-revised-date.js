@@ -1,7 +1,7 @@
 const MONTHS = {
   da: ["januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"],
   en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  so: ["Janaayo", "Febraayo", "Maarso", "Abriil", "May", "Juun", "Juulay", "Ogosto", "Sebtembar", "Oktoobar", "Nofembar", "Disembar"],
+  so: ["Janaayo", "Febraayo", "Maarso", "Abriil", "May", "Juun", "Juulay", "Ogoosto", "Sebtembar", "Oktoobar", "Nofembar", "Disembar"],
   ar: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
 };
 

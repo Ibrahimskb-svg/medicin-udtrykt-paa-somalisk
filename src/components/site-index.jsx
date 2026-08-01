@@ -320,25 +320,25 @@ const ABOUT_SITE_TAGLINE = {
 
 const ABOUT_SITE_BULLETS = {
   da: [
-    { icon:"pills",     text:"25 nøje udvalgte lægemidler fra apotekets hverdag — dem vi oftest møder i skranken og rådgiver om" },
+    { icon:"pills",     text:"25 nøje udvalgte lægemidler fra apotekets hverdag — dem jeg oftest møder i skranken og rådgiver om" },
     { icon:"school",    text:"Tilgængelig på dansk, engelsk, somalisk og arabisk" },
     { icon:"education", text:"Fagligt funderet og formidlet i et klart og trygt sprog — skrevet af en uddannet farmakonom" },
     { icon:"work",      text:"Udvides løbende med flere lægemidler og emner fra den daglige rådgivning på apoteket" },
   ],
   en: [
-    { icon:"pills",     text:"25 carefully selected medicines from everyday pharmacy practice — the ones we most often see at the counter and advise on" },
+    { icon:"pills",     text:"25 carefully selected medicines from everyday pharmacy practice — the ones I most often see at the counter and advise on" },
     { icon:"school",    text:"Available in Danish, English, Somali and Arabic" },
     { icon:"education", text:"Professionally grounded and written in clear, reassuring language by a trained pharmaconomist" },
     { icon:"work",      text:"Continuously expanded with more medicines and topics from everyday counselling in the pharmacy" },
   ],
   so: [
-    { icon:"pills",     text:"25 daawo oo si taxaddar leh loo xulay — kuwa aan inta badan ku aragno farmashiyaha oo aan talo ka bixino" },
+    { icon:"pills",     text:"25 daawo oo si taxaddar leh loo xulay — kuwa aan inta badan ku arko farmashiyaha oo aan talo ka bixiyo" },
     { icon:"school",    text:"Waxaa lagu heli karaa Af-Soomaali, Af-Ingiriis, Af-Deenish iyo Af-Caraabi" },
     { icon:"education", text:"Waxay ku dhisan tahay aqoon xirfadeed, waxaana lagu qoray si cad oo kalsooni leh" },
     { icon:"work",      text:"Si joogto ah ayaa loogu kordhinayaa daawooyin iyo mawduucyo kale oo ka soo baxay la-talinta maalinlaha ah ee farmashiyaha" },
   ],
   ar: [
-    { icon:"pills",     text:"25 دواء تم اختيارها بعناية — من الأدوية التي نراها يوميا في الصيدلية ونقدم بشأنها المشورة" },
+    { icon:"pills",     text:"25 دواء تم اختيارها بعناية — من الأدوية التي أراها يوميا في الصيدلية وأقدم بشأنها المشورة" },
     { icon:"school",    text:"متوفرة بالدنماركية والإنجليزية والصومالية والعربية" },
     { icon:"education", text:"محتوى مهني موثوق، مكتوب بلغة واضحة ومطمئنة" },
     { icon:"work",      text:"يتم توسيع المحتوى باستمرار ليشمل مزيدا من الأدوية والموضوعات من واقع الاستشارة اليومية في الصيدلية" },

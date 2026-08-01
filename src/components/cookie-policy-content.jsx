@@ -18,10 +18,10 @@ const CONTENT = {
     ],
     sections: [
       { title: "Hvad er cookies?", body: "Cookies er små tekstfiler, der gemmes på din enhed, når du besøger en hjemmeside. De bruges til at huske dine præferencer og til at indsamle statistik om, hvordan siden bruges." },
-      { title: "Hvilke cookies bruger vi?", table: true },
-      { title: "Hvem deler vi data med?", body: "Data deles udelukkende med Google (Analytics) og Crisp til de formål, der er beskrevet ovenfor. Ingen data sælges til tredjeparter." },
+      { title: "Hvilke cookies bruger jeg?", table: true },
+      { title: "Hvem deler jeg data med?", body: "Data deles udelukkende med Google (Analytics) og Crisp til de formål, der er beskrevet ovenfor. Ingen data sælges til tredjeparter." },
       { title: "Sådan trækker du dit samtykke tilbage", body: "Du kan til enhver tid slette cookies i din browsers indstillinger og nulstille dit valg ved at slette cookies fra somalimed.dk. Siden vil derefter vise cookiebanneret igen." },
-      { title: "Kontakt", body: "Har du spørgsmål til vores cookiebrug, er du velkommen til at kontakte os via chat-funktionen på siden." },
+      { title: "Kontakt", body: "Har du spørgsmål til min cookiebrug, er du velkommen til at kontakte mig via chat-funktionen på siden." },
     ],
   },
   en: {
@@ -32,8 +32,8 @@ const CONTENT = {
     ],
     sections: [
       { title: "What are cookies?", body: "Cookies are small text files stored on your device when you visit a website. They are used to remember your preferences and to collect statistics about how the site is used." },
-      { title: "Which cookies do we use?", table: true },
-      { title: "Who do we share data with?", body: "Data is shared only with Google (Analytics) and Crisp for the purposes described above. No data is sold to third parties." },
+      { title: "Which cookies do I use?", table: true },
+      { title: "Who do I share data with?", body: "Data is shared only with Google (Analytics) and Crisp for the purposes described above. No data is sold to third parties." },
       { title: "Withdrawing your consent", body: "You can delete cookies at any time in your browser settings. Deleting cookies from somalimed.dk will reset your choice and show the cookie banner again." },
     ],
   },
@@ -45,10 +45,10 @@ const CONTENT = {
     ],
     sections: [
       { title: "Waa maxay cookies?", body: "Cookies waa faylal yar yar oo lagu kaydiyo qalabkaaga marka aad booqato bog internet. Waxaa loo isticmaalaa in lagu xasuusto doorashooyinkaaga iyo in lagu ururiyo xog ku saabsan sida bogga loo isticmaalo." },
-      { title: "Cookies-ka aan isticmaalno", table: true },
-      { title: "Ciddee ayaan xogta la wadaagnaa?", body: "Xogta waxaa lala wadaagaa oo keliya Google (Analytics) iyo Crisp, ujeedooyinka kor lagu sharaxay awgood. Wax xog ah lagama iibiyo cid saddexaad." },
+      { title: "Cookies-ka aan isticmaalo", table: true },
+      { title: "Ciddee ayaan xogta la wadaagaa?", body: "Xogta waxaa lala wadaagaa oo keliya Google (Analytics) iyo Crisp, ujeedooyinka kor lagu sharaxay awgood. Wax xog ah lagama iibiyo cid saddexaad." },
       { title: "Sida aad ula noqon karto oggolaanshahaaga", body: "Waxaad mar kasta ka tirtiri kartaa cookies-ka dejimaha biraawsarkaaga. Marka aad ka tirtirto cookies-ka somalimed.dk, doorashadaadii hore waa la tirtirayaa, bogguna wuxuu mar kale ku tusi doonaa ogeysiiska cookies-ka." },
-      { title: "Xiriir", body: "Haddii aad qabto wax su'aalo ah oo ku saabsan isticmaalka cookies-ka, waxaad nagala soo xiriiri kartaa adeegga wada sheekaysiga (chat-ka) ee bogga." },
+      { title: "Xiriir", body: "Haddii aad qabto wax su'aalo ah oo ku saabsan isticmaalka cookies-ka, waxaad ila soo xiriiri kartaa adeegga wada sheekaysiga (chat-ka) ee bogga." },
     ],
   },
   ar: {
@@ -59,8 +59,8 @@ const CONTENT = {
     ],
     sections: [
       { title: "ما هي ملفات تعريف الارتباط؟", body: "ملفات تعريف الارتباط هي ملفات نصية صغيرة تُخزَّن على جهازك عند زيارة موقع إلكتروني. تُستخدم لتذكر تفضيلاتك وجمع إحصائيات حول كيفية استخدام الموقع." },
-      { title: "ما هي ملفات تعريف الارتباط التي نستخدمها؟", table: true },
-      { title: "مع من نشارك البيانات؟", body: "تُشارك البيانات فقط مع Google (Analytics) وCrisp للأغراض الموضحة أعلاه. لا تُباع أي بيانات لأطراف ثالثة." },
+      { title: "ما هي ملفات تعريف الارتباط التي أستخدمها؟", table: true },
+      { title: "مع من أشارك البيانات؟", body: "تُشارك البيانات فقط مع Google (Analytics) وCrisp للأغراض الموضحة أعلاه. لا تُباع أي بيانات لأطراف ثالثة." },
       { title: "سحب موافقتك", body: "يمكنك حذف ملفات تعريف الارتباط في أي وقت من إعدادات المتصفح. سيؤدي حذف ملفات somalimed.dk إلى إعادة ضبط اختيارك وإظهار شعار الموافقة مجددًا." },
     ],
   },
