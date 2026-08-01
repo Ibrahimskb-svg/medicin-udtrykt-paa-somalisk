@@ -37,16 +37,17 @@ const CONTENT = {
     ],
   },
   so: {
-    tableHeaders: ["Cookie / Adeeg", "Nooca", "Ujeedka", "Muddada"],
+    tableHeaders: ["Cookie / Adeeg", "Nooca", "Ujeeddada", "Muddada"],
     rows: [
-      ["Google Analytics (GA4)", "Xogta booqashooyinka", "Falanqaynta booqashooyinka, bogagga iyo dhaqdhaqaaqa isticmaalaha. Ciwaannada IP waa la qariyaa.", "Ilaa 2 sano"],
-      ["Crisp Chat", "Shaqaynta chatka", "Waxay suurtogalisaa taageerada chat-ka tooska ah. Waxay xasuusataa sheekooyin hore.", "Ilaa 1 sano"],
+      ["Google Analytics (GA4)", "Xogta booqashada", "Waxaa loo isticmaalaa falanqaynta booqashooyinka, bogagga la booqdo iyo sida isticmaalayaashu u adeegsadaan bogga. Cinwaannada IP-ga waa la qariyaa.", "Ilaa 2 sano"],
+      ["Crisp Chat", "Adeegga chat-ka", "Wuxuu suurtageliyaa wada sheekaysiga tooska ah (chat) wuxuuna xasuustaa wada sheekaysiyadii hore.", "Ilaa 1 sano"],
     ],
     sections: [
-      { title: "Maxay yihiin cookies?", body: "Cookies waa faylal yaryar oo qoraal ah oo lagu kaydiyaa qalabkaaga marka aad booqanayso bogga internet-ka. Waxay loo isticmaalaa xasuusinta doortidaada iyo ururin xog ku saabsan sida bogga loo adeegsado." },
-      { title: "Cookies kee ayaan isticmaalnaa?", table: true },
-      { title: "Xogta ma la wadaagnaa?", body: "Xogta waxaa lala wadaagaa oo keliya Google (Analytics) iyo Crisp ujeedooyinka kor ku xusan. Xog kuma iibsano xisbiyada saddexaad." },
-      { title: "Sida aad u bixin karto oggolaanshahaga", body: "Waxaad xaqiijin kartaa cookies-ka browser-kaaga dejintiisa. Tirtirka cookies-ka somalimed.dk wuxuu dib u dejin doona doorashadaada wuxuuna soo bandhigi doonaa banner-ka cookies-ka mar kale." },
+      { title: "Waa maxay cookies?", body: "Cookies waa faylal yar yar oo lagu kaydiyo qalabkaaga marka aad booqato bog internet. Waxaa loo isticmaalaa in lagu xasuusto doorashooyinkaaga iyo in lagu ururiyo xog ku saabsan sida bogga loo isticmaalo." },
+      { title: "Cookies-ka aan isticmaalno", table: true },
+      { title: "Ciddee ayaan xogta la wadaagnaa?", body: "Xogta waxaa lala wadaagaa oo keliya Google (Analytics) iyo Crisp, ujeedooyinka kor lagu sharaxay awgood. Wax xog ah lagama iibiyo cid saddexaad." },
+      { title: "Sida aad ula noqon karto oggolaanshahaaga", body: "Waxaad mar kasta ka tirtiri kartaa cookies-ka dejimaha biraawsarkaaga. Marka aad ka tirtirto cookies-ka somalimed.dk, doorashadaadii hore waa la tirtirayaa, bogguna wuxuu mar kale ku tusi doonaa ogeysiiska cookies-ka." },
+      { title: "Xiriir", body: "Haddii aad qabto wax su'aalo ah oo ku saabsan isticmaalka cookies-ka, waxaad nagala soo xiriiri kartaa adeegga wada sheekaysiga (chat-ka) ee bogga." },
     ],
   },
   ar: {
