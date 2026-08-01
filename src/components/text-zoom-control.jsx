@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { resolveInitialLanguage, subscribeToLanguageChange } from "../lib/language";
 import { LANG_THEME } from "./modal-shell";
 
@@ -30,6 +31,7 @@ function clamp(v) {
 }
 
 export default function TextZoomControl() {
+  const pathname = usePathname();
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [language, setLanguage] = useState("so");
 
@@ -71,6 +73,8 @@ export default function TextZoomControl() {
   const isRtl = language === "ar";
   const active = zoom !== DEFAULT_ZOOM;
   const theme = LANG_THEME[language] ?? LANG_THEME.so;
+
+  if (pathname?.startsWith("/dashboard")) return null;
 
   return (
     <div
