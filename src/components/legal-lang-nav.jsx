@@ -1,19 +1,16 @@
-// Hurtig-hop mellem de 4 sprogsektioner på juridiske sider (cookie- og
-// persondatapolitik), som bevidst viser alle 4 sprog stablet på én side
-// (fuld gennemsigtighed, uanset hvilket sprog man kommer fra). Disse
-// pile-knapper gør det tydeligt at det IKKE er ét blandet dokument, men 4
-// adskilte, fuldstændige sprogversioner man kan hoppe direkte til.
-const TABS = [
-  { id: "lang-da", label: "Dansk", theme: "#2563EB", soft: "#EFF6FF" },
-  { id: "lang-en", label: "English", theme: "#92400E", soft: "#FEF3C7" },
-  { id: "lang-so", label: "Soomaali", theme: "#0D9488", soft: "#F0FDFA" },
-  { id: "lang-ar", label: "العربية", theme: "#D97706", soft: "#FFF7ED" },
-];
+"use client";
+import { LANG_THEME } from "./modal-shell";
 
-export function LegalLangNav() {
+const LANG_NAMES = { da: "Dansk", en: "English", so: "Soomaali", ar: "العربية" };
+const LANG_ORDER = ["da", "en", "so", "ar"];
+
+// Rigtig sprogskifter til de juridiske sider (cookie- og persondatapolitik) —
+// IKKE bare anker-links der hopper ned til et blandet dokument. Trykker man
+// på et sprog, vises kun det sprogs tekst, ligesom resten af sitet.
+export function LegalLangNav({ language, onChange }) {
   return (
     <nav
-      aria-label="Hop til sprog / Jump to language"
+      aria-label="Vælg sprog / Choose language"
       style={{
         display: "flex",
         flexWrap: "wrap",
@@ -25,24 +22,30 @@ export function LegalLangNav() {
         border: "1px solid #e2e8f0",
       }}
     >
-      {TABS.map((t) => (
-        <a
-          key={t.id}
-          href={`#${t.id}`}
-          style={{
-            padding: "5px 13px",
-            borderRadius: "999px",
-            fontSize: "12.5px",
-            fontWeight: 700,
-            color: t.theme,
-            background: t.soft,
-            border: `1.5px solid ${t.theme}`,
-            textDecoration: "none",
-          }}
-        >
-          {t.label}
-        </a>
-      ))}
+      {LANG_ORDER.map((l) => {
+        const theme = LANG_THEME[l] ?? LANG_THEME.so;
+        const active = l === language;
+        return (
+          <button
+            key={l}
+            type="button"
+            onClick={() => onChange(l)}
+            aria-pressed={active}
+            style={{
+              padding: "5px 13px",
+              borderRadius: "999px",
+              fontSize: "12.5px",
+              fontWeight: 700,
+              color: active ? "#ffffff" : theme.primary,
+              background: active ? theme.primary : theme.soft,
+              border: `1.5px solid ${theme.primary}`,
+              cursor: "pointer",
+            }}
+          >
+            {LANG_NAMES[l]}
+          </button>
+        );
+      })}
     </nav>
   );
 }
