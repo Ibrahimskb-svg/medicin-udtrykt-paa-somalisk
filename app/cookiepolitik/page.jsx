@@ -22,7 +22,7 @@ export default function CookiePolitik() {
       </Section>
 
       <Section title="Hvilke cookies bruger vi?">
-        <CookieTable rows={[
+        <CookieTable headers={["Cookie / Tjeneste", "Type", "Formål", "Levetid"]} rows={[
           ["Google Analytics (GA4)", "Statistik", "Analyse af besøg, sider og brugeradfærd. IP-adresser anonymiseres.", "Op til 2 år"],
           ["Crisp Chat", "Funktionel", "Muliggør live chat-support. Husker tidligere samtaler.", "Op til 1 år"],
         ]} />
@@ -50,7 +50,7 @@ export default function CookiePolitik() {
       </Section>
 
       <Section title="Which cookies do we use?">
-        <CookieTable rows={[
+        <CookieTable headers={["Cookie / Service", "Type", "Purpose", "Duration"]} rows={[
           ["Google Analytics (GA4)", "Statistics", "Analysis of visits, pages and user behaviour. IP addresses are anonymised.", "Up to 2 years"],
           ["Crisp Chat", "Functional", "Enables live chat support. Remembers previous conversations.", "Up to 1 year"],
         ]} />
@@ -74,7 +74,7 @@ export default function CookiePolitik() {
       </Section>
 
       <Section title="Cookies kee ayaan isticmaalnaa?">
-        <CookieTable rows={[
+        <CookieTable headers={["Cookie / Adeeg", "Nooca", "Ujeedka", "Muddada"]} rows={[
           ["Google Analytics (GA4)", "Xogta booqashooyinka", "Falanqaynta booqashooyinka, bogagga iyo dhaqdhaqaaqa isticmaalaha. Ciwaannada IP waa la qariyaa.", "Ilaa 2 sano"],
           ["Crisp Chat", "Shaqaynta chatka", "Waxay suurtogalisaa taageerada chat-ka tooska ah. Waxay xasuusataa sheekooyin hore.", "Ilaa 1 sano"],
         ]} />
@@ -99,7 +99,7 @@ export default function CookiePolitik() {
         </Section>
 
         <Section title="ما هي ملفات تعريف الارتباط التي نستخدمها؟">
-          <CookieTable rows={[
+          <CookieTable headers={["ملف تعريف الارتباط / الخدمة", "النوع", "الغرض", "المدة"]} rows={[
             ["Google Analytics (GA4)", "إحصائيات", "تحليل الزيارات والصفحات وسلوك المستخدم. يتم إخفاء هوية عناوين IP.", "حتى سنتين"],
             ["Crisp Chat", "وظيفي", "يتيح دعم الدردشة المباشرة. يتذكر المحادثات السابقة.", "حتى سنة واحدة"],
           ]} />
@@ -127,16 +127,13 @@ function Section({ title, children }) {
   );
 }
 
-function CookieTable({ rows }) {
-  const headers = rows[0].length === 4
-    ? ["Cookie", "Type", "Formål", "Levetid"]
-    : ["Cookie", "Type", "Purpose", "Duration"];
+function CookieTable({ headers, rows }) {
   return (
     <div style={{ overflowX: "auto", marginTop: "8px" }}>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
         <thead>
           <tr style={{ background: "#f1f5f9" }}>
-            {["Cookie / Tjeneste", "Type", "Formål / Purpose", "Levetid / Duration"].map(h => (
+            {headers.map(h => (
               <th key={h} style={{ padding: "8px 12px", textAlign: "left", fontWeight: 700, borderBottom: "2px solid #e2e8f0", whiteSpace: "nowrap" }}>{h}</th>
             ))}
           </tr>
