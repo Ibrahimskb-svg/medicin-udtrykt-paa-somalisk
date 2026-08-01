@@ -3,6 +3,7 @@ import { useLanguageRouting } from "../hooks/use-language-routing";
 import { formatRevisedDate } from "../lib/format-revised-date";
 import { COOKIE_REVISED_ISO } from "../data/legal-revised.generated";
 import { LegalLangNav } from "./legal-lang-nav";
+import { Section, SECTION_COLORS } from "./legal-section";
 
 const REVISED_PREFIX = { da: "Sidst revideret", en: "Last revised", so: "La cusbooneysiiyay", ar: "آخر مراجعة" };
 
@@ -79,32 +80,26 @@ export function CookiePolicyContent({ initialLanguage }) {
 
       <LegalLangNav language={language} onChange={updateLanguage} />
 
-      {data.sections.map((s) => (
-        <Section key={s.title} title={s.title}>
-          {s.table ? <CookieTable headers={data.tableHeaders} rows={data.rows} /> : s.body}
-        </Section>
-      ))}
+      {data.sections.map((s, i) => {
+        const color = SECTION_COLORS[i % SECTION_COLORS.length];
+        return (
+          <Section key={s.title} title={s.title} color={color} index={i + 1}>
+            {s.table ? <CookieTable headers={data.tableHeaders} rows={data.rows} color={color} /> : s.body}
+          </Section>
+        );
+      })}
     </main>
   );
 }
 
-function Section({ title, children }) {
+function CookieTable({ headers, rows, color }) {
   return (
-    <div style={{ marginBottom: "28px" }}>
-      <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#1e293b", margin: "0 0 8px" }}>{title}</h3>
-      <div style={{ fontSize: "14px", color: "#334155" }}>{children}</div>
-    </div>
-  );
-}
-
-function CookieTable({ headers, rows }) {
-  return (
-    <div style={{ overflowX: "auto", marginTop: "8px" }}>
+    <div style={{ overflowX: "auto", marginTop: "8px", borderRadius: "10px", border: `1.5px solid ${color}33` }}>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "13px" }}>
         <thead>
-          <tr style={{ background: "#f1f5f9" }}>
+          <tr style={{ background: `${color}17` }}>
             {headers.map((h) => (
-              <th key={h} style={{ padding: "8px 12px", textAlign: "start", fontWeight: 700, borderBottom: "2px solid #e2e8f0", whiteSpace: "nowrap" }}>{h}</th>
+              <th key={h} style={{ padding: "9px 12px", textAlign: "start", fontWeight: 700, color, borderBottom: `2px solid ${color}55`, whiteSpace: "nowrap" }}>{h}</th>
             ))}
           </tr>
         </thead>
@@ -112,7 +107,7 @@ function CookieTable({ headers, rows }) {
           {rows.map((row, i) => (
             <tr key={i} style={{ borderBottom: "1px solid #e2e8f0", background: i % 2 === 0 ? "#fff" : "#f8fafc" }}>
               {row.map((cell, j) => (
-                <td key={j} style={{ padding: "8px 12px", verticalAlign: "top" }}>{cell}</td>
+                <td key={j} style={{ padding: "9px 12px", verticalAlign: "top" }}>{cell}</td>
               ))}
             </tr>
           ))}
