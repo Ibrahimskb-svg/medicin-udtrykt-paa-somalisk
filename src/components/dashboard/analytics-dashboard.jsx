@@ -19,6 +19,7 @@ const CHANNEL_LABELS = {
   Email: "E-mail",
 };
 const LOYALTY_LABELS = { new: "Nye besøgende", returning: "Tilbagevendende", "(not set)": "Ukendt", "": "Ukendt" };
+const SEARCH_TERM_COLORS = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#4a3aa7"];
 
 function Card({ title, subtitle, children }) {
   return (
@@ -480,36 +481,66 @@ export function AnalyticsDashboard() {
                 subtitle="Hvad folk har ledt efter, som ikke er på siden endnu, sidste 28 dage"
               >
                 {data.noResultSearchesUnavailable ? (
-                  <p style={{ color: "#5A6A7A", fontSize: "13px", lineHeight: 1.6 }}>
-                    Ikke sat op endnu i Google Analytics. Opret en custom dimension i GA4: Admin →
-                    Custom definitions → Create custom dimension → navn "search_term", scope "Event",
-                    event-parameter "search_term". Det kan tage op til et døgn efter oprettelse, før
-                    data begynder at dukke op her.
-                  </p>
+                  <div
+                    style={{
+                      display: "flex", gap: "12px", alignItems: "flex-start",
+                      padding: "14px 16px", borderRadius: "12px",
+                      background: "#FFF7ED", border: "1.5px solid #FDBA74",
+                    }}
+                  >
+                    <span style={{ fontSize: "20px", lineHeight: 1 }}>⚙️</span>
+                    <p style={{ color: "#9A5B1E", fontSize: "13px", lineHeight: 1.6, margin: 0 }}>
+                      Ikke sat op endnu i Google Analytics. Opret en custom dimension i GA4: Admin →
+                      Custom definitions → Create custom dimension → navn "search_term", scope "Event",
+                      event-parameter "search_term". Det kan tage op til et døgn efter oprettelse, før
+                      data begynder at dukke op her.
+                    </p>
+                  </div>
                 ) : (data.noResultSearches || []).length === 0 ? (
-                  <p style={{ color: "#5A6A7A", fontSize: "13px" }}>
-                    Ingen søgninger uden resultat endnu de sidste 28 dage.
-                  </p>
+                  <div
+                    style={{
+                      display: "flex", flexDirection: "column", alignItems: "center", gap: "6px",
+                      padding: "24px 16px", borderRadius: "14px",
+                      background: "linear-gradient(135deg, #ECFDF5, #F0FDFA)",
+                      border: "1.5px dashed #6EE7B7",
+                      textAlign: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "28px", lineHeight: 1 }}>🎉</span>
+                    <p style={{ color: "#0F766E", fontSize: "13.5px", fontWeight: 600, margin: 0 }}>
+                      Ingen søgninger uden resultat endnu de sidste 28 dage
+                    </p>
+                  </div>
                 ) : (
                   <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                    {data.noResultSearches.map((s) => (
-                      <div
-                        key={s.term}
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          padding: "9px 14px",
-                          borderRadius: "10px",
-                          background: "#F7F6F2",
-                        }}
-                      >
-                        <p style={{ margin: 0, fontSize: "14px", fontWeight: 700, color: "#0F1923" }}>{s.term}</p>
-                        <p style={{ margin: 0, fontSize: "13px", color: "#5A6A7A" }}>
-                          {s.count} {s.count === 1 ? "søgning" : "søgninger"}
-                        </p>
-                      </div>
-                    ))}
+                    {data.noResultSearches.map((s, i) => {
+                      const color = SEARCH_TERM_COLORS[i % SEARCH_TERM_COLORS.length];
+                      return (
+                        <div
+                          key={s.term}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-between",
+                            padding: "9px 14px",
+                            borderRadius: "10px",
+                            background: `${color}14`,
+                            borderInlineStart: `4px solid ${color}`,
+                          }}
+                        >
+                          <p style={{ margin: 0, fontSize: "14px", fontWeight: 700, color: "#0F1923" }}>{s.term}</p>
+                          <p
+                            style={{
+                              margin: 0, fontSize: "12px", fontWeight: 700, color: "#fff",
+                              background: color, borderRadius: "999px", padding: "3px 10px",
+                              fontVariantNumeric: "tabular-nums",
+                            }}
+                          >
+                            {s.count} {s.count === 1 ? "søgning" : "søgninger"}
+                          </p>
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
               </Card>
