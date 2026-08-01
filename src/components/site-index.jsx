@@ -1194,8 +1194,8 @@ export function SiteIndex({initialLang}){
             </p>
           </div>
           <div style={{marginTop:"10px",display:"flex",gap:"14px",flexWrap:"wrap"}}>
-            <a href="/cookiepolitik" style={{fontSize:"12px",color:"#64748b",textDecoration:"underline"}}>{(LEGAL_LABELS[language]??LEGAL_LABELS.so).cookie}</a>
-            <a href="/persondatapolitik" style={{fontSize:"12px",color:"#64748b",textDecoration:"underline"}}>{(LEGAL_LABELS[language]??LEGAL_LABELS.so).privacy}</a>
+            <a href={`/cookiepolitik#lang-${language}`} style={{fontSize:"12px",color:"#64748b",textDecoration:"underline"}}>{(LEGAL_LABELS[language]??LEGAL_LABELS.so).cookie}</a>
+            <a href={`/persondatapolitik#lang-${language}`} style={{fontSize:"12px",color:"#64748b",textDecoration:"underline"}}>{(LEGAL_LABELS[language]??LEGAL_LABELS.so).privacy}</a>
           </div>
         </div>
       </footer>

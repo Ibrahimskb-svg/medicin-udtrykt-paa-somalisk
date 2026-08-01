@@ -1,5 +1,6 @@
 import { COOKIE_REVISED_ISO } from "../../src/data/legal-revised.generated";
 import { formatRevisedDate } from "../../src/lib/format-revised-date";
+import { LegalLangNav } from "../../src/components/legal-lang-nav";
 
 export const metadata = {
   title: "Cookiepolitik",
@@ -11,8 +12,10 @@ export default function CookiePolitik() {
     <main style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px", fontFamily: "system-ui, sans-serif", color: "#1e293b", lineHeight: 1.8 }}>
 
       {/* DA */}
-      <h1 style={{ fontSize: "26px", fontWeight: 800, color: "#0D9488", marginBottom: "8px" }}>Cookiepolitik</h1>
-      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "32px" }}>Sidst revideret: {formatRevisedDate(COOKIE_REVISED_ISO, "da")}</p>
+      <h1 id="lang-da" style={{ fontSize: "26px", fontWeight: 800, color: "#0D9488", marginBottom: "8px", scrollMarginTop: "90px" }}>Cookiepolitik</h1>
+      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "20px" }}>Sidst revideret: {formatRevisedDate(COOKIE_REVISED_ISO, "da")}</p>
+
+      <LegalLangNav />
 
       <Section title="Hvad er cookies?">
         Cookies er små tekstfiler, der gemmes på din enhed, når du besøger en hjemmeside. De bruges til at huske dine præferencer og til at indsamle statistik om, hvordan siden bruges.
@@ -40,7 +43,7 @@ export default function CookiePolitik() {
       <hr style={{ margin: "48px 0 40px", border: "none", borderTop: "1px solid #e2e8f0" }} />
 
       {/* EN */}
-      <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px" }}>Cookie Policy (English)</h2>
+      <h2 id="lang-en" style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px", scrollMarginTop: "90px" }}>Cookie Policy (English)</h2>
 
       <Section title="What are cookies?">
         Cookies are small text files stored on your device when you visit a website. They are used to remember your preferences and to collect statistics about how the site is used.
@@ -64,7 +67,7 @@ export default function CookiePolitik() {
       <hr style={{ margin: "48px 0 40px", border: "none", borderTop: "1px solid #e2e8f0" }} />
 
       {/* SO */}
-      <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px" }}>Siyaasadda Cookies (Af-Soomaali)</h2>
+      <h2 id="lang-so" style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px", scrollMarginTop: "90px" }}>Siyaasadda Cookies (Af-Soomaali)</h2>
 
       <Section title="Maxay yihiin cookies?">
         Cookies waa faylal yaryar oo qoraal ah oo lagu kaydiyaa qalabkaaga marka aad booqanayso bogga internet-ka. Waxay loo isticmaalaa xasuusinta doortidaada iyo ururin xog ku saabsan sida bogga loo adeegsado.
@@ -88,7 +91,7 @@ export default function CookiePolitik() {
       <hr style={{ margin: "48px 0 40px", border: "none", borderTop: "1px solid #e2e8f0" }} />
 
       {/* AR */}
-      <div dir="rtl">
+      <div id="lang-ar" dir="rtl" style={{ scrollMarginTop: "90px" }}>
         <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px" }}>سياسة ملفات تعريف الارتباط (العربية)</h2>
 
         <Section title="ما هي ملفات تعريف الارتباط؟">

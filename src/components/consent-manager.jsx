@@ -161,7 +161,7 @@ export function ConsentManager() {
             </p>
             <p style={{ margin: 0, fontSize: "13px", color: "#334155", lineHeight: 1.6 }}>
               {t.body}{" "}
-              <a href="/cookiepolitik" style={{ color: theme.primary, textDecoration: "underline", fontWeight: 600 }}>
+              <a href={`/cookiepolitik#lang-${lang}`} style={{ color: theme.primary, textDecoration: "underline", fontWeight: 600 }}>
                 {t.policy}
               </a>
             </p>

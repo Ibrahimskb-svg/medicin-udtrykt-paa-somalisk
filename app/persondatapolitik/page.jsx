@@ -1,5 +1,6 @@
 import { PRIVACY_REVISED_ISO } from "../../src/data/legal-revised.generated";
 import { formatRevisedDate } from "../../src/lib/format-revised-date";
+import { LegalLangNav } from "../../src/components/legal-lang-nav";
 
 export const metadata = {
   title: "Persondatapolitik",
@@ -12,8 +13,10 @@ export default function Persondatapolitik() {
     <main style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px", fontFamily: "system-ui, sans-serif", color: "#1e293b", lineHeight: 1.8 }}>
 
       {/* DA */}
-      <h1 style={{ fontSize: "26px", fontWeight: 800, color: "#0D9488", marginBottom: "8px" }}>Persondatapolitik</h1>
-      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "32px" }}>Sidst revideret: {formatRevisedDate(PRIVACY_REVISED_ISO, "da")}</p>
+      <h1 id="lang-da" style={{ fontSize: "26px", fontWeight: 800, color: "#0D9488", marginBottom: "8px", scrollMarginTop: "90px" }}>Persondatapolitik</h1>
+      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "20px" }}>Sidst revideret: {formatRevisedDate(PRIVACY_REVISED_ISO, "da")}</p>
+
+      <LegalLangNav />
 
       <Section title="Dataansvarlig">
         Ibrahim Dahir Hanaf er dataansvarlig for behandlingen af persondata på somalimed.dk. Kontakt: <a href="mailto:Ibrahim_skb@live.dk" style={{ color: "#0D9488", fontWeight: 600 }}>Ibrahim_skb@live.dk</a>.
@@ -46,7 +49,7 @@ export default function Persondatapolitik() {
       <hr style={{ margin: "48px 0 40px", border: "none", borderTop: "1px solid #e2e8f0" }} />
 
       {/* EN */}
-      <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px" }}>Privacy Policy (English)</h2>
+      <h2 id="lang-en" style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px", scrollMarginTop: "90px" }}>Privacy Policy (English)</h2>
 
       <Section title="Data controller">
         Ibrahim Dahir Hanaf is the data controller for personal data processed on somalimed.dk. Contact: <a href="mailto:Ibrahim_skb@live.dk" style={{ color: "#0D9488", fontWeight: 600 }}>Ibrahim_skb@live.dk</a>.
@@ -79,7 +82,7 @@ export default function Persondatapolitik() {
       <hr style={{ margin: "48px 0 40px", border: "none", borderTop: "1px solid #e2e8f0" }} />
 
       {/* SO */}
-      <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px" }}>Siyaasadda Xogta Shakhsiga (Af-Soomaali)</h2>
+      <h2 id="lang-so" style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px", scrollMarginTop: "90px" }}>Siyaasadda Xogta Shakhsiga (Af-Soomaali)</h2>
 
       <Section title="Ka mas'uulka xogta">
         Ibrahim Dahir Hanaf ayaa ah ka mas'uulka habaynta xogta shakhsiga ee somalimed.dk. La xiriir: <a href="mailto:Ibrahim_skb@live.dk" style={{ color: "#0D9488", fontWeight: 600 }}>Ibrahim_skb@live.dk</a>.
@@ -112,7 +115,7 @@ export default function Persondatapolitik() {
       <hr style={{ margin: "48px 0 40px", border: "none", borderTop: "1px solid #e2e8f0" }} />
 
       {/* AR */}
-      <div dir="rtl">
+      <div id="lang-ar" dir="rtl" style={{ scrollMarginTop: "90px" }}>
         <h2 style={{ fontSize: "22px", fontWeight: 800, color: "#0D9488", marginBottom: "24px" }}>سياسة الخصوصية (العربية)</h2>
 
         <Section title="المسؤول عن البيانات">
