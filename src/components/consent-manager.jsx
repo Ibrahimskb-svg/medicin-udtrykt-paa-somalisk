@@ -53,11 +53,13 @@ export function ConsentManager() {
 
   useEffect(() => {
     // Udelukker automatiserede test-browsere (bruges til at verificere ændringer
-    // før udgivelse) fra at blive talt med i Google Analytics — deres user-agent
-    // afslører dem (indeholder "Claude" og/eller "Electron", som en almindelig
-    // besøgendes browser aldrig har).
+    // før udgivelse) fra at blive talt med i Google Analytics. To tegn på det:
+    // user-agenten ("Claude"/"Electron", som en almindelig besøgendes browser
+    // aldrig har) — og navigator.webdriver, som browser-automation (Playwright,
+    // Selenium, Puppeteer m.fl.) sætter til true, uanset hvilken rigtig browser
+    // de kører oven på.
     const ua = navigator.userAgent || "";
-    setIsAutomatedTraffic(/Claude\/|Electron\//.test(ua));
+    setIsAutomatedTraffic(/Claude\/|Electron\//.test(ua) || navigator.webdriver === true);
 
     const stored = localStorage.getItem("cookieConsent");
     if (stored) setConsent(stored);

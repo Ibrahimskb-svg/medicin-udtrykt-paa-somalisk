@@ -128,7 +128,7 @@ export async function GET(request) {
 
     const [realtimeReport] = await client.runRealtimeReport({
       property,
-      dimensions: [{ name: "country" }, { name: "deviceCategory" }],
+      dimensions: [{ name: "city" }, { name: "country" }, { name: "deviceCategory" }],
       metrics: [{ name: "activeUsers" }],
     });
 
@@ -235,8 +235,9 @@ export async function GET(request) {
       : { users: 0, pageviews: 0 };
 
     const activeNowRows = rowsOf(realtimeReport).map((row) => ({
-      country: row.dimensionValues[0].value,
-      device: row.dimensionValues[1].value,
+      city: row.dimensionValues[0].value,
+      country: row.dimensionValues[1].value,
+      device: row.dimensionValues[2].value,
       users: Number(row.metricValues[0].value),
     }));
     const activeNow = activeNowRows.reduce((sum, r) => sum + r.users, 0);

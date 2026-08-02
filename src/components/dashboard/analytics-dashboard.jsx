@@ -181,10 +181,11 @@ export function AnalyticsDashboard() {
                   <span style={{ color: "#5A6A7A", fontWeight: 400 }}>
                     {" — "}
                     {data.activeNowRows
-                      .map(
-                        (r) =>
-                          `${r.users} fra ${COUNTRY_NAMES_DA[r.country] || r.country} (${DEVICE_LABELS[r.device] || r.device})`
-                      )
+                      .map((r) => {
+                        const country = COUNTRY_NAMES_DA[r.country] || r.country;
+                        const place = r.city && r.city !== "(not set)" ? `${r.city}, ${country}` : country;
+                        return `${r.users} fra ${place} (${DEVICE_LABELS[r.device] || r.device})`;
+                      })
                       .join(", ")}
                   </span>
                 )}
