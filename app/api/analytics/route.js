@@ -77,6 +77,49 @@ export async function GET(request) {
 
     const [timeseriesReport, totalsReport, countryReport, cityReport, deviceReport] = response.reports;
 
+    // Anden batch (samme 5-forespørgsel-loft pr. kald): browser, styresystem,
+    // tidspunkt på døgnet, ugedag, og landingsside — alle anonyme, aggregerede
+    // GA4-standarddimensioner, ingen persondata.
+    const [response2] = await client.batchRunReports({
+      property,
+      requests: [
+        {
+          dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+          dimensions: [{ name: "browser" }],
+          metrics: [{ name: "activeUsers" }],
+          orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+          limit: 6,
+        },
+        {
+          dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+          dimensions: [{ name: "operatingSystem" }],
+          metrics: [{ name: "activeUsers" }],
+          orderBys: [{ metric: { metricName: "activeUsers" }, desc: true }],
+          limit: 6,
+        },
+        {
+          dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+          dimensions: [{ name: "hour" }],
+          metrics: [{ name: "sessions" }],
+          orderBys: [{ dimension: { dimensionName: "hour" } }],
+        },
+        {
+          dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+          dimensions: [{ name: "dayOfWeek" }],
+          metrics: [{ name: "sessions" }],
+          orderBys: [{ dimension: { dimensionName: "dayOfWeek" } }],
+        },
+        {
+          dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+          dimensions: [{ name: "landingPage" }],
+          metrics: [{ name: "sessions" }],
+          orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
+          limit: 12,
+        },
+      ],
+    });
+    const [browserReport, osReport, hourReport, dayOfWeekReport, landingPageReport] = response2.reports;
+
     const [allTimeReport] = await client.runReport({
       property,
       dateRanges: [{ startDate: "2024-01-01", endDate: "today" }],
@@ -323,6 +366,49 @@ export async function GET(request) {
       noResultSearchesUnavailable = true;
     }
 
+    const browsers = rowsOf(browserReport).map((row) => ({
+      name: row.dimensionValues[0].value,
+      users: Number(row.metricValues[0].value),
+    }));
+
+    const operatingSystems = rowsOf(osReport).map((row) => ({
+      name: row.dimensionValues[0].value,
+      users: Number(row.metricValues[0].value),
+    }));
+
+    // GA4's "hour" dimension er i property'ens rapporteringstidszone (samme
+    // tidszone som resten af dashboardet allerede viser tal i).
+    const hourCounts = Array(24).fill(0);
+    for (const row of rowsOf(hourReport)) {
+      const h = Number(row.dimensionValues[0].value);
+      if (h >= 0 && h < 24) hourCounts[h] = Number(row.metricValues[0].value);
+    }
+    const byHour = hourCounts.map((sessions, h) => ({ hour: `${String(h).padStart(2, "0")}:00`, sessions }));
+
+    // GA4's "dayOfWeek": 0 = søndag … 6 = lørdag. Vist i dansk uge-rækkefølge
+    // (mandag først).
+    const DAY_NAMES = ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag"];
+    const dayCounts = Array(7).fill(0);
+    for (const row of rowsOf(dayOfWeekReport)) {
+      const d = Number(row.dimensionValues[0].value);
+      if (d >= 0 && d < 7) dayCounts[d] = Number(row.metricValues[0].value);
+    }
+    const byDayOfWeek = [1, 2, 3, 4, 5, 6, 0].map((d) => ({ day: DAY_NAMES[d], sessions: dayCounts[d] }));
+
+    const landingPagesByLabel = new Map();
+    for (const row of rowsOf(landingPageReport)) {
+      const rawPath = row.dimensionValues[0].value;
+      // GA4 returner "(not set)" når landingssiden ikke kunne bestemmes for
+      // sessionen (fx visse app-links eller målingshuller) — vis det på dansk.
+      const label = rawPath === "(not set)" ? "Ukendt" : pagePathToLabel(rawPath);
+      const sessions = Number(row.metricValues[0].value);
+      landingPagesByLabel.set(label, (landingPagesByLabel.get(label) || 0) + sessions);
+    }
+    const landingPages = [...landingPagesByLabel.entries()]
+      .map(([name, sessions]) => ({ name, sessions }))
+      .sort((a, b) => b.sessions - a.sessions)
+      .slice(0, 8);
+
     return NextResponse.json({
       ok: true,
       generatedAt: new Date().toISOString(),
@@ -345,6 +431,11 @@ export async function GET(request) {
       siteLanguageTrend,
       noResultSearches,
       noResultSearchesUnavailable,
+      browsers,
+      operatingSystems,
+      byHour,
+      byDayOfWeek,
+      landingPages,
     });
   } catch (err) {
     console.error("GA4 analytics fetch failed:", err);

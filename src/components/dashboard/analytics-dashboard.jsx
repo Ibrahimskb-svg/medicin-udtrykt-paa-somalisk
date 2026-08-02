@@ -393,6 +393,57 @@ export function AnalyticsDashboard() {
             </div>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
+              <Card title="Browser" subtitle="Besøgende, sidste 28 dage">
+                <DonutChart
+                  items={(data.browsers || []).map((b) => ({ name: b.name, value: b.users }))}
+                  unit="besøgende"
+                />
+              </Card>
+              <Card title="Styresystem" subtitle="Besøgende, sidste 28 dage">
+                <DonutChart
+                  items={(data.operatingSystems || []).map((o) => ({ name: o.name, value: o.users }))}
+                  unit="besøgende"
+                />
+              </Card>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
+              <Card title="Tidspunkt på døgnet" subtitle="Sessioner pr. time, sidste 28 dage">
+                <ColumnChart
+                  items={(data.byHour || []).map((h) => ({ name: h.hour, value: h.sessions }))}
+                  color="#2a78d6"
+                  unit="sessioner"
+                />
+              </Card>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
+              <Card title="Ugedag" subtitle="Sessioner pr. ugedag, sidste 28 dage">
+                <ColumnChart
+                  items={(data.byDayOfWeek || []).map((d) => ({ name: d.day, value: d.sessions }))}
+                  color="#1baf7a"
+                  unit="sessioner"
+                />
+              </Card>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
+              <Card title="Landingssider" subtitle="Den side folk lander på først, sidste 28 dage">
+                <ColumnChart
+                  items={(data.landingPages || []).map((p, i) => ({
+                    name: p.name,
+                    value: p.sessions,
+                    color:
+                      p.name === "Forsiden" ? "#0F1923"
+                      : p.name === "Ukendt" ? "#B0B8C1"
+                      : SEARCH_TERM_COLORS[i % SEARCH_TERM_COLORS.length],
+                  }))}
+                  unit="sessioner"
+                />
+              </Card>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", marginBottom: "16px" }}>
               <Card
                 title="Mest besøgte sider"
                 subtitle="Antal sidevisninger pr. side, sidste 28 dage — ikke antal personer (én person kan se en side flere gange)"
