@@ -398,16 +398,12 @@ export function AnalyticsDashboard() {
                 subtitle="Antal sidevisninger pr. side, sidste 28 dage — ikke antal personer (én person kan se en side flere gange)"
               >
                 <ColumnChart
-                  items={(data.topPages || []).map((p) => ({
+                  items={(data.topPages || []).map((p, i) => ({
                     name: p.name,
                     value: p.views,
-                    color: p.name === "Forsiden" ? "#0284C7" : "#0D9488",
+                    color: p.name === "Forsiden" ? "#0F1923" : SEARCH_TERM_COLORS[i % SEARCH_TERM_COLORS.length],
                   }))}
                   unit="visninger"
-                  legend={[
-                    { label: "Forsiden", color: "#0284C7" },
-                    { label: "Medicinside", color: "#0D9488" },
-                  ]}
                 />
               </Card>
             </div>
