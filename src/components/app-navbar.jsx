@@ -175,7 +175,7 @@ export function AppNavbar() {
         <nav className="bg-white/90 backdrop-blur-md border-b border-teal-500/10">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <Link className="flex items-center gap-2.5" href={{ pathname: "/", query: { lang: language } }}>
-              <Image src="/somalimed-icon.svg" alt="logo" width={36} height={36} className="rounded-xl" priority />
+              <Image src="/somalimed-icon.svg" alt="Somalimed logo" width={36} height={36} className="rounded-xl" priority />
               <span className="text-[25px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-blue-600">
                 {text.navbarTitle}
               </span>
@@ -186,6 +186,7 @@ export function AppNavbar() {
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
+                  aria-pressed={activeTab === key}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
                     activeTab === key ? "bg-teal-600 border-teal-600 text-white shadow-md" : "bg-white border-slate-200 text-slate-600 hover:border-teal-200"
                   }`}
@@ -271,7 +272,7 @@ export function AppNavbar() {
       <header className="sticky top-0 z-[110] block sm:hidden bg-white/90 backdrop-blur-md border-b border-teal-500/10">
         <div className="flex items-center justify-between px-4 h-14" dir={isRtl ? "rtl" : "ltr"}>
           <Link className="flex items-center gap-2" href={{ pathname: "/", query: { lang: language } }}>
-            <Image src="/somalimed-icon.svg" alt="logo" width={30} height={30} className="rounded-xl" priority />
+            <Image src="/somalimed-icon.svg" alt="Somalimed logo" width={30} height={30} className="rounded-xl" priority />
             <span className="text-[19px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-blue-600">
               {text.navbarTitle}
             </span>
@@ -321,6 +322,7 @@ export function AppNavbar() {
               <button
                 key={key}
                 onClick={() => handleTabClick(key)}
+                aria-pressed={isActive}
                 className="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors"
                 style={{
                   minHeight: 56,

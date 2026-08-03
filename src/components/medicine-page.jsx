@@ -27,13 +27,6 @@ function escapeHtml(s) {
 
 // ── 1. KONSTANTER ─────────────────────────────────────────────────────────────
 
-const TPI_MODAL_TITLE = {
-  da: "Korrekt inhalationsteknik",
-  en: "Correct inhaler technique",
-  so: "Farsamada saxda ah ee buufinta",
-  ar: "تقنية الاستنشاق الصحيحة",
-};
-
 const SECTION_ICON_COLORS = {
   use:      { bg: "#bbf7d0", color: "#065f46", border: "#16a34a" },
   dose:     { bg: "#bae6fd", color: "#0369a1", border: "#0284c7" },
@@ -266,37 +259,10 @@ function AudioButton({ label, tone = "primary", onClick }) {
   );
 }
 
-// ── 4. STATISKE INHALATOR-SVG'ER ──────────────────────────────────────────────
-
-function VentolineSVG() {
-  return (
-    <div style={{ position: "relative", width: 160, height: 200, margin: "0 auto" }}>
-      <svg viewBox="0 0 160 200" width="160" height="200">
-        <rect x="55" y="40" width="50" height="90" rx="12" fill="#e0f2fe" stroke="#0284c7" strokeWidth="2.5"/>
-        <rect x="68" y="30" width="24" height="14" rx="6" fill="#0284c7"/>
-        <rect x="50" y="125" width="60" height="30" rx="10" fill="#bae6fd" stroke="#0284c7" strokeWidth="2"/>
-      </svg>
-    </div>
-  );
-}
-
-function SymbicortSVG() {
-  return (
-    <div style={{ position: "relative", width: 160, height: 210, margin: "0 auto" }}>
-      <svg viewBox="0 0 160 210" width="160" height="210">
-        <rect x="52" y="30" width="56" height="110" rx="18" fill="#fff7ed" stroke="#ea580c" strokeWidth="2.5"/>
-        <rect x="52" y="128" width="56" height="18" rx="8" fill="#dc2626"/>
-        <rect x="58" y="142" width="44" height="28" rx="10" fill="#fed7aa" stroke="#ea580c" strokeWidth="2"/>
-      </svg>
-    </div>
-  );
-}
-
 // ── 5. HOVED-KOMPONENT ────────────────────────────────────────────────────────
 
 export function MedicinePage({ medicine, initialLang }) {
   const [modalTab, setModalTab] = useState(null);
-  const [activeInhaler, setActiveInhaler] = useState(medicine.slug === "symbicort" ? "symbicort" : "ventoline");
   const [showSomaliAudio, setShowSomaliAudio] = useState(false);
   const [showArabicAudio, setShowArabicAudio] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
@@ -344,7 +310,7 @@ export function MedicinePage({ medicine, initialLang }) {
         p{font-size:11px;color:#64748b;margin:0;}
       </style>
       </head><body>
-        <img src="${qrDataUrl}" alt="QR" />
+        <img src="${qrDataUrl}" alt="QR – ${data.drugName}" />
         <h1>${data.drugName}</h1>
         <p>Somalimed.dk</p>
         <script>window.onload=function(){window.print();};</script>
@@ -644,37 +610,8 @@ export function MedicinePage({ medicine, initialLang }) {
         />
       )}
 
-      {/* ── TPI-MODAL (inhalationsteknik) ── */}
       {modalTab === "mylist" && <MyListModal language={language} onClose={() => setModalTab(null)} />}
       {modalTab === "findPharmacy" && <PharmacyFinderModal language={language} onClose={() => setModalTab(null)} />}
-
-      {modalTab === "tpi" && (
-        <div
-          onClick={() => setModalTab(null)}
-          style={{ position:"fixed", inset:0, zIndex:9999, display:"flex", alignItems:"flex-end", justifyContent:"center", background:"rgba(0,0,0,0.6)", backdropFilter:"blur(10px)", WebkitBackdropFilter:"blur(10px)" }}
-          className="sm:items-center sm:p-4"
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{ background:"#f8fafc", borderRadius:"28px 28px 0 0", width:"100%", maxWidth:"600px", direction: isRtl ? "rtl" : "ltr" }}
-            className="sm:rounded-[28px] shadow-2xl overflow-hidden"
-          >
-            <div style={{ background:"#0D9488", padding:"20px", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-              <span style={{ color:"white", fontWeight:800, fontSize:"18px" }}>{TPI_MODAL_TITLE[language]}</span>
-              <button onClick={() => setModalTab(null)} style={{ color:"white", background:"rgba(255,255,255,0.2)", border:"none", width:36, height:36, borderRadius:"50%", cursor:"pointer", fontWeight:"bold" }}>✕</button>
-            </div>
-            <div style={{ padding:"24px", textAlign:"center" }}>
-              <div style={{ display:"flex", gap:"10px", marginBottom:"20px" }}>
-                <button onClick={() => setActiveInhaler("ventoline")} style={{ flex:1, padding:"12px", borderRadius:"12px", border:"none", fontWeight:700, background: activeInhaler === "ventoline" ? "#0D9488" : "#f1f5f9", color: activeInhaler === "ventoline" ? "white" : "#64748b" }}>Ventoline</button>
-                <button onClick={() => setActiveInhaler("symbicort")} style={{ flex:1, padding:"12px", borderRadius:"12px", border:"none", fontWeight:700, background: activeInhaler === "symbicort" ? "#0D9488" : "#f1f5f9", color: activeInhaler === "symbicort" ? "white" : "#64748b" }}>Symbicort</button>
-              </div>
-              <div style={{ background:"white", padding:"30px", borderRadius:"24px", border:"1px solid #e2e8f0" }}>
-                {activeInhaler === "ventoline" ? <VentolineSVG /> : <SymbicortSVG />}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* ── HERO BANNER ── */}
       <div style={{ background: "var(--heroBg)" }}>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
@@ -37,190 +37,6 @@ const FAQ_MODAL_TITLE = {
   so: "Su'aalaha inta badan la isweydiiyo",
   ar: "الأسئلة الشائعة",
 };
-
-const TPI_MODAL_TITLE = {
-  da: "Korrekt inhalationsteknik",
-  en: "Correct inhaler technique",
-  so: "Farsamada saxda ah ee buufinta",
-  ar: "تقنية الاستنشاق الصحيحة",
-};
-
-// ── TPI Data (Beholdt og struktureret til animation) ────────────────────────
-const TPI_DATA = {
-  da: {
-    intro: "Korrekt inhalationsteknik er afgørende — bruger du den forkert, når medicinen ikke godt nok ned i lungerne, og effekten udebliver. Jeg ser det næsten dagligt på apoteket: patienter, der tager medicinen trofast, men ikke mærker nok forskel. Ofte handler det ikke om forkert medicin, men om teknikken.",
-    ibrahimNote: "Jeg plejer at sige det sådan her: din inhalator er ikke bare en flaske, du trykker på — den kræver et præcist samspil mellem spray og vejrtrækning. Når det sidder rigtigt, mærker du forskellen.",
-    ventoline: {
-      name: "Ventoline (Salbutamol)",
-      subtitle: "Hurtigtvirkende anfaldsmedicin — åbner luftvejene på få minutter",
-      warning: "Brug altid Ventoline som din første hjælp ved akut åndenød. Virker den ikke inden for 10–15 minutter, eller forværres vejrtrækningen — søg akut hjælp.",
-      steps: [
-        { icon:"🔷", title:"Tag låget af og ryst", body:"Tag låget af mundstykket og ryst inhalatoren godt 4–5 gange. Hvis du ikke har brugt den i mere end 3 dage, afgiv én pust i luften for at aktivere den." },
-        { icon:"💨", title:"Pust lungerne tomme", body:"Pust roligt og helt ud — men hold mundstykket væk fra munden, mens du gør det. Undgå at puste ind i inhalatoren." },
-        { icon:"💊", title:"Sæt mundstykket til læberne", body:"Luk læberne tæt om mundstykket. Tungen må ikke blokere åbningen." },
-        { icon:"▶️", title:"Tryk og træk vejret ind", body:"Tryk bunden ned og træk samtidigt langsomt og dybt vejret ind gennem munden i 3–5 sekunder. Synk ikke — hold vejret." },
-        { icon:"⏸️", title:"Hold vejret i 10 sekunder", body:"Hold vejret i 10 sekunder — eller så længe det er behageligt. Det giver medicinen tid til at sætte sig i lungerne." },
-        { icon:"🔁", title:"Pust ud og gentag ved behov", body:"Pust langsomt ud og vent 30–60 sekunder, inden du eventuelt tager et pust mere. Sæt altid låget på igen efterfølgende." },
-      ],
-      tips: [
-        "Brug spacer, hvis du har svært ved at koordinere spray og vejrtrækning — det gælder særligt børn og ældre.",
-        "Vask mundstykket med vand en gang om ugen og lad det lufttørre.",
-        "Holder du vejret i 10 sekunder, øges optagelsen markant.",
-        "Tæl dine pust — de fleste inhalatorer har en tæller. Bestil ny i god tid.",
-      ],
-    },
-    symbicort: {
-      name: "Symbicort Turbuhaler",
-      subtitle: "Fast forebyggende behandling — dæmper betændelse og holder luftvejene åbne",
-      warning: "Symbicort er ikke anfaldsmedicin. Brug altid Ventoline ved akut åndenød. Symbicort virker kun, når den tages fast og rigtigt.",
-      afterUse: "Skyl altid munden med vand og spyt ud efter brug — det forebygger svamp i munden (trøske), som er en velkendt bivirkning ved inhalationssteroider.",
-      steps: [
-        { icon:"🔷", title:"Hold Turbuhaler opret og åbn", body:"Hold inhalatoren opret med mundstykket opad. Drej den røde ring helt til højre og derefter tilbage til venstre, indtil du hører et klik. Enheden er nu ladet." },
-        { icon:"💨", title:"Pust helt ud — væk fra inhalatoren", body:"Pust roligt og dybt ud, men hold inhalatoren væk fra munden. Pust aldrig ind i en Turbuhaler — det kan fugtige pulveret og ødelægge dosen." },
-        { icon:"💊", title:"Sæt mundstykket til munden", body:"Luk læberne tæt og fast om mundstykket. Tungen må ikke blokere." },
-        { icon:"▶️", title:"Træk vejret hurtigt og dybt ind", body:"Træk vejret hurtigt og kraftigt ind gennem munden — Turbuhaler kræver et stærkere og hurtigere åndedræt end en spray-inhalator for at frigøre pulveret korrekt." },
-        { icon:"⏸️", title:"Hold vejret i 10 sekunder", body:"Hold vejret i 10 sekunder — eller så længe det er behageligt. Tænk på det som at lade medicinen finde vej til de små luftveje." },
-        { icon:"🌊", title:"Skyl munden — vigtigt!", body:"Spyt ud og skyl munden grundigt med vand efter hvert brug. Det er ikke valgfrit — det reducerer risikoen for svamp i munden og hæshed markant." },
-      ],
-      tips: [
-        "En Turbuhaler indeholder normalt 60 eller 120 doser. Et rødt vindue i dosistælleren betyder: bestil ny nu.",
-        "Du smager eller mærker måske næsten ingenting — det er normalt. Pulverdosen er meget lille.",
-        "Opbevar Turbuhaler med låget på, tørt og væk fra varme og fugt.",
-        "Tag Symbicort på samme tidspunkt hver dag — selv de dage, du har det fint.",
-      ],
-    },
-  },
-  en: {
-    intro: "Correct inhaler technique is essential — if you use it incorrectly, the medicine does not reach the lungs properly and the effect is lost. I see it almost every day at the pharmacy: patients who take their medicine faithfully but do not feel enough difference. Often it is not about the wrong medicine, but about the technique.",
-    ibrahimNote: "I usually put it like this: your inhaler is not just a bottle you press — it requires a precise coordination between the spray and your breathing. When you get it right, you feel the difference.",
-    ventoline: {
-      name: "Ventoline (Salbutamol)",
-      subtitle: "Fast-acting reliever — opens the airways within minutes",
-      warning: "Always use Ventoline as your first help during acute breathlessness. If it does not work within 10–15 minutes, or if breathing gets worse — seek urgent help.",
-      steps: [
-        { icon:"🔷", title:"Remove cap and shake", body:"Remove the mouthpiece cap and shake the inhaler well 4–5 times. If you have not used it for more than 3 days, release one puff into the air to prime it." },
-        { icon:"💨", title:"Breathe out fully", body:"Breathe out slowly and completely — but hold the mouthpiece away from your mouth while doing so. Never breathe out into the inhaler." },
-        { icon:"💊", title:"Place the mouthpiece to your lips", body:"Close your lips tightly around the mouthpiece. Make sure your tongue does not block the opening." },
-        { icon:"▶️", title:"Press and breathe in", body:"Press the canister down and at the same time breathe in slowly and deeply through your mouth for 3–5 seconds. Do not swallow — hold your breath." },
-        { icon:"⏸️", title:"Hold your breath for 10 seconds", body:"Hold your breath for 10 seconds — or as long as is comfortable. This gives the medicine time to settle in the lungs." },
-        { icon:"🔁", title:"Breathe out and repeat if needed", body:"Breathe out slowly and wait 30–60 seconds before taking another puff if needed. Always replace the cap afterwards." },
-      ],
-      tips: [
-        "Use a spacer if you find it hard to coordinate the spray and breathing — this applies especially to children and older adults.",
-        "Wash the mouthpiece with water once a week and let it air dry.",
-        "Holding your breath for 10 seconds significantly increases absorption.",
-        "Count your puffs — most inhalers have a dose counter. Order a new one in good time.",
-      ],
-    },
-    symbicort: {
-      name: "Symbicort Turbuhaler",
-      subtitle: "Regular preventive treatment — reduces inflammation and keeps the airways open",
-      warning: "Symbicort is not a reliever inhaler. Always use Ventoline for acute breathlessness. Symbicort only works when taken regularly and correctly.",
-      afterUse: "Always rinse your mouth with water and spit it out after use — this prevents oral thrush, which is a well-known side effect of inhaled steroids.",
-      steps: [
-        { icon:"🔷", title:"Hold upright and load", body:"Hold the inhaler upright with the mouthpiece facing up. Twist the red ring fully to the right, then back to the left until you hear a click. The device is now loaded." },
-        { icon:"💨", title:"Breathe out fully — away from the inhaler", body:"Breathe out slowly and deeply, but hold the inhaler away from your mouth. Never breathe out into a Turbuhaler — moisture can damage the powder dose." },
-        { icon:"💊", title:"Place the mouthpiece to your mouth", body:"Close your lips firmly around the mouthpiece. Make sure your tongue does not block the opening." },
-        { icon:"▶️", title:"Breathe in fast and deep", body:"Breathe in quickly and forcefully through your mouth — a Turbuhaler requires a stronger and faster breath than a spray inhaler in order to release the powder correctly." },
-        { icon:"⏸️", title:"Hold your breath for 10 seconds", body:"Hold your breath for 10 seconds — or as long as is comfortable. Think of it as allowing the medicine to find its way to the small airways." },
-        { icon:"🌊", title:"Rinse your mouth — important!", body:"Spit out and rinse your mouth thoroughly with water after every use. This is not optional — it significantly reduces the risk of oral thrush and hoarseness." },
-      ],
-      tips: [
-        "A Turbuhaler normally contains 60 or 120 doses. A red window in the dose counter means: order a new one now.",
-        "You may taste or feel almost nothing — this is normal. The powder dose is very small.",
-        "Store the Turbuhaler with the cap on, in a dry place away from heat and moisture.",
-        "Take Symbicort at the same time every day — even on days when you feel well.",
-      ],
-    },
-  },
-  so: {
-    intro: "Farsamada saxda ah ee buufinta waa muhiim aad — haddii farsamadu khaldan tahay, daawadu si fiican uguma gaarto sambabada, saameynteeduna way lumaa. Waxaan maalin kasta ku aragaa farmashiyaha: bukaan daawadooda si joogto ah u qaada, laakiin kaa badna saameyn. Badanaa dhibaatadu ma aha daawada, balse waa farsamada.",
-    ibrahimNote: "Waxaan dadka ugu sharxaa sidan: buufintaadu ma aha oo keliya dhalmo aad ku riixdo — waxay u baahan tahay isku-dheellitir sax ah oo u dhexeeya buufinta iyo neefsashada. Marka aad saxdo farsamada, kaa badna dareemaysaa.",
-    ventoline: {
-      name: "Ventoline (Salbutamol)",
-      subtitle: "Daawo degdeg u shaqaysa — waxay furtaa marinnada hawada daqiiqo gudahood",
-      warning: "Mar walba Ventoline u isticmaal marka neef-qabatinku si kedis ah ku soo boodo. Haddii 10–15 daqiiqo gudahood aysan shaqayn, ama neefsashadu sii xumaato — raadi gargaar caafimaad si degdeg ah.",
-      steps: [
-        { icon:"🔷", title:"Ka qaad daboolka oo gariir", body:"Ka qaad daboolka qalabka afka la geliyo oo si fiican u gariir buufinta 4–5 jeer. Haddii aad 3 maalmood ka badan isticmaalin weydo, buufin hal mar hawada saar si aad u heshiisiiso." },
-        { icon:"💨", title:"Sambabada si buuxda u madheeso", body:"Si degdeg ah oo buuxda u neefsaaso dibadda — laakiin qalabka afka la geliyo ka hay fogaan murtaada inta aad sidaas samaynayso. Ha u neefsanin gudaha buufinta." },
-        { icon:"💊", title:"Qalabka afka la geliyo bushimaha ku rid", body:"Bushimaha si adag oo xidna ugu rid qalabka afka la geliyo. Ilaa carrabku uusan daaqa xidnayn." },
-        { icon:"▶️", title:"Riix oo neefsashada soo qaad", body:"Hoostiisa riix isla markaana si tartiib ah oo qoto dheer neefsashada afka ka soo qaad 3–5 ilbiriqsi gudahood. Ha liqin — neefsashada hayn." },
-        { icon:"⏸️", title:"Neefsashada 10 ilbiriqsi hayn", body:"Neefsashada 10 ilbiriqsi hayn — ama muddo kugu dhow. Tani waxay siinaysaa daawada waqtiga ay sambabada ku degto." },
-        { icon:"🔁", title:"Dibadda u neefsaaso oo ku celi haddii loo baahdo", body:"Si tartiib ah u neefsaaso dibadda oo sug 30–60 ilbiriqsi ka hor intaad hal buufin kale qaadanayso haddii loo baahdo. Mar walba daboolka saar ka dib." },
-      ],
-      tips: [
-        "Spacer isticmaal haddii aad ku adag tahay inaad isku waafajiso buufinta iyo neefsashada — gaar ahaan carruurta iyo dadka waayeelka ah.",
-        "Qalabka afka la geliyo biyo ku dhaqi toddobaadkiiba mar oo hawada ku qalajso.",
-        "Neefsashada 10 ilbiriqsi haystu aad ayay u kordhisaa nuugista daawada.",
-        "Tiri buufimahagaaga — inhalatoryada badankood waxaa ku jira tiriye. Cusub ka dalbo waqtigiisa.",
-      ],
-    },
-    symbicort: {
-      name: "Symbicort Turbuhaler",
-      subtitle: "Daaweyn joogto ah oo ka hortagta — waxay yareysaa bararka oo marinnada hawada furan ku haynaysaa",
-      warning: "Symbicort ma aha daawo xaaladda degdegga ah. Mar walba Ventoline u isticmaal marka neef-qabatinku yimaado si kedis ah. Symbicort waxay shaqaysaa keliya marka si joogto ah oo sax ah loo qaato.",
-      afterUse: "Mar walba isticmaalka ka dib afka biyo ku dhaq oo ku tuf — tani waxay ka hortagtaa fangaska afka, kaas oo ah waxyeello la yaqaan oo ka timaadda daawooyinka inhalation-ka steroid-ka ah.",
-      steps: [
-        { icon:"🔷", title:"Si toos ah u hayn oo soo dejiso", body:"Inhalatoran si toos ah u hayn oo qalabka afka la geliyo kor u jeediyo. Geediga cas si buuxda u jari midigta, kadibna dib u laabo bidixda ilaa aad maqasho cod klik ah. Qalab-ku hadda ayuu dejisan yahay." },
-        { icon:"💨", title:"Sambabada u madheeso — buufinta ka fogee", body:"Si tartiib ah oo qoto dheer u neefsaaso dibadda, laakiin buufinta uga hay fogaan murtaada. Ha u neefsanin gudaha Turbuhaler — qoyaanku wuxuu waxyeelleyn karaa boorka daawada." },
-        { icon:"💊", title:"Qalabka afka la geliyo ku rid", body:"Bushimaha si adag oo adag ugu rid qalabka afka la geliyo. Ilaa carrabku uusan daaqa xidnayn." },
-        { icon:"▶️", title:"Si degdeg ah oo qoto dheer u neefsaaso", body:"Si degdeg ah oo xoogga leh ugu neefsaaso afka — Turbuhaler waxay u baahan tahay neefsasho ka adag oo ka degdeg badan inhalatoryada buufinta si boorka si sax ah u sii daayo." },
-        { icon:"⏸️", title:"Neefsashada 10 ilbiriqsi hayn", body:"Neefsashada 10 ilbiriqsi hayn — ama muddo kugu dhow. U qiyaas sidii daawada u raadisato marinnada hawada yar yar." },
-        { icon:"🌊", title:"Afka dhaq — muhiim ah!", body:"Tuf oo afka si buuxda ugu dhaq biyo isticmaalka kasta ka dib. Tani ma aha ikhtiyaari — si weyn ayay u yarayneysaa khatarta fangaska afka iyo cod xabeeb." },
-      ],
-      tips: [
-        "Turbuhaler badanaa waxaa ku jira 60 ama 120 qiyaas. Daaqad cas oo ku jirta tirada qiyaasha waxay la macno tahay: hada dalbo mid cusub.",
-        "Dhadhan ama dareen yar ayaad dareemi kartaa — tani waa caadi. Boorka qiyaastu aad ayay u yar tahay.",
-        "Turbuhaler ku kaydso daboolka saaran, meel qalalan oo ka fog kulaylka iyo qoyaanka.",
-        "Symbicort ku qaado waqti isku mid ah maalin kasta — xataa maalmaha aad is leedahay fiicantahay.",
-      ],
-    },
-  },
-  ar: {
-    intro: "تقنية الاستنشاق الصحيحة أساسية — إذا استخدمت البخاخ بطريقة خاطئة، فالدواء لا يصل إلى الرئتين بشكل كاف وتضيع الفائدة. أرى هذا كل يوم تقريبا في الصيدلية: مرضى يأخذون دواءهم بانتظام لكن لا يلاحظون فرقا كافيا. كثيرا ما تكون المشكلة ليست في الدواء، بل في الطريقة.",
-    ibrahimNote: "أنا أشرح الأمر هكذا دائما: بخاخك ليس مجرد زجاجة تضغط عليها — إنه يحتاج إلى تنسيق دقيق بين الضغط والشهيق. عندما تتقنه، تشعر بالفرق.",
-    ventoline: {
-      name: "فنتولين (سالبوتامول)",
-      subtitle: "دواء سريع المفعول للنوبات — يفتح الشعب الهوائية في دقائق",
-      warning: "استخدم فنتولين دائما أولا عند ضيق النفس المفاجئ. إذا لم يفد خلال 10–15 دقيقة، أو ساءت حالتك — اطلب مساعدة طارئة فورا.",
-      steps: [
-        { icon:"🔷", title:"أزل الغطاء ورج", body:"أزل غطاء فوهة البخاخ وارجه جيدا 4–5 مرات. إذا لم تستخدمه أكثر من 3 أيام، أطلق بخة واحدة في الهواء لتنشيطه." },
-        { icon:"💨", title:"أفرغ رئتيك تماما", body:"أخرج الهواء ببطء وبشكل كامل — لكن أبعد فوهة البخاخ عن فمك أثناء ذلك. لا تنفخ أبدا داخل البخاخ." },
-        { icon:"💊", title:"ضع الفوهة على شفتيك", body:"أغلق شفتيك بإحكام حول الفوهة. تأكد من أن لسانك لا يسد المنفذ." },
-        { icon:"▶️", title:"اضغط واستنشق", body:"اضغط القاع للأسفل وفي نفس الوقت استنشق ببطء وعمق من فمك لمدة 3–5 ثوان. لا تبتلع — احبس نفسك." },
-        { icon:"⏸️", title:"احبس نفسك 10 ثوان", body:"احبس نفسك 10 ثوان — أو ما تستطيعه. هذا يمنح الدواء وقتا للاستقرار في الرئتين." },
-        { icon:"🔁", title:"أخرج الهواء وكرر عند الحاجة", body:"أخرج الهواء ببطء وانتظر 30–60 ثانية قبل أخذ بخة أخرى إذا لزم. أعد الغطاء دائما بعد الاستخدام." },
-      ],
-      tips: [
-        "استخدم الحجرة التوسعية (spacer) إذا وجدت صعوبة في تنسيق البخة مع الشهيق — وهذا ينطبق خاصة على الأطفال وكبار السن.",
-        "اغسل الفوهة بالماء مرة أسبوعيا واتركها تجف في الهواء.",
-        "حبس النفس 10 ثوان يزيد امتصاص الدواء بشكل ملحوظ.",
-        "احسب البخات — معظم البخاخات بها عداد. اطلب واحدة جديدة مبكرا.",
-      ],
-    },
-    symbicort: {
-      name: "سيمبيكورت توربوهيلر",
-      subtitle: "علاج وقائي منتظم — يقلل الالتهاب ويبقي الشعب الهوائية مفتوحة",
-      warning: "سيمبيكورت ليس لعلاج النوبات. استخدم فنتولين دائما عند ضيق النفس المفاجئ. سيمبيكورت يعمل فقط عند استخدامه بانتظام وبشكل صحيح.",
-      afterUse: "اغسل فمك بالماء وابصق بعد كل استخدام — هذا يمنع فطريات الفم، وهي من الآثار الجانبية المعروفة للستيرويدات الاستنشاقية.",
-      steps: [
-        { icon:"🔷", title:"أمسكه عموديا وحمله", body:"أمسك الجهاز عموديا مع توجيه الفوهة للأعلى. أدر الحلقة الحمراء تماما إلى اليمين ثم أعدها إلى اليسار حتى تسمع صوت طقطقة. الجهاز الآن محمل." },
-        { icon:"💨", title:"أفرغ رئتيك — بعيدا عن الجهاز", body:"أخرج الهواء ببطء وعمق، لكن أبعد الجهاز عن فمك. لا تنفخ أبدا داخل توربوهيلر — الرطوبة تتلف جرعة المسحوق." },
-        { icon:"💊", title:"ضع الفوهة في فمك", body:"أغلق شفتيك بإحكام حول الفوهة. تأكد من أن لسانك لا يسد المنفذ." },
-        { icon:"▶️", title:"استنشق بسرعة وعمق", body:"استنشق بسرعة وبقوة من فمك — التوربوهيلر يحتاج شهيقا أقوى وأسرع من بخاخ الرذاذ لتحرير المسحوق بشكل صحيح." },
-        { icon:"⏸️", title:"احبس نفسك 10 ثوان", body:"احبس نفسك 10 ثوان — أو ما تستطيعه. فكر في الأمر كأنك تتيح للدواء الوصول إلى الشعب الهوائية الصغيرة." },
-        { icon:"🌊", title:"اغسل فمك — مهم جدا!", body:"ابصق واغسل فمك جيدا بالماء بعد كل استخدام. هذا ليس اختياريا — يقلل بشكل كبير من خطر فطريات الفم وبحة الصوت." },
-      ],
-      tips: [
-        "التوربوهيلر يحتوي عادة على 60 أو 120 جرعة. النافذة الحمراء في عداد الجرعات تعني: اطلب واحدة جديدة الآن.",
-        "قد لا تشعر بشيء يكاد يذكر — هذا طبيعي. جرعة المسحوق صغيرة جدا.",
-        "احفظ التوربوهيلر بغطائه في مكان جاف بعيدا عن الحرارة والرطوبة.",
-        "تناول سيمبيكورت في نفس الوقت كل يوم — حتى في الأيام التي تشعر فيها بأنك بخير.",
-      ],
-    },
-  },
-};
-
 // ── Color themes ───────────────────────────────────────────────────────────
 const BULLET_PALETTES = {
   so: [{color:"#0D9488",bg:"#F0FDFA"},{color:"#059669",bg:"#ECFDF5"},{color:"#0F766E",bg:"#CCFBF1"},{color:"#0284C7",bg:"#F0F9FF"}],
@@ -501,168 +317,7 @@ function ShieldIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fil
 function MailIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>);}
 function QuestionIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>);}
 function ChatIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>);}
-function LungsIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v4"/><path d="M6 8c-1.5 0-4 1.5-4 6 0 3 2 5 4 5 1.3 0 2.4-.5 3.2-1.4"/><path d="M18 8c1.5 0 4 1.5 4 6 0 3-2 5-4 5-1.3 0-2.4-.5-3.2-1.4"/><path d="M10.8 17.8A3 3 0 0 1 9 20v0a3 3 0 0 1-3-3"/><path d="M13.2 17.8A3 3 0 0 0 15 20v0a3 3 0 0 0 3-3"/><path d="M12 8c-2 0-3 1-3 3v6"/><path d="M12 8c2 0 3 1 3 3v6"/></svg>);}
 
-
-// ── TPI Modal ──────────────────────────────────────────────────────────────
-function TPIModal({ language, onClose }) {
-  const [inhaler, setInhaler] = useState("ventoline");
-  const [activeStep, setActiveStep] = useState(0);
-  const isRtl = language === "ar";
-  const data = TPI_DATA[language] ?? TPI_DATA.da;
-  const theme = LANG_THEME[language] ?? LANG_THEME.da;
-  const inhalerData = inhaler === "ventoline" ? data.ventoline : data.symbicort;
-  const totalSteps = inhalerData.steps.length;
-
-  useEffect(() => { setActiveStep(0); }, [inhaler]);
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
-  }, [onClose]);
-
-  const iconEl = <LungsIcon size={22} color="rgba(255,255,255,0.95)" />;
-
-  return (
-    <div
-      onClick={onClose}
-      style={{ position:"fixed",inset:0,zIndex:9999,display:"flex",alignItems:"flex-end",justifyContent:"center",padding:"0",background:"rgba(0,0,0,0.52)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)" }}
-      className="sm:items-center sm:p-4"
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{ background:"#f8fafc",borderRadius:"28px 28px 0 0",width:"100%",maxWidth:"680px",maxHeight:"92vh",overflowY:"auto",boxShadow:"0 -8px 40px rgba(0,0,0,0.22)",direction:isRtl?"rtl":"ltr" }}
-        className="sm:rounded-[28px] sm:shadow-[0_40px_100px_rgba(0,0,0,0.28)]"
-      >
-        {/* Header */}
-        <div style={{ background:"var(--heroBg)",borderRadius:"28px 28px 0 0",padding:"18px 20px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:10 }}
-          className="sm:rounded-t-[28px]">
-          <div style={{ display:"flex",alignItems:"center",gap:"10px" }}>
-            {iconEl}
-            <span style={{ color:"#fff",fontWeight:800,fontSize:"16px",letterSpacing:"-0.01em" }}>{TPI_MODAL_TITLE[language] ?? TPI_MODAL_TITLE.da}</span>
-          </div>
-          <button type="button" onClick={onClose} style={{ background:"rgba(255,255,255,0.18)",border:"none",borderRadius:"50%",width:44,height:44,cursor:"pointer",color:"#fff",fontSize:"18px",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,minWidth:44,minHeight:44 }}>✕</button>
-        </div>
-
-        <div style={{ padding:"20px 20px 32px" }}>
-
-          {/* Intro + Ibrahim note */}
-          <p style={{ fontSize:"14px",color:"#475569",lineHeight:1.75,margin:"0 0 14px",textAlign:isRtl?"right":"left" }}>{data.intro}</p>
-          <div style={{ background: theme.tagBg, border:`1.5px solid ${theme.border}`, borderRadius:"16px", padding:"14px 16px", marginBottom:"20px", display:"flex", gap:"12px", alignItems:"flex-start" }}>
-            <img src="/Ibrahim.png" alt="Ibrahim" style={{ width:44,height:44,borderRadius:"50%",objectFit:"cover",border:`2px solid ${theme.border}`,flexShrink:0 }} onError={(e)=>{e.currentTarget.style.display="none";}}/>
-            <p style={{ fontSize:"14px",color:"#334155",lineHeight:1.7,margin:0,fontStyle:"italic",textAlign:isRtl?"right":"left" }}>"{data.ibrahimNote}"</p>
-          </div>
-
-          {/* Inhaler tabs */}
-          <div style={{ display:"flex",gap:"10px",marginBottom:"20px" }}>
-            {(["ventoline","symbicort"]).map((key) => {
-              const isActive = inhaler === key;
-              const label = key === "ventoline" ? data.ventoline.name : data.symbicort.name;
-              return (
-                <button key={key} type="button" onClick={() => setInhaler(key)}
-                  style={{ flex:1,padding:"12px 14px",borderRadius:"14px",border:`2px solid`,fontWeight:700,fontSize:"13px",cursor:"pointer",transition:"all 0.2s",lineHeight:1.3,minHeight:"52px",
-                    borderColor: isActive ? theme.primary : "#e2e8f0",
-                    background: isActive ? theme.primary : "#fff",
-                    color: isActive ? "#fff" : "#64748b" }}>
-                  {key === "ventoline" ? "💨" : "🌀"} {label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Subtitle + warning */}
-          <p style={{ fontSize:"13px",color:theme.primary,fontWeight:700,margin:"0 0 10px",textAlign:isRtl?"right":"left" }}>{inhalerData.subtitle}</p>
-          <div style={{ background:"#fef2f2",border:"1.5px solid #fecaca",borderRadius:"12px",padding:"12px 14px",marginBottom:"20px",display:"flex",gap:"10px",alignItems:"flex-start" }}>
-            <span style={{ fontSize:"18px",flexShrink:0 }}>⚠️</span>
-            <p style={{ fontSize:"13px",color:"#991b1b",lineHeight:1.65,margin:0,fontWeight:500,textAlign:isRtl?"right":"left" }}>{inhalerData.warning}</p>
-          </div>
-
-          {/* Animated inhaler + step navigator */}
-          <div style={{ background:"#fff",borderRadius:"20px",border:`1.5px solid ${theme.border}`,padding:"20px",marginBottom:"20px",boxShadow:`0 4px 16px ${theme.primary}10` }}>
-            {/* Step dots */}
-            <div style={{ display:"flex",justifyContent:"center",gap:"8px",marginBottom:"16px" }}>
-              {inhalerData.steps.map((_, i) => (
-                <button key={i} type="button" onClick={() => setActiveStep(i)}
-                  style={{ width: i === activeStep ? 28 : 10, height:10, borderRadius:"9999px", border:"none", cursor:"pointer", transition:"all 0.2s",
-                    background: i === activeStep ? theme.primary : `${theme.primary}30` }}/>
-              ))}
-            </div>
-
-            {/* Active step card */}
-            <div style={{ background:theme.soft,borderRadius:"14px",padding:"16px",border:`1px solid ${theme.border}` }}>
-              <div style={{ display:"flex",alignItems:"center",gap:"10px",marginBottom:"8px" }}>
-                <span style={{ fontSize:"22px" }}>{inhalerData.steps[activeStep].icon}</span>
-                <div>
-                  <span style={{ fontSize:"11px",fontWeight:700,color:theme.primary,textTransform:"uppercase",letterSpacing:"0.05em" }}>
-                    {activeStep + 1} / {totalSteps}
-                  </span>
-                  <p style={{ fontSize:"15px",fontWeight:800,color:"#0f172a",margin:0,lineHeight:1.2 }}>{inhalerData.steps[activeStep].title}</p>
-                </div>
-              </div>
-              <p style={{ fontSize:"14px",color:"#334155",lineHeight:1.7,margin:0,textAlign:isRtl?"right":"left" }}>{inhalerData.steps[activeStep].body}</p>
-            </div>
-
-            {/* Prev / Next */}
-            <div style={{ display:"flex",gap:"10px",marginTop:"14px" }}>
-              <button type="button" onClick={() => setActiveStep(s => Math.max(0, s - 1))} disabled={activeStep === 0}
-                style={{ flex:1,padding:"12px",borderRadius:"12px",border:`1.5px solid ${theme.border}`,background:"#fff",color:activeStep===0?"#cbd5e1":theme.primary,fontWeight:700,fontSize:"14px",cursor:activeStep===0?"not-allowed":"pointer",transition:"all 0.2s",minHeight:"48px" }}>
-                ← {isRtl ? "السابق" : language === "so" ? "Hore" : language === "da" ? "Forrige" : "Previous"}
-              </button>
-              <button type="button" onClick={() => setActiveStep(s => Math.min(totalSteps - 1, s + 1))} disabled={activeStep === totalSteps - 1}
-                style={{ flex:1,padding:"12px",borderRadius:"12px",border:"none",background:activeStep===totalSteps-1?"#e2e8f0":theme.primary,color:activeStep===totalSteps-1?"#94a3b8":"#fff",fontWeight:700,fontSize:"14px",cursor:activeStep===totalSteps-1?"not-allowed":"pointer",transition:"all 0.2s",minHeight:"48px" }}>
-                {isRtl ? "التالي" : language === "so" ? "Xiga" : language === "da" ? "Næste" : "Next"} →
-              </button>
-            </div>
-          </div>
-
-          {/* After-use note for Symbicort */}
-          {inhaler === "symbicort" && inhalerData.afterUse && (
-            <div style={{ background:"#f0fdf4",border:"1.5px solid #86efac",borderRadius:"12px",padding:"12px 14px",marginBottom:"20px",display:"flex",gap:"10px",alignItems:"flex-start" }}>
-              <span style={{ fontSize:"18px",flexShrink:0 }}>🌊</span>
-              <p style={{ fontSize:"13px",color:"#166534",lineHeight:1.65,margin:0,fontWeight:600,textAlign:isRtl?"right":"left" }}>{inhalerData.afterUse}</p>
-            </div>
-          )}
-
-          {/* All steps list */}
-          <p style={{ fontSize:"11px",fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",margin:"0 0 10px",textAlign:isRtl?"right":"left" }}>
-            {language === "da" ? "Alle trin" : language === "en" ? "All steps" : language === "so" ? "Tallaabooyinka oo dhan" : "جميع الخطوات"}
-          </p>
-          <div style={{ display:"flex",flexDirection:"column",gap:"8px",marginBottom:"20px" }}>
-            {inhalerData.steps.map((step, i) => (
-              <button key={i} type="button" onClick={() => setActiveStep(i)}
-                style={{ display:"flex",alignItems:"flex-start",gap:"12px",padding:"12px 14px",borderRadius:"14px",border:`1.5px solid`,cursor:"pointer",textAlign:isRtl?"right":"left",background: i === activeStep ? theme.soft : "#fff",
-                  borderColor: i === activeStep ? theme.primary : "#e5e7eb",
-                  boxShadow: i === activeStep ? `0 2px 8px ${theme.primary}20` : "none",
-                  transition:"all 0.2s" }}>
-                <span style={{ width:32,height:32,borderRadius:"50%",background: i === activeStep ? theme.primary : `${theme.primary}15`,color: i === activeStep ? "#fff" : theme.primary,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"13px",fontWeight:800,flexShrink:0 }}>{i + 1}</span>
-                <div style={{ flex:1 }}>
-                  <p style={{ fontSize:"14px",fontWeight:700,color: i === activeStep ? theme.primary : "#0f172a",margin:"0 0 2px" }}>{step.title}</p>
-                  <p style={{ fontSize:"13px",color:"#64748b",margin:0,lineHeight:1.5 }}>{step.body}</p>
-                </div>
-                <span style={{ fontSize:"16px",flexShrink:0,marginTop:"6px" }}>{step.icon}</span>
-              </button>
-            ))}
-          </div>
-
-          {/* Tips */}
-          <p style={{ fontSize:"11px",fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",margin:"0 0 10px",textAlign:isRtl?"right":"left" }}>
-            {language === "da" ? "Gode råd fra apoteket" : language === "en" ? "Pharmacy tips" : language === "so" ? "Talooyinka farmashiyaha" : "نصائح من الصيدلية"}
-          </p>
-          <div style={{ display:"flex",flexDirection:"column",gap:"8px" }}>
-            {inhalerData.tips.map((tip, i) => (
-              <div key={i} style={{ display:"flex",alignItems:"flex-start",gap:"12px",padding:"12px 14px",borderRadius:"14px",background:"#fff",border:"1.5px solid #e5e7eb" }}>
-                <span style={{ width:32,height:32,borderRadius:"50%",background:`${theme.primary}15`,color:theme.primary,display:"flex",alignItems:"center",justifyContent:"center",fontSize:"14px",flexShrink:0 }}>💡</span>
-                <p style={{ fontSize:"13px",color:"#334155",lineHeight:1.65,margin:0,fontWeight:500,textAlign:isRtl?"right":"left" }}>{tip}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // ── Bullet row ─────────────────────────────────────────────────────────────
 function BulletRow({bullet,palette}){
@@ -721,6 +376,8 @@ function ContactModal({language,onClose}){
   const fb=FEEDBACK_DATA[language]??FEEDBACK_DATA.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
   const iconEl=<MailIcon size={22} color="rgba(255,255,255,0.95)"/>;
+  const nameId=useId();
+  const cityId=useId();
 
   const[type,setType]=useState("praise");
   const[name,setName]=useState("");
@@ -801,20 +458,20 @@ function ContactModal({language,onClose}){
             <p style={{fontSize:"13px",color:"#64748b",margin:0,textAlign:isRtl?"right":"left"}}>{fb.subtitle}</p>
             <div style={{display:"flex",gap:"8px",flexWrap:"wrap"}}>
               {[["praise",fb.praise],["criticism",fb.criticism],["suggestion",fb.suggestion]].map(([key,label])=>(
-                <button key={key} type="button" onClick={()=>setType(key)} style={{padding:"10px 18px",borderRadius:"999px",border:"1.5px solid",fontWeight:600,fontSize:"14px",cursor:"pointer",transition:"all 0.2s",borderColor:type===key?theme.primary:"#e2e8f0",background:type===key?theme.primary:"#fff",color:type===key?"#fff":"#334155",minHeight:"44px"}}>{label}</button>
+                <button key={key} type="button" onClick={()=>setType(key)} aria-pressed={type===key} style={{padding:"10px 18px",borderRadius:"999px",border:"1.5px solid",fontWeight:600,fontSize:"14px",cursor:"pointer",transition:"all 0.2s",borderColor:type===key?theme.primary:"#e2e8f0",background:type===key?theme.primary:"#fff",color:type===key?"#fff":"#334155",minHeight:"44px"}}>{label}</button>
               ))}
             </div>
             <div>
-              <label style={{display:"block",fontSize:"12.5px",fontWeight:600,color:"#475569",marginBottom:"5px",textAlign:isRtl?"right":"left"}}>
+              <label htmlFor={nameId} style={{display:"block",fontSize:"12.5px",fontWeight:600,color:"#475569",marginBottom:"5px",textAlign:isRtl?"right":"left"}}>
                 {fb.nameLabel} <span style={{color:"#ef4444"}}>*</span>
               </label>
-              <input value={name} onChange={(e)=>setName(e.target.value)} style={inputStyle(nameMissing)}/>
+              <input id={nameId} value={name} onChange={(e)=>setName(e.target.value)} style={inputStyle(nameMissing)}/>
             </div>
             <div>
-              <label style={{display:"block",fontSize:"12.5px",fontWeight:600,color:"#475569",marginBottom:"5px",textAlign:isRtl?"right":"left"}}>
+              <label htmlFor={cityId} style={{display:"block",fontSize:"12.5px",fontWeight:600,color:"#475569",marginBottom:"5px",textAlign:isRtl?"right":"left"}}>
                 {fb.cityLabel} <span style={{color:"#ef4444"}}>*</span>
               </label>
-              <input value={city} onChange={(e)=>setCity(e.target.value)} style={inputStyle(cityMissing)}/>
+              <input id={cityId} value={city} onChange={(e)=>setCity(e.target.value)} style={inputStyle(cityMissing)}/>
             </div>
             <div style={{display:"flex",gap:"10px",flexWrap:"wrap"}}>
               <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder={fb.emailLabel} type="email" style={{...inputStyle(false),flex:"1 1 160px"}}/>
@@ -845,7 +502,7 @@ function FAQModal({language,onClose}){
       <div style={{display:"flex",flexDirection:"column",gap:"8px"}}>
         {data.items.map((item,i)=>(
           <div key={i} style={{background:"#fff",borderRadius:"16px",border:`1.5px solid ${open===i?theme.primary+"55":"#e5e7eb"}`,overflow:"hidden",boxShadow:open===i?`0 4px 16px ${theme.primary}15`:"0 1px 3px rgba(0,0,0,0.04)",transition:"all 0.2s"}}>
-            <button type="button" onClick={()=>setOpen(open===i?null:i)} style={{width:"100%",display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:"10px",padding:"14px 16px",background:"none",border:"none",cursor:"pointer",textAlign:isRtl?"right":"left",minHeight:"52px"}}>
+            <button type="button" onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i} style={{width:"100%",display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:"10px",padding:"14px 16px",background:"none",border:"none",cursor:"pointer",textAlign:isRtl?"right":"left",minHeight:"52px"}}>
               <div style={{display:"flex",alignItems:"flex-start",gap:"10px",flex:1}}>
                 <span style={{flexShrink:0,width:26,height:26,borderRadius:"50%",background:open===i?theme.primary:`${theme.primary}15`,display:"flex",alignItems:"center",justifyContent:"center",color:open===i?"#fff":theme.primary,fontSize:"12px",fontWeight:800,marginTop:"2px",transition:"all 0.2s"}}>{i+1}</span>
                 <span style={{fontWeight:700,fontSize:"14px",color:open===i?theme.primary:"#0f172a",lineHeight:1.45}}>{item.q}</span>
@@ -883,7 +540,9 @@ function FAQModal({language,onClose}){
 }
 
 // ── Video Guide Component ──────────────────────────────────────────────────
-function VideoPlayer({ src }) {
+const PLAY_LABEL = { so: "Daawo fiidiyaha", da: "Afspil video", en: "Play video", ar: "شغّل الفيديو" };
+
+function VideoPlayer({ src, language }) {
   const [playing, setPlaying] = useState(false);
   const [hovered, setHovered] = useState(false);
   const videoRef = useRef(null);
@@ -905,8 +564,7 @@ function VideoPlayer({ src }) {
 
   return (
     <div
-      style={{ position:"relative", borderRadius:"14px", overflow:"hidden", background:"#0f172a", cursor: playing ? "default" : "pointer", aspectRatio:"16/9" }}
-      onClick={!playing ? handlePlay : undefined}
+      style={{ position:"relative", borderRadius:"14px", overflow:"hidden", background:"#0f172a", aspectRatio:"16/9" }}
     >
       <video
         ref={videoRef}
@@ -919,12 +577,15 @@ function VideoPlayer({ src }) {
         style={{ width:"100%", height:"100%", display:"block", objectFit:"contain" }}
       />
       {!playing && (
-        <div
+        <button
+          type="button"
+          onClick={handlePlay}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
-          style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(0,0,0,0.25)" }}
+          aria-label={PLAY_LABEL[language] ?? PLAY_LABEL.so}
+          style={{ position:"absolute", inset:0, display:"flex", alignItems:"center", justifyContent:"center", background:"rgba(0,0,0,0.25)", border:"none", padding:0, cursor:"pointer" }}
         >
-          <div style={{
+          <span style={{
             width:72, height:72, borderRadius:"50%",
             background:"var(--heroBg,#0D9488)",
             display:"flex", alignItems:"center", justifyContent:"center",
@@ -935,8 +596,8 @@ function VideoPlayer({ src }) {
             <svg width="28" height="28" viewBox="0 0 24 24" fill="white" style={{ marginLeft:"4px" }}>
               <polygon points="5,3 19,12 5,21"/>
             </svg>
-          </div>
-        </div>
+          </span>
+        </button>
       )}
     </div>
   );
@@ -976,6 +637,7 @@ function VideoGuide({ chromeText, language }) {
                   key={tab.key}
                   type="button"
                   onClick={() => setActiveTab(tab.key)}
+                  aria-pressed={isActive}
                   style={{
                     padding:"9px 20px", borderRadius:"14px", border:"none",
                     fontSize:"14px", fontWeight:700, cursor:"pointer",
@@ -994,7 +656,7 @@ function VideoGuide({ chromeText, language }) {
 
         {/* Video */}
         <div className="px-5 pb-6 sm:px-8 sm:pb-7">
-          <VideoPlayer src={activeVideo.src} />
+          <VideoPlayer src={activeVideo.src} language={language} />
         </div>
 
       </div>
@@ -1068,7 +730,6 @@ export function SiteIndex({initialLang}){
       {/* ── Modals ─────────────────────────────────────────────────────── */}
       {(modalTab==="me"||modalTab==="site")&&<AboutModal tab={modalTab} language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="faq"      &&<FAQModal      language={language} onClose={()=>setModalTab(null)}/>}
-      {modalTab==="tpi"      &&<TPIModal      language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="contact"  &&<ContactModal  language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="findPharmacy" &&<PharmacyFinderModal language={language} onClose={()=>setModalTab(null)}/>}
@@ -1112,7 +773,7 @@ export function SiteIndex({initialLang}){
         <div className="reveal-on-scroll mb-6 sm:mb-7">
           <span className="mb-3 block text-xs font-semibold uppercase tracking-widest" style={{color:"var(--text-muted)"}}>{chromeText.categoryLabel}</span>
           <div className="flex gap-2.5 overflow-x-auto pb-2 sm:flex-wrap sm:overflow-visible sm:pb-0" style={{scrollbarWidth:"none",WebkitOverflowScrolling:"touch"}}>
-            <button type="button" onClick={()=>setActiveCategory("all")} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(activeCategory==="all"?{background:"#1a1a1a",color:"#ffffff",borderColor:"#1a1a1a",boxShadow:"0 2px 8px rgba(0,0,0,0.18)"}:{background:"var(--surface,#fff)",color:"var(--text)",borderColor:"var(--border)"})}}>
+            <button type="button" onClick={()=>setActiveCategory("all")} aria-pressed={activeCategory==="all"} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(activeCategory==="all"?{background:"#1a1a1a",color:"#ffffff",borderColor:"#1a1a1a",boxShadow:"0 2px 8px rgba(0,0,0,0.18)"}:{background:"var(--surface,#fff)",color:"var(--text)",borderColor:"var(--border)"})}}>
               <span style={{width:10,height:10,borderRadius:"50%",display:"inline-block",flexShrink:0,background:activeCategory==="all"?"#fff":"#888"}}/>
               {capitalize(chromeText.allCategories)}
             </button>
@@ -1120,7 +781,7 @@ export function SiteIndex({initialLang}){
               const isActive=activeCategory===label;
               const meta=getPillMeta(label);
               return(
-                <button key={label} type="button" onClick={()=>setActiveCategory(isActive?"all":label)} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(isActive?{background:meta.color,color:"#ffffff",borderColor:meta.color,boxShadow:`0 2px 12px ${meta.color}50`}:{background:meta.bg,color:meta.color,borderColor:`${meta.color}40`})}}>
+                <button key={label} type="button" onClick={()=>setActiveCategory(isActive?"all":label)} aria-pressed={isActive} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(isActive?{background:meta.color,color:"#ffffff",borderColor:meta.color,boxShadow:`0 2px 12px ${meta.color}50`}:{background:meta.bg,color:meta.color,borderColor:`${meta.color}40`})}}>
                   <img src={`${ICON_BASE}${meta.icon}`} alt="" style={{width:20,height:20,objectFit:"contain",flexShrink:0,filter:isActive?"brightness(0) invert(1)":"none",mixBlendMode:isActive?"normal":"multiply"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>
                   {capitalize(label)}
                 </button>
