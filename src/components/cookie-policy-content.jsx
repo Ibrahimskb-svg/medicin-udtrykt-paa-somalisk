@@ -74,7 +74,7 @@ export function CookiePolicyContent({ initialLanguage }) {
   return (
     <main dir={isRtl ? "rtl" : "ltr"} style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px", fontFamily: "system-ui, sans-serif", color: "#1e293b", lineHeight: 1.8 }}>
       <h1 style={{ fontSize: "26px", fontWeight: 800, color: "#0D9488", marginBottom: "8px" }}>{TITLE[language] ?? TITLE.so}</h1>
-      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "20px" }}>
+      <p style={{ fontSize: "13px", color: "#556173", marginBottom: "20px" }}>
         {REVISED_PREFIX[language] ?? REVISED_PREFIX.so}: {formatRevisedDate(COOKIE_REVISED_ISO, language)}
       </p>
 

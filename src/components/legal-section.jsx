@@ -1,9 +1,11 @@
 "use client";
 
-// Samme farvepalette som sitets medicin-kategorier (SLUG_STYLE i site-index.jsx)
-// — genbruges her så de juridiske sider føles som en del af det samme site,
-// i stedet for et løsrevet, gråt dokument. Roterer pr. sektion, ikke pr. sprog.
-export const SECTION_COLORS = ["#DC2626", "#7C3AED", "#D97706", "#0284C7", "#0D9488", "#8B5CF6"];
+// Samme farvepalette som sitets medicin-kategorier (SLUG_STYLE i site-index.jsx),
+// mørknet en anelse i forhold til originalen — de rå farver gav kun 2.9–4.4:1
+// kontrast som overskriftstekst mod sidens baggrund (WCAG AA kræver 4.5:1).
+// Genbruges her så de juridiske sider føles som en del af det samme site, i
+// stedet for et løsrevet, gråt dokument. Roterer pr. sektion, ikke pr. sprog.
+export const SECTION_COLORS = ["#d12424", "#7C3AED", "#a35905", "#0270a9", "#0a766d", "#7d53dd"];
 
 export function Section({ title, color, index, children }) {
   return (

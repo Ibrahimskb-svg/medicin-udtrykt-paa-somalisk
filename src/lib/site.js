@@ -20,15 +20,18 @@ export const languageFlags = {
 
 export const languageThemes = {
   so: {
-    accent1: "#00a676",
+    // Original #00a676 gav kun 3.13:1 mod hvid som tekstfarve (AudioButton
+    // m.fl. bruger accent1 direkte som color, ikke kun baggrund) — WCAG AA
+    // kræver 4.5:1. accent1/accent er derfor mørknet ens, som de var før.
+    accent1: "#00855e",
     accent2: "#0b6b57",
-    accent: "#00a676",
+    accent: "#00855e",
     flash: "#d1fae5",
     badgeBg: "#d1fae5",
     badgeText: "#0b6b57",
     soft: "#ecfdf5",
     softBorder: "#6ee7b7",
-    link: "#00a676",
+    link: "#00855e",
     drugIconBg: "#ecfdf5",
     drugIconBorder: "#6ee7b7",
     langBarAccent: "#00a676",
@@ -36,15 +39,17 @@ export const languageThemes = {
     heroBg: "linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%)",
   },
   da: {
-    accent1: "#0ea5e9",
+    // Samme kontrast-fix som so: #0ea5e9 er kun 2.77:1 mod hvid som tekstfarve
+    // (bruges bl.a. direkte i AudioButton's color-egenskab, ikke kun baggrund).
+    accent1: "#0b7caf",
     accent2: "#60a5fa",
-    accent: "#0ea5e9",
+    accent: "#0b7caf",
     flash: "#e0f2fe",
     badgeBg: "#e0f2fe",
     badgeText: "#0369a1",
     soft: "#f0f9ff",
     softBorder: "#bae6fd",
-    link: "#0ea5e9",
+    link: "#0b7caf",
     drugIconBg: "#f0f9ff",
     drugIconBorder: "#bae6fd",
     langBarAccent: "#0ea5e9",

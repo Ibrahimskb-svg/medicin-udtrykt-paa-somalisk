@@ -9,8 +9,9 @@ const REVISED_PREFIX = { da: "Sidst revideret", en: "Last revised", so: "La cusb
 
 const TITLE = { da: "Persondatapolitik", en: "Privacy Policy", so: "Siyaasadda Xogta Shakhsiga", ar: "سياسة الخصوصية" };
 
-const MAIL = <a href="mailto:Ibrahim_skb@live.dk" style={{ color: "#0D9488", fontWeight: 600 }}>Ibrahim_skb@live.dk</a>;
-const DT_DA = <a href="https://www.datatilsynet.dk" target="_blank" rel="noopener noreferrer" style={{ color: "#0D9488", fontWeight: 600 }}>datatilsynet.dk</a>;
+// #0D9488 giver kun 3.38:1 mod sidens baggrund som almindelig 14px tekst (WCAG AA kræver 4.5:1) — mørknet til #0a766d, samme justering som legal-section.jsx.
+const MAIL = <a href="mailto:Ibrahim_skb@live.dk" style={{ color: "#0a766d", fontWeight: 600 }}>Ibrahim_skb@live.dk</a>;
+const DT_DA = <a href="https://www.datatilsynet.dk" target="_blank" rel="noopener noreferrer" style={{ color: "#0a766d", fontWeight: 600 }}>datatilsynet.dk</a>;
 
 const CONTENT = {
   da: {
@@ -87,7 +88,7 @@ export function PersondatapolitikContent({ initialLanguage }) {
   return (
     <main dir={isRtl ? "rtl" : "ltr"} style={{ maxWidth: "720px", margin: "0 auto", padding: "48px 24px 80px", fontFamily: "system-ui, sans-serif", color: "#1e293b", lineHeight: 1.8 }}>
       <h1 style={{ fontSize: "26px", fontWeight: 800, color: "#0D9488", marginBottom: "8px" }}>{TITLE[language] ?? TITLE.so}</h1>
-      <p style={{ fontSize: "13px", color: "#64748b", marginBottom: "20px" }}>
+      <p style={{ fontSize: "13px", color: "#556173", marginBottom: "20px" }}>
         {REVISED_PREFIX[language] ?? REVISED_PREFIX.so}: {formatRevisedDate(PRIVACY_REVISED_ISO, language)}
       </p>
 

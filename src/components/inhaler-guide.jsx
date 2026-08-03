@@ -478,7 +478,7 @@ function VS5({ language }) {
       <line x1={208} y1={96} x2={208} y2={64} stroke="#334155" strokeWidth={2.5} strokeLinecap="round" />
       <line x1={208} y1={96} x2={230} y2={96} stroke="#dc2626" strokeWidth={2.2} strokeLinecap="round"
         style={{ animation: "ig-clock 5s linear infinite", transformBox: "fill-box", transformOrigin: "208px 96px" }} />
-      <text x={208} y={152} textAnchor="middle" fill="#64748b" fontSize={13} fontWeight={700}>
+      <text x={208} y={152} textAnchor="middle" fill="#556173" fontSize={13} fontWeight={700}>
         {SCENE_COPY.waitSeconds[language] ?? SCENE_COPY.waitSeconds.en}
       </text>
       {/* Cap-on indicator */}
@@ -664,8 +664,8 @@ export function InhalerGuide({ slug, language }) {
   const type    = isVent ? "ventoline" : "symbicort";
 
   const theme = isVent
-    ? { primary: "#0284c7", bg: "#EFF6FF", border: "#bae6fd", soft: "#dbeafe" }
-    : { primary: "#ea580c", bg: "#FFF7ED", border: "#fed7aa", soft: "#ffedd5" };
+    ? { primary: "#0270a9", bg: "#EFF6FF", border: "#bae6fd", soft: "#dbeafe" }
+    : { primary: "#bb460a", bg: "#FFF7ED", border: "#fed7aa", soft: "#ffedd5" };
 
   return (
     <section
@@ -683,7 +683,7 @@ export function InhalerGuide({ slug, language }) {
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 800, color: theme.primary, lineHeight: 1.2 }}>
               {TITLE[language] ?? TITLE.da}
             </h2>
-            <p style={{ margin: "3px 0 0", fontSize: 12, color: "#64748b", fontWeight: 600 }}>
+            <p style={{ margin: "3px 0 0", fontSize: 12, color: "#556173", fontWeight: 600 }}>
               {SUBTITLE[slug]?.[language] ?? SUBTITLE[slug]?.en}
             </p>
           </div>

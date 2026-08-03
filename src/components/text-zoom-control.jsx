@@ -15,6 +15,13 @@ const STEP = 10;
 const DEFAULT_ZOOM = 100;
 const STORAGE_KEY = "somalimed-zoom-level";
 
+// theme.primary (so/ar) er for lys til at bruges som selve tekstfarven eller
+// som baggrund under hvid tekst — kun 3.74:1 / 3.19:1 mod hvid, under WCAG AA's
+// krav på 4.5:1 for normal tekststørrelse. Disse mørkere nuancer bruges kun her,
+// hvor farven bærer tekst — kanter/skygger andre steder i komponenten beholder
+// den lysere theme.primary, som er fin til dekorative formål.
+const TEXT_SAFE_PRIMARY = { so: "#0F766E", da: "#2563EB", en: "#92400E", ar: "#B45309" };
+
 const LABELS = {
   // "caption" er en altid-synlig tekst (ikke kun tooltip/aria-label) — en
   // tooltip virker slet ikke på mobil/touch, og en ældre eller
@@ -73,6 +80,7 @@ export default function TextZoomControl() {
   const isRtl = language === "ar";
   const active = zoom !== DEFAULT_ZOOM;
   const theme = LANG_THEME[language] ?? LANG_THEME.so;
+  const textSafe = TEXT_SAFE_PRIMARY[language] ?? TEXT_SAFE_PRIMARY.so;
 
   if (pathname?.startsWith("/dashboard")) return null;
 
@@ -99,7 +107,7 @@ export default function TextZoomControl() {
         style={{
           fontSize: "10.5px",
           fontWeight: 700,
-          color: theme.primary,
+          color: textSafe,
           whiteSpace: "nowrap",
           direction: isRtl ? "rtl" : "ltr",
         }}
@@ -117,7 +125,7 @@ export default function TextZoomControl() {
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
             width: "26px", height: "26px", borderRadius: "50%", border: "none",
-            background: "transparent", color: zoom <= MIN_ZOOM ? "#cbd5e1" : theme.primary,
+            background: "transparent", color: zoom <= MIN_ZOOM ? "#cbd5e1" : textSafe,
             fontSize: "16px", fontWeight: 700, cursor: zoom <= MIN_ZOOM ? "default" : "pointer",
           }}
         >
@@ -134,7 +142,7 @@ export default function TextZoomControl() {
             padding: "6px 4px",
             borderRadius: "999px",
             border: "none",
-            background: active ? theme.primary : "transparent",
+            background: active ? textSafe : "transparent",
             color: active ? "#ffffff" : "#64748b",
             fontWeight: 700,
             fontSize: "12px",
@@ -153,7 +161,7 @@ export default function TextZoomControl() {
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
             width: "26px", height: "26px", borderRadius: "50%", border: "none",
-            background: "transparent", color: zoom >= MAX_ZOOM ? "#cbd5e1" : theme.primary,
+            background: "transparent", color: zoom >= MAX_ZOOM ? "#cbd5e1" : textSafe,
             fontSize: "16px", fontWeight: 700, cursor: zoom >= MAX_ZOOM ? "default" : "pointer",
           }}
         >

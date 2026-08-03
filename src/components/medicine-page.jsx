@@ -544,8 +544,8 @@ export function MedicinePage({ medicine, initialLang }) {
                   style={{
                     display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
                     padding:"12px", borderRadius:"12px",
-                    background:"#fff", color:"#0D9488", fontWeight:700, fontSize:"14px",
-                    border:"1.5px solid #0D9488",
+                    background:"#fff", color:"#0b7e74", fontWeight:700, fontSize:"14px",
+                    border:"1.5px solid #0b7e74",
                     cursor: qrDataUrl ? "pointer" : "default", opacity: qrDataUrl ? 1 : 0.6,
                   }}
                 >
@@ -667,7 +667,7 @@ export function MedicinePage({ medicine, initialLang }) {
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",
-              background: "#25D366", color: "#fff",
+              background: "#167f3d", color: "#fff",
               fontWeight: 700, fontSize: "13px", textDecoration: "none",
               border: "none", cursor: "pointer",
             }}
