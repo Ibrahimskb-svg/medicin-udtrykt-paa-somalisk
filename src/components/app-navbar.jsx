@@ -171,7 +171,7 @@ export function AppNavbar() {
   return (
     <>
       {/* Desktop Navbar */}
-      <header className="sticky top-0 z-[110] hidden sm:block">
+      <header className="sticky top-0 z-[110] hidden lg:block">
         <nav className="bg-white/90 backdrop-blur-md border-b border-teal-500/10">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <Link className="flex items-center gap-2.5" href={{ pathname: "/", query: { lang: language } }}>
@@ -240,7 +240,7 @@ export function AppNavbar() {
 
                 {contactMenuOpen && (
                   <div
-                    className="absolute mt-2 w-56 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden z-50"
+                    className="absolute mt-2 w-56 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden z-[500]"
                     style={isRtl ? { left: 0 } : { right: 0 }}
                     dir={isRtl ? "rtl" : "ltr"}
                   >
@@ -269,7 +269,7 @@ export function AppNavbar() {
       </header>
 
       {/* Mobile Top Bar */}
-      <header className="sticky top-0 z-[110] block sm:hidden bg-white/90 backdrop-blur-md border-b border-teal-500/10">
+      <header className="sticky top-0 z-[110] block lg:hidden bg-white/90 backdrop-blur-md border-b border-teal-500/10">
         <div className="flex items-center justify-between px-4 h-14" dir={isRtl ? "rtl" : "ltr"}>
           <Link className="flex items-center gap-2" href={{ pathname: "/", query: { lang: language } }}>
             <Image src="/somalimed-icon.svg" alt="Somalimed logo" width={30} height={30} className="rounded-xl" priority />
@@ -311,7 +311,7 @@ export function AppNavbar() {
 
       {/* Mobile Bottom Nav */}
       <nav
-        className="block sm:hidden fixed bottom-0 inset-x-0 z-[110] bg-white/95 backdrop-blur-md border-t border-slate-100"
+        className="block lg:hidden fixed bottom-0 inset-x-0 z-[110] bg-white/95 backdrop-blur-md border-t border-slate-100"
         style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
         dir={isRtl ? "rtl" : "ltr"}
       >

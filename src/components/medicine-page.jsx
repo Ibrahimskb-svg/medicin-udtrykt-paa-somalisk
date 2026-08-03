@@ -906,8 +906,8 @@ export function MedicinePage({ medicine, initialLang }) {
             {data.sourcesText}
           </p>
           <ul className="space-y-2.5 pl-5 text-sm">
-            {(data.sourcesList || []).map((item) => (
-              <li key={item.href}>
+            {(data.sourcesList || []).map((item, i) => (
+              <li key={`${item.href}-${i}`}>
                 <a
                   className="font-semibold hover:underline"
                   href={item.href}
