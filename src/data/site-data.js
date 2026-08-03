@@ -508,11 +508,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/medicin/praeparater/5314"
             },
             {
-              "text": "sundhed.dk – Forhøjet blodtryk, behandling",
+              "text": "sundhed.dk – Dhiig-karka, daaweynta",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             },
             {
-              "text": "sundhed.dk – Forhøjet blodtryk, oversigt",
+              "text": "sundhed.dk – Dhiig-karka, guudmarka",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
             }
           ],
@@ -867,6 +867,7 @@ export const siteData = {
           "doseList": [
             "Badanaa waxaa la qaataa hal mar maalintii, isla saacad u dhow maalin kasta.",
             "Waxaad qaadan kartaa subax ama fiid, laakiin waxa ugu muhiimsan waa inaad joogto ka dhigto.",
+            "Kiniinka waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Ha joojin daawada adigoon la tashan dhakhtarkaaga, xataa haddii aad is leedahay wax dhibaato ah ma qabo."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -913,11 +914,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/2257"
             },
             {
-              "text": "sundhed.dk – Højt kolesterol (dyslipidæmi)",
+              "text": "sundhed.dk – Kolestarool sare (dyslipidemia)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/kolesterolforstyrrelser/hoejt-kolesterol-hyperlipidaemi/"
             },
             {
-              "text": "sundhed.dk – Hjertesygdom, forebyg åreforkalkning i hjertets kranspulsårer",
+              "text": "sundhed.dk – Cudurka wadnaha, ka hortagga xaddibaanka xididdada wadnaha",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
@@ -1316,7 +1317,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             },
             {
-              "text": "sundhed.dk – Mavesår forårsaget af NSAID",
+              "text": "sundhed.dk – Boog calool ah oo ay keento NSAID",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
@@ -1715,11 +1716,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3517"
             },
             {
-              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
@@ -2129,11 +2130,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/401"
             },
             {
-              "text": "sundhed.dk – Forhøjet blodtryk",
+              "text": "sundhed.dk – Dhiig-karka",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
             },
             {
-              "text": "sundhed.dk – Hjertesvigt",
+              "text": "sundhed.dk – Fashilka Wadnaha",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
@@ -2375,11 +2376,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/401"
             },
             {
-              "text": "sundhed.dk – Forhøjet blodtryk",
+              "text": "sundhed.dk – ارتفاع ضغط الدم",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-oversigt/"
             },
             {
-              "text": "sundhed.dk – Hjertesvigt",
+              "text": "sundhed.dk – قصور القلب",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
@@ -2538,11 +2539,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/11"
             },
             {
-              "text": "sundhed.dk – Blodfortyndende behandling",
+              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Hjertekrampe og blodprop i hjertet",
+              "text": "sundhed.dk – Laab-xanuun iyo xinjirowga dhiigga ee wadnaha",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
@@ -2778,11 +2779,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/11"
             },
             {
-              "text": "sundhed.dk – Blodfortyndende behandling",
+              "text": "sundhed.dk – العلاج المميع للدم",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Hjertekrampe og blodprop i hjertet",
+              "text": "sundhed.dk – الذبحة الصدرية والنوبة القلبية",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/koronarsygdom/hjertesygdom-forebyg-aareforkalkning-i-hjertetskranspulsaarer/"
             }
           ],
@@ -2897,6 +2898,7 @@ export const siteData = {
           "doseList": [
             "Dadka waaweyn badanaa waxay qaataan 200 ilaa 400 mg mar kasta, iyadoo u dhexeysa ugu yaraan 4 ilaa 6 saacadood sida loo baahdo.",
             "Ha dhaafin qiyaasta laguu qoray.",
+            "Waxaa ugu wanaagsan in daawada lala qaato cunto ama isla marka cuntada ka dib si loo ilaaliyo caloosha.",
             "Haddii xanuunku sii socdo maalmo badan, la xiriir dhakhtarkaaga halkii aad si joogto ah u sii qaadan lahayd."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -2948,7 +2950,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             },
             {
-              "text": "sundhed.dk – Mavesår forårsaget af NSAID",
+              "text": "sundhed.dk – Boog calool ah oo ay keento NSAID",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
@@ -3188,7 +3190,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             },
             {
-              "text": "sundhed.dk – Mavesår forårsaget af NSAID",
+              "text": "sundhed.dk – قرحة المعدة بسبب NSAID",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/mave-og-tarm/sygdomme/mavesaek/mavesaar-foraarsaget-af-nsaid/"
             }
           ],
@@ -3349,15 +3351,15 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/566"
             },
             {
-              "text": "sundhed.dk – Type 1-diabetes",
+              "text": "sundhed.dk – Sonkorowga nooca 1aad",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-1-hvad-er-det/type-1-diabetes/"
             },
             {
-              "text": "sundhed.dk – Type 2-diabetes",
+              "text": "sundhed.dk – Sonkorowga nooca 2aad",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
-              "text": "sundhed.dk – Hypoglykæmi ved diabetes mellitus",
+              "text": "sundhed.dk – Sonkorta hoosaysa (hypoglycemia) ee la xiriirta sonkorowga",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-1-hvad-er-det/hypoglykaemi-ved-diabetes-mellitus-lavt-blodsukker/"
             }
           ],
@@ -3603,7 +3605,7 @@ export const siteData = {
           "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
           "sourcesList": [
             {
-              "text": "pro.medicin.dk – Insulin humant",
+              "text": "pro.medicin.dk – Insulin (بشري)",
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/566"
             },
             {
@@ -3771,11 +3773,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/2035"
             },
             {
-              "text": "sundhed.dk – Epilepsi, behandling",
+              "text": "sundhed.dk – Suuxdinta, daaweynta",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerne-og-nerver/sygdomme/epilepsi/epilepsi-behandling/"
             },
             {
-              "text": "sundhed.dk – Mani og bipolar lidelse",
+              "text": "sundhed.dk – Xamaasad xad-dhaaf ah iyo cudurka laba-cirifka ah",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/mani-og-bipolar-lidelse/"
             }
           ],
@@ -4129,6 +4131,7 @@ export const siteData = {
           "doseList": [
             "Badanaa waxaa la qaataa hal mar maalintii, isla waqtigaas maalin kasta.",
             "Dadka badankood waxay bilaabaan qiyaas hoose, kadibna si tartiib ah ayaa loo kordhiyaa iyadoo ku xiran jawaabta jirka.",
+            "Kiniinka waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Haddii aad bilowga dareento dawakh, si tartiib ah u kac markaad ka soo kacayso fadhi ama jiif."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -4175,11 +4178,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/medicin/praeparater/4894"
             },
             {
-              "text": "pro.medicin.dk – Angiotensin II-receptorblokkere",
+              "text": "pro.medicin.dk – Xannibayaasha Receptor-ka Angiotensin II",
               "href": "https://pro.medicin.dk/Laegemiddelgrupper/grupper/97038"
             },
             {
-              "text": "sundhed.dk – Forhøjet blodtryk, behandling",
+              "text": "sundhed.dk – Dhiig-karka, daaweynta",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             }
           ],
@@ -4580,11 +4583,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1042"
             },
             {
-              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
-              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
@@ -4993,11 +4996,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3339"
             },
             {
-              "text": "sundhed.dk – Søvnproblemer og søvnløshed",
+              "text": "sundhed.dk – Dhibaatooyinka hurdada iyo hurdo la'aanta",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/soevnproblemer/soevnproblemer-og-soevnloeshed/"
             },
             {
-              "text": "sundhed.dk – Jetlag",
+              "text": "sundhed.dk – Jetlag – isbeddelka hurdada ee socdaalka dheer",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/"
             }
           ],
@@ -5398,11 +5401,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/684"
             },
             {
-              "text": "sundhed.dk – Type 2-diabetes",
+              "text": "sundhed.dk – Sonkorowga nooca 2aad",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/type-2-diabetes/"
             },
             {
-              "text": "sundhed.dk – Type 2-diabetes, oversigt",
+              "text": "sundhed.dk – Sonkorowga nooca 2aad, guudmarka",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
@@ -5820,11 +5823,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/707"
             },
             {
-              "text": "sundhed.dk – Forhøjet blodtryk, behandling",
+              "text": "sundhed.dk – Dhiig-karka, daaweynta",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/hoejt-blodtryk-hypertension/forhoejet-blodtryk-behandling/"
             },
             {
-              "text": "sundhed.dk – Hjertesvigt",
+              "text": "sundhed.dk – Fashilka Wadnaha",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
@@ -6236,7 +6239,7 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/722"
             },
             {
-              "text": "sundhed.dk – Opioider",
+              "text": "sundhed.dk – Opioid-yada",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/narkotiske-stoffer/heroin-og-andre-opiater/"
             }
           ],
@@ -6627,7 +6630,7 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/722"
             },
             {
-              "text": "sundhed.dk – Hvordan behandler man smerter?",
+              "text": "sundhed.dk – Sidee loo daaweeyaa xanuunka?",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/kraeft/sygdomme/behandlingsmetoder/hvordan-behandler-man-smerter/"
             }
           ],
@@ -7792,7 +7795,7 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/812"
             },
             {
-              "text": "sundhed.dk – Paracetamolforgiftning",
+              "text": "sundhed.dk – Sunta Paracetamol",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
@@ -8023,7 +8026,7 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/812"
             },
             {
-              "text": "sundhed.dk – Paracetamolforgiftning",
+              "text": "sundhed.dk – التسمم بالباراسيتامول",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
@@ -8133,6 +8136,7 @@ export const siteData = {
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
             "Qiyaasta waxaa go'aamiya dhakhtarka, waxaana badanaa si tartiib ah loo kordhiyaa maalmaha hore.",
+            "Kiniinnada caadiga ah waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Nooca daawada si tartiib ah u sii daaya mana aha in la jebiyo ama la calaliyo — waa in la liqaa iyadoo dhan.",
             "Ha beddelin qiyaasta adigoon helin talo caafimaad."
           ],
@@ -8413,7 +8417,7 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3128"
             },
             {
-              "text": "sundhed.dk – Antipsykotisk medicin",
+              "text": "sundhed.dk – الأدوية المضادة للذهان",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/antipsykotisk-medicin/"
             }
           ],
@@ -8928,7 +8932,8 @@ export const siteData = {
           "warnList": [
             "Haddii calaamadaha neefta ay ka sii daraan ama aad u baahato daawo degdeg ah si ka badan caadiga, la xiriir dhakhtarkaaga.",
             "Ha joojin daawada adigoon talo ka helin dhakhtarkaaga.",
-            "Haddii aad dareento calaamado daran ama aan caadi ahayn, la xiriir dhakhtarkaaga."
+            "Isticmaalka ka dib, afka biyo ku luqluqo si aad uga yaraato khatarta fangaska iyo xanaaqa hunguriga.",
+            "Haddii aanay daawadu u muuqan mid shaqaynaysa sida la filayay, waa in farsamada buufinta lagu hubiyaa."
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
           "ramadanList": [
@@ -8957,11 +8962,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/medicin/praeparater/2789"
             },
             {
-              "text": "sundhed.dk – Astma, medicinsk behandling",
+              "text": "sundhed.dk – Neef-mareenka, daaweynta caafimaad",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/lunger/sygdomme/astma/astma-medicinsk-behandling/"
             },
             {
-              "text": "sundhed.dk – Astma og inhalationsteknik",
+              "text": "sundhed.dk – Neef-mareenka iyo farsamada buufinta",
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
@@ -9200,11 +9205,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/medicin/praeparater/2789"
             },
             {
-              "text": "sundhed.dk – Astma, medicinsk behandling",
+              "text": "sundhed.dk – الربو، العلاج الطبي",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/lunger/sygdomme/astma/astma-medicinsk-behandling/"
             },
             {
-              "text": "sundhed.dk – Astma og inhalationsteknik",
+              "text": "sundhed.dk – الربو وتقنية الاستنشاق",
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
@@ -9355,11 +9360,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/medicin/praeparater/404"
             },
             {
-              "text": "sundhed.dk – Astma, medicinsk behandling",
+              "text": "sundhed.dk – Neef-mareenka, daaweynta caafimaad",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/lunger/sygdomme/astma/astma-medicinsk-behandling/"
             },
             {
-              "text": "sundhed.dk – Astma og inhalationsteknik",
+              "text": "sundhed.dk – Neef-mareenka iyo farsamada buufinta",
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
@@ -9592,11 +9597,11 @@ export const siteData = {
               "href": "https://pro.medicin.dk/medicin/praeparater/404"
             },
             {
-              "text": "sundhed.dk – Astma, medicinsk behandling",
+              "text": "sundhed.dk – الربو، العلاج الطبي",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/lunger/sygdomme/astma/astma-medicinsk-behandling/"
             },
             {
-              "text": "sundhed.dk – Astma og inhalationsteknik",
+              "text": "sundhed.dk – الربو وتقنية الاستنشاق",
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
@@ -9769,7 +9774,7 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3381"
             },
             {
-              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
+              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
@@ -10021,7 +10026,7 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3381"
             },
             {
-              "text": "sundhed.dk – Antikoagulationsbehandling",
+              "text": "sundhed.dk – مضادات التخثر (الأدوية المميعة للدم)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
@@ -10184,7 +10189,7 @@ export const siteData = {
               "href": "https://min.medicin.dk/medicin/praeparater/1881"
             },
             {
-              "text": "sundhed.dk – Søvnløshed",
+              "text": "sundhed.dk – Hurdo la'aan",
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/sjaelland/almen-praksis/patientbehandling/laegemidler/basislisten-sjaelland/basislisten-efter-o-z/soevnloeshed/"
             }
           ],
