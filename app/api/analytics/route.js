@@ -132,6 +132,28 @@ export async function GET(request) {
       metrics: [{ name: "activeUsers" }],
     });
 
+    // Live-antal søgninger uden resultat (sidste ~30 min. via GA4's realtime-API,
+    // typisk klar inden for ca. et minut) — supplerer 28-dages-rapporten længere
+    // nede, som kan have flere timers forsinkelse. Kun selve ANTALLET kan vises
+    // i realtid: GA4's realtime-API tillader højst 5 "realtime-aktiverede" custom
+    // dimensions pr. konto, og "search_term" er ikke blandt dem (bekræftet ved at
+    // teste dimensionen isoleret — den fejler med INVALID_ARGUMENT uden filter
+    // overhovedet), så selve søgeordet kan først ses i panelet nedenfor.
+    let liveNoResultCount = 0;
+    try {
+      const [liveNoResultReport] = await client.runRealtimeReport({
+        property,
+        metrics: [{ name: "eventCount" }],
+        dimensionFilter: {
+          filter: { fieldName: "eventName", stringFilter: { matchType: "EXACT", value: "search_no_results" } },
+        },
+      });
+      const row = rowsOf(liveNoResultReport)[0];
+      liveNoResultCount = row ? Number(row.metricValues[0].value) : 0;
+    } catch (err) {
+      console.error("GA4 live no-result-search count fetch failed:", err.message);
+    }
+
     // Prior 28-day window immediately before the current one, for period-over-period growth.
     const [previousPeriodReport] = await client.runReport({
       property,
@@ -432,6 +454,7 @@ export async function GET(request) {
       siteLanguageTrend,
       noResultSearches,
       noResultSearchesUnavailable,
+      liveNoResultCount,
       browsers,
       operatingSystems,
       byHour,

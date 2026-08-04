@@ -524,6 +524,105 @@ export function AnalyticsDashboard() {
             </div>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+              <div
+                style={{
+                  background: "#FFFFFF",
+                  border: "1px solid #BFE9CE",
+                  borderRadius: "16px",
+                  padding: "22px",
+                  flex: "1 1 320px",
+                  minWidth: "280px",
+                  position: "relative",
+                  overflow: "hidden",
+                  boxShadow: "0 1px 3px rgba(15, 118, 110, 0.08)",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute", top: 0, left: 0, right: 0, height: "3px",
+                    background: "linear-gradient(90deg, #0ca30c, #0D9488, #0ca30c)",
+                    backgroundSize: "200% 100%",
+                    animation: "sm-live-sheen 3s linear infinite",
+                  }}
+                />
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", margin: "0 0 2px 0" }}>
+                  <h2 style={{ fontSize: "15px", fontWeight: 700, color: "#0F1923", margin: 0 }}>
+                    Søgninger uden resultat
+                  </h2>
+                  <span
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: "6px",
+                      background: "linear-gradient(135deg, #0ca30c, #0a8a0a)",
+                      color: "#fff", fontSize: "10px", fontWeight: 800,
+                      letterSpacing: "0.06em", textTransform: "uppercase",
+                      padding: "3px 9px 3px 7px", borderRadius: "999px",
+                      boxShadow: "0 2px 6px rgba(12, 163, 12, 0.35)",
+                    }}
+                  >
+                    <span style={{ position: "relative", width: "7px", height: "7px", flexShrink: 0 }}>
+                      <span
+                        style={{
+                          position: "absolute", inset: 0, borderRadius: "50%",
+                          background: "#ffffff", animation: "sm-pulse-ring 2s ease-out infinite",
+                        }}
+                      />
+                      <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "#ffffff" }} />
+                    </span>
+                    Live
+                  </span>
+                </div>
+                <p style={{ fontSize: "12.5px", color: "#5A6A7A", margin: "0 0 16px 0" }}>
+                  Sidste ~30 minutter — klar inden for ca. et minut. Selve søgeordene dukker op i panelet
+                  nedenfor (Google Analytics viser kun antallet i realtid, ikke ordet selv).
+                </p>
+                <style>{`
+                  @keyframes sm-live-sheen {
+                    0% { background-position: 200% 0; }
+                    100% { background-position: -200% 0; }
+                  }
+                `}</style>
+                {data.liveNoResultCount > 0 ? (
+                  <div
+                    style={{
+                      display: "flex", alignItems: "center", gap: "16px",
+                      padding: "18px 20px", borderRadius: "14px",
+                      background: "linear-gradient(135deg, #FEF3E2, #FFF9EE)",
+                      border: "1.5px solid #F5C878",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "38px", fontWeight: 800, lineHeight: 1, color: "#0F1923",
+                        fontVariantNumeric: "tabular-nums",
+                      }}
+                    >
+                      {data.liveNoResultCount}
+                    </span>
+                    <p style={{ margin: 0, fontSize: "13.5px", fontWeight: 600, color: "#9A5B1E", lineHeight: 1.5 }}>
+                      {data.liveNoResultCount === 1 ? "søgning uden resultat" : "søgninger uden resultat"}
+                      <br />lige nu — se ordene nedenfor om lidt
+                    </p>
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      display: "flex", flexDirection: "column", alignItems: "center", gap: "6px",
+                      padding: "24px 16px", borderRadius: "14px",
+                      background: "linear-gradient(135deg, #ECFDF5, #F0FDFA)",
+                      border: "1.5px dashed #6EE7B7",
+                      textAlign: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "28px", lineHeight: 1 }}>👀</span>
+                    <p style={{ color: "#0F766E", fontSize: "13.5px", fontWeight: 600, margin: 0 }}>
+                      Ingen søgninger uden resultat lige nu
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
               <Card
                 title="Søgninger uden resultat"
                 subtitle="Hvad folk har ledt efter, som ikke er på siden endnu, sidste 28 dage"
