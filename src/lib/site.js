@@ -123,6 +123,11 @@ export const uiText = {
     voiceErrorDenied: "Idanka mikirifoonka lama helin. Fadlan ogolow.",
     voiceErrorNoSpeech: "Wax cod ah lama helin. Isku day mar kale.",
     voiceErrorGeneric: "Wax baa qaldamay. Isku day mar kale.",
+    photoLabel: "Sawir baakadda daawada",
+    photoProcessing: "Waan akhrinayaa sawirka...",
+    photoNotFoundTitle: "Daawadan lama helin liiska",
+    photoNotFoundBody: "Daawadan lagama helin 25-ka daawo ee liiska hadda, laakiin Ibraahim wuxuu si joogto ah ugu dari doonaa daawooyin cusub. Isku day sawir kale, ama raadi magaca daawada gacanta.",
+    photoErrorGeneric: "Wax baa qaldamay markii sawirka la akhrinayay. Isku day mar kale.",
   },
   da: {
     navbarTitle: "somalimed",
@@ -156,6 +161,11 @@ export const uiText = {
     voiceErrorDenied: "Mikrofonadgang blev ikke givet. Tillad venligst adgang.",
     voiceErrorNoSpeech: "Hørte ikke noget. Prøv igen.",
     voiceErrorGeneric: "Noget gik galt. Prøv igen.",
+    photoLabel: "Fotografer medicinæske",
+    photoProcessing: "Læser billedet...",
+    photoNotFoundTitle: "Denne medicin er ikke på listen endnu",
+    photoNotFoundBody: "Vi kunne ikke finde denne medicin blandt de 25 på listen lige nu, men Ibrahim tilføjer løbende flere. Prøv et andet billede, eller søg efter navnet manuelt.",
+    photoErrorGeneric: "Noget gik galt under læsning af billedet. Prøv igen.",
   },
   en: {
     navbarTitle: "somalimed",
@@ -189,6 +199,11 @@ export const uiText = {
     voiceErrorDenied: "Microphone access wasn't granted. Please allow access.",
     voiceErrorNoSpeech: "Didn't catch that. Try again.",
     voiceErrorGeneric: "Something went wrong. Try again.",
+    photoLabel: "Photograph medicine box",
+    photoProcessing: "Reading the photo...",
+    photoNotFoundTitle: "This medicine isn't on the list yet",
+    photoNotFoundBody: "We couldn't find this medicine among the 25 currently on the list, but Ibrahim keeps adding more over time. Try another photo, or search for the name manually.",
+    photoErrorGeneric: "Something went wrong while reading the photo. Try again.",
   },
   ar: {
     navbarEyebrow: "دليل رقمي",
@@ -223,6 +238,11 @@ export const uiText = {
     voiceErrorDenied: "لم يتم منح إذن الميكروفون. يرجى السماح بالوصول.",
     voiceErrorNoSpeech: "لم يتم التقاط أي صوت. حاول مرة أخرى.",
     voiceErrorGeneric: "حدث خطأ ما. حاول مرة أخرى.",
+    photoLabel: "البحث بالصورة",
+    photoProcessing: "جارٍ قراءة الصورة...",
+    photoNotFoundTitle: "هذا الدواء غير موجود في القائمة بعد",
+    photoNotFoundBody: "لم نتمكن من العثور على هذا الدواء ضمن الأدوية المتوفرة حاليا في القائمة (25 دواء)، لكن إبراهيم يضيف المزيد باستمرار. جرّب صورة أخرى، أو ابحث عن الاسم يدويا.",
+    photoErrorGeneric: "حدث خطأ أثناء قراءة الصورة. حاول مرة أخرى.",
   },
 };
 
