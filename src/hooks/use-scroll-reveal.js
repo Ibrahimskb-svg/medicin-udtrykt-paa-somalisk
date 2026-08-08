@@ -22,5 +22,7 @@ export function useScrollReveal(dependencies = []) {
     elements.forEach((element) => observer.observe(element));
 
     return () => observer.disconnect();
-  }, dependencies);
+    // `dependencies` is this hook's whole point: callers pass their own list
+    // to control re-scans, so it can never be a static array literal here.
+  }, dependencies); // eslint-disable-line react-hooks/exhaustive-deps
 }

@@ -18,14 +18,17 @@ export function DonutChart({ items, labelMap = {}, unit }) {
   }
 
   const total = items.reduce((sum, d) => sum + (d.value ?? 0), 0) || 1;
-  let cumulative = 0;
-  const segments = items.map((item, i) => {
-    const pct = (item.value ?? 0) / total;
-    const dash = pct * CIRC;
-    const offset = cumulative * CIRC;
-    cumulative += pct;
-    return { ...item, pct, dash, offset, color: PALETTE[i % PALETTE.length] };
-  });
+  const segments = items.reduce(
+    (acc, item, i) => {
+      const pct = (item.value ?? 0) / total;
+      const dash = pct * CIRC;
+      const offset = acc.cumulative * CIRC;
+      acc.list.push({ ...item, pct, dash, offset, color: PALETTE[i % PALETTE.length] });
+      acc.cumulative += pct;
+      return acc;
+    },
+    { list: [], cumulative: 0 }
+  ).list;
 
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "20px", flexWrap: "wrap" }}>

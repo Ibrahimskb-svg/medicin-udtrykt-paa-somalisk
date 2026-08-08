@@ -638,8 +638,8 @@ export function AnalyticsDashboard() {
                     <span style={{ fontSize: "20px", lineHeight: 1 }}>⚙️</span>
                     <p style={{ color: "#9A5B1E", fontSize: "13px", lineHeight: 1.6, margin: 0 }}>
                       Ikke sat op endnu i Google Analytics. Opret en custom dimension i GA4: Admin →
-                      Custom definitions → Create custom dimension → navn "search_term", scope "Event",
-                      event-parameter "search_term". Det kan tage op til et døgn efter oprettelse, før
+                      Custom definitions → Create custom dimension → navn &ldquo;search_term&rdquo;, scope &ldquo;Event&rdquo;,
+                      event-parameter &ldquo;search_term&rdquo;. Det kan tage op til et døgn efter oprettelse, før
                       data begynder at dukke op her.
                     </p>
                   </div>

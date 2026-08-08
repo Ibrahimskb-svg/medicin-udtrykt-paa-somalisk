@@ -5,7 +5,8 @@
     "dev": "node scripts/generate-last-revised.js && next dev",
     "prebuild": "node scripts/generate-last-revised.js",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@google-analytics/data": "^6.1.0",
@@ -20,5 +21,9 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.0"
   }
 }

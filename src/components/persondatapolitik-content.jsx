@@ -43,7 +43,7 @@ const CONTENT = {
       { title: "Legal basis", body: "The contact form is processed based on your consent, given by choosing to send it. Statistics (GA4) and chat (Crisp) are processed based on legitimate interest in running and improving the site — both can be opted out of via the cookie banner." },
       { title: "Is your data shared with others?", body: "The contact form is sent only to Ibrahim Dahir Hanaf. Google and Crisp process data as described in my Cookie Policy. Your data is never sold to third parties." },
       { title: "Your rights", body: <>You have the right to access, correct or delete the data I hold about you, and the right to object to the processing. Contact {MAIL} to exercise your rights. You can also file a complaint with the Danish Data Protection Agency at {DT_DA}.</> },
-      { title: "Contact", body: <>If you have questions about my processing of personal data, you're welcome to contact me via the chat function on the site or at {MAIL}.</> },
+      { title: "Contact", body: <>If you have questions about my processing of personal data, you&apos;re welcome to contact me via the chat function on the site or at {MAIL}.</> },
     ],
   },
   so: {
@@ -54,12 +54,12 @@ const CONTENT = {
       ["Crisp Chat", "Fariimaha chat-ka (haddii aad ila soo xiriirto)", "Si aan uga jawaabo su'aalahaaga iyada oo loo marayo chat-ka tooska ah.", "Ilaa 1 sano — faahfaahinta ka eeg Siyaasadda Cookies-ka."],
     ],
     sections: [
-      { title: "Mas'uulka xogta shakhsiga", body: <>Ibraahim Dahir Xanaf ayaa mas'uul ka ah xogta shakhsiga ee lagu ururiyo laguna habeeyo somalimed.dk. La xiriir: {MAIL}</> },
+      { title: "Mas'uulka xogta shakhsiga", body: <>Ibraahim Dahir Xanaf ayaa mas&apos;uul ka ah xogta shakhsiga ee lagu ururiyo laguna habeeyo somalimed.dk. La xiriir: {MAIL}</> },
       { title: "Xogtee ayaan ururiyaa, maxaase loo ururiyaa?", table: true },
       { title: "Aasaaska sharciyeed", body: "Foomka xiriirka waxaa lagu habeeyaa oggolaanshahaaga, maadaama aad adigu dooranayso inaad ii soo dirto. Tirakoobka (GA4) iyo Crisp Chat waxaa lagu habeeyaa dano sharci ah oo la xiriira maamulka iyo horumarinta bogga. Waxaad ka diidi kartaa labadaba adiga oo adeegsanaya ogeysiiska cookies-ka." },
       { title: "Xogtaada ma lala wadaagaa cid kale?", body: "Foomka xiriirka waxaa loo diraa oo keliya Ibraahim Dahir Xanaf. Google iyo Crisp waxay xogta u habeeyaan sida lagu sharaxay Siyaasadda Cookies-ka. Wax xog ah lagama iibiyo cid saddexaad." },
       { title: "Xuquuqdaada", body: <>Waxaad xaq u leedahay inaad codsato inaad aragto, saxdo ama tirtirto xogta aan kaa hayo. Waxa kale oo aad xaq u leedahay inaad ka soo horjeedsato habaynta xogtaada. Si aad u isticmaasho xuquuqdaada, kala xiriir {MAIL}.<br /><br />Waxaad sidoo kale cabasho u gudbin kartaa Datatilsynet adiga oo booqanaya {DT_DA}.</> },
-      { title: "Xiriir", body: <>Haddii aad qabto wax su'aalo ah oo ku saabsan habaynta xogtaada shakhsiga, waxaad ila soo xiriiri kartaa adeegga wada sheekaysiga (chat-ka) ee bogga ama email-ka: {MAIL}.</> },
+      { title: "Xiriir", body: <>Haddii aad qabto wax su&apos;aalo ah oo ku saabsan habaynta xogtaada shakhsiga, waxaad ila soo xiriiri kartaa adeegga wada sheekaysiga (chat-ka) ee bogga ama email-ka: {MAIL}.</> },
     ],
   },
   ar: {
