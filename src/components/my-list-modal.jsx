@@ -4,6 +4,7 @@ import { getIndexData, getDisplayName, getMedicine, getAccentColor } from "../li
 import { getMyList, addToMyList, removeFromMyList, subscribeMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { knownInteractions, pairKey, CHECKED_DATE } from "../data/interactions";
+import { BatchScanPanel } from "./batch-scan-panel";
 
 const indexData = getIndexData();
 
@@ -420,6 +421,9 @@ export function MyListModal({ language, onClose }) {
       <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.7, margin: "0 0 22px", textAlign: isRtl ? "right" : "left" }}>
         {t.intro}
       </p>
+
+      {/* ── Serie-scan (kamera) ────────────────────────────────────────── */}
+      <BatchScanPanel language={language} />
 
       {/* ── Søgning ────────────────────────────────────────────────────── */}
       <div
