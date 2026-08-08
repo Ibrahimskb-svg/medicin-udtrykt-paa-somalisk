@@ -15,13 +15,74 @@ function CameraIcon() {
 // Logger et OCR-scan uden match til samme GA4-event som "søgning uden
 // resultat" (site-index.jsx) — så et fotograferet, ukendt lægemiddel dukker op
 // i det samme live-panel på dashboardet, og fodrer den samme prioriterings-liste
-// over hvad der bør tilføjes næste gang.
+// over hvad der bør tilføjes næste gang. Bruges også til at diagnosticere
+// forkerte OCR-læsninger (se hvad der reelt blev genkendt, uden at skulle
+// gengive brugerens foto).
 function reportNoMatch(ocrText) {
   const term = (ocrText || "").trim().slice(0, 60).toLowerCase();
+  console.info("[medicine-photo] Intet match. OCR læste:", JSON.stringify(ocrText));
   if (!term) return;
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
     window.gtag("event", "search_no_results", { search_term: `📷 ${term}` });
   }
+}
+
+// Rigtige foto af medicinæsker (genskin, vinkler, små skrifttyper, logoer) er
+// langt sværere for OCR at læse end en ren, plan tekstplakat. Gråtoner +
+// kontrastforstærkning før genkendelsen er en veldokumenteret måde at forbedre
+// Tesseracts nøjagtighed på den slags "rigtige" billeder — samt at skalere
+// meget store mobilfotos ned, hvilket både er hurtigere og ofte mere præcist,
+// end at lade OCR'en arbejde på fulde 12MP-billeder.
+async function preprocessForOCR(dataUrl) {
+  const img = await new Promise((resolve, reject) => {
+    const el = new Image();
+    el.onload = () => resolve(el);
+    el.onerror = reject;
+    el.src = dataUrl;
+  });
+
+  const MAX_DIM = 1600;
+  const scale = Math.min(1, MAX_DIM / Math.max(img.width, img.height));
+  const w = Math.round(img.width * scale);
+  const h = Math.round(img.height * scale);
+
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0, w, h);
+
+  const imageData = ctx.getImageData(0, 0, w, h);
+  const px = imageData.data;
+
+  // Gråtone (vægtet luminans) for hver pixel.
+  const gray = new Uint8ClampedArray(w * h);
+  for (let i = 0; i < gray.length; i += 1) {
+    const o = i * 4;
+    gray[i] = 0.299 * px[o] + 0.587 * px[o + 1] + 0.114 * px[o + 2];
+  }
+
+  // Kontraststrækning: find det faktiske lyseste/mørkeste punkt i billedet,
+  // og skalér hele spektret ud til fuld 0-255 — gør svag/udvasket skrift på et
+  // fotograferet, skinnende medicinlabel langt tydeligere for OCR'en.
+  let min = 255;
+  let max = 0;
+  for (let i = 0; i < gray.length; i += 1) {
+    if (gray[i] < min) min = gray[i];
+    if (gray[i] > max) max = gray[i];
+  }
+  const range = max - min || 1;
+
+  for (let i = 0; i < gray.length; i += 1) {
+    const stretched = ((gray[i] - min) / range) * 255;
+    const o = i * 4;
+    px[o] = stretched;
+    px[o + 1] = stretched;
+    px[o + 2] = stretched;
+  }
+  ctx.putImageData(imageData, 0, 0);
+
+  return canvas.toDataURL("image/png");
 }
 
 export function MedicinePhotoButton({ language, text = {} }) {
@@ -47,12 +108,14 @@ export function MedicinePhotoButton({ language, text = {} }) {
         reader.readAsDataURL(file);
       });
 
+      const processedDataUrl = await preprocessForOCR(dataUrl);
+
       // Selv-hostede worker/core-filer i stedet for bundlerens auto-pakkede
       // udgave — Turbopack pakkede Tesseracts worker forkert ("Error
       // attempting to read image"), så vi peger direkte på de officielle,
       // uændrede filer fra pakken (kopieret til /public/tesseract i build).
       const Tesseract = (await import("tesseract.js")).default;
-      const { data } = await Tesseract.recognize(dataUrl, "eng", {
+      const { data } = await Tesseract.recognize(processedDataUrl, "eng", {
         workerPath: "/tesseract/worker.min.js",
         corePath: "/tesseract/tesseract-core-simd-lstm.wasm.js",
       });

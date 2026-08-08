@@ -6,30 +6,35 @@
 // Hvert opslag har det danske generiske navn (fra slug'en) plus kendte
 // handelsnavne, der faktisk står trykt på danske medicinpakninger — fx
 // "Imozop" for zopiclon, eller det latinske navn i parentes for Eliquis/Xarelto.
+// Både danske OG internationale handelsnavne — mange brugere har medicin
+// købt eller sendt fra udlandet (fx Panadol i stedet for det danske Panodil),
+// ikke kun fra et dansk apotek. Kun navne vi er helt sikre på reelt refererer
+// til netop dette virkestof er med — en forkert alias er værre end en manglende,
+// fordi den ville sende nogen hen til information om det forkerte lægemiddel.
 export const MEDICINE_ALIASES = {
-  amlodipin: ["amlodipin"],
-  atorvastatin: ["atorvastatin"],
-  diclofenac: ["diclofenac", "voltaren"],
+  amlodipin: ["amlodipin", "norvasc"],
+  atorvastatin: ["atorvastatin", "lipitor"],
+  diclofenac: ["diclofenac", "voltaren", "cataflam"],
   eliquis: ["eliquis", "apixaban"],
-  enalapril: ["enalapril"],
+  enalapril: ["enalapril", "renitec", "vasotec"],
   hjertemagnyl: ["hjertemagnyl", "magnyl"],
-  ibuprofen: ["ibuprofen", "ipren"],
+  ibuprofen: ["ibuprofen", "ipren", "nurofen", "advil", "brufen"],
   insulin: ["insulin"],
   lamotrigin: ["lamotrigin", "lamictal"],
   losartan: ["losartan", "cozaar"],
-  marevan: ["marevan", "warfarin"],
+  marevan: ["marevan", "warfarin", "coumadin"],
   melatonin: ["melatonin", "circadin"],
-  metformin: ["metformin"],
-  metoprolol: ["metoprolol", "selo-zok", "seloken"],
+  metformin: ["metformin", "glucophage"],
+  metoprolol: ["metoprolol", "selo-zok", "seloken", "lopressor", "toprol"],
   morfin_tablet: ["morfin", "dolcontin", "malfin"],
   morfin_injektion: ["morfin injektion", "morfin inj"],
-  naproxen: ["naproxen", "naprosyn"],
-  pantoprazol: ["pantoprazol", "pantoloc"],
-  paracetamol: ["paracetamol", "pinex", "panodil"],
+  naproxen: ["naproxen", "naprosyn", "aleve"],
+  pantoprazol: ["pantoprazol", "pantoloc", "protonix"],
+  paracetamol: ["paracetamol", "pinex", "panodil", "panadol", "tylenol", "acetaminophen"],
   quetiapin: ["quetiapin", "seroquel"],
   sertralin: ["sertralin", "zoloft"],
   symbicort: ["symbicort"],
-  ventoline: ["ventoline", "salbutamol"],
+  ventoline: ["ventoline", "salbutamol", "albuterol", "ventolin"],
   xarelto: ["xarelto", "rivaroxaban"],
   zopiclon: ["zopiclon", "imozop", "zopiclone"],
 };
