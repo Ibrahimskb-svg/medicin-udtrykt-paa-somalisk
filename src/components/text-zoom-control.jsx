@@ -104,6 +104,7 @@ export default function TextZoomControl() {
       }}
     >
       <span
+        className="sm-zoom-caption"
         style={{
           fontSize: "10.5px",
           fontWeight: 700,
@@ -114,6 +115,11 @@ export default function TextZoomControl() {
       >
         {t.caption}
       </span>
+      <style>{`
+        @media (max-width: 480px) {
+          .sm-zoom-caption { display: none; }
+        }
+      `}</style>
 
       <div style={{ display: "flex", alignItems: "center", gap: "2px" }}>
         <button
