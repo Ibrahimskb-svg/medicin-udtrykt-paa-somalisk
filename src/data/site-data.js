@@ -8849,6 +8849,12 @@ export const siteData = {
       "sections": [
         {
           "variant": "use",
+          "icon": "💊",
+          "titleKey": "useTitle",
+          "listKey": "useList"
+        },
+        {
+          "variant": "dose",
           "icon": "⏰",
           "titleKey": "doseTitle",
           "listKey": "doseList"
@@ -9248,6 +9254,12 @@ export const siteData = {
       "sections": [
         {
           "variant": "use",
+          "icon": "💊",
+          "titleKey": "useTitle",
+          "listKey": "useList"
+        },
+        {
+          "variant": "dose",
           "icon": "⏰",
           "titleKey": "doseTitle",
           "listKey": "doseList"

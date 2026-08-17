@@ -35,6 +35,7 @@ const CONTENT = {
       { title: "Which cookies do I use?", table: true },
       { title: "Who do I share data with?", body: "Data is shared only with Google (Analytics) and Crisp for the purposes described above. No data is sold to third parties." },
       { title: "Withdrawing your consent", body: "You can delete cookies at any time in your browser settings. Deleting cookies from somalimed.dk will reset your choice and show the cookie banner again." },
+      { title: "Contact", body: "If you have any questions about my use of cookies, feel free to contact me via the chat function on the site." },
     ],
   },
   so: {

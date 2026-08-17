@@ -4,20 +4,6 @@ export const languages = ["so", "da", "en", "ar"];
 export const rtlLanguages = new Set(["ar"]);
 export const arabicAudioLabel = "استمع إلى التسجيل";
 
-export const languageLabels = {
-  so: "Somalisk",
-  da: "Dansk",
-  en: "Engelsk",
-  ar: "Arabisk",
-};
-
-export const languageFlags = {
-  so: "🇸🇴",
-  da: "🇩🇰",
-  en: "🇬🇧",
-  ar: "🇸🇦",
-};
-
 export const languageThemes = {
   so: {
     // Original #00a676 gav kun 3.13:1 mod hvid som tekstfarve (AudioButton
@@ -245,6 +231,15 @@ export const uiText = {
     photoErrorGeneric: "حدث خطأ أثناء قراءة الصورة. حاول مرة أخرى.",
   },
 };
+
+const LANGUAGE_NAME_KEYS = { so: "videoTabSo", da: "videoTabDa", en: "videoTabEn", ar: "videoTabAr" };
+
+// Sprognavnene vises på det aktive UI-sprog (ikke altid dansk) — genbruger
+// videoTab-oversættelserne, som allerede findes korrekt på alle 4 sprog.
+export function getLanguageName(uiLanguage, code) {
+  const t = uiText[uiLanguage] ?? uiText.so;
+  return t[LANGUAGE_NAME_KEYS[code]];
+}
 
 export const sectionIcons = {
   use: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

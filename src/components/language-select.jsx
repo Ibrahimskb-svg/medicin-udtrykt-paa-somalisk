@@ -1,4 +1,5 @@
-import { languageFlags, languageLabels, languages } from "../lib/site";
+import { getLanguageName, languages } from "../lib/site";
+import { FlagIcon } from "./flag-icon";
 
 export function LanguageSelect({ label, value, onChange }) {
   return (
@@ -34,8 +35,8 @@ export function LanguageSelect({ label, value, onChange }) {
                   }
             }
           >
-            <span style={{ fontSize: "22px", lineHeight: 1 }} aria-hidden="true">{languageFlags[code]}</span>
-            <span>{languageLabels[code]}</span>
+            <FlagIcon language={code} size={22} />
+            <span>{getLanguageName(value, code)}</span>
           </button>
         ))}
       </div>

@@ -4,7 +4,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { getStoredLanguage, notifyLanguageChange, subscribeToLanguageChange } from "../lib/language";
-import { languageFlags, languageLabels, languages, languageThemes, uiText } from "../lib/site";
+import { getLanguageName, languages, languageThemes, uiText } from "../lib/site";
+import { FlagIcon } from "./flag-icon";
 
 // Sørger for at labels matcher modal-titlerne i SiteIndex
 const NAV_LABELS = {
@@ -19,7 +20,7 @@ const NAV_LABELS_SHORT = {
   da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin", findPharmacy:"Apotek" },
   en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds", findPharmacy:"Pharmacy" },
   so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Raadi farmashiye" },
-  ar: { me:"عني",      site:"حول",        faq:"FAQ",      contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية" },
+  ar: { me:"عني",      site:"حول",        faq:"الأسئلة",  contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية" },
 };
 
 const NAV_ICON_COLORS = {
@@ -205,20 +206,18 @@ export function AppNavbar() {
                       key={code}
                       type="button"
                       onClick={() => handleLanguageSelect(code)}
-                      title={languageLabels[code]}
-                      aria-label={languageLabels[code]}
+                      title={getLanguageName(language, code)}
+                      aria-label={getLanguageName(language, code)}
                       aria-pressed={isActive}
                       className="flex items-center justify-center rounded-full transition-all"
                       style={{
                         width: 32,
                         height: 32,
-                        fontSize: "16px",
-                        lineHeight: 1,
                         background: isActive ? theme.accent1 : "transparent",
                         boxShadow: isActive ? `0 1px 4px ${theme.accent1}80` : "none",
                       }}
                     >
-                      {languageFlags[code]}
+                      <FlagIcon language={code} size={18} />
                     </button>
                   );
                 })}
@@ -288,20 +287,18 @@ export function AppNavbar() {
                   key={code}
                   type="button"
                   onClick={() => handleLanguageSelect(code)}
-                  title={languageLabels[code]}
-                  aria-label={languageLabels[code]}
+                  title={getLanguageName(language, code)}
+                  aria-label={getLanguageName(language, code)}
                   aria-pressed={isActive}
                   className="flex items-center justify-center rounded-full transition-all"
                   style={{
                     width: 30,
                     height: 30,
-                    fontSize: "15px",
-                    lineHeight: 1,
                     background: isActive ? theme.accent1 : "transparent",
                     boxShadow: isActive ? `0 1px 4px ${theme.accent1}80` : "none",
                   }}
                 >
-                  {languageFlags[code]}
+                  <FlagIcon language={code} size={17} />
                 </button>
               );
             })}
