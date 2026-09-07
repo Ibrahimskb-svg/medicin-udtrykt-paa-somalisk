@@ -31,11 +31,17 @@ export async function generateMetadata({ params, searchParams }) {
   const subtitle = getIndexData().subtitles?.[medicine.slug]?.[lang];
   const title = buildPageTitle(data.drugName, subtitle) || medicine.title;
 
+  // Canonical peger nu på sig selv (inkl. ?lang=), i stedet for altid på den
+  // sprogløse "so"-URL — ellers fortæller vi Google at alle 4 sprogversioner
+  // er duplikater af den somaliske side, og kun den bliver indekseret.
+  const canonicalPath =
+    lang === "so" ? `/${medicine.slug}` : `/${medicine.slug}?lang=${lang}`;
+
   return {
     title: title || "Lægemiddelinformation på somalisk",
     description: data.introBox,
     alternates: {
-      canonical: `/${medicine.slug}`,
+      canonical: canonicalPath,
       languages: Object.fromEntries(languages.map((l) => [l, `/${medicine.slug}?lang=${l}`])),
     },
   };
