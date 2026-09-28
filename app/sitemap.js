@@ -21,6 +21,14 @@ export default function sitemap() {
     priority: 1.0,
   }));
 
+  // Pharmacy-term glossary for each language
+  const glossaryUrls = languages.map((lang) => ({
+    url: `${baseUrl}/ordliste?lang=${lang}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
   // Medicine pages for each language
   const medicineUrls = medicines.flatMap((slug) =>
     languages.map((lang) => ({
@@ -31,5 +39,5 @@ export default function sitemap() {
     }))
   );
 
-  return [...frontpageUrls, ...medicineUrls];
+  return [...frontpageUrls, ...glossaryUrls, ...medicineUrls];
 }

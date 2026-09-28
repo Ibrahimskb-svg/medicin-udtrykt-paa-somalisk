@@ -38,6 +38,13 @@ const FAQ_MODAL_TITLE = {
   so: "Su'aalaha inta badan la isweydiiyo",
   ar: "الأسئلة الشائعة",
 };
+const GLOSSARY_LINK_TEXT = {
+  da: { label: "Forstå dit apoteksbesøg", desc: "Ordliste over danske apoteks- og receptord — recept, tilskud, generisk substitution m.fl." },
+  en: { label: "Understand your pharmacy visit", desc: "A glossary of Danish pharmacy and prescription words — prescription, reimbursement, generic substitution and more." },
+  so: { label: "Faham booqashadaada farmashiyaha", desc: "Liis ku saabsan ereyada Danish ee farmashiyaha iyo warqadda daawada — recept, tilskud, iwm." },
+  ar: { label: "افهم زيارتك للصيدلية", desc: "قائمة بمصطلحات الصيدلية والوصفات الدنماركية — الوصفة، الدعم المالي، الاستبدال بالمكافئ وغيرها." },
+};
+
 // ── Color themes ───────────────────────────────────────────────────────────
 const BULLET_PALETTES = {
   so: [{color:"#0b7e74",bg:"#F0FDFA"},{color:"#048059",bg:"#ECFDF5"},{color:"#0F766E",bg:"#CCFBF1"},{color:"#0277b3",bg:"#F0F9FF"}],
@@ -536,6 +543,25 @@ function FAQModal({language,onClose}){
           </div>
         ))}
       </div>
+
+      <Link
+        href={{ pathname: "/ordliste", query: { lang: language } }}
+        style={{
+          display: "flex", alignItems: "center", gap: "10px", marginTop: "14px",
+          borderRadius: "14px", border: `1.5px solid ${theme.border}`, background: theme.soft,
+          padding: "12px 14px", textDecoration: "none", textAlign: isRtl ? "right" : "left",
+        }}
+      >
+        <span style={{ fontSize: "20px", flexShrink: 0 }} aria-hidden="true">📖</span>
+        <span>
+          <span style={{ display: "block", fontSize: "13px", fontWeight: 800, color: theme.primary }}>
+            {(GLOSSARY_LINK_TEXT[language] ?? GLOSSARY_LINK_TEXT.so).label} ↗
+          </span>
+          <span style={{ display: "block", fontSize: "11.5px", color: "#64748b", marginTop: "2px", lineHeight: 1.5 }}>
+            {(GLOSSARY_LINK_TEXT[language] ?? GLOSSARY_LINK_TEXT.so).desc}
+          </span>
+        </span>
+      </Link>
     </ModalShell>
   );
 }
@@ -770,6 +796,17 @@ export function SiteIndex({initialLang}){
               {searchTerm?(<button type="button" className="shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90" style={{background:"var(--bg)",color:"var(--text-muted)",minHeight:"36px"}} onClick={()=>setSearchTerm("")}>{chromeText.clearFilters}</button>):null}
             </div>
           </label>
+        </div>
+
+        <div className="reveal-on-scroll mb-6 sm:mb-7">
+          <Link
+            href={{ pathname: "/ordliste", query: { lang: language } }}
+            className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold transition hover:opacity-90"
+            style={{ borderColor: "var(--border)", background: "var(--surface,#fff)", color: "var(--accent)" }}
+          >
+            <span aria-hidden="true">📖</span>
+            {(GLOSSARY_LINK_TEXT[language] ?? GLOSSARY_LINK_TEXT.so).label} ↗
+          </Link>
         </div>
 
         <div className="reveal-on-scroll mb-6 sm:mb-7">

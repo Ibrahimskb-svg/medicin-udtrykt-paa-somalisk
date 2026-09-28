@@ -5,6 +5,8 @@ import { getMyList, addToMyList, removeFromMyList, subscribeMyList } from "../li
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { knownInteractions, pairKey, CHECKED_DATE } from "../data/interactions";
 import { BatchScanPanel } from "./batch-scan-panel";
+import { DoseSchedulePanel } from "./dose-schedule-panel";
+import { clearScheduleFor } from "../lib/dose-schedule";
 
 const indexData = getIndexData();
 
@@ -83,7 +85,7 @@ const TEXTS = {
     disclaimer: "Liiskani wuxuu ku salaysan yahay doorashadaada gaarka ah, mana aha liis daawooyin oo rasmi ah. U isticmaal si aad wax uga hadasho shaqaalaha.",
     remove: "Ka saar",
     interactionsTitle: "Isdhexgalka iyo digniinaha liiskaaga",
-    interactionsIntro: "Halkan waxaa ku yaal qoraallada isdhexgalka iyo digniinaha ee daawo kasta oo ku jirta liiskaaga, oo la isku soo ururiyay meel — u isticmaal si aad wax uga hadasho farmashiga ama dhakhtarka.",
+    interactionsIntro: "Halkan waxaa ku yaal qoraallada isdhexgalka iyo digniinaha ee daawo kasta oo ku jirta liiskaaga, oo la isku soo ururiyay meel — u isticmaal si aad wax uga hadasho farmashiyaha ama dhakhtarka.",
     interactionsEmpty: "Lama helin macluumaad isdhexgal ama digniin ah oo ku saabsan daawadan.",
     interactLabel: "Isdhexgalka",
     warnLabel: "Digniinaha",
@@ -98,9 +100,9 @@ const TEXTS = {
     symptomTitle: "Waxyeello ma tahay?",
     symptomIntro: "Qor waxa aad dareemayso (tusaale: \"lallabo\" ama \"madax wareer\"), oo aan hubiyo haddii ay horey ugu qoran tahay sidii waxyeello la yaqaan oo ku socota mid ka mid ah daawooyinka aad ku darsatay liiskaaga.",
     symptomPlaceholder: "Qor calaamad…",
-    symptomNoMatch: "Midna kama mid aha daawooyinka aad liiska ku darsatay lama sheegin sidaas — laakiin had iyo jeer la xiriir farmashiga ama dhakhtarka haddii aad walaacsan tahay.",
+    symptomNoMatch: "Midna kama mid aha daawooyinka aad liiska ku darsatay lama sheegin sidaas — laakiin had iyo jeer la xiriir farmashiyaha ama dhakhtarka haddii aad walaacsan tahay.",
     symptomMatchIntro: "Waxaa lagu sheegay sidii waxyeello suurtagal ah halkan:",
-    symptomDisclaimer: "Tani ma aha ogaanshaha cudur — u isticmaal sidii bilow wax looga hadlayo farmashiga ama dhakhtarka.",
+    symptomDisclaimer: "Tani ma aha ogaanshaha cudur — u isticmaal sidii bilow wax looga hadlayo farmashiyaha ama dhakhtarka.",
   },
   ar: {
     title: "قائمة أدويتي",
@@ -257,8 +259,17 @@ export function MyListModal({ language, onClose }) {
   }, [symptomQuery, interactionNotes]);
 
   function toggle(slug) {
-    if (list.includes(slug)) removeFromMyList(slug);
-    else addToMyList(slug);
+    if (list.includes(slug)) {
+      removeFromMyList(slug);
+      clearScheduleFor(slug);
+    } else {
+      addToMyList(slug);
+    }
+  }
+
+  function remove(slug) {
+    removeFromMyList(slug);
+    clearScheduleFor(slug);
   }
 
   function escapeHtml(s) {
@@ -516,7 +527,7 @@ export function MyListModal({ language, onClose }) {
                 </span>
                 <button
                   type="button"
-                  onClick={() => removeFromMyList(item.slug)}
+                  onClick={() => remove(item.slug)}
                   aria-label={t.remove}
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center",
@@ -530,6 +541,14 @@ export function MyListModal({ language, onClose }) {
             );
           })}
         </ul>
+      )}
+
+      {selectedItems.length >= 1 && (
+        <DoseSchedulePanel
+          language={language}
+          isRtl={isRtl}
+          items={selectedItems.map((item) => ({ slug: item.slug, name: getDisplayName(item.slug, language, item.name) }))}
+        />
       )}
 
       {selectedItems.length >= 2 && (
