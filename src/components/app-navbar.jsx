@@ -9,25 +9,25 @@ import { FlagIcon } from "./flag-icon";
 
 // Sørger for at labels matcher modal-titlerne i SiteIndex
 const NAV_LABELS = {
-  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin", findPharmacy:"Find apotek" },
-  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", mylist:"My medicine", findPharmacy:"Find a pharmacy" },
-  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga", findPharmacy:"Raadi farmashiye" },
-  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", mylist:"أدويتي", findPharmacy:"ابحث عن صيدلية" },
+  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", mylist:"Min medicin", findPharmacy:"Find apotek", counterCards:"Skranke-kort" },
+  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", mylist:"My medicine", findPharmacy:"Find a pharmacy", counterCards:"Counter cards" },
+  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", mylist:"Daawooyinkayga", findPharmacy:"Raadi farmashiye", counterCards:"Kaararka Su'aalaha Farmashiyaha" },
+  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", mylist:"أدويتي", findPharmacy:"ابحث عن صيدلية", counterCards:"بطاقات الصيدلية" },
 };
 
 // Kortere labels til mobil bottom-nav
 const NAV_LABELS_SHORT = {
-  da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin", findPharmacy:"Apotek" },
-  en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds", findPharmacy:"Pharmacy" },
-  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Raadi farmashiye" },
-  ar: { me:"عني",      site:"حول",        faq:"الأسئلة",  contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية" },
+  da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin", findPharmacy:"Apotek", counterCards:"Kort" },
+  en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds", findPharmacy:"Pharmacy", counterCards:"Cards" },
+  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Raadi farmashiye", counterCards:"Kaararka" },
+  ar: { me:"عني",      site:"حول",        faq:"الأسئلة",  contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية", counterCards:"البطاقات" },
 };
 
 const NAV_ICON_COLORS = {
-  so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E", mylist:"#0F766E", findPharmacy:"#0F766E" },
-  da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7", mylist:"#0284C7", findPharmacy:"#0284C7" },
-  en: { faq:"#92400E", feedback:"#B45309", contact:"#C2410C", mylist:"#C2410C", findPharmacy:"#C2410C" },
-  ar: { faq:"#D97706", feedback:"#B45309", contact:"#EA580C", mylist:"#EA580C", findPharmacy:"#EA580C" },
+  so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E", mylist:"#0F766E", findPharmacy:"#0F766E", counterCards:"#BE123C" },
+  da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7", mylist:"#0284C7", findPharmacy:"#0284C7", counterCards:"#BE123C" },
+  en: { faq:"#92400E", feedback:"#B45309", contact:"#C2410C", mylist:"#C2410C", findPharmacy:"#C2410C", counterCards:"#BE123C" },
+  ar: { faq:"#D97706", feedback:"#B45309", contact:"#EA580C", mylist:"#EA580C", findPharmacy:"#EA580C", counterCards:"#BE123C" },
 };
 
 const P = {
@@ -72,6 +72,14 @@ function PinIcon({ size=15, color="currentColor" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+    </svg>
+  );
+}
+
+function CardsIcon({ size=15, color="currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="6" width="14" height="14" rx="2"/><path d="M7 6V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-2"/>
     </svg>
   );
 }
@@ -146,6 +154,7 @@ export function AppNavbar() {
     { key: "contact", iconEl: <MailIcon size={16} color={iconColors.contact}/>, label: navLabels.contact },
     { key: "mylist", iconEl: <ListIcon size={16} color={iconColors.mylist}/>, label: navLabels.mylist },
     { key: "findPharmacy", iconEl: <PinIcon size={16} color={iconColors.findPharmacy}/>, label: navLabels.findPharmacy },
+    { key: "counterCards", iconEl: <CardsIcon size={16} color={iconColors.counterCards}/>, label: navLabels.counterCards },
   ];
 
   const handleTabClick = (key) => {
@@ -157,8 +166,8 @@ export function AppNavbar() {
   };
 
   // Desktop: Xiriir + Raadi farmashiye samles i 1 dropdown for at give plads i toppen
-  const desktopNavTabs = navTabs.filter(({ key }) => key !== "contact" && key !== "findPharmacy");
-  const isContactGroupActive = activeTab === "contact" || activeTab === "findPharmacy";
+  const desktopNavTabs = navTabs.filter(({ key }) => key !== "contact" && key !== "findPharmacy" && key !== "counterCards");
+  const isContactGroupActive = activeTab === "contact" || activeTab === "findPharmacy" || activeTab === "counterCards";
 
   const handleLanguageSelect = (code) => {
     if (code === language) return;
@@ -258,6 +267,14 @@ export function AppNavbar() {
                       }`}
                     >
                       <PinIcon size={15} color={iconColors.findPharmacy} /> {navLabels.findPharmacy}
+                    </button>
+                    <button
+                      onClick={() => handleTabClick("counterCards")}
+                      className={`flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors border-t border-slate-100 ${
+                        activeTab === "counterCards" ? "bg-teal-50 text-teal-700" : "text-slate-700 hover:bg-slate-50"
+                      }`}
+                    >
+                      <CardsIcon size={15} color={iconColors.counterCards} /> {navLabels.counterCards}
                     </button>
                   </div>
                 )}

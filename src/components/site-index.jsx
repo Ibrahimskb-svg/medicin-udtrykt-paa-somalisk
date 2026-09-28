@@ -10,6 +10,7 @@ import { getIndexData, getDisplayName, uiText } from "../lib/site";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
+import { CounterCardsModal } from "./counter-cards-modal";
 import { getLastRevisedText } from "../lib/last-revised";
 import { VoiceSearchButton } from "./voice-search-button";
 import { MedicinePhotoButton } from "./medicine-photo-button";
@@ -43,6 +44,12 @@ const GLOSSARY_LINK_TEXT = {
   en: { label: "Understand your pharmacy visit", desc: "A short glossary of Danish pharmacy words — prescription, reimbursement and more." },
   so: { label: "Faham booqashadaada farmashiyaha", desc: "Liis kooban oo ku saabsan ereyada Deenishka ah ee farmashiyaha — warqadda daawada, kaalmada daawada, iwm." },
   ar: { label: "افهم زيارتك للصيدلية", desc: "قائمة موجزة بمصطلحات الصيدلية — الوصفة الطبية، الدعم المالي وغيرها." },
+};
+const COUNTER_CARDS_LINK_TEXT = {
+  da: { label: "Skranke-kort", desc: "Store, hurtige kort til at spørge og forklare direkte til kunden." },
+  en: { label: "Counter cards", desc: "Big, quick cards to ask and explain things directly to the customer." },
+  so: { label: "Kaararka Su'aalaha Farmashiyaha", desc: "Kaararo waaweyn oo degdeg ah, lagu weydiiyo oo lagu sharaxo si toos ah kadhka." },
+  ar: { label: "بطاقات الصيدلية", desc: "بطاقات كبيرة وسريعة لسؤال العميل وشرح الأمور له مباشرة." },
 };
 
 // ── Color themes ───────────────────────────────────────────────────────────
@@ -322,6 +329,7 @@ function buildCategoryPills(language){const seen=new Set(),pills=[];for(const it
 // ── SVG Icons ──────────────────────────────────────────────────────────────
 function SearchIcon(){return(<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7.5"/><path d="m20 20-4.2-4.2"/></svg>);}
 function ShieldIcon(){return(<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3l7 3v6c0 5-3.5 8-7 9-3.5-1-7-4-7-9V6l7-3Z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>);}
+function SpeechBubbleIcon({size=26,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8"/><path d="M8 13h5"/></svg>);}
 function MailIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>);}
 function QuestionIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>);}
 function ChatIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>);}
@@ -760,6 +768,7 @@ export function SiteIndex({initialLang}){
       {modalTab==="contact"  &&<ContactModal  language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="findPharmacy" &&<PharmacyFinderModal language={language} onClose={()=>setModalTab(null)}/>}
+      {modalTab==="counterCards" &&<CounterCardsModal language={language} onClose={()=>setModalTab(null)}/>}
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div style={{background:"var(--heroBg)"}}>
@@ -808,6 +817,37 @@ export function SiteIndex({initialLang}){
             {language === "ar" ? "←" : "→"}
           </span>
         </Link>
+      </div>
+
+      {/* ── Skranke-kort-banner — samme synlighed som ordliste-banneret ── */}
+      <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
+        <button
+          type="button"
+          onClick={() => setModalTab("counterCards")}
+          className="reveal-on-scroll flex w-full flex-col items-start gap-3 rounded-2xl px-5 py-5 text-start transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
+          style={{ background: "linear-gradient(120deg,#9F1239,#BE123C 55%,#E11D48)", boxShadow: "0 8px 28px rgba(159,18,57,0.28)" }}
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/20 sm:h-14 sm:w-14"
+          >
+            <SpeechBubbleIcon size={26} />
+          </span>
+          <span className="flex-1">
+            <span className="block text-base font-extrabold text-white sm:text-lg">
+              {(COUNTER_CARDS_LINK_TEXT[language] ?? COUNTER_CARDS_LINK_TEXT.so).label}
+            </span>
+            <span className="mt-1 block text-sm leading-6 text-white/90">
+              {(COUNTER_CARDS_LINK_TEXT[language] ?? COUNTER_CARDS_LINK_TEXT.so).desc}
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-lg font-bold text-white sm:h-10 sm:w-10"
+          >
+            {language === "ar" ? "←" : "→"}
+          </span>
+        </button>
       </div>
 
       {/* ── Video Guide ──────────────────────────────────────────────────── */}
