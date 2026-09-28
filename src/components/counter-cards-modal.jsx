@@ -3,12 +3,14 @@ import { useState } from "react";
 import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { FlagIcon } from "./flag-icon";
-import { getLanguageName, languages } from "../lib/site";
+import { getLanguageName, getUsualDosingHint, languages } from "../lib/site";
 
 const TEXTS = {
   da: {
     title: "Skranke-kort",
     intro: "Store, todelte kort til at spørge eller vise noget direkte til kunden — vælg en kategori, så et kort, og vend det.",
+    pdfBtn: "Gem alle kort som PDF (backup)",
+    pdfFileTitle: "Skranke-kort — Somalimed.dk",
     back: "Tilbage",
     tapToReveal: "Tryk for at vise på kundens sprog",
     tapToHide: "Tryk for at vende tilbage",
@@ -17,10 +19,14 @@ const TEXTS = {
     showLanguage: "Vis på:",
     arNotice: "Arabisk er endnu ikke tjekket af en modersmålstalende.",
     pageOf: (i, n) => `${i} af ${n}`,
+    forMedicine: "Til",
+    usualDosing: "Sædvanligvis (fra medicinens egen side)",
   },
   en: {
     title: "Counter cards",
     intro: "Big, two-sided cards to ask or show something directly to the customer — pick a category, then a card, and flip it.",
+    pdfBtn: "Save all cards as PDF (backup)",
+    pdfFileTitle: "Counter cards — Somalimed.dk",
     back: "Back",
     tapToReveal: "Tap to show in the customer's language",
     tapToHide: "Tap to flip back",
@@ -29,10 +35,14 @@ const TEXTS = {
     showLanguage: "Show in:",
     arNotice: "Arabic hasn't been checked by a native speaker yet.",
     pageOf: (i, n) => `${i} of ${n}`,
+    forMedicine: "For",
+    usualDosing: "Usually (from the medicine's own page)",
   },
   so: {
     title: "Kaararka Su'aalaha Farmashiyaha",
     intro: "Kaararka waaweyn ee laba-dhinac leh, ee lagu weydiiyo ama lagu tuso wax si toos ah kadhka — dooro qayb, dooro kaarka, oo rog.",
+    pdfBtn: "Kaydi dhammaan kaararka sida PDF (backup)",
+    pdfFileTitle: "Kaararka Su'aalaha Farmashiyaha — Somalimed.dk",
     back: "Dib u noqo",
     tapToReveal: "Riix si loo tuso luuqadda kadhka",
     tapToHide: "Riix si dib loogu laabto",
@@ -41,10 +51,14 @@ const TEXTS = {
     showLanguage: "Ku tus:",
     arNotice: "Af-Caraabiga wali lama hubin oo lama gudbin qof ku hadla af-Carabi ahaan hooyo.",
     pageOf: (i, n) => `${i} ee ${n}`,
+    forMedicine: "Waxaa loogu talagalay",
+    usualDosing: "Sida caadiga ah (ka socota bogga daawada)",
   },
   ar: {
     title: "بطاقات الصيدلية",
     intro: "بطاقات كبيرة ذات وجهين لسؤال أو إظهار شيء مباشرة للعميل — اختر فئة، ثم بطاقة، واقلبها.",
+    pdfBtn: "احفظ جميع البطاقات كملف PDF (نسخة احتياطية)",
+    pdfFileTitle: "بطاقات الصيدلية — Somalimed.dk",
     back: "رجوع",
     tapToReveal: "اضغط للعرض بلغة العميل",
     tapToHide: "اضغط للعودة",
@@ -53,6 +67,8 @@ const TEXTS = {
     showLanguage: "اعرض بـ:",
     arNotice: "لم تتم مراجعة اللغة العربية بعد من قبل متحدث أصلي.",
     pageOf: (i, n) => `${i} من ${n}`,
+    forMedicine: "لدواء",
+    usualDosing: "عادة (من صفحة الدواء نفسها)",
   },
 };
 
@@ -102,27 +118,133 @@ function ChevronIcon({ dir = "left", size = 20, color = "currentColor" }) {
   );
 }
 
-export function CounterCardsModal({ language, onClose }) {
+export function CounterCardsModal({ language, onClose, medicineSlug, medicineName }) {
   const isRtl = language === "ar";
   const theme = LANG_THEME[language] ?? LANG_THEME.so;
   const t = TEXTS[language] ?? TEXTS.so;
-  const [categoryId, setCategoryId] = useState(null);
+  // Åbnet fra en medicinside: hop direkte til Doseringsbesked for den
+  // medicin i stedet for at vise kategorivalget først.
+  const [categoryId, setCategoryId] = useState(medicineSlug ? "dosering" : null);
   const [pageIndex, setPageIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const [revealLang, setRevealLang] = useState("so");
+  const usualDosingHint = medicineSlug ? getUsualDosingHint(medicineSlug, language) : null;
+  // Standard er et andet sprog end sitets eget — ellers viser forside og
+  // bagside det samme, og "vend kortet" ser ud som om intet sker.
+  const [revealLang, setRevealLang] = useState(() => languages.find((l) => l !== language) || "da");
+  const [answer, setAnswer] = useState(null);
 
   const category = COUNTER_CARD_CATEGORIES.find((c) => c.id === categoryId) || null;
   const phrase = category ? category.phrases[pageIndex] : null;
+  const categoryStyle = category ? CATEGORY_STYLE[category.color] : null;
 
   function openCategory(cat) {
     setCategoryId(cat.id);
     setPageIndex(0);
     setFlipped(false);
+    setAnswer(null);
   }
 
   function goToPage(next) {
     setPageIndex(next);
     setFlipped(false);
+    setAnswer(null);
+  }
+
+  function hexToRgb(hex) {
+    const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [15, 23, 42];
+  }
+
+  // jsPDF's standardskrifttype har ingen arabiske glyffer, så almindelig
+  // pdf.text() med arabisk tekst ville vise tomt/forvrænget. Løsning:
+  // indlejrer en rigtig arabisk skrifttype (Amiri) i selve PDF'en og
+  // "reshaper" teksten (forbinder bogstaverne korrekt, som arabisk skrift
+  // kræver) — så arabisk bliver ægte, kopierbar PDF-tekst, ligesom de andre
+  // 3 sprog, i stedet for et billede.
+  async function saveAllCardsPdf() {
+    const [{ default: jsPDF }, { AMIRI_ARABIC_BASE64 }, { default: ArabicReshaper }] = await Promise.all([
+      import("jspdf"),
+      import("../data/amiri-font-base64"),
+      import("arabic-reshaper"),
+    ]);
+    const pdf = new jsPDF({ unit: "pt", format: "a4" });
+    pdf.addFileToVFS("Amiri-Regular.ttf", AMIRI_ARABIC_BASE64);
+    pdf.addFont("Amiri-Regular.ttf", "Amiri", "normal");
+
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const margin = 40;
+    const contentWidth = pageWidth - margin * 2;
+    const primaryRgb = hexToRgb(theme.primary);
+    let y = margin;
+
+    const ensureSpace = (height) => {
+      if (y + height > pageHeight - margin) {
+        pdf.addPage();
+        y = margin;
+      }
+    };
+
+    pdf.setTextColor(...primaryRgb);
+    pdf.setFontSize(17);
+    if (language === "ar") {
+      const arTitle = t.pdfFileTitle.replace(/\s*—\s*Somalimed\.dk$/, "");
+      pdf.setFont("helvetica", "bold");
+      pdf.text("Somalimed.dk", margin, y + 14);
+      pdf.setFont("Amiri", "normal");
+      pdf.text(ArabicReshaper.convertArabic(arTitle), margin + contentWidth, y + 14, { align: "right" });
+    } else {
+      pdf.setFont("helvetica", "bold");
+      pdf.text(t.pdfFileTitle, margin, y + 14);
+    }
+    y += 34;
+
+    COUNTER_CARD_CATEGORIES.forEach((cat) => {
+      const style = CATEGORY_STYLE[cat.color];
+      const styleRgb = hexToRgb(style.color);
+      const styleBgRgb = hexToRgb(style.bg);
+
+      ensureSpace(40);
+      pdf.setFillColor(...styleBgRgb);
+      pdf.rect(margin, y, contentWidth, 28, "F");
+      pdf.setTextColor(...styleRgb);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(13);
+      pdf.text(cat.label.da, margin + 10, y + 19);
+      y += 40;
+
+      cat.phrases.forEach((ph) => {
+        const daLines = pdf.setFont("helvetica", "bold").setFontSize(12).splitTextToSize(ph.da, contentWidth);
+        const soLines = pdf.setFont("helvetica", "normal").setFontSize(10.5).splitTextToSize(`SO: ${ph.so}`, contentWidth);
+        const enLines = pdf.setFont("helvetica", "normal").setFontSize(10.5).splitTextToSize(`EN: ${ph.en}`, contentWidth);
+        const arShaped = ArabicReshaper.convertArabic(ph.ar);
+        const arLines = pdf.setFont("Amiri", "normal").setFontSize(12).splitTextToSize(arShaped, contentWidth);
+        const blockHeight = daLines.length * 15 + soLines.length * 13 + enLines.length * 13 + arLines.length * 16 + 16;
+        ensureSpace(blockHeight);
+
+        pdf.setTextColor(15, 23, 42);
+        pdf.setFont("helvetica", "bold");
+        pdf.setFontSize(12);
+        pdf.text(daLines, margin, y + 12);
+        y += daLines.length * 15 + 3;
+
+        pdf.setTextColor(71, 85, 105);
+        pdf.setFont("helvetica", "normal");
+        pdf.setFontSize(10.5);
+        pdf.text(soLines, margin, y + 10);
+        y += soLines.length * 13 + 2;
+        pdf.text(enLines, margin, y + 10);
+        y += enLines.length * 13 + 4;
+
+        pdf.setFont("Amiri", "normal");
+        pdf.setFontSize(12);
+        pdf.text(arLines, margin + contentWidth, y + 12, { align: "right" });
+        y += arLines.length * 16 + 12;
+      });
+      y += 6;
+    });
+
+    pdf.save("Somalimed-skranke-kort.pdf");
   }
 
   const iconEl = <SpeechBubbleIcon size={22} color="rgba(255,255,255,0.95)" />;
@@ -171,6 +293,17 @@ export function CounterCardsModal({ language, onClose }) {
               );
             })}
           </div>
+          <button
+            type="button"
+            onClick={saveAllCardsPdf}
+            style={{
+              width: "100%", marginTop: "14px", padding: "13px 18px", borderRadius: "14px",
+              border: `1.5px solid ${theme.border}`, background: theme.soft, color: theme.primary,
+              fontWeight: 700, fontSize: "13.5px", cursor: "pointer",
+            }}
+          >
+            {t.pdfBtn}
+          </button>
         </>
       ) : (
         <>
@@ -185,6 +318,24 @@ export function CounterCardsModal({ language, onClose }) {
             <ChevronIcon dir={isRtl ? "right" : "left"} size={16} color={theme.primary} /> {t.back}
           </button>
 
+          {medicineName && (
+            <div
+              style={{
+                borderRadius: "14px", padding: "12px 14px", marginBottom: "14px",
+                background: theme.soft, border: `1.5px solid ${theme.border}`, textAlign: isRtl ? "right" : "left",
+              }}
+            >
+              <p style={{ margin: 0, fontSize: "13px", fontWeight: 800, color: theme.primary }}>
+                {t.forMedicine} {medicineName}
+              </p>
+              {usualDosingHint && (
+                <p style={{ margin: "4px 0 0", fontSize: "12px", lineHeight: 1.5, color: "#475569" }}>
+                  <span style={{ fontWeight: 700 }}>{t.usualDosing}:</span> {usualDosingHint}
+                </p>
+              )}
+            </div>
+          )}
+
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "14px" }}>
             <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8" }}>{t.showLanguage}</span>
             {languages.map((code) => (
@@ -193,12 +344,13 @@ export function CounterCardsModal({ language, onClose }) {
                 type="button"
                 onClick={() => setRevealLang(code)}
                 aria-pressed={revealLang === code}
+                aria-label={getLanguageName(language, code)}
                 title={getLanguageName(language, code)}
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center",
                   width: 32, height: 32, borderRadius: "50%",
-                  background: revealLang === code ? theme.primary : "transparent",
-                  border: revealLang === code ? "none" : "1.5px solid #e2e8f0",
+                  background: revealLang === code ? theme.primary : categoryStyle.bg,
+                  border: revealLang === code ? "none" : `1.5px solid ${categoryStyle.ring}`,
                   cursor: "pointer",
                 }}
               >
@@ -206,46 +358,77 @@ export function CounterCardsModal({ language, onClose }) {
               </button>
             ))}
           </div>
-          {revealLang === "ar" && (
+          {(revealLang === "ar" || language === "ar") && (
             <p style={{ fontSize: "11px", color: "#b45309", textAlign: "center", margin: "0 0 14px" }}>{t.arNotice}</p>
           )}
 
-          <div
-            onClick={() => setFlipped((f) => !f)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setFlipped((f) => !f); } }}
-            style={{
-              minHeight: "220px", borderRadius: "22px", padding: "28px 22px",
-              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center",
-              background: flipped ? theme.primary : "#fff",
-              border: `1.5px solid ${flipped ? theme.primary : "#e2e8f0"}`,
-              cursor: "pointer", marginBottom: "14px",
-            }}
-          >
-            {!flipped ? (
-              <>
-                <span style={{ fontSize: "20px", fontWeight: 700, color: "#0f172a", lineHeight: 1.4 }}>{phrase.da}</span>
-                <span style={{ marginTop: "14px", fontSize: "12px", fontWeight: 700, color: "#94a3b8" }}>{t.tapToReveal}</span>
-              </>
-            ) : (
-              <>
+          <div className="flip-card-outer" style={{ height: "240px", marginBottom: "14px" }}>
+            <div
+              className={`flip-card-inner${flipped ? " is-flipped" : ""}`}
+              onClick={() => setFlipped((f) => !f)}
+              role="button"
+              tabIndex={0}
+              aria-label={flipped ? t.tapToHide : t.tapToReveal}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setFlipped((f) => !f); } }}
+              style={{ cursor: "pointer" }}
+            >
+              <div
+                className="flip-card-face"
+                style={{
+                  borderRadius: "22px", padding: "28px 22px", textAlign: "center",
+                  background: categoryStyle.bg, border: `2px solid ${categoryStyle.ring}`,
+                }}
+              >
+                <span dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: "20px", fontWeight: 800, color: categoryStyle.color, lineHeight: 1.4 }}>
+                  {phrase[language] ?? phrase.so}
+                </span>
+                <span style={{ marginTop: "14px", fontSize: "12px", fontWeight: 700, color: "#64748b" }}>{t.tapToReveal}</span>
+              </div>
+              <div
+                className="flip-card-face flip-card-back"
+                style={{
+                  borderRadius: "22px", padding: "28px 22px", textAlign: "center",
+                  background: theme.primary, border: `2px solid ${theme.primary}`,
+                }}
+              >
                 <span dir={revealLang === "ar" ? "rtl" : "ltr"} style={{ fontSize: "30px", fontWeight: 700, color: "#fff", lineHeight: 1.4 }}>
                   {phrase[revealLang] ?? phrase.so}
                 </span>
                 <span style={{ marginTop: "14px", fontSize: "12px", fontWeight: 700, color: "rgba(255,255,255,0.8)" }}>{t.tapToHide}</span>
-              </>
-            )}
+              </div>
+            </div>
           </div>
 
           {flipped && category.id === "sikkerhed" && (
             <div style={{ display: "flex", gap: "10px", marginBottom: "14px" }}>
-              <div style={{ flex: 1, padding: "16px", borderRadius: "16px", background: "#f0fdf4", border: "1.5px solid #bbf7d0", textAlign: "center", fontSize: "18px", fontWeight: 800, color: "#166534" }}>
+              <button
+                type="button"
+                onClick={() => setAnswer(answer === "yes" ? null : "yes")}
+                aria-pressed={answer === "yes"}
+                style={{
+                  flex: 1, padding: "16px", borderRadius: "16px", textAlign: "center", fontSize: "18px", fontWeight: 800,
+                  cursor: "pointer",
+                  background: answer === "yes" ? "#16a34a" : "#f0fdf4",
+                  border: `1.5px solid ${answer === "yes" ? "#16a34a" : "#bbf7d0"}`,
+                  color: answer === "yes" ? "#fff" : "#166534",
+                }}
+              >
                 {t.yes}
-              </div>
-              <div style={{ flex: 1, padding: "16px", borderRadius: "16px", background: "#fef2f2", border: "1.5px solid #fecaca", textAlign: "center", fontSize: "18px", fontWeight: 800, color: "#991b1b" }}>
+              </button>
+              <button
+                type="button"
+                onClick={() => setAnswer(answer === "no" ? null : "no")}
+                aria-pressed={answer === "no"}
+                style={{
+                  flex: 1, padding: "16px", borderRadius: "16px", textAlign: "center", fontSize: "18px", fontWeight: 800,
+                  cursor: "pointer",
+                  background: answer === "no" ? "#dc2626" : "#fef2f2",
+                  border: `1.5px solid ${answer === "no" ? "#dc2626" : "#fecaca"}`,
+                  color: answer === "no" ? "#fff" : "#991b1b",
+                }}
+              >
                 {t.no}
-              </div>
+              </button>
             </div>
           )}
 
@@ -256,12 +439,12 @@ export function CounterCardsModal({ language, onClose }) {
               disabled={pageIndex === 0}
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: "50%",
-                border: "1.5px solid #e2e8f0", background: "#fff", cursor: pageIndex === 0 ? "default" : "pointer",
+                border: `1.5px solid ${categoryStyle.ring}`, background: categoryStyle.bg, cursor: pageIndex === 0 ? "default" : "pointer",
                 opacity: pageIndex === 0 ? 0.35 : 1,
               }}
               aria-label={t.back}
             >
-              <ChevronIcon dir={isRtl ? "right" : "left"} color="#475569" />
+              <ChevronIcon dir={isRtl ? "right" : "left"} color={categoryStyle.color} />
             </button>
             <span style={{ fontSize: "13px", fontWeight: 700, color: "#94a3b8" }}>
               {t.pageOf(pageIndex + 1, category.phrases.length)}
@@ -272,12 +455,12 @@ export function CounterCardsModal({ language, onClose }) {
               disabled={pageIndex === category.phrases.length - 1}
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: "50%",
-                border: "1.5px solid #e2e8f0", background: "#fff", cursor: pageIndex === category.phrases.length - 1 ? "default" : "pointer",
+                border: `1.5px solid ${categoryStyle.ring}`, background: categoryStyle.bg, cursor: pageIndex === category.phrases.length - 1 ? "default" : "pointer",
                 opacity: pageIndex === category.phrases.length - 1 ? 0.35 : 1,
               }}
               aria-label={t.pageOf(pageIndex + 2, category.phrases.length)}
             >
-              <ChevronIcon dir={isRtl ? "left" : "right"} color="#475569" />
+              <ChevronIcon dir={isRtl ? "left" : "right"} color={categoryStyle.color} />
             </button>
           </div>
         </>

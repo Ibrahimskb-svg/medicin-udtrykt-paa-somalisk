@@ -359,3 +359,13 @@ export function getMedicine(slug) {
 export function getMedicineSlugs() {
   return siteData.medicines.map((item) => item.slug);
 }
+
+// Genbruger doseringspiktogrammet, der allerede vises på medicinsiden (fx
+// "Hal jeer maalintii — Subax ama fiid" for Amlodipin) — samme kilde bruges
+// i doseringsskemaet og skranke-kortene, så det aldrig kan afvige.
+export function getUsualDosingHint(slug, language) {
+  const medicine = getMedicine(slug);
+  const pictogram = medicine?.dosagePictogram?.[language] || medicine?.dosagePictogram?.so;
+  if (!pictogram || pictogram.length === 0) return null;
+  return pictogram.map((p) => p.text).join(" — ");
+}

@@ -8,6 +8,7 @@ import { InhalerGuide } from "./inhaler-guide";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
+import { CounterCardsModal } from "./counter-cards-modal";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -69,10 +70,10 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "Bønnetider" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "Prayer times" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "Bønnetider", counterCards: "Skranke-kort til denne medicin" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "Prayer times", counterCards: "Counter cards for this medicine" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda", counterCards: "Kaararka daawadan" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة", counterCards: "بطاقات هذا الدواء" },
 };
 
 const PRAYER_PERIOD_LABEL = {
@@ -271,6 +272,7 @@ export function MedicinePage({ medicine, initialLang }) {
   const [inMyList, setInMyList] = useState(false);
   const [reminded, setReminded] = useState(false);
   const [prayerModalOpen, setPrayerModalOpen] = useState(false);
+  const [counterCardsOpen, setCounterCardsOpen] = useState(false);
   const somaliAudioRef = useRef(null);
   const arabicAudioRef = useRef(null);
 
@@ -612,6 +614,14 @@ export function MedicinePage({ medicine, initialLang }) {
 
       {modalTab === "mylist" && <MyListModal language={language} onClose={() => setModalTab(null)} />}
       {modalTab === "findPharmacy" && <PharmacyFinderModal language={language} onClose={() => setModalTab(null)} />}
+      {counterCardsOpen && (
+        <CounterCardsModal
+          language={language}
+          onClose={() => setCounterCardsOpen(false)}
+          medicineSlug={medicine.slug}
+          medicineName={data.drugName}
+        />
+      )}
 
       {/* ── HERO BANNER ── */}
       <div style={{ background: "var(--heroBg)" }}>
@@ -780,6 +790,22 @@ export function MedicinePage({ medicine, initialLang }) {
               {shareText.alignPrayer}
             </button>
           )}
+          <button
+            onClick={() => setCounterCardsOpen(true)}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: "var(--surface)", color: "var(--text)",
+              fontWeight: 600, fontSize: "13px",
+              border: "1.5px solid var(--border)",
+              cursor: "pointer",
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+            {shareText.counterCards}
+          </button>
         </div>
 
         {/* ── SOMALI LYDFIL ── */}

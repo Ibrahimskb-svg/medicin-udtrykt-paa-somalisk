@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSchedule, toggleScheduleSlot, subscribeSchedule, TIME_SLOTS } from "../lib/dose-schedule";
-import { getMedicine } from "../lib/site";
+import { getUsualDosingHint } from "../lib/site";
 import { LANG_THEME } from "./modal-shell";
 
 const USUAL_DOSING_LABEL = {
@@ -10,17 +10,6 @@ const USUAL_DOSING_LABEL = {
   so: "Sida caadiga ah (ka socota bogga daawada)",
   ar: "عادة (من صفحة الدواء نفسها)",
 };
-
-// Genbruger doseringspiktogrammet, der allerede vises på selve medicinsiden
-// (fx "Hal jeer maalintii — Subax ama fiid" for Amlodipin) — så brugeren har
-// en reel, allerede-godkendt reference at holde sine egne valg op imod, i
-// stedet for 4 blanke, kontekstløse knapper.
-function getUsualDosingHint(slug, language) {
-  const medicine = getMedicine(slug);
-  const pictogram = medicine?.dosagePictogram?.[language] || medicine?.dosagePictogram?.so;
-  if (!pictogram || pictogram.length === 0) return null;
-  return pictogram.map((p) => p.text).join(" — ");
-}
 
 const TIME_LABELS = {
   da: { morning: "Morgen", noon: "Middag", evening: "Aften", night: "Nat" },

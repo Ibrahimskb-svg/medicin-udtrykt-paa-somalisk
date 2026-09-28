@@ -16,6 +16,10 @@ export const COUNTER_CARD_CATEGORIES = [
       { da: "Er du allergisk over for noget?", en: "Are you allergic to anything?", so: "Ma qabtaa xasaasiyad?", ar: "هل لديك حساسية من أي شيء؟" },
       { da: "Har du andre sygdomme?", en: "Do you have any other illnesses?", so: "Ma qabtaa cudur kale?", ar: "هل لديك أمراض أخرى؟" },
       { da: "Tager du anden medicin?", en: "Are you taking any other medicine?", so: "Ma qaadataa daawo kale?", ar: "هل تتناول أدوية أخرى؟" },
+      { da: "Har du nyre- eller leverproblemer?", en: "Do you have kidney or liver problems?", so: "Ma qabtaa dhibaatooyin la xiriira kelyaha ama beerka?", ar: "هل لديك مشكلات في الكلى أو الكبد؟" },
+      { da: "Skal medicinen bruges til et barn?", en: "Is the medicine for a child?", so: "Daawadan ma loogu talagalay ilmaha?", ar: "هل هذا الدواء مخصّص لطفل؟" },
+      { da: "Ryger du, eller drikker du alkohol regelmæssigt?", en: "Do you smoke, or drink alcohol regularly?", so: "Ma cabtaa sigaar, ama ma cabtaa khamri si joogto ah?", ar: "هل تدخن أو تشرب الكحول بانتظام؟" },
+      { da: "Har du højt blodtryk?", en: "Do you have high blood pressure?", so: "Ma qabtaa dhiig-kar?", ar: "هل تعاني من ارتفاع ضغط الدم؟" },
     ],
   },
   {

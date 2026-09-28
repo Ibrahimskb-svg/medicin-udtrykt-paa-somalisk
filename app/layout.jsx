@@ -265,17 +265,43 @@ export default function RootLayout({ children }) {
                 } catch (e) { return false; }
               }
 
-              // Cookiebanneret (role="dialog", bottom-fixed) kan overlappe boblen —
-              // flyt boblen op over banneret så den altid er klikbar.
+              // Cookiebanneret (role="dialog", bottom-fixed) og store CTA-bannere
+              // (fx forsidens "Ordliste"/"Skranke-kort", markeret med
+              // data-sm-bubble-avoid) kan overlappe boblen — flyt boblen op så
+              // den altid er klikbar og ikke dækker for indhold under den.
               function repositionBubble() {
                 var b = document.getElementById("sm-bubble");
                 if (!b) return;
+                // Nulstil til CSS-grundpositionen FØR vi måler — ellers
+                // sammenligner vi mod boblens egen tidligere justerede
+                // position, hvilket giver en uendelig frem-og-tilbage-flytning
+                // når den lige er blevet skubbet op.
+                b.style.bottom = "";
+
+                var bottom = 0;
                 var banner = document.querySelector('div[role="dialog"]');
-                if (banner) {
-                  var h = banner.getBoundingClientRect().height;
-                  b.style.bottom = (h + 16) + "px";
-                } else {
-                  b.style.bottom = "";
+                if (banner) bottom = Math.max(bottom, banner.getBoundingClientRect().height + 16);
+                if (bottom) b.style.bottom = bottom + "px";
+
+                // Flere data-sm-bubble-avoid-elementer kan stå stablet
+                // (fx to bannere lige over hinanden) — når vi skubber boblen
+                // op for at undgå det ene, kan den ramme det næste, så vi
+                // tjekker igen efter hver justering, indtil den er fri.
+                var avoid = document.querySelectorAll("[data-sm-bubble-avoid]");
+                for (var pass = 0; pass < 6; pass++) {
+                  var bRect = b.getBoundingClientRect();
+                  var raised = false;
+                  for (var i = 0; i < avoid.length; i++) {
+                    var r = avoid[i].getBoundingClientRect();
+                    if (r.width === 0 && r.height === 0) continue;
+                    var overlaps = !(r.right < bRect.left || r.left > bRect.right || r.bottom < bRect.top || r.top > bRect.bottom);
+                    if (overlaps) {
+                      var needed = window.innerHeight - r.top + 16;
+                      if (needed > bottom) { bottom = needed; raised = true; }
+                    }
+                  }
+                  if (!raised) break;
+                  b.style.bottom = bottom + "px";
                 }
               }
 
@@ -390,6 +416,11 @@ export default function RootLayout({ children }) {
               function repositionAll() { repositionBubble(); repositionCrisp(); }
               new MutationObserver(repositionAll).observe(document.documentElement, { childList: true, subtree: true });
               window.addEventListener("resize", repositionAll);
+              // data-sm-bubble-avoid-bannere er almindeligt sideindhold (ikke
+              // fixed), så deres position i forhold til boblen ændrer sig når
+              // man scroller — hold øje med det løbende, ligesom Crisp-ikonet.
+              window.addEventListener("scroll", repositionBubble, { passive: true });
+              setInterval(repositionBubble, 1000);
               setInterval(repositionCrisp, 1000);
             })();
           `}

@@ -72,6 +72,39 @@ a {
   transform: translateY(0);
 }
 
+/* Skranke-kort — rigtig 3D vende-animation, som et fysisk kort man vender. */
+.flip-card-outer {
+  perspective: 1400px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card-inner.is-flipped {
+  transform: rotateY(180deg) !important;
+}
+.flip-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.flip-card-face.flip-card-back {
+  transform: rotateY(180deg) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .flip-card-inner {
+    transition: none;
+  }
+}
+
 @keyframes mic-pulse-ring {
   0% {
     opacity: 0.9;

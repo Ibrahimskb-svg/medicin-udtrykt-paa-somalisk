@@ -793,6 +793,7 @@ export function SiteIndex({initialLang}){
       <div className="mx-auto max-w-6xl px-4 pt-5 sm:pt-6">
         <Link
           href={{ pathname: "/ordliste", query: { lang: language } }}
+          data-sm-bubble-avoid="true"
           className="reveal-on-scroll flex flex-col items-start gap-3 rounded-2xl px-5 py-5 no-underline transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
           style={{ background: "linear-gradient(120deg,#B45309,#D97706 55%,#F59E0B)", boxShadow: "0 8px 28px rgba(180,83,9,0.28)" }}
         >
@@ -823,6 +824,7 @@ export function SiteIndex({initialLang}){
       <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
         <button
           type="button"
+          data-sm-bubble-avoid="true"
           onClick={() => setModalTab("counterCards")}
           className="reveal-on-scroll flex w-full flex-col items-start gap-3 rounded-2xl px-5 py-5 text-start transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
           style={{ background: "linear-gradient(120deg,#9F1239,#BE123C 55%,#E11D48)", boxShadow: "0 8px 28px rgba(159,18,57,0.28)" }}

@@ -9,8 +9,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@fontsource/amiri": "^5.3.0",
     "@google-analytics/data": "^6.1.0",
     "@tailwindcss/postcss": "^4.2.2",
+    "arabic-reshaper": "^1.1.0",
     "country-flag-icons": "^1.6.20",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.3.0"
+    "eslint-config-next": "^16.3.0",
+    "wawoff2": "^2.0.1"
   }
 }
