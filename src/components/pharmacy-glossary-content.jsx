@@ -20,7 +20,7 @@ const TITLE = {
 const SUBTITLE = {
   da: "En ordliste over de danske ord, du møder på recepten og på apoteket — forklaret enkelt, så du ved, hvad de betyder, næste gang du hører dem.",
   en: "A glossary of the Danish words you'll meet on your prescription and at the pharmacy — explained simply, so you know what they mean next time you hear them.",
-  so: "Waa liis ku saabsan ereyada Danish ee aad ku arki doonto warqadda daawada iyo farmashiyaha — oo si fudud loo sharaxay, si aad u ogaato waxay macneeyaan markaad mar dambe maqasho.",
+  so: "Waa liis ku saabsan ereyada Deenish ee aad ku arki doonto warqadda daawada iyo farmashiyaha — oo si fudud loo sharaxay, si aad u ogaato waxay macneeyaan markaad mar dambe maqasho.",
   ar: "قائمة بالكلمات الدنماركية التي ستقابلها في وصفتك الطبية وفي الصيدلية — موضحة ببساطة، لتعرف معناها في المرة القادمة التي تسمعها فيها.",
 };
 

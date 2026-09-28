@@ -1,7 +1,26 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSchedule, toggleScheduleSlot, subscribeSchedule, TIME_SLOTS } from "../lib/dose-schedule";
+import { getMedicine } from "../lib/site";
 import { LANG_THEME } from "./modal-shell";
+
+const USUAL_DOSING_LABEL = {
+  da: "Sædvanligvis (fra medicinens egen side)",
+  en: "Usually (from the medicine's own page)",
+  so: "Sida caadiga ah (ka socota bogga daawada)",
+  ar: "عادة (من صفحة الدواء نفسها)",
+};
+
+// Genbruger doseringspiktogrammet, der allerede vises på selve medicinsiden
+// (fx "Hal jeer maalintii — Subax ama fiid" for Amlodipin) — så brugeren har
+// en reel, allerede-godkendt reference at holde sine egne valg op imod, i
+// stedet for 4 blanke, kontekstløse knapper.
+function getUsualDosingHint(slug, language) {
+  const medicine = getMedicine(slug);
+  const pictogram = medicine?.dosagePictogram?.[language] || medicine?.dosagePictogram?.so;
+  if (!pictogram || pictogram.length === 0) return null;
+  return pictogram.map((p) => p.text).join(" — ");
+}
 
 const TIME_LABELS = {
   da: { morning: "Morgen", noon: "Middag", evening: "Aften", night: "Nat" },
@@ -326,9 +345,18 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                 padding: "16px 16px", borderRadius: "18px", border: "1.5px solid #e2e8f0", background: "#fff",
               }}
             >
-              <span style={{ display: "block", fontWeight: 800, fontSize: "16px", color: "#0f172a", marginBottom: "12px", textAlign: isRtl ? "right" : "left" }}>
+              <span style={{ display: "block", fontWeight: 800, fontSize: "16px", color: "#0f172a", marginBottom: "4px", textAlign: isRtl ? "right" : "left" }}>
                 {item.name}
               </span>
+              {(() => {
+                const hint = getUsualDosingHint(item.slug, language);
+                if (!hint) return null;
+                return (
+                  <p style={{ margin: "0 0 12px", fontSize: "12px", lineHeight: 1.5, color: "#64748b", textAlign: isRtl ? "right" : "left" }}>
+                    <span style={{ fontWeight: 700 }}>{USUAL_DOSING_LABEL[language] ?? USUAL_DOSING_LABEL.so}:</span> {hint}
+                  </p>
+                );
+              })()}
               <div style={{ display: "flex", gap: "8px", justifyContent: "space-between" }}>
                 {TIME_SLOTS.map((slot) => {
                   const on = active.includes(slot);

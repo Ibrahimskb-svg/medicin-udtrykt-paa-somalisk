@@ -41,7 +41,7 @@ const FAQ_MODAL_TITLE = {
 const GLOSSARY_LINK_TEXT = {
   da: { label: "Forstå dit apoteksbesøg", desc: "Ordliste over danske apoteks- og receptord — recept, tilskud, generisk substitution m.fl." },
   en: { label: "Understand your pharmacy visit", desc: "A glossary of Danish pharmacy and prescription words — prescription, reimbursement, generic substitution and more." },
-  so: { label: "Faham booqashadaada farmashiyaha", desc: "Liis ku saabsan ereyada Danish ee farmashiyaha iyo warqadda daawada — recept, tilskud, iwm." },
+  so: { label: "Faham booqashadaada farmashiyaha", desc: "Liis ku saabsan ereyada Deenish ee farmashiyaha iyo warqadda daawada — recept, tilskud, iwm." },
   ar: { label: "افهم زيارتك للصيدلية", desc: "قائمة بمصطلحات الصيدلية والوصفات الدنماركية — الوصفة، الدعم المالي، الاستبدال بالمكافئ وغيرها." },
 };
 

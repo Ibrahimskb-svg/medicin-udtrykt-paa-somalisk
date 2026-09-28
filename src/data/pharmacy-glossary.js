@@ -5,17 +5,17 @@
 export const pharmacyGlossary = [
   {
     id: "recept",
-    term: { da: "Recept", en: "Prescription", so: "Warqad daawo", ar: "وصفة طبية" },
+    term: { da: "Recept", en: "Prescription", so: "Warqad dhakhtareed", ar: "وصفة طبية" },
     explanation: {
       da: "Lægens skriftlige godkendelse af, at du må få en bestemt medicin. Uden recept kan apoteket ikke udlevere receptpligtig medicin.",
       en: "The doctor's written approval that you may receive a specific medicine. Without a prescription, the pharmacy cannot hand out prescription-only medicine.",
-      so: "Waa oggolaanshaha qoraal ah ee dhakhtarku kuu siiyo si aad daawo gaar ah u heshid. Warqad la'aan farmashiyuhu ma kuu siin karo daawooyinka loo baahan yahay warqad.",
+      so: "Waa oggolaanshaha qoraal ah ee dhakhtarku kuu siiyo si aad daawo gaar ah u heshid. Warqad dhakhtareed la'aan farmashiyuhu ma kuu siin karo daawooyinka loo baahan yahay warqad dhakhtareed.",
       ar: "هي الموافقة الخطية من الطبيب على حصولك على دواء معين. بدون وصفة، لا يمكن للصيدلية صرف الأدوية التي تتطلب وصفة طبية.",
     },
   },
   {
     id: "e-recept",
-    term: { da: "E-recept", en: "E-prescription", so: "Warqad daawo elektaroonig ah", ar: "الوصفة الإلكترونية" },
+    term: { da: "E-recept", en: "E-prescription", so: "Warqad dhakhtareed elektaroonig ah", ar: "الوصفة الإلكترونية" },
     explanation: {
       da: "Lægen sender recepten elektronisk direkte til apoteket. Du behøver ikke selv have papiret med — apoteket kan finde den, når du opgiver dit CPR-nummer.",
       en: "The doctor sends the prescription electronically straight to the pharmacy. You don't need to bring any paper — the pharmacy can look it up when you give your CPR number.",
@@ -25,11 +25,11 @@ export const pharmacyGlossary = [
   },
   {
     id: "tilskud",
-    term: { da: "Tilskud", en: "Reimbursement", so: "Kaalmo lacageed", ar: "الدعم المالي" },
+    term: { da: "Tilskud", en: "Reimbursement", so: "Kaalmada daawada", ar: "الدعم المالي" },
     explanation: {
       da: "Staten betaler en del af prisen på visse recepter, så du selv betaler mindre. Hvor meget afhænger af, hvor meget du har brugt på medicin det seneste år.",
       en: "The state pays part of the price on certain prescriptions, so you pay less yourself. How much depends on how much you've spent on medicine in the past year.",
-      so: "Dawladdu waxay bixisaa qayb ka mid ah qiimaha daawooyinka qaar, si aad adigu wax yar bixiso. Qadarka waxa saameeya inta lacag ee aad ku bixisay daawooyin sanadkii ugu dambeeyay.",
+      so: "Waa kaalmada kharashka daawada ee dawladdu bixiso — dawladdu waxay bixisaa qayb ka mid ah qiimaha daawooyinka qaar, si aad adigu wax yar bixiso. Qadarka waxa saameeya inta lacag ee aad ku bixisay daawooyin sanadkii ugu dambeeyay.",
       ar: "تدفع الدولة جزءًا من سعر بعض الوصفات، لتدفع أنت أقل. المبلغ يعتمد على مقدار ما أنفقته على الأدوية في العام الماضي.",
     },
   },
@@ -45,21 +45,21 @@ export const pharmacyGlossary = [
   },
   {
     id: "haandkoeb",
-    term: { da: "Håndkøbsmedicin", en: "Over-the-counter medicine", so: "Daawo aan warqad u baahnayn", ar: "دواء بدون وصفة طبية" },
+    term: { da: "Håndkøbsmedicin", en: "Over-the-counter medicine", so: "Daawo aan u baahnayn warqad dhakhtareed", ar: "دواء بدون وصفة طبية" },
     explanation: {
       da: "Medicin du kan købe uden recept — men det er ikke ufarligt bare fordi det er frit tilgængeligt. Spørg altid, hvis du er i tvivl om det passer sammen med din anden medicin.",
       en: "Medicine you can buy without a prescription — but it isn't harmless just because it's freely available. Always ask if you're unsure whether it fits with your other medicine.",
-      so: "Daawo aad iibsan karto warqad la'aan — laakiin taasi macnaheedu maaha inaysan waxyeello lahayn. Had iyo jeer weydii haddii aad shaki qabto in ay la shaqeyn karto daawooyinkaaga kale.",
+      so: "Daawo aad iibsan karto warqad dhakhtareed la'aan — laakiin taasi macnaheedu maaha inaysan waxyeello lahayn. Had iyo jeer weydii haddii aad shaki qabto in ay la shaqeyn karto daawooyinkaaga kale.",
       ar: "دواء يمكنك شراؤه بدون وصفة طبية — لكن هذا لا يعني أنه غير ضار لمجرد أنه متاح بحرية. اسأل دائمًا إذا كنت غير متأكد من توافقه مع أدويتك الأخرى.",
     },
   },
   {
     id: "receptpligtig",
-    term: { da: "Receptpligtig medicin", en: "Prescription-only medicine", so: "Daawo loo baahan yahay warqad", ar: "دواء يتطلب وصفة طبية" },
+    term: { da: "Receptpligtig medicin", en: "Prescription-only medicine", so: "Daawo loo baahan yahay warqad dhakhtareed", ar: "دواء يتطلب وصفة طبية" },
     explanation: {
       da: "Medicin apoteket kun må udlevere, hvis du har en gyldig recept fra en læge — typisk fordi den kræver kontrol eller kan være farlig ved forkert brug.",
       en: "Medicine the pharmacy may only hand out if you have a valid prescription from a doctor — usually because it needs supervision or can be dangerous if used incorrectly.",
-      so: "Daawo farmashiyuhu ku siin karo kaliya haddii aad haysato warqad dhakhtar oo sax ah — sida caadiga ah sababtoo ah waxay u baahan tahay kormeer ama waxay noqon kartaa mid khatar ah haddii si qalad ah loo isticmaalo.",
+      so: "Daawo farmashiyuhu ku siin karo kaliya haddii aad haysato warqad dhakhtareed oo sax ah — sida caadiga ah sababtoo ah waxay u baahan tahay kormeer ama waxay noqon kartaa mid khatar ah haddii si qalad ah loo isticmaalo.",
       ar: "دواء لا يمكن للصيدلية صرفه إلا إذا كان لديك وصفة طبية سارية من طبيب — عادةً لأنه يحتاج إلى متابعة أو قد يكون خطيرًا عند استخدامه بشكل خاطئ.",
     },
   },
@@ -89,7 +89,7 @@ export const pharmacyGlossary = [
     explanation: {
       da: "Den lille foldede papirseddel inde i æsken, skrevet af producenten på dansk, med alle detaljer om medicinen. Somalimed er ikke en erstatning for den, men et lettere supplement.",
       en: "The small folded paper inside the box, written by the manufacturer in Danish, with all the details about the medicine. Somalimed doesn't replace it, but is an easier supplement.",
-      so: "Waa warqadda yar ee laalaaban ee ku jirta baakadka, oo uu qoray warshaddu af-Danish, oo ka kooban faahfaahin dhammaystiran oo ku saabsan daawada. Somalimed ma beddesho, laakiin waa kaalmo dheeraad ah oo fudud.",
+      so: "Waa warqadda yar ee laalaaban ee ku jirta baakadka, oo uu qoray warshaddu af-Deenish, oo ka kooban faahfaahin dhammaystiran oo ku saabsan daawada. Somalimed ma beddesho, laakiin waa kaalmo dheeraad ah oo fudud.",
       ar: "هي الورقة الصغيرة المطوية داخل العلبة، مكتوبة من الشركة المصنعة باللغة الدنماركية، وتحتوي على كل التفاصيل عن الدواء. لا يحل Somalimed محلها، بل هو مكمّل أسهل لها.",
     },
   },
