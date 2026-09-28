@@ -780,6 +780,36 @@ export function SiteIndex({initialLang}){
         </div>
       </div>
 
+      {/* ── Ordliste-banner — skal ses med det samme, derfor lige under hero'en ── */}
+      <div className="mx-auto max-w-6xl px-4 pt-5 sm:pt-6">
+        <Link
+          href={{ pathname: "/ordliste", query: { lang: language } }}
+          className="reveal-on-scroll flex flex-col items-start gap-3 rounded-2xl px-5 py-5 no-underline transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
+          style={{ background: "linear-gradient(120deg,#B45309,#D97706 55%,#F59E0B)", boxShadow: "0 8px 28px rgba(180,83,9,0.28)" }}
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-2xl sm:h-14 sm:w-14"
+          >
+            📖
+          </span>
+          <span className="flex-1">
+            <span className="block text-base font-extrabold text-white sm:text-lg">
+              {(GLOSSARY_LINK_TEXT[language] ?? GLOSSARY_LINK_TEXT.so).label}
+            </span>
+            <span className="mt-1 block text-sm leading-6 text-white/90">
+              {(GLOSSARY_LINK_TEXT[language] ?? GLOSSARY_LINK_TEXT.so).desc}
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-lg font-bold text-white sm:h-10 sm:w-10"
+          >
+            {language === "ar" ? "←" : "→"}
+          </span>
+        </Link>
+      </div>
+
       {/* ── Video Guide ──────────────────────────────────────────────────── */}
       <VideoGuide chromeText={chromeText} language={language} />
 
@@ -796,17 +826,6 @@ export function SiteIndex({initialLang}){
               {searchTerm?(<button type="button" className="shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90" style={{background:"var(--bg)",color:"var(--text-muted)",minHeight:"36px"}} onClick={()=>setSearchTerm("")}>{chromeText.clearFilters}</button>):null}
             </div>
           </label>
-        </div>
-
-        <div className="reveal-on-scroll mb-6 sm:mb-7">
-          <Link
-            href={{ pathname: "/ordliste", query: { lang: language } }}
-            className="inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-semibold transition hover:opacity-90"
-            style={{ borderColor: "var(--border)", background: "var(--surface,#fff)", color: "var(--accent)" }}
-          >
-            <span aria-hidden="true">📖</span>
-            {(GLOSSARY_LINK_TEXT[language] ?? GLOSSARY_LINK_TEXT.so).label} ↗
-          </Link>
         </div>
 
         <div className="reveal-on-scroll mb-6 sm:mb-7">

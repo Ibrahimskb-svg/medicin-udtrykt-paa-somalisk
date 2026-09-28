@@ -64,6 +64,7 @@ const TEXTS = {
     intro: "Sæt flueben ved de tidspunkter, du tager hver medicin — så får du et skema at printe og hænge op, ligesom en doseringsæske.",
     hint: "Tryk på morgen, middag, aften eller nat for den medicin, det gælder.",
     empty: "Sæt mindst ét tidspunkt ved en medicin herover for at lave dit skema.",
+    freqColumnLabel: "Hvor tit",
     printBtn: "Print skema",
     pdfBtn: "Gem skema som PDF",
     printedOn: "Doseringsskema fra Somalimed.dk",
@@ -74,6 +75,7 @@ const TEXTS = {
     intro: "Tick the times you take each medicine — you'll get a schedule to print and put up, just like a dosette box.",
     hint: "Tap morning, noon, evening or night for the medicine it applies to.",
     empty: "Tick at least one time for a medicine above to build your schedule.",
+    freqColumnLabel: "How often",
     printBtn: "Print schedule",
     pdfBtn: "Save schedule as PDF",
     printedOn: "Dosage schedule from Somalimed.dk",
@@ -84,6 +86,7 @@ const TEXTS = {
     intro: "Calaamadi waqtiyada aad daawo kasta qaadato — waxaad heli doontaa jadwal aad daabici karto oo aad ku dhejin karto, sida sanduuqa doosaha daawada.",
     hint: "Riix aroor, duhur, fiid ama habeen ee daawada khuseeya.",
     empty: "Ugu yaraan calaamadi hal waqti oo daawo sare ah si aad jadwalkaaga u sameyso.",
+    freqColumnLabel: "Immisa jeer",
     printBtn: "Daabac jadwalka",
     pdfBtn: "Keyd jadwalka sida PDF",
     printedOn: "Jadwalka qaadashada daawada — Somalimed.dk",
@@ -94,12 +97,41 @@ const TEXTS = {
     intro: "ضع علامة على الأوقات التي تتناول فيها كل دواء — لتحصل على جدول يمكنك طباعته وتعليقه، تمامًا مثل علبة الجرعات.",
     hint: "اضغط على الصباح أو الظهر أو المساء أو الليل للدواء المعني.",
     empty: "ضع علامة على وقت واحد على الأقل لأحد الأدوية أعلاه لإنشاء جدولك.",
+    freqColumnLabel: "عدد المرات",
     printBtn: "طباعة الجدول",
     pdfBtn: "احفظ الجدول كملف PDF",
     printedOn: "جدول الجرعات من Somalimed.dk",
     disclaimer: "هذه الأوقات هي التي اخترتها بنفسك — اتبع دائمًا التعليمات الدقيقة من طبيبك أو الصيدلية. هذا الجدول أداة مساعدة للتذكر، وليس نصيحة طبية.",
   },
 };
+
+// Gør antallet af gange dagligt eksplicit i almindeligt sprog — så et
+// fejltryk eller en misforståelse (fx alle 4 tider valgt for en medicin,
+// der kun tages morgen og aften) er synlig med det samme, i stedet for kun
+// at kunne aflæses ved at tælle farvede ikoner.
+const FREQUENCY_PHRASE = {
+  da: (n) => (n === 1 ? "1 gang dagligt" : `${n} gange dagligt`),
+  en: (n) => (n === 1 ? "Once daily" : n === 2 ? "Twice daily" : `${n} times daily`),
+  so: (n) => (n === 1 ? "1 jeer maalintii" : `${n} jeer maalintii`),
+  ar: (n) => (n === 1 ? "مرة واحدة يوميًا" : n === 2 ? "مرتين يوميًا" : `${n} مرات يوميًا`),
+};
+
+const LIST_JOIN = {
+  da: { sep: ", ", and: " og " },
+  en: { sep: ", ", and: " and " },
+  so: { sep: ", ", and: " iyo " },
+  ar: { sep: "، ", and: " و " },
+};
+
+function formatScheduleSummary(language, active, timeLabels) {
+  const orderedSlots = TIME_SLOTS.filter((slot) => active.includes(slot));
+  if (orderedSlots.length === 0) return null;
+  const names = orderedSlots.map((slot) => timeLabels[slot]);
+  const { sep, and } = LIST_JOIN[language] ?? LIST_JOIN.so;
+  const list = names.length === 1 ? names[0] : names.slice(0, -1).join(sep) + and + names[names.length - 1];
+  const freq = (FREQUENCY_PHRASE[language] ?? FREQUENCY_PHRASE.so)(orderedSlots.length);
+  return `${freq}: ${list}`;
+}
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -131,26 +163,29 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
           const on = active.includes(slot);
           return `<td>${on ? `<span class="mark" style="color:${style.color}">X</span>` : ""}</td>`;
         }).join("");
-        return `<tr><th>${escapeHtml(item.name)}</th>${cells}</tr>`;
+        const summary = formatScheduleSummary(language, active, timeLabels) || "";
+        return `<tr><th>${escapeHtml(item.name)}</th>${cells}<td class="freq">${escapeHtml(summary)}</td></tr>`;
       })
       .join("");
     const headerCells = TIME_SLOTS.map((slot) => {
       const style = TIME_SLOT_STYLE[slot];
       return `<th style="color:${style.color}">${escapeHtml(timeLabels[slot])}</th>`;
-    }).join("");
+    }).join("") + `<th>${escapeHtml(t.freqColumnLabel)}</th>`;
 
     win.document.write(`
       <html><head><title>${t.title}</title>
       <meta charset="utf-8">
       <style>
         body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:28px;color:#0f172a;direction:${isRtl ? "rtl" : "ltr"};}
-        h1{font-size:19px;margin:0 0 4px;color:${theme.primary};}
-        p.sub{font-size:12px;color:#64748b;margin:0 0 22px;}
+        h1{font-size:23px;margin:0 0 4px;color:${theme.primary};}
+        p.sub{font-size:13px;color:#64748b;margin:0 0 24px;}
         table{width:100%;border-collapse:collapse;}
-        th,td{border:1.5px solid #cbd5e1;padding:12px 8px;text-align:center;font-size:13px;}
-        th:first-child{text-align:${isRtl ? "right" : "left"};font-size:14px;font-weight:700;color:#0f172a;}
-        thead th{font-weight:800;font-size:13px;border-bottom:2px solid #cbd5e1;}
-        .mark{font-weight:900;font-size:22px;line-height:1;}
+        th,td{border:2px solid #cbd5e1;padding:16px 10px;text-align:center;font-size:16px;}
+        th:first-child{text-align:${isRtl ? "right" : "left"};font-size:17px;font-weight:800;color:#0f172a;}
+        thead th{font-weight:800;font-size:16px;border-bottom:3px solid #cbd5e1;}
+        .mark{font-weight:900;font-size:32px;line-height:1;}
+        .freq{font-size:13.5px;font-weight:700;color:${theme.primary};text-align:${isRtl ? "right" : "left"};}
+        th:last-child{color:#0f172a;}
         footer{margin-top:22px;font-size:11px;color:#94a3b8;line-height:1.6;}
         @media print{ body{-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
       </style>
@@ -194,30 +229,31 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
     pdf.text(t.printedOn, isRtl ? pageWidth - margin : margin, 58, { align });
 
     const tableTop = 100;
-    const nameColWidth = 150;
+    const nameColWidth = 160;
     const tableWidth = pageWidth - margin * 2;
     const slotColWidth = (tableWidth - nameColWidth) / TIME_SLOTS.length;
-    const rowHeight = 30;
+    const headerRowHeight = 40;
+    const rowHeight = 58; // højere end header-rækken, så navn + "hvor tit"-linje begge er der plads til, og i stor skrift
     const nameColX = isRtl ? pageWidth - margin - nameColWidth : margin;
     const slotsStartX = isRtl ? margin : margin + nameColWidth;
 
     // Header row — hver kolonne får sin egen tidspunkt-farve (samme som knapperne i UI'en)
     pdf.setDrawColor(226, 232, 240);
-    pdf.setLineWidth(1);
-    pdf.rect(margin, tableTop, tableWidth, rowHeight, "S");
+    pdf.setLineWidth(1.2);
+    pdf.rect(margin, tableTop, tableWidth, headerRowHeight, "S");
     pdf.setFont("helvetica", "bold");
-    pdf.setFontSize(11);
+    pdf.setFontSize(13.5);
     TIME_SLOTS.forEach((slot, i) => {
       const colX = isRtl ? slotsStartX + tableWidth - nameColWidth - (i + 1) * slotColWidth : slotsStartX + i * slotColWidth;
       const slotRgb = hexToRgb(TIME_SLOT_STYLE[slot].bg);
       const slotTextRgb = hexToRgb(TIME_SLOT_STYLE[slot].color);
       pdf.setFillColor(...slotRgb);
-      pdf.rect(colX, tableTop, slotColWidth, rowHeight, "F");
+      pdf.rect(colX, tableTop, slotColWidth, headerRowHeight, "F");
       pdf.setTextColor(...slotTextRgb);
-      pdf.text(timeLabels[slot], colX + slotColWidth / 2, tableTop + rowHeight / 2 + 4, { align: "center" });
+      pdf.text(timeLabels[slot], colX + slotColWidth / 2, tableTop + headerRowHeight / 2 + 5, { align: "center" });
     });
 
-    let y = tableTop + rowHeight;
+    let y = tableTop + headerRowHeight;
     scheduledItems.forEach((item, rowIndex) => {
       const active = schedule[item.slug] || [];
       pdf.setFillColor(rowIndex % 2 === 0 ? 255 : 250, rowIndex % 2 === 0 ? 255 : 250, rowIndex % 2 === 0 ? 255 : 251);
@@ -227,9 +263,20 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
 
       pdf.setTextColor(15, 23, 42);
       pdf.setFont("helvetica", "bold");
-      pdf.setFontSize(11.5);
+      pdf.setFontSize(14.5);
       const nameLines = pdf.splitTextToSize(item.name, nameColWidth - 16);
-      pdf.text(nameLines[0], isRtl ? nameColX + nameColWidth - 8 : nameColX + 8, y + rowHeight / 2 + 4, { align });
+      pdf.text(nameLines[0], isRtl ? nameColX + nameColWidth - 8 : nameColX + 8, y + rowHeight / 2 - 6, { align });
+
+      // "Hvor tit"-linje — samme tekst som under vælgeren på selve siden, så
+      // antallet af gange dagligt aldrig kun kan aflæses ved at tælle X'er.
+      // Ingen rød advarsel her — nogle medicin (fx Paracetamol) er helt
+      // normalt 4x dagligt, andre ikke, og det kan appen ikke sikkert
+      // vurdere pr. medicin, så teksten forbliver neutral for alle antal.
+      const freqText = (FREQUENCY_PHRASE[language] ?? FREQUENCY_PHRASE.so)(active.length);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(10.5);
+      pdf.setTextColor(100, 116, 139);
+      pdf.text(freqText, isRtl ? nameColX + nameColWidth - 8 : nameColX + 8, y + rowHeight / 2 + 16, { align });
 
       TIME_SLOTS.forEach((slot, i) => {
         const colX = isRtl ? slotsStartX + tableWidth - nameColWidth - (i + 1) * slotColWidth : slotsStartX + i * slotColWidth;
@@ -242,8 +289,8 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
           const slotRgb = hexToRgb(TIME_SLOT_STYLE[slot].color);
           pdf.setTextColor(...slotRgb);
           pdf.setFont("helvetica", "bold");
-          pdf.setFontSize(15);
-          pdf.text("X", colX + slotColWidth / 2, y + rowHeight / 2 + 5, { align: "center" });
+          pdf.setFontSize(22);
+          pdf.text("X", colX + slotColWidth / 2, y + rowHeight / 2 + 8, { align: "center" });
         }
       });
 
@@ -276,13 +323,13 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
             <div
               key={item.slug}
               style={{
-                padding: "12px 14px", borderRadius: "16px", border: "1.5px solid #e2e8f0", background: "#fff",
+                padding: "16px 16px", borderRadius: "18px", border: "1.5px solid #e2e8f0", background: "#fff",
               }}
             >
-              <span style={{ display: "block", fontWeight: 700, fontSize: "13.5px", color: "#0f172a", marginBottom: "10px", textAlign: isRtl ? "right" : "left" }}>
+              <span style={{ display: "block", fontWeight: 800, fontSize: "16px", color: "#0f172a", marginBottom: "12px", textAlign: isRtl ? "right" : "left" }}>
                 {item.name}
               </span>
-              <div style={{ display: "flex", gap: "10px", justifyContent: "space-between" }}>
+              <div style={{ display: "flex", gap: "8px", justifyContent: "space-between" }}>
                 {TIME_SLOTS.map((slot) => {
                   const on = active.includes(slot);
                   const style = TIME_SLOT_STYLE[slot];
@@ -294,10 +341,10 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                       onClick={() => toggleScheduleSlot(item.slug, slot)}
                       aria-pressed={on}
                       style={{
-                        display: "flex", flexDirection: "column", alignItems: "center", gap: "5px",
-                        flex: 1, padding: "8px 4px 6px", borderRadius: "14px", border: "none",
+                        display: "flex", flexDirection: "column", alignItems: "center", gap: "6px",
+                        flex: 1, padding: "10px 4px 8px", borderRadius: "16px", border: "none",
                         background: on ? style.bg : "transparent",
-                        boxShadow: on ? `inset 0 0 0 1.5px ${style.ring}` : "none",
+                        boxShadow: on ? `inset 0 0 0 2px ${style.ring}` : "none",
                         cursor: "pointer",
                       }}
                     >
@@ -305,22 +352,42 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                         aria-hidden="true"
                         style={{
                           display: "flex", alignItems: "center", justifyContent: "center",
-                          width: 36, height: 36, borderRadius: "50%",
+                          width: 52, height: 52, borderRadius: "50%",
                           background: on ? style.color : "#f1f5f9",
                           border: on ? "none" : "1.5px solid #e2e8f0",
                           color: on ? "#fff" : "#94a3b8",
                           transition: "all 0.15s ease",
                         }}
                       >
-                        <Icon size={18} color={on ? "#fff" : "#94a3b8"} />
+                        <Icon size={26} color={on ? "#fff" : "#94a3b8"} />
                       </span>
-                      <span style={{ fontSize: "11px", fontWeight: 700, color: on ? style.color : "#94a3b8" }}>
+                      <span style={{ fontSize: "13.5px", fontWeight: 800, color: on ? style.color : "#94a3b8" }}>
                         {timeLabels[slot]}
                       </span>
                     </button>
                   );
                 })}
               </div>
+              {(() => {
+                // Ingen automatisk "for mange gange"-advarsel her — nogle
+                // medicin (fx Paracetamol, op til 4x dagligt) er helt normalt
+                // valgt 4 gange, andre (fx blodtryksmedicin) er det ikke. Det
+                // kan appen ikke sikkert vurdere pr. medicin, så teksten viser
+                // altid bare tydeligt hvad brugeren selv har valgt, neutralt.
+                const summary = formatScheduleSummary(language, active, timeLabels);
+                if (!summary) return null;
+                return (
+                  <p
+                    style={{
+                      margin: "10px 0 0", fontSize: "12.5px", fontWeight: 700,
+                      color: theme.primary,
+                      textAlign: isRtl ? "right" : "left",
+                    }}
+                  >
+                    {`→ ${summary}`}
+                  </p>
+                );
+              })()}
             </div>
           );
         })}

@@ -1,11 +1,11 @@
 // Ordliste over danske apoteks- og receptord, som patienter møder i praksis,
-// men sjældent får forklaret. "term" er formatet "{oversat ord} (dansk ord)"
-// — dansk beholdes altid i parentes, fordi det er det ord, der reelt står på
-// recepten/skiltet/skærmen, og som brugeren skal kunne genkende.
+// men sjældent får forklaret. "term" er den oversatte betegnelse på hvert
+// sprog — det danske originalord vises kun via sprogvælgeren (ikke gentaget
+// i parentes), da det ellers er redundant og ser uprofessionelt ud.
 export const pharmacyGlossary = [
   {
     id: "recept",
-    term: { da: "Recept", en: "Prescription (Recept)", so: "Warqad daawo (Recept)", ar: "وصفة طبية (Recept)" },
+    term: { da: "Recept", en: "Prescription", so: "Warqad daawo", ar: "وصفة طبية" },
     explanation: {
       da: "Lægens skriftlige godkendelse af, at du må få en bestemt medicin. Uden recept kan apoteket ikke udlevere receptpligtig medicin.",
       en: "The doctor's written approval that you may receive a specific medicine. Without a prescription, the pharmacy cannot hand out prescription-only medicine.",
@@ -15,7 +15,7 @@ export const pharmacyGlossary = [
   },
   {
     id: "e-recept",
-    term: { da: "E-recept", en: "E-prescription (E-recept)", so: "Warqad daawo elektaroonig ah (E-recept)", ar: "الوصفة الإلكترونية (E-recept)" },
+    term: { da: "E-recept", en: "E-prescription", so: "Warqad daawo elektaroonig ah", ar: "الوصفة الإلكترونية" },
     explanation: {
       da: "Lægen sender recepten elektronisk direkte til apoteket. Du behøver ikke selv have papiret med — apoteket kan finde den, når du opgiver dit CPR-nummer.",
       en: "The doctor sends the prescription electronically straight to the pharmacy. You don't need to bring any paper — the pharmacy can look it up when you give your CPR number.",
@@ -25,7 +25,7 @@ export const pharmacyGlossary = [
   },
   {
     id: "tilskud",
-    term: { da: "Tilskud", en: "Reimbursement (Tilskud)", so: "Kaalmo lacageed (Tilskud)", ar: "الدعم المالي (Tilskud)" },
+    term: { da: "Tilskud", en: "Reimbursement", so: "Kaalmo lacageed", ar: "الدعم المالي" },
     explanation: {
       da: "Staten betaler en del af prisen på visse recepter, så du selv betaler mindre. Hvor meget afhænger af, hvor meget du har brugt på medicin det seneste år.",
       en: "The state pays part of the price on certain prescriptions, so you pay less yourself. How much depends on how much you've spent on medicine in the past year.",
@@ -35,7 +35,7 @@ export const pharmacyGlossary = [
   },
   {
     id: "generisk-substitution",
-    term: { da: "Generisk substitution", en: "Generic substitution", so: "Beddelka daawo la mid ah (Generisk substitution)", ar: "الاستبدال بالدواء المكافئ" },
+    term: { da: "Generisk substitution", en: "Generic substitution", so: "Beddelka daawo la mid ah", ar: "الاستبدال بالدواء المكافئ" },
     explanation: {
       da: "Apoteket giver dig ofte et billigere mærke med præcis samme aktive stof og virkning som det, lægen skrev — kun navnet og æsken ser anderledes ud.",
       en: "The pharmacy often gives you a cheaper brand with the exact same active ingredient and effect as the one the doctor wrote — only the name and box look different.",
@@ -45,7 +45,7 @@ export const pharmacyGlossary = [
   },
   {
     id: "haandkoeb",
-    term: { da: "Håndkøbsmedicin", en: "Over-the-counter medicine", so: "Daawo aan warqad u baahnayn (Håndkøbsmedicin)", ar: "دواء بدون وصفة طبية" },
+    term: { da: "Håndkøbsmedicin", en: "Over-the-counter medicine", so: "Daawo aan warqad u baahnayn", ar: "دواء بدون وصفة طبية" },
     explanation: {
       da: "Medicin du kan købe uden recept — men det er ikke ufarligt bare fordi det er frit tilgængeligt. Spørg altid, hvis du er i tvivl om det passer sammen med din anden medicin.",
       en: "Medicine you can buy without a prescription — but it isn't harmless just because it's freely available. Always ask if you're unsure whether it fits with your other medicine.",
@@ -55,7 +55,7 @@ export const pharmacyGlossary = [
   },
   {
     id: "receptpligtig",
-    term: { da: "Receptpligtig medicin", en: "Prescription-only medicine", so: "Daawo loo baahan yahay warqad (Receptpligtig medicin)", ar: "دواء يتطلب وصفة طبية" },
+    term: { da: "Receptpligtig medicin", en: "Prescription-only medicine", so: "Daawo loo baahan yahay warqad", ar: "دواء يتطلب وصفة طبية" },
     explanation: {
       da: "Medicin apoteket kun må udlevere, hvis du har en gyldig recept fra en læge — typisk fordi den kræver kontrol eller kan være farlig ved forkert brug.",
       en: "Medicine the pharmacy may only hand out if you have a valid prescription from a doctor — usually because it needs supervision or can be dangerous if used incorrectly.",
@@ -125,7 +125,7 @@ export const pharmacyGlossary = [
   },
   {
     id: "kronikertilskud",
-    term: { da: "Kronikertilskud", en: "Chronic-illness reimbursement", so: "Kaalmo dheeraad ah oo cudur joogto ah (Kronikertilskud)", ar: "دعم مرضى الأمراض المزمنة" },
+    term: { da: "Kronikertilskud", en: "Chronic-illness reimbursement", so: "Kaalmo dheeraad ah oo cudur joogto ah", ar: "دعم مرضى الأمراض المزمنة" },
     explanation: {
       da: "Ekstra tilskud til dig, der har et kronisk behov for meget medicin, så din egenbetaling får et loft. Spørg dit apotek, om du opfylder kravene.",
       en: "Extra reimbursement for you if you have a chronic need for a lot of medicine, so your own payment gets a ceiling. Ask your pharmacy if you meet the requirements.",
