@@ -128,6 +128,7 @@ export default function TextZoomControl() {
           disabled={zoom <= MIN_ZOOM}
           aria-label={t.zoomOut}
           title={t.zoomOut}
+          className="hover-lift"
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
             width: "26px", height: "26px", borderRadius: "50%", border: "none",
@@ -143,6 +144,7 @@ export default function TextZoomControl() {
           onClick={reset}
           aria-label={`${t.caption} — ${t.reset}`}
           title={t.reset}
+          className="hover-lift"
           style={{
             minWidth: "44px",
             padding: "6px 4px",
@@ -164,6 +166,7 @@ export default function TextZoomControl() {
           disabled={zoom >= MAX_ZOOM}
           aria-label={t.zoomIn}
           title={t.zoomIn}
+          className="hover-lift"
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
             width: "26px", height: "26px", borderRadius: "50%", border: "none",

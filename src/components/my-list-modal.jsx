@@ -474,6 +474,7 @@ export function MyListModal({ language, onClose }) {
                 type="button"
                 onClick={() => toggle(item.slug)}
                 aria-pressed={checked}
+                className="hover-lift"
                 style={{
                   width: "100%", display: "flex", alignItems: "center", gap: "12px",
                   padding: "10px 12px", borderRadius: "14px", cursor: "pointer",
@@ -533,6 +534,7 @@ export function MyListModal({ language, onClose }) {
                   type="button"
                   onClick={() => remove(item.slug)}
                   aria-label={t.remove}
+                  className="hover-lift"
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center",
                     width: 34, height: 34, borderRadius: "10px", flexShrink: 0,
@@ -635,6 +637,7 @@ export function MyListModal({ language, onClose }) {
                     type="button"
                     onClick={() => setOpenSlug(isOpen ? null : slug)}
                     aria-expanded={isOpen}
+                    className="hover-lift"
                     style={{
                       width: "100%", display: "flex", alignItems: "center", gap: "10px",
                       padding: "12px 14px", background: "transparent", border: "none", cursor: "pointer",
@@ -756,6 +759,7 @@ export function MyListModal({ language, onClose }) {
         type="button"
         onClick={printList}
         disabled={selectedItems.length === 0}
+        className="hover-lift"
         style={{
           width: "100%", padding: "14px 20px", borderRadius: "14px", border: "none",
           background: selectedItems.length === 0 ? "#cbd5e1" : theme.primary,
@@ -771,6 +775,7 @@ export function MyListModal({ language, onClose }) {
         type="button"
         onClick={saveListPdf}
         disabled={selectedItems.length === 0}
+        className="hover-lift"
         style={{
           width: "100%", padding: "14px 20px", borderRadius: "14px",
           border: `1.5px solid ${selectedItems.length === 0 ? "#cbd5e1" : theme.primary}`,

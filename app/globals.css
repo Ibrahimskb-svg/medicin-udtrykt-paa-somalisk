@@ -105,6 +105,31 @@ a {
   }
 }
 
+/* Fælles hover-løft til alle klikbare knapper/links på sitet — samme
+   bevægelse som forsidens ordliste- og skranke-kort-bannere, bare som én
+   genbrugelig klasse, så den virker uanset om elementet er stylet med
+   Tailwind-klasser eller inline style={{}} (fx modalerne). */
+.hover-lift {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+}
+.hover-lift:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift {
+    transition: none;
+  }
+  .hover-lift:hover,
+  .hover-lift:active {
+    transform: none;
+  }
+}
+
 @keyframes mic-pulse-ring {
   0% {
     opacity: 0.9;

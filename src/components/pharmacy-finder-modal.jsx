@@ -119,6 +119,7 @@ export function PharmacyFinderModal({ language, onClose }) {
               key={code}
               type="button"
               onClick={() => setLangFilter(code)}
+              className="hover-lift"
               style={{
                 padding: "7px 14px", borderRadius: "999px", fontSize: "13px", fontWeight: 700,
                 border: active ? `1.5px solid ${theme.primary}` : "1.5px solid #e2e8f0",
@@ -159,6 +160,7 @@ export function PharmacyFinderModal({ language, onClose }) {
               {p.phone && (
                 <a
                   href={`tel:${p.phone.replace(/\s/g, "")}`}
+                  className="hover-lift"
                   style={{
                     display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
                     padding: "10px 14px", borderRadius: "10px", fontSize: "13.5px", fontWeight: 700,

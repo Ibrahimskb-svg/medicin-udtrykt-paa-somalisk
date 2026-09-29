@@ -197,7 +197,7 @@ export function AppNavbar() {
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
+                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
                     activeTab === key ? "bg-teal-600 border-teal-600 text-white shadow-md" : "bg-white border-slate-200 text-slate-600 hover:border-teal-200"
                   }`}
                 >
@@ -218,7 +218,7 @@ export function AppNavbar() {
                       title={getLanguageName(language, code)}
                       aria-label={getLanguageName(language, code)}
                       aria-pressed={isActive}
-                      className="flex items-center justify-center rounded-full transition-all"
+                      className="hover-lift flex items-center justify-center rounded-full transition-all"
                       style={{
                         width: 32,
                         height: 32,
@@ -237,7 +237,7 @@ export function AppNavbar() {
                 <button
                   onClick={() => setContactMenuOpen((open) => !open)}
                   aria-expanded={contactMenuOpen}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
+                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
                     isContactGroupActive || contactMenuOpen ? "bg-teal-600 border-teal-600 text-white shadow-md" : "bg-white border-slate-200 text-slate-600 hover:border-teal-200"
                   }`}
                 >
@@ -254,7 +254,7 @@ export function AppNavbar() {
                   >
                     <button
                       onClick={() => handleTabClick("contact")}
-                      className={`flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors ${
+                      className={`hover-lift flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors ${
                         activeTab === "contact" ? "bg-teal-50 text-teal-700" : "text-slate-700 hover:bg-slate-50"
                       }`}
                     >
@@ -262,7 +262,7 @@ export function AppNavbar() {
                     </button>
                     <button
                       onClick={() => handleTabClick("findPharmacy")}
-                      className={`flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors border-t border-slate-100 ${
+                      className={`hover-lift flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors border-t border-slate-100 ${
                         activeTab === "findPharmacy" ? "bg-teal-50 text-teal-700" : "text-slate-700 hover:bg-slate-50"
                       }`}
                     >
@@ -270,7 +270,7 @@ export function AppNavbar() {
                     </button>
                     <button
                       onClick={() => handleTabClick("counterCards")}
-                      className={`flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors border-t border-slate-100 ${
+                      className={`hover-lift flex w-full items-center gap-2.5 px-4 py-3 text-sm font-semibold transition-colors border-t border-slate-100 ${
                         activeTab === "counterCards" ? "bg-teal-50 text-teal-700" : "text-slate-700 hover:bg-slate-50"
                       }`}
                     >
@@ -307,7 +307,7 @@ export function AppNavbar() {
                   title={getLanguageName(language, code)}
                   aria-label={getLanguageName(language, code)}
                   aria-pressed={isActive}
-                  className="flex items-center justify-center rounded-full transition-all"
+                  className="hover-lift flex items-center justify-center rounded-full transition-all"
                   style={{
                     width: 30,
                     height: 30,
@@ -337,7 +337,7 @@ export function AppNavbar() {
                 key={key}
                 onClick={() => handleTabClick(key)}
                 aria-pressed={isActive}
-                className="flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors"
+                className="hover-lift flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors"
                 style={{
                   minHeight: 56,
                   color: isActive ? "var(--accent)" : "#94a3b8",

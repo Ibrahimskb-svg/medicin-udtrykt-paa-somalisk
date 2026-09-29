@@ -474,7 +474,7 @@ function ContactModal({language,onClose}){
             <p style={{fontSize:"13px",color:"#64748b",margin:0,textAlign:isRtl?"right":"left"}}>{fb.subtitle}</p>
             <div style={{display:"flex",gap:"8px",flexWrap:"wrap"}}>
               {[["praise",fb.praise],["criticism",fb.criticism],["suggestion",fb.suggestion]].map(([key,label])=>(
-                <button key={key} type="button" onClick={()=>setType(key)} aria-pressed={type===key} style={{padding:"10px 18px",borderRadius:"999px",border:"1.5px solid",fontWeight:600,fontSize:"14px",cursor:"pointer",transition:"all 0.2s",borderColor:type===key?theme.primary:"#e2e8f0",background:type===key?theme.primary:"#fff",color:type===key?"#fff":"#334155",minHeight:"44px"}}>{label}</button>
+                <button key={key} type="button" className="hover-lift" onClick={()=>setType(key)} aria-pressed={type===key} style={{padding:"10px 18px",borderRadius:"999px",border:"1.5px solid",fontWeight:600,fontSize:"14px",cursor:"pointer",transition:"all 0.2s",borderColor:type===key?theme.primary:"#e2e8f0",background:type===key?theme.primary:"#fff",color:type===key?"#fff":"#334155",minHeight:"44px"}}>{label}</button>
               ))}
             </div>
             <div>
@@ -497,7 +497,7 @@ function ContactModal({language,onClose}){
             {showErrors&&(nameMissing||cityMissing||!msg.trim())&&(
               <p style={{fontSize:"12.5px",color:"#cb3a3a",margin:0,textAlign:isRtl?"right":"left"}}>{fb.requiredHint}</p>
             )}
-            <button type="button" onClick={handleSend} style={{padding:"15px",borderRadius:"14px",background:theme.primary,color:"#fff",fontWeight:700,fontSize:"16px",border:"none",cursor:"pointer",boxShadow:`0 4px 14px ${theme.primary}40`,minHeight:"52px"}}>{fb.send}</button>
+            <button type="button" className="hover-lift" onClick={handleSend} style={{padding:"15px",borderRadius:"14px",background:theme.primary,color:"#fff",fontWeight:700,fontSize:"16px",border:"none",cursor:"pointer",boxShadow:`0 4px 14px ${theme.primary}40`,minHeight:"52px"}}>{fb.send}</button>
           </div>
         )}
       </div>
@@ -518,7 +518,7 @@ function FAQModal({language,onClose}){
       <div style={{display:"flex",flexDirection:"column",gap:"8px"}}>
         {data.items.map((item,i)=>(
           <div key={i} style={{background:"#fff",borderRadius:"16px",border:`1.5px solid ${open===i?theme.primary+"55":"#e5e7eb"}`,overflow:"hidden",boxShadow:open===i?`0 4px 16px ${theme.primary}15`:"0 1px 3px rgba(0,0,0,0.04)",transition:"all 0.2s"}}>
-            <button type="button" onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i} style={{width:"100%",display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:"10px",padding:"14px 16px",background:"none",border:"none",cursor:"pointer",textAlign:isRtl?"right":"left",minHeight:"52px"}}>
+            <button type="button" className="hover-lift" onClick={()=>setOpen(open===i?null:i)} aria-expanded={open===i} style={{width:"100%",display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:"10px",padding:"14px 16px",background:"none",border:"none",cursor:"pointer",textAlign:isRtl?"right":"left",minHeight:"52px"}}>
               <div style={{display:"flex",alignItems:"flex-start",gap:"10px",flex:1}}>
                 <span style={{flexShrink:0,width:26,height:26,borderRadius:"50%",background:open===i?theme.primary:`${theme.primary}15`,display:"flex",alignItems:"center",justifyContent:"center",color:open===i?"#fff":theme.primary,fontSize:"12px",fontWeight:800,marginTop:"2px",transition:"all 0.2s"}}>{i+1}</span>
                 <span style={{fontWeight:700,fontSize:"14px",color:open===i?theme.primary:"#0f172a",lineHeight:1.45}}>{item.q}</span>
@@ -554,6 +554,7 @@ function FAQModal({language,onClose}){
 
       <Link
         href={{ pathname: "/ordliste", query: { lang: language } }}
+        className="hover-lift"
         style={{
           display: "flex", alignItems: "center", gap: "10px", marginTop: "14px",
           borderRadius: "14px", border: `1.5px solid ${theme.border}`, background: theme.soft,
@@ -671,6 +672,7 @@ function VideoGuide({ chromeText, language }) {
                 <button
                   key={tab.key}
                   type="button"
+                  className="hover-lift"
                   onClick={() => setActiveTab(tab.key)}
                   aria-pressed={isActive}
                   style={{
@@ -882,7 +884,7 @@ export function SiteIndex({initialLang}){
               <input id="medSearch" className="flex-1 bg-transparent outline-none placeholder:text-slate-400" style={{color:"var(--text)",fontSize:"16px"}} onChange={(e)=>setSearchTerm(e.target.value)} placeholder={chromeText.searchPlaceholder} value={searchTerm}/>
               <VoiceSearchButton language={language} onResult={(transcript)=>setSearchTerm(transcript)} text={chromeText} />
               <MedicinePhotoButton language={language} text={chromeText} />
-              {searchTerm?(<button type="button" className="shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90" style={{background:"var(--bg)",color:"var(--text-muted)",minHeight:"36px"}} onClick={()=>setSearchTerm("")}>{chromeText.clearFilters}</button>):null}
+              {searchTerm?(<button type="button" className="hover-lift shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90" style={{background:"var(--bg)",color:"var(--text-muted)",minHeight:"36px"}} onClick={()=>setSearchTerm("")}>{chromeText.clearFilters}</button>):null}
             </div>
           </label>
         </div>
@@ -890,7 +892,7 @@ export function SiteIndex({initialLang}){
         <div className="reveal-on-scroll mb-6 sm:mb-7">
           <span className="mb-3 block text-xs font-semibold uppercase tracking-widest" style={{color:"var(--text-muted)"}}>{chromeText.categoryLabel}</span>
           <div className="flex gap-2.5 overflow-x-auto pb-2 sm:flex-wrap sm:overflow-visible sm:pb-0" style={{scrollbarWidth:"none",WebkitOverflowScrolling:"touch"}}>
-            <button type="button" onClick={()=>setActiveCategory("all")} aria-pressed={activeCategory==="all"} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(activeCategory==="all"?{background:"#1a1a1a",color:"#ffffff",borderColor:"#1a1a1a",boxShadow:"0 2px 8px rgba(0,0,0,0.18)"}:{background:"var(--surface,#fff)",color:"var(--text)",borderColor:"var(--border)"})}}>
+            <button type="button" className="hover-lift" onClick={()=>setActiveCategory("all")} aria-pressed={activeCategory==="all"} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(activeCategory==="all"?{background:"#1a1a1a",color:"#ffffff",borderColor:"#1a1a1a",boxShadow:"0 2px 8px rgba(0,0,0,0.18)"}:{background:"var(--surface,#fff)",color:"var(--text)",borderColor:"var(--border)"})}}>
               <span style={{width:10,height:10,borderRadius:"50%",display:"inline-block",flexShrink:0,background:activeCategory==="all"?"#fff":"#888"}}/>
               {capitalize(chromeText.allCategories)}
             </button>
@@ -898,7 +900,7 @@ export function SiteIndex({initialLang}){
               const isActive=activeCategory===label;
               const meta=getPillMeta(label);
               return(
-                <button key={label} type="button" onClick={()=>setActiveCategory(isActive?"all":label)} aria-pressed={isActive} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(isActive?{background:meta.color,color:"#ffffff",borderColor:meta.color,boxShadow:`0 2px 12px ${meta.color}50`}:{background:meta.bg,color:meta.color,borderColor:`${meta.color}40`})}}>
+                <button key={label} type="button" className="hover-lift" onClick={()=>setActiveCategory(isActive?"all":label)} aria-pressed={isActive} style={{display:"inline-flex",alignItems:"center",gap:"8px",borderRadius:"999px",border:"1.5px solid",padding:"9px 18px",fontSize:"14px",fontWeight:600,lineHeight:1,cursor:"pointer",transition:"all 0.2s",whiteSpace:"nowrap",flexShrink:0,minHeight:"44px",...(isActive?{background:meta.color,color:"#ffffff",borderColor:meta.color,boxShadow:`0 2px 12px ${meta.color}50`}:{background:meta.bg,color:meta.color,borderColor:`${meta.color}40`})}}>
                   <img src={`${ICON_BASE}${meta.icon}`} alt="" style={{width:20,height:20,objectFit:"contain",flexShrink:0,filter:isActive?"brightness(0) invert(1)":"none",mixBlendMode:isActive?"normal":"multiply"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>
                   {capitalize(label)}
                 </button>

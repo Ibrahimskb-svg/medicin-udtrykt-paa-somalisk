@@ -357,6 +357,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                       type="button"
                       onClick={() => toggleScheduleSlot(item.slug, slot)}
                       aria-pressed={on}
+                      className="hover-lift"
                       style={{
                         display: "flex", flexDirection: "column", alignItems: "center", gap: "6px",
                         flex: 1, padding: "10px 4px 8px", borderRadius: "16px", border: "none",
@@ -417,6 +418,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
           <button
             type="button"
             onClick={printSchedule}
+            className="hover-lift"
             style={{
               width: "100%", padding: "13px 18px", borderRadius: "14px", border: "none",
               background: theme.primary, color: "#fff", fontWeight: 700, fontSize: "14px", cursor: "pointer",
@@ -427,6 +429,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
           <button
             type="button"
             onClick={saveSchedulePdf}
+            className="hover-lift"
             style={{
               width: "100%", padding: "13px 18px", borderRadius: "14px",
               border: `1.5px solid ${theme.primary}`, background: "#fff", color: theme.primary,

@@ -269,6 +269,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                   key={cat.id}
                   type="button"
                   onClick={() => openCategory(cat)}
+                  className="hover-lift"
                   style={{
                     display: "flex", alignItems: "center", gap: "14px",
                     padding: "16px 18px", borderRadius: "18px", border: `1.5px solid ${style.ring}`,
@@ -300,6 +301,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
           <button
             type="button"
             onClick={saveAllCardsPdf}
+            className="hover-lift"
             style={{
               width: "100%", marginTop: "14px", padding: "13px 18px", borderRadius: "14px",
               border: `1.5px solid ${theme.border}`, background: theme.soft, color: theme.primary,
@@ -354,6 +356,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                 aria-pressed={revealLang === code}
                 aria-label={getLanguageName(language, code)}
                 title={getLanguageName(language, code)}
+                className="hover-lift"
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "center",
                   width: 32, height: 32, borderRadius: "50%",
@@ -413,6 +416,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                 type="button"
                 onClick={() => setAnswer(answer === "yes" ? null : "yes")}
                 aria-pressed={answer === "yes"}
+                className="hover-lift"
                 style={{
                   flex: 1, padding: "16px", borderRadius: "16px", textAlign: "center", fontSize: "18px", fontWeight: 800,
                   cursor: "pointer",
@@ -427,6 +431,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                 type="button"
                 onClick={() => setAnswer(answer === "no" ? null : "no")}
                 aria-pressed={answer === "no"}
+                className="hover-lift"
                 style={{
                   flex: 1, padding: "16px", borderRadius: "16px", textAlign: "center", fontSize: "18px", fontWeight: 800,
                   cursor: "pointer",
@@ -445,6 +450,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
               type="button"
               onClick={() => goToPage(Math.max(0, pageIndex - 1))}
               disabled={pageIndex === 0}
+              className="hover-lift"
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: "50%",
                 border: `1.5px solid ${categoryStyle.ring}`, background: categoryStyle.bg, cursor: pageIndex === 0 ? "default" : "pointer",
@@ -461,6 +467,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
               type="button"
               onClick={() => goToPage(Math.min(category.phrases.length - 1, pageIndex + 1))}
               disabled={pageIndex === category.phrases.length - 1}
+              className="hover-lift"
               style={{
                 display: "flex", alignItems: "center", justifyContent: "center", width: 44, height: 44, borderRadius: "50%",
                 border: `1.5px solid ${categoryStyle.ring}`, background: categoryStyle.bg, cursor: pageIndex === category.phrases.length - 1 ? "default" : "pointer",

@@ -249,7 +249,7 @@ function AudioButton({ label, tone = "primary", onClick }) {
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex items-center gap-3 rounded-xl border-2 bg-white px-5 py-3 text-sm font-semibold shadow-sm transition duration-200 hover:shadow-md"
+      className="hover-lift inline-flex items-center gap-3 rounded-xl border-2 bg-white px-5 py-3 text-sm font-semibold shadow-sm transition duration-200 hover:shadow-md"
       style={{ borderColor: color, color }}
     >
       <span className="flex h-7 w-7 items-center justify-center rounded-full text-white" style={{ background: color }}>
@@ -503,7 +503,7 @@ export function MedicinePage({ medicine, initialLang }) {
           >
             <div style={{ background:"linear-gradient(135deg,#0D9488,#0284C7)", padding:"20px", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
               <span style={{ color:"white", fontWeight:800, fontSize:"18px" }}>{qrText.title}</span>
-              <button onClick={() => setQrOpen(false)} aria-label={qrText.close} style={{ color:"white", background:"rgba(255,255,255,0.2)", border:"none", width:36, height:36, borderRadius:"50%", cursor:"pointer", fontWeight:"bold" }}>✕</button>
+              <button onClick={() => setQrOpen(false)} aria-label={qrText.close} className="hover-lift" style={{ color:"white", background:"rgba(255,255,255,0.2)", border:"none", width:36, height:36, borderRadius:"50%", cursor:"pointer", fontWeight:"bold" }}>✕</button>
             </div>
 
             <div style={{ padding:"28px 24px", textAlign:"center" }}>
@@ -527,6 +527,7 @@ export function MedicinePage({ medicine, initialLang }) {
                 <button
                   onClick={printQr}
                   disabled={!qrDataUrl}
+                  className="hover-lift"
                   style={{
                     display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
                     padding:"12px", borderRadius:"12px", border:"none",
@@ -543,6 +544,7 @@ export function MedicinePage({ medicine, initialLang }) {
                 <button
                   onClick={saveQrPdf}
                   disabled={!qrDataUrl}
+                  className="hover-lift"
                   style={{
                     display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
                     padding:"12px", borderRadius:"12px",
@@ -560,6 +562,7 @@ export function MedicinePage({ medicine, initialLang }) {
                 <button
                   onClick={copyQrImage}
                   disabled={!qrDataUrl}
+                  className="hover-lift"
                   style={{
                     display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
                     padding:"12px", borderRadius:"12px",
@@ -575,6 +578,7 @@ export function MedicinePage({ medicine, initialLang }) {
 
                 <a
                   href={`sms:?body=${encodeURIComponent(`${data.drugName} – Somalimed\n${pageUrl}`)}`}
+                  className="hover-lift"
                   style={{
                     display:"flex", alignItems:"center", justifyContent:"center", gap:"8px",
                     padding:"12px", borderRadius:"12px",
@@ -674,6 +678,7 @@ export function MedicinePage({ medicine, initialLang }) {
             href={"https://wa.me/?text=" + encodeURIComponent((data.drugName || medicine.slug) + " – Somalimed\nhttps://www.somalimed.dk/" + medicine.slug)}
             target="_blank"
             rel="noopener noreferrer"
+            className="hover-lift"
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",
@@ -690,6 +695,7 @@ export function MedicinePage({ medicine, initialLang }) {
           </a>
           <button
             onClick={() => window.print()}
+            className="hover-lift"
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",
@@ -705,6 +711,7 @@ export function MedicinePage({ medicine, initialLang }) {
           </button>
           <button
             onClick={saveMedicinePagePdf}
+            className="hover-lift"
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",
@@ -720,6 +727,7 @@ export function MedicinePage({ medicine, initialLang }) {
           </button>
           <button
             onClick={openQr}
+            className="hover-lift"
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",
@@ -737,6 +745,7 @@ export function MedicinePage({ medicine, initialLang }) {
           <button
             onClick={() => toggleMyList(medicine.slug)}
             aria-pressed={inMyList}
+            className="hover-lift"
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",
@@ -757,6 +766,7 @@ export function MedicinePage({ medicine, initialLang }) {
               downloadReminderICS(data.drugName || medicine.slug, language);
               setReminded(true);
             }}
+            className="hover-lift"
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",
@@ -775,6 +785,7 @@ export function MedicinePage({ medicine, initialLang }) {
           {hasFoodTiming && (
             <button
               onClick={() => setPrayerModalOpen(true)}
+              className="hover-lift"
               style={{
                 display: "inline-flex", alignItems: "center", gap: "6px",
                 padding: "7px 14px", borderRadius: "8px",
@@ -792,6 +803,7 @@ export function MedicinePage({ medicine, initialLang }) {
           )}
           <button
             onClick={() => setCounterCardsOpen(true)}
+            className="hover-lift"
             style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
               padding: "7px 14px", borderRadius: "8px",

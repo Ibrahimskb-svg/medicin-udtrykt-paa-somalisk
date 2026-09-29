@@ -126,6 +126,7 @@ export function ConsentManager() {
           onClick={() => setReopened(true)}
           aria-label={t.settings}
           title={t.settings}
+          className="hover-lift"
           style={{
             position: "fixed", bottom: "calc(68px + env(safe-area-inset-bottom, 0px))", left: 16, zIndex: 500,
             width: 40, height: 40, borderRadius: "50%",
@@ -175,6 +176,7 @@ export function ConsentManager() {
                     key={l}
                     onClick={() => changeLang(l)}
                     aria-pressed={l === lang}
+                    className="hover-lift"
                     style={{
                       padding: "3px 10px", borderRadius: "999px", fontSize: "11px", fontWeight: 600,
                       border: l === lang ? `1.5px solid ${btnTheme.primary}` : "1.5px solid #e2e8f0",
@@ -192,6 +194,7 @@ export function ConsentManager() {
           <div style={{ display: "flex", gap: "8px", flexShrink: 0 }}>
             <button
               onClick={reject}
+              className="hover-lift"
               style={{
                 padding: "9px 16px", borderRadius: "8px",
                 border: "1.5px solid #cbd5e1", background: "#f8fafc",
@@ -203,6 +206,7 @@ export function ConsentManager() {
             </button>
             <button
               onClick={accept}
+              className="hover-lift"
               style={{
                 padding: "9px 20px", borderRadius: "8px",
                 border: "none", background: theme.primary,

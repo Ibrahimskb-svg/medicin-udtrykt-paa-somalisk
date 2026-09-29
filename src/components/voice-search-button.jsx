@@ -102,7 +102,7 @@ export function VoiceSearchButton({ language, onResult, text = {} }) {
         aria-pressed={listening}
         aria-label={listening ? text.voiceListening : text.voiceLabel}
         title={text.voiceLabel}
-        className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-all duration-200 hover:opacity-90 active:scale-95"
+        className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5 active:scale-95"
         style={{
           background: listening ? "#dc2626" : "var(--bg)",
           color: listening ? "#fff" : "var(--accent)",

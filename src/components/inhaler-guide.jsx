@@ -706,6 +706,7 @@ export function InhalerGuide({ slug, language }) {
               type="button"
               onClick={() => setStep(i)}
               aria-label={`${STEP_LBL[language] ?? "Step"} ${i + 1}`}
+              className="hover-lift"
               style={{
                 width: i === step ? 30 : 10, height: 10, borderRadius: 99, border: "none", padding: 0,
                 background: i === step ? theme.primary : `${theme.primary}33`,
@@ -749,6 +750,7 @@ export function InhalerGuide({ slug, language }) {
             type="button"
             onClick={() => setStep(s => Math.max(0, s - 1))}
             disabled={step === 0}
+            className="hover-lift"
             style={{
               flex: 1, padding: "13px 10px", borderRadius: 12, fontWeight: 700, fontSize: 14,
               border: `1.5px solid ${theme.border}`, background: "white",
@@ -762,6 +764,7 @@ export function InhalerGuide({ slug, language }) {
             type="button"
             onClick={() => setStep(s => Math.min(steps.length - 1, s + 1))}
             disabled={step === steps.length - 1}
+            className="hover-lift"
             style={{
               flex: 1, padding: "13px 10px", borderRadius: 12, fontWeight: 700, fontSize: 14,
               border: "none",

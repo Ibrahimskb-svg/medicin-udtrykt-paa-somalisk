@@ -145,6 +145,7 @@ export function BatchScanPanel({ language }) {
         <button
           type="button"
           onClick={start}
+          className="hover-lift"
           style={{
             width: "100%", display: "flex", alignItems: "center", gap: "10px",
             padding: "13px 16px", borderRadius: "14px", border: "1.5px dashed #94a3b8",
@@ -190,6 +191,7 @@ export function BatchScanPanel({ language }) {
                 type="button"
                 onClick={() => inputRef.current?.click()}
                 disabled={busy}
+                className="hover-lift"
                 style={{
                   flex: 1, padding: "11px 14px", borderRadius: "12px", border: "none",
                   background: busy ? "#cbd5e1" : theme.primary, color: "#fff",
@@ -203,6 +205,7 @@ export function BatchScanPanel({ language }) {
               type="button"
               onClick={() => setActive(false)}
               disabled={busy}
+              className="hover-lift"
               style={{
                 padding: "11px 14px", borderRadius: "12px", border: "1.5px solid #cbd5e1",
                 background: "#fff", color: "#475569", fontWeight: 700, fontSize: "13.5px",

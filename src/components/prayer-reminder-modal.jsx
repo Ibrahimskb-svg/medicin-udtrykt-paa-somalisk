@@ -96,7 +96,7 @@ export function PrayerReminderModal({ language, isRtl, onClose, onConfirm }) {
       >
         <div style={{ background: "linear-gradient(135deg,#166534,#16a34a)", padding: "20px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <span style={{ color: "white", fontWeight: 800, fontSize: "18px" }}>{t.title}</span>
-          <button onClick={onClose} aria-label={t.close} style={{ color: "white", background: "rgba(255,255,255,0.2)", border: "none", width: 36, height: 36, borderRadius: "50%", cursor: "pointer", fontWeight: "bold", flexShrink: 0 }}>✕</button>
+          <button onClick={onClose} aria-label={t.close} className="hover-lift" style={{ color: "white", background: "rgba(255,255,255,0.2)", border: "none", width: 36, height: 36, borderRadius: "50%", cursor: "pointer", fontWeight: "bold", flexShrink: 0 }}>✕</button>
         </div>
 
         <div style={{ padding: "24px" }}>
@@ -137,12 +137,14 @@ export function PrayerReminderModal({ language, isRtl, onClose, onConfirm }) {
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             <button
               onClick={handleConfirm}
+              className="hover-lift"
               style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "13px", borderRadius: "12px", border: "none", background: "#16a34a", color: "#fff", fontWeight: 700, fontSize: "14px", cursor: "pointer" }}
             >
               {t.confirm}
             </button>
             <button
               onClick={onClose}
+              className="hover-lift"
               style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "12px", borderRadius: "12px", border: "1.5px solid var(--border)", background: "var(--surface)", color: "var(--text)", fontWeight: 700, fontSize: "14px", cursor: "pointer" }}
             >
               {t.cancel}

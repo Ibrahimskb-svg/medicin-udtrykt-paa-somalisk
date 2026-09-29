@@ -37,6 +37,7 @@ export function LegalLangNav({ language, onChange }) {
             type="button"
             onClick={() => onChange(l)}
             aria-pressed={active}
+            className="hover-lift"
             style={{
               padding: "5px 13px",
               borderRadius: "999px",
