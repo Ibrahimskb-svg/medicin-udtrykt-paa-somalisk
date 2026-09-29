@@ -181,12 +181,17 @@ export function AppNavbar() {
   return (
     <>
       {/* Desktop Navbar */}
-      <header className="sticky top-0 z-[110] hidden lg:block">
-        <nav className="bg-white/90 backdrop-blur-md border-b border-teal-500/10">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-            <Link className="flex items-center gap-2.5" href={{ pathname: "/", query: { lang: language } }}>
-              <Image src="/somalimed-icon.svg" alt="Somalimed logo" width={36} height={36} className="rounded-xl" priority />
-              <span className="text-[25px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-blue-600">
+      <header className="sticky top-3 z-[110] hidden px-4 lg:block">
+        <nav
+          className="mx-auto max-w-6xl rounded-full shadow-lg shadow-teal-900/10 transition-shadow duration-300"
+          style={{ background: "linear-gradient(120deg,#0B6E63,#0D8A7C)" }}
+        >
+          <div className="flex items-center justify-between gap-3 px-4 py-2.5">
+            <Link className="hover-lift flex items-center gap-2.5" href={{ pathname: "/", query: { lang: language } }}>
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15">
+                <Image src="/somalimed-icon.svg" alt="" width={22} height={22} className="rounded-md" priority />
+              </span>
+              <span className="text-[19px] font-extrabold text-white">
                 {text.navbarTitle}
               </span>
             </Link>
@@ -197,8 +202,8 @@ export function AppNavbar() {
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
-                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
-                    activeTab === key ? "bg-teal-600 border-teal-600 text-white shadow-md" : "bg-white border-slate-200 text-slate-600 hover:border-teal-200"
+                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
+                    activeTab === key ? "bg-white text-teal-700 shadow-md" : "text-white/90 hover:bg-white/12"
                   }`}
                 >
                   {iconEl} {label}
@@ -206,7 +211,7 @@ export function AppNavbar() {
               ))}
 
               {/* Sprogvalg — farvet flag pr. sprog, så alle kan finde deres sprog med det samme */}
-              <div className="flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1">
+              <div className="flex items-center gap-1 rounded-full bg-white/12 p-1">
                 {languages.map((code) => {
                   const isActive = code === language;
                   const theme = languageThemes[code] ?? languageThemes.so;
@@ -218,12 +223,12 @@ export function AppNavbar() {
                       title={getLanguageName(language, code)}
                       aria-label={getLanguageName(language, code)}
                       aria-pressed={isActive}
-                      className="hover-lift flex items-center justify-center rounded-full transition-all"
+                      className="hover-lift flex items-center justify-center rounded-full transition-all duration-200"
                       style={{
                         width: 32,
                         height: 32,
-                        background: isActive ? theme.accent1 : "transparent",
-                        boxShadow: isActive ? `0 1px 4px ${theme.accent1}80` : "none",
+                        background: isActive ? "#ffffff" : "transparent",
+                        boxShadow: isActive ? "0 1px 4px rgba(0,0,0,0.18)" : "none",
                       }}
                     >
                       <FlagIcon language={code} size={18} />
@@ -237,13 +242,13 @@ export function AppNavbar() {
                 <button
                   onClick={() => setContactMenuOpen((open) => !open)}
                   aria-expanded={contactMenuOpen}
-                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full border-1.5 transition-all text-[13px] font-semibold ${
-                    isContactGroupActive || contactMenuOpen ? "bg-teal-600 border-teal-600 text-white shadow-md" : "bg-white border-slate-200 text-slate-600 hover:border-teal-200"
+                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
+                    isContactGroupActive || contactMenuOpen ? "bg-white text-teal-700 shadow-md" : "text-white/90 hover:bg-white/12"
                   }`}
                 >
-                  <MailIcon size={16} color={isContactGroupActive || contactMenuOpen ? "#ffffff" : iconColors.contact} />
+                  <MailIcon size={16} color={isContactGroupActive || contactMenuOpen ? "#0f766e" : "#ffffff"} />
                   {navLabels.contact}
-                  <ChevronDownIcon size={13} color={isContactGroupActive || contactMenuOpen ? "#ffffff" : "#94a3b8"} />
+                  <ChevronDownIcon size={13} color={isContactGroupActive || contactMenuOpen ? "#0f766e" : "rgba(255,255,255,0.8)"} />
                 </button>
 
                 {contactMenuOpen && (

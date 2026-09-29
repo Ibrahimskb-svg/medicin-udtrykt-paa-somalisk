@@ -6,11 +6,12 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
-import { getIndexData, getDisplayName, uiText } from "../lib/site";
+import { getIndexData, getDisplayName, uiText, languages } from "../lib/site";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
+import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { getLastRevisedText } from "../lib/last-revised";
 import { VoiceSearchButton } from "./voice-search-button";
 import { MedicinePhotoButton } from "./medicine-photo-button";
@@ -44,6 +45,14 @@ const GLOSSARY_LINK_TEXT = {
   en: { label: "Understand your pharmacy visit", desc: "A short glossary of Danish pharmacy words — prescription, reimbursement and more." },
   so: { label: "Faham booqashadaada farmashiyaha", desc: "Liis kooban oo ku saabsan ereyada Deenishka ah ee farmashiyaha — warqadda daawada, kaalmada daawada, iwm." },
   ar: { label: "افهم زيارتك للصيدلية", desc: "قائمة موجزة بمصطلحات الصيدلية — الوصفة الطبية، الدعم المالي وغيرها." },
+};
+// Samme titler som Min medicinliste-modalen selv bruger (my-list-modal.jsx),
+// genbrugt her til hero-forhåndsvisningen i stedet for at opfinde ny tekst.
+const MYLIST_CARD_TEXT = {
+  da: "Min medicinliste",
+  en: "My medicine list",
+  so: "Liiska daawooyinkayga",
+  ar: "قائمة أدويتي",
 };
 const COUNTER_CARDS_LINK_TEXT = {
   da: { label: "Skranke-kort", desc: "Store, hurtige kort til at spørge og forklare direkte til kunden." },
@@ -710,6 +719,10 @@ export function SiteIndex({initialLang}){
 
   const text=useMemo(()=>indexData.translations[language]||indexData.translations.so,[language]);
   const chromeText=useMemo(()=>uiText[language]||uiText.so,[language]);
+  const isRtl=language==="ar";
+  // Genbruger den første, allerede-godkendte Skranke-kort-sætning som
+  // eksempel i hero-forhåndsvisningen, i stedet for at opfinde ny tekst.
+  const heroSafetyPhrase=useMemo(()=>COUNTER_CARD_CATEGORIES.find((c)=>c.id==="sikkerhed")?.phrases?.[0]??{},[]);
   const navLabels=useMemo(()=>NAV_LABELS[language]??NAV_LABELS.so,[language]);
   const iconColors=useMemo(()=>NAV_ICON_COLORS[language]??NAV_ICON_COLORS.so,[language]);
 
@@ -790,20 +803,79 @@ export function SiteIndex({initialLang}){
       {modalTab==="counterCards" &&<CounterCardsModal language={language} onClose={()=>setModalTab(null)}/>}
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <div style={{background:"var(--heroBg)"}}>
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:py-16">
-          <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1.5 text-xs font-semibold text-white/90">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
-            {chromeText.heroEyebrow}
+      <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
+        <div className="hero-aurora rounded-[28px] sm:rounded-[32px]" dir={isRtl?"rtl":"ltr"}>
+          <div className="hero-grid-pattern" aria-hidden="true" />
+          <div className="hero-orb" aria-hidden="true" style={{width:360,height:360,background:"#1B85B0",top:-140,insetInlineEnd:-90}} />
+          <div className="hero-orb" aria-hidden="true" style={{width:260,height:260,background:"#0B6E63",bottom:-90,insetInlineStart:-70}} />
+          <span className="hero-spark" aria-hidden="true" style={{top:"14%",insetInlineStart:"46%"}}>+</span>
+          <span className="hero-spark" aria-hidden="true" style={{top:"62%",insetInlineStart:"40%",fontSize:12}}>+</span>
+
+          <div className="relative grid grid-cols-1 gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-20">
+            {/* Tekst */}
+            <div>
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-bold text-teal-700 shadow-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
+                {chromeText.heroEyebrow}
+              </div>
+              <h1 className="max-w-xl font-extrabold tracking-tight text-white" style={{fontSize:"clamp(30px,4.6vw,52px)",lineHeight:1.08,letterSpacing:"-0.02em"}}>{text.hdrTitle}</h1>
+              <p className="mt-4 max-w-lg text-sm leading-7 text-white/85 sm:text-base">{text.hdrSubtitle}</p>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-white/85">
+                <span className="flex items-center gap-1.5"><span className="text-lg font-black text-white">{indexData.items.length}</span>{chromeText.medicinesStat}</span>
+                <span className="text-white/40 hidden xs:inline">·</span>
+                <span className="flex items-center gap-1.5"><span className="text-lg font-black text-white">4</span>{chromeText.languagesStat}</span>
+                <span className="text-white/40 hidden xs:inline">·</span>
+                <span>{chromeText.heroFormatValue}</span>
+              </div>
+            </div>
+
+            {/* Funktions-forhåndsvisning (glas-kort) — statiske, kun hover-bevægelse, ingen løbende animation */}
+            <div className="relative hidden lg:block" style={{height:300}} aria-hidden="true">
+              <div className="glass-card-lite absolute" style={{top:"4%",insetInlineStart:"2%",width:210,padding:"14px 16px"}}>
+                <p className="text-[10px] font-bold uppercase tracking-wide text-white/70">{(COUNTER_CARDS_LINK_TEXT[language]??COUNTER_CARDS_LINK_TEXT.so).label}</p>
+                <p className="mt-1 text-[13px] font-bold leading-snug text-white">{heroSafetyPhrase[language]??heroSafetyPhrase.so}</p>
+                <div className="mt-2.5 rounded-xl border border-white/25 bg-white/10 px-2.5 py-2 text-center">
+                  <p className="text-[12px] font-bold text-white" dir="rtl" lang="ar">{heroSafetyPhrase.ar}</p>
+                </div>
+              </div>
+
+              <div className="glass-card-lite strong absolute" style={{top:"40%",insetInlineEnd:0,width:206,padding:"14px 16px"}}>
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#1E9E8F,#1B6FB8)"}}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>
+                  </span>
+                  <p className="text-[13px] font-bold leading-snug text-white">{MYLIST_CARD_TEXT[language]??MYLIST_CARD_TEXT.so}</p>
+                </div>
+              </div>
+
+              <div className="glass-card-lite absolute" style={{bottom:"2%",insetInlineStart:"18%",width:228,padding:"14px 16px"}}>
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#D97706,#B45309)"}}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                  </span>
+                  <div>
+                    <p className="text-[13px] font-bold leading-snug text-white">{(GLOSSARY_LINK_TEXT[language]??GLOSSARY_LINK_TEXT.so).label}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h1 className="max-w-2xl text-3xl font-extrabold tracking-tight text-white sm:text-5xl" style={{lineHeight:1.1}}>{text.hdrTitle}</h1>
-          <p className="mt-3 max-w-xl text-sm leading-7 text-white/80 sm:mt-4 sm:text-lg">{text.hdrSubtitle}</p>
-          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-white/80 sm:mt-6">
-            <span className="flex items-center gap-1.5"><span className="text-lg font-black text-white">{indexData.items.length}</span>{chromeText.medicinesStat}</span>
-            <span className="text-white/40 hidden xs:inline">·</span>
-            <span className="flex items-center gap-1.5"><span className="text-lg font-black text-white">4</span>{chromeText.languagesStat}</span>
-            <span className="text-white/40 hidden xs:inline">·</span>
-            <span>{chromeText.heroFormatValue}</span>
+
+          {/* Stat-kort med sitets 4 sprog — overlapper hero-kortets underkant */}
+          <div className="relative -mt-6 flex justify-start px-5 pb-5 sm:-mt-7 sm:px-8 sm:pb-6">
+            <div className="stat-flag-card inline-flex items-center gap-3.5 px-4 py-3">
+              <div className="flex" aria-hidden="true">
+                {languages.map((code,i)=>(
+                  <span key={code} className="flex h-7 w-7 items-center justify-center rounded-full border-2 text-[10px] font-extrabold text-white"
+                    style={{background:(LANG_THEME[code]?.primary??"#0D9488"),borderColor:"#fff",marginInlineStart:i===0?0:-9}}>
+                    {code.toUpperCase()}
+                  </span>
+                ))}
+              </div>
+              <div>
+                <p className="text-[13px] font-extrabold" style={{color:"var(--text)"}}>{indexData.items.length} {chromeText.medicinesStat}, 4 {chromeText.languagesStat}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
