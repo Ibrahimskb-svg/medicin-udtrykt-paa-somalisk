@@ -28,10 +28,10 @@ const P = {
 
 // ── Nav labels ─────────────────────────────────────────────────────────────
 const NAV_LABELS = {
-  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik" },
-  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique" },
-  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha inta badan la isweydiiyo", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta" },
-  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق" },
+  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", findPharmacy:"Find apotek" },
+  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", findPharmacy:"Find a pharmacy" },
+  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha inta badan la isweydiiyo", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", findPharmacy:"Raadi farmashiye" },
+  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", findPharmacy:"ابحث عن صيدلية" },
 };
 
 const FAQ_MODAL_TITLE = {
@@ -831,26 +831,54 @@ export function SiteIndex({initialLang}){
               </div>
             </div>
 
-            {/* Funktions-forhåndsvisning (glas-kort) — statiske, kun hover-bevægelse, ingen løbende animation */}
-            <div className="relative hidden lg:block" style={{height:300}} aria-hidden="true">
-              <div className="glass-card-lite absolute" style={{top:"4%",insetInlineStart:"2%",width:210,padding:"14px 16px"}}>
+            {/* Funktions-genveje (glas-kort) — rigtige knapper/links, ikke kun dekoration */}
+            <div className="relative hidden lg:block" style={{height:300}}>
+              <button
+                type="button"
+                onClick={()=>setModalTab("counterCards")}
+                className="glass-card-lite absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{top:"4%",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
+              >
                 <p className="text-[10px] font-bold uppercase tracking-wide text-white/70">{(COUNTER_CARDS_LINK_TEXT[language]??COUNTER_CARDS_LINK_TEXT.so).label}</p>
                 <p className="mt-1 text-[13px] font-bold leading-snug text-white">{heroSafetyPhrase[language]??heroSafetyPhrase.so}</p>
                 <div className="mt-2.5 rounded-xl border border-white/25 bg-white/10 px-2.5 py-2 text-center">
                   <p className="text-[12px] font-bold text-white" dir="rtl" lang="ar">{heroSafetyPhrase.ar}</p>
                 </div>
-              </div>
+              </button>
 
-              <div className="glass-card-lite strong absolute" style={{top:"40%",insetInlineEnd:0,width:206,padding:"14px 16px"}}>
+              <button
+                type="button"
+                onClick={()=>setModalTab("findPharmacy")}
+                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{top:"4%",insetInlineEnd:0,width:190,padding:"14px 16px",cursor:"pointer"}}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#6D28D9,#4C1D95)"}}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                  </span>
+                  <p className="text-[13px] font-bold leading-snug text-white">{navLabels.findPharmacy}</p>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={()=>setModalTab("mylist")}
+                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{top:"40%",insetInlineEnd:0,width:206,padding:"14px 16px",cursor:"pointer"}}
+              >
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#1E9E8F,#1B6FB8)"}}>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>
                   </span>
                   <p className="text-[13px] font-bold leading-snug text-white">{MYLIST_CARD_TEXT[language]??MYLIST_CARD_TEXT.so}</p>
                 </div>
-              </div>
+              </button>
 
-              <div className="glass-card-lite absolute" style={{bottom:"2%",insetInlineStart:"18%",width:228,padding:"14px 16px"}}>
+              <Link
+                href={{ pathname: "/ordliste", query: { lang: language } }}
+                className="glass-card-lite absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{bottom:"2%",insetInlineStart:"18%",width:228,padding:"14px 16px",cursor:"pointer"}}
+              >
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#D97706,#B45309)"}}>
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
@@ -859,7 +887,7 @@ export function SiteIndex({initialLang}){
                     <p className="text-[13px] font-bold leading-snug text-white">{(GLOSSARY_LINK_TEXT[language]??GLOSSARY_LINK_TEXT.so).label}</p>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
 
