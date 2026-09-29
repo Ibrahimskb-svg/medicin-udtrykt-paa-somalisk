@@ -9,6 +9,7 @@ import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
+import { SeverityCheckModal } from "./severity-check-modal";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -72,10 +73,10 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "Bønnetider", counterCards: "Skranke-kort til denne medicin" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "Prayer times", counterCards: "Counter cards for this medicine" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda", counterCards: "Kaararka daawadan" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة", counterCards: "بطاقات هذا الدواء" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "Bønnetider", counterCards: "Skranke-kort til denne medicin", checkSeverity: "Er dette alvorligt?" },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "Prayer times", counterCards: "Counter cards for this medicine", checkSeverity: "Is this serious?" },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda", counterCards: "Kaararka daawadan", checkSeverity: "Tani ma halis ah?" },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة", counterCards: "بطاقات هذا الدواء", checkSeverity: "هل هذا خطير؟" },
 };
 
 const QR_LABELS = {
@@ -262,6 +263,7 @@ export function MedicinePage({ medicine, initialLang }) {
   const [reminded, setReminded] = useState(false);
   const [prayerModalOpen, setPrayerModalOpen] = useState(false);
   const [counterCardsOpen, setCounterCardsOpen] = useState(false);
+  const [severityCheckOpen, setSeverityCheckOpen] = useState(false);
   const somaliAudioRef = useRef(null);
   const arabicAudioRef = useRef(null);
 
@@ -615,6 +617,14 @@ export function MedicinePage({ medicine, initialLang }) {
           medicineName={data.drugName}
         />
       )}
+      {severityCheckOpen && (
+        <SeverityCheckModal
+          language={language}
+          onClose={() => setSeverityCheckOpen(false)}
+          scopeSlug={medicine.slug}
+          scopeName={data.drugName}
+        />
+      )}
 
       {/* ── HERO BANNER ── */}
       <div style={{ background: "var(--heroBg)" }}>
@@ -806,6 +816,30 @@ export function MedicinePage({ medicine, initialLang }) {
               <path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
             {shareText.counterCards}
+          </button>
+          <button
+            onClick={() => setSeverityCheckOpen(true)}
+            className="hover-lift"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "7px 14px", borderRadius: "8px",
+              background: "#fef2f2", color: "#991b1b",
+              fontWeight: 700, fontSize: "13px",
+              border: "1.5px solid #fecaca",
+              cursor: "pointer",
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center",
+                width: 16, height: 16, borderRadius: "50%", flexShrink: 0,
+                background: "#dc2626", color: "#fff", fontWeight: 800, fontSize: 10, lineHeight: 1,
+              }}
+            >
+              !
+            </span>
+            {shareText.checkSeverity}
           </button>
         </div>
 

@@ -12,6 +12,7 @@ import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
+import { SeverityCheckModal } from "./severity-check-modal";
 import { downloadReminderICS } from "../lib/reminder-ics";
 import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { getLastRevisedText } from "../lib/last-revised";
@@ -67,6 +68,12 @@ const PRAYER_CARD_TEXT = {
   en: { label: "Suhoor/Iftar reminder", reminderName: "Suhoor and Iftar" },
   so: { label: "Xasuusinta Sahuur/Iftar", reminderName: "Sahuur iyo Iftar" },
   ar: { label: "تذكير السحور/الإفطار", reminderName: "السحور والإفطار" },
+};
+const SEVERITY_BANNER_TEXT = {
+  da: { label: "Er dette alvorligt?", desc: "Skriv et symptom og se med det samme om det er en almindelig bivirkning eller en advarsel — plus hvornår du altid skal ringe 112." },
+  en: { label: "Is this serious?", desc: "Type a symptom and instantly see whether it's a common side effect or a warning — plus when to always call 112." },
+  so: { label: "Tani ma halis ah?", desc: "Qor calaamad oo isla markiiba ogow haddii ay tahay waxyeello caadi ah ama digniin — iyo goorta aad had iyo jeer wici lahayd 112." },
+  ar: { label: "هل هذا خطير؟", desc: "اكتب عرضًا واعرف فورًا إن كان عرضًا جانبيًا شائعًا أو تحذيرًا — بالإضافة إلى متى يجب الاتصال بالرقم 112 دائمًا." },
 };
 
 // ── Color themes ───────────────────────────────────────────────────────────
@@ -727,6 +734,7 @@ export function SiteIndex({initialLang}){
   const[modalTab,setModalTab]=useState(null);
   const[expandedSlug,setExpandedSlug]=useState(null);
   const[prayerModalOpen,setPrayerModalOpen]=useState(false);
+  const[severityModalOpen,setSeverityModalOpen]=useState(false);
 
   const text=useMemo(()=>indexData.translations[language]||indexData.translations.so,[language]);
   const chromeText=useMemo(()=>uiText[language]||uiText.so,[language]);
@@ -828,6 +836,9 @@ export function SiteIndex({initialLang}){
           }}
         />
       )}
+      {severityModalOpen && (
+        <SeverityCheckModal language={language} onClose={()=>setSeverityModalOpen(false)} />
+      )}
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
@@ -857,7 +868,7 @@ export function SiteIndex({initialLang}){
             </div>
 
             {/* Funktions-genveje (glas-kort) — rigtige knapper/links, ikke kun dekoration */}
-            <div className="relative hidden lg:block" style={{height:470}}>
+            <div className="relative hidden lg:block" style={{height:550}}>
               <button
                 type="button"
                 onClick={()=>setModalTab("counterCards")}
@@ -925,6 +936,20 @@ export function SiteIndex({initialLang}){
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
                   </span>
                   <p className="text-[13px] font-bold leading-snug text-white">{(PRAYER_CARD_TEXT[language]??PRAYER_CARD_TEXT.so).label}</p>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={()=>setSeverityModalOpen(true)}
+                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{top:"470px",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white" style={{boxShadow:"0 2px 8px rgba(0,0,0,0.18)"}}>
+                    <span style={{fontSize:16,fontWeight:800,color:"#DC2626",lineHeight:1}}>!</span>
+                  </span>
+                  <p className="text-[13px] font-bold leading-snug text-white">{(SEVERITY_BANNER_TEXT[language]??SEVERITY_BANNER_TEXT.so).label}</p>
                 </div>
               </button>
             </div>
@@ -1007,6 +1032,39 @@ export function SiteIndex({initialLang}){
             </span>
             <span className="mt-1 block text-sm leading-6 text-white/90">
               {(COUNTER_CARDS_LINK_TEXT[language] ?? COUNTER_CARDS_LINK_TEXT.so).desc}
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-lg font-bold text-white sm:h-10 sm:w-10"
+          >
+            {language === "ar" ? "←" : "→"}
+          </span>
+        </button>
+      </div>
+
+      {/* ── Alvorligheds-tjek-banner — rødt/orange for at signalere sikkerhed ── */}
+      <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
+        <button
+          type="button"
+          data-sm-bubble-avoid="true"
+          onClick={() => setSeverityModalOpen(true)}
+          className="reveal-on-scroll flex w-full flex-col items-start gap-3 rounded-2xl px-5 py-5 text-start transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
+          style={{ background: "linear-gradient(120deg,#B91C1C,#DC2626 55%,#F97316)", boxShadow: "0 8px 28px rgba(185,28,28,0.30)" }}
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white sm:h-14 sm:w-14"
+            style={{ boxShadow: "0 4px 14px rgba(0,0,0,0.18)" }}
+          >
+            <span style={{ fontSize: 26, fontWeight: 800, color: "#DC2626", lineHeight: 1 }}>!</span>
+          </span>
+          <span className="flex-1">
+            <span className="block text-base font-extrabold text-white sm:text-lg">
+              {(SEVERITY_BANNER_TEXT[language] ?? SEVERITY_BANNER_TEXT.so).label}
+            </span>
+            <span className="mt-1 block text-sm leading-6 text-white/90">
+              {(SEVERITY_BANNER_TEXT[language] ?? SEVERITY_BANNER_TEXT.so).desc}
             </span>
           </span>
           <span
