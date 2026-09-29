@@ -863,7 +863,7 @@ export function SiteIndex({initialLang}){
 
           {/* Stat-kort med sitets 4 sprog — overlapper hero-kortets underkant */}
           <div className="relative -mt-6 flex justify-start px-5 pb-5 sm:-mt-7 sm:px-8 sm:pb-6">
-            <div className="stat-flag-card inline-flex items-center gap-3.5 px-4 py-3">
+            <div className="stat-flag-card inline-flex items-center gap-3.5 px-4 py-3" data-sm-bubble-avoid="true">
               <div className="flex" aria-hidden="true">
                 {languages.map((code,i)=>(
                   <span key={code} className="flex h-7 w-7 items-center justify-center rounded-full border-2 text-[10px] font-extrabold text-white"
