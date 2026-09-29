@@ -87,6 +87,8 @@ export const uiText = {
     libraryEyebrow: "Maktabad",
     medicinePill: "Daawo",
     openDetails: "Fur faahfaahinta",
+    quickInfoToggle: "Arag warbixin kooban",
+    quickInfoHide: "Qari warbixinta kooban",
     nowLabel: "Hadda",
     searchLabel: "Raadi",
     searchPlaceholder: "Raadi magaca daawada ama qaybta...",
@@ -125,6 +127,8 @@ export const uiText = {
     libraryEyebrow: "Bibliotek",
     medicinePill: "Medicin",
     openDetails: "Åbn detaljer",
+    quickInfoToggle: "Se kort info",
+    quickInfoHide: "Skjul kort info",
     nowLabel: "Nu",
     searchLabel: "Søg",
     searchPlaceholder: "Søg efter medicin eller kategori...",
@@ -163,6 +167,8 @@ export const uiText = {
     libraryEyebrow: "Library",
     medicinePill: "Medicine",
     openDetails: "Open details",
+    quickInfoToggle: "See a quick summary",
+    quickInfoHide: "Hide quick summary",
     nowLabel: "Now",
     searchLabel: "Search",
     searchPlaceholder: "Search medicine or category...",
@@ -202,6 +208,8 @@ export const uiText = {
     libraryEyebrow: "المكتبة",
     medicinePill: "دواء",
     openDetails: "افتح التفاصيل",
+    quickInfoToggle: "عرض ملخص سريع",
+    quickInfoHide: "إخفاء الملخص السريع",
     nowLabel: "الان",
     searchLabel: "بحث",
     searchPlaceholder: "ابحث عن دواء أو فئة...",
@@ -295,6 +303,21 @@ export const sectionStyles = {
 export function getIndexData() {
   return siteData.index;
 }
+
+// Korte, allerede-oversatte "hvad er det"-sætninger pr. medicin (samme tekst
+// som toppen af selve medicinsiden) — genbruges som forhåndsvisning i
+// medicinlisten, så man kan se lidt info før man åbner hele siden.
+export const MEDICINE_INTRO_BOX = Object.fromEntries(
+  siteData.medicines.map((medicine) => [
+    medicine.slug,
+    {
+      so: medicine.translations?.so?.introBox ?? "",
+      da: medicine.translations?.da?.introBox ?? "",
+      en: medicine.translations?.en?.introBox ?? "",
+      ar: medicine.translations?.ar?.introBox ?? "",
+    },
+  ]),
+);
 
 // ── Translated display names ───────────────────────────────────────────────
 export const SLUG_DISPLAY_NAMES = {

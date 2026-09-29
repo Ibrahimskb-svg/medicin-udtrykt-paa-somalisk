@@ -6,7 +6,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
-import { getIndexData, getDisplayName, uiText, languages } from "../lib/site";
+import { getIndexData, getDisplayName, uiText, languages, MEDICINE_INTRO_BOX } from "../lib/site";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
@@ -342,6 +342,7 @@ function SpeechBubbleIcon({size=26,color="#fff"}){return(<svg width={size} heigh
 function MailIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>);}
 function QuestionIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>);}
 function ChatIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>);}
+function CardChevronIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>);}
 
 
 // ── Bullet row ─────────────────────────────────────────────────────────────
@@ -716,6 +717,7 @@ export function SiteIndex({initialLang}){
   const[searchTerm,setSearchTerm]=useState("");
   const[activeCategory,setActiveCategory]=useState("all");
   const[modalTab,setModalTab]=useState(null);
+  const[expandedSlug,setExpandedSlug]=useState(null);
 
   const text=useMemo(()=>indexData.translations[language]||indexData.translations.so,[language]);
   const chromeText=useMemo(()=>uiText[language]||uiText.so,[language]);
@@ -996,26 +998,77 @@ export function SiteIndex({initialLang}){
               const style=SLUG_STYLE[item.slug]||DEFAULT_STYLE;
               const iconFile=SLUG_ICON[item.slug]||"download.png";
               const displayName=getDisplayName(item.slug,language,item.name);
+              const introBox=MEDICINE_INTRO_BOX[item.slug]?.[language]||MEDICINE_INTRO_BOX[item.slug]?.so||"";
+              const isExpanded=expandedSlug===item.slug;
+              const introId=`med-intro-${item.slug}`;
               return(
                 <li className="reveal-on-scroll" key={item.slug} style={{transitionDelay:`${Math.min(index*40,200)}ms`}}>
-                  <Link className="group flex h-full overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-[0.98]" style={{borderColor:"var(--border)"}} href={{pathname:`/${item.href}`,query:{lang:language}}}>
-                    <div className="w-1.5 shrink-0" style={{background:style.color}}/>
-                    <div className="flex flex-1 flex-col p-4 sm:p-5">
-                      <div className="flex items-center gap-3">
-                        <span className="flex shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]" style={{width:56,height:56,background:style.bg,borderColor:`${style.color}22`}}>
-                          <img src={`${ICON_BASE}${iconFile}`} alt="" style={{width:38,height:38,objectFit:"contain",mixBlendMode:"multiply"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>
-                        </span>
-                        <span className="rounded-full font-semibold" style={{background:style.bg,color:style.color,fontSize:"13px",padding:"6px 13px"}}>
-                          {capitalize(subtitle)||capitalize(chromeText.medicinePill)}
-                        </span>
-                      </div>
-                      <h3 className="mt-3 text-lg font-bold sm:text-xl" style={{color:"var(--text)"}}>{displayName}</h3>
-                      <div className="mt-auto flex items-center justify-between border-t pt-3 sm:pt-4" style={{borderColor:"var(--border)",marginTop:"0.875rem"}}>
-                        <span className="text-sm font-medium" style={{color:"var(--text-muted)"}}>{chromeText.openDetails}</span>
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-white transition duration-300 group-hover:scale-110" style={{background:style.color}}>→</span>
+                  <div className="flex h-full flex-col overflow-hidden rounded-2xl border bg-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg" style={{borderColor:"var(--border)"}}>
+                    <div className="flex flex-1">
+                      <div className="w-1.5 shrink-0" style={{background:style.color}}/>
+                      <div className="flex flex-1 flex-col p-4 sm:p-5">
+                        <button
+                          type="button"
+                          className="hover-lift flex items-center gap-3 text-left"
+                          onClick={()=>setExpandedSlug(isExpanded?null:item.slug)}
+                          aria-expanded={isExpanded}
+                          aria-controls={introId}
+                          aria-label={`${displayName} — ${isExpanded?chromeText.quickInfoHide:chromeText.quickInfoToggle}`}
+                        >
+                          <span className="flex shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]" style={{width:56,height:56,background:style.bg,borderColor:`${style.color}22`}}>
+                            <img src={`${ICON_BASE}${iconFile}`} alt="" style={{width:38,height:38,objectFit:"contain",mixBlendMode:"multiply"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>
+                          </span>
+                          <span className="rounded-full font-semibold" style={{background:style.bg,color:style.color,fontSize:"13px",padding:"6px 13px"}}>
+                            {capitalize(subtitle)||capitalize(chromeText.medicinePill)}
+                          </span>
+                          {introBox&&(
+                            <span
+                              aria-hidden="true"
+                              className="ms-auto flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-transform duration-300"
+                              style={{background:"var(--bg)",color:"var(--text-muted)",transform:isExpanded?"rotate(180deg)":"rotate(0deg)"}}
+                            >
+                              <CardChevronIcon size={15}/>
+                            </span>
+                          )}
+                        </button>
+
+                        <button
+                          type="button"
+                          className="mt-3 text-left text-lg font-bold sm:text-xl"
+                          style={{color:"var(--text)"}}
+                          onClick={()=>setExpandedSlug(isExpanded?null:item.slug)}
+                          aria-expanded={isExpanded}
+                          aria-controls={introId}
+                        >
+                          {displayName}
+                        </button>
+
+                        {introBox&&(
+                          <div
+                            id={introId}
+                            style={{
+                              maxHeight:isExpanded?"180px":"0px",
+                              opacity:isExpanded?1:0,
+                              overflow:"hidden",
+                              transition:"max-height 0.32s ease, opacity 0.24s ease, margin-top 0.32s ease",
+                              marginTop:isExpanded?"8px":"0px",
+                            }}
+                          >
+                            <p className="text-sm leading-6" style={{color:"var(--text-muted)"}}>{introBox}</p>
+                          </div>
+                        )}
+
+                        <Link
+                          className="group hover-lift mt-auto flex items-center justify-between border-t pt-3 sm:pt-4"
+                          style={{borderColor:"var(--border)",marginTop:"0.875rem"}}
+                          href={{pathname:`/${item.href}`,query:{lang:language}}}
+                        >
+                          <span className="text-sm font-medium" style={{color:"var(--text-muted)"}}>{chromeText.openDetails}</span>
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-white transition duration-300 group-hover:scale-110" style={{background:style.color}}>→</span>
+                        </Link>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </li>
               );
             })}
