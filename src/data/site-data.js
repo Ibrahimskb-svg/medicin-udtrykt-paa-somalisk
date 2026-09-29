@@ -890,13 +890,13 @@ export const siteData = {
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
           "ramadanList": [
-            "Maadaama daawadan badanaa hal mar maalintii la qaato, waxaa lagu qaadan karaa afurka ama suxuurta.",
+            "Maadaama daawadan badanaa la qaato hal mar maalintii, waxaad qaadan kartaa afurka ama suxuurta ka dib.",
             "Dooro wakhti kuu sahlan oo aad maalin kasta ku celin karto.",
             "Waxa ugu muhiimsan waa joogtaynta, ee ma aha saacadda saxda ah oo keliya."
           ],
           "foodTitle": "Cunto iyo cabitaan",
           "foodList": [
-            "Daawadan waxaa lagu qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
+            "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Ka taxaddar liin bambeelmo badan ama casiirkeeda, sababtoo ah waxay beddeli kartaa saamaynta daawada.",
             "Cunto caafimaad leh iyo dhaqdhaqaaq jirka ah ayaa weli qayb muhiim ah ka ah daryeelkaaga."
           ],
@@ -1279,7 +1279,7 @@ export const siteData = {
           "interactList": [
             "Ha ku darin diclofenac dawooyin kale oo NSAID ah sida ibuprofen ama naproxen adigoon dhakhtarkaaga talo ka helin.",
             "Daawooyinka dhiig-khafiifiya, steroid-yada iyo dawooyin qaar oo la xiriira dhiig-karka ama kelyaha waxay kordhin karaan khatarta waxyeellooyinka.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadanayso, xataa kuwa aan warqad dhakhtar lagu qorin."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadanayso, xataa kuwa aan warqad dhakhtareed lagu qorin."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -1302,7 +1302,7 @@ export const siteData = {
           "storeTitle": "Kaydinta daawada",
           "storeList": [
             "Ku hay meel ka fog carruurta.",
-            "Ku hay baakadka asalka ah si looga ilaaliyo huurka iyo iftiinka.",
+            "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay."
           ],
           "sourcesTitle": "Ilaha xogta",
@@ -1539,8 +1539,8 @@ export const siteData = {
           "storeTitle": "تخزين الدواء",
           "storeList": [
             "يحفظ بعيدا عن متناول الأطفال.",
-            "احفظه في العبوة الأصلية للحماية من الضوء والرطوبة.",
-            "لا تستخدمه بعد تاريخ الانتهاء."
+            "يحفظ في العبوة الأصلية للحماية من الضوء والرطوبة.",
+            "لا يستخدم بعد تاريخ الانتهاء."
           ],
           "sourcesTitle": "المصادر",
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
@@ -1646,7 +1646,7 @@ export const siteData = {
         "so": {
           "pageTitle": "Eliquis – dhiig-khafiifiye",
           "hdrTitle": "Eliquis – dhiig-khafiifiye",
-          "hdrSubtitle": "Waa warbixin kooban oo ku saabsan daawada, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+          "hdrSubtitle": "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
           "backLabel": "Ku laabo liiska daawooyinka",
           "langLabel": "Dooro luqadda:",
           "drugName": "Eliquis – dhiig-khafiifiye",
@@ -1679,7 +1679,7 @@ export const siteData = {
           "interactList": [
             "Daawooyinka xanuunka qaarkood sida ibuprofen ama naproxen iyo dhiig-khafiifiyeyaal kale waxay kordhin karaan khatarta dhiig-baxa.",
             "Qaar ka mid ah antibiyootikada, dawooyinka fangaska iyo qaar ka mid ah dawooyinka dhirta ayaa beddeli kara sida Eliquis u shaqayso.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -1703,10 +1703,10 @@ export const siteData = {
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
-            "Ku hay meel ka fog carruurta yar yar.",
+            "Ku hay meel ka fog carruurta.",
             "Ku hay baakadka asalka ah.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
-            "Daawooyinka soo hara ku celi farmashiyaha."
+            "Daawada soo hartay ku celi farmashiyaha."
           ],
           "sourcesTitle": "Ilaha xogta",
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
@@ -1955,7 +1955,7 @@ export const siteData = {
             "يحفظ بعيدا عن متناول الأطفال.",
             "يحفظ في العبوة الأصلية.",
             "لا يستخدم بعد تاريخ الانتهاء.",
-            "أعد الأدوية المتبقية إلى الصيدلية."
+            "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
@@ -2061,7 +2061,7 @@ export const siteData = {
         "so": {
           "pageTitle": "Enalapril – dhiig-karka",
           "hdrTitle": "Enalapril – dhiig-karka",
-          "hdrSubtitle": "Waa warbixin kooban oo ku saabsan daawada, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+          "hdrSubtitle": "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
           "backLabel": "Ku laabo liiska daawooyinka",
           "langLabel": "Dooro luqadda:",
           "drugName": "Enalapril – dhiig-karka",
@@ -2094,7 +2094,7 @@ export const siteData = {
           "interactList": [
             "Ka taxaddar daawooyinka ama beddelada cusbada ee ay ku jirto potassium.",
             "Daawooyinka xanuunka qaarkood sida ibuprofen ama diclofenac waxay kordhin karaan khatarta dhibaatooyinka kelyaha, gaar ahaan haddii aad fuuqbaxdo.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -2118,7 +2118,7 @@ export const siteData = {
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
-            "Ku hay daawada meel ka fog carruurta yar yar.",
+            "Ku hay meel ka fog carruurta.",
             "Ku hay baakadka asalka ah si looga ilaaliyo iftiinka iyo huurka.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay."
           ],
@@ -2504,7 +2504,7 @@ export const siteData = {
           "interactList": [
             "Ka taxaddar daawooyinka xanuunka sida ibuprofen ama naproxen, maadaama ay kordhin karaan khatarta dhiig-baxa.",
             "Daawooyinka kale ee dhiig-khafiifiya sidoo kale waxay kordhin karaan khatarta dhiig-baxa.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -2529,7 +2529,7 @@ export const siteData = {
           "storeList": [
             "Ku hay meel qalalan, heerkulka qolka, kana fog carruurta yar yar.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
-            "Daawooyinka soo hara ku celi farmashiyaha."
+            "Daawada soo hartay ku celi farmashiyaha."
           ],
           "sourcesTitle": "Ilaha xogta",
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
@@ -2769,7 +2769,7 @@ export const siteData = {
           "storeList": [
             "يحفظ في مكان جاف بدرجة حرارة الغرفة وبعيدا عن متناول الأطفال.",
             "لا يستخدم بعد تاريخ الانتهاء.",
-            "أعد الأدوية المتبقية إلى الصيدلية."
+            "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
@@ -2934,7 +2934,7 @@ export const siteData = {
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
-            "Ku hay daawada meel ka fog carruurta.",
+            "Ku hay meel ka fog carruurta.",
             "Ku hay meel qalalan oo aan aad u kululayn.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay."
           ],
@@ -3176,7 +3176,7 @@ export const siteData = {
           "storeList": [
             "يحفظ بعيدا عن متناول الأطفال.",
             "يحفظ في مكان جاف وغير شديد الحرارة.",
-            "لا تستخدمه بعد تاريخ الانتهاء."
+            "لا يستخدم بعد تاريخ الانتهاء."
           ],
           "sourcesTitle": "المصادر",
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
@@ -3314,7 +3314,7 @@ export const siteData = {
           "interactList": [
             "Daawooyin qaarkood sida dawooyinka steroid-ka ah, daawooyinka kaadida kordhiya, iyo beta blockers waxay beddeli karaan baahida insulin-ka.",
             "Xanuun, caabuq, ama isbeddel weyn oo ku yimaadda cuntada ama dhaqdhaqaaqa ayaa sidoo kale beddeli kara sonkorta dhiigga.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn, kuna cabbir sonkorta dhiigga sida lagu faray."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn, kuna cabbir sonkorta dhiigga sida lagu faray."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -3540,14 +3540,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "الإنسولين – علاج السكري",
           "hdrTitle": "الإنسولين – علاج السكري",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "الإنسولين – علاج السكري",
           "drugForm": "حقن تحت الجلد",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "الإنسولين يساعد الجسم على تنظيم سكر الدم بشكل صحيح. عندما لا يكون هناك ما يكفي من الإنسولين أو عندما لا يعمل بشكل جيد، يبقى السكر مرتفعا في الدم. هذا العلاج يساعد السكر على الدخول إلى خلايا الجسم ليستخدم كمصدر للطاقة.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: الإنسولين هو المفتاح الذي يفتح الباب حتى يدخل السكر إلى خلايا الجسم. إذا كان هذا المفتاح ناقصا أو لا يعمل جيدا، يبقى السكر في الدم بدل أن يستفيد منه الجسم. لذلك فالإنسولين ليس مجرد حقنة، بل علاج يومي مهم يساعد الجسم على العمل بشكل صحيح. والأهم هو استخدامه بدقة ومتابعة سكر الدم بانتظام.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -3602,7 +3602,7 @@ export const siteData = {
             "اقرأ دائما التعليمات الخاصة بنوع الإنسولين الذي تستخدمه."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Insulin (بشري)",
@@ -3763,7 +3763,7 @@ export const siteData = {
             "Ku hay daawada meel ka fog carruurta yar yar, kuna hay meel ka hooseysa 25°C.",
             "Ku hay baakadka asalka ah.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
-            "Wixii soo haray ku celi farmashiyaha."
+            "Daawada soo hartay ku celi farmashiyaha."
           ],
           "sourcesTitle": "Ilaha xogta",
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
@@ -3948,14 +3948,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "لاموتريجين – الصرع والاضطراب ثنائي القطب",
           "hdrTitle": "لاموتريجين – الصرع والاضطراب ثنائي القطب",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "لاموتريجين – الصرع والاضطراب ثنائي القطب",
           "drugForm": "أقراص",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "لاموتريجين دواء يؤثر في الإشارات الكهربائية في الدماغ. يستخدم لعلاج الصرع وأحيانا في الاضطراب ثنائي القطب للمساعدة على الاستقرار والهدوء. ويبدأ هذا الدواء بشكل تدريجي لأن الجسم يحتاج إلى وقت ليتأقلم معه.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: لاموتريجين ليس دواء نرفع جرعته بسرعة. بل يجب بناؤه تدريجيا حتى يعتاد الدماغ عليه بهدوء، وحتى نقلل خطر الطفح الجلدي أو التفاعلات القوية. لذلك لا تغير الجرعة بنفسك ولا توقفه فجأة.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -4006,10 +4006,10 @@ export const siteData = {
             "يحفظ بعيدا عن متناول الأطفال وتحت 25°م.",
             "يحفظ في العبوة الأصلية.",
             "لا يستخدم بعد تاريخ الانتهاء.",
-            "أعد الأدوية المتبقية إلى الصيدلية."
+            "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Lamotrigin",
@@ -4142,9 +4142,9 @@ export const siteData = {
           ],
           "interactTitle": "Isdhexgalka daawooyinka",
           "interactList": [
-            "Ka taxaddar kaabisyada potassium iyo dawooyinka kordhiya potassium-ka.",
+            "Ka taxaddar daawooyinka ama beddelada cusbada ee ay ku jirto potassium.",
             "Daawooyinka xanuunka qaarkood sida ibuprofen ama diclofenac, haddii muddo dheer la qaato, waxay culays saari karaan kelyaha.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -4161,7 +4161,7 @@ export const siteData = {
           "foodTitle": "Cunto iyo cabitaan",
           "foodList": [
             "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
-            "Cab biyo kugu filan, gaar ahaan haddii aad leedahay matag ama shuban.",
+            "Cab biyo kugu filan, gaar ahaan haddii ay jirto cimilo kulul ama aad matag ama shuban qabto.",
             "Ka taxaddar cuntooyinka potassium-ka badan haddii dhakhtarku kuu sheego in laga fogaado."
           ],
           "storeTitle": "Kaydinta daawada",
@@ -4349,14 +4349,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "لوسارتان – ارتفاع ضغط الدم",
           "hdrTitle": "لوسارتان – ارتفاع ضغط الدم",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "لوسارتان – ارتفاع ضغط الدم",
           "drugForm": "أقراص",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "ارتفاع ضغط الدم قد يمر من دون أعراض واضحة، لكنه مع الوقت يرهق القلب والدماغ والكلى. يساعد لوسارتان الأوعية الدموية على الاسترخاء أكثر، حتى يتحرك الدم بضغط أقل وبهدوء أكبر.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: أحيانا لا يشعر الإنسان بارتفاع الضغط، لكن الجسم يبقى متحملا لهذا العبء كل يوم. لوسارتان ليس دواء تشعر بمفعوله فورا دائما، لكنه يعمل بهدوء ليجعل الدورة الدموية أكثر راحة. لذلك الانتظام أهم من انتظار شعور مباشر بالتغير.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -4408,7 +4408,7 @@ export const siteData = {
             "لا يستخدم بعد تاريخ الانتهاء."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Losartankalium",
@@ -4573,7 +4573,7 @@ export const siteData = {
             "Ku hay meel qalalan oo ka fog carruurta.",
             "Ku hay baakadka asalka ah.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
-            "Daawooyinka soo hara ku celi farmashiyaha."
+            "Daawada soo hartay ku celi farmashiyaha."
           ],
           "sourcesTitle": "Ilaha xogta",
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
@@ -4766,14 +4766,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "ماريفان – مميع للدم",
           "hdrTitle": "ماريفان – مميع للدم",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "ماريفان – مميع للدم",
           "drugForm": "أقراص",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "ماريفان يجعل الدم أقل ميلا إلى التجلط. هذا قد يحمي من الجلطات الخطيرة، لكنه يعني أيضا أن النزيف قد يحدث بسهولة أكبر إذا أصبحت الجرعة قوية أكثر من اللازم أو إذا غير دواء آخر مفعوله.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: ماريفان يحتاج إلى توازن دقيق. إذا كان تأثيره ضعيفا فقد تتكون الجلطات، وإذا كان تأثيره قويا أكثر من اللازم فقد يحدث نزيف. لذلك فهو ليس مجرد قرص يؤخذ كل يوم، بل علاج يحتاج إلى انتباه للجرعة والطعام وفحوصات INR.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -4825,13 +4825,13 @@ export const siteData = {
           ],
           "storeTitle": "تخزين الدواء",
           "storeList": [
-            "يحفظ في مكان جاف وبعيد عن متناول الأطفال.",
+            "يحفظ في مكان جاف وبعيدا عن متناول الأطفال.",
             "يحفظ في العبوة الأصلية.",
             "لا يستخدم بعد تاريخ الانتهاء.",
-            "أعد الأدوية المتبقية إلى الصيدلية."
+            "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Warfarin",
@@ -4846,7 +4846,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -4984,7 +4984,7 @@ export const siteData = {
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
-            "Ku hay meel qalalan oo ka fog carruurta.",
+            "Ku hay meel ka fog carruurta.",
             "Ku kaydi heerkulka qolka, kana ilaali huurka iyo iftiinka xooggan.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay."
           ],
@@ -5167,14 +5167,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "الميلاتونين – صعوبة النوم",
           "hdrTitle": "الميلاتونين – صعوبة النوم",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "الميلاتونين – صعوبة النوم",
           "drugForm": "أقراص",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "أحيانا يكون الجسم متعبا لكن إيقاع النوم لا ينتظم كما ينبغي. يساعد الميلاتونين الجسم على فهم أن وقت الليل قد حان، فيسهل الدخول في النوم بشكل أكثر هدوءا.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: الميلاتونين ليس دواء قويا يفرض النوم بالقوة، بل هو أقرب إلى تذكير لطيف للجسم بأن الوقت صار وقت راحة. لذلك يعمل بشكل أفضل مع روتين هادئ قبل النوم، وإضاءة منخفضة، وتقليل الشاشات في آخر المساء.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -5226,7 +5226,7 @@ export const siteData = {
             "لا يستخدم بعد تاريخ الانتهاء."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Melatonin",
@@ -5241,7 +5241,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/rejsemedicin/jetlag/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -5329,7 +5329,7 @@ export const siteData = {
         "so": {
           "pageTitle": "Metformin – sonkorowga nooca 2",
           "hdrTitle": "Metformin – sonkorowga nooca 2",
-          "hdrSubtitle": "Waa warbixin kooban oo ku saabsan daawada, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+          "hdrSubtitle": "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
           "backLabel": "Ku laabo liiska daawooyinka",
           "langLabel": "Dooro luqadda:",
           "drugName": "Metformin – sonkorowga nooca 2",
@@ -5363,7 +5363,7 @@ export const siteData = {
             "Daawooyin qaar sida daawooyinka steroid-ka ah waxay saameyn ku yeelan karaan sonkorta dhiigga.",
             "Haddii lagugu sameeyo baaritaan lagu isticmaalo walax ka muuqata sawirrada raajada, mararka qaar metformin waxaa loo joojin karaa si ku-meel-gaar ah.",
             "Cabbitaanka khamriga badan iyo daawooyin qaar oo saameeya kelyaha waxay kordhin karaan khatarta dhibaatooyinka.",
-            "Had iyo jeer u sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -5391,7 +5391,7 @@ export const siteData = {
             "Ku hay meel ka fog carruurta, kana hooseysa 25 °C.",
             "Ku hay baakadka asalka ah si looga ilaaliyo huurka.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
-            "Wixii soo haray, ku celi farmashiyaha."
+            "Daawada soo hartay ku celi farmashiyaha."
           ],
           "sourcesTitle": "Ilaha xogta",
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
@@ -5584,14 +5584,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "ميتفورمين – السكري من النوع الثاني",
           "hdrTitle": "ميتفورمين – السكري من النوع الثاني",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "ميتفورمين – السكري من النوع الثاني",
           "drugForm": "قرص فموي",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "الميتفورمين يساعد الجسم على تنظيم سكر الدم بطريقة أكثر هدوءا وثباتا. كثير من الناس يبدأون بهذا الدواء عند تشخيص السكري من النوع الثاني لأنه يدعم الجسم من دون أن يسبب عادة هبوطا مفاجئا وقويا في السكر.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: الميتفورمين ليس دواء تشعر بمفعوله فورا في اليوم نفسه. هو يعمل بهدوء ويساعد الجسم مع الوقت. في البداية قد تنزعج المعدة عند بعض الناس، لكن هذا يتحسن غالبا إذا بدأت الجرعة تدريجيا وتم تناول الدواء مع الطعام. لذلك الصبر والانتظام مهمان جدا مع الميتفورمين.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -5649,7 +5649,7 @@ export const siteData = {
             "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Metformin",
@@ -5664,7 +5664,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hormoner-og-stofskifte/sygdomme/diabetes-type-2-hvad-er-det/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -5752,7 +5752,7 @@ export const siteData = {
         "so": {
           "pageTitle": "Metoprolol – wadnaha & dhiig-karka",
           "hdrTitle": "Metoprolol – wadnaha & dhiig-karka",
-          "hdrSubtitle": "Waa warbixin kooban oo ku saabsan daawada, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
+          "hdrSubtitle": "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
           "backLabel": "Ku laabo liiska daawooyinka",
           "langLabel": "Dooro luqadda:",
           "drugName": "Metoprolol – wadnaha & dhiig-karka",
@@ -5786,7 +5786,7 @@ export const siteData = {
             "Daawooyin qaar oo wadnaha ah sida verapamil, diltiazem ama digoxin waxay kordhin karaan saameynta metoprolol.",
             "Daawooyinka kale ee dhiig-karka waxay hoos u dhigi karaan cadaadiska dhiigga si badan.",
             "Daawooyinka xanuun-baabi'iyaha qaarkood sida ibuprofen mararka qaarkood waxay yareyn karaan saameynta daawada.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -5805,15 +5805,15 @@ export const siteData = {
           "foodTitle": "Cunto iyo cabitaan",
           "foodList": [
             "Daawadan waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
-            "Haddii calool-xanuun kugu yimaado, ku qaado daawada cunto.",
+            "Haddii calooshu ku dhibtooto, waxaad ku qaadan kartaa cunto.",
             "Waxaa fiican in laga taxaddaro khamriga haddii uu kuu keeno madax-wareer ama cadaadis dhiig oo hooseeya."
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
-            "Ku hay daawada meel ka fog carruurta, kana hooseysa 25 °C.",
+            "Ku hay meel ka fog carruurta, kana hooseysa 25 °C.",
             "Ku hay baakadka asalka ah si looga ilaaliyo huurka iyo iftiinka.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
-            "Daawooyinka soo haray ku celi farmashiyaha."
+            "Daawada soo hartay ku celi farmashiyaha."
           ],
           "sourcesTitle": "Ilaha xogta",
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
@@ -5831,7 +5831,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Metoprolol – hjerte & blodtryk",
@@ -6004,14 +6004,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "ميتوبرولول – القلب وضغط الدم",
           "hdrTitle": "ميتوبرولول – القلب وضغط الدم",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "ميتوبرولول – القلب وضغط الدم",
           "drugForm": "أقراص",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "ميتوبرولول يساعد القلب على العمل بطريقة أهدأ. يمكنه إبطاء النبض وتقليل العبء على القلب وخفض ضغط الدم، لذلك يستخدم كثيرا عندما يكون النبض سريعا أو عندما يكون ضغط الدم مرتفعا.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: ميتوبرولول يطلب من القلب أن يهدأ قليلا ولا يركض بسرعة زائدة. هذا مفيد عندما يكون القلب متعبا أو سريعا أكثر من اللازم. لكن لهذا السبب نفسه قد يشعر بعض الناس في البداية بتعب أو دوخة خفيفة. غالبا يتأقلم الجسم، لكن لا يجوز إيقاف الدواء فجأة.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -6057,7 +6057,7 @@ export const siteData = {
           "foodTitle": "الطعام والشراب",
           "foodList": [
             "يمكن غالبا تناوله مع الطعام أو بدونه.",
-            "إذا سبب اضطرابا في المعدة، فيفضل تناوله مع الطعام.",
+            "إذا سبب انزعاجا في المعدة، فتناوله مع الطعام.",
             "ينبغي الحذر مع الكحول إذا سبب لك زيادة في الدوخة أو انخفاض الضغط."
           ],
           "storeTitle": "تخزين الدواء",
@@ -6068,7 +6068,7 @@ export const siteData = {
             "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Metoprolol",
@@ -6083,7 +6083,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/oevrige-tilstande/hjertesvigt/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -6203,7 +6203,7 @@ export const siteData = {
           "interactList": [
             "Daawooyinka dejinta iyo hurdada, khamriga, iyo dawooyin kale oo lulmo keena waxay kordhin karaan khatarta hurdo badan iyo neefsasho gaabis ah.",
             "Daawooyin kale oo saameeya habdhiska neerfaha dhexe waxay sidoo kale kordhin karaan saameynta morfiin.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -6243,7 +6243,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/narkotiske-stoffer/heroin-og-andre-opiater/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Morfin – behandling af stærke smerter",
@@ -6402,7 +6402,7 @@ export const siteData = {
         "ar": {
           "pageTitle": "المورفين – علاج الألم الشديد",
           "hdrTitle": "المورفين – علاج الألم الشديد",
-          "hdrSubtitle": "شرح مبسط وشخصي عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "المورفين – علاج الألم الشديد",
@@ -6474,7 +6474,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/narkotiske-stoffer/heroin-og-andre-opiater/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -6580,7 +6580,7 @@ export const siteData = {
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
             "Qiyaasta morfiin waa mid qof walba gaar u ah, waxayna ku xiran tahay xanuunka, da'da, shaqada kelyaha iyo beerka, iyo daawooyinka kale.",
-            "Raac qorshaha dhakhtarkaaga si sax ah, hana kordhin qiyaasta adigoon talo helin.",
+            "Raac qorshaha caafimaadka si sax ah, hana qaadan qiyaas dheeraad ah adigoon talo helin.",
             "Haddii uu yahay kiniin si tartiib ah u sii daaya daawada, ha jebin, ha burburin, hana ruugin.",
             "Haddii aad hilmaanto qiyaas, raac tilmaamaha laguu siiyey ee nooca daawadaada."
           ],
@@ -6588,13 +6588,13 @@ export const siteData = {
           "sideList": [
             "Waxyeellooyinka caadiga ah waxaa ka mid noqon kara hurdo, dawakh, lalabo, matag iyo calool-istaag.",
             "Qaar waxay dareemi karaan cuncun, af qallayl ama jahawareer, gaar ahaan bilowga daawada.",
-            "Waxyeellada ugu halista badan waa neefsasho gaabis ah ama qofka oo aad u hurdooba."
+            "Waxyeellada ugu halista badan waa neefsasho gaabis ah ama neefsasho daciif noqota."
           ],
           "interactTitle": "Isdhexgalka daawooyinka",
           "interactList": [
             "Daawooyinka dejinta iyo hurdada, khamriga, iyo opioid-yo kale waxay kordhin karaan khatarta hurdo badan iyo neefsasho gaabis ah.",
-            "Daawooyin kale oo saameeya habdhiska neerfaha dhexe waxay kordhin karaan saameynta morfiin.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn iyo daawooyinka dabiiciga ah."
+            "Daawooyin kale oo saameeya habdhiska neerfaha dhexe waxay sidoo kale kordhin karaan saameynta morfiin.",
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn iyo daawooyinka dabiiciga ah."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -6613,14 +6613,14 @@ export const siteData = {
           "foodList": [
             "Morfiin waxaa lagu qaadan karaa cunto la jirto ama la'aan, laakiin cunto yar ayaa mararka qaarkood yareyn karta lalabada.",
             "Ka fogow khamriga inta aad isticmaalayso morfiin.",
-            "Cabitaan badan iyo cunto leh fiber waxay caawin karaan haddii calool-istaag yimaado."
+            "Cab biyo ku filan, cunto leh fiber-na waxay kaa caawin kartaa calool-istaagga."
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
             "Ku kaydi meel ammaan ah oo qufulan kana fog carruurta iyo dadka kale.",
             "Ha la wadaagin daawada qof kale, xataa haddii uu xanuun la mid ah qabo.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
-            "Daawada aan loo baahnayn ku celi farmashiyaha."
+            "Daawada soo hartay ku celi farmashiyaha."
           ],
           "sourcesTitle": "Ilaha xogta",
           "sourcesText": "Qoraalkan waxaa loo qoray si gaar ah oo sahlan, laakiin xogta caafimaadku waxay ku salaysan tahay ilo rasmi ah.",
@@ -6634,7 +6634,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/kraeft/sygdomme/behandlingsmetoder/hvordan-behandler-man-smerter/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Morfin – behandling af stærke smerter",
@@ -6793,7 +6793,7 @@ export const siteData = {
         "ar": {
           "pageTitle": "المورفين – علاج الألم الشديد",
           "hdrTitle": "المورفين – علاج الألم الشديد",
-          "hdrSubtitle": "شرح مبسط وشخصي عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "المورفين – علاج الألم الشديد",
@@ -6851,7 +6851,7 @@ export const siteData = {
             "يجب حفظ المورفين في مكان آمن وبعيدا عن الأطفال والآخرين، ويفضل أن يكون مغلقا.",
             "لا تشارك الدواء مع أي شخص آخر.",
             "لا تستخدمه بعد تاريخ الانتهاء أو إذا كانت العبوة تالفة.",
-            "أعد الدواء غير المستخدم إلى الصيدلية."
+            "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
@@ -6865,7 +6865,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/kraeft/sygdomme/behandlingsmetoder/hvordan-behandler-man-smerter/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -6985,7 +6985,7 @@ export const siteData = {
           "interactList": [
             "Ha isku darin naproxen iyo daawooyin kale oo NSAID ah sida ibuprofen ama diclofenac adigoon talo ka helin dhakhtarkaaga.",
             "Ka taxaddar haddii aad qaadato daawooyinka dhiig-khafiifiya, daawooyinka steroid-ka ah, daawooyinka dhiig-karka qaarkood ama daawooyinka saameeya kelyaha.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -7025,7 +7025,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Naproxen – behandling af smerter og betændelse",
@@ -7241,8 +7241,8 @@ export const siteData = {
           "storeList": [
             "يحفظ بعيدا عن متناول الأطفال وفي العبوة الأصلية.",
             "يحفظ عادة في درجة حرارة الغرفة حسب تعليمات العبوة.",
-            "لا تستخدمه بعد تاريخ الانتهاء.",
-            "أعد الدواء المتبقي إلى الصيدلية."
+            "لا يستخدم بعد تاريخ الانتهاء.",
+            "أعد البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
           "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
@@ -7256,7 +7256,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/nsaid/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -7398,7 +7398,7 @@ export const siteData = {
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
-            "Ku hay daawada meel ka fog carruurta, kuna hay baakadka asalka ah.",
+            "Ku hay daawada meel ka fog carruurta oo ku jirta baakadka asalka ah.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay.",
             "Daawada soo hartay ku celi farmashiyaha."
           ],
@@ -7414,7 +7414,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/laegehaandbogen/mave-tarm/tilstande-og-sygdomme/spiseroer/gastrooesofageal-reflukssygdom/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Pantoprazol – mavesyre og refluks",
@@ -7639,7 +7639,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/laegehaandbogen/mave-tarm/tilstande-og-sygdomme/spiseroer/gastrooesofageal-reflukssygdom/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -7799,7 +7799,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Paracetamol – smerter og feber",
@@ -8030,7 +8030,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/akutte-sygdomme/sygdomme/forgiftninger/paracetamolforgiftning/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -8150,7 +8150,7 @@ export const siteData = {
           "interactList": [
             "Quetiapin wuxuu la falgali karaa daawooyin kale, gaar ahaan kuwa hurdada keena ama saameeya maskaxda.",
             "Daawooyin qaarkood waxay beddeli karaan sida quetiapin jirka uga shaqeeyo.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtareed u baahnayn."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -8190,7 +8190,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/antipsykotisk-medicin/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Quetiapin – psykose og bipolar lidelse",
@@ -8381,7 +8381,7 @@ export const siteData = {
           "interactList": [
             "قد يتداخل كويتيابين مع أدوية أخرى، خصوصا الأدوية التي تسبب النعاس أو تؤثر على الدماغ.",
             "بعض الأدوية قد تغير طريقة تعامل الجسم مع كويتيابين.",
-            "أخبر الطبيب أو الصيدلي دائما بكل الأدوية التي تستعملها."
+            "أخبر الطبيب أو الصيدلي بكل الأدوية التي تستخدمها."
           ],
           "warnTitle": "تحذيرات مهمة",
           "warnList": [
@@ -8421,7 +8421,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/sundhedsoplysning/medicininformationer/laegemidler/antipsykotisk-medicin/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -8582,7 +8582,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/laegemidler/ssri-antidepressivum/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Sertralin – depression og angst",
@@ -8816,7 +8816,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/psyke/sygdomme/laegemidler/ssri-antidepressivum/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي."
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },
@@ -8839,7 +8839,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "frequency", "text": "1-2 neefsasho, 1-2 jeer maalintii" },
-          { "type": "warn", "text": "Raac qoraalka dawada" }
+          { "type": "warn", "text": "Raac warqaddaada dhakhtareed" }
         ],
         "ar": [
           { "type": "frequency", "text": "1–2 نفخة، 1–2 مرة يوميًا" },
@@ -8918,7 +8918,7 @@ export const siteData = {
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
             "Raac qorshaha dhakhtarkaaga, sababtoo ah qiyaastu way ku kala duwanaan kartaa qofba qofka kale.",
-            "Dad badan waxay qaataan 1 ilaa 2 neefsi 1 ilaa 2 jeer maalintii, laakiin mar walba raac tilmaamaha laguu siiyay.",
+            "Dad badan waxay qaataan 1 ilaa 2 neefsi 1 ilaa 2 jeer maalintii, laakiin warqadda dhakhtareed ee laguu qoray ayaa ah tan ugu muhiimsan.",
             "Qaar ka mid ah dadka qaba neefta waxaa loogu qori karaa in Symbicort loo isticmaalo si joogto ah iyo marka calaamado soo baxaan, laakiin tani waa in si cad laguu faro.",
             "Farsamada neefsashada saxda ah waa muhiim. Haddii aadan hubin, la xiriir farmashiyaha ama kalkaaliyaha caafimaadka."
           ],
@@ -8976,7 +8976,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Symbicort – luftveje",
@@ -9219,7 +9219,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط، ولا يغني عن نصيحة الطبيب أو الصيدلي.",
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي.",
           "audioLabel": "استمع إلى التسجيل الصوتي",
           "audioFile": "audio/Symbicort-arabisk.mp3"
         }
@@ -9337,7 +9337,7 @@ export const siteData = {
           "interactList": [
             "Daawooyin qaarkood sida beta-blockers-ka waxay yareyn karaan saameynta Ventoline.",
             "Daawooyinka kale ee saameeya wadnaha ama sambabada sidoo kale waa muhiim in la sheego.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadanayso."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -9348,9 +9348,9 @@ export const siteData = {
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
           "ramadanList": [
-            "Buufinta sambabada badanaa looma arko mid jebisa soonka, laakiin aragtiyada diinta way kala duwanaan karaan.",
+            "Daawooyinka la neefsado badanaa looma arko kuwo jebiya soonka, laakiin aragtiyada diimeed way kala duwanaan karaan.",
             "Caafimaad ahaan waa muhiim inaadan joojin buufinta degdegga ah marka neefsashadu kugu adkaato inta aad sooman tahay.",
-            "Haddii aad shaki qabto, kala hadal dhakhtarkaaga iyo qof culimo ah oo aad ku kalsoon tahay."
+            "Haddii aad shaki qabto, kala hadal dhakhtarkaaga iyo caalim diimeed aad ku kalsoon tahay."
           ],
           "foodTitle": "Cunto iyo cabitaan",
           "foodList": [
@@ -9361,7 +9361,6 @@ export const siteData = {
           "storeList": [
             "Ku kaydi meel qalalan oo ka fog carruurta.",
             "Ka ilaali kulaylka badan iyo qorraxda tooska ah.",
-            "Ha daloolin hana gubin buufinta, xitaa haddii ay madhan tahay.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay."
           ],
           "sourcesTitle": "Ilaha xogta",
@@ -9380,7 +9379,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalku waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
+          "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
         },
         "da": {
           "pageTitle": "Ventoline – luftveje",
@@ -9543,14 +9542,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "فنتولين – الشعب الهوائية",
           "hdrTitle": "فنتولين – الشعب الهوائية",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "فنتولين – الشعب الهوائية",
           "drugForm": "بخاخ للاستنشاق",
           "badgeText": "مختصر وسهل القراءة",
           "introBox": "فنتولين دواء استنشاقي سريع المفعول. يفتح الشعب الهوائية ليسهل التنفس عندما يظهر ضيق النفس أو الصفير بسرعة. يستخدم هذا الدواء غالبا كعلاج سريع لتخفيف أعراض الربو أو نوبات تضيق الشعب الهوائية.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "عندما يأتي المريض إلى الصيدلية ومعه فنتولين، فأنا أهتم كثيرا بطريقة استخدام البخاخ. إذا كان يستخدمه لأول مرة أشرح له الخطوات خطوة بخطوة، وإذا كان قد استعمله من قبل أسأله هل ما زالت الطريقة صحيحة وهل الدواء يصل فعلا إلى الرئتين بشكل جيد. إذا كانت الطريقة غير صحيحة فقد لا يظهر التأثير السريع كما ينبغي. وفي بعض الحالات يكون استخدام الأنبوب المساعد مفيدا جدا، خاصة للأطفال والبالغين الذين يجدون صعوبة في تنسيق الضغط على البخاخ مع الشهيق.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -9588,7 +9587,7 @@ export const siteData = {
           "ramadanList": [
             "غالبا ما يعتبر بخاخ الاستنشاق غير مفطر، لكن الآراء الدينية قد تختلف.",
             "من الناحية الصحية لا ينبغي ترك بخاخ الإسعاف الضروري عند ضيق النفس أثناء الصيام.",
-            "إذا كان لديك شك، فتحدث مع الطبيب ومع مرشد ديني تثق به."
+            "إذا كان لديك شك، يمكنك التحدث مع الطبيب ومع مرشد ديني تثق به."
           ],
           "foodTitle": "الطعام والشراب",
           "foodList": [
@@ -9602,7 +9601,7 @@ export const siteData = {
             "لا يستخدم بعد تاريخ الانتهاء."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Ventoline",
@@ -9963,15 +9962,15 @@ export const siteData = {
         "ar": {
           "pageTitle": "زاريلتو (ريفاروكسابان) – دواء يمنع تجلط الدم",
           "hdrTitle": "زاريلتو (ريفاروكسابان) – دواء يمنع تجلط الدم",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "زاريلتو (ريفاروكسابان)",
           "drugForm": "أقراص",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "audioLabel": "استمع إلى التسجيل",
           "introBox": "زاريلتو دواء يمنع تجلط الدم. يقلل من احتمال تكون جلطات ضارة في الدم. يستخدم هذا الدواء عند بعض المرضى للوقاية من الجلطات أو لعلاجها حسب الحالة.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "عندما يأتي المريض إلى الصيدلية ومعه زاريلتو، فأنا أحرص عادة على أمرين: الأول أن يفهم المريض أن الدواء لا يجب إيقافه فجأة، والثاني أن يعرف علامات النزف. كما أذكر دائما بأن أقراص 15 ملغ و20 ملغ يجب أن تؤخذ مع الطعام، لأن ذلك يساعد الجسم على امتصاص الدواء بشكل صحيح. وإذا ظهر نزف غير معتاد أو كثرت الكدمات، فيجب طلب المشورة الطبية بسرعة.",
           "sec0Title": "ما هو زاريلتو؟",
           "sec0": [
@@ -10027,7 +10026,7 @@ export const siteData = {
             "سلم البقايا إلى الصيدلية."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Xarelto",
@@ -10162,7 +10161,7 @@ export const siteData = {
           "interactList": [
             "Ha ku darin khamri, opioid-yo ama daawooyin kale oo hurdo iyo dejin ah adigoon talo ka helin dhakhtarkaaga.",
             "Daawooyin qaar oo maskaxda saameeya waxay kordhin karaan saameynta daawadan.",
-            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadato, xataa kuwa aan warqad dhakhtar u baahnayn."
+            "U sheeg dhakhtarkaaga ama farmashiyaha dhammaan daawooyinka aad qaadanayso."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -10180,12 +10179,12 @@ export const siteData = {
           "foodTitle": "Cunto iyo cabitaan",
           "foodList": [
             "Waxaa fiican in lagu qaato calool madhan ama meel ka fog cunto dufan badan leh.",
-            "Ku liq kiniinka adigoo biyo ku cabaya.",
+            "Ku qaado biyo.",
             "Ka fogow khamriga inta aad daawadan qaadanayso."
           ],
           "storeTitle": "Kaydinta daawada",
           "storeList": [
-            "Ku hay meel ka fog carruurta yar yar, kana hooseysa 25°C.",
+            "Ku hay meel ka fog carruurta, kana hooseysa 25°C.",
             "Ku hay baakadka asalka ah si looga ilaaliyo huurka.",
             "Ha isticmaalin daawada haddii taariikhda dhicitaankeeda la dhaafay."
           ],
@@ -10370,14 +10369,14 @@ export const siteData = {
         "ar": {
           "pageTitle": "إيموزوب – الأرق",
           "hdrTitle": "إيموزوب – الأرق",
-          "hdrSubtitle": "شرح مبسط وشخصي عن الدواء ليسهل فهمه على المريض والعائلة.",
+          "hdrSubtitle": "شرح مبسط وواضح عن هذا الدواء، لمساعدة المرضى وعائلاتهم على فهم العلاج بسهولة.",
           "backLabel": "العودة إلى قائمة الأدوية",
           "langLabel": "اختر اللغة:",
           "drugName": "إيموزوب – الأرق",
           "drugForm": "أقراص فموية",
-          "badgeText": "سهل ومختصر",
+          "badgeText": "مختصر وسهل القراءة",
           "introBox": "إيموزوب دواء مساعد على النوم يمكن استخدامه في حالات الأرق قصيرة المدة. قد يساعد على النوم بسرعة أكبر، لكن بعض الناس قد يشعرون بتأثيره في صباح اليوم التالي. لذلك يجب استخدامه بحذر ولمدة محدودة قدر الإمكان.",
-          "ibrahimTitle": "نصيحة إبراهيم من الصيدلية",
+          "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: هذا الدواء مساعد على النوم، لكنه ليس حلا دائما لكل مشاكل النوم. إذا استعمل كثيرا أو لفترة طويلة، فقد يعتاد عليه الجسم. لذلك من المهم أن يؤخذ فقط حسب الخطة العلاجية وعندما يكون لديك وقت كاف للنوم بعده.",
           "useTitle": "الاستخدام",
           "useList": [
@@ -10402,7 +10401,7 @@ export const siteData = {
           "interactList": [
             "تجنب الكحول والأفيونات والأدوية الأخرى المنومة أو المهدئة إلا بعد استشارة الطبيب.",
             "بعض الأدوية التي تؤثر في الدماغ قد تزيد تأثير إيموزوب.",
-            "أخبر الطبيب أو الصيدلي بكل الأدوية التي تستخدمها."
+            "أخبر الطبيب أو الصيدلي دائما بجميع الأدوية التي تستعملها."
           ],
           "warnTitle": "تحذيرات مهمة",
           "warnList": [
@@ -10420,17 +10419,17 @@ export const siteData = {
           "foodTitle": "الطعام والشراب",
           "foodList": [
             "يفضل تناوله على معدة فارغة أو بعيدا عن الوجبات الدسمة.",
-            "ابتلع القرص مع الماء.",
+            "خذ القرص مع الماء.",
             "تجنب الكحول مع هذا الدواء."
           ],
           "storeTitle": "تخزين الدواء",
           "storeList": [
             "يحفظ بعيدا عن متناول الأطفال وتحت 25°م.",
             "احفظه في العبوة الأصلية للحماية من الرطوبة.",
-            "لا تستخدمه بعد تاريخ الانتهاء."
+            "لا يستخدم بعد تاريخ الانتهاء."
           ],
           "sourcesTitle": "المصادر",
-          "sourcesText": "هذا النص مكتوب بأسلوب شخصي وسهل، لكن المعلومة الطبية مبنية على مصادر رسمية.",
+          "sourcesText": "هذا النص مكتوب بأسلوب مبسط، لكن المعلومات الطبية فيه تستند إلى مصادر رسمية.",
           "sourcesList": [
             {
               "text": "pro.medicin.dk – Imozop",

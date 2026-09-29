@@ -292,17 +292,6 @@ export const sectionStyles = {
   store: "bg-slate-50/90",
 };
 
-export const sectionIconStyles = {
-  use: "bg-emerald-100 text-emerald-700",
-  dose: "bg-sky-100 text-sky-700",
-  side: "bg-amber-100 text-amber-700",
-  interact: "bg-violet-100 text-violet-700",
-  warn: "bg-rose-100 text-rose-700",
-  ramadan: "bg-fuchsia-100 text-fuchsia-700",
-  food: "bg-green-100 text-green-700",
-  store: "bg-slate-200 text-slate-700",
-};
-
 export function getIndexData() {
   return siteData.index;
 }

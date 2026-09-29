@@ -389,6 +389,33 @@ export async function GET(request) {
       noResultSearchesUnavailable = true;
     }
 
+    // ALLE søgninger (uanset om de gav resultat) — samme "search_term"-custom
+    // dimension som ovenfor, bare for event'et "site_search" i stedet for
+    // "search_no_results", så det ene setup-trin i GA4 admin dækker begge
+    // paneler. Giver et komplet billede af hvad folk rent faktisk søger på,
+    // ikke kun hullerne.
+    let allSearches = [];
+    let allSearchesUnavailable = false;
+    try {
+      const [allSearchReport] = await client.runReport({
+        property,
+        dateRanges: [{ startDate: "27daysAgo", endDate: "today" }],
+        dimensions: [{ name: "customEvent:search_term" }],
+        metrics: [{ name: "eventCount" }],
+        dimensionFilter: {
+          filter: { fieldName: "eventName", stringFilter: { matchType: "EXACT", value: "site_search" } },
+        },
+        orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
+        limit: 40,
+      });
+      allSearches = rowsOf(allSearchReport)
+        .map((row) => ({ term: row.dimensionValues[0].value, count: Number(row.metricValues[0].value) }))
+        .filter((r) => r.term && r.term !== "(not set)");
+    } catch (err) {
+      console.error("GA4 all-searches fetch failed (custom dimension may not be registered yet):", err.message);
+      allSearchesUnavailable = true;
+    }
+
     const browsers = rowsOf(browserReport).map((row) => ({
       name: row.dimensionValues[0].value,
       users: Number(row.metricValues[0].value),
@@ -454,6 +481,8 @@ export async function GET(request) {
       siteLanguageTrend,
       noResultSearches,
       noResultSearchesUnavailable,
+      allSearches,
+      allSearchesUnavailable,
       liveNoResultCount,
       browsers,
       operatingSystems,

@@ -21,6 +21,7 @@ const TEXTS = {
     pageOf: (i, n) => `${i} af ${n}`,
     forMedicine: "Til",
     usualDosing: "Sædvanligvis (fra medicinens egen side)",
+    close: "Luk",
   },
   en: {
     title: "Counter cards",
@@ -37,6 +38,7 @@ const TEXTS = {
     pageOf: (i, n) => `${i} of ${n}`,
     forMedicine: "For",
     usualDosing: "Usually (from the medicine's own page)",
+    close: "Close",
   },
   so: {
     title: "Kaararka Su'aalaha Farmashiyaha",
@@ -53,6 +55,7 @@ const TEXTS = {
     pageOf: (i, n) => `${i} ee ${n}`,
     forMedicine: "Waxaa loogu talagalay",
     usualDosing: "Sida caadiga ah (ka socota bogga daawada)",
+    close: "Xir",
   },
   ar: {
     title: "بطاقات الصيدلية",
@@ -69,6 +72,7 @@ const TEXTS = {
     pageOf: (i, n) => `${i} من ${n}`,
     forMedicine: "لدواء",
     usualDosing: "عادة (من صفحة الدواء نفسها)",
+    close: "إغلاق",
   },
 };
 
@@ -250,7 +254,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
   const iconEl = <SpeechBubbleIcon size={22} color="rgba(255,255,255,0.95)" />;
 
   return (
-    <ModalShell title={t.title} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
+    <ModalShell title={t.title} iconEl={iconEl} onClose={onClose} isRtl={isRtl} closeLabel={t.close}>
       {!category ? (
         <>
           <p style={{ fontSize: "14px", color: "#475569", lineHeight: 1.6, margin: "0 0 18px", textAlign: isRtl ? "right" : "left" }}>
@@ -338,7 +342,11 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "14px" }}>
             <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8" }}>{t.showLanguage}</span>
-            {languages.map((code) => (
+            {/* Eget sprog udelades bevidst: forsiden viser altid dit eget
+                sprog, så et flag for samme sprog ville gøre bagsiden
+                identisk med forsiden og "vend kortet" ville se ud som om
+                intet skete. */}
+            {languages.filter((code) => code !== language).map((code) => (
               <button
                 key={code}
                 type="button"

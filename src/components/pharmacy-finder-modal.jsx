@@ -13,6 +13,7 @@ const TEXTS = {
     call: "Ring",
     askFor: "Spørg efter",
     langLabels: { so: "Somalisk", ar: "Arabisk", da: "Dansk", en: "Engelsk" },
+    close: "Luk",
   },
   en: {
     title: "Find a pharmacy",
@@ -23,6 +24,7 @@ const TEXTS = {
     call: "Call",
     askFor: "Ask for",
     langLabels: { so: "Somali", ar: "Arabic", da: "Danish", en: "English" },
+    close: "Close",
   },
   so: {
     title: "Raadi farmashiye",
@@ -33,6 +35,7 @@ const TEXTS = {
     call: "Wac",
     askFor: "Weydii",
     langLabels: { so: "Soomaali", ar: "Caraabi", da: "Deenish", en: "Ingiriisi" },
+    close: "Xir",
   },
   ar: {
     title: "ابحث عن صيدلية",
@@ -43,6 +46,7 @@ const TEXTS = {
     call: "اتصال",
     askFor: "اسأل عن",
     langLabels: { so: "الصومالية", ar: "العربية", da: "الدنماركية", en: "الإنجليزية" },
+    close: "إغلاق",
   },
 };
 
@@ -86,7 +90,7 @@ export function PharmacyFinderModal({ language, onClose }) {
   const iconEl = <PinIcon size={22} />;
 
   return (
-    <ModalShell title={t.title} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
+    <ModalShell title={t.title} iconEl={iconEl} onClose={onClose} isRtl={isRtl} closeLabel={t.close}>
       <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.7, margin: "0 0 22px", textAlign: isRtl ? "right" : "left" }}>
         {t.intro}
       </p>

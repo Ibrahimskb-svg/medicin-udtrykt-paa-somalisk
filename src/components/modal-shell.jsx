@@ -8,7 +8,7 @@ export const LANG_THEME = {
   ar: { primary:"#D97706", soft:"#FFF7ED", border:"#F97316", tagBg:"linear-gradient(135deg,#fed7aa,#fb923c)" },
 };
 
-export function ModalShell({title,iconEl,onClose,children,isRtl,wide}){
+export function ModalShell({title,iconEl,onClose,children,isRtl,wide,closeLabel}){
   const titleId = useId();
   useEffect(()=>{
     const onKey=(e)=>{if(e.key==="Escape")onClose();};
@@ -27,7 +27,7 @@ export function ModalShell({title,iconEl,onClose,children,isRtl,wide}){
             {iconEl}
             <span id={titleId} style={{color:"#fff",fontWeight:800,fontSize:"16px",letterSpacing:"-0.01em"}}>{title}</span>
           </div>
-          <button type="button" onClick={onClose} style={{background:"rgba(255,255,255,0.18)",border:"none",borderRadius:"50%",width:44,height:44,cursor:"pointer",color:"#fff",fontSize:"18px",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,minWidth:44,minHeight:44}}>✕</button>
+          <button type="button" onClick={onClose} aria-label={closeLabel||"Luk"} style={{background:"rgba(255,255,255,0.18)",border:"none",borderRadius:"50%",width:44,height:44,cursor:"pointer",color:"#fff",fontSize:"18px",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700,minWidth:44,minHeight:44}}>✕</button>
         </div>
         <div style={{padding:"20px 20px 32px"}}>{children}</div>
       </div>

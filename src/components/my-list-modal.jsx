@@ -41,6 +41,7 @@ const TEXTS = {
     symptomNoMatch: "Ingen af dine gemte medicin nævner det som en bivirkning — men kontakt altid apoteket eller lægen, hvis du er bekymret.",
     symptomMatchIntro: "Det står nævnt som en mulig bivirkning her:",
     symptomDisclaimer: "Dette er ikke en diagnose — brug det som udgangspunkt for en samtale med apoteket eller lægen.",
+    close: "Luk",
   },
   en: {
     title: "My medicine list",
@@ -72,6 +73,7 @@ const TEXTS = {
     symptomNoMatch: "None of your saved medicines mention that as a side effect — but always contact the pharmacy or doctor if you're worried.",
     symptomMatchIntro: "It's mentioned as a possible side effect here:",
     symptomDisclaimer: "This is not a diagnosis — use it as a starting point for a conversation with the pharmacy or doctor.",
+    close: "Close",
   },
   so: {
     title: "Liiska daawooyinkayga",
@@ -103,6 +105,7 @@ const TEXTS = {
     symptomNoMatch: "Midna kama mid aha daawooyinka aad liiska ku darsatay lama sheegin sidaas — laakiin had iyo jeer la xiriir farmashiyaha ama dhakhtarka haddii aad walaacsan tahay.",
     symptomMatchIntro: "Waxaa lagu sheegay sidii waxyeello suurtagal ah halkan:",
     symptomDisclaimer: "Tani ma aha ogaanshaha cudur — u isticmaal sidii bilow wax looga hadlayo farmashiyaha ama dhakhtarka.",
+    close: "Xir",
   },
   ar: {
     title: "قائمة أدويتي",
@@ -134,6 +137,7 @@ const TEXTS = {
     symptomNoMatch: "لا يذكر أي من أدويتك المحفوظة ذلك كعرض جانبي — لكن تواصل دائمًا مع الصيدلية أو الطبيب إذا كنت قلقًا.",
     symptomMatchIntro: "مذكور كعرض جانبي محتمل هنا:",
     symptomDisclaimer: "هذا ليس تشخيصًا — استخدمه كنقطة بداية للحديث مع الصيدلية أو الطبيب.",
+    close: "إغلاق",
   },
 };
 
@@ -428,7 +432,7 @@ export function MyListModal({ language, onClose }) {
   const iconEl = <ListIcon size={22} color="rgba(255,255,255,0.95)" />;
 
   return (
-    <ModalShell title={t.title} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
+    <ModalShell title={t.title} iconEl={iconEl} onClose={onClose} isRtl={isRtl} closeLabel={t.close}>
       <p style={{ fontSize: "15px", color: "#475569", lineHeight: 1.7, margin: "0 0 22px", textAlign: isRtl ? "right" : "left" }}>
         {t.intro}
       </p>

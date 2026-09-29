@@ -130,7 +130,7 @@ export const pharmacyGlossary = [
       da: "Ekstra tilskud til dig, der har et kronisk behov for meget medicin, så din egenbetaling får et loft. Spørg dit apotek, om du opfylder kravene.",
       en: "Extra reimbursement for you if you have a chronic need for a lot of medicine, so your own payment gets a ceiling. Ask your pharmacy if you meet the requirements.",
       so: "Waa kaalmo dheeraad ah oo loogu talagalay dadka si joogto ah u qaadanaya daawo badan, si lacagta aad adigu bixinayso ay gaarto xad. Weydii farmashiyahaaga haddii aad buuxinayso shuruudaha.",
-      ar: "دعم إضافي لك إذا كنت تحتاج بشكل مزمن إلى الكثير من الأدوية، بحيث يكون لمساهمتك المالية حد أقصى. اسأل صيدليتك إن كنت تستوفي الشروط.",
+      ar: "دعم مالي إضافي لك إذا كنت تحتاج بشكل مزمن إلى الكثير من الأدوية، بحيث يكون لمساهمتك المالية حد أقصى. اسأل صيدليتك إن كنت تستوفي الشروط.",
     },
   },
   {
@@ -149,7 +149,7 @@ export const pharmacyGlossary = [
     explanation: {
       da: "Medicin du ikke behøver recept til, men som kun må sælges på et apotek — ikke i supermarkedet — fordi apotekspersonalet skal kunne vejlede dig om den.",
       en: "Medicine you don't need a prescription for, but which may only be sold at a pharmacy — not in a supermarket — because pharmacy staff need to be able to advise you on it.",
-      so: "Daawo aan u baahnayn warqad, laakiin oo la iibin karo kaliya farmashiyaha — ma aha dukaanka guud — sababtoo ah shaqaalaha farmashiyaha waa inay ku talin karaan sida loo isticmaalo.",
+      so: "Daawo aan u baahnayn warqad dhakhtareed, laakiin oo la iibin karo kaliya farmashiyaha — ma aha dukaanka guud — sababtoo ah shaqaalaha farmashiyaha waa inay ku talin karaan sida loo isticmaalo.",
       ar: "دواء لا يحتاج إلى وصفة طبية، لكن لا يُباع إلا في الصيدلية — وليس في السوبر ماركت — لأن موظفي الصيدلية يجب أن يتمكنوا من إرشادك بشأنه.",
     },
   },

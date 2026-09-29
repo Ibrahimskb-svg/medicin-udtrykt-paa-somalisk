@@ -734,6 +734,23 @@ export function SiteIndex({initialLang}){
 
   useScrollReveal([language,activeCategory,searchTerm]);
 
+  // Logger ALLE søgninger (uanset resultat) til GA4, så dashboardet kan vise
+  // præcis hvad folk søger på — ikke kun hullerne. Bruger samme "search_term"
+  // custom dimension som search_no_results nedenfor, så der ikke kræves
+  // ekstra opsætning i GA4 ud over den ene, der allerede er beskrevet i
+  // dashboardet. Debounced, kun ved "Alle" kategorier (ellers er tallet
+  // forurenet af kategori-filtrering, ikke et reelt søgeord-signal).
+  useEffect(() => {
+    const query = searchTerm.trim();
+    if (!query || query.length < 2 || activeCategory !== "all") return;
+    const handle = setTimeout(() => {
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "site_search", { search_term: query.toLowerCase() });
+      }
+    }, 1200);
+    return () => clearTimeout(handle);
+  }, [searchTerm, activeCategory]);
+
   // Logger søgeord der giver 0 resultater til GA4, så det kan ses i dashboardet
   // hvilken medicin folk leder efter, som endnu ikke er på siden. Debounced, så
   // det kun logges når brugeren er holdt op med at skrive (ikke pr. tastetryk),
