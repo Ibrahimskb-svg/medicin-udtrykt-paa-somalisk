@@ -11,6 +11,10 @@ import { ModalShell, LANG_THEME } from "./modal-shell";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
+import { PrayerReminderModal } from "./prayer-reminder-modal";
+import { downloadReminderICS } from "../lib/reminder-ics";
+import { DailyBriefingButton } from "./daily-briefing-button";
+import { isBriefingSupported } from "../lib/daily-briefing";
 import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { getLastRevisedText } from "../lib/last-revised";
 import { VoiceSearchButton } from "./voice-search-button";
@@ -59,6 +63,18 @@ const COUNTER_CARDS_LINK_TEXT = {
   en: { label: "Counter cards", desc: "Big, quick cards to ask and explain things directly to the customer." },
   so: { label: "Kaararka Su'aalaha Farmashiyaha", desc: "Kaararo waaweyn oo degdeg ah, lagu weydiiyo oo lagu sharaxo si toos ah kadhka." },
   ar: { label: "بطاقات الصيدلية", desc: "بطاقات كبيرة وسريعة لسؤال العميل وشرح الأمور له مباشرة." },
+};
+// Kun so/ar — jf. samme sprogvalg som den per-medicin lydoplæsning, der
+// allerede findes på hver medicinside (da/en-brugere har ikke behov for lyd).
+const BRIEFING_BANNER_TEXT = {
+  so: { label: "Dhegayso maalintaada", desc: "Maqal jadwalka daawooyinkaaga oo dhan, cod ahaan — kama baahnid inaad wax akhrido." },
+  ar: { label: "استمع ليومك", desc: "استمع إلى جدول أدويتك بالكامل صوتيًا — دون الحاجة لقراءة أي شيء." },
+};
+const PRAYER_CARD_TEXT = {
+  da: { label: "Suhoor/Iftar-påmindelse", reminderName: "Suhoor og Iftar" },
+  en: { label: "Suhoor/Iftar reminder", reminderName: "Suhoor and Iftar" },
+  so: { label: "Xasuusinta Sahuur/Iftar", reminderName: "Sahuur iyo Iftar" },
+  ar: { label: "تذكير السحور/الإفطار", reminderName: "السحور والإفطار" },
 };
 
 // ── Color themes ───────────────────────────────────────────────────────────
@@ -718,6 +734,7 @@ export function SiteIndex({initialLang}){
   const[activeCategory,setActiveCategory]=useState("all");
   const[modalTab,setModalTab]=useState(null);
   const[expandedSlug,setExpandedSlug]=useState(null);
+  const[prayerModalOpen,setPrayerModalOpen]=useState(false);
 
   const text=useMemo(()=>indexData.translations[language]||indexData.translations.so,[language]);
   const chromeText=useMemo(()=>uiText[language]||uiText.so,[language]);
@@ -803,6 +820,22 @@ export function SiteIndex({initialLang}){
       {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="findPharmacy" &&<PharmacyFinderModal language={language} onClose={()=>setModalTab(null)}/>}
       {modalTab==="counterCards" &&<CounterCardsModal language={language} onClose={()=>setModalTab(null)}/>}
+      {prayerModalOpen && (
+        <PrayerReminderModal
+          language={language}
+          isRtl={isRtl}
+          onClose={()=>setPrayerModalOpen(false)}
+          onConfirm={({fajr,maghrib})=>{
+            const [fh,fm]=fajr.split(":").map(Number);
+            const [mh,mm]=maghrib.split(":").map(Number);
+            downloadReminderICS((PRAYER_CARD_TEXT[language]??PRAYER_CARD_TEXT.so).reminderName, language, [
+              {hour:fh,minute:fm,period:"suhoor"},
+              {hour:mh,minute:mm,period:"iftar"},
+            ]);
+            setPrayerModalOpen(false);
+          }}
+        />
+      )}
 
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
@@ -832,12 +865,12 @@ export function SiteIndex({initialLang}){
             </div>
 
             {/* Funktions-genveje (glas-kort) — rigtige knapper/links, ikke kun dekoration */}
-            <div className="relative hidden lg:block" style={{height:300}}>
+            <div className="relative hidden lg:block" style={{height:470}}>
               <button
                 type="button"
                 onClick={()=>setModalTab("counterCards")}
                 className="glass-card-lite absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"4%",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
+                style={{top:"12px",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
               >
                 <p className="text-[10px] font-bold uppercase tracking-wide text-white/70">{(COUNTER_CARDS_LINK_TEXT[language]??COUNTER_CARDS_LINK_TEXT.so).label}</p>
                 <p className="mt-1 text-[13px] font-bold leading-snug text-white">{heroSafetyPhrase[language]??heroSafetyPhrase.so}</p>
@@ -850,7 +883,7 @@ export function SiteIndex({initialLang}){
                 type="button"
                 onClick={()=>setModalTab("findPharmacy")}
                 className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"4%",insetInlineEnd:0,width:190,padding:"14px 16px",cursor:"pointer"}}
+                style={{top:"150px",insetInlineEnd:0,width:190,padding:"14px 16px",cursor:"pointer"}}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#6D28D9,#4C1D95)"}}>
@@ -864,7 +897,7 @@ export function SiteIndex({initialLang}){
                 type="button"
                 onClick={()=>setModalTab("mylist")}
                 className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"40%",insetInlineEnd:0,width:206,padding:"14px 16px",cursor:"pointer"}}
+                style={{top:"222px",insetInlineEnd:0,width:206,padding:"14px 16px",cursor:"pointer"}}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#1E9E8F,#1B6FB8)"}}>
@@ -877,7 +910,7 @@ export function SiteIndex({initialLang}){
               <Link
                 href={{ pathname: "/ordliste", query: { lang: language } }}
                 className="glass-card-lite absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{bottom:"2%",insetInlineStart:"18%",width:228,padding:"14px 16px",cursor:"pointer"}}
+                style={{top:"298px",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#D97706,#B45309)"}}>
@@ -888,12 +921,32 @@ export function SiteIndex({initialLang}){
                   </div>
                 </div>
               </Link>
+
+              <button
+                type="button"
+                onClick={()=>setPrayerModalOpen(true)}
+                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{top:"392px",insetInlineEnd:0,width:184,padding:"14px 16px",cursor:"pointer"}}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#4338CA,#312E81)"}}>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+                  </span>
+                  <p className="text-[13px] font-bold leading-snug text-white">{(PRAYER_CARD_TEXT[language]??PRAYER_CARD_TEXT.so).label}</p>
+                </div>
+              </button>
             </div>
           </div>
 
           {/* Stat-kort med sitets 4 sprog — overlapper hero-kortets underkant */}
           <div className="relative -mt-6 flex justify-start px-5 pb-5 sm:-mt-7 sm:px-8 sm:pb-6">
-            <div className="stat-flag-card inline-flex items-center gap-3.5 px-4 py-3" data-sm-bubble-avoid="true">
+            <button
+              type="button"
+              onClick={()=>document.getElementById("medSearch")?.scrollIntoView({behavior:"smooth",block:"start"})}
+              className="stat-flag-card inline-flex items-center gap-3.5 px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              data-sm-bubble-avoid="true"
+              style={{cursor:"pointer"}}
+            >
               <div className="flex" aria-hidden="true">
                 {languages.map((code,i)=>(
                   <span key={code} className="flex h-7 w-7 items-center justify-center rounded-full border-2 text-[10px] font-extrabold text-white"
@@ -905,7 +958,7 @@ export function SiteIndex({initialLang}){
               <div>
                 <p className="text-[13px] font-extrabold" style={{color:"var(--text)"}}>{indexData.items.length} {chromeText.medicinesStat}, 4 {chromeText.languagesStat}</p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -972,6 +1025,33 @@ export function SiteIndex({initialLang}){
           </span>
         </button>
       </div>
+
+      {/* ── Lyd-briefing-banner — kun so/ar, samme synlighed som de andre bannere ── */}
+      {isBriefingSupported(language) && (
+        <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
+          <div
+            data-sm-bubble-avoid="true"
+            className="reveal-on-scroll flex w-full flex-col items-start gap-4 rounded-2xl px-5 py-5 sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
+            style={{ background: "linear-gradient(120deg,#0F766E,#0D9488 55%,#14B8A6)", boxShadow: "0 8px 28px rgba(15,118,110,0.28)" }}
+          >
+            <span
+              aria-hidden="true"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/20 sm:h-14 sm:w-14"
+            >
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="4 9 8 9 12 5 12 19 8 15 4 15 4 9"/><path d="M16 8a5 5 0 0 1 0 8"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+            </span>
+            <span className="flex-1">
+              <span className="block text-base font-extrabold text-white sm:text-lg">
+                {(BRIEFING_BANNER_TEXT[language] ?? BRIEFING_BANNER_TEXT.so).label}
+              </span>
+              <span className="mt-1 block text-sm leading-6 text-white/90">
+                {(BRIEFING_BANNER_TEXT[language] ?? BRIEFING_BANNER_TEXT.so).desc}
+              </span>
+            </span>
+            <DailyBriefingButton language={language} variant="onColor" />
+          </div>
+        </div>
+      )}
 
       {/* ── Video Guide ──────────────────────────────────────────────────── */}
       <VideoGuide chromeText={chromeText} language={language} />

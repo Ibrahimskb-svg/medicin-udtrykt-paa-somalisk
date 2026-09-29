@@ -13,6 +13,7 @@ import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
 import { getMyList, toggleMyList, subscribeMyList } from "../lib/my-list";
+import { downloadReminderICS } from "../lib/reminder-ics";
 import { getLastRevisedText } from "../lib/last-revised";
 import { saveHtmlAsPdf } from "../lib/save-pdf";
 import {
@@ -75,67 +76,6 @@ const SHARE_LABELS = {
   so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda", counterCards: "Kaararka daawadan" },
   ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة", counterCards: "بطاقات هذا الدواء" },
 };
-
-const PRAYER_PERIOD_LABEL = {
-  suhoor: { da: "Sahur", en: "Suhoor", so: "Sahuur", ar: "السحور" },
-  iftar: { da: "Iftar", en: "Iftar", so: "Iftar", ar: "الإفطار" },
-};
-
-// customTimes (valgfri): [{hour, minute, period: "suhoor"|"iftar"}] — bruges til at
-// generere flere begivenheder aligned med bønnetider i stedet for det faste kl. 08:00.
-function downloadReminderICS(medicineName, language, customTimes) {
-  const now = new Date();
-  const pad = (n) => String(n).padStart(2, "0");
-  const todayStr = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}`;
-  const stampStr =
-    `${now.getUTCFullYear()}${pad(now.getUTCMonth() + 1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}Z`;
-
-  const summaryByLang = {
-    da: `Tag din medicin: ${medicineName}`,
-    en: `Take your medicine: ${medicineName}`,
-    so: `Qaado daawadaada: ${medicineName}`,
-    ar: `تناول دواءك: ${medicineName}`,
-  };
-  const descByLang = {
-    da: "Daglig påmindelse fra Somalimed.dk. Du kan ændre klokkeslættet i din kalender-app.",
-    en: "Daily reminder from Somalimed.dk. You can change the time in your calendar app.",
-    so: "Xasuusin maalinle ah oo ka timid Somalimed.dk. Waxaad ka bedeli kartaa saacadda app-kaaga jadwalka.",
-    ar: "تذكير يومي من Somalimed.dk. يمكنك تغيير الوقت في تطبيق التقويم الخاص بك.",
-  };
-  const baseSummary = summaryByLang[language] || summaryByLang.da;
-  const description = descByLang[language] || descByLang.da;
-
-  const events = (customTimes?.length ? customTimes : [{ hour: 8, minute: 0, period: null }]).map((entry, i) => {
-    const start = `${pad(entry.hour)}${pad(entry.minute)}00`;
-    const endMinute = entry.minute + 15;
-    const end = `${pad(entry.hour + Math.floor(endMinute / 60))}${pad(endMinute % 60)}00`;
-    const periodLabel = entry.period ? PRAYER_PERIOD_LABEL[entry.period]?.[language] : null;
-    const summary = periodLabel ? `${periodLabel} – ${baseSummary}` : baseSummary;
-    return [
-      "BEGIN:VEVENT",
-      `UID:somalimed-${Date.now()}-${i}@somalimed.dk`,
-      `DTSTAMP:${stampStr}`,
-      `DTSTART;TZID=Europe/Copenhagen:${todayStr}T${start}`,
-      `DTEND;TZID=Europe/Copenhagen:${todayStr}T${end}`,
-      "RRULE:FREQ=DAILY",
-      `SUMMARY:${summary}`,
-      `DESCRIPTION:${description}`,
-      "END:VEVENT",
-    ].join("\r\n");
-  });
-
-  const ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Somalimed//Medicine Reminder//DA", ...events, "END:VCALENDAR"].join("\r\n");
-
-  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `Somalimed-paamindelse-${medicineName.replace(/\s+/g, "-")}.ics`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
 
 const QR_LABELS = {
   da: {
