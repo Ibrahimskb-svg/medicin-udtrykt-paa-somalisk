@@ -23,10 +23,10 @@ const STORAGE_KEY = "somalimed-zoom-level";
 const TEXT_SAFE_PRIMARY = { so: "#0F766E", da: "#2563EB", en: "#92400E", ar: "#B45309" };
 
 const LABELS = {
-  da: { caption: "Forstør / formindsk siden", zoomOut: "Formindsk siden", zoomIn: "Forstør siden", reset: "Nulstil til 100%" },
-  en: { caption: "Enlarge / shrink page", zoomOut: "Shrink page", zoomIn: "Enlarge page", reset: "Reset to 100%" },
-  so: { caption: "Weynee / Yaree bogga", zoomOut: "Yaree bogga", zoomIn: "Weynee bogga", reset: "Dib ugu celi 100%" },
-  ar: { caption: "تكبير / تصغير الصفحة", zoomOut: "تصغير الصفحة", zoomIn: "تكبير الصفحة", reset: "إعادة الضبط إلى 100%" },
+  da: { caption: "Forstør / formindsk siden", short: "Forstør/Formindsk", zoomOut: "Formindsk siden", zoomIn: "Forstør siden", reset: "Nulstil til 100%" },
+  en: { caption: "Enlarge / shrink page", short: "Enlarge/Shrink", zoomOut: "Shrink page", zoomIn: "Enlarge page", reset: "Reset to 100%" },
+  so: { caption: "Weynee / Yaree bogga", short: "Weynee/Yaree", zoomOut: "Yaree bogga", zoomIn: "Weynee bogga", reset: "Dib ugu celi 100%" },
+  ar: { caption: "تكبير / تصغير الصفحة", short: "تكبير/تصغير", zoomOut: "تصغير الصفحة", zoomIn: "تكبير الصفحة", reset: "إعادة الضبط إلى 100%" },
 };
 
 function clamp(v) {
@@ -82,91 +82,93 @@ export default function TextZoomControl() {
 
   return (
     <div
+      className="sm-zoom-widget hover-lift"
+      role="group"
+      aria-label={t.caption}
+      title={t.caption}
       style={{
         position: "fixed",
-        top: "78px",
-        [isRtl ? "left" : "right"]: "8px",
+        top: "92px",
+        [isRtl ? "left" : "right"]: "6px",
         zIndex: 400,
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
-        gap: "4px",
-        padding: "8px 10px 6px",
-        borderRadius: "16px",
+        gap: "2px",
+        padding: "3px 5px 3px 8px",
+        borderRadius: "999px",
         background: "#ffffff",
         border: `1.5px solid ${active ? theme.primary : theme.border}`,
-        boxShadow: active ? `0 4px 14px ${theme.primary}33` : "0 2px 10px rgba(15,23,42,0.14)",
+        boxShadow: active ? `0 4px 14px ${theme.primary}40` : "0 3px 12px rgba(15,23,42,0.20)",
         direction: "ltr",
       }}
     >
-      <span
-        style={{
-          fontSize: "10.5px",
-          fontWeight: 700,
-          color: textSafe,
-          whiteSpace: "nowrap",
-          direction: isRtl ? "rtl" : "ltr",
-        }}
-      >
-        {t.caption}
+      {/* Under lg (1024px) er heroen én kolonne: badge/overskrift ligger i
+          samme bane som denne fixed-widget. Navbaren er kun 56px høj der
+          (mod ca. 72px på desktop-pillen), og badget starter først ved
+          ~109px — så 64px rammer det ledige mellemrum præcist. */}
+      <style>{`
+        @media (max-width: 1023px) {
+          .sm-zoom-widget { top: 64px !important; }
+        }
+      `}</style>
+      <span style={{ fontSize: "9.5px", fontWeight: 700, color: textSafe, whiteSpace: "nowrap", direction: isRtl ? "rtl" : "ltr", marginInlineEnd: "3px" }}>
+        {t.short}
       </span>
 
-      <div style={{ display: "flex", alignItems: "center", gap: "2px" }}>
-        <button
-          type="button"
-          onClick={zoomOut}
-          disabled={zoom <= MIN_ZOOM}
-          aria-label={t.zoomOut}
-          title={t.zoomOut}
-          className="hover-lift"
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            width: "26px", height: "26px", borderRadius: "50%", border: "none",
-            background: "transparent", color: zoom <= MIN_ZOOM ? "#cbd5e1" : textSafe,
-            fontSize: "16px", fontWeight: 700, cursor: zoom <= MIN_ZOOM ? "default" : "pointer",
-          }}
-        >
-          −
-        </button>
+      <button
+        type="button"
+        onClick={zoomOut}
+        disabled={zoom <= MIN_ZOOM}
+        aria-label={t.zoomOut}
+        title={t.zoomOut}
+        className="hover-lift"
+        style={{
+          display: "flex", alignItems: "center", justifyContent: "center",
+          width: "19px", height: "19px", borderRadius: "50%", border: "none",
+          background: "transparent", color: zoom <= MIN_ZOOM ? "#cbd5e1" : textSafe,
+          fontSize: "13px", fontWeight: 700, cursor: zoom <= MIN_ZOOM ? "default" : "pointer",
+        }}
+      >
+        −
+      </button>
 
-        <button
-          type="button"
-          onClick={reset}
-          aria-label={`${t.caption} — ${t.reset}`}
-          title={t.reset}
-          className="hover-lift"
-          style={{
-            minWidth: "44px",
-            padding: "6px 4px",
-            borderRadius: "999px",
-            border: "none",
-            background: active ? textSafe : "transparent",
-            color: active ? "#ffffff" : "#64748b",
-            fontWeight: 700,
-            fontSize: "12px",
-            cursor: "pointer",
-          }}
-        >
-          {zoom}%
-        </button>
+      <button
+        type="button"
+        onClick={reset}
+        aria-label={`${t.caption} — ${t.reset}`}
+        title={t.reset}
+        className="hover-lift"
+        style={{
+          minWidth: "30px",
+          padding: "2px 1px",
+          borderRadius: "999px",
+          border: "none",
+          background: active ? textSafe : "transparent",
+          color: active ? "#ffffff" : "#64748b",
+          fontWeight: 700,
+          fontSize: "10px",
+          cursor: "pointer",
+        }}
+      >
+        {zoom}%
+      </button>
 
-        <button
-          type="button"
-          onClick={zoomIn}
-          disabled={zoom >= MAX_ZOOM}
-          aria-label={t.zoomIn}
-          title={t.zoomIn}
-          className="hover-lift"
-          style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            width: "26px", height: "26px", borderRadius: "50%", border: "none",
-            background: "transparent", color: zoom >= MAX_ZOOM ? "#cbd5e1" : textSafe,
-            fontSize: "16px", fontWeight: 700, cursor: zoom >= MAX_ZOOM ? "default" : "pointer",
-          }}
-        >
-          +
-        </button>
-      </div>
+      <button
+        type="button"
+        onClick={zoomIn}
+        disabled={zoom >= MAX_ZOOM}
+        aria-label={t.zoomIn}
+        title={t.zoomIn}
+        className="hover-lift"
+        style={{
+          display: "flex", alignItems: "center", justifyContent: "center",
+          width: "19px", height: "19px", borderRadius: "50%", border: "none",
+          background: "transparent", color: zoom >= MAX_ZOOM ? "#cbd5e1" : textSafe,
+          fontSize: "13px", fontWeight: 700, cursor: zoom >= MAX_ZOOM ? "default" : "pointer",
+        }}
+      >
+        +
+      </button>
     </div>
   );
 }

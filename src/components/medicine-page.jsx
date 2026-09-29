@@ -18,6 +18,7 @@ import { getLastRevisedText } from "../lib/last-revised";
 import { saveHtmlAsPdf } from "../lib/save-pdf";
 import {
   arabicAudioLabel,
+  getAccentColor,
   sectionIcons,
   sectionStyles,
   uiText,
@@ -181,6 +182,54 @@ function DosagePictogram({ chips, isRtl }) {
 }
 
 // ── 3. LYDFIL-KNAP ────────────────────────────────────────────────────────────
+
+// Afspilningshastighed på den eksisterende lydoplæsning — løser "jeg gider
+// ikke lytte til hele filen i normal tempo" uden at bygge en ny funktion:
+// samme mønster som YouTube/podcasts, ingen ny lyd genereret.
+const SPEED_PRESETS = [
+  { key: "normal", value: 1 },
+  { key: "fast", value: 1.5 },
+  { key: "fastest", value: 2 },
+];
+const SPEED_LABELS = {
+  da: { caption: "Hastighed", normal: "Normal", fast: "Hurtigere", fastest: "Hurtigst" },
+  en: { caption: "Speed", normal: "Normal", fast: "Faster", fastest: "Fastest" },
+  so: { caption: "Xawaare", normal: "Caadi", fast: "Dhakhso", fastest: "Ugu dhakhsaha badan" },
+  ar: { caption: "السرعة", normal: "عادي", fast: "سريع", fastest: "الأسرع" },
+};
+
+function PlaybackSpeedControl({ audioRef, language, accentColor }) {
+  const [rate, setRate] = useState(1);
+  const t = SPEED_LABELS[language] ?? SPEED_LABELS.da;
+  const isRtl = language === "ar";
+
+  function applyRate(value) {
+    setRate(value);
+    if (audioRef.current) audioRef.current.playbackRate = value;
+  }
+
+  return (
+    <div className="mt-3 flex flex-wrap items-center gap-2" dir={isRtl ? "rtl" : "ltr"}>
+      <span className="text-xs font-semibold" style={{ color: "var(--text-muted)" }}>{t.caption}:</span>
+      {SPEED_PRESETS.map(({ key, value }) => (
+        <button
+          key={key}
+          type="button"
+          onClick={() => applyRate(value)}
+          aria-pressed={rate === value}
+          className="hover-lift rounded-full px-3 py-1 text-xs font-semibold transition"
+          style={{
+            border: `1.5px solid ${rate === value ? accentColor : "var(--border)"}`,
+            background: rate === value ? accentColor : "#fff",
+            color: rate === value ? "#fff" : "var(--text)",
+          }}
+        >
+          {t[key]}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 function AudioButton({ label, tone = "primary", onClick }) {
   const isPrimary = tone === "primary";
@@ -768,6 +817,7 @@ export function MedicinePage({ medicine, initialLang }) {
             ) : (
               <div className="reveal-on-scroll rounded-2xl border bg-white p-4" style={{ borderColor: "var(--border)" }}>
                 <audio className="w-full" controls preload="none" ref={somaliAudioRef} src={`/${medicine.audio.so}`} />
+                <PlaybackSpeedControl audioRef={somaliAudioRef} language={language} accentColor={getAccentColor(medicine.slug)} />
               </div>
             )}
           </div>
@@ -781,6 +831,7 @@ export function MedicinePage({ medicine, initialLang }) {
             ) : (
               <div className="reveal-on-scroll rounded-2xl border bg-white p-4" style={{ borderColor: "var(--border)" }}>
                 <audio className="w-full" controls preload="none" ref={arabicAudioRef} src={`/${medicine.audio.ar}`} />
+                <PlaybackSpeedControl audioRef={arabicAudioRef} language={language} accentColor={getAccentColor(medicine.slug)} />
               </div>
             )}
           </div>

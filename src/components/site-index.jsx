@@ -13,8 +13,6 @@ import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
 import { downloadReminderICS } from "../lib/reminder-ics";
-import { DailyBriefingButton } from "./daily-briefing-button";
-import { isBriefingSupported } from "../lib/daily-briefing";
 import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { getLastRevisedText } from "../lib/last-revised";
 import { VoiceSearchButton } from "./voice-search-button";
@@ -63,12 +61,6 @@ const COUNTER_CARDS_LINK_TEXT = {
   en: { label: "Counter cards", desc: "Big, quick cards to ask and explain things directly to the customer." },
   so: { label: "Kaararka Su'aalaha Farmashiyaha", desc: "Kaararo waaweyn oo degdeg ah, lagu weydiiyo oo lagu sharaxo si toos ah kadhka." },
   ar: { label: "بطاقات الصيدلية", desc: "بطاقات كبيرة وسريعة لسؤال العميل وشرح الأمور له مباشرة." },
-};
-// Kun so/ar — jf. samme sprogvalg som den per-medicin lydoplæsning, der
-// allerede findes på hver medicinside (da/en-brugere har ikke behov for lyd).
-const BRIEFING_BANNER_TEXT = {
-  so: { label: "Dhegayso maalintaada", desc: "Maqal jadwalka daawooyinkaaga oo dhan, cod ahaan — kama baahnid inaad wax akhrido." },
-  ar: { label: "استمع ليومك", desc: "استمع إلى جدول أدويتك بالكامل صوتيًا — دون الحاجة لقراءة أي شيء." },
 };
 const PRAYER_CARD_TEXT = {
   da: { label: "Suhoor/Iftar-påmindelse", reminderName: "Suhoor og Iftar" },
@@ -846,7 +838,7 @@ export function SiteIndex({initialLang}){
           <span className="hero-spark" aria-hidden="true" style={{top:"14%",insetInlineStart:"46%"}}>+</span>
           <span className="hero-spark" aria-hidden="true" style={{top:"62%",insetInlineStart:"40%",fontSize:12}}>+</span>
 
-          <div className="relative grid grid-cols-1 gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-10 lg:py-20">
+          <div className="relative grid grid-cols-1 gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-10 lg:py-16">
             {/* Tekst */}
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-bold text-teal-700 shadow-sm">
@@ -1025,33 +1017,6 @@ export function SiteIndex({initialLang}){
           </span>
         </button>
       </div>
-
-      {/* ── Lyd-briefing-banner — kun so/ar, samme synlighed som de andre bannere ── */}
-      {isBriefingSupported(language) && (
-        <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
-          <div
-            data-sm-bubble-avoid="true"
-            className="reveal-on-scroll flex w-full flex-col items-start gap-4 rounded-2xl px-5 py-5 sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
-            style={{ background: "linear-gradient(120deg,#0F766E,#0D9488 55%,#14B8A6)", boxShadow: "0 8px 28px rgba(15,118,110,0.28)" }}
-          >
-            <span
-              aria-hidden="true"
-              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/20 sm:h-14 sm:w-14"
-            >
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="4 9 8 9 12 5 12 19 8 15 4 15 4 9"/><path d="M16 8a5 5 0 0 1 0 8"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
-            </span>
-            <span className="flex-1">
-              <span className="block text-base font-extrabold text-white sm:text-lg">
-                {(BRIEFING_BANNER_TEXT[language] ?? BRIEFING_BANNER_TEXT.so).label}
-              </span>
-              <span className="mt-1 block text-sm leading-6 text-white/90">
-                {(BRIEFING_BANNER_TEXT[language] ?? BRIEFING_BANNER_TEXT.so).desc}
-              </span>
-            </span>
-            <DailyBriefingButton language={language} variant="onColor" />
-          </div>
-        </div>
-      )}
 
       {/* ── Video Guide ──────────────────────────────────────────────────── */}
       <VideoGuide chromeText={chromeText} language={language} />

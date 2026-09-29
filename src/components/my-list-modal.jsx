@@ -7,7 +7,6 @@ import { knownInteractions, pairKey, CHECKED_DATE } from "../data/interactions";
 import { BatchScanPanel } from "./batch-scan-panel";
 import { DoseSchedulePanel } from "./dose-schedule-panel";
 import { clearScheduleFor } from "../lib/dose-schedule";
-import { DailyBriefingButton } from "./daily-briefing-button";
 
 const indexData = getIndexData();
 
@@ -556,12 +555,6 @@ export function MyListModal({ language, onClose }) {
           isRtl={isRtl}
           items={selectedItems.map((item) => ({ slug: item.slug, name: getDisplayName(item.slug, language, item.name) }))}
         />
-      )}
-
-      {selectedItems.length >= 1 && (
-        <div style={{ marginBottom: "22px", display: "flex", justifyContent: isRtl ? "flex-end" : "flex-start" }}>
-          <DailyBriefingButton language={language} />
-        </div>
       )}
 
       {selectedItems.length >= 2 && (
