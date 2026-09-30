@@ -73,10 +73,10 @@ const EMERGENCY = {
 };
 
 const SHARE_LABELS = {
-  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "Bønnetider", counterCards: "Skranke-kort til denne medicin", checkSeverity: "Er dette alvorligt?" },
-  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "Prayer times", counterCards: "Counter cards for this medicine", checkSeverity: "Is this serious?" },
-  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda", counterCards: "Kaararka daawadan", checkSeverity: "Tani ma halis ah?" },
-  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة", counterCards: "بطاقات هذا الدواء", checkSeverity: "هل هذا خطير؟" },
+  da: { whatsapp: "Del på WhatsApp", print: "Udskriv siden", pdf: "Gem som PDF", qr: "QR-kode", addToList: "Tilføj til min liste", onList: "På din liste", remind: "Påmind mig", reminded: "Påmindelse hentet", alignPrayer: "Bønnetider", counterCards: "Skranke-kort til denne medicin", checkSeverity: "Er dette alvorligt?", checkSeverityDesc: "Skriv et symptom og se om det er en almindelig bivirkning eller en advarsel for denne medicin — plus hvornår du altid skal ringe 112." },
+  en: { whatsapp: "Share on WhatsApp", print: "Print page", pdf: "Save as PDF", qr: "QR code", addToList: "Add to my list", onList: "On your list", remind: "Remind me", reminded: "Reminder downloaded", alignPrayer: "Prayer times", counterCards: "Counter cards for this medicine", checkSeverity: "Is this serious?", checkSeverityDesc: "Type a symptom and see whether it's a common side effect or a warning for this medicine — plus when to always call 112." },
+  so: { whatsapp: "La wadaag WhatsApp", print: "Daabac bogga", pdf: "Keyd sida PDF", qr: "Koodhka QR", addToList: "Ku dar liiskaaga", onList: "Wuxuu ku jiraa liiskaaga", remind: "I xasuusi", reminded: "Xasuusintii waa la soo dejiyay", alignPrayer: "Waqtiyada salaadda", counterCards: "Kaararka daawadan", checkSeverity: "Tani ma halis ah?", checkSeverityDesc: "Qor calaamad oo ogow haddii ay tahay waxyeello caadi ah ama digniin la xiriirta daawadan — iyo goorta aad had iyo jeer wici lahayd 112." },
+  ar: { whatsapp: "مشاركة عبر واتساب", print: "طباعة الصفحة", pdf: "احفظ كملف PDF", qr: "رمز QR", addToList: "أضف إلى قائمتي", onList: "في قائمتك", remind: "ذكّرني", reminded: "تم تنزيل التذكير", alignPrayer: "أوقات الصلاة", counterCards: "بطاقات هذا الدواء", checkSeverity: "هل هذا خطير؟", checkSeverityDesc: "اكتب عرضًا واعرف إن كان عرضًا جانبيًا شائعًا أو تحذيرًا لهذا الدواء — بالإضافة إلى متى يجب الاتصال بالرقم 112 دائمًا." },
 };
 
 const QR_LABELS = {
@@ -817,21 +817,6 @@ export function MedicinePage({ medicine, initialLang }) {
             </svg>
             {shareText.counterCards}
           </button>
-          <button
-            onClick={() => setSeverityCheckOpen(true)}
-            className="hover-lift"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: "6px",
-              padding: "7px 14px", borderRadius: "8px",
-              background: "#fef2f2", color: "#991b1b",
-              fontWeight: 700, fontSize: "13px",
-              border: "1.5px solid #fecaca",
-              cursor: "pointer",
-            }}
-          >
-            <LevelBadge level="red" size={18} />
-            {shareText.checkSeverity}
-          </button>
         </div>
 
         {/* ── SOMALI LYDFIL ── */}
@@ -947,6 +932,30 @@ export function MedicinePage({ medicine, initialLang }) {
             );
           })}
         </div>
+
+        {/* ── ALVORLIGHEDS-TJEK — egen tydelig plads lige efter bivirknings-/
+             advarselskortene, i stedet for klemt ind blandt del/print/PDF-
+             knapperne, hvor den stod skævt alene på sin egen linje. ── */}
+        <button
+          type="button"
+          onClick={() => setSeverityCheckOpen(true)}
+          className="reveal-on-scroll hover-lift mt-4 flex w-full items-center gap-4 rounded-2xl border px-6 py-5 text-left transition duration-300 hover:shadow-md"
+          style={{ background: "#fef2f2", borderColor: "#fecaca" }}
+          dir={isRtl ? "rtl" : "ltr"}
+        >
+          <LevelBadge level="red" size={44} />
+          <span className="flex-1">
+            <span className="block text-lg font-bold" style={{ color: "#991b1b" }}>{shareText.checkSeverity}</span>
+            <span className="mt-1 block text-sm leading-6" style={{ color: "#b91c1c" }}>{shareText.checkSeverityDesc}</span>
+          </span>
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-lg font-bold"
+            style={{ background: "#fecaca", color: "#991b1b" }}
+          >
+            {isRtl ? "←" : "→"}
+          </span>
+        </button>
 
         {/* ── KILDER ── */}
         <section
