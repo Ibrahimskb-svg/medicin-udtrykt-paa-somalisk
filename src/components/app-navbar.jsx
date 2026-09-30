@@ -187,7 +187,7 @@ export function AppNavbar() {
       {/* Desktop Navbar */}
       <header className="sticky top-3 z-[110] hidden px-4 lg:block">
         <nav
-          className="mx-auto max-w-6xl rounded-full shadow-lg shadow-teal-900/10 transition-all duration-300"
+          className="mx-auto max-w-7xl rounded-full shadow-lg shadow-teal-900/10 transition-all duration-300"
           style={{ background: "var(--heroBg, linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%))" }}
         >
           <div className="flex items-center justify-between gap-3 px-4 py-2.5">
@@ -200,14 +200,14 @@ export function AppNavbar() {
               </span>
             </Link>
 
-            <div className="flex gap-0.5 items-center">
+            <div className="flex gap-0.5 xl:gap-1.5 items-center">
               {desktopNavTabs.map(({ key, iconEl, label }) => (
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
                   className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
-                    activeTab === key ? "bg-white text-teal-700 shadow-md" : "text-white/90 hover:bg-white/12"
+                    activeTab === key ? "bg-white text-teal-700 shadow-md" : "text-white hover:bg-white/15"
                   }`}
                 >
                   {iconEl} {label}
@@ -219,7 +219,7 @@ export function AppNavbar() {
                   arabisk tales officielt i 20+ lande, så ethvert enkelt
                   landeflag ville favorisere ét land fremfor resten. Hvert
                   sprog har sin egen farve, også når det ikke er aktivt. */}
-              <div className="flex items-center gap-0.5 rounded-full bg-white/12 p-1">
+              <div className="flex items-center gap-0.5 rounded-full bg-white/12 p-0.5 xl:p-1">
                 {languages.map((code) => {
                   const isActive = code === language;
                   const theme = languageThemes[code] ?? languageThemes.so;
@@ -232,9 +232,10 @@ export function AppNavbar() {
                       title={getLanguageName(language, code)}
                       aria-label={getLanguageName(language, code)}
                       aria-pressed={isActive}
-                      className="hover-lift rounded-full transition-all duration-200"
+                      className="hover-lift rounded-full transition-all duration-200 px-2 xl:px-2.5"
                       style={{
-                        padding: "6px 8px",
+                        paddingTop: "6px",
+                        paddingBottom: "6px",
                         fontSize: "12px",
                         fontWeight: 700,
                         lineHeight: 1,
@@ -257,13 +258,13 @@ export function AppNavbar() {
                 <button
                   onClick={() => setContactMenuOpen((open) => !open)}
                   aria-expanded={contactMenuOpen}
-                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
-                    isContactGroupActive || contactMenuOpen ? "bg-white text-teal-700 shadow-md" : "text-white/90 hover:bg-white/12"
+                  className={`hover-lift flex items-center gap-1 xl:gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
+                    isContactGroupActive || contactMenuOpen ? "bg-white text-teal-700 shadow-md" : "text-white hover:bg-white/15"
                   }`}
                 >
                   <MailIcon size={16} color={isContactGroupActive || contactMenuOpen ? "#0f766e" : "#ffffff"} />
                   {navLabels.contact}
-                  <ChevronDownIcon size={13} color={isContactGroupActive || contactMenuOpen ? "#0f766e" : "rgba(255,255,255,0.8)"} />
+                  <ChevronDownIcon size={13} color={isContactGroupActive || contactMenuOpen ? "#0f766e" : "rgba(255,255,255,0.95)"} />
                 </button>
 
                 {contactMenuOpen && (
