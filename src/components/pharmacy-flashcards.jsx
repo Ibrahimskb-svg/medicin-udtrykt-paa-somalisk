@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { pharmacyGlossary } from "../data/pharmacy-glossary";
 import { SECTION_COLORS } from "./legal-section";
-import { FlagIcon } from "./flag-icon";
+import { getLanguageName, languageThemes, pickerAccent } from "../lib/site";
 
 const LABELS = {
   da: {
@@ -86,6 +86,25 @@ function OpenCloseIcon({ size = 12, color = "currentColor", flipped = false }) {
     >
       <path d="m6 9 6 6 6-6" />
     </svg>
+  );
+}
+
+function LanguageTag({ uiLanguage, code, variant }) {
+  const accent = pickerAccent(code, languageThemes[code] ?? languageThemes.so);
+  const style =
+    variant === "onColor"
+      ? { background: "rgba(255,255,255,0.92)", color: accent }
+      : { background: `${accent}18`, border: `1.5px solid ${accent}55`, color: accent };
+  return (
+    <span
+      style={{
+        display: "inline-flex", alignItems: "center", borderRadius: 999,
+        padding: "4px 12px", fontSize: 11.5, fontWeight: 800, letterSpacing: "0.01em",
+        ...style,
+      }}
+    >
+      {getLanguageName(uiLanguage, code)}
+    </span>
   );
 }
 
@@ -224,7 +243,7 @@ export function PharmacyFlashcards({ language }) {
                   textAlign: "center",
                 }}
               >
-                <FlagIcon language={frontLang} size={32} style={{ border: "2px solid rgba(255,255,255,0.65)" }} />
+                <LanguageTag uiLanguage={language} code={frontLang} variant="onColor" />
                 <span style={{ fontSize: 26, fontWeight: 800, color: "#fff", lineHeight: 1.3 }}>{entry.term[frontLang]}</span>
                 <span
                   style={{
@@ -258,7 +277,7 @@ export function PharmacyFlashcards({ language }) {
                   overflowY: "auto",
                 }}
               >
-                <FlagIcon language={backLang} size={32} />
+                <LanguageTag uiLanguage={language} code={backLang} variant="tinted" />
                 <span style={{ fontSize: 22, fontWeight: 800, color }}>{entry.term[backLang]}</span>
                 <span style={{ fontSize: 13, lineHeight: 1.65, color: "#475569" }}>{entry.explanation[backLang]}</span>
                 <span
