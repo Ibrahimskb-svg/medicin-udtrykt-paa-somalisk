@@ -365,7 +365,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                   cursor: "pointer",
                 }}
               >
-                <FlagIcon language={code} size={18} />
+                <FlagIcon language={code} size={26} />
               </button>
             ))}
           </div>

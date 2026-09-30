@@ -231,7 +231,7 @@ export function AppNavbar() {
                         boxShadow: isActive ? "0 1px 4px rgba(0,0,0,0.18)" : "none",
                       }}
                     >
-                      <FlagIcon language={code} size={18} />
+                      <FlagIcon language={code} size={26} />
                     </button>
                   );
                 })}
@@ -329,7 +329,7 @@ export function AppNavbar() {
                     boxShadow: isActive ? `0 2px 6px ${theme.accent1}80` : "none",
                   }}
                 >
-                  <FlagIcon language={code} size={17} />
+                  <FlagIcon language={code} size={24} />
                 </button>
               );
             })}
