@@ -1285,8 +1285,8 @@ export function SiteIndex({initialLang}){
           className="reveal-on-scroll overflow-hidden rounded-[28px]"
           style={{
             background: "linear-gradient(135deg,#fdf4f0,#fff 55%,#fbeef0)",
-            border: "1.5px solid #f0d9dd",
-            boxShadow: "0 10px 34px rgba(122,31,43,0.12)",
+            border: "1.5px solid #f3c9cf",
+            boxShadow: "0 14px 40px rgba(122,31,43,0.16)",
           }}
         >
           <div className="flex flex-col gap-6 px-6 py-7 sm:px-9 sm:py-9 lg:flex-row lg:items-center lg:gap-10">
@@ -1294,13 +1294,18 @@ export function SiteIndex({initialLang}){
               <div className="flex items-center gap-3">
                 <span
                   className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5"
-                  style={{ border: "1.5px solid #f0d9dd", boxShadow: "0 4px 14px rgba(122,31,43,0.10)" }}
+                  style={{ border: "1.5px solid #f3c9cf", boxShadow: "0 4px 14px rgba(122,31,43,0.10)" }}
                 >
                   <img src="/images/hoyga-afka/logo.png" alt="Hoyga Afka" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                 </span>
                 <span
                   className="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-widest"
-                  style={{ background: "#7a1f2b1a", color: "#7a1f2b" }}
+                  style={{
+                    background: "linear-gradient(135deg,#fde3e7,#fbd0d7)",
+                    border: "1px solid #f3b8c0",
+                    color: "#7a1f2b",
+                    boxShadow: "0 2px 8px rgba(122,31,43,0.10)",
+                  }}
                 >
                   {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).eyebrow}
                 </span>
@@ -1325,8 +1330,12 @@ export function SiteIndex({initialLang}){
                 type="button"
                 onClick={() => setHoygaAfkaExpanded((v) => !v)}
                 aria-expanded={hoygaAfkaExpanded}
-                className="hover-lift mt-2 inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-4 text-[13px] font-bold transition"
-                style={{ background: "#fbe4e8", color: "#7a1f2b" }}
+                className="hover-lift mt-2 inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-4 text-[13px] font-bold transition hover:shadow-md"
+                style={{
+                  background: "linear-gradient(135deg,#fde3e7,#fbd0d7)",
+                  border: "1px solid #f3b8c0",
+                  color: "#7a1f2b",
+                }}
               >
                 {hoygaAfkaExpanded
                   ? (HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).collapse
@@ -1352,12 +1361,12 @@ export function SiteIndex({initialLang}){
                   target="_blank"
                   rel="noopener noreferrer"
                   data-sm-bubble-avoid="true"
-                  className="hover-lift flex flex-col items-center gap-2.5 rounded-2xl px-3 py-4 text-center transition"
-                  style={{ background: "#fff", border: "1.5px solid #f0d9dd", boxShadow: "0 3px 10px rgba(122,31,43,0.08)" }}
+                  className="hover-lift flex flex-col items-center gap-2.5 rounded-2xl px-3 py-4 text-center transition hover:shadow-lg"
+                  style={{ background: "#fff", border: "1.5px solid #f3c9cf", boxShadow: "0 4px 14px rgba(122,31,43,0.10)" }}
                 >
                   <span
                     className="flex h-10 w-10 items-center justify-center rounded-full"
-                    style={{ background: social.bg }}
+                    style={{ background: social.bg, boxShadow: `0 3px 10px ${social.color}40` }}
                   >
                     {social.key === "instagram" && <InstagramIcon size={18} />}
                     {social.key === "tiktok" && <TikTokIcon size={18} />}
@@ -1367,7 +1376,7 @@ export function SiteIndex({initialLang}){
                     src={social.qr}
                     alt={`${(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).scan} — ${social.handle}`}
                     className="h-16 w-16 rounded-lg"
-                    style={{ border: "1px solid #f0d9dd" }}
+                    style={{ border: "1px solid #f3c9cf" }}
                   />
                   <span className="text-[13px] font-bold" style={{ color: "#5a1620" }}>
                     {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).follow}
