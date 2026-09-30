@@ -100,9 +100,9 @@ const HOYGA_AFKA_TEXT = {
     heading: "Ma rabtaa inaad barato Af-Soomaaliga ama aad sii horumariso?",
     body: "SomaliMed iyo Hoyga Afka waxaa ka dambeeya isla qofkii. Hase yeeshee, waa laba mashruuc oo kala ujeeddo ah. Hoyga Afka wuxuu diiradda saaraa barashada iyo horumarinta Af-Soomaaliga, halka SomaliMed uu kaa caawinayo fahamka erayada iyo macluumaadka caafimaadka.\n\nHaddii aad rabto inaad kobciso Af-Soomaaligaaga, Hoyga Afka waxaad ka heli kartaa casharro, erayo iyo agab waxbarasho oo kaa caawinaya inaad Af-Soomaaliga si sax ah, tartiib tartiib ah oo kalsooni leh u barato una horumariso.",
     follow: "La soco",
-    scan: "Iskaan samee koodhka",
+    scan: "Koodhka iskaan samee",
     readMore: "Sii akhri",
-    collapse: "Xidh",
+    collapse: "Xir",
   },
   ar: {
     eyebrow: "من نفس الشخص",
