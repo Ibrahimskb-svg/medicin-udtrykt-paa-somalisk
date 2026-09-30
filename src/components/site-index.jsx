@@ -12,7 +12,7 @@ import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
-import { SeverityCheckModal } from "./severity-check-modal";
+import { SeverityCheckModal, LevelBadge } from "./severity-check-modal";
 import { downloadReminderICS } from "../lib/reminder-ics";
 import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { getLastRevisedText } from "../lib/last-revised";
@@ -946,9 +946,7 @@ export function SiteIndex({initialLang}){
                 style={{top:"470px",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white" style={{boxShadow:"0 2px 8px rgba(0,0,0,0.18)"}}>
-                    <span style={{fontSize:16,fontWeight:800,color:"#DC2626",lineHeight:1}}>!</span>
-                  </span>
+                  <LevelBadge level="red" size={32} />
                   <p className="text-[13px] font-bold leading-snug text-white">{(SEVERITY_BANNER_TEXT[language]??SEVERITY_BANNER_TEXT.so).label}</p>
                 </div>
               </button>
@@ -1052,12 +1050,8 @@ export function SiteIndex({initialLang}){
           className="reveal-on-scroll flex w-full flex-col items-start gap-3 rounded-2xl px-5 py-5 text-start transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
           style={{ background: "linear-gradient(120deg,#B91C1C,#DC2626 55%,#F97316)", boxShadow: "0 8px 28px rgba(185,28,28,0.30)" }}
         >
-          <span
-            aria-hidden="true"
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white sm:h-14 sm:w-14"
-            style={{ boxShadow: "0 4px 14px rgba(0,0,0,0.18)" }}
-          >
-            <span style={{ fontSize: 26, fontWeight: 800, color: "#DC2626", lineHeight: 1 }}>!</span>
+          <span aria-hidden="true" className="shrink-0" style={{ filter: "drop-shadow(0 4px 10px rgba(0,0,0,0.22))" }}>
+            <LevelBadge level="red" size={52} />
           </span>
           <span className="flex-1">
             <span className="block text-base font-extrabold text-white sm:text-lg">

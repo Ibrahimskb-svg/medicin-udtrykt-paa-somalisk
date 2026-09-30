@@ -9,7 +9,7 @@ import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
-import { SeverityCheckModal } from "./severity-check-modal";
+import { SeverityCheckModal, LevelBadge } from "./severity-check-modal";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -829,16 +829,7 @@ export function MedicinePage({ medicine, initialLang }) {
               cursor: "pointer",
             }}
           >
-            <span
-              aria-hidden="true"
-              style={{
-                display: "flex", alignItems: "center", justifyContent: "center",
-                width: 16, height: 16, borderRadius: "50%", flexShrink: 0,
-                background: "#dc2626", color: "#fff", fontWeight: 800, fontSize: 10, lineHeight: 1,
-              }}
-            >
-              !
-            </span>
+            <LevelBadge level="red" size={18} />
             {shareText.checkSeverity}
           </button>
         </div>
