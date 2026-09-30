@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { ModalShell, LANG_THEME } from "./modal-shell";
-import { FlagIcon } from "./flag-icon";
-import { getLanguageName, getUsualDosingHint, languages } from "../lib/site";
+import { getLanguageName, getUsualDosingHint, languages, languageThemes, pickerAccent } from "../lib/site";
 
 const TEXTS = {
   da: {
@@ -348,26 +347,35 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                 sprog, så et flag for samme sprog ville gøre bagsiden
                 identisk med forsiden og "vend kortet" ville se ud som om
                 intet skete. */}
-            {languages.filter((code) => code !== language).map((code) => (
-              <button
-                key={code}
-                type="button"
-                onClick={() => setRevealLang(code)}
-                aria-pressed={revealLang === code}
-                aria-label={getLanguageName(language, code)}
-                title={getLanguageName(language, code)}
-                className="hover-lift"
-                style={{
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  width: 32, height: 32, borderRadius: "50%",
-                  background: revealLang === code ? theme.primary : categoryStyle.bg,
-                  border: revealLang === code ? "none" : `1.5px solid ${categoryStyle.ring}`,
-                  cursor: "pointer",
-                }}
-              >
-                <FlagIcon language={code} size={26} />
-              </button>
-            ))}
+            {languages.filter((code) => code !== language).map((code) => {
+              const langTheme = languageThemes[code] ?? languageThemes.so;
+              const accent = pickerAccent(code, langTheme);
+              const isActive = revealLang === code;
+              return (
+                <button
+                  key={code}
+                  type="button"
+                  onClick={() => setRevealLang(code)}
+                  aria-pressed={isActive}
+                  aria-label={getLanguageName(language, code)}
+                  title={getLanguageName(language, code)}
+                  className="hover-lift"
+                  style={{
+                    borderRadius: "999px",
+                    padding: "6px 14px",
+                    fontSize: "13px",
+                    fontWeight: 700,
+                    background: isActive ? accent : categoryStyle.bg,
+                    color: isActive ? "#ffffff" : accent,
+                    border: isActive ? "none" : `1.5px solid ${accent}55`,
+                    boxShadow: isActive ? `0 2px 8px ${accent}66` : "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  {getLanguageName(language, code)}
+                </button>
+              );
+            })}
           </div>
           {(revealLang === "ar" || language === "ar") && (
             <p style={{ fontSize: "11px", color: "#b45309", textAlign: "center", margin: "0 0 14px" }}>{t.arNotice}</p>

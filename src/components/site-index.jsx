@@ -428,6 +428,7 @@ function MailIcon({size=18,color="currentColor"}){return(<svg width={size} heigh
 function QuestionIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>);}
 function ChatIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>);}
 function CardChevronIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>);}
+function CardsIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="5" width="13" height="16" rx="2.5" transform="rotate(-8 9.5 13)"/><rect x="7" y="3" width="13" height="16" rx="2.5"/></svg>);}
 
 function InstagramIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.3 6.7h.01"/></svg>);}
 function TikTokIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16.5 3v9.8a3.7 3.7 0 1 1-3.2-3.66"/><path d="M16.5 3c.3 2.4 1.9 4 4.5 4.2"/></svg>);}
@@ -1392,16 +1393,27 @@ export function SiteIndex({initialLang}){
           </div>
 
           <div
-            className="border-t px-6 py-4 sm:px-9"
+            className="border-t px-6 py-5 sm:px-9"
             style={{ borderColor: "#f3c9cf", background: "rgba(255,255,255,0.5)" }}
           >
             <Link
               href={{ pathname: "/ordliste", query: { lang: language, view: "cards" } }}
-              className="hover-lift inline-flex items-center gap-1.5 text-[13px] font-bold"
-              style={{ color: "#7a1f2b" }}
+              className="hover-lift inline-flex items-center gap-2.5 rounded-full px-5 py-3 text-[13.5px] font-extrabold transition hover:shadow-lg"
+              style={{
+                background: "linear-gradient(135deg,#7a1f2b,#9d3a4a)",
+                color: "#fff",
+                boxShadow: "0 8px 22px rgba(122,31,43,0.35)",
+              }}
             >
+              <span
+                aria-hidden="true"
+                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                style={{ background: "rgba(255,255,255,0.22)" }}
+              >
+                <CardsIcon size={15} color="#fff" />
+              </span>
               {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).glossaryLink}
-              <span aria-hidden="true">{isRtl ? "←" : "→"}</span>
+              <span aria-hidden="true" style={{ fontSize: 16 }}>{isRtl ? "←" : "→"}</span>
             </Link>
           </div>
         </section>

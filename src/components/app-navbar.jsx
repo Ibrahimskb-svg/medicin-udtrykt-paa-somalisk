@@ -4,8 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { getStoredLanguage, notifyLanguageChange, subscribeToLanguageChange } from "../lib/language";
-import { getLanguageName, languages, languageThemes, uiText } from "../lib/site";
-import { FlagIcon } from "./flag-icon";
+import { getLanguageName, languages, languageThemes, uiText, pickerAccent } from "../lib/site";
 
 // Sørger for at labels matcher modal-titlerne i SiteIndex
 const NAV_LABELS = {
@@ -22,6 +21,11 @@ const NAV_LABELS_SHORT = {
   so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Raadi farmashiye", counterCards:"Kaararka" },
   ar: { me:"عني",      site:"حول",        faq:"الأسئلة",  contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية", counterCards:"البطاقات" },
 };
+
+// Korte bogstavkoder til sprogvælgeren ved den smalleste desktop-bredde
+// (1024px), hvor der ikke er plads til de fulde oversatte sprognavne
+// sammen med de øvrige menupunkter. Fra 1280px og op vises fulde navne.
+const LANGUAGE_SHORT_CODES = { so: "SO", da: "DA", en: "EN", ar: "AR" };
 
 const NAV_ICON_COLORS = {
   so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E", mylist:"#0F766E", findPharmacy:"#0F766E", counterCards:"#BE123C" },
@@ -210,11 +214,16 @@ export function AppNavbar() {
                 </button>
               ))}
 
-              {/* Sprogvalg — farvet flag pr. sprog, så alle kan finde deres sprog med det samme */}
-              <div className="flex items-center gap-1 rounded-full bg-white/12 p-1">
+              {/* Sprogvalg — navnene oversættes til det aktuelt valgte sprog
+                  (fx "Af-Deenish" når sitet vises på somali), ikke nationalflag:
+                  arabisk tales officielt i 20+ lande, så ethvert enkelt
+                  landeflag ville favorisere ét land fremfor resten. Hvert
+                  sprog har sin egen farve, også når det ikke er aktivt. */}
+              <div className="flex items-center gap-0.5 rounded-full bg-white/12 p-1">
                 {languages.map((code) => {
                   const isActive = code === language;
                   const theme = languageThemes[code] ?? languageThemes.so;
+                  const accent = pickerAccent(code, theme);
                   return (
                     <button
                       key={code}
@@ -223,15 +232,21 @@ export function AppNavbar() {
                       title={getLanguageName(language, code)}
                       aria-label={getLanguageName(language, code)}
                       aria-pressed={isActive}
-                      className="hover-lift flex items-center justify-center rounded-full transition-all duration-200"
+                      className="hover-lift rounded-full transition-all duration-200"
                       style={{
-                        width: 32,
-                        height: 32,
-                        background: isActive ? "#ffffff" : "transparent",
-                        boxShadow: isActive ? "0 1px 4px rgba(0,0,0,0.18)" : "none",
+                        padding: "6px 10px",
+                        fontSize: "12px",
+                        fontWeight: 700,
+                        lineHeight: 1,
+                        whiteSpace: "nowrap",
+                        background: isActive ? "#ffffff" : `${accent}33`,
+                        border: isActive ? "none" : `1px solid ${accent}80`,
+                        color: isActive ? accent : "#ffffff",
+                        boxShadow: isActive ? `0 2px 8px ${accent}55` : "none",
                       }}
                     >
-                      <FlagIcon language={code} size={26} />
+                      <span className="hidden xl:inline">{getLanguageName(language, code)}</span>
+                      <span className="xl:hidden">{LANGUAGE_SHORT_CODES[code]}</span>
                     </button>
                   );
                 })}
@@ -299,8 +314,9 @@ export function AppNavbar() {
             </span>
           </Link>
 
-          {/* Sprogvalg — farvet flag pr. sprog. Teal-tonet baggrund/skygge i
-              stedet for fladt slate-grå, så pillen matcher sitets egen
+          {/* Sprogvalg — tekst på hvert sprogs eget navn (ikke flag: arabisk
+              tales i 20+ lande, så et enkelt landeflag ville favorisere ét
+              land fremfor resten). Teal-tonet baggrund matcher sitets egen
               farveidentitet i stedet for at se ud som en generisk UI-widget. */}
           <div
             className="flex items-center gap-0.5 rounded-full p-0.5"
@@ -313,6 +329,7 @@ export function AppNavbar() {
             {languages.map((code) => {
               const isActive = code === language;
               const theme = languageThemes[code] ?? languageThemes.so;
+              const accent = pickerAccent(code, theme);
               return (
                 <button
                   key={code}
@@ -321,15 +338,19 @@ export function AppNavbar() {
                   title={getLanguageName(language, code)}
                   aria-label={getLanguageName(language, code)}
                   aria-pressed={isActive}
-                  className="hover-lift flex items-center justify-center rounded-full transition-all"
+                  className="hover-lift rounded-full transition-all"
                   style={{
-                    width: 30,
-                    height: 30,
-                    background: isActive ? theme.accent1 : "transparent",
-                    boxShadow: isActive ? `0 2px 6px ${theme.accent1}80` : "none",
+                    padding: "5px 7px",
+                    fontSize: "10px",
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    whiteSpace: "nowrap",
+                    background: isActive ? accent : `${accent}18`,
+                    color: isActive ? "#ffffff" : accent,
+                    boxShadow: isActive ? `0 2px 6px ${accent}80` : "none",
                   }}
                 >
-                  <FlagIcon language={code} size={24} />
+                  {getLanguageName(language, code)}
                 </button>
               );
             })}

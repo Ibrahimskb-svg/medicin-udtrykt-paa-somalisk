@@ -4,6 +4,16 @@ export const languages = ["so", "da", "en", "ar"];
 export const rtlLanguages = new Set(["ar"]);
 export const arabicAudioLabel = "استمع إلى التسجيل";
 
+
+// Sprogvælgerens egen farve pr. sprog — accent1 bruges normalt, men for
+// engelsk er accent1 bevidst mørk/dæmpet andre steder på sitet (kontrast-
+// krav til tekst på hvid baggrund). Her, hvor farven kun bruges som en
+// gennemsigtig baggrundstone (ikke tekst på hvid), giver accent2 (en mere
+// levende rød) mere "pop" og gør alle fire sprog lige så livlige.
+export function pickerAccent(code, theme) {
+  return code === "en" ? theme.accent2 : theme.accent1;
+}
+
 export const languageThemes = {
   so: {
     // Original #00a676 gav kun 3.13:1 mod hvid som tekstfarve (AudioButton
