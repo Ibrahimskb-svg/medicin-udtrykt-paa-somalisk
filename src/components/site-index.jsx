@@ -76,6 +76,64 @@ const SEVERITY_BANNER_TEXT = {
   ar: { label: "هل هذا خطير؟", desc: "اكتب عرضًا واعرف فورًا إن كان عرضًا جانبيًا شائعًا أو تحذيرًا — بالإضافة إلى متى يجب الاتصال بالرقم 112 دائمًا." },
 };
 
+const HOYGA_AFKA_TEXT = {
+  da: {
+    eyebrow: "Fra samme afsender",
+    heading: "Vil du lære eller blive bedre til somali?",
+    body: "Bag SomaliMed står en dansk farmaceut, der ved siden af også underviser i somali sammen med sit team, Hoyga Afka. Det er et helt separat projekt — men følger du dem, kan du øve dit somali, mens du bruger SomaliMed til dit helbred.",
+    follow: "Følg",
+    scan: "Scan koden",
+  },
+  en: {
+    eyebrow: "From the same person",
+    heading: "Want to learn or improve your Somali?",
+    body: "SomaliMed is built by a Danish pharmacist who also teaches Somali alongside their team, Hoyga Afka. It's a fully separate project — but if you follow them, you can practice your Somali while using SomaliMed for your health.",
+    follow: "Follow",
+    scan: "Scan the code",
+  },
+  so: {
+    eyebrow: "Isla qofka ayaa ka danbeeya",
+    heading: "Ma rabtaa inaad barato ama horumariso Af-Soomaaliga?",
+    body: "SomaliMed waxaa dhisay farmasiste Deenish ah, oo sidoo kale dhinac ka wada barta Af-Soomaaliga kooxdiisa, Hoyga Afka. Waa mashruuc gebi ahaanba kala duwan — laakiin haddii aad la socoto, waad ku tababbanaan kartaa Af-Soomaaligaaga adigoo isticmaalaya SomaliMed caafimaadkaaga.",
+    follow: "La soco",
+    scan: "Iskaan samee koodhka",
+  },
+  ar: {
+    eyebrow: "من نفس الشخص",
+    heading: "هل تريد تعلّم أو تحسين لغتك الصومالية؟",
+    body: "SomaliMed من إنشاء صيدلاني دنماركي يقوم أيضًا بتدريس اللغة الصومالية مع فريقه، Hoyga Afka. إنه مشروع منفصل تمامًا — لكن إن تابعته يمكنك التدرب على الصومالية بينما تستخدم SomaliMed من أجل صحتك.",
+    follow: "تابع",
+    scan: "امسح الرمز",
+  },
+};
+
+const HOYGA_AFKA_SOCIALS = [
+  {
+    key: "instagram",
+    url: "https://www.instagram.com/hoyga_afka/",
+    handle: "@hoyga_afka",
+    qr: "/images/hoyga-afka/qr-instagram.png",
+    color: "#C13584",
+    bg: "linear-gradient(135deg,#F58529,#DD2A7B 45%,#8134AF)",
+  },
+  {
+    key: "tiktok",
+    url: "https://www.tiktok.com/@hoyga_afka",
+    handle: "@hoyga_afka",
+    qr: "/images/hoyga-afka/qr-tiktok.png",
+    color: "#111111",
+    bg: "linear-gradient(135deg,#111111,#25F4EE 130%)",
+  },
+  {
+    key: "facebook",
+    url: "https://www.facebook.com/HoygaAfka/",
+    handle: "Hoyga Afka",
+    qr: "/images/hoyga-afka/qr-facebook.png",
+    color: "#1877F2",
+    bg: "linear-gradient(135deg,#1877F2,#0C4EA8)",
+  },
+];
+
 // ── Color themes ───────────────────────────────────────────────────────────
 const BULLET_PALETTES = {
   so: [{color:"#0b7e74",bg:"#F0FDFA"},{color:"#048059",bg:"#ECFDF5"},{color:"#0F766E",bg:"#CCFBF1"},{color:"#0277b3",bg:"#F0F9FF"}],
@@ -358,6 +416,10 @@ function MailIcon({size=18,color="currentColor"}){return(<svg width={size} heigh
 function QuestionIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>);}
 function ChatIcon({size=18,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>);}
 function CardChevronIcon({size=16,color="currentColor"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>);}
+
+function InstagramIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.3 6.7h.01"/></svg>);}
+function TikTokIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16.5 3v9.8a3.7 3.7 0 1 1-3.2-3.66"/><path d="M16.5 3c.3 2.4 1.9 4 4.5 4.2"/></svg>);}
+function FacebookIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 8.5h2.5V5.2c-.44-.06-1.95-.2-3-.2-2.97 0-4.5 1.81-4.5 4.55V12H6.5v3.5H9V21h3.5v-5.5h3l.5-3.5h-3.5V9.9c0-.9.3-1.4 1.5-1.4Z"/></svg>);}
 
 
 // ── Bullet row ─────────────────────────────────────────────────────────────
@@ -1206,6 +1268,77 @@ export function SiteIndex({initialLang}){
           </section>
         )}
       </main>
+
+      {/* ── Hoyga Afka — krydspromovering af ejerens sprogundervisning ─────── */}
+      <div className="mx-auto max-w-6xl px-4 pb-10">
+        <section
+          dir={isRtl ? "rtl" : "ltr"}
+          className="reveal-on-scroll overflow-hidden rounded-[28px]"
+          style={{
+            background: "linear-gradient(135deg,#fdf4f0,#fff 55%,#fbeef0)",
+            border: "1.5px solid #f0d9dd",
+            boxShadow: "0 10px 34px rgba(122,31,43,0.12)",
+          }}
+        >
+          <div className="flex flex-col gap-6 px-6 py-7 sm:px-9 sm:py-9 lg:flex-row lg:items-center lg:gap-10">
+            <div className="flex-1">
+              <div className="flex items-center gap-3">
+                <span
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white p-1.5"
+                  style={{ border: "1.5px solid #f0d9dd", boxShadow: "0 4px 14px rgba(122,31,43,0.10)" }}
+                >
+                  <img src="/images/hoyga-afka/logo.png" alt="Hoyga Afka" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                </span>
+                <span
+                  className="inline-flex items-center rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-widest"
+                  style={{ background: "#7a1f2b1a", color: "#7a1f2b" }}
+                >
+                  {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).eyebrow}
+                </span>
+              </div>
+              <h2 className="mt-4 text-xl font-extrabold leading-snug sm:text-2xl" style={{ color: "#5a1620" }}>
+                {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).heading}
+              </h2>
+              <p className="mt-2 max-w-xl text-sm leading-6 sm:text-[15px]" style={{ color: "#7a3f47" }}>
+                {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).body}
+              </p>
+            </div>
+
+            <div className="grid shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 lg:w-[420px]">
+              {HOYGA_AFKA_SOCIALS.map((social) => (
+                <a
+                  key={social.key}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-sm-bubble-avoid="true"
+                  className="hover-lift flex flex-col items-center gap-2.5 rounded-2xl px-3 py-4 text-center transition"
+                  style={{ background: "#fff", border: "1.5px solid #f0d9dd", boxShadow: "0 3px 10px rgba(122,31,43,0.08)" }}
+                >
+                  <span
+                    className="flex h-10 w-10 items-center justify-center rounded-full"
+                    style={{ background: social.bg }}
+                  >
+                    {social.key === "instagram" && <InstagramIcon size={18} />}
+                    {social.key === "tiktok" && <TikTokIcon size={18} />}
+                    {social.key === "facebook" && <FacebookIcon size={18} />}
+                  </span>
+                  <img
+                    src={social.qr}
+                    alt={`${(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).scan} — ${social.handle}`}
+                    className="h-16 w-16 rounded-lg"
+                    style={{ border: "1px solid #f0d9dd" }}
+                  />
+                  <span className="text-[13px] font-bold" style={{ color: "#5a1620" }}>
+                    {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).follow}
+                  </span>
+                  <span className="text-[11px]" style={{ color: "#a3717a" }}>{social.handle}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
       <footer className="mx-auto max-w-6xl px-4 pb-14 pt-4">
