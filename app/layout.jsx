@@ -17,7 +17,7 @@ export const metadata = {
     template: "%s | SomaliMed",
   },
   description:
-    "Somalimed giver klar og pålidelig lægemiddelinformation på somali, dansk, engelsk og arabisk. Gratis og let tilgængelig for patienter og pårørende. " +
+    "Somalimed giver klar og pålidelig lægemiddelinformation på somalisk, dansk, engelsk og arabisk. Gratis og let tilgængelig for patienter og pårørende. " +
     "Somalimed waxay bixisaa macluumaad cad oo la aamin karo oo ku saabsan daawooyinka af-Soomaali, Deenish, Ingiriisi iyo Carabi. " +
     "Free medicine information in Somali, Danish, English and Arabic for patients and families. " +
     "معلومات دوائية واضحة وموثوقة باللغات الصومالية والدنماركية والإنجليزية والعربية.",
@@ -39,8 +39,8 @@ export const metadata = {
     type: "website",
     url: "https://www.somalimed.dk",
     siteName: "Somalimed",
-    title: "Somalimed — Lægemiddelinformation på somali, dansk, engelsk og arabisk",
-    description: "Gratis og pålidelig medicininformation på 4 sprog — somali, dansk, engelsk og arabisk. Skabt af en uddannet Farmakonom for patienter og pårørende.",
+    title: "Somalimed — Lægemiddelinformation på somalisk, dansk, engelsk og arabisk",
+    description: "Gratis og pålidelig medicininformation på 4 sprog — somalisk, dansk, engelsk og arabisk. Skabt af en uddannet Farmakonom for patienter og pårørende.",
     images: [{ url: "/somalimed-icon.svg", width: 512, height: 512, alt: "Somalimed logo" }],
     locale: "so_SO",
     alternateLocale: ["da_DK", "en_GB", "ar_SA"],
@@ -48,7 +48,7 @@ export const metadata = {
   twitter: {
     card: "summary",
     title: "Somalimed — Lægemiddelinformation på 4 sprog",
-    description: "Gratis medicininformation på somali, dansk, engelsk og arabisk. Skabt af en uddannet Farmakonom.",
+    description: "Gratis medicininformation på somalisk, dansk, engelsk og arabisk. Skabt af en uddannet Farmakonom.",
     images: ["/somalimed-icon.svg"],
   },
   robots: {

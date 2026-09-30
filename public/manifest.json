@@ -1,7 +1,7 @@
 {
   "name": "Somalimed – Lægemiddelinformation på somalisk",
   "short_name": "Somalimed",
-  "description": "Gratis lægemiddelinformation på somali, dansk, engelsk og arabisk.",
+  "description": "Gratis lægemiddelinformation på somalisk, dansk, engelsk og arabisk.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

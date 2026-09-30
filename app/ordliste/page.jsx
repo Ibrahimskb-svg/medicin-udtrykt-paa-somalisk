@@ -3,7 +3,7 @@ import { PharmacyGlossaryContent } from "../../src/components/pharmacy-glossary-
 
 export const metadata = {
   title: "Forstå dit apoteksbesøg — ordliste",
-  description: "Ordliste over danske apoteks- og receptord (recept, tilskud, generisk substitution m.fl.) forklaret på somali, dansk, engelsk og arabisk.",
+  description: "Ordliste over danske apoteks- og receptord (recept, tilskud, generisk substitution m.fl.) forklaret på somalisk, dansk, engelsk og arabisk.",
 };
 
 export default async function Ordliste({ searchParams }) {

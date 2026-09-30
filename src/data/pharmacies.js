@@ -1,4 +1,4 @@
-// Apoteker med personale, der taler somali og/eller arabisk.
+// Apoteker med personale, der taler somalisk og/eller arabisk.
 // Tilføj nye apoteker her — én linje pr. apotek.
 // contacts: liste over kontaktpersoner. Hver kontakt har:
 //   - speaks: det sprog PERSONEN taler ("so" eller "ar")

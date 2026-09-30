@@ -79,8 +79,8 @@ const SEVERITY_BANNER_TEXT = {
 const HOYGA_AFKA_TEXT = {
   da: {
     eyebrow: "Fra samme afsender",
-    heading: "Vil du lære eller blive bedre til somali?",
-    body: "Bag SomaliMed står en dansk farmaceut, der ved siden af også underviser i somali sammen med sit team, Hoyga Afka. Det er et helt separat projekt — men følger du dem, kan du øve dit somali, mens du bruger SomaliMed til dit helbred.",
+    heading: "Vil du lære eller blive bedre til somalisk?",
+    body: "Bag SomaliMed står en dansk farmaceut, der ved siden af også underviser i somalisk sammen med sit team, Hoyga Afka. Det er et helt separat projekt — men følger du dem, kan du øve dit somalisk, mens du bruger SomaliMed til dit helbred.",
     follow: "Følg",
     scan: "Scan koden",
     readMore: "Læs mere",
