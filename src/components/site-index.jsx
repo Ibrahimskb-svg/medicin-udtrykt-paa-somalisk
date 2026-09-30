@@ -83,6 +83,8 @@ const HOYGA_AFKA_TEXT = {
     body: "Bag SomaliMed står en dansk farmaceut, der ved siden af også underviser i somali sammen med sit team, Hoyga Afka. Det er et helt separat projekt — men følger du dem, kan du øve dit somali, mens du bruger SomaliMed til dit helbred.",
     follow: "Følg",
     scan: "Scan koden",
+    readMore: "Læs mere",
+    collapse: "Luk",
   },
   en: {
     eyebrow: "From the same person",
@@ -90,13 +92,17 @@ const HOYGA_AFKA_TEXT = {
     body: "SomaliMed is built by a Danish pharmacist who also teaches Somali alongside their team, Hoyga Afka. It's a fully separate project — but if you follow them, you can practice your Somali while using SomaliMed for your health.",
     follow: "Follow",
     scan: "Scan the code",
+    readMore: "Read more",
+    collapse: "Close",
   },
   so: {
-    eyebrow: "Isla qofka ayaa ka danbeeya",
-    heading: "Ma rabtaa inaad barato ama horumariso Af-Soomaaliga?",
-    body: "SomaliMed waxaa dhisay farmasiste Deenish ah, oo sidoo kale dhinac ka wada barta Af-Soomaaliga kooxdiisa, Hoyga Afka. Waa mashruuc gebi ahaanba kala duwan — laakiin haddii aad la socoto, waad ku tababbanaan kartaa Af-Soomaaligaaga adigoo isticmaalaya SomaliMed caafimaadkaaga.",
+    eyebrow: "ISLA QOFKII AYAA KA DAMBEEYA",
+    heading: "Ma rabtaa inaad barato Af-Soomaaliga ama aad sii horumariso?",
+    body: "SomaliMed iyo Hoyga Afka waxaa ka dambeeya isla qofkii. Hase yeeshee, waa laba mashruuc oo kala ujeeddo ah. Hoyga Afka wuxuu diiradda saaraa barashada iyo horumarinta Af-Soomaaliga, halka SomaliMed uu kaa caawinayo fahamka erayada iyo macluumaadka caafimaadka.\n\nHaddii aad rabto inaad kobciso Af-Soomaaligaaga, Hoyga Afka waxaad ka heli kartaa casharro, erayo iyo agab waxbarasho oo kaa caawinaya inaad Af-Soomaaliga si sax ah, tartiib tartiib ah oo kalsooni leh u barato una horumariso.",
     follow: "La soco",
     scan: "Iskaan samee koodhka",
+    readMore: "Sii akhri",
+    collapse: "Xidh",
   },
   ar: {
     eyebrow: "من نفس الشخص",
@@ -104,6 +110,8 @@ const HOYGA_AFKA_TEXT = {
     body: "SomaliMed من إنشاء صيدلاني دنماركي يقوم أيضًا بتدريس اللغة الصومالية مع فريقه، Hoyga Afka. إنه مشروع منفصل تمامًا — لكن إن تابعته يمكنك التدرب على الصومالية بينما تستخدم SomaliMed من أجل صحتك.",
     follow: "تابع",
     scan: "امسح الرمز",
+    readMore: "اقرأ المزيد",
+    collapse: "إغلاق",
   },
 };
 
@@ -797,6 +805,7 @@ export function SiteIndex({initialLang}){
   const[expandedSlug,setExpandedSlug]=useState(null);
   const[prayerModalOpen,setPrayerModalOpen]=useState(false);
   const[severityModalOpen,setSeverityModalOpen]=useState(false);
+  const[hoygaAfkaExpanded,setHoygaAfkaExpanded]=useState(false);
 
   const text=useMemo(()=>indexData.translations[language]||indexData.translations.so,[language]);
   const chromeText=useMemo(()=>uiText[language]||uiText.so,[language]);
@@ -1299,9 +1308,40 @@ export function SiteIndex({initialLang}){
               <h2 className="mt-4 text-xl font-extrabold leading-snug sm:text-2xl" style={{ color: "#5a1620" }}>
                 {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).heading}
               </h2>
-              <p className="mt-2 max-w-xl text-sm leading-6 sm:text-[15px]" style={{ color: "#7a3f47" }}>
-                {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).body}
-              </p>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateRows: hoygaAfkaExpanded ? "1fr" : "0fr",
+                  transition: "grid-template-rows 0.35s ease",
+                }}
+              >
+                <div style={{ overflow: "hidden" }}>
+                  <p className="max-w-xl pt-2 text-sm leading-6 sm:text-[15px]" style={{ color: "#7a3f47", whiteSpace: "pre-line" }}>
+                    {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).body}
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setHoygaAfkaExpanded((v) => !v)}
+                aria-expanded={hoygaAfkaExpanded}
+                className="hover-lift mt-2 inline-flex min-h-[38px] items-center gap-1.5 rounded-full px-4 text-[13px] font-bold transition"
+                style={{ background: "#fbe4e8", color: "#7a1f2b" }}
+              >
+                {hoygaAfkaExpanded
+                  ? (HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).collapse
+                  : (HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).readMore}
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: "inline-flex",
+                    transform: hoygaAfkaExpanded ? "rotate(180deg)" : "none",
+                    transition: "transform 0.3s ease",
+                  }}
+                >
+                  <CardChevronIcon size={13} color="#7a1f2b" />
+                </span>
+              </button>
             </div>
 
             <div className="grid shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 lg:w-[420px]">
