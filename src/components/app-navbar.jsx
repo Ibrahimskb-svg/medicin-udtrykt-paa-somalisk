@@ -187,7 +187,7 @@ export function AppNavbar() {
           style={{ background: "linear-gradient(120deg,#0B6E63,#0D8A7C)" }}
         >
           <div className="flex items-center justify-between gap-3 px-4 py-2.5">
-            <Link className="hover-lift flex items-center gap-2.5" href={{ pathname: "/", query: { lang: language } }}>
+            <Link className="hover-lift flex items-center gap-2.5" href={{ pathname: "/", query: { lang: "so" } }}>
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15">
                 <Image src="/somalimed-icon.svg" alt="" width={22} height={22} className="rounded-md" priority />
               </span>
@@ -292,7 +292,7 @@ export function AppNavbar() {
       {/* Mobile Top Bar */}
       <header className="sticky top-0 z-[110] block lg:hidden bg-white/90 backdrop-blur-md border-b border-teal-500/10">
         <div className="flex items-center justify-between px-4 h-14" dir={isRtl ? "rtl" : "ltr"}>
-          <Link className="flex items-center gap-2" href={{ pathname: "/", query: { lang: language } }}>
+          <Link className="flex items-center gap-2" href={{ pathname: "/", query: { lang: "so" } }}>
             <Image src="/somalimed-icon.svg" alt="Somalimed logo" width={30} height={30} className="rounded-xl" priority />
             <span className="text-[19px] font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-blue-600">
               {text.navbarTitle}
