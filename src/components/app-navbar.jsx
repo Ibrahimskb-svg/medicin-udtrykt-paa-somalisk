@@ -187,8 +187,8 @@ export function AppNavbar() {
       {/* Desktop Navbar */}
       <header className="sticky top-3 z-[110] hidden px-4 lg:block">
         <nav
-          className="mx-auto max-w-6xl rounded-full shadow-lg shadow-teal-900/10 transition-shadow duration-300"
-          style={{ background: "linear-gradient(120deg,#0B6E63,#0D8A7C)" }}
+          className="mx-auto max-w-6xl rounded-full shadow-lg shadow-teal-900/10 transition-all duration-300"
+          style={{ background: "var(--heroBg, linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%))" }}
         >
           <div className="flex items-center justify-between gap-3 px-4 py-2.5">
             <Link className="hover-lift flex items-center gap-2.5" href={{ pathname: "/", query: { lang: "so" } }}>
@@ -200,13 +200,13 @@ export function AppNavbar() {
               </span>
             </Link>
 
-            <div className="flex gap-1.5 items-center">
+            <div className="flex gap-0.5 items-center">
               {desktopNavTabs.map(({ key, iconEl, label }) => (
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
-                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
+                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
                     activeTab === key ? "bg-white text-teal-700 shadow-md" : "text-white/90 hover:bg-white/12"
                   }`}
                 >
@@ -234,7 +234,7 @@ export function AppNavbar() {
                       aria-pressed={isActive}
                       className="hover-lift rounded-full transition-all duration-200"
                       style={{
-                        padding: "6px 10px",
+                        padding: "6px 8px",
                         fontSize: "12px",
                         fontWeight: 700,
                         lineHeight: 1,
@@ -257,7 +257,7 @@ export function AppNavbar() {
                 <button
                   onClick={() => setContactMenuOpen((open) => !open)}
                   aria-expanded={contactMenuOpen}
-                  className={`hover-lift flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
+                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
                     isContactGroupActive || contactMenuOpen ? "bg-white text-teal-700 shadow-md" : "text-white/90 hover:bg-white/12"
                   }`}
                 >
