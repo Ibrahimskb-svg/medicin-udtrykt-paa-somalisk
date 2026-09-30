@@ -9,5 +9,6 @@ export const metadata = {
 export default async function Ordliste({ searchParams }) {
   const resolvedSearchParams = await searchParams;
   const lang = languages.includes(resolvedSearchParams?.lang) ? resolvedSearchParams.lang : "so";
-  return <PharmacyGlossaryContent initialLanguage={lang} />;
+  const initialView = resolvedSearchParams?.view === "cards" ? "cards" : "list";
+  return <PharmacyGlossaryContent initialLanguage={lang} initialView={initialView} />;
 }

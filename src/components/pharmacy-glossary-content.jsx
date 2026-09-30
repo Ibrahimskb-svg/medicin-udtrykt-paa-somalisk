@@ -7,6 +7,7 @@ import { LAST_REVISED_ISO } from "../data/last-revised.generated";
 import { LegalLangNav } from "./legal-lang-nav";
 import { SECTION_COLORS } from "./legal-section";
 import { pharmacyGlossary } from "../data/pharmacy-glossary";
+import { PharmacyFlashcards } from "./pharmacy-flashcards";
 
 const REVISED_PREFIX = { da: "Sidst opdateret", en: "Last updated", so: "La cusbooneysiiyay", ar: "آخر تحديث" };
 
@@ -39,6 +40,13 @@ const DISCLAIMER = {
   ar: "هذه القائمة شرح عام، وليست نصًا قانونيًا رسميًا. القواعد (مثل الدعم المالي) قد تتغير — اسأل دائمًا صيدليتك عن التفاصيل التي تنطبق على حالتك بالضبط.",
 };
 
+const TAB_LABELS = {
+  da: { list: "Liste", cards: "Flashcards" },
+  en: { list: "List", cards: "Flashcards" },
+  so: { list: "Liiska", cards: "Kaararka barashada" },
+  ar: { list: "القائمة", cards: "بطاقات تعليمية" },
+};
+
 function SearchIcon() {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
@@ -47,10 +55,29 @@ function SearchIcon() {
   );
 }
 
-export function PharmacyGlossaryContent({ initialLanguage }) {
+function ListIcon({ size = 16, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M8 6h13M8 12h13M8 18h13" /><path d="M3 6h.01M3 12h.01M3 18h.01" />
+    </svg>
+  );
+}
+
+function CardsIcon({ size = 16, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="5" width="13" height="16" rx="2.5" transform="rotate(-8 9.5 13)" />
+      <rect x="7" y="3" width="13" height="16" rx="2.5" />
+    </svg>
+  );
+}
+
+export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
   const { language, updateLanguage } = useLanguageRouting({ initialLanguage });
   const isRtl = language === "ar";
   const [query, setQuery] = useState("");
+  const [viewMode, setViewMode] = useState(initialView === "cards" ? "cards" : "list");
+  const tabText = TAB_LABELS[language] ?? TAB_LABELS.so;
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -82,44 +109,89 @@ export function PharmacyGlossaryContent({ initialLanguage }) {
       <LegalLangNav language={language} onChange={updateLanguage} />
 
       <div
+        role="tablist"
         style={{
-          display: "flex", alignItems: "center", gap: "10px",
-          borderRadius: "14px", border: "1.5px solid #e2e8f0", background: "#fff",
-          padding: "11px 14px", marginBottom: "24px",
+          display: "flex", gap: "6px", borderRadius: "16px", background: "#f0fdfa",
+          border: "1.5px solid #99f6e4", padding: "5px", marginBottom: "22px",
         }}
       >
-        <span style={{ color: "#94a3b8", display: "flex" }}><SearchIcon /></span>
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder={SEARCH_PLACEHOLDER[language] ?? SEARCH_PLACEHOLDER.so}
-          style={{ flex: 1, border: "none", outline: "none", fontSize: "15px", background: "transparent", color: "#0f172a" }}
-        />
+        {[
+          { key: "list", label: tabText.list, Icon: ListIcon },
+          { key: "cards", label: tabText.cards, Icon: CardsIcon },
+        ].map(({ key, label, Icon }) => {
+          const active = viewMode === key;
+          return (
+            <button
+              key={key}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setViewMode(key)}
+              className="hover-lift"
+              style={{
+                flex: 1, display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "7px",
+                borderRadius: "12px", border: "none", padding: "10px 12px", fontSize: "13.5px", fontWeight: 700,
+                cursor: "pointer", minHeight: "42px", transition: "all 0.2s",
+                background: active ? "linear-gradient(135deg,#0D9488,#0284C7)" : "transparent",
+                color: active ? "#fff" : "#0f766e",
+                boxShadow: active ? "0 4px 14px rgba(13,148,136,0.30)" : "none",
+              }}
+            >
+              <Icon size={15} color={active ? "#fff" : "#0f766e"} />
+              {label}
+            </button>
+          );
+        })}
       </div>
 
-      {filtered.length === 0 ? (
-        <p style={{ fontSize: "14px", color: "#94a3b8" }}>{EMPTY_RESULT[language] ?? EMPTY_RESULT.so}</p>
+      {viewMode === "list" ? (
+        <>
+          <div
+            style={{
+              display: "flex", alignItems: "center", gap: "10px",
+              borderRadius: "14px", border: "1.5px solid #e2e8f0", background: "#fff",
+              padding: "11px 14px", marginBottom: "24px",
+            }}
+          >
+            <span style={{ color: "#94a3b8", display: "flex" }}><SearchIcon /></span>
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={SEARCH_PLACEHOLDER[language] ?? SEARCH_PLACEHOLDER.so}
+              style={{ flex: 1, border: "none", outline: "none", fontSize: "15px", background: "transparent", color: "#0f172a" }}
+            />
+          </div>
+
+          {filtered.length === 0 ? (
+            <p style={{ fontSize: "14px", color: "#94a3b8" }}>{EMPTY_RESULT[language] ?? EMPTY_RESULT.so}</p>
+          ) : (
+            <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>
+              {filtered.map((entry, i) => {
+                const color = SECTION_COLORS[i % SECTION_COLORS.length];
+                return (
+                  <div
+                    key={entry.id}
+                    className="hover-lift"
+                    style={{
+                      borderRadius: "16px", border: "1.5px solid #e2e8f0", background: "#fff",
+                      padding: "16px 18px", borderInlineStart: `4px solid ${color}`,
+                    }}
+                  >
+                    <h3 style={{ fontSize: "16px", fontWeight: 800, color, margin: "0 0 6px" }}>
+                      {entry.term[language] ?? entry.term.da}
+                    </h3>
+                    <p style={{ fontSize: "14px", color: "#334155", margin: 0 }}>
+                      {entry.explanation[language] ?? entry.explanation.da}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>
-          {filtered.map((entry, i) => {
-            const color = SECTION_COLORS[i % SECTION_COLORS.length];
-            return (
-              <div
-                key={entry.id}
-                style={{
-                  borderRadius: "16px", border: "1.5px solid #e2e8f0", background: "#fff",
-                  padding: "16px 18px", borderInlineStart: `4px solid ${color}`,
-                }}
-              >
-                <h3 style={{ fontSize: "16px", fontWeight: 800, color, margin: "0 0 6px" }}>
-                  {entry.term[language] ?? entry.term.da}
-                </h3>
-                <p style={{ fontSize: "14px", color: "#334155", margin: 0 }}>
-                  {entry.explanation[language] ?? entry.explanation.da}
-                </p>
-              </div>
-            );
-          })}
+        <div style={{ marginBottom: "32px" }}>
+          <PharmacyFlashcards language={language} />
         </div>
       )}
 

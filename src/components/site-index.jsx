@@ -85,6 +85,7 @@ const HOYGA_AFKA_TEXT = {
     scan: "Scan koden",
     readMore: "Læs mere",
     collapse: "Luk",
+    glossaryLink: "Prøv vores medicinske ordforråds-flashcards",
   },
   en: {
     eyebrow: "From the same person",
@@ -94,6 +95,7 @@ const HOYGA_AFKA_TEXT = {
     scan: "Scan the code",
     readMore: "Read more",
     collapse: "Close",
+    glossaryLink: "Try our medical vocabulary flashcards",
   },
   so: {
     eyebrow: "ISLA QOFKII AYAA KA DAMBEEYA",
@@ -103,6 +105,7 @@ const HOYGA_AFKA_TEXT = {
     scan: "Koodhka iskaan samee",
     readMore: "Sii akhri",
     collapse: "Xir",
+    glossaryLink: "Isku day kaararka barashada ereyada caafimaadka",
   },
   ar: {
     eyebrow: "من نفس الشخص",
@@ -112,6 +115,7 @@ const HOYGA_AFKA_TEXT = {
     scan: "امسح الرمز",
     readMore: "اقرأ المزيد",
     collapse: "إغلاق",
+    glossaryLink: "جرّب بطاقاتنا التعليمية للمفردات الطبية",
   },
 };
 
@@ -1385,6 +1389,20 @@ export function SiteIndex({initialLang}){
                 </a>
               ))}
             </div>
+          </div>
+
+          <div
+            className="border-t px-6 py-4 sm:px-9"
+            style={{ borderColor: "#f3c9cf", background: "rgba(255,255,255,0.5)" }}
+          >
+            <Link
+              href={{ pathname: "/ordliste", query: { lang: language, view: "cards" } }}
+              className="hover-lift inline-flex items-center gap-1.5 text-[13px] font-bold"
+              style={{ color: "#7a1f2b" }}
+            >
+              {(HOYGA_AFKA_TEXT[language] ?? HOYGA_AFKA_TEXT.so).glossaryLink}
+              <span aria-hidden="true">{isRtl ? "←" : "→"}</span>
+            </Link>
           </div>
         </section>
       </div>
