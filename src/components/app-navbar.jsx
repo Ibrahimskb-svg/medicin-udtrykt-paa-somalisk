@@ -299,8 +299,17 @@ export function AppNavbar() {
             </span>
           </Link>
 
-          {/* Sprogvalg — farvet flag pr. sprog */}
-          <div className="flex items-center gap-0.5 rounded-full border border-slate-200 bg-slate-50 p-0.5">
+          {/* Sprogvalg — farvet flag pr. sprog. Teal-tonet baggrund/skygge i
+              stedet for fladt slate-grå, så pillen matcher sitets egen
+              farveidentitet i stedet for at se ud som en generisk UI-widget. */}
+          <div
+            className="flex items-center gap-0.5 rounded-full p-0.5"
+            style={{
+              border: "1px solid rgba(13,148,136,0.16)",
+              background: "linear-gradient(135deg,#F0FDFA,#ECFEFF)",
+              boxShadow: "0 2px 10px rgba(13,148,136,0.10)",
+            }}
+          >
             {languages.map((code) => {
               const isActive = code === language;
               const theme = languageThemes[code] ?? languageThemes.so;
@@ -317,7 +326,7 @@ export function AppNavbar() {
                     width: 30,
                     height: 30,
                     background: isActive ? theme.accent1 : "transparent",
-                    boxShadow: isActive ? `0 1px 4px ${theme.accent1}80` : "none",
+                    boxShadow: isActive ? `0 2px 6px ${theme.accent1}80` : "none",
                   }}
                 >
                   <FlagIcon language={code} size={17} />
