@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { AppNavbar } from "./app-navbar";
+import { SiteEnhancementsFixed } from "./site-enhancements-fixed";
 
 export function LayoutShell({ children }) {
   const pathname = usePathname();
@@ -11,6 +12,7 @@ export function LayoutShell({ children }) {
     <>
       {!isPrivateDashboard && <AppNavbar />}
       {children}
+      {!isPrivateDashboard && <SiteEnhancementsFixed />}
     </>
   );
 }
