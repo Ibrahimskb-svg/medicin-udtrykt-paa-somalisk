@@ -11,7 +11,10 @@ export async function generateMetadata({ searchParams }) {
   return {
     alternates: {
       canonical: canonicalPath,
-      languages: Object.fromEntries(languages.map((l) => [l, `/?lang=${l}`])),
+      languages: {
+        ...Object.fromEntries(languages.map((l) => [l, `/?lang=${l}`])),
+        "x-default": "/",
+      },
     },
   };
 }

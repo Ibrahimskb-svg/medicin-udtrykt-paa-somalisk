@@ -42,7 +42,10 @@ export async function generateMetadata({ params, searchParams }) {
     description: data.introBox,
     alternates: {
       canonical: canonicalPath,
-      languages: Object.fromEntries(languages.map((l) => [l, `/${medicine.slug}?lang=${l}`])),
+      languages: {
+        ...Object.fromEntries(languages.map((l) => [l, `/${medicine.slug}?lang=${l}`])),
+        "x-default": `/${medicine.slug}`,
+      },
     },
   };
 }
