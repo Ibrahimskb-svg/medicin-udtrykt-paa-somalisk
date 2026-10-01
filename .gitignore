@@ -9,3 +9,7 @@ build/
 .env*.local
 *.pem
 *credentials*.json
+
+# Genereres af next dev
+AGENTS.md
+CLAUDE.md
