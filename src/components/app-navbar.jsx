@@ -223,8 +223,8 @@ export function AppNavbar() {
           className="mx-auto max-w-7xl rounded-full shadow-lg shadow-teal-900/10 transition-all duration-300"
           style={{ background: "var(--heroBg, linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%))" }}
         >
-          <div className="flex items-center justify-between gap-3 px-4 py-2.5">
-            <Link className="hover-lift flex items-center gap-2.5" href={{ pathname: "/", query: { lang: "so" } }}>
+          <div className="flex items-center gap-6 px-4 py-2.5 xl:gap-8">
+            <Link className="hover-lift flex shrink-0 items-center gap-2.5" href={{ pathname: "/", query: { lang: "so" } }}>
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15">
                 <Image src="/somalimed-icon.svg" alt="" width={22} height={22} className="rounded-md" priority />
               </span>
@@ -233,19 +233,26 @@ export function AppNavbar() {
               </span>
             </Link>
 
-            <div className="flex gap-1 items-center">
-              {desktopNavTabs.map(({ key, iconEl, label }) => (
+            <div className="flex min-w-0 flex-1 items-center justify-between gap-1">
+              {desktopNavTabs.map(({ key, iconEl, label }) => {
+                const emphasized = key === "faq" || key === "mylist";
+                return (
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
-                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
-                    activeTab === key ? "bg-white text-teal-700 shadow-md" : "text-white hover:bg-white/15"
+                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] ${
+                    activeTab === key
+                      ? "bg-white text-teal-700 shadow-md font-bold"
+                      : emphasized
+                        ? "bg-white/25 text-white font-bold ring-2 ring-white/70 hover:bg-white/35"
+                        : "text-white font-semibold hover:bg-white/15"
                   }`}
                 >
                   {iconEl} {label}
                 </button>
-              ))}
+                );
+              })}
 
               {/* Sprogvalg — dropdown i stedet for 4 synlige piller, samme
                   mønster som Kontakt-menuen herunder. Sparer plads og gør
