@@ -10,7 +10,10 @@ export function LayoutShell({ children }) {
   return (
     <>
       {!isPrivateDashboard && <AppNavbar />}
-      {children}
+      {/* Zoom-widgettens forstør/formindsk skal kun ramme selve sideindholdet —
+          ikke navbaren, som skal forblive i fast størrelse uanset zoom-niveau.
+          --page-zoom sættes af TextZoomControl; 100% er default/dashboard. */}
+      <div style={{ zoom: "var(--page-zoom, 100%)" }}>{children}</div>
     </>
   );
 }

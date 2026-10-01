@@ -22,10 +22,6 @@ const NAV_LABELS_SHORT = {
   ar: { me:"عني",      site:"حول",        faq:"الأسئلة",  contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية", counterCards:"البطاقات" },
 };
 
-// Korte bogstavkoder til sprogvælgeren ved den smalleste desktop-bredde
-// (1024px), hvor der ikke er plads til de fulde oversatte sprognavne
-// sammen med de øvrige menupunkter. Fra 1280px og op vises fulde navne.
-const LANGUAGE_SHORT_CODES = { so: "SO", da: "DA", en: "EN", ar: "AR" };
 
 const NAV_ICON_COLORS = {
   so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E", mylist:"#0F766E", findPharmacy:"#0F766E", counterCards:"#BE123C" },
@@ -96,6 +92,14 @@ function ChevronDownIcon({ size=13, color="currentColor" }) {
   );
 }
 
+function CheckIcon({ size=15, color="currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+  );
+}
+
 export function AppNavbar() {
   const router = useRouter();
   const pathname = usePathname();
@@ -103,6 +107,10 @@ export function AppNavbar() {
   const [activeTab, setActiveTab] = useState(null);
   const [contactMenuOpen, setContactMenuOpen] = useState(false);
   const contactMenuRef = useRef(null);
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+  const languageMenuRef = useRef(null);
+  const [mobileLanguageMenuOpen, setMobileLanguageMenuOpen] = useState(false);
+  const mobileLanguageMenuRef = useRef(null);
 
   // Lyt efter om modaler lukkes udefra (så knappen i navbaren ikke lyser når modalen er lukket)
   useEffect(() => {
@@ -133,11 +141,36 @@ export function AppNavbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [contactMenuOpen]);
 
+  // Luk sprog-dropdown ved klik udenfor
+  useEffect(() => {
+    if (!languageMenuOpen) return;
+    const handleClickOutside = (e) => {
+      if (languageMenuRef.current && !languageMenuRef.current.contains(e.target)) {
+        setLanguageMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [languageMenuOpen]);
+
+  // Samme, for mobilens sprog-dropdown
+  useEffect(() => {
+    if (!mobileLanguageMenuOpen) return;
+    const handleClickOutside = (e) => {
+      if (mobileLanguageMenuRef.current && !mobileLanguageMenuRef.current.contains(e.target)) {
+        setMobileLanguageMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [mobileLanguageMenuOpen]);
+
   const isRtl = language === "ar";
   const text = uiText[language] || uiText.so;
   const navLabels = NAV_LABELS[language] ?? NAV_LABELS.so;
   const navLabelsShort = NAV_LABELS_SHORT[language] ?? NAV_LABELS_SHORT.so;
   const iconColors = NAV_ICON_COLORS[language] ?? NAV_ICON_COLORS.so;
+  const activeAccent = pickerAccent(language, languageThemes[language] ?? languageThemes.so);
 
   const navTabs = [
     { key: "me", iconEl: <img src={P.school} alt="" style={{ width:15, height:15 }}/>, label: navLabels.aboutMe },
@@ -200,13 +233,13 @@ export function AppNavbar() {
               </span>
             </Link>
 
-            <div className="flex gap-0.5 xl:gap-1.5 items-center">
+            <div className="flex gap-1 items-center">
               {desktopNavTabs.map(({ key, iconEl, label }) => (
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
-                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
+                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
                     activeTab === key ? "bg-white text-teal-700 shadow-md" : "text-white hover:bg-white/15"
                   }`}
                 >
@@ -214,43 +247,58 @@ export function AppNavbar() {
                 </button>
               ))}
 
-              {/* Sprogvalg — navnene oversættes til det aktuelt valgte sprog
-                  (fx "Af-Deenish" når sitet vises på somali), ikke nationalflag:
-                  arabisk tales officielt i 20+ lande, så ethvert enkelt
-                  landeflag ville favorisere ét land fremfor resten. Hvert
-                  sprog har sin egen farve, også når det ikke er aktivt. */}
-              <div className="flex items-center gap-0.5 rounded-full bg-white/12 p-0.5 xl:p-1">
-                {languages.map((code) => {
-                  const isActive = code === language;
-                  const theme = languageThemes[code] ?? languageThemes.so;
-                  const accent = pickerAccent(code, theme);
-                  return (
-                    <button
-                      key={code}
-                      type="button"
-                      onClick={() => handleLanguageSelect(code)}
-                      title={getLanguageName(language, code)}
-                      aria-label={getLanguageName(language, code)}
-                      aria-pressed={isActive}
-                      className="hover-lift rounded-full transition-all duration-200 px-2 xl:px-2.5"
-                      style={{
-                        paddingTop: "6px",
-                        paddingBottom: "6px",
-                        fontSize: "12px",
-                        fontWeight: 700,
-                        lineHeight: 1,
-                        whiteSpace: "nowrap",
-                        background: isActive ? "#ffffff" : `${accent}33`,
-                        border: isActive ? "none" : `1px solid ${accent}80`,
-                        color: isActive ? accent : "#ffffff",
-                        boxShadow: isActive ? `0 2px 8px ${accent}55` : "none",
-                      }}
-                    >
-                      <span className="hidden xl:inline">{getLanguageName(language, code)}</span>
-                      <span className="xl:hidden">{LANGUAGE_SHORT_CODES[code]}</span>
-                    </button>
-                  );
-                })}
+              {/* Sprogvalg — dropdown i stedet for 4 synlige piller, samme
+                  mønster som Kontakt-menuen herunder. Sparer plads og gør
+                  navbaren mere rolig. Navnene oversættes til det aktuelt
+                  valgte sprog (fx "Af-Deenish" når sitet vises på somali),
+                  ikke nationalflag: arabisk tales officielt i 20+ lande, så
+                  ethvert enkelt landeflag ville favorisere ét land fremfor
+                  resten. Den valgte knap bruger sprogets egen accentfarve. */}
+              <div className="relative" ref={languageMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setLanguageMenuOpen((open) => !open)}
+                  aria-expanded={languageMenuOpen}
+                  className="hover-lift flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all duration-200"
+                  style={{
+                    background: "#ffffff",
+                    color: activeAccent,
+                    boxShadow: `0 2px 8px ${activeAccent}55`,
+                  }}
+                >
+                  {getLanguageName(language, language)}
+                  <ChevronDownIcon size={13} color={activeAccent} />
+                </button>
+
+                {languageMenuOpen && (
+                  <div
+                    className="absolute mt-2 w-48 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden z-[500]"
+                    style={isRtl ? { left: 0 } : { right: 0 }}
+                    dir={isRtl ? "rtl" : "ltr"}
+                  >
+                    {languages.map((code, i) => {
+                      const isActive = code === language;
+                      const theme = languageThemes[code] ?? languageThemes.so;
+                      const accent = pickerAccent(code, theme);
+                      return (
+                        <button
+                          key={code}
+                          type="button"
+                          onClick={() => {
+                            handleLanguageSelect(code);
+                            setLanguageMenuOpen(false);
+                          }}
+                          aria-pressed={isActive}
+                          className={`hover-lift flex w-full items-center justify-between gap-2.5 px-4 py-3 text-sm font-semibold transition-colors ${i > 0 ? "border-t border-slate-100" : ""}`}
+                          style={{ background: isActive ? `${accent}14` : "transparent", color: accent }}
+                        >
+                          {getLanguageName(language, code)}
+                          {isActive && <CheckIcon size={15} color={accent} />}
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
               </div>
 
               {/* Kontakt + Raadi farmashiye samlet i 1 dropdown */}
@@ -258,7 +306,7 @@ export function AppNavbar() {
                 <button
                   onClick={() => setContactMenuOpen((open) => !open)}
                   aria-expanded={contactMenuOpen}
-                  className={`hover-lift flex items-center gap-1 xl:gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
+                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
                     isContactGroupActive || contactMenuOpen ? "bg-white text-teal-700 shadow-md" : "text-white hover:bg-white/15"
                   }`}
                 >
@@ -315,46 +363,59 @@ export function AppNavbar() {
             </span>
           </Link>
 
-          {/* Sprogvalg — tekst på hvert sprogs eget navn (ikke flag: arabisk
-              tales i 20+ lande, så et enkelt landeflag ville favorisere ét
-              land fremfor resten). Teal-tonet baggrund matcher sitets egen
-              farveidentitet i stedet for at se ud som en generisk UI-widget. */}
-          <div
-            className="flex items-center gap-0.5 rounded-full p-0.5"
-            style={{
-              border: "1px solid rgba(13,148,136,0.16)",
-              background: "linear-gradient(135deg,#F0FDFA,#ECFEFF)",
-              boxShadow: "0 2px 10px rgba(13,148,136,0.10)",
-            }}
-          >
-            {languages.map((code) => {
-              const isActive = code === language;
-              const theme = languageThemes[code] ?? languageThemes.so;
-              const accent = pickerAccent(code, theme);
-              return (
-                <button
-                  key={code}
-                  type="button"
-                  onClick={() => handleLanguageSelect(code)}
-                  title={getLanguageName(language, code)}
-                  aria-label={getLanguageName(language, code)}
-                  aria-pressed={isActive}
-                  className="hover-lift rounded-full transition-all"
-                  style={{
-                    padding: "5px 7px",
-                    fontSize: "10px",
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    whiteSpace: "nowrap",
-                    background: isActive ? accent : `${accent}18`,
-                    color: isActive ? "#ffffff" : accent,
-                    boxShadow: isActive ? `0 2px 6px ${accent}80` : "none",
-                  }}
-                >
-                  {getLanguageName(language, code)}
-                </button>
-              );
-            })}
+          {/* Sprogvalg — dropdown (samme mønster som Kontakt-menuen på
+              desktop), ikke flag: arabisk tales i 20+ lande, så et enkelt
+              landeflag ville favorisere ét land fremfor resten. */}
+          <div className="relative" ref={mobileLanguageMenuRef}>
+            <button
+              type="button"
+              onClick={() => setMobileLanguageMenuOpen((open) => !open)}
+              aria-expanded={mobileLanguageMenuOpen}
+              className="hover-lift flex items-center gap-1 rounded-full transition-all"
+              style={{
+                padding: "6px 10px",
+                fontSize: "12px",
+                fontWeight: 700,
+                lineHeight: 1,
+                whiteSpace: "nowrap",
+                background: `${activeAccent}14`,
+                border: `1px solid ${activeAccent}50`,
+                color: activeAccent,
+              }}
+            >
+              {getLanguageName(language, language)}
+              <ChevronDownIcon size={11} color={activeAccent} />
+            </button>
+
+            {mobileLanguageMenuOpen && (
+              <div
+                className="absolute mt-2 w-44 rounded-2xl border border-slate-200 bg-white shadow-lg overflow-hidden z-[500]"
+                style={isRtl ? { left: 0 } : { right: 0 }}
+                dir={isRtl ? "rtl" : "ltr"}
+              >
+                {languages.map((code, i) => {
+                  const isActive = code === language;
+                  const theme = languageThemes[code] ?? languageThemes.so;
+                  const accent = pickerAccent(code, theme);
+                  return (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => {
+                        handleLanguageSelect(code);
+                        setMobileLanguageMenuOpen(false);
+                      }}
+                      aria-pressed={isActive}
+                      className={`hover-lift flex w-full items-center justify-between gap-2.5 px-4 py-2.5 text-sm font-semibold transition-colors ${i > 0 ? "border-t border-slate-100" : ""}`}
+                      style={{ background: isActive ? `${accent}14` : "transparent", color: accent }}
+                    >
+                      {getLanguageName(language, code)}
+                      {isActive && <CheckIcon size={14} color={accent} />}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </header>

@@ -55,7 +55,10 @@ export default function TextZoomControl() {
   // sætte den direkte inde i klik-handlerne — det sikrer at DOM'en og den
   // viste procent aldrig kan komme ud af trit, uanset hvor hurtigt der klikkes.
   useEffect(() => {
-    document.documentElement.style.zoom = `${zoom}%`;
+    // Sættes som CSS-variabel i stedet for direkte på <html> — layout-shell
+    // bruger den kun omkring selve sideindholdet, så navbaren (uden for den
+    // zoomede wrapper) altid forbliver i fast, uskaleret størrelse.
+    document.documentElement.style.setProperty("--page-zoom", `${zoom}%`);
     window.localStorage.setItem(STORAGE_KEY, String(zoom));
   }, [zoom]);
 
