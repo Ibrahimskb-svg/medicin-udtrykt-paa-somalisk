@@ -206,6 +206,12 @@ export function AppNavbar() {
   const desktopNavTabs = navTabs.filter(({ key }) => key !== "contact" && key !== "findPharmacy" && key !== "counterCards");
   const isContactGroupActive = activeTab === "contact" || activeTab === "findPharmacy" || activeTab === "counterCards";
 
+  // Hvide dropdown-knapper (sprog + kontakt): ring når menuen er åben/aktiv
+  const dropdownShadow = (open) =>
+    open
+      ? `0 0 0 3px rgba(255,255,255,0.55), 0 2px 8px ${activeAccent}55`
+      : `0 2px 8px ${activeAccent}55`;
+
   const handleLanguageSelect = (code) => {
     if (code === language) return;
     setLanguage(code);
@@ -265,7 +271,7 @@ export function AppNavbar() {
                   style={{
                     background: "#ffffff",
                     color: activeAccent,
-                    boxShadow: `0 2px 8px ${activeAccent}55`,
+                    boxShadow: dropdownShadow(languageMenuOpen),
                   }}
                 >
                   {getLanguageName(language, language)}
@@ -306,15 +312,19 @@ export function AppNavbar() {
               {/* Kontakt + Raadi farmashiye samlet i 1 dropdown */}
               <div className="relative" ref={contactMenuRef}>
                 <button
+                  type="button"
                   onClick={() => setContactMenuOpen((open) => !open)}
                   aria-expanded={contactMenuOpen}
-                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-semibold ${
-                    isContactGroupActive || contactMenuOpen ? "bg-white text-teal-700 shadow-md" : "text-white hover:bg-white/15"
-                  }`}
+                  className="hover-lift flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all duration-200"
+                  style={{
+                    background: "#ffffff",
+                    color: activeAccent,
+                    boxShadow: dropdownShadow(isContactGroupActive || contactMenuOpen),
+                  }}
                 >
-                  <MailIcon size={16} color={isContactGroupActive || contactMenuOpen ? "#0f766e" : "#ffffff"} />
+                  <MailIcon size={16} color={activeAccent} />
                   {navLabels.contact}
-                  <ChevronDownIcon size={13} color={isContactGroupActive || contactMenuOpen ? "#0f766e" : "rgba(255,255,255,0.95)"} />
+                  <ChevronDownIcon size={13} color={activeAccent} />
                 </button>
 
                 {contactMenuOpen && (
