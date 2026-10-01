@@ -1005,33 +1005,11 @@ export function SiteIndex({initialLang}){
             </div>
           </div>
 
-          {/* Stat-kort med sitets 4 sprog — overlapper hero-kortets underkant */}
-          <div className="relative -mt-6 flex justify-start px-5 pb-5 sm:-mt-7 sm:px-8 sm:pb-6">
-            <button
-              type="button"
-              onClick={()=>document.getElementById("medSearch")?.scrollIntoView({behavior:"smooth",block:"start"})}
-              className="stat-flag-card inline-flex items-center gap-3.5 px-4 py-3 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-              data-sm-bubble-avoid="true"
-              style={{cursor:"pointer"}}
-            >
-              <div className="flex" aria-hidden="true">
-                {languages.map((code,i)=>(
-                  <span key={code} className="flex h-7 w-7 items-center justify-center rounded-full border-2 text-[10px] font-extrabold text-white"
-                    style={{background:(LANG_THEME[code]?.primary??"#0D9488"),borderColor:"#fff",marginInlineStart:i===0?0:-9}}>
-                    {code.toUpperCase()}
-                  </span>
-                ))}
-              </div>
-              <div>
-                <p className="text-[13px] font-extrabold" style={{color:"var(--text)"}}>{indexData.items.length} {chromeText.medicinesStat}, 4 {chromeText.languagesStat}</p>
-              </div>
-            </button>
-          </div>
         </div>
       </div>
 
       {/* ── Ordliste-banner — skal ses med det samme, derfor lige under hero'en ── */}
-      <div className="mx-auto max-w-6xl px-4 pt-5 sm:pt-6">
+      <div className="mx-auto max-w-6xl px-4 lg:hidden pt-5 sm:pt-6">
         <Link
           href={{ pathname: "/ordliste", query: { lang: language } }}
           data-sm-bubble-avoid="true"
@@ -1062,7 +1040,7 @@ export function SiteIndex({initialLang}){
       </div>
 
       {/* ── Skranke-kort-banner — samme synlighed som ordliste-banneret ── */}
-      <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
+      <div className="mx-auto max-w-6xl px-4 lg:hidden pt-3 sm:pt-4">
         <button
           type="button"
           data-sm-bubble-avoid="true"
@@ -1094,7 +1072,7 @@ export function SiteIndex({initialLang}){
       </div>
 
       {/* ── Alvorligheds-tjek-banner — rødt/orange for at signalere sikkerhed ── */}
-      <div className="mx-auto max-w-6xl px-4 pt-3 sm:pt-4">
+      <div className="mx-auto max-w-6xl px-4 lg:hidden pt-3 sm:pt-4">
         <button
           type="button"
           data-sm-bubble-avoid="true"
@@ -1195,9 +1173,11 @@ export function SiteIndex({initialLang}){
                           <span className="flex shrink-0 items-center justify-center rounded-2xl border shadow-[0_10px_24px_rgba(15,23,42,0.08)]" style={{width:56,height:56,background:style.bg,borderColor:`${style.color}22`}}>
                             <img src={`${ICON_BASE}${iconFile}`} alt="" style={{width:38,height:38,objectFit:"contain",mixBlendMode:"multiply"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>
                           </span>
-                          <span className="rounded-full font-semibold" style={{background:style.bg,color:style.color,fontSize:"13px",padding:"6px 13px"}}>
-                            {capitalize(subtitle)||capitalize(chromeText.medicinePill)}
-                          </span>
+                          {activeCategory==="all"&&(
+                            <span className="rounded-full font-semibold" style={{background:style.bg,color:style.color,fontSize:"13px",padding:"6px 13px"}}>
+                              {capitalize(subtitle)||capitalize(chromeText.medicinePill)}
+                            </span>
+                          )}
                           {introBox&&(
                             <span
                               aria-hidden="true"

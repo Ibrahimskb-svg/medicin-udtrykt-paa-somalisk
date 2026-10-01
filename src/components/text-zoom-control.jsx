@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { resolveInitialLanguage, subscribeToLanguageChange } from "../lib/language";
 import { LANG_THEME } from "./modal-shell";
@@ -37,6 +37,13 @@ export default function TextZoomControl() {
   const pathname = usePathname();
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [language, setLanguage] = useState("so");
+  // Placering: på navbarens egen linje (til højre for pillen), hvor der er
+  // plads; kompakt uden tekst hvis pladsen er knap; ellers lige under navbaren.
+  const [place, setPlace] = useState(null);
+  const widgetRef = useRef(null);
+  const labelRef = useRef(null);
+  const labelWidth = useRef(0);
+  const compactRef = useRef(false);
 
   useEffect(() => {
     // Samme kilde til sandhed som resten af sitet (useLanguageRouting): URL'ens
@@ -62,6 +69,44 @@ export default function TextZoomControl() {
     window.localStorage.setItem(STORAGE_KEY, String(zoom));
   }, [zoom]);
 
+  useEffect(() => {
+    const GAP = 12;
+    function measure() {
+      const widget = widgetRef.current;
+      if (!widget) return;
+      if (labelRef.current && labelRef.current.offsetWidth) labelWidth.current = labelRef.current.offsetWidth;
+      const nav = document.querySelector("header nav");
+      const rect = nav?.getBoundingClientRect();
+      if (!rect || rect.width === 0) {
+        setPlace({ mode: "mobile" });
+        return;
+      }
+      const labelExtra = labelWidth.current ? labelWidth.current + 3 : 0;
+      const fullW = widget.offsetWidth + (compactRef.current ? labelExtra : 0);
+      const compactW = fullW - labelExtra;
+      const free = language === "ar" ? rect.left : window.innerWidth - rect.right;
+      const top = rect.top + (rect.height - widget.offsetHeight) / 2;
+      let next;
+      if (free >= fullW + 2 * GAP) next = { mode: "line", compact: false, top, side: 16 };
+      else if (free >= compactW + 2 * GAP) next = { mode: "line", compact: true, top, side: Math.max(8, Math.min(16, (free - compactW) / 2)) };
+      else next = { mode: "below", compact: false, top: rect.bottom + 6, side: 6 };
+      compactRef.current = next.compact;
+      setPlace((prev) => (prev && prev.mode === next.mode && prev.compact === next.compact && Math.round(prev.top) === Math.round(next.top) && prev.side === next.side ? prev : next));
+    }
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(document.body);
+    const nav = document.querySelector("header nav");
+    if (nav) observer.observe(nav);
+    window.addEventListener("resize", measure);
+    const retry = window.setTimeout(measure, 400);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+      window.clearTimeout(retry);
+    };
+  }, [language, pathname]);
+
   function zoomOut() {
     // Funktionel opdatering (prev => ...) i stedet for at læse zoom fra
     // closure — ellers ville hurtige gentagne klik (før React når at
@@ -85,14 +130,16 @@ export default function TextZoomControl() {
 
   return (
     <div
+      ref={widgetRef}
       className="sm-zoom-widget hover-lift"
       role="group"
       aria-label={t.caption}
       title={t.caption}
       style={{
         position: "fixed",
-        top: "92px",
-        [isRtl ? "left" : "right"]: "6px",
+        top: place ? `${place.mode === "mobile" ? 64 : place.top}px` : "92px",
+        [isRtl ? "left" : "right"]: place && place.mode !== "mobile" ? `${place.side}px` : "6px",
+        opacity: place ? 1 : 0,
         zIndex: 400,
         display: "flex",
         alignItems: "center",
@@ -114,7 +161,7 @@ export default function TextZoomControl() {
           .sm-zoom-widget { top: 64px !important; }
         }
       `}</style>
-      <span style={{ fontSize: "9.5px", fontWeight: 700, color: textSafe, whiteSpace: "nowrap", direction: isRtl ? "rtl" : "ltr", marginInlineEnd: "3px" }}>
+      <span ref={labelRef} style={{ display: place?.compact ? "none" : "inline", fontSize: "9.5px", fontWeight: 700, color: textSafe, whiteSpace: "nowrap", direction: isRtl ? "rtl" : "ltr", marginInlineEnd: "3px" }}>
         {t.short}
       </span>
 
