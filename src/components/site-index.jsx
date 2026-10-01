@@ -15,7 +15,6 @@ import { CounterCardsModal } from "./counter-cards-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
 import { SeverityCheckModal, LevelBadge } from "./severity-check-modal";
 import { downloadReminderICS } from "../lib/reminder-ics";
-import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { getLastRevisedText } from "../lib/last-revised";
 import { VoiceSearchButton } from "./voice-search-button";
 import { MedicinePhotoButton } from "./medicine-photo-button";
@@ -808,9 +807,6 @@ export function SiteIndex({initialLang}){
   const text=useMemo(()=>indexData.translations[language]||indexData.translations.so,[language]);
   const chromeText=useMemo(()=>uiText[language]||uiText.so,[language]);
   const isRtl=language==="ar";
-  // Genbruger den første, allerede-godkendte Skranke-kort-sætning som
-  // eksempel i hero-forhåndsvisningen, i stedet for at opfinde ny tekst.
-  const heroSafetyPhrase=useMemo(()=>COUNTER_CARD_CATEGORIES.find((c)=>c.id==="sikkerhed")?.phrases?.[0]??{},[]);
   const navLabels=useMemo(()=>NAV_LABELS[language]??NAV_LABELS.so,[language]);
   const iconColors=useMemo(()=>NAV_ICON_COLORS[language]??NAV_ICON_COLORS.so,[language]);
 
@@ -936,88 +932,75 @@ export function SiteIndex({initialLang}){
               </div>
             </div>
 
-            {/* Funktions-genveje (glas-kort) — rigtige knapper/links, ikke kun dekoration */}
-            <div className="relative hidden lg:block" style={{height:550}}>
-              <button
-                type="button"
-                onClick={()=>setModalTab("counterCards")}
-                className="glass-card-lite absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"12px",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
-              >
-                <p className="text-[10px] font-bold uppercase tracking-wide text-white/70">{(COUNTER_CARDS_LINK_TEXT[language]??COUNTER_CARDS_LINK_TEXT.so).label}</p>
-                <p className="mt-1 text-[13px] font-bold leading-snug text-white">{heroSafetyPhrase[language]??heroSafetyPhrase.so}</p>
-                <div className="mt-2.5 rounded-xl border border-white/25 bg-white/10 px-2.5 py-2 text-center">
-                  <p className="text-[12px] font-bold text-white" dir="rtl" lang="ar">{heroSafetyPhrase.ar}</p>
-                </div>
-              </button>
-
+            {/* Funktions-genveje (glas-kort) — samlet i én række under hinanden, ens størrelse */}
+            <div className="hidden w-full max-w-[400px] flex-col gap-3 lg:flex lg:justify-self-end">
               <button
                 type="button"
                 onClick={()=>setModalTab("findPharmacy")}
-                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"150px",insetInlineEnd:0,width:190,padding:"14px 16px",cursor:"pointer"}}
+                className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{padding:"14px 18px",cursor:"pointer"}}
               >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#6D28D9,#4C1D95)"}}>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>
-                  </span>
-                  <p className="text-[13px] font-bold leading-snug text-white">{navLabels.findPharmacy}</p>
-                </div>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#6D28D9,#4C1D95)"}}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+                </span>
+                <p className="text-[14px] font-bold leading-snug text-white">{navLabels.findPharmacy}</p>
               </button>
 
               <button
                 type="button"
                 onClick={()=>setModalTab("mylist")}
-                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"222px",insetInlineEnd:0,width:206,padding:"14px 16px",cursor:"pointer"}}
+                className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{padding:"14px 18px",cursor:"pointer"}}
               >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#1E9E8F,#1B6FB8)"}}>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>
-                  </span>
-                  <p className="text-[13px] font-bold leading-snug text-white">{MYLIST_CARD_TEXT[language]??MYLIST_CARD_TEXT.so}</p>
-                </div>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#1E9E8F,#1B6FB8)"}}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01"/></svg>
+                </span>
+                <p className="text-[14px] font-bold leading-snug text-white">{MYLIST_CARD_TEXT[language]??MYLIST_CARD_TEXT.so}</p>
               </button>
 
               <Link
                 href={{ pathname: "/ordliste", query: { lang: language } }}
-                className="glass-card-lite absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"298px",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
+                className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{padding:"14px 18px",cursor:"pointer"}}
               >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#D97706,#B45309)"}}>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-                  </span>
-                  <div>
-                    <p className="text-[13px] font-bold leading-snug text-white">{(GLOSSARY_LINK_TEXT[language]??GLOSSARY_LINK_TEXT.so).label}</p>
-                  </div>
-                </div>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#D97706,#B45309)"}}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                </span>
+                <p className="text-[14px] font-bold leading-snug text-white">{(GLOSSARY_LINK_TEXT[language]??GLOSSARY_LINK_TEXT.so).label}</p>
               </Link>
 
               <button
                 type="button"
-                onClick={()=>setPrayerModalOpen(true)}
-                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"392px",insetInlineEnd:0,width:184,padding:"14px 16px",cursor:"pointer"}}
+                onClick={()=>setModalTab("counterCards")}
+                className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{padding:"14px 18px",cursor:"pointer"}}
               >
-                <div className="flex items-center gap-2.5">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#4338CA,#312E81)"}}>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
-                  </span>
-                  <p className="text-[13px] font-bold leading-snug text-white">{(PRAYER_CARD_TEXT[language]??PRAYER_CARD_TEXT.so).label}</p>
-                </div>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#BE123C,#9F1239)"}}>
+                  <SpeechBubbleIcon size={16} />
+                </span>
+                <p className="text-[14px] font-bold leading-snug text-white">{(COUNTER_CARDS_LINK_TEXT[language]??COUNTER_CARDS_LINK_TEXT.so).label}</p>
+              </button>
+
+              <button
+                type="button"
+                onClick={()=>setPrayerModalOpen(true)}
+                className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{padding:"14px 18px",cursor:"pointer"}}
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#4338CA,#312E81)"}}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+                </span>
+                <p className="text-[14px] font-bold leading-snug text-white">{(PRAYER_CARD_TEXT[language]??PRAYER_CARD_TEXT.so).label}</p>
               </button>
 
               <button
                 type="button"
                 onClick={()=>setSeverityModalOpen(true)}
-                className="glass-card-lite strong absolute text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-                style={{top:"470px",insetInlineStart:"2%",width:210,padding:"14px 16px",cursor:"pointer"}}
+                className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{padding:"14px 18px",cursor:"pointer"}}
               >
-                <div className="flex items-center gap-2.5">
-                  <LevelBadge level="red" size={32} />
-                  <p className="text-[13px] font-bold leading-snug text-white">{(SEVERITY_BANNER_TEXT[language]??SEVERITY_BANNER_TEXT.so).label}</p>
-                </div>
+                <LevelBadge level="red" size={36} />
+                <p className="text-[14px] font-bold leading-snug text-white">{(SEVERITY_BANNER_TEXT[language]??SEVERITY_BANNER_TEXT.so).label}</p>
               </button>
             </div>
           </div>
