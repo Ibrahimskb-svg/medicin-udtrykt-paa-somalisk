@@ -8,6 +8,7 @@ import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
 import { getIndexData, getDisplayName, uiText, languages, MEDICINE_INTRO_BOX } from "../lib/site";
 import { ModalShell, LANG_THEME } from "./modal-shell";
+import { BadgeCheck, BookOpen, GraduationCap, HeartPulse, Languages, Pill, RefreshCw, Stethoscope, UserRound, HeartHandshake } from "lucide-react";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
@@ -22,11 +23,10 @@ import { MedicinePhotoButton } from "./medicine-photo-button";
 const indexData = getIndexData();
 
 const ICON_BASE = "/icons/";
-const P = {
-  school:    "/icons/school.png",
-  work:      "/icons/work.png",
-  education: "/icons/education.png",
-  pills:     "/icons/pills.png",
+// Stregikoner til "Om"-boksene, i rækkefølge efter punkterne i teksten.
+const ABOUT_BULLET_ICONS = {
+  me:   [GraduationCap, Stethoscope, BookOpen, HeartHandshake],
+  site: [Pill, Languages, BadgeCheck, RefreshCw],
 };
 
 // ── Nav labels ─────────────────────────────────────────────────────────────
@@ -147,13 +147,6 @@ const HOYGA_AFKA_SOCIALS = [
 ];
 
 // ── Color themes ───────────────────────────────────────────────────────────
-const BULLET_PALETTES = {
-  so: [{color:"#0b7e74",bg:"#F0FDFA"},{color:"#048059",bg:"#ECFDF5"},{color:"#0F766E",bg:"#CCFBF1"},{color:"#0277b3",bg:"#F0F9FF"}],
-  da: [{color:"#2563EB",bg:"#EFF6FF"},{color:"#1D4ED8",bg:"#DBEAFE"},{color:"#3B82F6",bg:"#EFF6FF"},{color:"#0277b3",bg:"#F0F9FF"}],
-  en: [{color:"#92400E",bg:"#FEF3C7"},{color:"#B45309",bg:"#FEF9EE"},{color:"#C2410C",bg:"#FFF7ED"},{color:"#d12424",bg:"#FEF2F2"}],
-  ar: [{color:"#ae5f05",bg:"#FFFBEB"},{color:"#B45309",bg:"#FEF3C7"},{color:"#EA580C",bg:"#FFF7ED"},{color:"#9f6707",bg:"#FFFBEB"}],
-};
-
 const NAV_ICON_COLORS = {
   so: { faq:"#0D9488", feedback:"#059669", contact:"#0F766E" },
   da: { faq:"#2563EB", feedback:"#1D4ED8", contact:"#0284C7" },
@@ -436,13 +429,13 @@ function FacebookIcon({size=20,color="#fff"}){return(<svg width={size} height={s
 
 
 // ── Bullet row ─────────────────────────────────────────────────────────────
-function BulletRow({bullet,palette}){
+function BulletRow({text,Icon,color}){
   return(
-    <li style={{display:"flex",alignItems:"flex-start",gap:"12px",background:"#fff",borderRadius:"16px",padding:"12px 14px",border:`1.5px solid ${palette.color}22`,boxShadow:`0 2px 8px ${palette.color}10`}}>
-      <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:44,height:44,borderRadius:"13px",flexShrink:0,background:palette.bg,border:`1.5px solid ${palette.color}30`,marginTop:"1px"}}>
-        <img src={P[bullet.icon]} alt="" style={{width:26,height:26,objectFit:"contain"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>
+    <li style={{display:"flex",alignItems:"flex-start",gap:"12px",background:"#fff",borderRadius:"16px",padding:"12px 14px",border:"1.5px solid #e2e8f0",boxShadow:"0 2px 8px rgba(15,23,42,0.05)"}}>
+      <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:44,height:44,borderRadius:"13px",flexShrink:0,background:`${color}14`,color,marginTop:"1px"}}>
+        <Icon size={22} strokeWidth={1.9} aria-hidden="true"/>
       </span>
-      <span style={{fontSize:"15px",color:"#1e293b",lineHeight:1.65,fontWeight:500,paddingTop:"3px"}}>{bullet.text}</span>
+      <span style={{fontSize:"15px",color:"#1e293b",lineHeight:1.65,fontWeight:500,paddingTop:"3px"}}>{text}</span>
     </li>
   );
 }
@@ -452,12 +445,12 @@ function AboutModal({tab,language,onClose}){
   const isRtl=language==="ar";
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
-  const palette=BULLET_PALETTES[language]??BULLET_PALETTES.so;
   const meMeta=ABOUT_ME_META[language]??ABOUT_ME_META.so;
   const bullets=tab==="me"?(ABOUT_ME_BULLETS[language]??ABOUT_ME_BULLETS.so):(ABOUT_SITE_BULLETS[language]??ABOUT_SITE_BULLETS.so);
   const siteTagline=ABOUT_SITE_TAGLINE[language]??ABOUT_SITE_TAGLINE.so;
   const title=tab==="me"?navLabels.aboutMe:navLabels.aboutSite;
-  const iconEl=<img src={tab==="me"?P.education:P.pills} alt="" style={{width:24,height:24,objectFit:"contain",filter:"brightness(0) invert(1)"}} onError={(e)=>{e.currentTarget.style.display="none";}}/>;
+  const iconEl=tab==="me"?<UserRound size={24} strokeWidth={2} color="#fff" aria-hidden="true"/>:<HeartPulse size={24} strokeWidth={2} color="#fff" aria-hidden="true"/>;
+  const icons=ABOUT_BULLET_ICONS[tab];
   return(
     <ModalShell title={title} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
       {tab==="me"&&(
@@ -478,7 +471,7 @@ function AboutModal({tab,language,onClose}){
         </div>
       )}
       <ul style={{listStyle:"none",padding:0,margin:0,display:"flex",flexDirection:"column",gap:"10px"}}>
-        {bullets.map((b,i)=><BulletRow key={i} bullet={b} palette={palette[i%palette.length]}/>)}
+        {bullets.map((b,i)=><BulletRow key={i} text={b.text} Icon={icons[i%icons.length]} color={theme.primary}/>)}
       </ul>
     </ModalShell>
   );
@@ -878,8 +871,8 @@ export function SiteIndex({initialLang}){
   }, [searchTerm, activeCategory, filteredItems.length]);
 
   const navTabs=useMemo(()=>[
-    {key:"me",      iconEl:<img src={P.education} alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutMe},
-    {key:"site",    iconEl:<img src={P.work}      alt="" style={{width:15,height:15,objectFit:"contain"}}/>, label:navLabels.aboutSite},
+    {key:"me",      iconEl:<UserRound size={16} strokeWidth={2} aria-hidden="true"/>, label:navLabels.aboutMe},
+    {key:"site",    iconEl:<HeartPulse size={16} strokeWidth={2} aria-hidden="true"/>, label:navLabels.aboutSite},
     {key:"faq",     iconEl:<svg width="22" height="15" viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="13" height="10" rx="3" fill={iconColors.faq}/><path d="M2 10 L2 13 L6 10Z" fill={iconColors.faq}/><text x="6.5" y="7.5" fontFamily="-apple-system,sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">Q</text><rect x="8" y="5" width="13" height="10" rx="3" fill={iconColors.faq} opacity="0.65"/><path d="M19 15 L19 18 L15 15Z" fill={iconColors.faq} opacity="0.65"/><text x="14.5" y="12.5" fontFamily="-apple-system,sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">A</text></svg>, label:navLabels.faq},
     {key:"tpi",     iconEl:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={iconColors.faq} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4v4"/><path d="M6 8c-1.5 0-4 1.5-4 6 0 3 2 5 4 5 1.3 0 2.4-.5 3.2-1.4"/><path d="M18 8c1.5 0 4 1.5 4 6 0 3-2 5-4 5-1.3 0-2.4-.5-3.2-1.4"/><path d="M12 8c-2 0-3 1-3 3v6"/><path d="M12 8c2 0 3 1 3 3v6"/></svg>, label:navLabels.tpi},
     {key:"feedback",iconEl:<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={iconColors.feedback} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>, label:navLabels.feedback},

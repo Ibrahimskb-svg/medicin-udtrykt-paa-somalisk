@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { HeartPulse, MessageCircleQuestion, Pill, UserRound } from "lucide-react";
 import { getStoredLanguage, notifyLanguageChange, subscribeToLanguageChange } from "../lib/language";
 import { getLanguageName, languages, languageThemes, uiText, pickerAccent } from "../lib/site";
 
@@ -30,11 +31,6 @@ const NAV_ICON_COLORS = {
   ar: { faq:"#D97706", feedback:"#B45309", contact:"#EA580C", mylist:"#EA580C", findPharmacy:"#EA580C", counterCards:"#BE123C" },
 };
 
-const P = {
-  school: "/icons/school.png",
-  work:   "/icons/work.png",
-};
-
 // Ikoner (Ligesom i SiteIndex for visuel sammenhæng)
 function MailIcon({ size=15, color="currentColor" }) {
   return (
@@ -56,14 +52,6 @@ function LungsIcon({ size=15, color="currentColor" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 4v4"/><path d="M6 8c-1.5 0-4 1.5-4 6 0 3 2 5 4 5 1.3 0 2.4-.5 3.2-1.4"/><path d="M18 8c1.5 0 4 1.5 4 6 0 3-2 5-4 5-1.3 0-2.4-.5-3.2-1.4"/><path d="M12 8c-2 0-3 1-3 3v6"/><path d="M12 8c2 0 3 1 3 3v6"/>
-    </svg>
-  );
-}
-
-function ListIcon({ size=15, color="currentColor" }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 6h11"/><path d="M9 12h11"/><path d="M9 18h11"/><path d="M4.5 6h.01"/><path d="M4.5 12h.01"/><path d="M4.5 18h.01"/>
     </svg>
   );
 }
@@ -173,23 +161,16 @@ export function AppNavbar() {
   const activeAccent = pickerAccent(language, languageThemes[language] ?? languageThemes.so);
 
   const navTabs = [
-    { key: "me", iconEl: <img src={P.school} alt="" style={{ width:15, height:15 }}/>, label: navLabels.aboutMe },
-    { key: "site", iconEl: <img src={P.work} alt="" style={{ width:15, height:15 }}/>, label: navLabels.aboutSite },
+    { key: "me", iconEl: <UserRound size={16} strokeWidth={2} aria-hidden="true"/>, label: navLabels.aboutMe },
+    { key: "site", iconEl: <HeartPulse size={16} strokeWidth={2} aria-hidden="true"/>, label: navLabels.aboutSite },
     { 
       key: "faq", 
-      iconEl: (
-        <svg width="22" height="15" viewBox="0 0 22 15" fill="none">
-          <rect x="0" y="0" width="13" height="10" rx="3" fill={iconColors.faq}/>
-          <text x="6.5" y="7.5" fontFamily="sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">Q</text>
-          <rect x="8" y="5" width="13" height="10" rx="3" fill={iconColors.faq} opacity="0.65"/>
-          <text x="14.5" y="12.5" fontFamily="sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">A</text>
-        </svg>
-      ), 
+      iconEl: <MessageCircleQuestion size={16} strokeWidth={2} aria-hidden="true"/>,
       label: navLabels.faq 
     },
     
     { key: "contact", iconEl: <MailIcon size={16} color={iconColors.contact}/>, label: navLabels.contact },
-    { key: "mylist", iconEl: <ListIcon size={16} color={iconColors.mylist}/>, label: navLabels.mylist },
+    { key: "mylist", iconEl: <Pill size={16} strokeWidth={2} aria-hidden="true"/>, label: navLabels.mylist },
     { key: "findPharmacy", iconEl: <PinIcon size={16} color={iconColors.findPharmacy}/>, label: navLabels.findPharmacy },
     { key: "counterCards", iconEl: <CardsIcon size={16} color={iconColors.counterCards}/>, label: navLabels.counterCards },
   ];
