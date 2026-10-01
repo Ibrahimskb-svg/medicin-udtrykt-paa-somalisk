@@ -11,12 +11,9 @@ export default function sitemap() {
     "sertralin","symbicort","ventoline","xarelto","zopiclon",
   ];
 
-  const now = new Date().toISOString();
-
   // Frontpage for each language
   const frontpageUrls = languages.map((lang) => ({
     url: `${baseUrl}/?lang=${lang}`,
-    lastModified: now,
     changeFrequency: "weekly",
     priority: 1.0,
   }));
@@ -24,7 +21,6 @@ export default function sitemap() {
   // Pharmacy-term glossary for each language
   const glossaryUrls = languages.map((lang) => ({
     url: `${baseUrl}/ordliste?lang=${lang}`,
-    lastModified: now,
     changeFrequency: "monthly",
     priority: 0.6,
   }));
@@ -33,8 +29,7 @@ export default function sitemap() {
   const medicineUrls = medicines.flatMap((slug) =>
     languages.map((lang) => ({
       url: `${baseUrl}/${slug}?lang=${lang}`,
-      lastModified: now,
-      changeFrequency: "monthly",
+        changeFrequency: "monthly",
       priority: 0.8,
     }))
   );
