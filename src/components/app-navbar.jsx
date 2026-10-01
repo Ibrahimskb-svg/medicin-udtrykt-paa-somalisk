@@ -210,7 +210,7 @@ export function AppNavbar() {
           className="mx-auto w-fit max-w-full rounded-full shadow-lg shadow-teal-900/10 transition-all duration-300"
           style={{ background: "var(--heroBg, linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%))" }}
         >
-          <div className="flex items-center gap-6 px-4 py-2.5 xl:gap-8">
+          <div className="flex items-center gap-4 px-3 py-2.5 xl:gap-8 xl:px-4">
             <Link className="hover-lift flex shrink-0 items-center gap-2.5" href={{ pathname: "/", query: { lang: "so" } }}>
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15">
                 <Image src="/somalimed-icon.svg" alt="" width={22} height={22} className="rounded-md" priority />
@@ -220,19 +220,19 @@ export function AppNavbar() {
               </span>
             </Link>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 xl:gap-2">
               {desktopNavTabs.map(({ key, iconEl, label }) => (
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
-                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-bold ${
+                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-2.5 py-1.5 rounded-full transition-all duration-200 text-[12px] font-bold xl:px-3 xl:text-[13px] ${
                     activeTab === key
                       ? "bg-white text-teal-700 shadow-md"
                       : "bg-white/25 text-white ring-2 ring-white/70 hover:bg-white/35"
                   }`}
                 >
-                  {iconEl} {label}
+                  <span className="hidden xl:flex">{iconEl}</span>{label}
                 </button>
               ))}
 
@@ -248,7 +248,7 @@ export function AppNavbar() {
                   type="button"
                   onClick={() => setLanguageMenuOpen((open) => !open)}
                   aria-expanded={languageMenuOpen}
-                  className="hover-lift flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all duration-200"
+                  className="hover-lift flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-semibold transition-all duration-200 xl:px-3 xl:text-[13px]"
                   style={{
                     background: "#ffffff",
                     color: activeAccent,
@@ -296,7 +296,7 @@ export function AppNavbar() {
                   type="button"
                   onClick={() => setContactMenuOpen((open) => !open)}
                   aria-expanded={contactMenuOpen}
-                  className="hover-lift flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all duration-200"
+                  className="hover-lift flex items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-semibold transition-all duration-200 xl:px-3 xl:text-[13px]"
                   style={{
                     background: "#ffffff",
                     color: activeAccent,

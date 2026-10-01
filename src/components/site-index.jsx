@@ -920,12 +920,12 @@ export function SiteIndex({initialLang}){
 
           <div className="relative grid grid-cols-1 gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-10 lg:py-16">
             {/* Tekst */}
-            <div>
+            <div className="min-w-0">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-1.5 text-xs font-bold text-teal-700 shadow-sm">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>
                 {chromeText.heroEyebrow}
               </div>
-              <h1 className="max-w-xl font-extrabold tracking-tight text-white" style={{fontSize:"clamp(30px,4.6vw,52px)",lineHeight:1.08,letterSpacing:"-0.02em"}}>{text.hdrTitle}</h1>
+              <h1 className="max-w-xl font-extrabold tracking-tight text-white" style={{fontSize:"clamp(24px,2.3vw,33px)",lineHeight:1.08,letterSpacing:"-0.02em",overflowWrap:"break-word",hyphens:"auto"}}>{text.hdrTitle}</h1>
               <p className="mt-4 max-w-lg text-sm leading-7 text-white/85 sm:text-base">{text.hdrSubtitle}</p>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-sm text-white/85">
                 <span className="flex items-center gap-1.5"><span className="text-lg font-black text-white">{indexData.items.length}</span>{chromeText.medicinesStat}</span>
