@@ -132,13 +132,13 @@ export function PrayerReminderModal({ language, isRtl, onClose, onConfirm }) {
             </div>
           </div>
 
-          <p style={{ fontSize: "11px", color: "#94a3b8", lineHeight: 1.6, margin: "0 0 20px" }}>{t.disclaimer}</p>
+          <p style={{ fontSize: "11px", color: "#5B6B80", lineHeight: 1.6, margin: "0 0 20px" }}>{t.disclaimer}</p>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             <button
               onClick={handleConfirm}
               className="hover-lift"
-              style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "13px", borderRadius: "12px", border: "none", background: "#16a34a", color: "#fff", fontWeight: 700, fontSize: "14px", cursor: "pointer" }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "center", padding: "13px", borderRadius: "12px", border: "none", background: "#15803d", color: "#fff", fontWeight: 700, fontSize: "14px", cursor: "pointer" }}
             >
               {t.confirm}
             </button>

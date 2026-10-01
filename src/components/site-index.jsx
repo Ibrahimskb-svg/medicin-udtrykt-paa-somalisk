@@ -456,7 +456,7 @@ function AboutModal({tab,language,onClose}){
         <div style={{display:"flex",alignItems:"center",gap:"14px",marginBottom:"18px",background:"#fff",borderRadius:"20px",padding:"14px 16px",border:`1.5px solid ${theme.border}`,boxShadow:`0 4px 16px ${theme.primary}15`}}>
           <div style={{position:"relative",flexShrink:0}}>
             <div style={{position:"absolute",inset:"-4px",borderRadius:"50%",background:"linear-gradient(135deg,#14b8a6,#38bdf8,#818cf8)",opacity:0.9,filter:"blur(2px)"}}/>
-            <img src="/Ibrahim.png" alt={meMeta.name} style={{position:"relative",width:68,height:68,borderRadius:"50%",objectFit:"cover",border:"4px solid white",boxShadow:"0 4px 16px rgba(0,0,0,0.15)"}}/>
+            <img src="/Ibrahim-avatar.jpg" alt={meMeta.name} style={{position:"relative",width:68,height:68,borderRadius:"50%",objectFit:"cover",border:"4px solid white",boxShadow:"0 4px 16px rgba(0,0,0,0.15)"}}/>
           </div>
           <div>
             <p style={{fontWeight:800,fontSize:"17px",color:"#0f172a",margin:0}}>{meMeta.name}</p>
@@ -533,14 +533,14 @@ function ContactModal({language,onClose}){
           <p style={{fontSize:"13px",color:"#64748b",margin:"3px 0 0",lineHeight:1.5}}>{data.chatDesc}</p>
         </div>
       </div>
-      <p style={{fontWeight:700,fontSize:"13px",color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",margin:"0 0 10px",textAlign:isRtl?"right":"left"}}>{data.emailLabel}</p>
+      <p style={{fontWeight:700,fontSize:"13px",color:"#5B6B80",textTransform:"uppercase",letterSpacing:"0.06em",margin:"0 0 10px",textAlign:isRtl?"right":"left"}}>{data.emailLabel}</p>
       <a href="mailto:Ibrahim_skb@live.dk" style={{display:"flex",alignItems:"center",gap:"12px",padding:"14px 16px",borderRadius:"16px",background:"#fff",border:`1.5px solid ${theme.border}`,textDecoration:"none",marginBottom:"18px",boxShadow:`0 2px 8px ${theme.primary}10`}}>
         <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:40,height:40,borderRadius:"10px",background:theme.primary,flexShrink:0}}>
           <MailIcon size={18} color="#fff"/>
         </span>
         <div>
           <p style={{fontWeight:700,fontSize:"15px",color:theme.primary,margin:0}}>Ibrahim_skb@live.dk</p>
-          <p style={{fontSize:"12px",color:"#94a3b8",margin:"2px 0 0"}}>{data.emailNote}</p>
+          <p style={{fontSize:"12px",color:"#5B6B80",margin:"2px 0 0"}}>{data.emailNote}</p>
         </div>
       </a>
       <p style={{fontWeight:700,fontSize:"14px",color:"#0f172a",margin:"0 0 10px",textAlign:isRtl?"right":"left"}}>{data.responseTitle}</p>
@@ -1110,7 +1110,7 @@ export function SiteIndex({initialLang}){
             <span className="mb-2 block text-xs font-semibold uppercase tracking-widest" style={{color:"var(--text-muted)"}}>{chromeText.searchLabel}</span>
             <div className="group flex items-center gap-3 rounded-2xl border bg-white px-4 py-3 shadow-sm transition duration-200 focus-within:-translate-y-0.5 focus-within:shadow-xl" style={{borderColor:"var(--border)"}}>
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl" style={{background:"var(--bg)",color:"var(--accent)"}}><SearchIcon/></span>
-              <input id="medSearch" className="flex-1 bg-transparent outline-none placeholder:text-slate-400" style={{color:"var(--text)",fontSize:"16px"}} onChange={(e)=>setSearchTerm(e.target.value)} placeholder={chromeText.searchPlaceholder} value={searchTerm}/>
+              <input id="medSearch" className="flex-1 bg-transparent outline-none placeholder:text-slate-500" style={{color:"var(--text)",fontSize:"16px"}} onChange={(e)=>setSearchTerm(e.target.value)} placeholder={chromeText.searchPlaceholder} value={searchTerm}/>
               <VoiceSearchButton language={language} onResult={(transcript)=>setSearchTerm(transcript)} text={chromeText} />
               <MedicinePhotoButton language={language} text={chromeText} />
               {searchTerm?(<button type="button" className="hover-lift shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition hover:opacity-90" style={{background:"var(--bg)",color:"var(--text-muted)",minHeight:"36px"}} onClick={()=>setSearchTerm("")}>{chromeText.clearFilters}</button>):null}

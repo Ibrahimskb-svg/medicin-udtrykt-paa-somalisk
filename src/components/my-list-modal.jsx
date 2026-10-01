@@ -311,7 +311,7 @@ export function MyListModal({ language, onClose }) {
         li span{display:block;font-size:13px;color:#64748b;margin-top:3px;}
         ul.dose{list-style:disc;padding:${isRtl ? "0 18px 0 0" : "0 0 0 18px"};margin-top:8px;}
         ul.dose li{padding:2px 0;border-bottom:none;font-size:13px;color:#334155;}
-        footer{margin-top:28px;font-size:11px;color:#94a3b8;}
+        footer{margin-top:28px;font-size:11px;color:#5B6B80;}
       </style>
       </head><body>
         <h1>${t.title}</h1>
@@ -448,7 +448,7 @@ export function MyListModal({ language, onClose }) {
           padding: "11px 14px", marginBottom: "14px",
         }}
       >
-        <span style={{ color: "#94a3b8", display: "flex" }}><SearchIcon /></span>
+        <span style={{ color: "#5B6B80", display: "flex" }}><SearchIcon /></span>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -507,12 +507,12 @@ export function MyListModal({ language, onClose }) {
       <hr style={{ border: "none", borderTop: "1.5px solid #e2e8f0", margin: "0 0 22px" }} />
 
       {/* ── Din liste ──────────────────────────────────────────────────── */}
-      <p style={{ fontWeight: 700, fontSize: "13px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 12px", textAlign: isRtl ? "right" : "left" }}>
+      <p style={{ fontWeight: 700, fontSize: "13px", color: "#5B6B80", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 12px", textAlign: isRtl ? "right" : "left" }}>
         {t.yourListTitle} {selectedItems.length > 0 && `(${selectedItems.length})`}
       </p>
 
       {selectedItems.length === 0 ? (
-        <p style={{ fontSize: "14px", color: "#94a3b8", margin: "0 0 22px" }}>{t.empty}</p>
+        <p style={{ fontSize: "14px", color: "#5B6B80", margin: "0 0 22px" }}>{t.empty}</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0, margin: "0 0 22px", display: "flex", flexDirection: "column", gap: "8px" }}>
           {selectedItems.map((item) => {
@@ -559,7 +559,7 @@ export function MyListModal({ language, onClose }) {
 
       {selectedItems.length >= 2 && (
         <div style={{ marginBottom: "22px" }}>
-          <p style={{ fontWeight: 700, fontSize: "13px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
+          <p style={{ fontWeight: 700, fontSize: "13px", color: "#5B6B80", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
             {t.interactionsTitle}
           </p>
           <p style={{ fontSize: "13.5px", color: "#475569", lineHeight: 1.6, margin: "0 0 14px", textAlign: isRtl ? "right" : "left" }}>
@@ -593,7 +593,7 @@ export function MyListModal({ language, onClose }) {
                       <p style={{ fontSize: "12.5px", fontWeight: 700, color: colors.text, margin: "0 0 6px" }}>
                         {colors.emoji} {levelLabel}
                       </p>
-                      <p style={{ fontSize: "11px", color: "#94a3b8", margin: 0 }}>
+                      <p style={{ fontSize: "11px", color: "#5B6B80", margin: 0 }}>
                         {t.pairSourceLabel} ({CHECKED_DATE}) ·{" "}
                         <a href={sourceUrl} target="_blank" rel="noopener noreferrer" style={{ color: theme.primary, fontWeight: 700 }}>
                           {t.pairViewSource}
@@ -661,7 +661,7 @@ export function MyListModal({ language, onClose }) {
                       aria-hidden="true"
                       style={{
                         display: "inline-block", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                        transition: "transform 0.15s ease", color: "#94a3b8", fontSize: "12px",
+                        transition: "transform 0.15s ease", color: "#5B6B80", fontSize: "12px",
                       }}
                     >
                       ▼
@@ -670,7 +670,7 @@ export function MyListModal({ language, onClose }) {
 
                   {isOpen && (
                     <div style={{ padding: "0 14px 14px", textAlign: isRtl ? "right" : "left" }}>
-                      {!hasAny && <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0 }}>{t.interactionsEmpty}</p>}
+                      {!hasAny && <p style={{ fontSize: "13px", color: "#5B6B80", margin: 0 }}>{t.interactionsEmpty}</p>}
 
                       {warn.bullets.length > 0 && (
                         <div style={{ borderRadius: "10px", border: "1.5px solid #fecaca", background: "#fef2f2", padding: "9px 11px", marginBottom: interact.bullets.length > 0 ? "8px" : 0 }}>
@@ -704,7 +704,7 @@ export function MyListModal({ language, onClose }) {
 
       {selectedItems.length >= 1 && (
         <div style={{ marginBottom: "22px" }}>
-          <p style={{ fontWeight: 700, fontSize: "13px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
+          <p style={{ fontWeight: 700, fontSize: "13px", color: "#5B6B80", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
             {t.symptomTitle}
           </p>
           <p style={{ fontSize: "13.5px", color: "#475569", lineHeight: 1.6, margin: "0 0 12px", textAlign: isRtl ? "right" : "left" }}>
@@ -718,7 +718,7 @@ export function MyListModal({ language, onClose }) {
               padding: "11px 14px", marginBottom: "12px",
             }}
           >
-            <span style={{ color: "#94a3b8", display: "flex" }}><SearchIcon /></span>
+            <span style={{ color: "#5B6B80", display: "flex" }}><SearchIcon /></span>
             <input
               value={symptomQuery}
               onChange={(e) => setSymptomQuery(e.target.value)}
@@ -730,7 +730,7 @@ export function MyListModal({ language, onClose }) {
           {symptomMatches !== null && (
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {symptomMatches.length === 0 ? (
-                <p style={{ fontSize: "13px", color: "#94a3b8", margin: 0, textAlign: isRtl ? "right" : "left" }}>{t.symptomNoMatch}</p>
+                <p style={{ fontSize: "13px", color: "#5B6B80", margin: 0, textAlign: isRtl ? "right" : "left" }}>{t.symptomNoMatch}</p>
               ) : (
                 symptomMatches.map(({ slug, name, hits }) => (
                   <div
@@ -747,7 +747,7 @@ export function MyListModal({ language, onClose }) {
                   </div>
                 ))
               )}
-              <p style={{ fontSize: "11px", color: "#94a3b8", lineHeight: 1.5, margin: 0, textAlign: isRtl ? "right" : "left" }}>
+              <p style={{ fontSize: "11px", color: "#5B6B80", lineHeight: 1.5, margin: 0, textAlign: isRtl ? "right" : "left" }}>
                 {t.symptomDisclaimer}
               </p>
             </div>
@@ -788,7 +788,7 @@ export function MyListModal({ language, onClose }) {
         {t.pdfBtn}
       </button>
 
-      <p style={{ fontSize: "11.5px", color: "#94a3b8", lineHeight: 1.6, margin: 0, textAlign: isRtl ? "right" : "left" }}>
+      <p style={{ fontSize: "11.5px", color: "#5B6B80", lineHeight: 1.6, margin: 0, textAlign: isRtl ? "right" : "left" }}>
         {t.disclaimer}
       </p>
     </ModalShell>

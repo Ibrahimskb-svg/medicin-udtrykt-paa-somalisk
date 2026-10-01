@@ -340,7 +340,7 @@ export function PharmacyFlashcards({ language }) {
         >
           <span style={{ fontSize: 40 }} aria-hidden="true">🎉</span>
           <h3 style={{ marginTop: 10, fontSize: 18, fontWeight: 800, color: "#0f766e" }}>{t.doneTitle}</h3>
-          <p style={{ marginTop: 6, fontSize: 13.5, color: "#0d9488" }}>{t.doneDesc}</p>
+          <p style={{ marginTop: 6, fontSize: 13.5, color: "#0B7A70" }}>{t.doneDesc}</p>
           <button
             type="button"
             onClick={shuffle}

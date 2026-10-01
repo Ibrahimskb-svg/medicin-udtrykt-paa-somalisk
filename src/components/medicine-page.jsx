@@ -240,7 +240,7 @@ function AudioButton({ label, tone = "primary", onClick }) {
       type="button"
       onClick={onClick}
       className="hover-lift inline-flex items-center gap-3 rounded-xl border-2 bg-white px-5 py-3 text-sm font-semibold shadow-sm transition duration-200 hover:shadow-md"
-      style={{ borderColor: color, color }}
+      style={{ borderColor: color, color: "var(--accent1)" }}
     >
       <span className="flex h-7 w-7 items-center justify-center rounded-full text-white" style={{ background: color }}>
         <PlayIcon />
@@ -419,7 +419,7 @@ export function MedicinePage({ medicine, initialLang }) {
             <p style="margin:0 0 6px;font-weight:700;font-size:13px;color:#991b1b;">🚨 ${escapeHtml(emergency.label)}</p>
             <p style="margin:0;font-size:13px;color:#7f1d1d;line-height:1.7;">${escapeHtml(emergency.poison)}: 82 12 12 12 · ${escapeHtml(emergency.emergency)}: 112</p>
           </div>
-          <p class="pdf-block" style="margin-top:22px;font-size:11px;color:#94a3b8;text-align:center;">${escapeHtml(getLastRevisedText(language))} · Somalimed.dk</p>
+          <p class="pdf-block" style="margin-top:22px;font-size:11px;color:#5B6B80;text-align:center;">${escapeHtml(getLastRevisedText(language))} · Somalimed.dk</p>
         </div>
       </div>
     `;
@@ -506,12 +506,12 @@ export function MedicinePage({ medicine, initialLang }) {
                 {qrDataUrl ? (
                   <img src={qrDataUrl} alt={`QR – ${data.drugName}`} width={220} height={220} style={{ display:"block", width:220, height:220 }} />
                 ) : (
-                  <div style={{ width:220, height:220, display:"flex", alignItems:"center", justifyContent:"center", color:"#94a3b8", fontSize:"13px" }} aria-live="polite">…</div>
+                  <div style={{ width:220, height:220, display:"flex", alignItems:"center", justifyContent:"center", color:"#5B6B80", fontSize:"13px" }} aria-live="polite">…</div>
                 )}
               </div>
 
               <p style={{ fontWeight:800, fontSize:"16px", margin:"16px 0 2px", color:"var(--text)" }}>{data.drugName}</p>
-              <p style={{ fontSize:"12px", color:"#94a3b8", margin:"0 0 18px" }}>Somalimed.dk</p>
+              <p style={{ fontSize:"12px", color:"#5B6B80", margin:"0 0 18px" }}>Somalimed.dk</p>
               <p style={{ fontSize:"13px", color:"#64748b", lineHeight:1.6, margin:"0 0 20px" }}>{qrText.instructions}</p>
 
               <div style={{ display:"flex", flexDirection:"column", gap:"10px" }}>

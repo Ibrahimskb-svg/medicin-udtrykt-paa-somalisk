@@ -194,7 +194,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
         .mark{font-weight:900;font-size:32px;line-height:1;}
         .freq{font-size:13.5px;font-weight:700;color:${theme.primary};text-align:${isRtl ? "right" : "left"};}
         th:last-child{color:#0f172a;}
-        footer{margin-top:22px;font-size:11px;color:#94a3b8;line-height:1.6;}
+        footer{margin-top:22px;font-size:11px;color:#5B6B80;line-height:1.6;}
         @media print{ body{-webkit-print-color-adjust:exact;print-color-adjust:exact;} }
       </style>
       </head><body>
@@ -317,7 +317,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
 
   return (
     <div style={{ marginBottom: "22px" }}>
-      <p style={{ fontWeight: 700, fontSize: "13px", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
+      <p style={{ fontWeight: 700, fontSize: "13px", color: "#5B6B80", textTransform: "uppercase", letterSpacing: "0.06em", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>
         {t.title}
       </p>
       <p style={{ fontSize: "13.5px", color: "#475569", lineHeight: 1.6, margin: "0 0 14px", textAlign: isRtl ? "right" : "left" }}>
@@ -379,7 +379,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                       >
                         <Icon size={26} color={on ? "#fff" : "#94a3b8"} />
                       </span>
-                      <span style={{ fontSize: "13.5px", fontWeight: 800, color: on ? style.color : "#94a3b8" }}>
+                      <span style={{ fontSize: "13.5px", fontWeight: 800, color: on ? style.color : "#5B6B80" }}>
                         {timeLabels[slot]}
                       </span>
                     </button>
@@ -412,7 +412,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
       </div>
 
       {scheduledItems.length === 0 ? (
-        <p style={{ fontSize: "13px", color: "#94a3b8", margin: "0 0 14px", textAlign: isRtl ? "right" : "left" }}>{t.empty}</p>
+        <p style={{ fontSize: "13px", color: "#5B6B80", margin: "0 0 14px", textAlign: isRtl ? "right" : "left" }}>{t.empty}</p>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "14px" }}>
           <button
@@ -441,7 +441,7 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
         </div>
       )}
 
-      <p style={{ fontSize: "11px", color: "#94a3b8", lineHeight: 1.6, margin: 0, textAlign: isRtl ? "right" : "left" }}>
+      <p style={{ fontSize: "11px", color: "#5B6B80", lineHeight: 1.6, margin: 0, textAlign: isRtl ? "right" : "left" }}>
         {t.disclaimer}
       </p>
     </div>

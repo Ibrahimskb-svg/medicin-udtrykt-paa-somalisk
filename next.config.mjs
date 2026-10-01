@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
+// Basale sikkerhedshoveder på alle sider. Bevidst ingen Content-Security-Policy:
+// sitet bruger inline-scripts (Google Analytics og Crisp indlæses efter samtykke),
+// og en for stram CSP ville bryde dem. Mikrofon og kamera begrænses heller ikke, da
+// stemmesøgning og foto-knappen bruger dem.
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Permissions-Policy", value: "geolocation=(), payment=(), usb=()" },
+];
+
 const nextConfig = {
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
   async redirects() {
     return [
       {

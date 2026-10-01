@@ -168,7 +168,7 @@ export function BatchScanPanel({ language }) {
             <ul style={{ listStyle: "none", margin: "0 0 12px", padding: 0, display: "flex", flexDirection: "column", gap: "6px" }}>
               {results.map((r, i) => (
                 <li key={r.id} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "13px", color: "#334155", textAlign: isRtl ? "right" : "left" }}>
-                  <span style={{ width: 16, flexShrink: 0, color: "#94a3b8", fontSize: "11.5px", fontWeight: 700 }}>{i + 1}.</span>
+                  <span style={{ width: 16, flexShrink: 0, color: "#5B6B80", fontSize: "11.5px", fontWeight: 700 }}>{i + 1}.</span>
                   <StatusIcon status={r.status} />
                   <span style={{ flex: 1, minWidth: 0 }}>
                     {r.status === "processing" && t.processing}

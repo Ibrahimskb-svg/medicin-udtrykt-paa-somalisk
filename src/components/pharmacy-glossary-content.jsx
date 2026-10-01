@@ -93,7 +93,7 @@ export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
     <main dir={isRtl ? "rtl" : "ltr"} style={{ maxWidth: "720px", margin: "0 auto", padding: "24px 24px 80px", fontFamily: "system-ui, sans-serif", color: "#1e293b", lineHeight: 1.8 }}>
       <Link
         href={{ pathname: "/", query: { lang: language } }}
-        style={{ display: "inline-block", marginBottom: "20px", fontSize: "13px", fontWeight: 700, color: "#0D9488", textDecoration: "none" }}
+        style={{ display: "inline-block", marginBottom: "20px", fontSize: "13px", fontWeight: 700, color: "#0B7A70", textDecoration: "none" }}
       >
         {BACK_LABEL[language] ?? BACK_LABEL.so}
       </Link>
@@ -153,7 +153,7 @@ export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
               padding: "11px 14px", marginBottom: "24px",
             }}
           >
-            <span style={{ color: "#94a3b8", display: "flex" }}><SearchIcon /></span>
+            <span style={{ color: "#5B6B80", display: "flex" }}><SearchIcon /></span>
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -163,7 +163,7 @@ export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
           </div>
 
           {filtered.length === 0 ? (
-            <p style={{ fontSize: "14px", color: "#94a3b8" }}>{EMPTY_RESULT[language] ?? EMPTY_RESULT.so}</p>
+            <p style={{ fontSize: "14px", color: "#5B6B80" }}>{EMPTY_RESULT[language] ?? EMPTY_RESULT.so}</p>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "32px" }}>
               {filtered.map((entry, i) => {
@@ -195,7 +195,7 @@ export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
         </div>
       )}
 
-      <p style={{ fontSize: "11.5px", color: "#94a3b8", lineHeight: 1.6, margin: 0 }}>
+      <p style={{ fontSize: "11.5px", color: "#5B6B80", lineHeight: 1.6, margin: 0 }}>
         {DISCLAIMER[language] ?? DISCLAIMER.so}
       </p>
     </main>

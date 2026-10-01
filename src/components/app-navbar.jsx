@@ -279,7 +279,7 @@ export function AppNavbar() {
                           }}
                           aria-pressed={isActive}
                           className={`hover-lift flex w-full items-center justify-between gap-2.5 px-4 py-3 text-sm font-semibold transition-colors ${i > 0 ? "border-t border-slate-100" : ""}`}
-                          style={{ background: isActive ? `${accent}14` : "transparent", color: accent }}
+                          style={{ background: "transparent", color: accent, fontWeight: isActive ? 800 : 600 }}
                         >
                           {getLanguageName(language, code)}
                           {isActive && <CheckIcon size={15} color={accent} />}
@@ -371,7 +371,7 @@ export function AppNavbar() {
                 fontWeight: 700,
                 lineHeight: 1,
                 whiteSpace: "nowrap",
-                background: `${activeAccent}14`,
+                background: "#ffffff",
                 border: `1px solid ${activeAccent}50`,
                 color: activeAccent,
               }}
@@ -400,7 +400,7 @@ export function AppNavbar() {
                       }}
                       aria-pressed={isActive}
                       className={`hover-lift flex w-full items-center justify-between gap-2.5 px-4 py-2.5 text-sm font-semibold transition-colors ${i > 0 ? "border-t border-slate-100" : ""}`}
-                      style={{ background: isActive ? `${accent}14` : "transparent", color: accent }}
+                      style={{ background: "transparent", color: accent, fontWeight: isActive ? 800 : 600 }}
                     >
                       {getLanguageName(language, code)}
                       {isActive && <CheckIcon size={14} color={accent} />}
@@ -430,7 +430,7 @@ export function AppNavbar() {
                 className="hover-lift flex-1 flex flex-col items-center justify-center gap-0.5 py-2 transition-colors"
                 style={{
                   minHeight: 56,
-                  color: isActive ? "var(--accent)" : "#94a3b8",
+                  color: isActive ? "var(--accent)" : "#5B6B80",
                   background: isActive ? "var(--flash)" : "transparent",
                 }}
               >

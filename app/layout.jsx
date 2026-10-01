@@ -41,15 +41,15 @@ export const metadata = {
     siteName: "Somalimed",
     title: "Somalimed — Lægemiddelinformation på somalisk, dansk, engelsk og arabisk",
     description: "Gratis og pålidelig medicininformation på 4 sprog — somalisk, dansk, engelsk og arabisk. Skabt af en uddannet Farmakonom for patienter og pårørende.",
-    images: [{ url: "/somalimed-icon.svg", width: 512, height: 512, alt: "Somalimed logo" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Somalimed — lægemiddelinformation på somalisk, dansk, engelsk og arabisk" }],
     locale: "so_SO",
     alternateLocale: ["da_DK", "en_GB", "ar_SA"],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Somalimed — Lægemiddelinformation på 4 sprog",
     description: "Gratis medicininformation på somalisk, dansk, engelsk og arabisk. Skabt af en uddannet Farmakonom.",
-    images: ["/somalimed-icon.svg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -389,7 +389,7 @@ export default function RootLayout({ children }) {
                 // Try to load Ibrahim's photo
                 var img = document.createElement("img");
                 img.id = "sm-bubble-avatar";
-                img.src = "/Ibrahim.png";
+                img.src = "/Ibrahim-avatar.jpg";
                 img.alt = name;
                 img.onload = function() {
                   var fb = document.getElementById("sm-bubble-avatar-fallback");

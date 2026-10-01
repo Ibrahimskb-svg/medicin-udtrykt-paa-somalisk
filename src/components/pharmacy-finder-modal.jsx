@@ -135,7 +135,7 @@ export function PharmacyFinderModal({ language, onClose }) {
       </div>
 
       {filtered.length === 0 ? (
-        <p style={{ fontSize: "14px", color: "#94a3b8", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>{t.empty}</p>
+        <p style={{ fontSize: "14px", color: "#5B6B80", margin: "0 0 8px", textAlign: isRtl ? "right" : "left" }}>{t.empty}</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
           {filtered.map((p, i) => (

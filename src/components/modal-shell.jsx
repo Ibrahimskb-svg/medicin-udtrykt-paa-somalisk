@@ -2,10 +2,10 @@
 import { useEffect, useId } from "react";
 
 export const LANG_THEME = {
-  so: { primary:"#0D9488", soft:"#F0FDFA", border:"#99f6e4", tagBg:"linear-gradient(135deg,#f0fdfa,#e0f2fe)" },
+  so: { primary:"#0B7A70", soft:"#F0FDFA", border:"#99f6e4", tagBg:"linear-gradient(135deg,#f0fdfa,#e0f2fe)" },
   da: { primary:"#2563EB", soft:"#EFF6FF", border:"#bfdbfe", tagBg:"linear-gradient(135deg,#eff6ff,#dbeafe)" },
   en: { primary:"#92400E", soft:"#FEF3C7", border:"#92400E", tagBg:"linear-gradient(135deg,#d4a373,#c8843a)" },
-  ar: { primary:"#D97706", soft:"#FFF7ED", border:"#F97316", tagBg:"linear-gradient(135deg,#fed7aa,#fb923c)" },
+  ar: { primary:"#C2410C", soft:"#FFF7ED", border:"#F97316", tagBg:"linear-gradient(135deg,#fed7aa,#fb923c)" },
 };
 
 export function ModalShell({title,iconEl,onClose,children,isRtl,wide,closeLabel}){

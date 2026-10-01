@@ -288,7 +288,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                     <span style={{ display: "block", fontWeight: 800, fontSize: "16px", color: style.color }}>
                       {cat.label[language] ?? cat.label.so}
                     </span>
-                    <span style={{ display: "block", fontSize: "12.5px", color: "#64748b", marginTop: "2px" }}>
+                    <span style={{ display: "block", fontSize: "12.5px", color: "#5B6B80", marginTop: "2px" }}>
                       {cat.phrases.length}
                     </span>
                   </span>
@@ -342,7 +342,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
           )}
 
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "14px" }}>
-            <span style={{ fontSize: "12px", fontWeight: 700, color: "#94a3b8" }}>{t.showLanguage}</span>
+            <span style={{ fontSize: "12px", fontWeight: 700, color: "#5B6B80" }}>{t.showLanguage}</span>
             {/* Eget sprog udelades bevidst: forsiden viser altid dit eget
                 sprog, så et flag for samme sprog ville gøre bagsiden
                 identisk med forsiden og "vend kortet" ville se ud som om
@@ -401,7 +401,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                 <span dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: "20px", fontWeight: 800, color: categoryStyle.color, lineHeight: 1.4 }}>
                   {phrase[language] ?? phrase.so}
                 </span>
-                <span style={{ marginTop: "14px", fontSize: "12px", fontWeight: 700, color: "#64748b" }}>{t.tapToReveal}</span>
+                <span style={{ marginTop: "14px", fontSize: "12px", fontWeight: 700, color: "#5B6B80" }}>{t.tapToReveal}</span>
               </div>
               <div
                 className="flip-card-face flip-card-back"
@@ -428,8 +428,8 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                 style={{
                   flex: 1, padding: "16px", borderRadius: "16px", textAlign: "center", fontSize: "18px", fontWeight: 800,
                   cursor: "pointer",
-                  background: answer === "yes" ? "#16a34a" : "#f0fdf4",
-                  border: `1.5px solid ${answer === "yes" ? "#16a34a" : "#bbf7d0"}`,
+                  background: answer === "yes" ? "#15803d" : "#f0fdf4",
+                  border: `1.5px solid ${answer === "yes" ? "#15803d" : "#bbf7d0"}`,
                   color: answer === "yes" ? "#fff" : "#166534",
                 }}
               >
@@ -468,7 +468,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
             >
               <ChevronIcon dir={isRtl ? "right" : "left"} color={categoryStyle.color} />
             </button>
-            <span style={{ fontSize: "13px", fontWeight: 700, color: "#94a3b8" }}>
+            <span style={{ fontSize: "13px", fontWeight: 700, color: "#5B6B80" }}>
               {t.pageOf(pageIndex + 1, category.phrases.length)}
             </span>
             <button

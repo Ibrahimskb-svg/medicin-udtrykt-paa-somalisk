@@ -219,7 +219,7 @@ export function SeverityCheckModal({ language, onClose, scopeSlug, scopeName }) 
           padding: "11px 14px", marginBottom: "14px",
         }}
       >
-        <span style={{ color: "#94a3b8", display: "flex" }}><SearchIcon /></span>
+        <span style={{ color: "#5B6B80", display: "flex" }}><SearchIcon /></span>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -274,7 +274,7 @@ export function SeverityCheckModal({ language, onClose, scopeSlug, scopeName }) 
         </div>
       )}
 
-      <p style={{ fontSize: "11px", color: "#94a3b8", lineHeight: 1.6, margin: "10px 0 0", textAlign: isRtl ? "right" : "left" }}>
+      <p style={{ fontSize: "11px", color: "#5B6B80", lineHeight: 1.6, margin: "10px 0 0", textAlign: isRtl ? "right" : "left" }}>
         {t.disclaimer}
       </p>
     </ModalShell>
