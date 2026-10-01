@@ -220,7 +220,7 @@ export function AppNavbar() {
       {/* Desktop Navbar */}
       <header className="sticky top-3 z-[110] hidden px-4 lg:block">
         <nav
-          className="mx-auto max-w-7xl rounded-full shadow-lg shadow-teal-900/10 transition-all duration-300"
+          className="mx-auto w-fit max-w-full rounded-full shadow-lg shadow-teal-900/10 transition-all duration-300"
           style={{ background: "var(--heroBg, linear-gradient(135deg, #0A7A73 0%, #0D9488 50%, #0E7FC0 100%))" }}
         >
           <div className="flex items-center gap-6 px-4 py-2.5 xl:gap-8">
@@ -233,26 +233,21 @@ export function AppNavbar() {
               </span>
             </Link>
 
-            <div className="flex min-w-0 flex-1 items-center justify-between gap-1">
-              {desktopNavTabs.map(({ key, iconEl, label }) => {
-                const emphasized = key === "faq" || key === "mylist";
-                return (
+            <div className="flex items-center gap-2">
+              {desktopNavTabs.map(({ key, iconEl, label }) => (
                 <button
                   key={key}
                   onClick={() => handleTabClick(key)}
                   aria-pressed={activeTab === key}
-                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] ${
+                  className={`hover-lift flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full transition-all duration-200 text-[13px] font-bold ${
                     activeTab === key
-                      ? "bg-white text-teal-700 shadow-md font-bold"
-                      : emphasized
-                        ? "bg-white/25 text-white font-bold ring-2 ring-white/70 hover:bg-white/35"
-                        : "text-white font-semibold hover:bg-white/15"
+                      ? "bg-white text-teal-700 shadow-md"
+                      : "bg-white/25 text-white ring-2 ring-white/70 hover:bg-white/35"
                   }`}
                 >
                   {iconEl} {label}
                 </button>
-                );
-              })}
+              ))}
 
               {/* Sprogvalg — dropdown i stedet for 4 synlige piller, samme
                   mønster som Kontakt-menuen herunder. Sparer plads og gør
