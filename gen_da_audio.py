@@ -1,6 +1,7 @@
 """
 Genererer nyt dansk lydspor til guide-da.mp4
-Stemme: da-DK-JeppeNeural (mandsstemme), roligt tempo (-10%)
+Stemme: da-DK-JeppeNeural (mandsstemme), +3% TTS-rate + 8% ffmpeg atempo
+på taledelen (ikke pauserne) for et hurtigere, mere kompakt gennemsyn.
 
 Naturlig TTS-varighed pr. segment + eksplicitte stilheds-pauser ved
 skærm-handlinger (klik, scroll, modal, QR-generering osv.), i stedet for
@@ -8,73 +9,91 @@ at tvinge tale ind i forudbestemte tidsvinduer. Output er en JSON-tidsplan
 (manifest) med de FAKTISKE start/slut-tidspunkter, som bruges direkte af
 Playwright-optagelsesscriptet.
 """
-import asyncio, subprocess, os, tempfile, sys, json
+import asyncio, subprocess, os, tempfile, sys, json, ssl
 
-FFMPEG = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1'
-VOICE  = 'da-DK-JeppeNeural'
-RATE   = '+3%'
-OUTPUT = '/tmp/da_audio_new.m4a'
+FFMPEG   = '/usr/bin/ffmpeg'
+VOICE    = 'da-DK-JeppeNeural'
+RATE     = '+3%'
+ATEMPO   = '1.08'
+OUTPUT   = '/tmp/da_audio_new.m4a'
 MANIFEST = '/tmp/da_timing.json'
+CA_BUNDLE = '/root/.ccr/ca-bundle.crt'
 
 # ("speech", tekst, label) eller ("silence", sekunder, label)
 SEGMENTS = [
-    ("speech",  "Velkommen til Somalimed. Sådan bruger du hjemmesiden trin for trin, så du hurtigt finder pålidelig information om din medicin.", "hero"),
-    ("silence", 0.6, "hero_pause"),
-    ("speech",  "Øverst i menuen: 'Om mig' — Ibrahim Daahir Hanaf, uddannet farmakonom fra Danmark.", "nav_me"),
-    ("silence", 0.8, "nav_me_pause"),
-    ("speech",  "'Om Somalimed' fortæller om formålet — at hjælpe somaliere og deres familier med at forstå deres medicin.", "nav_site"),
-    ("silence", 0.7, "nav_site_pause"),
-    ("speech",  "Under 'Ofte stillede spørgsmål' finder du svar på det, du undrer dig over.", "nav_faq"),
-    ("silence", 0.6, "nav_faq_pause"),
+    ("speech",  "Velkommen til Somalimed — sådan bruger du siden trin for trin.", "hero"),
+    ("silence", 0.3, "hero_pause"),
+    ("speech",  "Øverst: 'Om mig' — Ibrahim Daahir Hanaf, farmakonom fra Danmark.", "nav_me"),
+    ("silence", 0.3, "nav_me_pause"),
+    ("speech",  "'Om Somalimed' forklarer formålet: at hjælpe somaliere forstå deres medicin.", "nav_site"),
+    ("silence", 0.3, "nav_site_pause"),
+    ("speech",  "'Ofte stillede spørgsmål' svarer på det, du undrer dig over.", "nav_faq"),
+    ("silence", 0.25, "nav_faq_pause"),
     ("speech",  "'Kontakt' lader dig skrive direkte til Ibrahim.", "nav_contact"),
-    ("silence", 0.6, "nav_contact_pause"),
-    ("speech",  "Og 'Min medicin' åbner din egen medicinliste — det vender vi tilbage til om lidt.", "nav_mylist"),
-    ("silence", 0.8, "nav_mylist_pause"),
-    ("speech",  "Den sidste knap, 'Find apotek', viser apoteker hvor personalet taler dit sprog — så du kan tale direkte med dem uden tolk.", "nav_findpharmacy"),
-    ("silence", 0.8, "nav_findpharmacy_pause"),
-    ("speech",  "Øverst i menuen finder du sprogvælgeren som farvede flag — fire sprog: somalisk, dansk, engelsk og arabisk.", "langsel"),
-    ("silence", 0.8, "langsel_pause"),
+    ("silence", 0.25, "nav_contact_pause"),
+    ("speech",  "'Min medicin' åbner din egen liste — mere om det senere.", "nav_mylist"),
+    ("silence", 0.3, "nav_mylist_pause"),
+    ("speech",  "'Find apotek' viser apoteker, hvor personalet taler dit sprog.", "nav_findpharmacy"),
+    ("silence", 0.3, "nav_findpharmacy_pause"),
+    ("speech",  "Kontakt, Find apotek og nye 'Skranke-kort' er nu samlet i én dropdown.", "nav_countercards"),
+    ("silence", 0.4, "nav_countercards_pause"),
+    ("speech",  "Sprogvælgeren er nu tekst i en dropdown, ikke flag — vælg dit sprog der.", "langsel"),
+    ("silence", 0.4, "langsel_pause"),
     ("speech",  "Herunder finder du søgefeltet.", "search_intro"),
-    ("silence", 1.5, "search_scroll"),
-    ("speech",  "Skriv navnet på din medicin — for eksempel ibu-profen.", "search_type_text"),
-    ("silence", 3.2, "search_type_action"),
-    ("speech",  "Ved siden af søgefeltet finder du også et lille mikrofon-ikon — tryk på det for at søge med din egen stemme i stedet for at skrive.", "voice_search"),
-    ("silence", 1.5, "voice_search_action"),
-    ("speech",  "Eller browse efter kategori, som blodtryk, diabetes, antibiotika eller hjertesygdomme — tryk på en kategori for at filtrere listen.", "categories"),
-    ("silence", 1.8, "categories_pause"),
-    ("speech",  "Tryk på en medicin for at åbne dens side. Flagene i menuen foroven lader dig stadig skifte sprog undervejs.", "click_med"),
-    ("silence", 1.8, "click_med_load"),
-    ("speech",  "Øverst på siden finder du fire knapper. Den første deler siden direkte via WhatsApp.", "btn_whatsapp"),
-    ("silence", 1.2, "btn_whatsapp_pause"),
-    ("speech",  "Den anden udskriver medicinsiden — praktisk at have med hos lægen eller på apoteket.", "btn_print"),
-    ("silence", 1.2, "btn_print_pause"),
-    ("speech",  "Den tredje viser en QR-kode med et direkte link til siden. Du kan printe koden som en label til medicinæsken, kopiere billedet ind i et andet system, eller sende den via sms.", "btn_qr"),
-    ("silence", 3.5, "btn_qr_demo"),
-    ("speech",  "Og den fjerde knap tilføjer medicinen til din egen liste.", "btn_addlist"),
-    ("silence", 1.5, "btn_addlist_action"),
-    ("speech",  "Der er nu også en femte knap, 'Påmind mig' — den henter en kalenderfil, som sætter en daglig påmindelse op i din telefons kalender, om at tage medicinen.", "btn_remind"),
-    ("silence", 1.5, "btn_remind_action"),
-    ("speech",  "Herunder finder du et overblik samt Ibrahims egne råd og bemærkninger om medicinen.", "overview"),
-    ("silence", 1.5, "overview_scroll"),
-    ("speech",  "Længere nede finder du detaljerede afsnit om dosering, bivirkninger, interaktioner, advarsler, og hvordan medicinen skal opbevares.", "sections"),
-    ("silence", 2.0, "sections_scroll"),
-    ("speech",  "Nederst finder du kilderne bag informationen, vigtige numre som Giftlinjen og 112, samt datoen for seneste opdatering.", "sources"),
-    ("silence", 2.0, "sources_scroll"),
-    ("speech",  "Lad os nu åbne 'Min medicinliste' fra menuen. Her kan du søge efter din medicin, sætte flueben ved dem du tager, og fjerne dem igen.", "mylist_modal"),
-    ("silence", 2.5, "mylist_modal_demo"),
-    ("speech",  "Har du to eller flere medicin på listen, viser Somalimed automatisk deres interaktioner og advarsler samlet i udfoldelige kort — rødt for advarsler, grønt for generel information. Du trykker bare på navnet for at folde kortet ud.", "mylist_interact"),
-    ("silence", 2.0, "mylist_interact_scroll"),
-    ("speech",  "For udvalgte kombinationer viser vi også en ægte vurdering fra Lægemiddelstyrelsens officielle Interaktionsdatabase — grøn, orange eller rød. For alle andre kombinationer kan du tjekke direkte via linket til deres hjemmeside.", "mylist_paircheck"),
-    ("silence", 2.5, "mylist_paircheck_scroll"),
-    ("speech",  "Du kan også skrive et symptom, du mærker — for eksempel svimmelhed — og Somalimed tjekker om det allerede står som en kendt bivirkning på et af dine gemte medicin.", "symptom_check"),
-    ("silence", 2.5, "symptom_check_action"),
-    ("speech",  "Nederst i listen kan du printe den — nu også med dosering på hver medicin — så du nemt kan vise den til personalet på apoteket eller hos lægen.", "mylist_print"),
-    ("silence", 2.0, "mylist_print_action"),
-    ("speech",  "Lad os gå tilbage til forsiden.", "back_home"),
-    ("silence", 1.5, "back_home_nav"),
-    ("speech",  "Somalimed giver pålidelig medicininformation baseret på faglig viden — helt gratis og uden krav om oprettelse.", "closing1"),
-    ("silence", 0.8, "closing1_pause"),
-    ("speech",  "Vi håber, den er til hjælp for dig og din familie. Mange tak, fordi du så med.", "closing2"),
+    ("silence", 0.6, "search_scroll"),
+    ("speech",  "Skriv navnet på din medicin, for eksempel ibuprofen.", "search_type_text"),
+    ("silence", 0.8, "search_type_action"),
+    ("speech",  "Mikrofon-ikonet lader dig søge med din stemme.", "voice_search"),
+    ("silence", 0.6, "voice_search_action"),
+    ("speech",  "Du kan også fotografere medicinæsken — Somalimed finder siden automatisk.", "photo_search"),
+    ("silence", 0.6, "photo_search_action"),
+    ("speech",  "Eller browse kategorier som blodtryk, diabetes eller hjertesygdomme.", "categories"),
+    ("silence", 0.6, "categories_pause"),
+    ("speech",  "Tryk på en medicin for at åbne siden. Sprogvælgeren virker stadig her.", "click_med"),
+    ("silence", 0.7, "click_med_load"),
+    ("speech",  "Første knap: del siden via WhatsApp.", "btn_whatsapp"),
+    ("silence", 0.4, "btn_whatsapp_pause"),
+    ("speech",  "Anden: udskriv siden — praktisk hos lægen.", "btn_print"),
+    ("silence", 0.4, "btn_print_pause"),
+    ("speech",  "Tredje: en QR-kode til siden — print, kopiér eller send den.", "btn_qr"),
+    ("silence", 1.0, "btn_qr_demo"),
+    ("speech",  "Fjerde knap: tilføj medicinen til din liste.", "btn_addlist"),
+    ("silence", 0.5, "btn_addlist_action"),
+    ("speech",  "'Påmind mig' sætter en daglig kalenderpåmindelse op.", "btn_remind"),
+    ("silence", 0.5, "btn_remind_action"),
+    ("speech",  "Til medicin med mad: en påmindelse tilpasset Suhoor og Iftar.", "btn_prayer"),
+    ("silence", 0.5, "btn_prayer_action"),
+    ("speech",  "'Skranke-kort' er store kort, du kan vise frem i apoteket uden at tale sproget.", "btn_countercards"),
+    ("silence", 0.6, "btn_countercards_action"),
+    ("speech",  "Du kan også få siden læst højt.", "audio_readout"),
+    ("silence", 0.4, "audio_readout_action"),
+    ("speech",  "Lyden kan nu afspilles hurtigere: Normal, Hurtigere eller Hurtigst.", "playback_speed"),
+    ("silence", 0.5, "playback_speed_action"),
+    ("speech",  "Herunder: et overblik og Ibrahims egne råd.", "overview"),
+    ("silence", 0.8, "overview_scroll"),
+    ("speech",  "Længere nede: dosering, bivirkninger, interaktioner og opbevaring.", "sections"),
+    ("silence", 1.0, "sections_scroll"),
+    ("speech",  "Nederst: kilder, Giftlinjen, 112 og seneste opdatering.", "sources"),
+    ("silence", 1.0, "sources_scroll"),
+    ("speech",  "Åbn 'Min medicinliste' — søg, afkryds og fjern din medicin her.", "mylist_modal"),
+    ("silence", 1.0, "mylist_modal_demo"),
+    ("speech",  "Flere medicin på listen? Somalimed viser automatisk interaktioner — rødt for advarsler, grønt for info.", "mylist_interact"),
+    ("silence", 0.8, "mylist_interact_scroll"),
+    ("speech",  "Udvalgte kombinationer får en officiel vurdering fra Lægemiddelstyrelsen.", "mylist_paircheck"),
+    ("silence", 1.0, "mylist_paircheck_scroll"),
+    ("speech",  "Skriv et symptom, som svimmelhed, og tjek om det er en kendt bivirkning.", "symptom_check"),
+    ("silence", 1.0, "symptom_check_action"),
+    ("speech",  "'Er dette alvorligt?' hjælper dig vurdere, om det kræver akut hjælp.", "severity_check"),
+    ("silence", 0.8, "severity_check_action"),
+    ("speech",  "Forsiden har også flashcards med vigtige apoteksord.", "glossary"),
+    ("silence", 0.6, "glossary_pause"),
+    ("speech",  "Print listen — nu med dosering på hver medicin.", "mylist_print"),
+    ("silence", 0.6, "mylist_print_action"),
+    ("speech",  "Tilbage til forsiden.", "back_home"),
+    ("silence", 0.4, "back_home_nav"),
+    ("speech",  "Somalimed giver pålidelig medicininformation — gratis, uden oprettelse.", "closing1"),
+    ("silence", 0.3, "closing1_pause"),
+    ("speech",  "Vi håber, det hjælper dig og din familie. Tak, fordi du så med.", "closing2"),
 ]
 
 def ffmpeg_run(*args):
@@ -91,6 +110,8 @@ def get_dur(path):
 
 async def tts(text, path):
     import edge_tts
+    import edge_tts.communicate as _ec
+    _ec._SSL_CTX = ssl.create_default_context(cafile=CA_BUNDLE)
     comm = edge_tts.Communicate(text, VOICE, rate=RATE)
     await comm.save(path)
 
@@ -102,7 +123,7 @@ async def make_piece(idx, kind, val, tmpdir):
         return out, val
     mp3 = os.path.join(tmpdir, f's{idx:03d}.mp3')
     await tts(val, mp3)
-    ffmpeg_run('-y', '-i', mp3, '-ar', '44100', '-ac', '1', out)
+    ffmpeg_run('-y', '-i', mp3, '-filter:a', f'atempo={ATEMPO}', '-ar', '44100', '-ac', '1', out)
     return out, get_dur(out)
 
 async def main():
@@ -112,7 +133,7 @@ async def main():
         print('❌  pip3 install edge-tts'); sys.exit(1)
 
     tmpdir = tempfile.mkdtemp(prefix='da_tts_')
-    print(f'Stemme: {VOICE}  rate: {RATE}')
+    print(f'Stemme: {VOICE}  rate: {RATE}  atempo: {ATEMPO}')
 
     wav_files = []
     timeline = []

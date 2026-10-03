@@ -1,74 +1,92 @@
 """
 Genererer nyt engelsk lydspor til guide-en.mp4
-Stemme: en-US-ChristopherNeural (rolig, professionel mandsstemme), -10% tempo
-Se gen_da_audio.py for arkitektur-forklaring.
+Stemme: en-US-ChristopherNeural, +3% TTS-rate + 8% ffmpeg atempo på
+taledelen (ikke pauserne). Se gen_da_audio.py for arkitektur-forklaring.
 """
-import asyncio, subprocess, os, tempfile, sys, json
+import asyncio, subprocess, os, tempfile, sys, json, ssl
 
-FFMPEG = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1'
-VOICE  = 'en-US-ChristopherNeural'
-RATE   = '+3%'
-OUTPUT = '/tmp/en_audio_new.m4a'
+FFMPEG   = '/usr/bin/ffmpeg'
+VOICE    = 'en-US-ChristopherNeural'
+RATE     = '+3%'
+ATEMPO   = '1.08'
+OUTPUT   = '/tmp/en_audio_new.m4a'
 MANIFEST = '/tmp/en_timing.json'
+CA_BUNDLE = '/root/.ccr/ca-bundle.crt'
 
 SEGMENTS = [
-    ("speech",  "Welcome to Somalimed. Here's how to use the site step by step, so you can quickly find reliable information about your medicine.", "hero"),
-    ("silence", 0.6, "hero_pause"),
-    ("speech",  "At the top of the menu: 'About me' — Ibrahim Daahir Hanaf, Pharmaconomist and chemist from Denmark.", "nav_me"),
-    ("silence", 0.8, "nav_me_pause"),
-    ("speech",  "'About Somalimed' explains the purpose — helping Somali speakers and their families understand their medicine.", "nav_site"),
-    ("silence", 0.7, "nav_site_pause"),
-    ("speech",  "'FAQ' answers frequently asked questions.", "nav_faq"),
-    ("silence", 0.6, "nav_faq_pause"),
+    ("speech",  "Welcome to Somalimed — here's how to use the site step by step.", "hero"),
+    ("silence", 0.3, "hero_pause"),
+    ("speech",  "At the top: 'About me' — Ibrahim Daahir Hanaf, pharmaconomist from Denmark.", "nav_me"),
+    ("silence", 0.3, "nav_me_pause"),
+    ("speech",  "'About Somalimed' explains the purpose: helping Somalis understand their medicine.", "nav_site"),
+    ("silence", 0.3, "nav_site_pause"),
+    ("speech",  "'FAQ' answers the questions you're wondering about.", "nav_faq"),
+    ("silence", 0.25, "nav_faq_pause"),
     ("speech",  "'Contact' lets you write directly to Ibrahim.", "nav_contact"),
-    ("silence", 0.6, "nav_contact_pause"),
-    ("speech",  "And 'My medicine' opens your own medicine list — we'll come back to that shortly.", "nav_mylist"),
-    ("silence", 0.8, "nav_mylist_pause"),
-    ("speech",  "The last button, 'Find a pharmacy', shows pharmacies where staff speak your language — so you can talk to them directly, without an interpreter.", "nav_findpharmacy"),
-    ("silence", 0.8, "nav_findpharmacy_pause"),
-    ("speech",  "At the top of the menu you'll find the language selector as colored flags — four languages: Somali, Danish, English, and Arabic.", "langsel"),
-    ("silence", 0.8, "langsel_pause"),
-    ("speech",  "Below that, you'll find the search bar.", "search_intro"),
-    ("silence", 1.5, "search_scroll"),
-    ("speech",  "Type the name of your medicine — for example eye-byoo-pro-fen.", "search_type_text"),
-    ("silence", 3.2, "search_type_action"),
-    ("speech",  "Next to the search bar you'll also find a small microphone icon — tap it to search using your own voice instead of typing.", "voice_search"),
-    ("silence", 1.5, "voice_search_action"),
-    ("speech",  "Or browse by category, such as blood pressure, diabetes, antibiotics, or heart disease — tap a category to filter the list.", "categories"),
-    ("silence", 1.8, "categories_pause"),
-    ("speech",  "Tap a medicine to open its page. The flags in the menu at the top still let you switch language anytime.", "click_med"),
-    ("silence", 1.8, "click_med_load"),
-    ("speech",  "Near the top of the page are four buttons. The first shares the page directly via WhatsApp.", "btn_whatsapp"),
-    ("silence", 1.2, "btn_whatsapp_pause"),
-    ("speech",  "The second prints the medicine page — handy to have at the doctor's or the pharmacy.", "btn_print"),
-    ("silence", 1.2, "btn_print_pause"),
-    ("speech",  "The third shows a QR code with a direct link to the page. You can print the code as a label for the medicine box, copy the image into another system, or send it via SMS.", "btn_qr"),
-    ("silence", 3.5, "btn_qr_demo"),
-    ("speech",  "And the fourth button adds the medicine to your own list.", "btn_addlist"),
-    ("silence", 1.5, "btn_addlist_action"),
-    ("speech",  "There's now also a fifth button, 'Remind me' — it downloads a calendar file that sets up a daily reminder in your phone's calendar to take the medicine.", "btn_remind"),
-    ("silence", 1.5, "btn_remind_action"),
-    ("speech",  "Below that, you'll find an overview along with Ibrahim's own advice and remarks about the medicine.", "overview"),
-    ("silence", 1.5, "overview_scroll"),
-    ("speech",  "Further down are detailed sections on dosage, side effects, interactions, warnings, and how to store the medicine.", "sections"),
-    ("silence", 2.0, "sections_scroll"),
-    ("speech",  "At the bottom, you'll find the sources behind the information, important numbers like the Poison Helpline and 112, and the date it was last updated.", "sources"),
-    ("silence", 2.0, "sources_scroll"),
-    ("speech",  "Now let's open 'My medicine list' from the menu. Here you can search for your medicine, check off the ones you take, and remove them again.", "mylist_modal"),
-    ("silence", 2.5, "mylist_modal_demo"),
-    ("speech",  "If you have two or more medicines on the list, Somalimed automatically shows their interactions and warnings together in expandable cards — red for warnings, green for general information. Just tap the name to open a card.", "mylist_interact"),
-    ("silence", 2.0, "mylist_interact_scroll"),
-    ("speech",  "For selected combinations, we also show a real assessment from the Danish Medicines Agency's official Interaction Database — green, orange, or red. For all other combinations, you can check directly via the link to their website.", "mylist_paircheck"),
-    ("silence", 2.5, "mylist_paircheck_scroll"),
-    ("speech",  "You can also type a symptom you're feeling — for example dizziness — and Somalimed checks if it's already listed as a known side effect of one of your saved medicines.", "symptom_check"),
-    ("silence", 2.5, "symptom_check_action"),
-    ("speech",  "At the bottom of the list you can print it — now including the dosage for each medicine — so you can easily show it to staff at the pharmacy or the doctor's.", "mylist_print"),
-    ("silence", 2.0, "mylist_print_action"),
-    ("speech",  "Let's go back to the homepage.", "back_home"),
-    ("silence", 1.5, "back_home_nav"),
-    ("speech",  "Somalimed provides reliable medicine information based on professional knowledge — completely free and with no sign-up required.", "closing1"),
-    ("silence", 0.8, "closing1_pause"),
-    ("speech",  "We hope it's helpful to you and your family. Thank you very much for watching.", "closing2"),
+    ("silence", 0.25, "nav_contact_pause"),
+    ("speech",  "'My medicine' opens your own list — more on that shortly.", "nav_mylist"),
+    ("silence", 0.3, "nav_mylist_pause"),
+    ("speech",  "'Find a pharmacy' shows pharmacies where staff speak your language.", "nav_findpharmacy"),
+    ("silence", 0.3, "nav_findpharmacy_pause"),
+    ("speech",  "Contact, Find a pharmacy and the new 'Counter cards' are now grouped in one dropdown.", "nav_countercards"),
+    ("silence", 0.4, "nav_countercards_pause"),
+    ("speech",  "The language selector is now text in a dropdown, not flags — pick your language there.", "langsel"),
+    ("silence", 0.4, "langsel_pause"),
+    ("speech",  "Below that is the search bar.", "search_intro"),
+    ("silence", 0.6, "search_scroll"),
+    ("speech",  "Type the name of your medicine, for example ibuprofen.", "search_type_text"),
+    ("silence", 0.8, "search_type_action"),
+    ("speech",  "The microphone icon lets you search with your voice.", "voice_search"),
+    ("silence", 0.6, "voice_search_action"),
+    ("speech",  "You can also photograph the medicine box — Somalimed finds the page automatically.", "photo_search"),
+    ("silence", 0.6, "photo_search_action"),
+    ("speech",  "Or browse categories like blood pressure, diabetes, or heart disease.", "categories"),
+    ("silence", 0.6, "categories_pause"),
+    ("speech",  "Tap a medicine to open its page. The language selector still works here.", "click_med"),
+    ("silence", 0.7, "click_med_load"),
+    ("speech",  "First button: share the page via WhatsApp.", "btn_whatsapp"),
+    ("silence", 0.4, "btn_whatsapp_pause"),
+    ("speech",  "Second: print the page — handy at the doctor's.", "btn_print"),
+    ("silence", 0.4, "btn_print_pause"),
+    ("speech",  "Third: a QR code for the page — print, copy, or send it.", "btn_qr"),
+    ("silence", 1.0, "btn_qr_demo"),
+    ("speech",  "Fourth button: add the medicine to your list.", "btn_addlist"),
+    ("silence", 0.5, "btn_addlist_action"),
+    ("speech",  "'Remind me' sets up a daily calendar reminder.", "btn_remind"),
+    ("silence", 0.5, "btn_remind_action"),
+    ("speech",  "For medicine taken with food: a reminder aligned with Suhoor and Iftar.", "btn_prayer"),
+    ("silence", 0.5, "btn_prayer_action"),
+    ("speech",  "'Counter cards' are big cards you can show at the pharmacy without speaking the language.", "btn_countercards"),
+    ("silence", 0.6, "btn_countercards_action"),
+    ("speech",  "You can also have the page read aloud.", "audio_readout"),
+    ("silence", 0.4, "audio_readout_action"),
+    ("speech",  "Audio can now play faster: Normal, Faster, or Fastest.", "playback_speed"),
+    ("silence", 0.5, "playback_speed_action"),
+    ("speech",  "Below: an overview and Ibrahim's own advice.", "overview"),
+    ("silence", 0.8, "overview_scroll"),
+    ("speech",  "Further down: dosage, side effects, interactions, and storage.", "sections"),
+    ("silence", 1.0, "sections_scroll"),
+    ("speech",  "At the bottom: sources, the Poison Helpline, 112, and the last update.", "sources"),
+    ("silence", 1.0, "sources_scroll"),
+    ("speech",  "Open 'My medicine list' — search, check, and remove your medicine here.", "mylist_modal"),
+    ("silence", 1.0, "mylist_modal_demo"),
+    ("speech",  "Two or more medicines on the list? Somalimed shows interactions automatically — red for warnings, green for info.", "mylist_interact"),
+    ("silence", 0.8, "mylist_interact_scroll"),
+    ("speech",  "Selected combinations get an official assessment from the Danish Medicines Agency.", "mylist_paircheck"),
+    ("silence", 1.0, "mylist_paircheck_scroll"),
+    ("speech",  "Type a symptom, like dizziness, and check if it's a known side effect.", "symptom_check"),
+    ("silence", 1.0, "symptom_check_action"),
+    ("speech",  "'Is this serious?' helps you judge whether it needs urgent help.", "severity_check"),
+    ("silence", 0.8, "severity_check_action"),
+    ("speech",  "The homepage also has flashcards for key pharmacy words.", "glossary"),
+    ("silence", 0.6, "glossary_pause"),
+    ("speech",  "Print the list — now including dosage for each medicine.", "mylist_print"),
+    ("silence", 0.6, "mylist_print_action"),
+    ("speech",  "Back to the homepage.", "back_home"),
+    ("silence", 0.4, "back_home_nav"),
+    ("speech",  "Somalimed provides reliable medicine information — free, with no sign-up.", "closing1"),
+    ("silence", 0.3, "closing1_pause"),
+    ("speech",  "We hope it helps you and your family. Thank you for watching.", "closing2"),
 ]
 
 def ffmpeg_run(*args):
@@ -85,6 +103,8 @@ def get_dur(path):
 
 async def tts(text, path):
     import edge_tts
+    import edge_tts.communicate as _ec
+    _ec._SSL_CTX = ssl.create_default_context(cafile=CA_BUNDLE)
     comm = edge_tts.Communicate(text, VOICE, rate=RATE)
     await comm.save(path)
 
@@ -96,7 +116,7 @@ async def make_piece(idx, kind, val, tmpdir):
         return out, val
     mp3 = os.path.join(tmpdir, f's{idx:03d}.mp3')
     await tts(val, mp3)
-    ffmpeg_run('-y', '-i', mp3, '-ar', '44100', '-ac', '1', out)
+    ffmpeg_run('-y', '-i', mp3, '-filter:a', f'atempo={ATEMPO}', '-ar', '44100', '-ac', '1', out)
     return out, get_dur(out)
 
 async def main():
@@ -106,7 +126,7 @@ async def main():
         print('❌  pip3 install edge-tts'); sys.exit(1)
 
     tmpdir = tempfile.mkdtemp(prefix='en_tts_')
-    print(f'Stemme: {VOICE}  rate: {RATE}')
+    print(f'Stemme: {VOICE}  rate: {RATE}  atempo: {ATEMPO}')
 
     wav_files = []
     timeline = []

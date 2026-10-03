@@ -1,76 +1,96 @@
 """
 Genererer nyt arabisk lydspor til guide-ar.mp4
-Stemme: ar-QA-MoazNeural (Qatar fusha-arabisk, rolig mandsstemme), -10% tempo
-Se gen_da_audio.py for arkitektur-forklaring. Inkluderer ekstra segment om
-lydoplæsningsfunktionen, som kun findes på arabisk og somalisk.
-"""
-import asyncio, subprocess, os, tempfile, sys, json
+Stemme: ar-QA-MoazNeural (Qatar fusha-arabisk, rolig mandsstemme),
++3% TTS-rate + 8% ffmpeg atempo på taledelen (ikke pauserne).
 
-FFMPEG = '/Users/ibrahimdahirhanaf/Library/Python/3.9/lib/python/site-packages/imageio_ffmpeg/binaries/ffmpeg-macos-x86_64-v7.1'
-VOICE  = 'ar-QA-MoazNeural'
-RATE   = '+3%'
-OUTPUT = '/tmp/ar_audio_new.m4a'
+De 9 sætninger om nye funktioner (og de 2 sætninger der erstatter de gamle
+أعلام-omtaler) er den ENDELIGE formulering leveret af brugeren 2026-10-03;
+alle øvrige sætninger er uændrede fra den tidligere version.
+Se gen_da_audio.py for arkitektur-forklaring.
+"""
+import asyncio, subprocess, os, tempfile, sys, json, ssl
+
+FFMPEG   = '/usr/bin/ffmpeg'
+VOICE    = 'ar-QA-MoazNeural'
+RATE     = '+3%'
+ATEMPO   = '1.08'
+OUTPUT   = '/tmp/ar_audio_new.m4a'
 MANIFEST = '/tmp/ar_timing.json'
+CA_BUNDLE = '/root/.ccr/ca-bundle.crt'
 
 SEGMENTS = [
     ("speech",  "مرحبًا بكم في سوماليميد. في هذا الفيديو سنوضح لكم كيفية استخدام الموقع خطوة بخطوة، لتتمكنوا من العثور بسرعة على معلومات دوائية موثوقة.", "hero"),
-    ("silence", 0.6, "hero_pause"),
+    ("silence", 0.17, "hero_pause"),
     ("speech",  "أعلى القائمة الرئيسية: 'نبذة عني' — إبراهيم ظاهر حنف، فارماكونوم وكيميائي من الدنمارك.", "nav_me"),
-    ("silence", 0.8, "nav_me_pause"),
+    ("silence", 0.17, "nav_me_pause"),
     ("speech",  "'حول Somalimed' يوضح الهدف — مساعدة الناطقين بالصومالية وعائلاتهم على فهم أدويتهم.", "nav_site"),
-    ("silence", 0.7, "nav_site_pause"),
+    ("silence", 0.17, "nav_site_pause"),
     ("speech",  "'الأسئلة الشائعة' تجيب على الأسئلة المتكررة.", "nav_faq"),
-    ("silence", 0.6, "nav_faq_pause"),
+    ("silence", 0.15, "nav_faq_pause"),
     ("speech",  "'تواصل' يتيح لكم الكتابة مباشرة إلى إبراهيم.", "nav_contact"),
-    ("silence", 0.6, "nav_contact_pause"),
+    ("silence", 0.15, "nav_contact_pause"),
     ("speech",  "و'ادوياتي' يفتح قائمة أدويتكم الخاصة — سنعود إليها بعد قليل.", "nav_mylist"),
-    ("silence", 0.8, "nav_mylist_pause"),
+    ("silence", 0.17, "nav_mylist_pause"),
     ("speech",  "الزر الأخير، 'ابحث عن صيدلية'، يعرض صيدليات يتحدث موظفوها لغتكم — لتتمكنوا من التحدث معهم مباشرة دون الحاجة لمترجم.", "nav_findpharmacy"),
-    ("silence", 0.8, "nav_findpharmacy_pause"),
-    ("speech",  "أعلى القائمة يوجد مبدّل اللغة على شكل أعلام ملوّنة، بأربع لغات — الصومالية والدنماركية والإنجليزية والعربية.", "langsel"),
-    ("silence", 0.8, "langsel_pause"),
+    ("silence", 0.17, "nav_findpharmacy_pause"),
+    ("speech",  "يمكنكم الآن العثور على «تواصل»، و«ابحث عن صيدلية»، و«بطاقات موظفي الصيدلية» في قائمة منسدلة واحدة.", "nav_countercards"),
+    ("silence", 0.22, "nav_countercards_pause"),
+    ("speech",  "يظهر اختيار اللغة في أعلى الصفحة الآن على شكل قائمة نصية منسدلة. ويمكنكم من خلالها اختيار الصومالية أو الدنماركية أو الإنجليزية أو العربية.", "langsel"),
+    ("silence", 0.22, "langsel_pause"),
     ("speech",  "أسفله تجدون شريط البحث.", "search_intro"),
-    ("silence", 1.5, "search_scroll"),
+    ("silence", 0.33, "search_scroll"),
     ("speech",  "اكتبوا اسم دوائكم — مثلاً إيبوبروفين.", "search_type_text"),
-    ("silence", 3.2, "search_type_action"),
+    ("silence", 0.44, "search_type_action"),
     ("speech",  "بجانب شريط البحث ستجدون أيضًا أيقونة ميكروفون صغيرة — اضغطوا عليها للبحث بصوتكم بدلاً من الكتابة.", "voice_search"),
-    ("silence", 1.5, "voice_search_action"),
+    ("silence", 0.33, "voice_search_action"),
+    ("speech",  "يمكنكم أيضًا التقاط صورة لعبوة الدواء، وسيعرض لكم Somalimed تلقائيًا الصفحة الصحيحة الخاصة بذلك الدواء.", "photo_search"),
+    ("silence", 0.33, "photo_search_action"),
     ("speech",  "أو تصفّحوا حسب الفئة، مثل ضغط الدم أو السكري أو المضادات الحيوية أو أمراض القلب — اضغطوا على فئة لتصفية القائمة.", "categories"),
-    ("silence", 1.8, "categories_pause"),
-    ("speech",  "اضغطوا على دواء لفتح صفحته. الأعلام في القائمة العلوية لا تزال تتيح لكم تغيير اللغة في أي وقت.", "click_med"),
-    ("silence", 1.8, "click_med_load"),
+    ("silence", 0.33, "categories_pause"),
+    ("speech",  "اضغطوا على الدواء الذي تريدونه لفتح صفحته. ويمكنكم تغيير اللغة في أي وقت من خلال خيار اللغة الظاهر في أعلى الصفحة.", "click_med"),
+    ("silence", 0.39, "click_med_load"),
     ("speech",  "أعلى الصفحة توجد أربعة أزرار. الأول يشارك الصفحة مباشرة عبر واتساب.", "btn_whatsapp"),
-    ("silence", 1.2, "btn_whatsapp_pause"),
+    ("silence", 0.22, "btn_whatsapp_pause"),
     ("speech",  "الثاني يطبع صفحة الدواء — مفيد عند الطبيب أو الصيدلية.", "btn_print"),
-    ("silence", 1.2, "btn_print_pause"),
+    ("silence", 0.22, "btn_print_pause"),
     ("speech",  "الثالث يعرض رمز QR برابط مباشر للصفحة. يمكنكم طباعة الرمز كملصق لعلبة الدواء، أو نسخ الصورة إلى نظام آخر، أو إرساله برسالة نصية.", "btn_qr"),
-    ("silence", 3.5, "btn_qr_demo"),
+    ("silence", 0.55, "btn_qr_demo"),
     ("speech",  "والزر الرابع يضيف الدواء إلى قائمتكم الخاصة.", "btn_addlist"),
-    ("silence", 1.5, "btn_addlist_action"),
+    ("silence", 0.28, "btn_addlist_action"),
     ("speech",  "يوجد الآن أيضًا زر خامس، 'ذكّرني' — يقوم بتنزيل ملف تقويم يضبط تذكيرًا يوميًا في تقويم هاتفكم لتناول الدواء.", "btn_remind"),
-    ("silence", 1.5, "btn_remind_action"),
+    ("silence", 0.28, "btn_remind_action"),
+    ("speech",  "إذا كان الدواء يُؤخذ مع الطعام، فيمكنكم الآن ضبط تذكير يتناسب مع وقتَي السحور والإفطار.", "btn_prayer"),
+    ("silence", 0.28, "btn_prayer_action"),
+    ("speech",  "تعرض لكم «بطاقات موظفي الصيدلية» عبارات كبيرة وواضحة يمكنكم التنقل بينها ثم عرضها مباشرة على موظف الصيدلية، دون الحاجة إلى التحدث باللغة الدنماركية.", "btn_countercards"),
+    ("silence", 0.33, "btn_countercards_action"),
     ("speech",  "وهنا يمكنكم أيضًا الاستماع إلى تسجيل صوتي، حيث يقرأ رجل النص بصوت عالٍ لكم.", "audio_readout"),
-    ("silence", 1.5, "audio_readout_action"),
+    ("silence", 0.22, "audio_readout_action"),
+    ("speech",  "يمكنكم الآن تغيير سرعة الصوت والاختيار بين: عادي، سريع، أو سريع جدًا.", "playback_speed"),
+    ("silence", 0.28, "playback_speed_action"),
     ("speech",  "أسفله تجدون نظرة عامة، بالإضافة إلى نصائح إبراهيم الخاصة وملاحظاته حول الدواء.", "overview"),
-    ("silence", 1.5, "overview_scroll"),
+    ("silence", 0.44, "overview_scroll"),
     ("speech",  "أدناه أقسام مفصّلة عن الجرعة، الآثار الجانبية، التفاعلات، التحذيرات، وطريقة حفظ الدواء.", "sections"),
-    ("silence", 2.0, "sections_scroll"),
+    ("silence", 0.55, "sections_scroll"),
     ("speech",  "في الأسفل تجدون المصادر وراء المعلومات، وأرقامًا مهمة مثل خط السموم ورقم الطوارئ 112، وتاريخ آخر تحديث.", "sources"),
-    ("silence", 2.0, "sources_scroll"),
+    ("silence", 0.55, "sources_scroll"),
     ("speech",  "لنفتح الآن 'ادوياتي' من القائمة الرئيسية. هنا يمكنكم البحث عن دوائكم، وتحديد ما تتناولونه، وإزالته مجددًا.", "mylist_modal"),
-    ("silence", 2.5, "mylist_modal_demo"),
+    ("silence", 0.55, "mylist_modal_demo"),
     ("speech",  "إذا كان لديكم دواءان أو أكثر في القائمة، يعرض سوماليميد تلقائيًا تفاعلاتهما وتحذيراتهما في بطاقات قابلة للطي — الأحمر للتحذيرات، والأخضر للمعلومات العامة. فقط اضغطوا على الاسم لفتح البطاقة.", "mylist_interact"),
-    ("silence", 2.0, "mylist_interact_scroll"),
+    ("silence", 0.44, "mylist_interact_scroll"),
     ("speech",  "بالنسبة لبعض التوليفات المحددة، نعرض أيضًا تقييمًا حقيقيًا من قاعدة بيانات التفاعلات الدوائية الرسمية التابعة لهيئة الأدوية الدنماركية — أخضر أو برتقالي أو أحمر. أما بقية التوليفات، فيمكنكم التحقق منها مباشرة عبر رابط موقعهم.", "mylist_paircheck"),
-    ("silence", 2.5, "mylist_paircheck_scroll"),
+    ("silence", 0.55, "mylist_paircheck_scroll"),
     ("speech",  "يمكنكم أيضًا كتابة عرض تشعرون به — مثلاً دوخة — ويتحقق سوماليميد مما إذا كان مذكورًا بالفعل كعرض جانبي معروف لأحد أدويتكم المحفوظة.", "symptom_check"),
-    ("silence", 2.5, "symptom_check_action"),
+    ("silence", 0.55, "symptom_check_action"),
+    ("speech",  "يساعدكم زر «هل هذا خطير؟» على معرفة ما إذا كانت الأعراض أو الآثار الجانبية التي تشعرون بها تستدعي مساعدة عاجلة.", "severity_check"),
+    ("silence", 0.44, "severity_check_action"),
+    ("speech",  "ستجدون في الصفحة الرئيسية أيضًا بطاقات تعليمية تساعدكم على تعلّم الكلمات الدنماركية الشائعة الاستخدام في الصيدلية.", "glossary"),
+    ("silence", 0.33, "glossary_pause"),
     ("speech",  "في أسفل القائمة يمكنكم طباعتها — وتتضمن الآن جرعة كل دواء — لتتمكنوا بسهولة من عرضها على موظفي الصيدلية أو الطبيب.", "mylist_print"),
-    ("silence", 2.0, "mylist_print_action"),
+    ("silence", 0.33, "mylist_print_action"),
     ("speech",  "لنعد الآن إلى الصفحة الرئيسية.", "back_home"),
-    ("silence", 1.5, "back_home_nav"),
+    ("silence", 0.22, "back_home_nav"),
     ("speech",  "يقدّم سوماليميد معلومات دوائية موثوقة مبنية على معرفة مهنية — مجانًا تمامًا وبدون الحاجة إلى تسجيل.", "closing1"),
-    ("silence", 0.8, "closing1_pause"),
+    ("silence", 0.17, "closing1_pause"),
     ("speech",  "نأمل أن يكون مفيدًا لكم ولعائلاتكم. شكرًا جزيلاً لمتابعتكم.", "closing2"),
 ]
 
@@ -88,6 +108,8 @@ def get_dur(path):
 
 async def tts(text, path):
     import edge_tts
+    import edge_tts.communicate as _ec
+    _ec._SSL_CTX = ssl.create_default_context(cafile=CA_BUNDLE)
     comm = edge_tts.Communicate(text, VOICE, rate=RATE)
     await comm.save(path)
 
@@ -99,7 +121,7 @@ async def make_piece(idx, kind, val, tmpdir):
         return out, val
     mp3 = os.path.join(tmpdir, f's{idx:03d}.mp3')
     await tts(val, mp3)
-    ffmpeg_run('-y', '-i', mp3, '-ar', '44100', '-ac', '1', out)
+    ffmpeg_run('-y', '-i', mp3, '-filter:a', f'atempo={ATEMPO}', '-ar', '44100', '-ac', '1', out)
     return out, get_dur(out)
 
 async def main():
@@ -109,7 +131,7 @@ async def main():
         print('❌  pip3 install edge-tts'); sys.exit(1)
 
     tmpdir = tempfile.mkdtemp(prefix='ar_tts_')
-    print(f'Stemme: {VOICE}  rate: {RATE}')
+    print(f'Stemme: {VOICE}  rate: {RATE}  atempo: {ATEMPO}')
 
     wav_files = []
     timeline = []
