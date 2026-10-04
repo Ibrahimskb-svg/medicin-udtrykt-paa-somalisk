@@ -154,7 +154,7 @@ async function smoothScroll(page, fromY, toY, ms) {
 
 // Klik nav-knap → modal åbner → langsom mouse-wheel scroll i modal → Escape lukker
 async function showNavModal(page, btnText, totalMs, closeMs) {
-  await page.click(`button:has-text("${btnText}")`);
+  await page.locator(`button:has-text("${btnText}")`).first().click();
   await sleep(500);
   await page.mouse.move(640, 380);
   const scrollMs = Math.max(500, totalMs - 500 - closeMs);
@@ -364,28 +364,28 @@ async function peekContactDropdown(page, totalMs) {
   await sleepToTarget(seg, 'btn_whatsapp_pause');
 
   console.log('  [btn_print] Print button (safe click, window.print stubbed)');
-  await page.click(`button:has-text("${SHARE_LABELS.print}")`).catch(() => {});
+  await page.locator(`button:has-text("${SHARE_LABELS.print}")`).first().click().catch(() => {});
   await sleepToTarget(seg, 'btn_print');
   await sleepToTarget(seg, 'btn_print_pause');
 
   console.log('  [btn_qr] QR code modal');
-  await page.click(`button:has-text("${SHARE_LABELS.qr}")`).catch(() => {});
+  await page.locator(`button:has-text("${SHARE_LABELS.qr}")`).first().click().catch(() => {});
   await sleepToTarget(seg, 'btn_qr');
   // Demo: klik "kopiér billede" midt i stilheden, luk derefter modal
   const qrDemoMs = dur('btn_qr_demo') * 1000;
   await sleep(Math.round(qrDemoMs * 0.5));
-  await page.click(`button:has-text("${QR_LABELS.copy}")`).catch(() => {});
+  await page.locator(`button:has-text("${QR_LABELS.copy}")`).first().click().catch(() => {});
   await page.keyboard.press('Escape');
   await sleepToTarget(seg, 'btn_qr_demo');
 
   console.log('  [btn_addlist] Add to list button');
-  await page.click(`button:has-text("${SHARE_LABELS.addToList}")`).catch(() => {});
+  await page.locator(`button:has-text("${SHARE_LABELS.addToList}")`).first().click().catch(() => {});
   await sleepToTarget(seg, 'btn_addlist');
   await sleepToTarget(seg, 'btn_addlist_action');
 
   if (seg.btn_remind) {
     console.log('  [btn_remind] Remind me button (downloads .ics, safe)');
-    await page.click(`button:has-text("${SHARE_LABELS.remind}")`).catch(() => {});
+    await page.locator(`button:has-text("${SHARE_LABELS.remind}")`).first().click().catch(() => {});
     await sleepToTarget(seg, 'btn_remind');
     await sleepToTarget(seg, 'btn_remind_action');
   }
@@ -424,7 +424,7 @@ async function peekContactDropdown(page, totalMs) {
     console.log('  [audio_readout] Audio playback button');
     const audioBtnText = LANG === 'so' ? 'Dhageyso codkan' : LANG === 'ar' ? 'استمع إلى التسجيل' : null;
     if (audioBtnText) {
-      await page.click(`button:has-text("${audioBtnText}")`).catch(() => {});
+      await page.locator(`button:has-text("${audioBtnText}")`).first().click().catch(() => {});
     }
     await sleepToTarget(seg, 'audio_readout');
     await sleepToTarget(seg, 'audio_readout_action');
@@ -433,7 +433,7 @@ async function peekContactDropdown(page, totalMs) {
   // ── afspilningshastighed ────────────────────────────────────────────
   if (seg.playback_speed) {
     console.log('  [playback_speed] Speed preset button ("Faster")');
-    await page.click(`button:has-text("${SPEED_LABELS}")`, QUICK).catch(() => {});
+    await page.locator(`button:has-text("${SPEED_LABELS}")`).first().click(QUICK).catch(() => {});
     await sleepToTarget(seg, 'playback_speed');
     await sleepToTarget(seg, 'playback_speed_action');
   }
@@ -455,7 +455,7 @@ async function peekContactDropdown(page, totalMs) {
 
   // ── Min medicinliste-modal ──────────────────────────────────────────
   console.log('  [mylist_modal] Open My list modal, search + check items');
-  await page.click(`button:has-text("${NAV_LABELS.mylist}")`).catch(() => {});
+  await page.locator(`button:has-text("${NAV_LABELS.mylist}")`).first().click().catch(() => {});
   const searchInput = page.locator(`input[placeholder="${MYLIST_LABELS.search}"]`).first();
   await searchInput.click().catch(() => {});
   await page.keyboard.type('ibu', { delay: 120 }).catch(() => {});
@@ -536,7 +536,7 @@ async function peekContactDropdown(page, totalMs) {
   }
 
   console.log('  [mylist_print] Print list button (safe, window.open stubbed elsewhere)');
-  await page.click(`button:has-text("${MYLIST_LABELS.print}")`).catch(() => {});
+  await page.locator(`button:has-text("${MYLIST_LABELS.print}")`).first().click().catch(() => {});
   await sleepToTarget(seg, 'mylist_print');
   await sleepToTarget(seg, 'mylist_print_action');
   await page.keyboard.press('Escape');
