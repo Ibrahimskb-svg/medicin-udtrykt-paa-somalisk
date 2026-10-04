@@ -41,7 +41,7 @@ SEGMENTS = [
     ("silence", 0.4, "langsel_pause"),
     ("speech",  "Herunder finder du søgefeltet.", "search_intro"),
     ("silence", 0.6, "search_scroll"),
-    ("speech",  "Skriv navnet på din medicin, for eksempel ibuprofen.", "search_type_text"),
+    ("speech",  "Skriv navnet på din medicin, for eksempel ibu-pro-fen.", "search_type_text"),
     ("silence", 0.8, "search_type_action"),
     ("speech",  "Mikrofon-ikonet lader dig søge med din stemme.", "voice_search"),
     ("silence", 0.6, "voice_search_action"),
