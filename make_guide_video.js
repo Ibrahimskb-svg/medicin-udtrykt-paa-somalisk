@@ -58,6 +58,13 @@ const SYMPTOM_WORDS = {
   ar: "دوخة",
 }[LANG];
 
+const PRAYER_CLOSE_LABELS = {
+  da: "Luk",
+  en: "Close",
+  so: "Xir",
+  ar: "إغلاق",
+}[LANG];
+
 const QR_LABELS = {
   da: { copy: "Kopiér billede", close: "Luk" },
   en: { copy: "Copy image", close: "Close" },
@@ -387,11 +394,14 @@ async function peekContactDropdown(page, totalMs) {
   if (seg.btn_prayer) {
     console.log('  [btn_prayer] Prayer-time reminder button (if visible on this medicine)');
     const prayerBtn = page.locator(`button:has-text("${SHARE_LABELS.alignPrayer}")`).first();
-    if (await prayerBtn.count(QUICK).catch(() => 0)) {
+    if (await prayerBtn.count().catch(() => 0)) {
       await prayerBtn.scrollIntoViewIfNeeded(QUICK).catch(() => {});
       await prayerBtn.click(QUICK).catch(() => {});
       await sleep(500);
-      await page.keyboard.press('Escape').catch(() => {});
+      // PrayerReminderModal er IKKE bygget på ModalShell og lytter derfor
+      // ikke efter Escape — skal lukkes via sit eget X-ikon, ellers blokerer
+      // dens fulde-skærm-overlay alle efterfølgende klik resten af videoen.
+      await page.click(`button[aria-label="${PRAYER_CLOSE_LABELS}"]`, QUICK).catch(() => {});
     }
     await sleepToTarget(seg, 'btn_prayer');
     await sleepToTarget(seg, 'btn_prayer_action');
