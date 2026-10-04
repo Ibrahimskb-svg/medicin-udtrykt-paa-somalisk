@@ -30,6 +30,14 @@ export function toggleMyList(slug) {
   return getMyList().includes(slug) ? removeFromMyList(slug) : addToMyList(slug);
 }
 
+// Lægger en delt liste (fra et ?list=-link) oven i brugerens egen —
+// erstatter IKKE, så man ikke mister medicin man allerede havde tilføjet.
+export function mergeIntoMyList(slugs) {
+  const list = getMyList();
+  const merged = Array.from(new Set([...list, ...slugs]));
+  return save(merged);
+}
+
 export function subscribeMyList(callback) {
   const handler = (e) => callback(e.detail);
   window.addEventListener(MY_LIST_EVENT, handler);

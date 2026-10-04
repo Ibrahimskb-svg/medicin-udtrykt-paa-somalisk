@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
 import { getIndexData, getDisplayName, uiText, languages, MEDICINE_INTRO_BOX } from "../lib/site";
+import { mergeIntoMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { BadgeCheck, BookOpen, GraduationCap, HeartPulse, Languages, Pill, RefreshCw, Stethoscope, UserRound, HeartHandshake } from "lucide-react";
 import { MyListModal } from "./my-list-modal";
@@ -42,6 +44,39 @@ const FAQ_MODAL_TITLE = {
   so: "Su'aalaha inta badan la isweydiiyo",
   ar: "الأسئلة الشائعة",
 };
+// Vises når man åbner et ?list=-link delt af en anden (fx en pårørende) —
+// se shareList() i my-list-modal.jsx for hvordan linket bliver til.
+const SHARED_LIST_TEXT = {
+  da: {
+    title: (n) => `En medicinliste med ${n} ${n === 1 ? "medicin" : "medicinnavne"} er delt med dig`,
+    body: "Vil du tilføje den til din egen liste? Den lægges oven i det, du allerede har — intet bliver overskrevet.",
+    add: "Tilføj til min liste",
+    dismiss: "Nej tak",
+    added: "Tilføjet til din medicinliste!",
+  },
+  en: {
+    title: (n) => `A medicine list with ${n} ${n === 1 ? "medicine" : "medicines"} has been shared with you`,
+    body: "Add it to your own list? It's added on top of what you already have — nothing gets overwritten.",
+    add: "Add to my list",
+    dismiss: "No thanks",
+    added: "Added to your medicine list!",
+  },
+  so: {
+    title: (n) => `Liis daawooyin ah oo ${n} ${n === 1 ? "daawo" : "daawooyin"} ku jiraan ayaa lagula wadaagay`,
+    body: "Ma rabtaa inaad ku darto liiskaaga gaarka ah? Waxay ku dari doontaa wixii aad hore u haysatay — waxba lama tirtiri doono.",
+    add: "Ku dar liiskayga",
+    dismiss: "Maya mahadsanid",
+    added: "Waxaa lagu daray liiskaaga daawooyinka!",
+  },
+  ar: {
+    title: (n) => `تمت مشاركة قائمة أدوية تحتوي على ${n} ${n === 1 ? "دواء" : "أدوية"} معك`,
+    body: "هل تريد إضافتها إلى قائمتك الخاصة؟ ستُضاف إلى ما لديك بالفعل — لن يُحذف شيء.",
+    add: "أضف إلى قائمتي",
+    dismiss: "لا شكرًا",
+    added: "تمت الإضافة إلى قائمة أدويتك!",
+  },
+};
+
 const GLOSSARY_LINK_TEXT = {
   da: { label: "Forstå dit apoteksbesøg", desc: "En kort ordliste over apoteksord — recept, tilskud m.fl." },
   en: { label: "Understand your pharmacy visit", desc: "A short glossary of Danish pharmacy words — prescription, reimbursement and more." },
@@ -807,6 +842,7 @@ function VideoGuide({ chromeText, language }) {
 // ── Main ───────────────────────────────────────────────────────────────────
 export function SiteIndex({initialLang}){
   const{language,updateLanguage}=useLanguageRouting({initialLanguage:initialLang});
+  const router=useRouter();
   const[searchTerm,setSearchTerm]=useState("");
   const[activeCategory,setActiveCategory]=useState("all");
   const[modalTab,setModalTab]=useState(null);
@@ -814,6 +850,40 @@ export function SiteIndex({initialLang}){
   const[prayerModalOpen,setPrayerModalOpen]=useState(false);
   const[severityModalOpen,setSeverityModalOpen]=useState(false);
   const[hoygaAfkaExpanded,setHoygaAfkaExpanded]=useState(false);
+  const[sharedListSlugs,setSharedListSlugs]=useState([]);
+  const[sharedListAdded,setSharedListAdded]=useState(false);
+
+  // Læs ?list=slug1,slug2 fra et delings-link (se shareList i
+  // my-list-modal.jsx) — kun ÉN gang ved indlæsning, ikke ved hvert sprogskift.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get("list");
+    if (!raw) return;
+    const validSlugs = raw.split(",").map((s) => s.trim()).filter((slug) =>
+      indexData.items.some((item) => item.slug === slug)
+    );
+    if (validSlugs.length) setSharedListSlugs(validSlugs);
+  }, []);
+
+  function clearSharedListParam() {
+    const params = new URLSearchParams(window.location.search);
+    params.delete("list");
+    const query = params.toString();
+    router.replace(query ? `${window.location.pathname}?${query}` : window.location.pathname, { scroll: false });
+  }
+
+  function acceptSharedList() {
+    mergeIntoMyList(sharedListSlugs);
+    setSharedListSlugs([]);
+    setSharedListAdded(true);
+    clearSharedListParam();
+    setTimeout(() => setSharedListAdded(false), 4000);
+  }
+
+  function dismissSharedList() {
+    setSharedListSlugs([]);
+    clearSharedListParam();
+  }
 
   const text=useMemo(()=>indexData.translations[language]||indexData.translations.so,[language]);
   const chromeText=useMemo(()=>uiText[language]||uiText.so,[language]);
@@ -1110,6 +1180,58 @@ export function SiteIndex({initialLang}){
           </span>
         </button>
       </div>
+
+      {/* ── Delt medicinliste (?list=-link, se my-list-modal.jsx) ─────────── */}
+      {(sharedListSlugs.length > 0 || sharedListAdded) && (() => {
+        const st = SHARED_LIST_TEXT[language] ?? SHARED_LIST_TEXT.so;
+        const names = sharedListSlugs
+          .map((slug) => indexData.items.find((i) => i.slug === slug))
+          .filter(Boolean)
+          .map((item) => getDisplayName(item.slug, language, item.name));
+        return (
+          <div className="mx-auto max-w-6xl px-4 pt-6" dir={isRtl ? "rtl" : "ltr"}>
+            <div
+              // Bevidst UDEN "reveal-on-scroll": det banner klassen styrer
+              // bliver kun observeret, når useScrollReveal() kører på sine
+              // egne dependencies (sprog/kategori/søgning) — men dette banner
+              // monteres først senere, når ?list= er læst fra URL'en, så det
+              // ville aldrig blive fundet af observeren og sidde fast usynligt.
+              className="rounded-2xl border px-5 py-4 sm:px-6"
+              style={{ background: "var(--soft, #ecfdf5)", borderColor: "var(--softBorder, #6ee7b7)" }}
+            >
+              {sharedListAdded ? (
+                <p className="font-bold" style={{ color: "var(--accent)" }}>✓ {st.added}</p>
+              ) : (
+                <>
+                  <p className="font-bold" style={{ color: "var(--text)" }}>{st.title(sharedListSlugs.length)}</p>
+                  {names.length > 0 && (
+                    <p className="mt-1 text-sm" style={{ color: "var(--text-muted)" }}>{names.join(", ")}</p>
+                  )}
+                  <p className="mt-1.5 text-sm" style={{ color: "var(--text-muted)" }}>{st.body}</p>
+                  <div className="mt-3 flex flex-wrap gap-2.5">
+                    <button
+                      type="button"
+                      onClick={acceptSharedList}
+                      className="hover-lift rounded-full px-5 py-2 text-sm font-bold text-white"
+                      style={{ background: "var(--accent)" }}
+                    >
+                      {st.add}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={dismissSharedList}
+                      className="hover-lift rounded-full px-5 py-2 text-sm font-semibold"
+                      style={{ background: "#fff", color: "var(--text-muted)", border: "1.5px solid var(--border)" }}
+                    >
+                      {st.dismiss}
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* ── Video Guide ──────────────────────────────────────────────────── */}
       <VideoGuide chromeText={chromeText} language={language} />

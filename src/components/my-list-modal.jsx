@@ -19,6 +19,8 @@ const TEXTS = {
     empty: "Du har endnu ikke tilføjet nogen medicin.",
     printBtn: "Print / vis til personalet",
     pdfBtn: "Gem som PDF",
+    shareBtn: "Del listen med familie",
+    shareCopiedMsg: "Link kopieret! Send det til den, der skal se listen.",
     printedOn: "Udskrevet fra Somalimed.dk",
     disclaimer: "Listen bygger på dine egne valg og er ikke en officiel medicinliste. Brug den som udgangspunkt for en samtale med personalet.",
     remove: "Fjern",
@@ -51,6 +53,8 @@ const TEXTS = {
     empty: "You haven't added any medicine yet.",
     printBtn: "Print / show to staff",
     pdfBtn: "Save as PDF",
+    shareBtn: "Share list with family",
+    shareCopiedMsg: "Link copied! Send it to whoever needs to see the list.",
     printedOn: "Printed from Somalimed.dk",
     disclaimer: "This list is based on your own choices and is not an official medicine list. Use it as a starting point for a conversation with staff.",
     remove: "Remove",
@@ -83,6 +87,8 @@ const TEXTS = {
     empty: "Wali lama darin daawo liiska.",
     printBtn: "Daabac / tus shaqaalaha",
     pdfBtn: "Keyd sida PDF",
+    shareBtn: "La wadaag liiska qoyska",
+    shareCopiedMsg: "Linkiga waa la koobiyeeyay! U dir qofka rabta inuu liiska arko.",
     printedOn: "Waxaa laga daabacay Somalimed.dk",
     disclaimer: "Liiskani wuxuu ku salaysan yahay doorashadaada gaarka ah, mana aha liis daawooyin oo rasmi ah. U isticmaal si aad wax uga hadasho shaqaalaha.",
     remove: "Ka saar",
@@ -115,6 +121,8 @@ const TEXTS = {
     empty: "لم تُضِف أي دواء إلى القائمة بعد.",
     printBtn: "طباعة / إظهار للموظفين",
     pdfBtn: "احفظ كملف PDF",
+    shareBtn: "شارك القائمة مع العائلة",
+    shareCopiedMsg: "تم نسخ الرابط! أرسله لمن تريده أن يرى القائمة.",
     printedOn: "تمت الطباعة من Somalimed.dk",
     disclaimer: "تعتمد هذه القائمة على اختيارك الخاص وليست قائمة أدوية رسمية. استخدمها كنقطة بداية للحديث مع الموظفين.",
     remove: "إزالة",
@@ -199,6 +207,7 @@ export function MyListModal({ language, onClose }) {
   const [query, setQuery] = useState("");
   const [openSlug, setOpenSlug] = useState(null);
   const [symptomQuery, setSymptomQuery] = useState("");
+  const [shareCopied, setShareCopied] = useState(false);
 
   useEffect(() => subscribeMyList(setList), []);
 
@@ -292,6 +301,31 @@ export function MyListModal({ language, onClose }) {
         return `<li><strong>${escapeHtml(local)}</strong>${doseHtml}</li>`;
       })
       .join("");
+  }
+
+  // Listen gemmes kun lokalt i browseren (ingen konto/server) — det eneste
+  // der gør den delbar med fx en pårørende på en anden enhed er at kode
+  // medicin-slugs'ene direkte ind i selve linket. Modtageren lægger listen
+  // oven i sin egen (mergeIntoMyList), ingen af dem overskriver den anden.
+  async function shareList() {
+    const url = `${window.location.origin}/?list=${encodeURIComponent(list.join(","))}&lang=${language}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: t.title, url });
+        return;
+      } catch {
+        // Brugeren annullerede del-dialogen, eller den findes ikke — falder
+        // tilbage til at kopiere linket i stedet.
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareCopied(true);
+      setTimeout(() => setShareCopied(false), 2500);
+    } catch {
+      // Clipboard-API utilgængelig — ingen fallback nødvendig, knappen
+      // fejler bare stille, samme mønster som QR-kopiering andre steder.
+    }
   }
 
   function printList() {
@@ -787,6 +821,33 @@ export function MyListModal({ language, onClose }) {
       >
         {t.pdfBtn}
       </button>
+
+      <button
+        type="button"
+        onClick={shareList}
+        disabled={selectedItems.length === 0}
+        className="hover-lift"
+        style={{
+          width: "100%", padding: "14px 20px", borderRadius: "14px",
+          border: `1.5px solid ${selectedItems.length === 0 ? "#cbd5e1" : theme.primary}`,
+          background: "#fff", color: selectedItems.length === 0 ? "#cbd5e1" : theme.primary,
+          fontWeight: 700, fontSize: "15px",
+          cursor: selectedItems.length === 0 ? "not-allowed" : "pointer",
+          marginBottom: shareCopied ? "8px" : "18px",
+          display: "flex", alignItems: "center", justifyContent: "center", gap: "8px",
+        }}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+          <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+        </svg>
+        {t.shareBtn}
+      </button>
+      {shareCopied && (
+        <p style={{ fontSize: "12.5px", fontWeight: 600, color: theme.primary, margin: "0 0 18px", textAlign: isRtl ? "right" : "left" }}>
+          ✓ {t.shareCopiedMsg}
+        </p>
+      )}
 
       <p style={{ fontSize: "11.5px", color: "#5B6B80", lineHeight: 1.6, margin: 0, textAlign: isRtl ? "right" : "left" }}>
         {t.disclaimer}
