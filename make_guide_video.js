@@ -610,9 +610,14 @@ async function peekContactDropdown(page, totalMs) {
     '-i', webm,
     '-i', PADDED_AUDIO,
     '-map', '0:v:0', '-map', '1:a:0',
-    '-c:v', 'libx264', '-preset', 'slow', '-crf', '28',
+    '-c:v', 'libx264', '-preset', 'slow', '-crf', '31',
     '-vf', 'scale=960:540',
     '-r', '20',
+    // Nøglebillede mindst hvert 2. sekund (40 billeder á 20fps) — uden dette
+    // vælger x264 ofte 6-10s mellem nøglebilleder for skærmoptagelser med
+    // mange statiske partier, så browseren skal afkode fra sidste
+    // nøglebillede og frem ved spoling, hvilket føles som hak/fastfrysning.
+    '-g', '60', '-keyint_min', '60', '-sc_threshold', '0',
     '-pix_fmt', 'yuv420p',
     '-c:a', 'aac', '-b:a', '96k',
     '-t', String(FINAL_DUR),

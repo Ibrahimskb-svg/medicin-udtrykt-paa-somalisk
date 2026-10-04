@@ -672,22 +672,30 @@ const PLAY_LABEL = { so: "Daawo fiidiyaha", da: "Afspil video", en: "Play video"
 
 function VideoPlayer({ src, language }) {
   const [playing, setPlaying] = useState(false);
+  const [started, setStarted] = useState(false);
   const [hovered, setHovered] = useState(false);
   const videoRef = useRef(null);
 
+  // Nulstil ved sprogskift (nyt src) — IKKE sæt <video src> igen før brugeren
+  // trykker play. Browsere henter/dekoder ofte videoens første billede som
+  // forhåndsvisning, selv med preload="none" — og det billede er jo et
+  // skærmbillede af selve siden (inkl. dens egen navbar), som så ligner en
+  // dublet lige under den rigtige navbar. Uden src er der intet billede at
+  // hente, kun play-knappen på en ensfarvet baggrund.
   useEffect(() => {
     setPlaying(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.load();
-    }
+    setStarted(false);
   }, [src]);
 
-  function handlePlay() {
-    if (videoRef.current) {
+  useEffect(() => {
+    if (started && videoRef.current) {
       videoRef.current.play();
       setPlaying(true);
     }
+  }, [started]);
+
+  function handlePlay() {
+    setStarted(true);
   }
 
   return (
@@ -696,7 +704,7 @@ function VideoPlayer({ src, language }) {
     >
       <video
         ref={videoRef}
-        src={src}
+        src={started ? src : undefined}
         controls={playing}
         playsInline
         preload="none"
