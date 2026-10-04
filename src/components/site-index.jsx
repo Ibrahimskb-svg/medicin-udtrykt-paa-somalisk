@@ -671,7 +671,6 @@ function FAQModal({language,onClose}){
 const PLAY_LABEL = { so: "Daawo fiidiyaha", da: "Afspil video", en: "Play video", ar: "شغّل الفيديو" };
 
 function VideoPlayer({ src, language }) {
-  const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
   const [hovered, setHovered] = useState(false);
   const videoRef = useRef(null);
@@ -683,14 +682,12 @@ function VideoPlayer({ src, language }) {
   // dublet lige under den rigtige navbar. Uden src er der intet billede at
   // hente, kun play-knappen på en ensfarvet baggrund.
   useEffect(() => {
-    setPlaying(false);
     setStarted(false);
   }, [src]);
 
   useEffect(() => {
     if (started && videoRef.current) {
       videoRef.current.play();
-      setPlaying(true);
     }
   }, [started]);
 
@@ -705,14 +702,20 @@ function VideoPlayer({ src, language }) {
       <video
         ref={videoRef}
         src={started ? src : undefined}
-        controls={playing}
+        // VIGTIGT: controls må IKKE følge afspillerens play/pause-status.
+        // Browserens egen spoling (trække i tidslinjen) sætter videoen på
+        // pause internt, mens man trækker — det ville udløse onPause og
+        // fjerne controls-attributten midt i træk-bevægelsen, hvis den
+        // fulgte play-status. Når native controls forsvinder under en scrub,
+        // ser det ud som om videoen "fryser". Controls skal blive stående,
+        // så snart afspilning er startet — pause/play undervejs må ikke
+        // rive dem væk igen.
+        controls={started}
         playsInline
         preload="none"
-        onPause={() => setPlaying(false)}
-        onEnded={() => setPlaying(false)}
         style={{ width:"100%", height:"100%", display:"block", objectFit:"contain" }}
       />
-      {!playing && (
+      {!started && (
         <button
           type="button"
           onClick={handlePlay}
