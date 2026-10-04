@@ -464,9 +464,11 @@ async function peekContactDropdown(page, totalMs) {
   await searchInput.fill('').catch(() => {});
   await sleep(300); // lad React nå at gen-rendere den fulde, ufiltrerede liste
   // Checklisten bruger knapper med aria-pressed, IKKE native <input type="checkbox">
-  // — det gamle checkbox-selectorsvar matchede intet, så listen fik reelt
-  // aldrig sat flueben på noget her.
-  const checkboxes = page.locator('button[aria-pressed="false"]');
+  // — MEN navbarens egne faner (Om mig, FAQ, ...) matcher SAMME selector
+  // (de har også aria-pressed), så uden at scope til selve modal-dialogen
+  // rammer et force-click her i stedet navbar-faner og lukker/åbner andre
+  // modaler i stedet for at afkrydse medicin på listen.
+  const checkboxes = page.locator('[role="dialog"] button[aria-pressed="false"]');
   const cbCount = await checkboxes.count().catch(() => 0);
   for (let i = 0; i < Math.min(2, cbCount); i++) {
     await checkboxes.nth(i).click({ force: true }).catch(() => {});
@@ -483,7 +485,11 @@ async function peekContactDropdown(page, totalMs) {
       if (scrollable) scrollable.scrollTop = scrollable.scrollHeight * 0.4;
     }).catch(() => {});
     await sleepToTarget(seg, 'mylist_interact');
-    const firstCard = page.locator('button[aria-expanded="false"]').first();
+    // Scopet til dialogen — ellers matcher ".first()" sprog- eller
+    // Kontakt-dropdown'ens trigger-knap (de har også aria-expanded="false"
+    // når de er lukkede), hvilket åbner dropdown'en i stedet for kortet og
+    // efterlader den stående åben resten af videoen.
+    const firstCard = page.locator('[role="dialog"] button[aria-expanded="false"]').first();
     await firstCard.click({ force: true }).catch(() => {});
     await sleepToTarget(seg, 'mylist_interact_scroll');
   }
