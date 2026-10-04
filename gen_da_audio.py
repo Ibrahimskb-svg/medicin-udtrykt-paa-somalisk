@@ -21,11 +21,11 @@ CA_BUNDLE = '/root/.ccr/ca-bundle.crt'
 
 # ("speech", tekst, label) eller ("silence", sekunder, label)
 SEGMENTS = [
-    ("speech",  "Velkommen til Somalimed — sådan bruger du siden trin for trin.", "hero"),
+    ("speech",  "Velkommen til SomaliMed — sådan bruger du siden trin for trin.", "hero"),
     ("silence", 0.3, "hero_pause"),
     ("speech",  "Øverst: 'Om mig' — Ibrahim Daahir Hanaf, farmakonom fra Danmark.", "nav_me"),
     ("silence", 0.3, "nav_me_pause"),
-    ("speech",  "'Om Somalimed' forklarer formålet: at hjælpe somaliere forstå deres medicin.", "nav_site"),
+    ("speech",  "'Om SomaliMed' forklarer formålet: at hjælpe somaliere forstå deres medicin.", "nav_site"),
     ("silence", 0.3, "nav_site_pause"),
     ("speech",  "'Ofte stillede spørgsmål' svarer på det, du undrer dig over.", "nav_faq"),
     ("silence", 0.25, "nav_faq_pause"),
@@ -45,7 +45,7 @@ SEGMENTS = [
     ("silence", 0.8, "search_type_action"),
     ("speech",  "Mikrofon-ikonet lader dig søge med din stemme.", "voice_search"),
     ("silence", 0.6, "voice_search_action"),
-    ("speech",  "Du kan også fotografere medicinæsken — Somalimed finder siden automatisk.", "photo_search"),
+    ("speech",  "Du kan også fotografere medicinæsken — SomaliMed finder siden automatisk.", "photo_search"),
     ("silence", 0.6, "photo_search_action"),
     ("speech",  "Eller browse kategorier som blodtryk, diabetes eller hjertesygdomme.", "categories"),
     ("silence", 0.6, "categories_pause"),
@@ -73,7 +73,7 @@ SEGMENTS = [
     ("silence", 1.0, "sources_scroll"),
     ("speech",  "Åbn 'Min medicinliste' — søg, afkryds og fjern din medicin her.", "mylist_modal"),
     ("silence", 1.0, "mylist_modal_demo"),
-    ("speech",  "Flere medicin på listen? Somalimed viser automatisk interaktioner — rødt for advarsler, grønt for info.", "mylist_interact"),
+    ("speech",  "Flere medicin på listen? SomaliMed viser automatisk interaktioner — rødt for advarsler, grønt for info.", "mylist_interact"),
     ("silence", 0.8, "mylist_interact_scroll"),
     ("speech",  "Udvalgte kombinationer får en officiel vurdering fra Lægemiddelstyrelsen.", "mylist_paircheck"),
     ("silence", 1.0, "mylist_paircheck_scroll"),
@@ -87,7 +87,7 @@ SEGMENTS = [
     ("silence", 0.6, "mylist_print_action"),
     ("speech",  "Tilbage til forsiden.", "back_home"),
     ("silence", 0.4, "back_home_nav"),
-    ("speech",  "Somalimed giver pålidelig medicininformation — gratis, uden oprettelse.", "closing1"),
+    ("speech",  "SomaliMed giver pålidelig medicininformation — gratis, uden oprettelse.", "closing1"),
     ("silence", 0.3, "closing1_pause"),
     ("speech",  "Vi håber, det hjælper dig og din familie. Tak, fordi du så med.", "closing2"),
 ]
