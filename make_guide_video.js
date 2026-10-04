@@ -561,6 +561,20 @@ async function peekContactDropdown(page, totalMs) {
   await smoothScroll(page, 0, homeH - H, Math.round(closingRemainingMs * 0.85));
   await sleep(Math.round(closingRemainingMs * 0.15));
 
+  // Reelle skærmhandlinger (skrivning, modal-overgange, dosisskema-rendering
+  // osv.) kan tilsammen bruge mere reel tid end lydsporets nominelle
+  // varighed, selvom sleepToTarget selvkorrigerer undervejs — den korrektion
+  // kan kun SPRINGE ventetid over, aldrig hente tabt tid ind. Hvis det sker,
+  // skal den endelige video ALDRIG afkortes til lydets nominelle længde
+  // (DUR), for så klippes "tilbage til forsiden" + afslutningshilsnerne væk
+  // midt i. Mål den faktiske forløbne tid og brug den i stedet, hvis den er
+  // længere — lydsporet forlænges med stilhed til at matche.
+  const actualS = (Date.now() - timelineStart) / 1000;
+  const FINAL_DUR = Math.max(DUR, actualS) + 0.5;
+  if (actualS > DUR) {
+    console.log(`  ⚠️  Skærmhandlinger tog ${actualS.toFixed(1)}s, mere end lydets ${DUR.toFixed(1)}s — forlænger lyden med stilhed i stedet for at klippe videoen.`);
+  }
+
   console.log('  Afslutter optagelse...');
   await context.close();
   await browser.close();
@@ -578,19 +592,30 @@ async function peekContactDropdown(page, totalMs) {
   const webm = path.join(VID_DIR, files[0].f);
   console.log(`  Rå video: ${(fs.statSync(webm).size / 1024 / 1024).toFixed(1)} MB`);
 
+  // Lydsporet pad'es med stilhed til FINAL_DUR, så muxningen aldrig klipper
+  // videoen kortere end de faktiske optagede handlinger (se note ovenfor).
+  const PADDED_AUDIO = `/tmp/${LANG}_audio_padded.m4a`;
+  spawnSync(FFMPEG, [
+    '-y', '-i', AUDIO,
+    '-af', `apad`,
+    '-t', String(FINAL_DUR),
+    '-c:a', 'aac', '-b:a', '96k',
+    PADDED_AUDIO,
+  ], { encoding: 'utf8' });
+
   console.log('\n🎞️  Konverterer + lyd...');
   const r = spawnSync(FFMPEG, [
     '-y',
     '-ss', String(TRIM),
     '-i', webm,
-    '-i', AUDIO,
+    '-i', PADDED_AUDIO,
     '-map', '0:v:0', '-map', '1:a:0',
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '28',
     '-vf', 'scale=960:540',
     '-r', '20',
     '-pix_fmt', 'yuv420p',
     '-c:a', 'aac', '-b:a', '96k',
-    '-t', String(DUR),
+    '-t', String(FINAL_DUR),
     '-shortest',
     '-movflags', '+faststart',
     OUTPUT,
