@@ -412,16 +412,33 @@ export default function RootLayout({ children }) {
               var oRS = history.replaceState;
               history.replaceState = function() { oRS.apply(this, arguments); setTimeout(schedule, 400); };
 
-              // Hold boblen over cookiebanneret, uanset hvornår det vises/lukkes/ændrer højde
-              function repositionAll() { repositionBubble(); repositionCrisp(); }
-              new MutationObserver(repositionAll).observe(document.documentElement, { childList: true, subtree: true });
-              window.addEventListener("resize", repositionAll);
+              // Hold boblen over cookiebanneret, uanset hvornår det vises/lukkes/ændrer højde.
+              // MERE END positionerings-arbejdet: observeren lytter på HELE
+              // dokumentet (subtree:true), så den fyrer på enhver DOM-ændring
+              // hvor som helst på siden. Så snart Crisp er indlæst (efter
+              // cookie-accept) laver dens chat-widget selv løbende DOM-ændringer,
+              // som hver især udløste denne observer synkront — det kunne mætte
+              // hovedtråden nok til at gøre andet på siden (fx videoafspilning/
+              // spoling) hakkende. Saml (throttle) til højst én genplacering pr.
+              // frame via requestAnimationFrame, så en byge af mutationer kun
+              // koster ÉT layout-arbejde, uanset hvor mange gange observeren fyrer.
+              var repositionScheduled = false;
+              function scheduleReposition() {
+                if (repositionScheduled) return;
+                repositionScheduled = true;
+                requestAnimationFrame(function () {
+                  repositionScheduled = false;
+                  repositionBubble();
+                  repositionCrisp();
+                });
+              }
+              new MutationObserver(scheduleReposition).observe(document.documentElement, { childList: true, subtree: true });
+              window.addEventListener("resize", scheduleReposition);
               // data-sm-bubble-avoid-bannere er almindeligt sideindhold (ikke
               // fixed), så deres position i forhold til boblen ændrer sig når
               // man scroller — hold øje med det løbende, ligesom Crisp-ikonet.
-              window.addEventListener("scroll", repositionBubble, { passive: true });
-              setInterval(repositionBubble, 1000);
-              setInterval(repositionCrisp, 1000);
+              window.addEventListener("scroll", scheduleReposition, { passive: true });
+              setInterval(scheduleReposition, 2000);
             })();
           `}
         </Script>
