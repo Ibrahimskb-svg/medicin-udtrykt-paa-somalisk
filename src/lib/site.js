@@ -411,15 +411,35 @@ const DEFAULT_SLOTS_FOR_COUNT = {
 // doseringsskemaet til at FORESLÅ det tidspunkt, før brugeren selv har
 // valgt noget — brugeren bekræfter eller vælger selv et andet.
 //
-// Findes der intet specifikt tidspunkt, men doseringsteksten allerede
-// angiver et konkret ANTAL gange dagligt (fx Sertralin: "Hal jeer
-// maalintii" / da: "1 gang dagligt"), foreslås i stedet det tilsvarende
-// antal faste tidspunkter ud fra standard-fordelingen ovenfor — stadig
-// ægte data fra medicinens egen side, ikke et nyt gæt om TIDSPUNKTET.
-// "Efter behov"/PRN-tekster (fx "Hver 4.–6. time, efter behov") indeholder
-// aldrig mønsteret "X gange dagligt" og rammer derfor aldrig dette, så de
-// forbliver bevidst uden forslag — det ville være et reelt gæt at sætte
-// faste tidspunkter på medicin, der kun tages ved behov.
+// Findes der intet specifikt tidspunkt, udledes antallet af gange dagligt
+// fra selve doseringsteksten, i prioriteret rækkefølge (alle tre ud fra
+// tal, Ibrahim selv har skrevet — intet nyt opfindes):
+//  1) Et eksplicit "X gange dagligt" (fx Eliquis: "Ofte 2 gange dagligt").
+//     Ved et interval (fx "1–2 gange dagligt") bruges det HØJESTE tal, så
+//     skemaet hellere foreslår for mange tidspunkter end for få.
+//  2) Et interval mellem doser (fx Ibuprofen: "Hver 4.–6. time" eller
+//     Paracetamol: "Min. 4 timers mellemrum") — omregnes til højeste
+//     mulige antal gange i døgnet (24 ÷ laveste timetal).
+//  3) At den er "tæt knyttet til måltider" (fx Insulin) — regnes som 3
+//     gange dagligt (morgen/middag/aften, svarende til tre måltider).
+// Medicin uden nogen af disse tre (fx "individuel dosis", "som ordineret/
+// aftalt med lægen", eller "gives af sundhedspersonale") forbliver uden
+// forslag — her findes intet tal i teksten at udlede noget fra.
+const DOSE_COUNT_PATTERNS = [
+  (text) => {
+    const m = text.match(/(\d+)\s*(?:[–-]\s*(\d+)\s*)?gang(?:e)?\s+dagligt/i);
+    if (!m) return null;
+    return parseInt(m[2] || m[1], 10);
+  },
+  (text) => {
+    const m = text.match(/(?:hver|min\.?)\s*(\d+)(?:[.\s]*[–-]\s*(\d+)\.?)?\s*tim/i);
+    if (!m) return null;
+    const interval = Math.min(parseInt(m[1], 10), parseInt(m[2] || m[1], 10));
+    return interval > 0 ? Math.floor(24 / interval) : null;
+  },
+  (text) => (/målt(id|ider)/i.test(text) ? 3 : null),
+];
+
 export function getSuggestedDoseSlots(slug) {
   const medicine = getMedicine(slug);
   const pictogram = medicine?.dosagePictogram?.so || [];
@@ -427,8 +447,9 @@ export function getSuggestedDoseSlots(slug) {
   if (explicitSlots.length > 0) return explicitSlots;
 
   const daText = (medicine?.dosagePictogram?.da || []).map((p) => p.text).join(" ");
-  const match = daText.match(/(\d+)\s*(?:[–-]\s*\d+\s*)?gang(?:e)?\s+dagligt/i);
-  if (!match) return [];
-  const count = Math.min(parseInt(match[1], 10), 4);
-  return DEFAULT_SLOTS_FOR_COUNT[count] || [];
+  for (const pattern of DOSE_COUNT_PATTERNS) {
+    const count = pattern(daText);
+    if (count) return DEFAULT_SLOTS_FOR_COUNT[Math.min(count, 4)] || [];
+  }
+  return [];
 }
