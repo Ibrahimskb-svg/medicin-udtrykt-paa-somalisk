@@ -778,8 +778,14 @@ function VideoPlayer({ src, language }) {
 }
 
 function VideoGuide({ chromeText, language }) {
-  const [activeTab, setActiveTab] = useState("so");
+  const [activeTab, setActiveTab] = useState(language);
   const isRtl = language === "ar";
+
+  // Følg sprogvælgeren — en bruger, der ser siden på arabisk, skal ikke
+  // først skulle klikke væk fra den somaliske video for at se sin egen.
+  useEffect(() => {
+    setActiveTab(language);
+  }, [language]);
 
   const tabs = [
     { key:"so", label: chromeText.videoTabSo, src:"/guide-so.mp4" },
