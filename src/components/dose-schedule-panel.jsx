@@ -28,6 +28,17 @@ const TIME_SLOT_STYLE = {
   night: { color: "#4338CA", bg: "#E0E7FF", ring: "#C7D2FE" },
 };
 
+// RGB-udgave af hver farve, brugt til den pulserende glød omkring et
+// FORESLÅET (endnu ikke bekræftet) tidspunkt — kan ikke skrives som en
+// fast CSS-farve i @keyframes, fordi farven skal variere pr. tidspunkt.
+function hexToRgbTriplet(hex) {
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return m ? `${parseInt(m[1], 16)}, ${parseInt(m[2], 16)}, ${parseInt(m[3], 16)}` : "15, 23, 42";
+}
+for (const slot of Object.keys(TIME_SLOT_STYLE)) {
+  TIME_SLOT_STYLE[slot].rgb = hexToRgbTriplet(TIME_SLOT_STYLE[slot].color);
+}
+
 function SunriseIcon({ size = 18, color = "currentColor" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -354,9 +365,11 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                 {TIME_SLOTS.map((slot) => {
                   const on = active.includes(slot);
                   // Et "foreslået" tidspunkt kommer direkte fra medicinens
-                  // eget doseringspiktogram ovenfor (fx "Subax ama fiid") —
-                  // ikke et gæt — og bruger en stiplet, lysere stil, så det
-                  // aldrig kan forveksles med brugerens eget, bekræftede valg.
+                  // egen doseringstekst ovenfor (fx "tages som regel én gang
+                  // dagligt") — ikke et gæt. Det skal fange blikket ligesom
+                  // et bekræftet valg (samme mættede farve), men en stiplet
+                  // kant + en blid pulserende glød viser tydeligt, at det er
+                  // et forslag, brugeren selv skal bekræfte med et tryk.
                   const suggestedHere = !on && suggested.includes(slot);
                   const style = TIME_SLOT_STYLE[slot];
                   const Icon = TIME_SLOT_ICON[slot];
@@ -370,10 +383,9 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                       style={{
                         display: "flex", flexDirection: "column", alignItems: "center", gap: "6px",
                         flex: 1, padding: "10px 4px 8px", borderRadius: "16px",
-                        border: suggestedHere ? `1.5px dashed ${style.ring}` : "none",
-                        background: on ? style.bg : suggestedHere ? style.bg : "transparent",
+                        border: suggestedHere ? `2px dashed ${style.color}` : "none",
+                        background: on || suggestedHere ? style.bg : "transparent",
                         boxShadow: on ? `inset 0 0 0 2px ${style.ring}` : "none",
-                        opacity: suggestedHere ? 0.75 : 1,
                         cursor: "pointer",
                       }}
                     >
@@ -382,15 +394,18 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                         style={{
                           display: "flex", alignItems: "center", justifyContent: "center",
                           width: 52, height: 52, borderRadius: "50%",
-                          background: on ? style.color : suggestedHere ? "#fff" : "#f1f5f9",
-                          border: on ? "none" : suggestedHere ? `1.5px dashed ${style.color}` : "1.5px solid #e2e8f0",
-                          color: on ? "#fff" : suggestedHere ? style.color : "#94a3b8",
+                          background: on || suggestedHere ? style.color : "#f1f5f9",
+                          border: on || suggestedHere ? "none" : "1.5px solid #e2e8f0",
+                          color: "#fff",
                           transition: "all 0.15s ease",
+                          ...(suggestedHere
+                            ? { "--sm-pulse-rgb": style.rgb, animation: "smDoseSuggestPulse 1.7s ease-in-out infinite" }
+                            : {}),
                         }}
                       >
-                        <Icon size={26} color={on ? "#fff" : suggestedHere ? style.color : "#94a3b8"} />
+                        <Icon size={26} color={on || suggestedHere ? "#fff" : "#94a3b8"} />
                       </span>
-                      <span style={{ fontSize: "13.5px", fontWeight: 800, color: on ? style.color : suggestedHere ? style.color : "#5B6B80" }}>
+                      <span style={{ fontSize: "13.5px", fontWeight: 800, color: on || suggestedHere ? style.color : "#5B6B80" }}>
                         {timeLabels[slot]}
                       </span>
                     </button>
@@ -455,6 +470,14 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
       <p style={{ fontSize: "11px", color: "#5B6B80", lineHeight: 1.6, margin: 0, textAlign: isRtl ? "right" : "left" }}>
         {t.disclaimer}
       </p>
+
+      <style>{`
+        @keyframes smDoseSuggestPulse {
+          0%   { box-shadow: 0 0 0 0 rgba(var(--sm-pulse-rgb), 0.5); }
+          70%  { box-shadow: 0 0 0 9px rgba(var(--sm-pulse-rgb), 0); }
+          100% { box-shadow: 0 0 0 0 rgba(var(--sm-pulse-rgb), 0); }
+        }
+      `}</style>
     </div>
   );
 }
