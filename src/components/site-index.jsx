@@ -20,6 +20,7 @@ import { downloadReminderICS } from "../lib/reminder-ics";
 import { getLastRevisedText } from "../lib/last-revised";
 import { VoiceSearchButton } from "./voice-search-button";
 import { MedicinePhotoButton } from "./medicine-photo-button";
+import { TestimonialWall } from "./testimonial-wall";
 
 const indexData = getIndexData();
 
@@ -1241,6 +1242,9 @@ export function SiteIndex({initialLang}){
 
       {/* ── Video Guide ──────────────────────────────────────────────────── */}
       <VideoGuide chromeText={chromeText} language={language} />
+
+      {/* ── Tak-væg: rigtige beskeder fra brugere ───────────────────────── */}
+      <TestimonialWall language={language} isRtl={isRtl} />
 
       {/* ── Main ─────────────────────────────────────────────────────────── */}
       <main className="mx-auto max-w-6xl px-4 pb-20 pt-6 sm:pt-8">
