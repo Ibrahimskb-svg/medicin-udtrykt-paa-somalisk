@@ -15,16 +15,13 @@ const USUAL_DOSING_LABEL = {
 // lægemidler, hvor Ibrahim selv har bekræftet "1-2 gange dagligt" som det
 // typiske mønster, selvom medicinens egen tekst kun siger "individuel
 // dosis"/"som ordineret af lægen" — se hasDoctorDependentDoseNote i
-// src/lib/site.js. Somalisk er Ibrahims egen tekst (godkendt ord for ord).
-// Dansk/engelsk er en direkte oversættelse af den. Arabisk er et
-// førsteudkast, endnu ikke gennemgået af en modersmålstalende (samme
-// forbehold som i src/data/counter-cards.js) — bevidst skrevet uden den
-// formelle dual-bøjning ("I to er blevet enige"), så den læses naturligt.
+// src/lib/site.js. Somalisk og arabisk er begge Ibrahims egen godkendte
+// tekst (ord for ord). Dansk/engelsk er en direkte oversættelse af dem.
 const DOCTOR_DEPENDENT_NOTE = {
   da: "Afhænger af, hvad din læge har ordineret eller aftalt med dig.",
   en: "Depends on what your doctor has prescribed or agreed with you.",
   so: "Waxay ku xiran tahay waxa dhakhtarkaagu kuu qoray ama aad ku heshiiseen.",
-  ar: "يعتمد ذلك على وصفة طبيبك أو ما تم الاتفاق عليه معه.",
+  ar: "يعتمد ذلك على ما هو مذكور في الوصفة الطبية أو ما تم الاتفاق عليه مع طبيبك.",
 };
 
 const TIME_LABELS = {
