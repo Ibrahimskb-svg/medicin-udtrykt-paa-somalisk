@@ -105,7 +105,7 @@ const TEXT = {
 // væggen føles levende og hvert menneske bag en besked skiller sig visuelt
 // ud — ikke bare en ensfarvet liste.
 const ACCENT_PALETTE = [
-  { bg: "#F0FDFA", border: "#5EEAD4", text: "#0F766E" },
+  { bg: "#CCFBF1", border: "#5EEAD4", text: "#0F766E" },
   { bg: "#FEF3C7", border: "#FCD34D", text: "#92400E" },
   { bg: "#FCE7F3", border: "#F9A8D4", text: "#9D174D" },
   { bg: "#E0E7FF", border: "#A5B4FC", text: "#3730A3" },
@@ -138,8 +138,8 @@ function TestimonialCard({ item, accent, isRtl }) {
       dir={cardIsRtl ? "rtl" : "ltr"}
       style={{
         position: "relative", overflow: "hidden",
-        borderRadius: "22px", border: `1.5px solid ${accent.border}`, background: accent.bg,
-        padding: "24px 26px", minHeight: "160px", display: "flex", flexDirection: "column", gap: "14px",
+        borderRadius: "22px", border: `2px solid ${accent.border}`, borderTop: `6px solid ${accent.text}`, background: accent.bg,
+        padding: "22px 26px 24px", minHeight: "160px", display: "flex", flexDirection: "column", gap: "14px",
         boxShadow: `0 10px 28px -14px ${accent.text}55`,
         transition: "background 0.4s ease, border-color 0.4s ease",
       }}
@@ -295,12 +295,15 @@ export function TestimonialWall({ language, isRtl }) {
   return (
     <section id="tak-vaeg" className="mx-auto max-w-6xl px-4 pt-10" style={{ scrollMarginTop: "90px" }}>
       <div
-        className="reveal-on-scroll rounded-3xl border bg-white overflow-hidden"
-        style={{ borderColor: "var(--border)", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
+        className="reveal-on-scroll rounded-3xl border overflow-hidden"
+        style={{ borderColor: "#99F6E4", background: "#F0FDFA", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
         dir={isRtl ? "rtl" : "ltr"}
       >
         <div className="px-5 pt-6 pb-5 sm:px-8 sm:pt-7">
-          <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{t.eyebrow}</p>
+          <div className="mb-2.5 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold text-white" style={{ background: "#0F766E" }}>
+            <QuoteIcon size={13} color="#fff" />
+            {t.eyebrow}
+          </div>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="text-xl font-extrabold sm:text-2xl" style={{ color: "var(--text)" }}>{t.title}</h2>
@@ -334,16 +337,16 @@ export function TestimonialWall({ language, isRtl }) {
                 )}
               </div>
             ) : (
-              <div style={{ borderRadius: "20px", border: "1.5px dashed #5EEAD4", padding: "26px 24px", textAlign: "center" }}>
+              <div style={{ borderRadius: "20px", border: "2px dashed #5EEAD4", background: "#CCFBF1", padding: "26px 24px", textAlign: "center" }}>
                 <span
                   aria-hidden="true"
                   style={{
                     display: "inline-flex", alignItems: "center", justifyContent: "center",
                     width: 44, height: 44, borderRadius: "50%", marginBottom: "10px",
-                    background: "#CCFBF1", color: "#0F766E",
+                    background: "#0F766E", color: "#fff", boxShadow: "0 3px 10px rgba(15,118,110,0.35)",
                   }}
                 >
-                  <QuoteIcon size={20} color="#0F766E" />
+                  <QuoteIcon size={20} color="#fff" />
                 </span>
                 <p style={{ margin: "0 0 6px", fontWeight: 800, fontSize: "15.5px", color: "var(--text)" }}>{t.emptyTitle}</p>
                 <p style={{ margin: 0, fontSize: "13.5px", color: "var(--text-muted)" }}>{t.emptyBody}</p>
