@@ -334,7 +334,17 @@ export function TestimonialWall({ language, isRtl }) {
                 )}
               </div>
             ) : (
-              <div style={{ borderRadius: "20px", border: "1.5px dashed var(--border)", padding: "26px 24px", textAlign: "center" }}>
+              <div style={{ borderRadius: "20px", border: "1.5px dashed #5EEAD4", padding: "26px 24px", textAlign: "center" }}>
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    width: 44, height: 44, borderRadius: "50%", marginBottom: "10px",
+                    background: "#CCFBF1", color: "#0F766E",
+                  }}
+                >
+                  <QuoteIcon size={20} color="#0F766E" />
+                </span>
                 <p style={{ margin: "0 0 6px", fontWeight: 800, fontSize: "15.5px", color: "var(--text)" }}>{t.emptyTitle}</p>
                 <p style={{ margin: 0, fontSize: "13.5px", color: "var(--text-muted)" }}>{t.emptyBody}</p>
               </div>
