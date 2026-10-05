@@ -73,10 +73,10 @@ const QR_LABELS = {
 }[LANG];
 
 const MYLIST_LABELS = {
-  da: { search: "Søg medicin…", print: "Print / vis til personalet" },
-  en: { search: "Search medicine…", print: "Print / show to staff" },
-  so: { search: "Raadi daawo…", print: "Daabac / tus shaqaalaha" },
-  ar: { search: "البحث عن دواء…", print: "طباعة / إظهار للموظفين" },
+  da: { search: "Søg medicin…", print: "Print / vis til personalet", share: "Del listen med familie" },
+  en: { search: "Search medicine…", print: "Print / show to staff", share: "Share list with family" },
+  so: { search: "Raadi daawo…", print: "Daabac / tus shaqaalaha", share: "La wadaag liiska qoyska" },
+  ar: { search: "البحث عن دواء…", print: "طباعة / إظهار للموظفين", share: "شارك القائمة مع العائلة" },
 }[LANG];
 
 const FFMPEG   = '/usr/bin/ffmpeg';
@@ -475,6 +475,15 @@ async function peekContactDropdown(page, totalMs) {
   }
   await sleepToTarget(seg, 'mylist_modal');
   await sleepToTarget(seg, 'mylist_modal_demo');
+
+  if (seg.mylist_share) {
+    console.log('  [mylist_share] Highlight "share list with family" button (hover only — no OS share sheet/clipboard in the recording)');
+    const shareBtn = page.locator(`[role="dialog"] button:has-text("${MYLIST_LABELS.share}")`).first();
+    await shareBtn.scrollIntoViewIfNeeded(QUICK).catch(() => {});
+    await shareBtn.hover(QUICK).catch(() => {});
+    await sleepToTarget(seg, 'mylist_share');
+    await sleepToTarget(seg, 'mylist_share_pause');
+  }
 
   if (seg.mylist_interact) {
     console.log('  [mylist_interact] Scroll to interactions/warnings section, expand first card');

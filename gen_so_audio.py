@@ -76,6 +76,8 @@ SEGMENTS = [
     ("silence", 0.55, "sources_scroll"),
     ("speech",  "Hadda aan furno qaybta \"Daawooyinkayga\". Halkaas waxaad ka raadin kartaa daawooyinkaaga, waxaad calaamadin kartaa kuwa aad isticmaasho, isla markaana waad ka saari kartaa marka loo baahdo.", "mylist_modal"),
     ("silence", 0.55, "mylist_modal_demo"),
+    ("speech",  "Hadda waxaad sidoo kale liiska la wadaagi kartaa qoyska adigoo adeegsanaya xiriiriye, iyaguna waxay ku dari karaan liiskooda gaarka ah.", "mylist_share"),
+    ("silence", 0.5, "mylist_share_pause"),
     ("speech",  "Haddii aad laba daawo ama in ka badan ku haysato liiska, Somalimed wuxuu si toos ah kuu tusayaa isdhexgalka iyo digniinaha oo ku jira kaararka la furi karo — casaan digniinaha, cagaaran macluumaadka guud. Kaliya riix magaca si aad kaararka u furto.", "mylist_interact"),
     ("silence", 0.44, "mylist_interact_scroll"),
     ("speech",  "Isku-darrada qaarkood, waxaan sidoo kale ku tusaynaa qiimayn dhab ah oo ka timid Xafiiska Dawooyinka Denmark, Interaktionsdatabasen — cagaar, orange, ama casaan. Isku-darrada kale, waxaad si toos ah uga hubin kartaa linkiga bogooda rasmiga ah.", "mylist_paircheck"),

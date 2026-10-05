@@ -66,6 +66,8 @@ SEGMENTS = [
     ("silence", 1.0, "sources_scroll"),
     ("speech",  "Open 'My medicine list' — search, check, and remove your medicine here.", "mylist_modal"),
     ("silence", 1.0, "mylist_modal_demo"),
+    ("speech",  "You can now also share the list with family via a link — they can add it to their own list.", "mylist_share"),
+    ("silence", 0.6, "mylist_share_pause"),
     ("speech",  "Two or more medicines on the list? Somalimed shows interactions automatically — red for warnings, green for info.", "mylist_interact"),
     ("silence", 0.8, "mylist_interact_scroll"),
     ("speech",  "Selected combinations get an official assessment from the Danish Medicines Agency.", "mylist_paircheck"),

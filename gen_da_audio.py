@@ -73,6 +73,8 @@ SEGMENTS = [
     ("silence", 1.0, "sources_scroll"),
     ("speech",  "Åbn 'Min medicinliste' — søg, afkryds og fjern din medicin her.", "mylist_modal"),
     ("silence", 1.0, "mylist_modal_demo"),
+    ("speech",  "Du kan nu også dele listen med familie via et link — de kan tilføje den til deres egen liste.", "mylist_share"),
+    ("silence", 0.6, "mylist_share_pause"),
     ("speech",  "Flere medicin på listen? SomaliMed viser automatisk interaktioner — rødt for advarsler, grønt for info.", "mylist_interact"),
     ("silence", 0.8, "mylist_interact_scroll"),
     ("speech",  "Udvalgte kombinationer får en officiel vurdering fra Lægemiddelstyrelsen.", "mylist_paircheck"),
