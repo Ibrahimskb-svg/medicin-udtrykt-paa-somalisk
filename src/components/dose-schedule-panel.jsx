@@ -17,12 +17,27 @@ const USUAL_DOSING_LABEL = {
 // dosis"/"som ordineret af lægen" — se hasDoctorDependentDoseNote i
 // src/lib/site.js. Somalisk og arabisk er begge Ibrahims egen godkendte
 // tekst (ord for ord). Dansk/engelsk er en direkte oversættelse af dem.
+const DOCTOR_DEPENDENT_LABEL = {
+  da: "OBS:",
+  en: "Note:",
+  so: "Baraarujin:",
+  ar: "تنبيه:",
+};
 const DOCTOR_DEPENDENT_NOTE = {
   da: "Afhænger af, hvad din læge har ordineret eller aftalt med dig.",
   en: "Depends on what your doctor has prescribed or agreed with you.",
   so: "Waxay ku xiran tahay waxa dhakhtarkaagu kuu qoray ama aad ku heshiiseen.",
   ar: "يعتمد ذلك على ما هو مذكور في الوصفة الطبية أو ما تم الاتفاق عليه مع طبيبك.",
 };
+
+function NoteIcon({ size = 16, color = "currentColor" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9.5" />
+      <path d="M12 8v5" /><path d="M12 16.2v.01" />
+    </svg>
+  );
+}
 
 const TIME_LABELS = {
   da: { morning: "Morgen", noon: "Middag", evening: "Aften", night: "Nat" },
@@ -430,9 +445,29 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                 })}
               </div>
               {active.length === 0 && suggested.length > 0 && hasDoctorDependentDoseNote(item.slug) && (
-                <p style={{ margin: "8px 0 0", fontSize: "11.5px", fontStyle: "italic", color: "#94a3b8", textAlign: isRtl ? "right" : "left" }}>
-                  {DOCTOR_DEPENDENT_NOTE[language] ?? DOCTOR_DEPENDENT_NOTE.so}
-                </p>
+                <div
+                  style={{
+                    marginTop: "10px", padding: "9px 12px", borderRadius: "12px",
+                    background: "#EFF6FF", border: "1.5px solid #BFDBFE",
+                    display: "flex", gap: "8px", alignItems: "flex-start",
+                    flexDirection: isRtl ? "row-reverse" : "row",
+                  }}
+                >
+                  <span
+                    aria-hidden="true"
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      width: 20, height: 20, borderRadius: "50%", flexShrink: 0, marginTop: "1px",
+                      background: "#2563EB", color: "#fff",
+                    }}
+                  >
+                    <NoteIcon size={13} color="#fff" />
+                  </span>
+                  <p style={{ margin: 0, fontSize: "12px", lineHeight: 1.5, color: "#1e3a5f", textAlign: isRtl ? "right" : "left" }}>
+                    <span style={{ fontWeight: 800, color: "#1D4ED8" }}>{DOCTOR_DEPENDENT_LABEL[language] ?? DOCTOR_DEPENDENT_LABEL.so}</span>{" "}
+                    {DOCTOR_DEPENDENT_NOTE[language] ?? DOCTOR_DEPENDENT_NOTE.so}
+                  </p>
+                </div>
               )}
               {(() => {
                 // Ingen automatisk "for mange gange"-advarsel her — nogle

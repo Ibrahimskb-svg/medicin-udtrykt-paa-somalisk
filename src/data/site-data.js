@@ -8056,7 +8056,7 @@ export const siteData = {
         "so": [
           { "type": "trending", "text": "Si tartiib ah ayaa loo kordhiyaa" },
           { "type": "food", "text": "Waxay ku xiran tahay nooca kiniinka" },
-          { "type": "warn", "text": "Ha isbeddelin qiyaasta adigu keligaa" }
+          { "type": "warn", "text": "Ha beddelin qiyaasta adigoon helin talo caafimaad" }
         ],
         "ar": [
           { "type": "trending", "text": "تُزاد ببطء" },
