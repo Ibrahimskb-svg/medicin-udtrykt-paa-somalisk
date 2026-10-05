@@ -15,13 +15,16 @@ const USUAL_DOSING_LABEL = {
 // lægemidler, hvor Ibrahim selv har bekræftet "1-2 gange dagligt" som det
 // typiske mønster, selvom medicinens egen tekst kun siger "individuel
 // dosis"/"som ordineret af lægen" — se hasDoctorDependentDoseNote i
-// src/lib/site.js. Arabisk er et førsteudkast, endnu ikke gennemgået af en
-// modersmålstalende (samme forbehold som i src/data/counter-cards.js).
+// src/lib/site.js. Somalisk er Ibrahims egen tekst (godkendt ord for ord).
+// Dansk/engelsk er en direkte oversættelse af den. Arabisk er et
+// førsteudkast, endnu ikke gennemgået af en modersmålstalende (samme
+// forbehold som i src/data/counter-cards.js) — bevidst skrevet uden den
+// formelle dual-bøjning ("I to er blevet enige"), så den læses naturligt.
 const DOCTOR_DEPENDENT_NOTE = {
   da: "Afhænger af, hvad din læge har ordineret eller aftalt med dig.",
   en: "Depends on what your doctor has prescribed or agreed with you.",
   so: "Waxay ku xiran tahay waxa dhakhtarkaagu kuu qoray ama aad ku heshiiseen.",
-  ar: "يعتمد ذلك على ما وصفه لك طبيبك أو ما اتفقتما عليه.",
+  ar: "يعتمد ذلك على وصفة طبيبك أو ما تم الاتفاق عليه معه.",
 };
 
 const TIME_LABELS = {
@@ -411,8 +414,12 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                           border: on || suggestedHere ? "none" : "1.5px solid #e2e8f0",
                           color: "#fff",
                           transition: "all 0.15s ease",
+                          // Pulsen stopper af sig selv efter 3 gange (ca. 5
+                          // sekunder) — nok til at fange blikket uden at blive
+                          // en evig, generende animation, især når flere
+                          // medicinkort med forslag vises på samme tid.
                           ...(suggestedHere
-                            ? { "--sm-pulse-rgb": style.rgb, animation: "smDoseSuggestPulse 1.7s ease-in-out infinite" }
+                            ? { "--sm-pulse-rgb": style.rgb, animation: "smDoseSuggestPulse 1.6s ease-in-out 3" }
                             : {}),
                         }}
                       >
