@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSchedule, toggleScheduleSlot, subscribeSchedule, TIME_SLOTS } from "../lib/dose-schedule";
-import { getUsualDosingHint, getSuggestedDoseSlots } from "../lib/site";
+import { getUsualDosingHint, getSuggestedDoseSlots, hasDoctorDependentDoseNote } from "../lib/site";
 import { LANG_THEME } from "./modal-shell";
 
 const USUAL_DOSING_LABEL = {
@@ -9,6 +9,19 @@ const USUAL_DOSING_LABEL = {
   en: "Usually (from the medicine's own page)",
   so: "Sida caadiga ah (ka socota bogga daawada)",
   ar: "عادة (من صفحة الدواء نفسها)",
+};
+
+// Vises kun under et FORESLÅET (endnu ikke bekræftet) tidspunkt for de få
+// lægemidler, hvor Ibrahim selv har bekræftet "1-2 gange dagligt" som det
+// typiske mønster, selvom medicinens egen tekst kun siger "individuel
+// dosis"/"som ordineret af lægen" — se hasDoctorDependentDoseNote i
+// src/lib/site.js. Arabisk er et førsteudkast, endnu ikke gennemgået af en
+// modersmålstalende (samme forbehold som i src/data/counter-cards.js).
+const DOCTOR_DEPENDENT_NOTE = {
+  da: "Afhænger af, hvad din læge har ordineret eller aftalt med dig.",
+  en: "Depends on what your doctor has prescribed or agreed with you.",
+  so: "Waxay ku xiran tahay waxa dhakhtarkaagu kuu qoray ama aad ku heshiiseen.",
+  ar: "يعتمد ذلك على ما وصفه لك طبيبك أو ما اتفقتما عليه.",
 };
 
 const TIME_LABELS = {
@@ -412,6 +425,11 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                   );
                 })}
               </div>
+              {active.length === 0 && suggested.length > 0 && hasDoctorDependentDoseNote(item.slug) && (
+                <p style={{ margin: "8px 0 0", fontSize: "11.5px", fontStyle: "italic", color: "#94a3b8", textAlign: isRtl ? "right" : "left" }}>
+                  {DOCTOR_DEPENDENT_NOTE[language] ?? DOCTOR_DEPENDENT_NOTE.so}
+                </p>
+              )}
               {(() => {
                 // Ingen automatisk "for mange gange"-advarsel her — nogle
                 // medicin (fx Paracetamol, op til 4x dagligt) er helt normalt

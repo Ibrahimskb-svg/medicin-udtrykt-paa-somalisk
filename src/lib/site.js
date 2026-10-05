@@ -460,6 +460,28 @@ function extractDailyCount(text) {
   return best;
 }
 
+// Disse 7 lægemidler har INTET konkret tal i deres egen tekst — kun
+// "individuel dosis" eller "som ordineret/aftalt med lægen". Ibrahim (som
+// er uddannet farmakonom) har selv bekræftet, at det typiske mønster i
+// praksis er 1 eller 2 gange dagligt, afhængigt af hvor meget patienten er
+// ramt og hvad lægen konkret har ordineret — derfor foreslås 2 (morgen +
+// aften, samme "hellere for mange end for få"-regel som alle andre
+// forslag), men ALTID sammen med DOCTOR_DEPENDENT_NOTE nedenfor, som gør
+// tydeligt, at det er lægens konkrete ordination, der gælder.
+const DOCTOR_DEPENDENT_SLUGS = new Set([
+  "xarelto",
+  "diclofenac",
+  "lamotrigin",
+  "quetiapin",
+  "ventoline",
+  "morfin_tablet",
+  "morfin_injektion",
+]);
+
+export function hasDoctorDependentDoseNote(slug) {
+  return DOCTOR_DEPENDENT_SLUGS.has(slug);
+}
+
 // Nogle medicinsiders doseringspiktogram har selv et "morning"/"evening"
 // element (fx Amlodipin: "Subax ama fiid") — det er data, Ibrahim har
 // skrevet pr. medicin, ikke noget appen gætter. Findes det, bruges det i
@@ -471,11 +493,11 @@ function extractDailyCount(text) {
 // extractDailyCount ovenfor) — stadig tal, Ibrahim selv har skrevet, ikke
 // noget nyt opfundet. Nævner teksten i stedet, at den er "tæt knyttet til
 // måltider" (fx Insulin), regnes det som 3 gange dagligt (morgen/middag/
-// aften). Medicin uden noget af dette (fx "individuel dosis", "som
-// ordineret/aftalt med lægen", "gives af sundhedspersonale", eller kun en
-// "efter behov"-tekst uden et konkret antal, som Ibuprofen og Ventoline)
-// forbliver bevidst uden forslag — her findes intet tal at udlede fra, og
-// det ville være et reelt gæt at opfinde et tidspunkt for den slags.
+// aften). For de 7 lægemidler i DOCTOR_DEPENDENT_SLUGS ovenfor bruges
+// Ibrahims egen bekræftede 1-2 gange dagligt (med bemærkningen om, at det
+// afhænger af lægen). Alt andet uden noget af dette (fx "gives af
+// sundhedspersonale", eller kun en "efter behov"-tekst uden et konkret
+// antal) forbliver bevidst uden forslag.
 export function getSuggestedDoseSlots(slug) {
   const medicine = getMedicine(slug);
   const pictogram = medicine?.dosagePictogram?.so || [];
@@ -486,5 +508,6 @@ export function getSuggestedDoseSlots(slug) {
   const count = extractDailyCount(doseText);
   if (count) return DEFAULT_SLOTS_FOR_COUNT[Math.min(count, 4)] || [];
   if (/knyttet til målti/i.test(doseText)) return DEFAULT_SLOTS_FOR_COUNT[3];
+  if (DOCTOR_DEPENDENT_SLUGS.has(slug)) return DEFAULT_SLOTS_FOR_COUNT[2];
   return [];
 }
