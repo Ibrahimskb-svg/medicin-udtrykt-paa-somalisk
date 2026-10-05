@@ -9,8 +9,8 @@ import { TESTIMONIALS } from "../data/testimonials";
 const TEXT = {
   da: {
     eyebrow: "Rigtige oplevelser",
-    title: "Hvad siger brugerne?",
-    subtitle: "Korte udtalelser fra personer, der har delt deres mening om siden.",
+    title: "Hvad synes folk om Somalimed?",
+    subtitle: "Korte beskeder fra personer, der har delt deres synspunkter og erfaringer med Somalimed.",
     emptyTitle: "Bliv den første til at skrive en besked!",
     emptyBody: "Har Somalimed hjulpet dig eller din familie? Fortæl os om det.",
     writeBtn: "Skriv din egen besked",
@@ -32,8 +32,8 @@ const TEXT = {
   },
   en: {
     eyebrow: "Real experiences",
-    title: "What users say",
-    subtitle: "Short testimonials from people who have shared their opinions about the site.",
+    title: "What people think of Somalimed",
+    subtitle: "Short messages from people who have shared their views and experiences with Somalimed.",
     emptyTitle: "Be the first to write a message!",
     emptyBody: "Has Somalimed helped you or your family? Tell us about it.",
     writeBtn: "Write your own message",
@@ -55,8 +55,8 @@ const TEXT = {
   },
   so: {
     eyebrow: "Khibradaha dhabta ah",
-    title: "Maxay dadku ka yiraahdaan?",
-    subtitle: "Fariimo gaagaaban oo ka yimid dadka aragtidooda ka dhiibtay boggan.",
+    title: "Maxay dadku ka qabaan Somalimed?",
+    subtitle: "Fariimo gaagaaban oo ka yimid dad aragtidooda iyo waayo-aragnimadooda la wadaagay Somalimed.",
     emptyTitle: "Noqo qofka ugu horreeya ee fariin qora!",
     emptyBody: "Somalimed ma ku caawisay adiga ama qoyskaaga? Noo sheeg.",
     writeBtn: "Qor fariintaada",
@@ -78,8 +78,8 @@ const TEXT = {
   },
   ar: {
     eyebrow: "تجارب حقيقية",
-    title: "ماذا يقول المستخدمون؟",
-    subtitle: "آراء قصيرة من أشخاص شاركوا انطباعاتهم عن الموقع.",
+    title: "ماذا يعتقد الناس عن Somalimed؟",
+    subtitle: "رسائل قصيرة من أشخاص شاركوا آراءهم وتجاربهم مع Somalimed.",
     emptyTitle: "كن أول من يكتب رسالة!",
     emptyBody: "هل ساعدك Somalimed أو ساعد عائلتك؟ أخبرنا بذلك.",
     writeBtn: "اكتب رسالتك",
@@ -295,18 +295,12 @@ export function TestimonialWall({ language, isRtl }) {
   return (
     <section id="tak-vaeg" className="mx-auto max-w-6xl px-4 pt-10" style={{ scrollMarginTop: "90px" }}>
       <div
-        className="reveal-on-scroll rounded-3xl border overflow-hidden"
-        style={{
-          borderColor: "var(--border)", boxShadow: "0 4px 24px rgba(0,0,0,0.07)",
-          background: "linear-gradient(120deg, #F0FDFA 0%, #ffffff 42%, #ffffff 62%, #FDF2F8 100%)",
-        }}
+        className="reveal-on-scroll rounded-3xl border bg-white overflow-hidden"
+        style={{ borderColor: "var(--border)", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }}
         dir={isRtl ? "rtl" : "ltr"}
       >
         <div className="px-5 pt-6 pb-5 sm:px-8 sm:pt-7">
-          <div className="mb-2.5 inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-bold" style={{ background: "#CCFBF1", color: "#0F766E" }}>
-            <QuoteIcon size={13} color="#0F766E" />
-            {t.eyebrow}
-          </div>
+          <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{t.eyebrow}</p>
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
               <h2 className="text-xl font-extrabold sm:text-2xl" style={{ color: "var(--text)" }}>{t.title}</h2>
@@ -340,7 +334,7 @@ export function TestimonialWall({ language, isRtl }) {
                 )}
               </div>
             ) : (
-              <div style={{ borderRadius: "20px", border: "1.5px dashed #5EEAD4", background: "rgba(255,255,255,0.6)", padding: "26px 24px", textAlign: "center" }}>
+              <div style={{ borderRadius: "20px", border: "1.5px dashed var(--border)", padding: "26px 24px", textAlign: "center" }}>
                 <p style={{ margin: "0 0 6px", fontWeight: 800, fontSize: "15.5px", color: "var(--text)" }}>{t.emptyTitle}</p>
                 <p style={{ margin: 0, fontSize: "13.5px", color: "var(--text-muted)" }}>{t.emptyBody}</p>
               </div>
