@@ -1,4 +1,5 @@
 import { siteData } from "../data/site-data";
+import { TIME_SLOTS } from "./dose-schedule";
 
 export const languages = ["so", "da", "en", "ar"];
 export const rtlLanguages = new Set(["ar"]);
@@ -390,4 +391,18 @@ export function getUsualDosingHint(slug, language) {
   const pictogram = medicine?.dosagePictogram?.[language] || medicine?.dosagePictogram?.so;
   if (!pictogram || pictogram.length === 0) return null;
   return pictogram.map((p) => p.text).join(" — ");
+}
+
+// Nogle medicinsiders doseringspiktogram har selv et "morning"/"evening"
+// element (fx Amlodipin: "Subax ama fiid") — det er data, Ibrahim har
+// skrevet pr. medicin, ikke noget appen gætter. Findes det, bruges det i
+// doseringsskemaet til at FORESLÅ det tidspunkt, før brugeren selv har
+// valgt noget — brugeren bekræfter eller vælger selv et andet. Medicin
+// uden den oplysning (kun mængde/hyppighed, fx Sertralin: "Hal jeer
+// maalintii") foreslår bevidst intet specifikt tidspunkt, da appen ikke
+// kan vide hvilket tidspunkt er korrekt for netop den medicin/patient.
+export function getSuggestedDoseSlots(slug) {
+  const medicine = getMedicine(slug);
+  const pictogram = medicine?.dosagePictogram?.so || [];
+  return pictogram.map((p) => p.type).filter((type) => TIME_SLOTS.includes(type));
 }

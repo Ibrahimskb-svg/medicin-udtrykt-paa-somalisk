@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSchedule, toggleScheduleSlot, subscribeSchedule, TIME_SLOTS } from "../lib/dose-schedule";
-import { getUsualDosingHint } from "../lib/site";
+import { getUsualDosingHint, getSuggestedDoseSlots } from "../lib/site";
 import { LANG_THEME } from "./modal-shell";
 
 const USUAL_DOSING_LABEL = {
@@ -327,6 +327,10 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
       <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "14px" }}>
         {items.map((item) => {
           const active = schedule[item.slug] || [];
+          // Kun foreslå et tidspunkt, før brugeren selv har valgt noget for
+          // denne medicin — så snart brugeren har valgt mindst ét, vises kun
+          // det, uden forslag ved siden af.
+          const suggested = active.length === 0 ? getSuggestedDoseSlots(item.slug) : [];
           return (
             <div
               key={item.slug}
@@ -349,6 +353,11 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
               <div style={{ display: "flex", gap: "8px", justifyContent: "space-between" }}>
                 {TIME_SLOTS.map((slot) => {
                   const on = active.includes(slot);
+                  // Et "foreslået" tidspunkt kommer direkte fra medicinens
+                  // eget doseringspiktogram ovenfor (fx "Subax ama fiid") —
+                  // ikke et gæt — og bruger en stiplet, lysere stil, så det
+                  // aldrig kan forveksles med brugerens eget, bekræftede valg.
+                  const suggestedHere = !on && suggested.includes(slot);
                   const style = TIME_SLOT_STYLE[slot];
                   const Icon = TIME_SLOT_ICON[slot];
                   return (
@@ -360,9 +369,11 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                       className="hover-lift"
                       style={{
                         display: "flex", flexDirection: "column", alignItems: "center", gap: "6px",
-                        flex: 1, padding: "10px 4px 8px", borderRadius: "16px", border: "none",
-                        background: on ? style.bg : "transparent",
+                        flex: 1, padding: "10px 4px 8px", borderRadius: "16px",
+                        border: suggestedHere ? `1.5px dashed ${style.ring}` : "none",
+                        background: on ? style.bg : suggestedHere ? style.bg : "transparent",
                         boxShadow: on ? `inset 0 0 0 2px ${style.ring}` : "none",
+                        opacity: suggestedHere ? 0.75 : 1,
                         cursor: "pointer",
                       }}
                     >
@@ -371,15 +382,15 @@ export function DoseSchedulePanel({ language, isRtl, items }) {
                         style={{
                           display: "flex", alignItems: "center", justifyContent: "center",
                           width: 52, height: 52, borderRadius: "50%",
-                          background: on ? style.color : "#f1f5f9",
-                          border: on ? "none" : "1.5px solid #e2e8f0",
-                          color: on ? "#fff" : "#94a3b8",
+                          background: on ? style.color : suggestedHere ? "#fff" : "#f1f5f9",
+                          border: on ? "none" : suggestedHere ? `1.5px dashed ${style.color}` : "1.5px solid #e2e8f0",
+                          color: on ? "#fff" : suggestedHere ? style.color : "#94a3b8",
                           transition: "all 0.15s ease",
                         }}
                       >
-                        <Icon size={26} color={on ? "#fff" : "#94a3b8"} />
+                        <Icon size={26} color={on ? "#fff" : suggestedHere ? style.color : "#94a3b8"} />
                       </span>
-                      <span style={{ fontSize: "13.5px", fontWeight: 800, color: on ? style.color : "#5B6B80" }}>
+                      <span style={{ fontSize: "13.5px", fontWeight: 800, color: on ? style.color : suggestedHere ? style.color : "#5B6B80" }}>
                         {timeLabels[slot]}
                       </span>
                     </button>

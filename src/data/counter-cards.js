@@ -12,7 +12,7 @@ export const COUNTER_CARD_CATEGORIES = [
     phrases: [
       { da: "Er du gravid?", en: "Are you pregnant?", so: "Miyaad uur leedahay?", ar: "هل أنتِ حامل؟" },
       { da: "Ammer du?", en: "Are you breastfeeding?", so: "Ma nuujisaa?", ar: "هل ترضعين؟" },
-      { da: "Har du feber?", en: "Do you have a fever?", so: "Ma qandho qabtaa?", ar: "هل لديك حمى؟" },
+      { da: "Har du feber?", en: "Do you have a fever?", so: "Qandho ma qabtaa?", ar: "هل لديك حمى؟" },
       { da: "Er du allergisk over for noget?", en: "Are you allergic to anything?", so: "Ma qabtaa xasaasiyad?", ar: "هل لديك حساسية من أي شيء؟" },
       { da: "Har du andre sygdomme?", en: "Do you have any other illnesses?", so: "Ma qabtaa cudur kale?", ar: "هل لديك أمراض أخرى؟" },
       { da: "Tager du anden medicin?", en: "Are you taking any other medicine?", so: "Ma qaadataa daawo kale?", ar: "هل تتناول أدوية أخرى؟" },
