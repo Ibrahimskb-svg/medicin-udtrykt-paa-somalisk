@@ -393,16 +393,42 @@ export function getUsualDosingHint(slug, language) {
   return pictogram.map((p) => p.text).join(" — ");
 }
 
+// Standard-fordeling når vi kun kender ANTALLET af gange dagligt, ikke et
+// specifikt tidspunkt — samme opdeling som en doseringsæske bruger som
+// udgangspunkt: 1x → morgen, 2x → morgen+aften, osv. Ved et interval (fx
+// "1–2 gange dagligt") bruges det LAVESTE tal, så skemaet aldrig foreslår
+// flere tidspunkter, end medicinens egen tekst garanterer.
+const DEFAULT_SLOTS_FOR_COUNT = {
+  1: ["morning"],
+  2: ["morning", "evening"],
+  3: ["morning", "noon", "evening"],
+  4: ["morning", "noon", "evening", "night"],
+};
+
 // Nogle medicinsiders doseringspiktogram har selv et "morning"/"evening"
 // element (fx Amlodipin: "Subax ama fiid") — det er data, Ibrahim har
 // skrevet pr. medicin, ikke noget appen gætter. Findes det, bruges det i
 // doseringsskemaet til at FORESLÅ det tidspunkt, før brugeren selv har
-// valgt noget — brugeren bekræfter eller vælger selv et andet. Medicin
-// uden den oplysning (kun mængde/hyppighed, fx Sertralin: "Hal jeer
-// maalintii") foreslår bevidst intet specifikt tidspunkt, da appen ikke
-// kan vide hvilket tidspunkt er korrekt for netop den medicin/patient.
+// valgt noget — brugeren bekræfter eller vælger selv et andet.
+//
+// Findes der intet specifikt tidspunkt, men doseringsteksten allerede
+// angiver et konkret ANTAL gange dagligt (fx Sertralin: "Hal jeer
+// maalintii" / da: "1 gang dagligt"), foreslås i stedet det tilsvarende
+// antal faste tidspunkter ud fra standard-fordelingen ovenfor — stadig
+// ægte data fra medicinens egen side, ikke et nyt gæt om TIDSPUNKTET.
+// "Efter behov"/PRN-tekster (fx "Hver 4.–6. time, efter behov") indeholder
+// aldrig mønsteret "X gange dagligt" og rammer derfor aldrig dette, så de
+// forbliver bevidst uden forslag — det ville være et reelt gæt at sætte
+// faste tidspunkter på medicin, der kun tages ved behov.
 export function getSuggestedDoseSlots(slug) {
   const medicine = getMedicine(slug);
   const pictogram = medicine?.dosagePictogram?.so || [];
-  return pictogram.map((p) => p.type).filter((type) => TIME_SLOTS.includes(type));
+  const explicitSlots = pictogram.map((p) => p.type).filter((type) => TIME_SLOTS.includes(type));
+  if (explicitSlots.length > 0) return explicitSlots;
+
+  const daText = (medicine?.dosagePictogram?.da || []).map((p) => p.text).join(" ");
+  const match = daText.match(/(\d+)\s*(?:[–-]\s*\d+\s*)?gang(?:e)?\s+dagligt/i);
+  if (!match) return [];
+  const count = Math.min(parseInt(match[1], 10), 4);
+  return DEFAULT_SLOTS_FOR_COUNT[count] || [];
 }
