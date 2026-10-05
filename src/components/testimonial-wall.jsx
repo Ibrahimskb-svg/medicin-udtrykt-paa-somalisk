@@ -131,22 +131,49 @@ function ChevronIcon({ size = 18, color = "currentColor", flip }) {
 }
 
 function TestimonialCard({ item, accent, isRtl }) {
+  const cardIsRtl = item.lang === "ar";
+  const initial = item.name.trim().charAt(0).toUpperCase();
   return (
     <div
-      dir={item.lang === "ar" ? "rtl" : "ltr"}
+      dir={cardIsRtl ? "rtl" : "ltr"}
       style={{
-        borderRadius: "20px", border: `1.5px solid ${accent.border}`, background: accent.bg,
-        padding: "22px 24px", minHeight: "150px", display: "flex", flexDirection: "column", gap: "12px",
+        position: "relative", overflow: "hidden",
+        borderRadius: "22px", border: `1.5px solid ${accent.border}`, background: accent.bg,
+        padding: "24px 26px", minHeight: "160px", display: "flex", flexDirection: "column", gap: "14px",
+        boxShadow: `0 10px 28px -14px ${accent.text}55`,
         transition: "background 0.4s ease, border-color 0.4s ease",
       }}
     >
-      <QuoteIcon size={24} color={accent.text} />
-      <p style={{ margin: 0, fontSize: "15.5px", lineHeight: 1.7, color: "#0f172a", fontWeight: 500, textAlign: item.lang === "ar" ? "right" : "left" }}>
+      {/* Stort, dæmpet citationstegn i baggrunden — rent dekorativt, for et mere "designrigt" udtryk */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute", top: "-14px", [cardIsRtl ? "left" : "right"]: "6px",
+          opacity: 0.12, pointerEvents: "none",
+        }}
+      >
+        <QuoteIcon size={90} color={accent.text} />
+      </span>
+
+      <p style={{ margin: 0, fontSize: "16px", lineHeight: 1.75, color: "#0f172a", fontWeight: 500, textAlign: cardIsRtl ? "right" : "left", position: "relative" }}>
         {item.message}
       </p>
-      <p style={{ margin: "4px 0 0", fontSize: "13px", fontWeight: 800, color: accent.text, textAlign: item.lang === "ar" ? "right" : "left" }}>
-        {item.name}{item.city ? ` — ${item.city}` : ""}
-      </p>
+
+      <div style={{ marginTop: "auto", paddingTop: "14px", borderTop: `1px solid ${accent.border}`, display: "flex", alignItems: "center", gap: "12px", flexDirection: cardIsRtl ? "row-reverse" : "row" }}>
+        <span
+          aria-hidden="true"
+          style={{
+            display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            width: 42, height: 42, borderRadius: "50%", background: accent.text, color: "#fff",
+            fontWeight: 800, fontSize: "16px", boxShadow: `0 3px 10px ${accent.text}50`,
+          }}
+        >
+          {initial}
+        </span>
+        <p style={{ margin: 0, fontSize: "13.5px", fontWeight: 800, color: accent.text, textAlign: cardIsRtl ? "right" : "left" }}>
+          {item.name}{item.city ? ` — ${item.city}` : ""}
+        </p>
+      </div>
     </div>
   );
 }
@@ -266,7 +293,7 @@ export function TestimonialWall({ language, isRtl }) {
   }
 
   return (
-    <section className="mx-auto max-w-6xl px-4 pt-10">
+    <section id="tak-vaeg" className="mx-auto max-w-6xl px-4 pt-10" style={{ scrollMarginTop: "90px" }}>
       <div className="reveal-on-scroll rounded-3xl border bg-white overflow-hidden" style={{ borderColor: "var(--border)", boxShadow: "0 4px 24px rgba(0,0,0,0.07)" }} dir={isRtl ? "rtl" : "ltr"}>
         <div className="px-5 pt-6 pb-5 sm:px-8 sm:pt-7">
           <p className="mb-1.5 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>{t.eyebrow}</p>

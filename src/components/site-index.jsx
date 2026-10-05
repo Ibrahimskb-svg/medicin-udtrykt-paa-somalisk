@@ -110,6 +110,13 @@ const SEVERITY_BANNER_TEXT = {
   so: { label: "Tani ma halis ah?", desc: "Qor calaamad oo isla markiiba ogow haddii ay tahay waxyeello caadi ah ama digniin — iyo goorta aad had iyo jeer wici lahayd 112." },
   ar: { label: "هل هذا خطير؟", desc: "اكتب عرضًا واعرف فورًا إن كان عرضًا جانبيًا شائعًا أو تحذيرًا — بالإضافة إلى متى يجب الاتصال بالرقم 112 دائمًا." },
 };
+// Somalisk/arabisk er et førsteudkast (samme forbehold som testimonial-wall.jsx).
+const READ_TESTIMONIALS_CARD_TEXT = {
+  da: { label: "Læs hvad andre siger" },
+  en: { label: "Read what others say" },
+  so: { label: "Akhri waxa dadka kale yidhaahdeen" },
+  ar: { label: "اقرأ ما يقوله الآخرون" },
+};
 
 const HOYGA_AFKA_TEXT = {
   da: {
@@ -1089,6 +1096,18 @@ export function SiteIndex({initialLang}){
               >
                 <LevelBadge level="red" size={36} />
                 <p className="text-[14px] font-bold leading-snug text-white">{(SEVERITY_BANNER_TEXT[language]??SEVERITY_BANNER_TEXT.so).label}</p>
+              </button>
+
+              <button
+                type="button"
+                onClick={()=>document.getElementById("tak-vaeg")?.scrollIntoView({behavior:"smooth",block:"start"})}
+                className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+                style={{padding:"14px 18px",cursor:"pointer"}}
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full" style={{background:"linear-gradient(135deg,#0F766E,#134E4A)"}}>
+                  <ChatIcon size={16} color="#fff"/>
+                </span>
+                <p className="text-[14px] font-bold leading-snug text-white">{(READ_TESTIMONIALS_CARD_TEXT[language]??READ_TESTIMONIALS_CARD_TEXT.so).label}</p>
               </button>
             </div>
           </div>
