@@ -266,6 +266,23 @@ export default function RootLayout({ children }) {
                 if (el) el.remove();
               }
 
+              // Sprogskift sker via Next.js' egen router (router.replace), som
+              // ikke altid kalder vores ombyggede history.pushState/replaceState
+              // nedenfor — Next kan have gemt en reference til de ORIGINALE
+              // funktioner internt, allerede inden dette script når at køre, så
+              // vores ombygning aldrig bliver kaldt ved sprogskift. I stedet for
+              // at stole på det, holder vi løbende øje med selve sprogværdien og
+              // genskaber boblen, hver gang den reelt ændrer sig — uafhængigt af
+              // hvordan navigationen teknisk foregår.
+              var lastLang = getLang();
+              function checkLangChange() {
+                var l = getLang();
+                if (l !== lastLang) {
+                  lastLang = l;
+                  schedule();
+                }
+              }
+
               function openChat() {
                 try {
                   if (window.$crisp) { window.$crisp.push(["do", "chat:open"]); return true; }
@@ -434,6 +451,7 @@ export default function RootLayout({ children }) {
                   repositionScheduled = false;
                   repositionBubble();
                   repositionCrisp();
+                  checkLangChange();
                 });
               }
               new MutationObserver(scheduleReposition).observe(document.documentElement, { childList: true, subtree: true });
