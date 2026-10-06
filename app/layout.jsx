@@ -274,22 +274,17 @@ export default function RootLayout({ children }) {
               }
 
               // Cookiebanneret (role="dialog", bottom-fixed) kan overlappe
-              // boblen — flyt boblen op over det. Dette er bevidst den ENESTE
-              // dynamiske justering: en tidligere udgave forsøgte også at
-              // undgå en række andre bannere på siden (data-sm-bubble-avoid)
-              // via en løkke, der i praksis kunne regne en alt for stor
-              // afstand ud og skubbe boblen helt uden for skærmen (usynlig,
-              // men til stede i DOM'en) — en hårdt-at-opdage fejl, der er
-              // langt værre end den kosmetiske ulempe, den skulle løse.
+              // boblen. I stedet for at REGNE en afstand ud (det gik galt
+              // tidligere — en forkert udregning kan skubbe boblen helt uden
+              // for skærmen, usynlig, men til stede i DOM'en), skjuler vi nu
+              // bare boblen helt, så længe banneret er synligt, og viser den
+              // igen i dens faste CSS-position, når banneret er væk. Ingen
+              // regnestykker, ingen måde det kan gå galt på.
               function repositionBubble() {
                 var b = document.getElementById("sm-bubble");
                 if (!b) return;
-                b.style.bottom = "";
                 var banner = document.querySelector('div[role="dialog"]');
-                if (banner) {
-                  var h = banner.getBoundingClientRect().height;
-                  if (h > 0 && h < window.innerHeight) b.style.bottom = (h + 16) + "px";
-                }
+                b.style.display = banner ? "none" : "";
               }
 
               // Crisps eget chatikon docker altid nederst til højre med et højt
