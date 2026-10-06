@@ -3,6 +3,7 @@ import Script from "next/script";
 import { LayoutShell } from "../src/components/layout-shell";
 import { ConsentManager } from "../src/components/consent-manager";
 import TextZoomControl from "../src/components/text-zoom-control";
+import ChatBubble from "../src/components/chat-bubble";
 
 export const viewport = {
   width: "device-width",
@@ -104,221 +105,16 @@ export default function RootLayout({ children }) {
         <ConsentManager />
         <TextZoomControl />
 
-        <style dangerouslySetInnerHTML={{ __html: `
-          #sm-bubble {
-            position: fixed;
-            bottom: 86px;
-            right: 16px;
-            z-index: 500;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            background: linear-gradient(135deg, #0D9488, #0284C7);
-            color: #fff;
-            font-size: 13px;
-            font-weight: 600;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            padding: 12px 14px 12px 12px;
-            border-radius: 18px 18px 4px 18px;
-            box-shadow: 0 8px 28px rgba(13,148,136,0.45), 0 2px 8px rgba(0,0,0,0.12);
-            max-width: 220px;
-            line-height: 1.45;
-            cursor: pointer;
-            animation: smPop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards,
-                       smFloat 3s ease-in-out 0.5s infinite;
-            border: none;
-          }
-          #sm-bubble::after {
-            content: "";
-            position: absolute;
-            bottom: -7px;
-            right: 22px;
-            width: 0;
-            height: 0;
-            border-left: 7px solid transparent;
-            border-right: 0 solid transparent;
-            border-top: 7px solid #0284C7;
-          }
-          #sm-bubble-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(255,255,255,0.5);
-            flex-shrink: 0;
-            margin-top: 1px;
-          }
-          #sm-bubble-avatar-fallback {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 14px;
-          }
-          #sm-bubble-text {
-            flex: 1;
-          }
-          #sm-bubble-name {
-            font-size: 11px;
-            font-weight: 700;
-            opacity: 0.85;
-            margin-bottom: 2px;
-            letter-spacing: 0.02em;
-          }
-          #sm-bubble-msg {
-            font-size: 13px;
-            font-weight: 600;
-            line-height: 1.4;
-          }
-          #sm-bubble-close {
-            position: absolute;
-            top: -7px;
-            right: -7px;
-            width: 20px;
-            height: 20px;
-            background: #475569;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border: 2px solid #fff;
-            line-height: 1;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-          }
-          @keyframes smPop {
-            from { opacity: 0; transform: scale(0.6) translateY(12px); }
-            to   { opacity: 1; transform: scale(1) translateY(0); }
-          }
-          @keyframes smFloat {
-            0%,100% { transform: translateY(0); }
-            50%      { transform: translateY(-5px); }
-          }
-          @media (max-width: 640px) {
-            #sm-bubble { right: 12px; bottom: calc(68px + env(safe-area-inset-bottom, 0px)); max-width: 195px; font-size: 12px; padding: 10px 12px 10px 10px; }
-          }
-        ` }} />
+        <ChatBubble />
 
-        <Script id="sm-bubble-script" strategy="afterInteractive">
+        {/* Crisps eget chatikon docker altid nederst til højre med et højt
+            z-index og overlapper vores mobile bundmenu (også fixed bottom-0).
+            Dette er en tredjeparts-widget uden for vores kontrol, så den kan
+            ikke gøres til en almindelig React-komponent som ChatBubble —
+            den skal stadig findes og flyttes i selve DOM'en. */}
+        <Script id="crisp-reposition-script" strategy="afterInteractive">
           {`
             (function () {
-              var messages = {
-                so: "Su'aal ma qabtaa? La sheekeyso Ibraahim.",
-                da: "Har du et spørgsmål? Chat med Ibrahim.",
-                en: "Do you have a question? Chat with Ibrahim.",
-                ar: "هل لديك سؤال؟ تحدث مع إبراهيم."
-              };
-              var names = { so: "Ibraahim", da: "Ibrahim", en: "Ibrahim", ar: "إبراهيم" };
-              var colors = {
-                so: { bg: "linear-gradient(135deg,#0D9488,#0F766E)", tail: "#0F766E", shadow: "rgba(13,148,136,0.45)" },
-                da: { bg: "linear-gradient(135deg,#2563EB,#1D4ED8)", tail: "#1D4ED8", shadow: "rgba(37,99,235,0.45)" },
-                en: { bg: "linear-gradient(135deg,#92400E,#B45309)", tail: "#B45309", shadow: "rgba(146,64,14,0.45)" },
-                ar: { bg: "linear-gradient(135deg,#D97706,#B45309)", tail: "#B45309", shadow: "rgba(217,119,6,0.45)" },
-              };
-
-              // Den gamle nøgle gemte "lukket" for ALTID — så enhver, der
-              // nogensinde har trykket ✕ (fx under test af selve boblen),
-              // ville aldrig se den igen, lige meget hvor mange gange koden
-              // omkring den blev rettet bagefter. Det er den helt sandsynlige
-              // reelle årsag til at boblen er "forsvundet" uafhængigt af
-              // positionerings-rettelserne. Nyt nøglenavn gør, at enhver
-              // tidligere permanent lukning (på enhver enhed) ignoreres fra
-              // nu af, og en lukning gælder kun i et begrænset tidsrum.
-              var DISMISS_KEY = "sm_bubble_dismissed_until";
-              var DISMISS_DAYS = 14;
-              // Nem måde at se boblen igen uden udviklerværktøjer: tilføj
-              // ?showbubble=1 til adressen (fx somalimed.dk/?showbubble=1),
-              // så glemmer browseren, at den tidligere er lukket.
-              try {
-                if (new URLSearchParams(window.location.search).get("showbubble") === "1") {
-                  localStorage.removeItem(DISMISS_KEY);
-                }
-              } catch (e) {}
-              function isDismissed() {
-                try {
-                  var until = parseInt(localStorage.getItem(DISMISS_KEY) || "0", 10);
-                  return Date.now() < until;
-                } catch (e) { return false; }
-              }
-              function markDismissed() {
-                try { localStorage.setItem(DISMISS_KEY, String(Date.now() + DISMISS_DAYS * 24 * 60 * 60 * 1000)); } catch (e) {}
-              }
-              window.__smBubbleDismiss = markDismissed;
-
-              function getLang() {
-                try {
-                  var u = new URLSearchParams(window.location.search).get("lang");
-                  if (u && messages[u]) return u;
-                  var s = localStorage.getItem("somalimed_lang") || localStorage.getItem("lang");
-                  if (s && messages[s]) return s;
-                } catch (e) {}
-                return "so";
-              }
-
-              function remove() {
-                var el = document.getElementById("sm-bubble");
-                if (el) el.remove();
-              }
-
-              // Sprogskift sker via Next.js' egen router (router.replace), som
-              // ikke altid kalder vores ombyggede history.pushState/replaceState
-              // nedenfor — Next kan have gemt en reference til de ORIGINALE
-              // funktioner internt, allerede inden dette script når at køre, så
-              // vores ombygning aldrig bliver kaldt ved sprogskift. I stedet for
-              // at stole på det, holder vi løbende øje med selve sprogværdien og
-              // genskaber boblen, hver gang den reelt ændrer sig — uafhængigt af
-              // hvordan navigationen teknisk foregår.
-              var lastLang = getLang();
-              function checkLangChange() {
-                var l = getLang();
-                if (l !== lastLang) {
-                  lastLang = l;
-                  schedule();
-                }
-              }
-
-              function openChat() {
-                try {
-                  if (window.$crisp) { window.$crisp.push(["do", "chat:open"]); return true; }
-                } catch (e) {}
-                return false;
-              }
-
-              // window.$crisp findes så snart scriptet er indlæst, men det er
-              // ingen garanti for at Crisp-widget'en faktisk fungerer (fx hvis
-              // kontoen/website-ID'et er fejlkonfigureret dukker der aldrig noget
-              // op). Tjek om der reelt er dukket et Crisp-element op i DOM'en.
-              function crispWidgetPresent() {
-                try {
-                  return !!document.querySelector(
-                    '.crisp-client, [class*="crisp-client"], #crisp-chatbox, iframe[src*="crisp"], crisp-chat-app, crisp-client'
-                  );
-                } catch (e) { return false; }
-              }
-
-              // Cookiebanneret (role="dialog", bottom-fixed) kan overlappe
-              // boblen. I stedet for at REGNE en afstand ud (det gik galt
-              // tidligere — en forkert udregning kan skubbe boblen helt uden
-              // for skærmen, usynlig, men til stede i DOM'en), skjuler vi nu
-              // bare boblen helt, så længe banneret er synligt, og viser den
-              // igen i dens faste CSS-position, når banneret er væk. Ingen
-              // regnestykker, ingen måde det kan gå galt på.
-              function repositionBubble() {
-                var b = document.getElementById("sm-bubble");
-                if (!b) return;
-                var banner = document.querySelector('div[role="dialog"]');
-                b.style.display = banner ? "none" : "";
-              }
-
-              // Crisps eget chatikon docker altid nederst til højre med et højt
-              // z-index, og overlapper vores egen mobile bundmenu (som også er
-              // fixed bottom-0). Flyt ikonet op over bundmenuen på mobil.
               function repositionCrisp() {
                 try {
                   var root = document.getElementById("crisp-chatbox");
@@ -345,121 +141,17 @@ export default function RootLayout({ children }) {
                   }
                 } catch (e) {}
               }
-
-              function create() {
-                if (location.pathname.startsWith("/dashboard")) return;
-                if (!document.body || document.getElementById("sm-bubble") || isDismissed()) return;
-                var lang = getLang();
-                var msg = messages[lang] || messages.so;
-                var name = names[lang] || names.so;
-                var color = colors[lang] || colors.so;
-                var isRtl = lang === "ar";
-
-                var bubble = document.createElement("div");
-                bubble.id = "sm-bubble";
-                bubble.style.direction = isRtl ? "rtl" : "ltr";
-                bubble.style.background = color.bg;
-                bubble.style.boxShadow = "0 8px 28px " + color.shadow + ", 0 2px 8px rgba(0,0,0,0.12)";
-
-                // Override the ::after tail color via a style tag
-                var tailStyle = document.getElementById("sm-bubble-tail-style");
-                if (tailStyle) tailStyle.remove();
-                var ts = document.createElement("style");
-                ts.id = "sm-bubble-tail-style";
-                ts.textContent = "#sm-bubble::after { border-top-color: " + color.tail + " !important; }";
-                document.head.appendChild(ts);
-
-                bubble.innerHTML =
-                  '<button id="sm-bubble-close" onclick="event.stopPropagation();window.__smBubbleDismiss();this.parentElement.remove()">✕</button>' +
-                  '<div id="sm-bubble-avatar-fallback">💬</div>' +
-                  '<div id="sm-bubble-text">' +
-                    '<div id="sm-bubble-name">' + name + '</div>' +
-                    '<div id="sm-bubble-msg">' + msg + '</div>' +
-                  '</div>';
-
-                bubble.addEventListener("click", function() {
-                  markDismissed();
-                  var pushed = openChat();
-                  if (!pushed) {
-                    // Crisp er ikke indlæst (fx cookies ikke accepteret endnu) —
-                    // gå direkte til mailto.
-                    window.location.href = "mailto:Ibrahim_skb@live.dk";
-                    return;
-                  }
-                  // Crisp er indlæst, men widget'en kan stadig fejle at vise sig
-                  // (fx pga. konto-opsætning) — fald tilbage til mailto hvis den
-                  // aldrig dukker op. Boblen selv fjernes IKKE — den skal blive
-                  // stående, så man altid kan nå Ibrahim.
-                  setTimeout(function () {
-                    if (!crispWidgetPresent()) {
-                      window.location.href = "mailto:Ibrahim_skb@live.dk";
-                    }
-                  }, 2500);
-                });
-
-                // Try to load Ibrahim's photo
-                var img = document.createElement("img");
-                img.id = "sm-bubble-avatar";
-                img.src = "/Ibrahim-avatar.jpg";
-                img.alt = name;
-                img.onload = function() {
-                  var fb = document.getElementById("sm-bubble-avatar-fallback");
-                  if (fb) fb.replaceWith(img);
-                };
-
-                document.body.appendChild(bubble);
-                repositionBubble();
-
-                // Vis boblen et stykke tid, luk den så automatisk af sig selv
-                // igen — uden at markere den som "lukket" (markDismissed).
-                // Den kommer derfor pænt igen af sig selv senere (fx ved
-                // næste sideindlæsning), i stedet for enten at blive
-                // hængende for evigt eller være væk for evigt efter et klik.
-                setTimeout(function () {
-                  var el = document.getElementById("sm-bubble");
-                  if (el) el.remove();
-                }, 14000);
-              }
-
-              function schedule() { remove(); setTimeout(create, 3000); }
-
-              if (document.readyState === "loading") {
-                document.addEventListener("DOMContentLoaded", schedule);
-              } else { schedule(); }
-
-              window.addEventListener("popstate", function() { setTimeout(schedule, 400); });
-              var oPS = history.pushState;
-              history.pushState = function() { oPS.apply(this, arguments); setTimeout(schedule, 400); };
-              var oRS = history.replaceState;
-              history.replaceState = function() { oRS.apply(this, arguments); setTimeout(schedule, 400); };
-
-              // Hold boblen over cookiebanneret, uanset hvornår det vises/lukkes/ændrer højde.
-              // MERE END positionerings-arbejdet: observeren lytter på HELE
-              // dokumentet (subtree:true), så den fyrer på enhver DOM-ændring
-              // hvor som helst på siden. Så snart Crisp er indlæst (efter
-              // cookie-accept) laver dens chat-widget selv løbende DOM-ændringer,
-              // som hver især udløste denne observer synkront — det kunne mætte
-              // hovedtråden nok til at gøre andet på siden (fx videoafspilning/
-              // spoling) hakkende. Saml (throttle) til højst én genplacering pr.
-              // frame via requestAnimationFrame, så en byge af mutationer kun
-              // koster ÉT layout-arbejde, uanset hvor mange gange observeren fyrer.
-              var repositionScheduled = false;
+              var scheduled = false;
               function scheduleReposition() {
-                if (repositionScheduled) return;
-                repositionScheduled = true;
+                if (scheduled) return;
+                scheduled = true;
                 requestAnimationFrame(function () {
-                  repositionScheduled = false;
-                  repositionBubble();
+                  scheduled = false;
                   repositionCrisp();
-                  checkLangChange();
                 });
               }
               new MutationObserver(scheduleReposition).observe(document.documentElement, { childList: true, subtree: true });
               window.addEventListener("resize", scheduleReposition);
-              // data-sm-bubble-avoid-bannere er almindeligt sideindhold (ikke
-              // fixed), så deres position i forhold til boblen ændrer sig når
-              // man scroller — hold øje med det løbende, ligesom Crisp-ikonet.
-              window.addEventListener("scroll", scheduleReposition, { passive: true });
               setInterval(scheduleReposition, 2000);
             })();
           `}
