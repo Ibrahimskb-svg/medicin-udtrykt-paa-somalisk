@@ -273,43 +273,22 @@ export default function RootLayout({ children }) {
                 } catch (e) { return false; }
               }
 
-              // Cookiebanneret (role="dialog", bottom-fixed) og store CTA-bannere
-              // (fx forsidens "Ordliste"/"Skranke-kort", markeret med
-              // data-sm-bubble-avoid) kan overlappe boblen — flyt boblen op så
-              // den altid er klikbar og ikke dækker for indhold under den.
+              // Cookiebanneret (role="dialog", bottom-fixed) kan overlappe
+              // boblen — flyt boblen op over det. Dette er bevidst den ENESTE
+              // dynamiske justering: en tidligere udgave forsøgte også at
+              // undgå en række andre bannere på siden (data-sm-bubble-avoid)
+              // via en løkke, der i praksis kunne regne en alt for stor
+              // afstand ud og skubbe boblen helt uden for skærmen (usynlig,
+              // men til stede i DOM'en) — en hårdt-at-opdage fejl, der er
+              // langt værre end den kosmetiske ulempe, den skulle løse.
               function repositionBubble() {
                 var b = document.getElementById("sm-bubble");
                 if (!b) return;
-                // Nulstil til CSS-grundpositionen FØR vi måler — ellers
-                // sammenligner vi mod boblens egen tidligere justerede
-                // position, hvilket giver en uendelig frem-og-tilbage-flytning
-                // når den lige er blevet skubbet op.
                 b.style.bottom = "";
-
-                var bottom = 0;
                 var banner = document.querySelector('div[role="dialog"]');
-                if (banner) bottom = Math.max(bottom, banner.getBoundingClientRect().height + 16);
-                if (bottom) b.style.bottom = bottom + "px";
-
-                // Flere data-sm-bubble-avoid-elementer kan stå stablet
-                // (fx to bannere lige over hinanden) — når vi skubber boblen
-                // op for at undgå det ene, kan den ramme det næste, så vi
-                // tjekker igen efter hver justering, indtil den er fri.
-                var avoid = document.querySelectorAll("[data-sm-bubble-avoid]");
-                for (var pass = 0; pass < 6; pass++) {
-                  var bRect = b.getBoundingClientRect();
-                  var raised = false;
-                  for (var i = 0; i < avoid.length; i++) {
-                    var r = avoid[i].getBoundingClientRect();
-                    if (r.width === 0 && r.height === 0) continue;
-                    var overlaps = !(r.right < bRect.left || r.left > bRect.right || r.bottom < bRect.top || r.top > bRect.bottom);
-                    if (overlaps) {
-                      var needed = window.innerHeight - r.top + 16;
-                      if (needed > bottom) { bottom = needed; raised = true; }
-                    }
-                  }
-                  if (!raised) break;
-                  b.style.bottom = bottom + "px";
+                if (banner) {
+                  var h = banner.getBoundingClientRect().height;
+                  if (h > 0 && h < window.innerHeight) b.style.bottom = (h + 16) + "px";
                 }
               }
 
