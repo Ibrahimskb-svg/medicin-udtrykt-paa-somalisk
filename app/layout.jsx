@@ -223,6 +223,14 @@ export default function RootLayout({ children }) {
               };
 
               var DISMISS_KEY = "sm_bubble_dismissed";
+              // Nem måde at se boblen igen uden udviklerværktøjer: tilføj
+              // ?showbubble=1 til adressen (fx somalimed.dk/?showbubble=1),
+              // så glemmer browseren, at den tidligere er lukket.
+              try {
+                if (new URLSearchParams(window.location.search).get("showbubble") === "1") {
+                  localStorage.removeItem(DISMISS_KEY);
+                }
+              } catch (e) {}
               function isDismissed() {
                 try { return localStorage.getItem(DISMISS_KEY) === "1"; } catch (e) { return false; }
               }
