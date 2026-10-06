@@ -392,6 +392,16 @@ export default function RootLayout({ children }) {
 
                 document.body.appendChild(bubble);
                 repositionBubble();
+
+                // Vis boblen et stykke tid, luk den så automatisk af sig selv
+                // igen — uden at markere den som "lukket" (markDismissed).
+                // Den kommer derfor pænt igen af sig selv senere (fx ved
+                // næste sideindlæsning), i stedet for enten at blive
+                // hængende for evigt eller være væk for evigt efter et klik.
+                setTimeout(function () {
+                  var el = document.getElementById("sm-bubble");
+                  if (el) el.remove();
+                }, 14000);
               }
 
               function schedule() { remove(); setTimeout(create, 3000); }
