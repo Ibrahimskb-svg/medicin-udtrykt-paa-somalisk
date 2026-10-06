@@ -222,7 +222,16 @@ export default function RootLayout({ children }) {
                 ar: { bg: "linear-gradient(135deg,#D97706,#B45309)", tail: "#B45309", shadow: "rgba(217,119,6,0.45)" },
               };
 
-              var DISMISS_KEY = "sm_bubble_dismissed";
+              // Den gamle nøgle gemte "lukket" for ALTID — så enhver, der
+              // nogensinde har trykket ✕ (fx under test af selve boblen),
+              // ville aldrig se den igen, lige meget hvor mange gange koden
+              // omkring den blev rettet bagefter. Det er den helt sandsynlige
+              // reelle årsag til at boblen er "forsvundet" uafhængigt af
+              // positionerings-rettelserne. Nyt nøglenavn gør, at enhver
+              // tidligere permanent lukning (på enhver enhed) ignoreres fra
+              // nu af, og en lukning gælder kun i et begrænset tidsrum.
+              var DISMISS_KEY = "sm_bubble_dismissed_until";
+              var DISMISS_DAYS = 14;
               // Nem måde at se boblen igen uden udviklerværktøjer: tilføj
               // ?showbubble=1 til adressen (fx somalimed.dk/?showbubble=1),
               // så glemmer browseren, at den tidligere er lukket.
@@ -232,10 +241,13 @@ export default function RootLayout({ children }) {
                 }
               } catch (e) {}
               function isDismissed() {
-                try { return localStorage.getItem(DISMISS_KEY) === "1"; } catch (e) { return false; }
+                try {
+                  var until = parseInt(localStorage.getItem(DISMISS_KEY) || "0", 10);
+                  return Date.now() < until;
+                } catch (e) { return false; }
               }
               function markDismissed() {
-                try { localStorage.setItem(DISMISS_KEY, "1"); } catch (e) {}
+                try { localStorage.setItem(DISMISS_KEY, String(Date.now() + DISMISS_DAYS * 24 * 60 * 60 * 1000)); } catch (e) {}
               }
               window.__smBubbleDismiss = markDismissed;
 
