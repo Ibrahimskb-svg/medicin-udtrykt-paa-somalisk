@@ -246,28 +246,28 @@ const ABOUT_ME_META = {
 
 const ABOUT_ME_BULLETS = {
   da: [
-    { icon:"education", text:"Uddannet Farmakonom og aktuelt Data Science-studerende — med en sjælden evne til at gøre komplekse fag som matematik, fysik, kemi og biologi tilgængelige og engagerende" },
-    { icon:"work",      text:"Daglig praksis på privatapotek og vagtapotek — mødet med patienter i skranken har tydeligt vist, hvor afgørende klar og tryg lægemiddelinformation er" },
-    { icon:"school",    text:"Erfaren formidler der har hjulpet gymnasieelever og universitetsstuderende med at mestre komplekse fagområder — med tålmodighed, gå-på-mod og et inspirerende læringsmiljø" },
-    { icon:"pills",     text:"Brænder for at gøre faglig viden nærværende og brugbar — og bringer en unik kombination af dybdegående viden og engageret formidling til enhver sammenhæng" },
+    { icon:"education", text:"Jeg er uddannet Farmakonom og samtidig studerende i Data Science. Jeg har solid viden inden for matematik, fysik, kemi og biologi, og kan forklare disse fag enkelt og letforståeligt." },
+    { icon:"work",      text:"Jeg arbejder dels på et almindeligt apotek, dels på et vagtapotek med udvidede åbningstider. Gennem mit arbejde ser jeg tæt på, hvor stort behovet er for klar, kortfattet og letforståelig information om medicin." },
+    { icon:"school",    text:"Jeg har erfaring med at undervise elever i grundskolen, gymnasiet og på universitetet, især i svære fag. Jeg forklarer enkelt og roligt, så eleverne forstår det bedst muligt." },
+    { icon:"pills",     text:"Jeg brænder for at gøre faglig viden meningsfuld, forståelig og let at anvende. Jeg kobler gerne viden med folks faktiske behov, så informationen bliver nyttig og kan bruges i det virkelige liv." },
   ],
   en: [
-    { icon:"education", text:"Trained Pharmaconomist and currently a Data Science student — with a rare ability to make complex subjects such as mathematics, physics, chemistry and biology both accessible and engaging" },
-    { icon:"work",      text:"Daily practice in community and emergency pharmacy — direct patient contact has made it clear how essential clear and trustworthy medicine information truly is" },
-    { icon:"school",    text:"Experienced educator who has helped upper secondary and university students master demanding subject areas — with patience, determination and an inspiring learning environment" },
-    { icon:"pills",     text:"Passionate about making professional knowledge meaningful and practical — bringing a unique combination of in-depth expertise and lively communication to every context" },
+    { icon:"education", text:"I am a trained Pharmaconomist and currently a Data Science student. I have solid knowledge of mathematics, physics, chemistry and biology, and can explain these subjects simply and clearly." },
+    { icon:"work",      text:"I work partly at a regular pharmacy and partly at an emergency pharmacy with extended opening hours. Through my work, I see up close how great the need is for clear, concise and easy-to-understand medicine information." },
+    { icon:"school",    text:"I have experience teaching primary school, secondary school and university students, especially in difficult subjects. I explain things simply and calmly so students understand as well as possible." },
+    { icon:"pills",     text:"I'm especially passionate about making professional knowledge meaningful, understandable and easy to apply. I like connecting knowledge with people's real needs, so information becomes useful and applicable in everyday life." },
   ],
   so: [
-    { icon:"education", text:"Farmashiiste tababaran oo hadda dhigta Cilmiga Xogta, aqoon fiicanna u leh xisaabta, fiisigiska, kimistariga iyo bayoolajiga, isla markaana si fudud oo la fahmi karo u sharxi kara maaddooyinkan." },
-    { icon:"work",      text:"Waxaan marba ka shaqeeyaa farmashiye caadi ah, marna farmashiye heegan ah oo furan saacado dheeraad ah. Shaqadayda waxaan si dhow ugu arkaa baahida ay dadku u qabaan macluumaad dawo oo cad, kooban oo si fudud loo fahmi karo." },
-    { icon:"school",    text:"Waxaan khibrad u leeyahay waxbaridda ardayda dugsiga sare iyo jaamacadda, gaar ahaan maaddooyinka adag, anigoo si fudud, deggan oo la fahmi karo ugu sharxa." },
-    { icon:"pills",     text:"Wuxuu si gaar ah u xiiseeyaa in aqoonta xirfadeedka laga dhigo mid macno leh, la isticmaali karo — isagoo keena isku darka aqoon qoto dheer iyo xiriirin firfircoon oo nooceedu ka duwan yahay" },
+    { icon:"education", text:"Waxaan ahay farmashiiste tababaran, haddana waxaan ahay arday dhigta Cilmiga Xogta. Waxaan aqoon fiican u leeyahay xisaabta, fiisigiska, kimistariga iyo bayoolajiga, waxaana si fudud oo la fahmi karo u sharxi karaa maaddooyinkan." },
+    { icon:"work",      text:"Waxaan marba ka shaqeeyaa farmashiye caadi ah, marna farmashiye heegan oo furan saacado dheeraad ah. Shaqadayda waxaan si dhow ugu arkaa baahida ay dadku u qabaan macluumaad ku saabsan dawooyinka oo cad, kooban oo si fudud loo fahmi karo." },
+    { icon:"school",    text:"Waxaan khibrad u leeyahay waxbaridda ardayda dugsiga hoose, dugsiga sare iyo jaamacadda, gaar ahaan maaddooyinka adag. Waxaan si fudud oo deggan ugu sharxaa si ay ardaydu si wanaagsan u fahmaan." },
+    { icon:"pills",     text:"Waxaan si gaar ah u xiiseeyaa inaan aqoonta xirfadeed ka dhigo mid macno leh, la fahmi karo oo si fudud loo adeegsan karo. Waxaan jeclahay inaan isku xiro aqoonta iyo baahida dadka, si macluumaadku u noqdo mid waxtar leh oo nolosha dhabta ah lagu isticmaali karo." },
   ],
   ar: [
-    { icon:"education", text:"فارماكونوم مؤهَّل، وطالب حاليًا في علم البيانات، ولدي معرفة جيدة بالرياضيات والفيزياء والكيمياء والأحياء، وأحرص على شرح هذه المواد بأسلوب واضح ومبسّط وسهل الفهم." },
-    { icon:"work",      text:"أعمل بالتناوب بين صيدلية عادية وصيدلية مناوبة ذات ساعات عمل أطول، ومن خلال عملي أرى عن قرب حاجة الناس إلى معلومات دوائية واضحة ومختصرة وسهلة الفهم." },
-    { icon:"school",    text:"لدي خبرة في تدريس طلاب المرحلة الثانوية والجامعة، ولا سيما في المواد الصعبة، وأحرص على شرحها بأسلوب بسيط وهادئ وسهل الفهم." },
-    { icon:"pills",     text:"شغوف بجعل المعرفة المتخصصة ذات معنى وقابلة للتطبيق — يجمع بين العمق العلمي والتواصل الحيوي في كل سياق" },
+    { icon:"education", text:"أنا فارماكونوم مؤهَّل، وأدرس حاليًا علم البيانات. لدي معرفة جيدة بالرياضيات والفيزياء والكيمياء والأحياء، وأستطيع شرح هذه المواد بأسلوب مبسّط وواضح وسهل الفهم." },
+    { icon:"work",      text:"أعمل بالتناوب بين صيدلية عادية وصيدلية مناوبة ذات ساعات عمل أطول، ومن خلال عملي أرى عن قرب حاجة الناس إلى معلومات واضحة ومختصرة وسهلة الفهم حول الأدوية." },
+    { icon:"school",    text:"لدي خبرة في تدريس طلاب المرحلة الابتدائية والثانوية والجامعة، خاصة في المواد الصعبة. وأحرص على شرحها بطريقة هادئة ومبسّطة تساعد الطلاب على فهمها بصورة أفضل." },
+    { icon:"pills",     text:"أهتم بشكل خاص بجعل المعرفة المتخصصة ذات معنى، واضحة وسهلة التطبيق. وأحرص على ربط المعرفة باحتياجات الناس، حتى تصبح المعلومات مفيدة وقابلة للاستخدام في الحياة العملية." },
   ],
 };
 
