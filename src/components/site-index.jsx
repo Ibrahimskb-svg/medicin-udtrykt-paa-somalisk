@@ -246,25 +246,25 @@ const ABOUT_ME_META = {
 
 const ABOUT_ME_BULLETS = {
   da: [
-    { icon:"education", text:"Bachelor i Kemi og Medicinalbiologi samt uddannet Farmakonom — med en sjælden evne til at gøre komplekse fag som matematik, fysik, kemi og biologi tilgængelige og engagerende" },
+    { icon:"education", text:"Uddannet Farmakonom og aktuelt Data Science-studerende — med en sjælden evne til at gøre komplekse emner inden for sundhed og teknologi tilgængelige og engagerende" },
     { icon:"work",      text:"Daglig praksis på privatapotek og vagtapotek — mødet med patienter i skranken har tydeligt vist, hvor afgørende klar og tryg lægemiddelinformation er" },
     { icon:"school",    text:"Erfaren formidler der har hjulpet gymnasieelever og universitetsstuderende med at mestre komplekse fagområder — med tålmodighed, gå-på-mod og et inspirerende læringsmiljø" },
     { icon:"pills",     text:"Brænder for at gøre faglig viden nærværende og brugbar — og bringer en unik kombination af dybdegående viden og engageret formidling til enhver sammenhæng" },
   ],
   en: [
-    { icon:"education", text:"Bachelor's degree in Chemistry and Medicinal Biology, trained Pharmaconomist — with a rare ability to make complex subjects such as mathematics, physics, chemistry and biology both accessible and engaging" },
+    { icon:"education", text:"Trained Pharmaconomist and currently a Data Science student — with a rare ability to make complex topics in health and technology both accessible and engaging" },
     { icon:"work",      text:"Daily practice in community and emergency pharmacy — direct patient contact has made it clear how essential clear and trustworthy medicine information truly is" },
     { icon:"school",    text:"Experienced educator who has helped upper secondary and university students master demanding subject areas — with patience, determination and an inspiring learning environment" },
     { icon:"pills",     text:"Passionate about making professional knowledge meaningful and practical — bringing a unique combination of in-depth expertise and lively communication to every context" },
   ],
   so: [
-    { icon:"education", text:"Shahaadada koowaad ee Kimistari iyo Bayoolajiga Dawooyinka, waxaana sidoo kale ahay farmashiiste tababaran — leh awood u gaar ah oo ah in xisaabta, fizikada, kimistarka iyo bayoolajiga laga dhigo mawduucyo sahlan oo xiiso leh" },
+    { icon:"education", text:"Farmashiiste tababaran oo hadda ah Ardayga Cilmiga Xogta — leh awood u gaar ah oo ah in mawduucyada adag ee caafimaadka iyo tiknoolajiyada laga dhigo kuwo sahlan oo xiiso leh" },
     { icon:"work",      text:"Shaqo maalinleh oo ku saabsan farmashiyaha bulshada iyo farmashiyaha xaaladaha degdega ah — xiriirka tooska ah ee bukaanka ayaa si cad u muujiyay baahida weyn ee macluumaadka daawooyinka ee cad oo la aamin karo" },
     { icon:"school",    text:"Macalin khibrad leh oo ku caawiyay ardayda dugsiga sare iyo ardayda jaamacadda inay si wanaagsan ugu guuleystaan mawduucyada adag — isagoo adeegsanaya dulqaad, dhiirrigelin iyo jawi barasho oo waxtar leh" },
     { icon:"pills",     text:"Wuxuu si gaar ah u xiiseeyaa in aqoonta xirfadeedka laga dhigo mid macno leh, la isticmaali karo — isagoo keena isku darka aqoon qoto dheer iyo xiriirin firfircoon oo nooceedu ka duwan yahay" },
   ],
   ar: [
-    { icon:"education", text:"بكالوريوس في الكيمياء وعلم الأحياء الدوائي، وحاصل على تأهيل فارماكونوم — بقدرة نادرة على تحويل المواد المعقدة كالرياضيات والفيزياء والكيمياء وعلم الأحياء إلى مواد سهلة وممتعة" },
+    { icon:"education", text:"فارماكونوم مؤهّل، وطالب حاليًا في علم البيانات — بقدرة نادرة على جعل المواضيع المعقدة في مجالي الصحة والتقنية سهلة وممتعة" },
     { icon:"work",      text:"ممارسة يومية في الصيدلية الخاصة وصيدلية المناوبة — أوضح التواصل المباشر مع المرضى مدى أهمية المعلومات الدوائية الواضحة والموثوقة" },
     { icon:"school",    text:"معلم متمرس ساعد طلاب المرحلة الثانوية والجامعية على إتقان المجالات الدراسية الصعبة — بصبر وعزم وبيئة تعليمية ملهمة" },
     { icon:"pills",     text:"شغوف بجعل المعرفة المتخصصة ذات معنى وقابلة للتطبيق — يجمع بين العمق العلمي والتواصل الحيوي في كل سياق" },
