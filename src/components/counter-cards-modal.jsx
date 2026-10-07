@@ -50,7 +50,7 @@ const TEXTS = {
     yes: "Haa",
     no: "Maya",
     showLanguage: "Ku tus:",
-    arNotice: "Af-Caraabiga wali lama hubin oo lama gudbin qof ku hadla af-Carabi ahaan hooyo.",
+    arNotice: "Af-Carabiga wali lama hubin oo lama gudbin qof ku hadla af-Carabi ahaan hooyo.",
     pageOf: (i, n) => `${i} ee ${n}`,
     forMedicine: "Waxaa loogu talagalay",
     usualDosing: "Sida caadiga ah (ka socota bogga daawada)",

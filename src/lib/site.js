@@ -116,7 +116,7 @@ export const uiText = {
     videoTabSo: "Af-Soomaali",
     videoTabDa: "Af-Deenish",
     videoTabEn: "Af-Ingiriis",
-    videoTabAr: "Af-Caraabi",
+    videoTabAr: "Af-Carabi",
     voiceLabel: "Codka raadi",
     voiceListening: "Waan dhegaysanayaa...",
     voiceErrorDenied: "Idanka mikirifoonka lama helin. Fadlan ogolow.",

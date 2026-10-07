@@ -34,7 +34,7 @@ const TEXTS = {
     empty: "Wali lama darin farmashi. Liiska si joogto ah ayaa loo balaadhinayaa.",
     call: "Wac",
     askFor: "Weydii",
-    langLabels: { so: "Soomaali", ar: "Caraabi", da: "Deenish", en: "Ingiriisi" },
+    langLabels: { so: "Soomaali", ar: "Carabi", da: "Deenish", en: "Ingiriisi" },
     close: "Xir",
   },
   ar: {
