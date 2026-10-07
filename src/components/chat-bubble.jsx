@@ -17,7 +17,7 @@ const AUTO_HIDE_MS = 45000;
 const COOKIE_BANNER_RETRY_MS = 1500;
 
 const MESSAGES = {
-  so: "Su'aal ma qabtaa? La sheekeyso Ibraahim.",
+  so: "Su'aal ma qabtaa? La qor Ibraahim.",
   da: "Har du et spørgsmål? Chat med Ibrahim.",
   en: "Do you have a question? Chat with Ibrahim.",
   ar: "هل لديك سؤال؟ تحدث مع إبراهيم.",
