@@ -33,10 +33,10 @@ const ABOUT_BULLET_ICONS = {
 
 // ── Nav labels ─────────────────────────────────────────────────────────────
 const NAV_LABELS = {
-  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", findPharmacy:"Find apotek" },
-  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", findPharmacy:"Find a pharmacy" },
-  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha inta badan la isweydiiyo", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", findPharmacy:"Raadi farmashiye" },
-  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", findPharmacy:"ابحث عن صيدلية" },
+  da: { aboutMe:"Om mig", aboutSite:"Om Somalimed", faq:"Ofte stillede spørgsmål", feedback:"Feedback", contact:"Kontakt", tpi:"Inhalationsteknik", findPharmacy:"Find apotek", close:"Luk" },
+  en: { aboutMe:"About me", aboutSite:"About Somalimed", faq:"FAQ", feedback:"Feedback", contact:"Contact", tpi:"Inhaler technique", findPharmacy:"Find a pharmacy", close:"Close" },
+  so: { aboutMe:"Ku saabsan aniga", aboutSite:"Ku saabsan Somalimed", faq:"Su'aalaha inta badan la isweydiiyo", feedback:"Faallo", contact:"Xiriir", tpi:"Farsamada buufinta", findPharmacy:"Raadi farmashiye", close:"Xir" },
+  ar: { aboutMe:"نبذة عني", aboutSite:"حول Somalimed", faq:"الأسئلة الشائعة", feedback:"ملاحظات", contact:"تواصل", tpi:"تقنية الاستنشاق", findPharmacy:"ابحث عن صيدلية", close:"إغلاق" },
 };
 
 const FAQ_MODAL_TITLE = {
@@ -82,7 +82,7 @@ const GLOSSARY_LINK_TEXT = {
   da: { label: "Forstå dit apoteksbesøg", desc: "En kort ordliste over apoteksord — recept, tilskud m.fl." },
   en: { label: "Understand your pharmacy visit", desc: "A short glossary of Danish pharmacy words — prescription, reimbursement and more." },
   so: { label: "Faham booqashadaada farmashiyaha", desc: "Liis kooban oo ku saabsan ereyada Deenishka ah ee farmashiyaha — warqadda daawada, kaalmada daawada, iwm." },
-  ar: { label: "افهم زيارتك للصيدلية", desc: "قائمة موجزة بمصطلحات الصيدلية — الوصفة الطبية، الدعم المالي وغيرها." },
+  ar: { label: "افهم زيارتك للصيدلية", desc: "قائمة موجزة بمصطلحات الصيدلية الدنماركية — الوصفة الطبية، الدعم المالي وغيرها." },
 };
 // Samme titler som Min medicinliste-modalen selv bruger (my-list-modal.jsx),
 // genbrugt her til hero-forhåndsvisningen i stedet for at opfinde ny tekst.
@@ -95,7 +95,7 @@ const MYLIST_CARD_TEXT = {
 const COUNTER_CARDS_LINK_TEXT = {
   da: { label: "Skranke-kort", desc: "Store, hurtige kort til at spørge og forklare direkte til kunden." },
   en: { label: "Counter cards", desc: "Big, quick cards to ask and explain things directly to the customer." },
-  so: { label: "Kaararka Su'aalaha Farmashiyaha", desc: "Kaararo waaweyn oo degdeg ah, lagu weydiiyo oo lagu sharaxo si toos ah kadhka." },
+  so: { label: "Kaararka Su'aalaha Farmashiyaha", desc: "Kaararo waaweyn oo degdeg ah, lagu weydiiyo oo lagu sharaxo si toos ah macmiilka." },
   ar: { label: "بطاقات الصيدلية", desc: "بطاقات كبيرة وسريعة لسؤال العميل وشرح الأمور له مباشرة." },
 };
 const PRAYER_CARD_TEXT = {
@@ -368,7 +368,7 @@ const FAQ_DATA = {
     { q:"What happens if I stop Lamotrigine or Sertraline suddenly?",
       bullets:["Lamotrigine: can trigger seizures, even after a long seizure-free period","Sertraline: can cause dizziness, tingling, sleep problems and mood swings","Both must always be tapered down slowly under medical guidance"] },
     { q:"What do I do if I have taken too many Paracetamol tablets?",
-      bullets:["Call Giftlinjen immediately: 82 12 12 12 — open around the clock, free of charge","Call 112 in emergencies","Liver damage can develop over 24–72 hours — do not wait for symptoms","Bring the packaging so staff know exactly what was taken"] },
+      bullets:["Call the Poison Helpline (Giftlinjen) immediately: 82 12 12 12 — open around the clock, free of charge","Call 112 in emergencies","Liver damage can develop over 24–72 hours — do not wait for symptoms","Bring the packaging so staff know exactly what was taken"] },
     { q:"Can Atorvastatin cause muscle pain?",
       bullets:["Yes — widespread aching or weakness in muscles is a well-known side effect","Contact your doctor for persistent muscle pain, weakness or dark urine","Your doctor can adjust your dose or switch to a different type"] },
     { q:"Which pain reliever works best?",
@@ -390,11 +390,11 @@ const FAQ_DATA = {
     { q:"Waa maxay daawooyinka dhiig-karka, sideese loo qaataa Amlodipin, Losartan iyo Enalapril?",
       bullets:["Waxay hoos u dhigaan dhiig-karka, waxayna muddo dheer ilaaliyaan wadnaha iyo xididdada dhiigga.","Saddexdaba hal mar ayaa la qaataa maalin kasta.","Daawadan waxaa la qaatan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.","Ku qaado wakhti isku mid ah maalin kasta, xitaa haddii aadan wax calaamado ah dareemayn."] },
     { q:"Ma qaadan karaa Ibuprofen haddii aan qaadanayo daawada dhiig-karka?",
-      bullets:["Inta badan laguma taliyo — Ibuprofen waxay daciifin kartaa saameynta daawada dhiig-karka.","Waxay sidoo kale culays saari kartaa kelyaha, gaar ahaan noocyo ka mid ah daawooyinka dhiig-karka.","Paracetamol ayaa badanaa ka ammaan badan.","Mar walba la tasho farmashiyaha ama dhakhtarkaaga."] },
+      bullets:["Inta badan laguma taliyo — Ibuprofen waxay daciifin kartaa saameynta daawada dhiig-karka.","Waxay sidoo kale culays saari kartaa kelyaha, gaar ahaan noocyo ka mid ah daawooyinka dhiig-karka.","Paracetamol ayaa ka ammaan badan.","Mar walba la tasho farmashiyaha ama dhakhtarkaaga."] },
     { q:"Maxaa dhici kara haddii aan si kedis ah u joojiyo Lamotrigin ama Sertralin?",
       bullets:["Lamotrigin: waxay keeni kartaa in suuxdintu dib u soo noqoto, xitaa haddii aad muddo dheer fiicnayd.","Sertralin: waxay keeni kartaa dawakh, dareen mudid ama gubasho ah, hurdo-xumo iyo isbeddel niyadeed.","Labadan daawo waa in si tartiib tartiib ah loo yareeyaa, iyadoo uu dhakhtar hagayo."] },
     { q:"Maxaan sameeyaa haddii aan qaatay Paracetamol ka badan intii la rabay?",
-      bullets:["Isla markiiba wac Giftlinjen: 82 12 12 12 — waxay furan tahay 24 saacadood, waana bilaash.","Wac 112 haddii ay xaaladdu degdeg tahay.","Dhaawaca beerka wuxuu soo bixi karaa 24 ilaa 72 saacadood gudahood — ha sugin calaamadaha.","Qaado baakadka daawada si shaqaalaha caafimaadku u arkaan waxa aad qaadatay."] },
+      bullets:["Isla markiiba wac Khadka Sunta (Giftlinjen): 82 12 12 12 — waxay furan tahay 24 saacadood, waana bilaash.","Wac 112 haddii ay xaaladdu degdeg tahay.","Dhaawaca beerka wuxuu soo bixi karaa 24 ilaa 72 saacadood gudahood — ha sugin calaamadaha.","Qaado baakadka daawada si shaqaalaha caafimaadku u arkaan waxa aad qaadatay."] },
     { q:"Atorvastatin ma keeni kartaa murqo-xanuun?",
       bullets:["Haa — murqo-xanuun ama murqo-daciifnimo waa waxyeello la yaqaan.","La xiriir dhakhtarkaaga haddii murqo-xanuunku sii socdo, aad dareento murqo-daciifnimo ama kaadidu noqoto madow.","Dhakhtarkaagu wuxuu beddeli karaa qiyaasta ama nooca daawada."] },
     { q:"Daawada xanuun-baabi'iyaha ah kee fiican?",
@@ -420,7 +420,7 @@ const FAQ_DATA = {
     { q:"ماذا يحدث إذا توقفت فجأة عن لاموتريجين أو سيرترالين؟",
       bullets:["لاموتريجين: قد يسبب نوبات صرع حتى بعد فترة طويلة بلا نوبات","سيرترالين: قد يسبب دوارا ووخزا ومشاكل نوم وتقلبات مزاجية","يجب تخفيض كلاهما تدريجيا تحت إشراف الطبيب"] },
     { q:"ماذا أفعل إذا تناولت جرعة زائدة من الباراسيتامول؟",
-      bullets:["اتصل فورا بـ Giftlinjen: 82 12 12 12 — مفتوح 24 ساعة، مجانا","اتصل بـ 112 في حالات الطوارئ","تلف الكبد قد يحدث خلال 24–72 ساعة — لا تنتظر الأعراض","أحضر عبوة الدواء ليعرف الكوادر الطبية ما تناولته"] },
+      bullets:["اتصل فورا بخط السموم (Giftlinjen): 82 12 12 12 — مفتوح 24 ساعة، مجانا","اتصل بـ 112 في حالات الطوارئ","تلف الكبد قد يحدث خلال 24–72 ساعة — لا تنتظر الأعراض","أحضر عبوة الدواء ليعرف الكوادر الطبية ما تناولته"] },
     { q:"هل يمكن لأتورفاستاتين أن يسبب آلاما عضلية؟",
       bullets:["نعم — ألم منتشر أو ضعف في العضلات من الآثار الجانبية المعروفة","تواصل مع طبيبك عند آلام مستمرة أو ضعف عضلي أو بول داكن","يمكن تعديل الجرعة أو تغيير الدواء"] },
     { q:"أي مسكن ألم هو الأفضل؟",
@@ -494,7 +494,7 @@ function AboutModal({tab,language,onClose}){
   const iconEl=tab==="me"?<UserRound size={24} strokeWidth={2} color="#fff" aria-hidden="true"/>:<HeartPulse size={24} strokeWidth={2} color="#fff" aria-hidden="true"/>;
   const icons=ABOUT_BULLET_ICONS[tab];
   return(
-    <ModalShell title={title} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
+    <ModalShell title={title} iconEl={iconEl} onClose={onClose} isRtl={isRtl} closeLabel={navLabels.close}>
       {tab==="me"&&(
         <div style={{display:"flex",alignItems:"center",gap:"14px",marginBottom:"18px",background:"#fff",borderRadius:"20px",padding:"14px 16px",border:`1.5px solid ${theme.border}`,boxShadow:`0 4px 16px ${theme.primary}15`}}>
           <div style={{position:"relative",flexShrink:0}}>
@@ -565,7 +565,7 @@ function ContactModal({language,onClose}){
   });
 
   return(
-    <ModalShell title={navLabels.contact} iconEl={iconEl} onClose={onClose} isRtl={isRtl}>
+    <ModalShell title={navLabels.contact} iconEl={iconEl} onClose={onClose} isRtl={isRtl} closeLabel={navLabels.close}>
       <p style={{fontSize:"15px",color:"#475569",lineHeight:1.7,margin:"0 0 18px",textAlign:isRtl?"right":"left"}}>{data.intro}</p>
       <div style={{background:theme.tagBg,borderRadius:"18px",padding:"14px 18px",marginBottom:"14px",border:`1.5px solid ${theme.border}`,display:"flex",alignItems:"center",gap:"12px"}}>
         <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:48,height:48,borderRadius:"14px",background:theme.primary,flexShrink:0}}>
@@ -647,9 +647,10 @@ function FAQModal({language,onClose}){
   const data=FAQ_DATA[language]??FAQ_DATA.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
   const faqTitle=FAQ_MODAL_TITLE[language]??FAQ_MODAL_TITLE.so;
+  const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const iconEl=<QuestionIcon size={22} color="rgba(255,255,255,0.95)"/>;
   return(
-    <ModalShell title={faqTitle} iconEl={iconEl} onClose={onClose} isRtl={isRtl} wide>
+    <ModalShell title={faqTitle} iconEl={iconEl} onClose={onClose} isRtl={isRtl} wide closeLabel={navLabels.close}>
       <div style={{display:"flex",flexDirection:"column",gap:"8px"}}>
         {data.items.map((item,i)=>(
           <div key={i} style={{background:"#fff",borderRadius:"16px",border:`1.5px solid ${open===i?theme.primary+"55":"#e5e7eb"}`,overflow:"hidden",boxShadow:open===i?`0 4px 16px ${theme.primary}15`:"0 1px 3px rgba(0,0,0,0.04)",transition:"all 0.2s"}}>

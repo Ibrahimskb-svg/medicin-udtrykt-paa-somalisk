@@ -140,7 +140,7 @@ const STEPS = {
       { title: "Sambabada faaruji",                       body: "Si tartiib ah oo buuxda hawada dibadda ugu saar, adigoo buufinta ka fogeynaya afkaaga inta aad sidaas samaynayso." },
       { title: "Bushimaha ku qabso afdhiga",              body: "Afdhiga afka geli oo bushimaha si adag ugu qabso. Hubi in carrabku uusan xannibin furitaanka." },
       { title: "Riix oo si tartiib ah u neefso",          body: "Hoosta riix isla waqtigaasna si tartiib ah oo qoto dheer afka uga neefso 3 ilaa 5 ilbiriqsi." },
-      { title: "Neefta hay 10 ilbiriqsi",                body: "Neefta hay 10 ilbiriqsi, ama inta aad awooddo. Tani waxay daawada siinaysaa waqti ay sambabada ugu degto." },
+      { title: "Neefta hay 10 ilbiriqsi",                body: "Neefta hay 10 ilbiriqsi. Tani waxay daawada siinaysaa waqti ay sambabada ugu degto." },
       { title: "Dibadda u neefso oo sug",                body: "Si tartiib ah dibadda ugu neefso oo sug 30 ilaa 60 ilbiriqsi ka hor intaadan buufin kale qaadan. Daboolka dib u saar." },
     ],
     ar: [
@@ -154,7 +154,7 @@ const STEPS = {
   },
   symbicort: {
     da: [
-      { title: "Hold opret og lad",                      body: "Hold Turbuhaler opret. Drej den røde ring helt til højre, derefter helt til venstre, til der klikker. Enheden er nu ladet." },
+      { title: "Hold opret og lad den",                  body: "Hold Turbuhaler opret. Drej den røde ring helt til højre, derefter helt til venstre, til der klikker. Enheden er nu ladet." },
       { title: "Pust ud – væk fra inhalatoren",           body: "Pust roligt og helt ud – hold inhalatoren væk fra munden. Pust aldrig ind i en Turbuhaler." },
       { title: "Luk læberne om mundstykket",              body: "Sæt mundstykket i munden og luk læberne tæt og fast – tungen må ikke blokere åbningen." },
       { title: "Træk vejret hurtigt og dybt ind",         body: "Træk vejret kraftigt og hurtigt ind – Turbuhaler kræver et stærkere åndedræt end en spraydåse for at frigøre pulveret." },
@@ -174,7 +174,7 @@ const STEPS = {
       { title: "Dibadda u neefso, kana fogee buufinta",  body: "Si tartiib ah oo buuxda hawada dibadda ugu saar, adigoo buufinta ka fogeynaya afkaaga. Waligaa gudaha ha ugu neefsan buufinta." },
       { title: "Bushimaha ku qabso afdhiga",             body: "Afdhiga afka geli oo bushimaha si adag ugu qabso. Hubi in carrabku uusan xannibin furitaanka." },
       { title: "Si xoog leh oo degdeg ah u neefso",      body: "Afka si xoog leh oo degdeg ah uga neefso. Turbuhaler-ku wuxuu u baahan yahay neefsasho ka xoog badan tan buufinta caadiga ah si budadu u soo baxdo." },
-      { title: "Neefta hay 10 ilbiriqsi",                body: "Neefta hay 10 ilbiriqsi, ama inta aad awooddo. Tani waxay daawada ka caawisaa inay gaarto marinnada hawada ee yaryar." },
+      { title: "Neefta hay 10 ilbiriqsi",                body: "Neefta hay 10 ilbiriqsi. Tani waxay daawada ka caawisaa inay gaarto marinnada hawada ee yaryar." },
       { title: "Afka dhaq, dabadeed tuf",                body: "Isticmaal kasta ka dib afka si fiican biyo ugu dhaq dabadeedna tuf. Tani waxay ka hortagtaa fangaska afka iyo xabeebta codka." },
     ],
     ar: [

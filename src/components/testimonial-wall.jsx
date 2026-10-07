@@ -29,6 +29,7 @@ const TEXT = {
     sentBody: "Ibrahim læser den og lægger den op på siden, hvis den godkendes.",
     prevLabel: "Forrige",
     nextLabel: "Næste",
+    close: "Luk",
   },
   en: {
     eyebrow: "Real experiences",
@@ -52,6 +53,7 @@ const TEXT = {
     sentBody: "Ibrahim will read it and publish it on the site if approved.",
     prevLabel: "Previous",
     nextLabel: "Next",
+    close: "Close",
   },
   so: {
     eyebrow: "Khibradaha dhabta ah",
@@ -75,6 +77,7 @@ const TEXT = {
     sentBody: "Ibraahim ayaa akhrin doona, wuxuuna ku soo dhejin doonaa bogga haddii la ansixiyo.",
     prevLabel: "Hore",
     nextLabel: "Xiga",
+    close: "Xir",
   },
   ar: {
     eyebrow: "تجارب حقيقية",
@@ -98,6 +101,7 @@ const TEXT = {
     sentBody: "سيقرأها إبراهيم وينشرها على الموقع إذا تمت الموافقة عليها.",
     prevLabel: "السابق",
     nextLabel: "التالي",
+    close: "إغلاق",
   },
 };
 
@@ -211,7 +215,7 @@ function TestimonialFormModal({ language, isRtl, onClose }) {
   });
 
   return (
-    <ModalShell title={t.formTitle} iconEl={<QuoteIcon size={20} color="rgba(255,255,255,0.95)" />} onClose={onClose} isRtl={isRtl}>
+    <ModalShell title={t.formTitle} iconEl={<QuoteIcon size={20} color="rgba(255,255,255,0.95)" />} onClose={onClose} isRtl={isRtl} closeLabel={t.close}>
       {sent ? (
         <div style={{ textAlign: "center", padding: "26px 0" }}>
           <p style={{ fontWeight: 800, fontSize: "17px", color: "#0f172a", margin: "0 0 8px" }}>{t.sentTitle}</p>

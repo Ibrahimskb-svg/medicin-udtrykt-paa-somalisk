@@ -1,6 +1,6 @@
 "use client";
 
-export const TWIST_LABEL = { da: "↺ DREJ", en: "↺ TURN", so: "↺ LEEXI", ar: "↺ أدر" };
+export const TWIST_LABEL = { da: "↺ DREJ", en: "↺ TURN", so: "↺ WAREEJI", ar: "↺ أدر" };
 
 const HOLD_LABEL = {
   so: "✓ Neefta hayso", da: "✓ Hold vejret", en: "✓ Hold your breath", ar: "✓ احبس أنفاسك",

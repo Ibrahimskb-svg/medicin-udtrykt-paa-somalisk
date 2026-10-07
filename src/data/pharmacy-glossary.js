@@ -145,7 +145,7 @@ export const pharmacyGlossary = [
   },
   {
     id: "apoteksforbeholdt",
-    term: { da: "Apoteksforbeholdt medicin", en: "Pharmacy-only medicine", so: "Daawo aan laga heli karin waxbadeecad dukaamada", ar: "دواء مخصص للصيدليات فقط" },
+    term: { da: "Apoteksforbeholdt medicin", en: "Pharmacy-only medicine", so: "Daawo gaar u ah farmashiyaha", ar: "دواء مخصص للصيدليات فقط" },
     explanation: {
       da: "Medicin du ikke behøver recept til, men som kun må sælges på et apotek — ikke i supermarkedet — fordi apotekspersonalet skal kunne vejlede dig om den.",
       en: "Medicine you don't need a prescription for, but which may only be sold at a pharmacy — not in a supermarket — because pharmacy staff need to be able to advise you on it.",

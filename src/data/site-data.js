@@ -454,7 +454,7 @@ export const siteData = {
           "useList": [
             "Amlodipin waxaa loo isticmaalaa in lagu dejiyo dhiig-karka.",
             "Waxay ka shaqaysaa nasinta iyo furfuridda xididdada dhiigga, si dhiiggu u maro waddo ka ballaaran.",
-            "Dhiig-karku waa cadaw aamusan; marar badan calaamad ma leh, laakiin gudaha ayuu dhaawac ka samayn karaa."
+            "Dhiig-karku waa cadaw aamusan; marar badan calaamad ma leh, laakiin waqti ka dib wuxuu dhaawici karaa wadnaha, maskaxda iyo kelyaha."
           ],
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
@@ -474,7 +474,7 @@ export const siteData = {
           "interactList": [
             "U sheeg dhakhtarka ama farmashiyaha haddii aad qaadanayso dawooyin kale, xataa kuwa aan warqad dhakhtareed lahayn.",
             "Daawooyinka qaar waxay beddeli karaan sida amlodipin u shaqayso gudaha jirka.",
-            "Gaar ahaan waa muhiim in la sheego haddii aad qaadato dawooyinka wadnaha, dawooyinka fangaska, antibiyootiga, dawooyinka HIV-ga ama daawo-dabiiciyeedka qaarkood."
+            "Gaar ahaan waa muhiim in la sheego haddii aad qaadato dawooyinka wadnaha, dawooyinka fangaska, antibiyootiga, dawooyinka HIV-ga ama geedka la yiraahdo St John's Wort (nabaad-herbal)."
           ],
           "warnTitle": "Digniino muhiim ah",
           "warnList": [
@@ -534,7 +534,7 @@ export const siteData = {
           "useList": [
             "Amlodipin bruges til at sænke forhøjet blodtryk.",
             "Medicinen hjælper blodkarrene med at slappe af, så blodet får bedre plads.",
-            "Forhøjet blodtryk kaldes ofte en stille dræber, fordi man ikke altid kan mærke det."
+            "Forhøjet blodtryk kaldes ofte en stille dræber, fordi man ikke altid kan mærke det, men over tid kan det skade hjerte, hjerne og nyrer."
           ],
           "doseTitle": "Dosering og Ibrahims råd",
           "doseList": [
@@ -694,7 +694,7 @@ export const siteData = {
           "useList": [
             "يستخدم أملوديبين لعلاج ارتفاع ضغط الدم.",
             "يساعد الأوعية الدموية على الاسترخاء حتى يمر الدم بسهولة أكبر.",
-            "ارتفاع ضغط الدم قد لا يشعر به المريض دائما، لكنه قد يسبب أضرارا داخلية مع الوقت."
+            "ارتفاع ضغط الدم قد لا يشعر به المريض دائما، لكنه قد يسبب أضرارا للقلب والدماغ والكلى مع الوقت."
           ],
           "doseTitle": "الجرعة ونصائح إبراهيم",
           "doseList": [
@@ -766,7 +766,7 @@ export const siteData = {
       "iconSvg": "<svg viewBox=\"0 0 64 64\" id=\"drugSvg\" aria-hidden=\"true\">\r\n            <defs>\r\n              <linearGradient id=\"pillRed\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#ff8a7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#d63b2e\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillYellow\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#f8df7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#caa61a\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillShine\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"rgba(255,255,255,0.95)\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"rgba(255,255,255,0)\"></stop>\r\n              </linearGradient>\r\n            </defs>\r\n            <g transform=\"rotate(-45 32 32)\">\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"#ffffff\" opacity=\"0.22\"></rect>\r\n              <clipPath id=\"pillClip\">\r\n                <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\"></rect>\r\n              </clipPath>\r\n              <g clip-path=\"url(#pillClip)\">\r\n                <rect x=\"14\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillRed)\"></rect>\r\n                <rect x=\"32\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillYellow)\"></rect>\r\n                <rect x=\"30.8\" y=\"22\" width=\"2.4\" height=\"20\" fill=\"#ffffff\" opacity=\"0.9\"></rect>\r\n                <ellipse cx=\"24\" cy=\"27.5\" rx=\"10\" ry=\"4.2\" fill=\"url(#pillShine)\" opacity=\"0.55\"></ellipse>\r\n                <ellipse cx=\"40\" cy=\"36.5\" rx=\"8.5\" ry=\"3.5\" fill=\"#000000\" opacity=\"0.05\"></ellipse>\r\n              </g>\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.4\"></rect>\r\n            </g>\r\n          </svg>",
       "audio": {
         "so": "audio/Atorvastatin.mp3",
-        "ar": "audio/Atorvastatin-arabisk.mp3.mpeg"
+        "ar": "audio/Atorvastatin-arabisk.mp3"
       },
       "dosagePictogram": {
         "da": [
@@ -860,7 +860,7 @@ export const siteData = {
           "useTitle": "Isticmaalka",
           "useList": [
             "Atorvastatin waxaa loo isticmaalaa marka kolestaroolka xun dhiigga ku bato.",
-            "Waxay jirka ka caawinaysaa inuu yareeyo kolestaroolka.",
+            "Waxay jirka ka caawinaysaa inuu sameeyo kolestarool ka yar sidii hore.",
             "Waxaa sidoo kale loo isticmaalaa in lagu yareeyo halista dhibaatooyinka wadnaha iyo xididdada dhiigga, gaar ahaan dadka halistaas ku badan."
           ],
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
@@ -1169,7 +1169,7 @@ export const siteData = {
       "iconSvg": "<svg viewBox=\"0 0 64 64\" id=\"drugSvg\" aria-hidden=\"true\">\r\n            <defs>\r\n              <linearGradient id=\"pillRed\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#ff8a7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#d63b2e\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillYellow\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#f8df7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#caa61a\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillShine\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"rgba(255,255,255,0.95)\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"rgba(255,255,255,0)\"></stop>\r\n              </linearGradient>\r\n            </defs>\r\n            <g transform=\"rotate(-45 32 32)\">\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"#ffffff\" opacity=\"0.22\"></rect>\r\n              <clipPath id=\"pillClip\">\r\n                <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\"></rect>\r\n              </clipPath>\r\n              <g clip-path=\"url(#pillClip)\">\r\n                <rect x=\"14\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillRed)\"></rect>\r\n                <rect x=\"32\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillYellow)\"></rect>\r\n                <rect x=\"30.8\" y=\"22\" width=\"2.4\" height=\"20\" fill=\"#ffffff\" opacity=\"0.9\"></rect>\r\n                <ellipse cx=\"24\" cy=\"27.5\" rx=\"10\" ry=\"4.2\" fill=\"url(#pillShine)\" opacity=\"0.55\"></ellipse>\r\n                <ellipse cx=\"40\" cy=\"36.5\" rx=\"8.5\" ry=\"3.5\" fill=\"#000000\" opacity=\"0.05\"></ellipse>\r\n              </g>\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.4\"></rect>\r\n            </g>\r\n          </svg>",
       "audio": {
         "so": "audio/Diclofenac.mp3",
-        "ar": "audio/Diclofenac-arabisk.mp3.mpeg"
+        "ar": "audio/Diclofenac-arabisk.mp3"
       },
       "dosagePictogram": {
         "da": [
@@ -1255,7 +1255,7 @@ export const siteData = {
           "badgeText": "Akhris fudud oo kooban",
           "introBox": "Diclofenac waa daawo xanuunka iyo bararka dejisa, laakiin sidoo kale waxay culays saari kartaa caloosha, wadnaha ama kelyaha dadka qaarkood. Sidaas darteed waa daawo faa'iido leh marka si sax ah loo isticmaalo, laakiin aan ahayn mid lagu qaato si iska caadi ah muddo dheer.",
           "ibrahimTitle": "Talo gaar ah oo Ibraahim ka timid",
-          "ibrahimText": "Waxaan dadka ugu sharxaa sidan: diclofenac waxay dabka ka demisaa meesha xanuunku ka kacsan yahay, laakiin haddii si khaldan loo isticmaalo waxay caloosha uga tagi kartaa meel jilicsan ama jirka culays kale saari kartaa. Sidaas darteed qaado qiyaasta ugu yar ee kuu shaqaysa, wakhtiga ugu gaaban, hana ku darin dawooyin kale oo la mid ah adigoon talo helin.",
+          "ibrahimText": "Waxaan dadka ugu sharxaa sidan: diclofenac waxay dabka ka demisaa meesha xanuunku ka kacsan yahay, laakiin haddii si khaldan loo isticmaalo waxay ka dhigi kartaa caloosha mid aad u nugul, isla markaana jirka culays dheeraad ah saari karta. Sidaas darteed qaado qiyaasta ugu yar ee kuu shaqaysa, wakhtiga ugu gaaban, hana ku darin dawooyin kale oo la mid ah adigoon talo helin.",
           "useTitle": "Isticmaalka",
           "useList": [
             "Diclofenac waxaa loo isticmaalaa xanuun iyo barar, gaar ahaan xanuunka kala-goysyada, dhabarka ama murqaha.",
@@ -1564,11 +1564,11 @@ export const siteData = {
     },
     {
       "slug": "eliquis",
-      "title": "Eliquis – dhiig-khafiifiye",
+      "title": "Eliquis (apixaban) – dhiig-khafiifiye",
       "iconSvg": "<svg viewBox=\"0 0 64 64\" id=\"drugSvg\" aria-hidden=\"true\">\r\n            <defs>\r\n              <linearGradient id=\"pillRed\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#ff8a7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#d63b2e\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillYellow\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#f8df7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#caa61a\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillShine\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"rgba(255,255,255,0.95)\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"rgba(255,255,255,0)\"></stop>\r\n              </linearGradient>\r\n            </defs>\r\n            <g transform=\"rotate(-45 32 32)\">\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"#ffffff\" opacity=\"0.22\"></rect>\r\n              <clipPath id=\"pillClip\">\r\n                <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\"></rect>\r\n              </clipPath>\r\n              <g clip-path=\"url(#pillClip)\">\r\n                <rect x=\"14\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillRed)\"></rect>\r\n                <rect x=\"32\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillYellow)\"></rect>\r\n                <rect x=\"30.8\" y=\"22\" width=\"2.4\" height=\"20\" fill=\"#ffffff\" opacity=\"0.9\"></rect>\r\n                <ellipse cx=\"24\" cy=\"27.5\" rx=\"10\" ry=\"4.2\" fill=\"url(#pillShine)\" opacity=\"0.55\"></ellipse>\r\n                <ellipse cx=\"40\" cy=\"36.5\" rx=\"8.5\" ry=\"3.5\" fill=\"#000000\" opacity=\"0.05\"></ellipse>\r\n              </g>\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.4\"></rect>\r\n            </g>\r\n          </svg>",
       "audio": {
         "so": "audio/Eliquis.mp3",
-        "ar": "audio/Eliquis-arabisk.mp3.mpeg"
+        "ar": "audio/Eliquis-arabisk.mp3"
       },
       "dosagePictogram": {
         "da": [
@@ -1644,12 +1644,12 @@ export const siteData = {
       ],
       "translations": {
         "so": {
-          "pageTitle": "Eliquis – dhiig-khafiifiye",
-          "hdrTitle": "Eliquis – dhiig-khafiifiye",
+          "pageTitle": "Eliquis (apixaban) – dhiig-khafiifiye",
+          "hdrTitle": "Eliquis (apixaban) – dhiig-khafiifiye",
           "hdrSubtitle": "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
           "backLabel": "Ku laabo liiska daawooyinka",
           "langLabel": "Dooro luqadda:",
-          "drugName": "Eliquis – dhiig-khafiifiye",
+          "drugName": "Eliquis (apixaban) – dhiig-khafiifiye",
           "drugForm": "Kiniin afka ah",
           "badgeText": "Akhris fudud oo kooban",
           "introBox": "Eliquis waa daawo dhiigga ka dhigta mid aan si sahlan u xinjiroobin. Tani waxay kaa caawin kartaa ka hortagga xinjiro halis ah, laakiin sidoo kale waxay ka dhigan tahay in jirku si fudud u dhiigi karo haddii dhaawac ama dhibaato timaaddo.",
@@ -1658,7 +1658,7 @@ export const siteData = {
           "useTitle": "Isticmaalka",
           "useList": [
             "Eliquis waa dhiig-khafiifiye loo isticmaalo si loo yareeyo khatarta xinjirowga dhiigga.",
-            "Waxaa loo isticmaalaa dadka qaarkood ee qaba garaaca wadnaha oo aan caadi ahayn iyo dadka loo daweynayo ama looga hortagayo xinjiro dhiig oo ku samaysma lugaha ama sambabbada.",
+            "Waxaa loo isticmaalaa dadka qaarkood ee qaba garaaca wadnaha oo aan caadi ahayn (atrial fibrillation) iyo dadka loo daweynayo ama looga hortagayo xinjiro dhiig oo ku samaysma lugaha ama sambabbada.",
             "Mararka qaar waxaa kale oo loo isticmaalaa ka dib qalliin si loo yareeyo khatarta xinjirowga dhiigga."
           ],
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
@@ -1718,10 +1718,6 @@ export const siteData = {
             {
               "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
-            },
-            {
-              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
@@ -1769,7 +1765,7 @@ export const siteData = {
             "Søg hurtigt hjælp, hvis du får blod i urinen eller afføringen, sort afføring, blodigt opkast eller mange uforklarlige blå mærker.",
             "Fortæl læge eller tandlæge, at du tager Eliquis, før operation eller tandbehandling.",
             "Hvis du slår hovedet eller falder hårdt, mens du er i behandling, er det vigtigt at blive vurderet.",
-            "Stop ikke medicinen uden lægens råd."
+            "Stop ikke medicinen pludseligt uden lægens råd — det kan øge risikoen for blodpropper eller blodprop i hjernen."
           ],
           "ramadanTitle": "Ramadan og faste",
           "ramadanList": [
@@ -1797,10 +1793,6 @@ export const siteData = {
             {
               "text": "pro.medicin.dk – Apixaban",
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3517"
-            },
-            {
-              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
@@ -1852,7 +1844,7 @@ export const siteData = {
             "Seek help quickly if you get blood in the urine or stool, black stools, vomiting blood, or unusual bruising.",
             "Tell doctors or dentists that you take Eliquis before surgery or dental treatment.",
             "If you hit your head or have a hard fall while taking Eliquis, it is important to be assessed.",
-            "Do not stop the medicine without medical advice."
+            "Do not stop the medicine suddenly without medical advice — stopping abruptly can increase the risk of blood clots or stroke."
           ],
           "ramadanTitle": "Ramadan and fasting",
           "ramadanList": [
@@ -1880,10 +1872,6 @@ export const siteData = {
             {
               "text": "pro.medicin.dk – Apixaban",
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3517"
-            },
-            {
-              "text": "sundhed.dk – Anticoagulation treatment (blood-thinning medicine)",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Anticoagulation treatment (blood-thinning medicine)",
@@ -1935,7 +1923,7 @@ export const siteData = {
             "اطلب المساعدة بسرعة إذا كان هناك دم في البول أو البراز، أو براز أسود، أو تقيؤ دم، أو كدمات غير معتادة.",
             "أخبر الطبيب أو طبيب الأسنان أنك تستخدم إليكويس قبل أي عملية أو علاج أسنان.",
             "إذا تعرضت لضربة على الرأس أو سقوط قوي أثناء استعمال إليكويس، فمن المهم تقييم حالتك.",
-            "لا توقف الدواء دون نصيحة طبية."
+            "لا توقف الدواء فجأة دون نصيحة طبية — فالتوقف المفاجئ قد يزيد من خطر الجلطات الدموية أو السكتة الدماغية."
           ],
           "ramadanTitle": "رمضان والصيام",
           "ramadanList": [
@@ -1965,10 +1953,6 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/3517"
             },
             {
-              "text": "sundhed.dk – العلاج المميع للدم",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
-            },
-            {
               "text": "sundhed.dk – مضادات التخثر (الأدوية المميعة للدم)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
@@ -1983,7 +1967,7 @@ export const siteData = {
       "iconSvg": "<svg viewBox=\"0 0 64 64\" id=\"drugSvg\" aria-hidden=\"true\">\r\n            <defs>\r\n              <linearGradient id=\"pillRed\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#ff8a7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#d63b2e\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillYellow\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#f8df7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#caa61a\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillShine\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"rgba(255,255,255,0.95)\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"rgba(255,255,255,0)\"></stop>\r\n              </linearGradient>\r\n            </defs>\r\n            <g transform=\"rotate(-45 32 32)\">\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"#ffffff\" opacity=\"0.22\"></rect>\r\n              <clipPath id=\"pillClip\">\r\n                <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\"></rect>\r\n              </clipPath>\r\n              <g clip-path=\"url(#pillClip)\">\r\n                <rect x=\"14\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillRed)\"></rect>\r\n                <rect x=\"32\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillYellow)\"></rect>\r\n                <rect x=\"30.8\" y=\"22\" width=\"2.4\" height=\"20\" fill=\"#ffffff\" opacity=\"0.9\"></rect>\r\n                <ellipse cx=\"24\" cy=\"27.5\" rx=\"10\" ry=\"4.2\" fill=\"url(#pillShine)\" opacity=\"0.55\"></ellipse>\r\n                <ellipse cx=\"40\" cy=\"36.5\" rx=\"8.5\" ry=\"3.5\" fill=\"#000000\" opacity=\"0.05\"></ellipse>\r\n              </g>\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.4\"></rect>\r\n            </g>\r\n          </svg>",
       "audio": {
         "so": "audio/Enalapril.mp3",
-        "ar": "audio/Enalapril-arabisk.mp3.mpeg"
+        "ar": "audio/Enalapril-arabisk.mp3"
       },
       "dosagePictogram": {
         "da": [
@@ -2088,7 +2072,7 @@ export const siteData = {
             "Qufac qalalan, madax-wareer iyo daal ayaa dhici kara.",
             "Dad qaar waxay dareemi karaan cadaadiska dhiigga oo aad u hooseeya, gaar ahaan bilowga.",
             "Mararka qaar baaritaannada dhiigga ayaa muujin kara isbeddel ku yimaada shaqada kelyaha ama heerka potassium-ka.",
-            "Haddii uu dhaco barar wajiga, bushimaha ama cunaha, waa xaalad degdeg ah. Raadi gargaar caafimaad oo degdeg ah ama la xiriir dhakhtarkaaga."
+            "Barar wajiga, bushimaha ama cunaha waa dhif laakiin waa xaalad degdeg ah. Raadi gargaar caafimaad oo degdeg ah ama la xiriir dhakhtarkaaga."
           ],
           "interactTitle": "Isdhexgalka daawooyinka",
           "interactList": [
@@ -2360,7 +2344,7 @@ export const siteData = {
           "foodList": [
             "يمكن تناوله مع الطعام أو بدونه.",
             "اشرب كمية كافية من السوائل، خاصة في الجو الحار أو عند القيء أو الإسهال.",
-            "انتبه من المنتجات العالية بالبوتاسيوم إذا نصحك الطبيب بالحذر."
+            "انتبه من المنتجات الغنية بالبوتاسيوم إذا نصحك الطبيب بالحذر."
           ],
           "storeTitle": "تخزين الدواء",
           "storeList": [
@@ -2394,7 +2378,7 @@ export const siteData = {
       "iconSvg": "<svg viewBox=\"0 0 64 64\" id=\"drugSvg\" aria-hidden=\"true\">\r\n            <defs>\r\n              <linearGradient id=\"pillRedHM\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#ff8a7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#d63b2e\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillYellowHM\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#f8df7a\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#caa61a\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"pillShineHM\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"rgba(255,255,255,0.95)\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"rgba(255,255,255,0)\"></stop>\r\n              </linearGradient>\r\n            </defs>\r\n            <g transform=\"rotate(-45 32 32)\">\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"#ffffff\" opacity=\"0.22\"></rect>\r\n              <clipPath id=\"pillClipHM\">\r\n                <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\"></rect>\r\n              </clipPath>\r\n              <g clip-path=\"url(#pillClipHM)\">\r\n                <rect x=\"14\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillRedHM)\"></rect>\r\n                <rect x=\"32\" y=\"22\" width=\"18\" height=\"20\" fill=\"url(#pillYellowHM)\"></rect>\r\n                <rect x=\"30.8\" y=\"22\" width=\"2.4\" height=\"20\" fill=\"#ffffff\" opacity=\"0.9\"></rect>\r\n                <ellipse cx=\"24\" cy=\"27.5\" rx=\"10\" ry=\"4.2\" fill=\"url(#pillShineHM)\" opacity=\"0.55\"></ellipse>\r\n                <ellipse cx=\"40\" cy=\"36.5\" rx=\"8.5\" ry=\"3.5\" fill=\"#000000\" opacity=\"0.05\"></ellipse>\r\n              </g>\r\n              <rect x=\"14\" y=\"22\" width=\"36\" height=\"20\" rx=\"10\" fill=\"none\" stroke=\"#9a9a9a\" stroke-width=\"1.4\"></rect>\r\n            </g>\r\n          </svg>",
       "audio": {
         "so": "audio/Hjertemagnyl.mp3",
-        "ar": "audio/Hjertemagnyl-arabisk.mp3.mpeg"
+        "ar": "audio/Hjertemagnyl-arabisk.mp3"
       },
       "dosagePictogram": {
         "da": [
@@ -2485,7 +2469,7 @@ export const siteData = {
           "useList": [
             "Hjertemagnyl wuxuu ka kooban yahay qiyaas hoose oo acetylsalicylic acid ah.",
             "Waxay ka caawisaa in xinjirowga dhiiggu uusan si fudud u samaysmin, iyadoo yaraynaysa isku-dhegganaanta unugyada dhiigga qaarkood.",
-            "Badanaa waxaa loo isticmaalaa dadka qaba cudurrada wadnaha iyo xididdada dhiigga, ama ka dib xinjiro wadnaha ah iyo marka xidid dhiig oo wadnaha ah la ballaariyo."
+            "Badanaa waxaa loo isticmaalaa dadka qaba cudurrada wadnaha iyo xididdada dhiigga, ama ka dib stent, ama xinjiro wadnaha ah."
           ],
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
@@ -3731,7 +3715,7 @@ export const siteData = {
           "sideList": [
             "Madax-xanuun, wareer, daal ama hurdo badan.",
             "Lalabo, calool-xanuun ama matag.",
-            "Arag laba-laab ah ama arag daciif ah.",
+            "Arag laba-laab ah ama aragga oo mugdi ah.",
             "Finan ama raash ayaa dhici kara, gaar ahaan bilowga."
           ],
           "interactTitle": "Isdhexgalka daawooyinka",
@@ -3744,7 +3728,7 @@ export const siteData = {
           "warnList": [
             "Haddii aad yeelato finan, finan-biyo, nabro afka ama indhaha ah, qandho ama jirro daran, la xiriir dhakhtar isla markiiba.",
             "Haddii aad hore uga joojisay lamotrigin finan awgeed, dib ha u bilaabin adigoon la tashan dhakhtarkaaga.",
-            "Bilowga daawada waxaad dareemi kartaa wareer ama arag daciif ah, markaa taxaddar markaad gaari waddo."
+            "Bilowga daawada waxaad dareemi kartaa wareer ama aragga oo mugdi ah, markaa taxaddar markaad gaari waddo."
           ],
           "ramadanTitle": "Ramadaan iyo soonka",
           "ramadanList": [
@@ -4130,7 +4114,7 @@ export const siteData = {
           "doseTitle": "Qiyaasta iyo talooyinka Ibraahim",
           "doseList": [
             "Badanaa waxaa la qaataa hal mar maalintii, isla waqtigaas maalin kasta.",
-            "Dadka badankood waxay bilaabaan qiyaas hoose, kadibna si tartiib ah ayaa loo kordhiyaa iyadoo ku xiran jawaabta jirka.",
+            "Dadka badankood waxay bilaabaan qiyaas caadi ah, dhakhtarkaaguna wuxuu go'aamiyaa tan kuu haboon.",
             "Kiniinka waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
             "Haddii aad bilowga dareento dawakh, si tartiib ah u kac markaad ka soo kacayso fadhi ama jiif."
           ],
@@ -4204,7 +4188,7 @@ export const siteData = {
           "useList": [
             "Losartan bruges til at sænke forhøjet blodtryk.",
             "Det dæmper en påvirkning i kroppen, som ellers får blodkarrene til at trække sig sammen.",
-            "I nogle tilfælde bruges det også for at beskytte nyrerne hos visse patienter."
+            "I nogle tilfælde bruges det også for at beskytte nyrerne, især hos patienter med sukkersyge."
           ],
           "doseTitle": "Dosering og Ibrahims råd",
           "doseList": [
@@ -4283,7 +4267,7 @@ export const siteData = {
           "useList": [
             "Losartan is used to lower high blood pressure.",
             "It reduces a body signal that would otherwise tighten the blood vessels.",
-            "In some people it is also used to help protect the kidneys."
+            "In some people it is also used to help protect the kidneys, especially in patients with diabetes."
           ],
           "doseTitle": "Dosage and Ibrahim's advice",
           "doseList": [
@@ -4362,7 +4346,7 @@ export const siteData = {
           "useList": [
             "يستخدم لوسارتان لخفض ضغط الدم المرتفع.",
             "يخفف من تأثير في الجسم يجعل الأوعية الدموية أكثر تضيقا.",
-            "وفي بعض الحالات يستخدم أيضا للمساعدة في حماية الكلى."
+            "وفي بعض الحالات يستخدم أيضا للمساعدة في حماية الكلى، خاصة لدى مرضى السكري."
           ],
           "doseTitle": "الجرعة ونصائح إبراهيم",
           "doseList": [
@@ -4399,7 +4383,7 @@ export const siteData = {
           "foodList": [
             "يمكن تناوله مع الطعام أو بدونه.",
             "اشرب كمية كافية من السوائل، خاصة في الجو الحار أو عند القيء أو الإسهال.",
-            "انتبه من المنتجات العالية بالبوتاسيوم إذا نصحك الطبيب بالحذر."
+            "انتبه من المنتجات الغنية بالبوتاسيوم إذا نصحك الطبيب بالحذر."
           ],
           "storeTitle": "تخزين الدواء",
           "storeList": [
@@ -4536,7 +4520,7 @@ export const siteData = {
           "sideTitle": "Waxyeellooyinka",
           "sideList": [
             "Waxyeellada ugu muhiimsan waa dhiig-bax ama nabarro si fudud kuugu samaysma.",
-            "Dadka qaar waxay arkaan sanka oo dhiig baxa ama cirridka oo dhiig baxa.",
+            "Dadka qaar waxay arkaan sanka oo dhiig baxa ama cidiyaha oo dhiig baxa.",
             "Mararka qaarkood daal ama wareer ayaa iman kara haddii dhiig-bax yar jiro.",
             "La xiriir dhakhtarkaaga haddii aad aragto calaamado dhiig-bax aan caadi ahayn."
           ],
@@ -4585,10 +4569,6 @@ export const siteData = {
             {
               "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
-            },
-            {
-              "text": "sundhed.dk – Daawaynta dhiig-khafiifiyaha (daawooyinka khafiifiya dhiigga)",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
           ],
           "footerNote": "Qoraalkan waxaa diyaariyay farmashiiste: Ibraahim Dahir Xanaf. Qoraalka waa mid waxbarasho ah, mana beddelayo talada dhakhtarkaaga ama farmashiyaha."
@@ -4604,7 +4584,7 @@ export const siteData = {
           "badgeText": "Kort og letlæselig",
           "introBox": "Marevan gør det sværere for blodet at størkne. Det kan beskytte mod farlige blodpropper, men betyder også, at man lettere kan bløde, hvis dosis bliver for kraftig, eller hvis anden medicin påvirker behandlingen.",
           "ibrahimTitle": "Ibrahims forklaring fra apoteket",
-          "ibrahimText": "Jeg plejer at forklare det sådan: Marevan er en medicin, der skal ligge meget præcist. Er virkningen for svag, kan der komme blodpropper. Er den for stærk, kan man få blødning. Derfor er det ikke bare en tablet, man tager fast – det er en behandling, man skal følge tæt med dosis, kost og INR-kontrol.",
+          "ibrahimText": "Jeg plejer at forklare det sådan: Marevan er en medicin, hvor dosis skal ramme meget præcist. Er virkningen for svag, kan der komme blodpropper. Er den for stærk, kan man få blødning. Derfor er det ikke bare en tablet, man tager fast – det er en behandling, man skal følge tæt med dosis, kost og INR-kontrol.",
           "useTitle": "Anvendelse",
           "useList": [
             "Marevan bruges til at mindske risikoen for blodpropper.",
@@ -4666,10 +4646,6 @@ export const siteData = {
             {
               "text": "pro.medicin.dk – Warfarin",
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1042"
-            },
-            {
-              "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – Antikoagulationsbehandling (blodfortyndende medicin)",
@@ -4753,10 +4729,6 @@ export const siteData = {
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1042"
             },
             {
-              "text": "sundhed.dk – Blood-thinning treatment",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
-            },
-            {
               "text": "sundhed.dk – Anticoagulation treatment (blood-thinning medicine)",
               "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             }
@@ -4836,10 +4808,6 @@ export const siteData = {
             {
               "text": "pro.medicin.dk – Warfarin",
               "href": "https://pro.medicin.dk/Medicin/Indholdsstoffer/1042"
-            },
-            {
-              "text": "sundhed.dk – العلاج المميع للدم",
-              "href": "https://www.sundhed.dk/borger/patienthaandbogen/hjerte-og-blodkar/sygdomme/behandlinger/antikoagulationsbehandling-blodfortyndende-medicin/"
             },
             {
               "text": "sundhed.dk – مضادات التخثر (الأدوية المميعة للدم)",
@@ -6499,7 +6467,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "amount", "text": "Qiyaas shakhsi ah" },
-          { "type": "frequency", "text": "Si taxaddar leh u raac qorshaha daawaynta" },
+          { "type": "warn", "text": "Si taxaddar leh u raac qorshaha daawaynta" },
           { "type": "warn", "text": "Ha burburin kiniinada daahfurka" }
         ],
         "ar": [
@@ -7282,7 +7250,7 @@ export const siteData = {
         "so": [
           { "type": "frequency", "text": "Badanaa hal jeer maalintii" },
           { "type": "morning", "text": "Waxaa fiican in cuntada/quraacda ka hor la qaato — 15-30 min ka hor" },
-          { "type": "warn", "text": "Ha kalgoyn ama qeybin" }
+          { "type": "warn", "text": "Ha ruugin ama kala-goyn" }
         ],
         "ar": [
           { "type": "frequency", "text": "غالبًا مرة واحدة يوميًا" },
@@ -7746,7 +7714,7 @@ export const siteData = {
           "doseList": [
             "Dadka waaweyn iyo dhallinyarada miisaankoodu ku filan yahay badanaa waxay qaataan 500–1000 mg hal mar, iyadoo ugu yaraan 4 saacadood u dhexeeyaan qiyaasaha.",
             "Ha qaadan wax ka badan 4 jeer 24 saacadood gudahood ama wax ka badan 4000 mg maalintii, haddii aan si kale laguu farayn.",
-            "Carruurta qiyaastoodu waxay ku xiran tahay miisaanka, sidaas darteed raac tilmaanta baakadka ama talada dhakhtarkaaga ama farmashiyaha.",
+            "Carruurta qiyaastoodu waxay ku xiran tahay miisaanka, sidaas darteed raac tilmaamaha baakadka ama talada dhakhtarkaaga ama farmashiyaha.",
             "Hubi in daawooyinka kale ee aad qaadanayso aysan sidoo kale ku jirin paracetamol."
           ],
           "sideTitle": "Waxyeellooyinka",
@@ -8036,7 +8004,7 @@ export const siteData = {
     },
     {
       "slug": "quetiapin",
-      "title": "Quetiapin – xanuunka dhimirka iyo laba-cirifoodka",
+      "title": "Quetiapin – jahwareer maskaxeed (sikisofireeniya) iyo xanuunka laba-cirifoodka",
       "iconSvg": "<svg viewBox=\"0 0 64 64\" id=\"drugSvg\" aria-hidden=\"true\">\r\n            <defs>\r\n              <linearGradient id=\"tabletTop\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#ffffff\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#dbeafe\"></stop>\r\n              </linearGradient>\r\n              <linearGradient id=\"tabletBottom\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">\r\n                <stop offset=\"0%\" stop-color=\"#bfdbfe\"></stop>\r\n                <stop offset=\"100%\" stop-color=\"#60a5fa\"></stop>\r\n              </linearGradient>\r\n            </defs>\r\n            <g transform=\"rotate(-20 32 32)\">\r\n              <rect x=\"14\" y=\"18\" width=\"36\" height=\"14\" rx=\"7\" fill=\"url(#tabletTop)\" stroke=\"#64748b\" stroke-width=\"1.4\"></rect>\r\n              <line x1=\"32\" y1=\"19.8\" x2=\"32\" y2=\"30.2\" stroke=\"#94a3b8\" stroke-width=\"1.2\"></line>\r\n              <rect x=\"18\" y=\"34\" width=\"28\" height=\"12\" rx=\"6\" fill=\"url(#tabletBottom)\" stroke=\"#2563eb\" stroke-width=\"1.2\"></rect>\r\n              <line x1=\"32\" y1=\"35.5\" x2=\"32\" y2=\"44.5\" stroke=\"#dbeafe\" stroke-width=\"1.1\"></line>\r\n            </g>\r\n          </svg>",
       "audio": {
         "so": "audio/Quetiapin.mp3",
@@ -8116,20 +8084,20 @@ export const siteData = {
       ],
       "translations": {
         "so": {
-          "pageTitle": "Quetiapin – xanuunka dhimirka iyo laba-cirifoodka",
-          "hdrTitle": "Quetiapin – xanuunka dhimirka iyo laba-cirifoodka",
+          "pageTitle": "Quetiapin – jahwareer maskaxeed (sikisofireeniya) iyo xanuunka laba-cirifoodka",
+          "hdrTitle": "Quetiapin – jahwareer maskaxeed (sikisofireeniya) iyo xanuunka laba-cirifoodka",
           "hdrSubtitle": "Waa warbixin sahlan oo ku saabsan daawadan, si bukaanka iyo qoysaskoodu ay si fudud u fahmaan.",
           "backLabel": "Ku laabo liiska daawooyinka",
           "langLabel": "Dooro luqadda:",
-          "drugName": "Quetiapin – xanuunka dhimirka iyo laba-cirifoodka",
+          "drugName": "Quetiapin – jahwareer maskaxeed (sikisofireeniya) iyo xanuunka laba-cirifoodka",
           "drugForm": "Kiniin afka laga qaato",
           "badgeText": "Akhris fudud oo kooban",
-          "introBox": "Quetiapin waa daawo ka tirsan daawooyinka dejisa calaamadaha xanuunka dhimirka. Waxaa loo isticmaalaa xanuunka dhimirka iyo xanuunka laba-cirifoodka. Waxay yareyn kartaa maqalka ama aragga wax aan jirin, shaki badan, fikir isku dhex yaacsan, ama isbeddello xooggan oo niyadda ah. Waxay ku timaaddaa kiniin caadi ah iyo nooc kiniin ah oo daawada si tartiib ah u sii daaya.",
+          "introBox": "Quetiapin waa daawo ka tirsan daawooyinka dejisa calaamadaha xanuunka dhimirka. Waxaa loo isticmaalaa xanuunka dhimirka sida sikisofireeniya (jahwareer maskaxeed) iyo xanuunka laba-cirifoodka. Waxay yareyn kartaa maqalka ama aragga wax aan jirin, shaki badan, fikir isku dhex yaacsan, ama isbeddello xooggan oo niyadda ah. Waxay ku timaaddaa kiniin caadi ah iyo nooc kiniin ah oo daawada si tartiib ah u sii daaya.",
           "ibrahimTitle": "Talo gaar ah oo Ibraahim ka timid",
           "ibrahimText": "Waxaan bukaan badan ugu sharxaa sidan: quetiapin waxay ka caawin kartaa maskaxda inay degto, qofkuna uu si deggan u fikiro, hurdaduna mararka qaarkood way hagaagtaa. Laakiin bilowga daawada, dadka qaar waxay dareemaan hurdo badan ama dawakh. Haddii ay tahay nooca daawada si tartiib ah u sii daaya, waa in la liqaa iyadoo dhan, mana aha in la jebiyo ama la calaliyo. Waxa ugu muhiimsan waa in qiyaasta si tartiib ah loo raaco sida laguu qorsheeyey, oo aan daawada si kedis ah loo joojin.",
           "useTitle": "Isticmaalka",
           "useList": [
-            "Quetiapin waxaa loo isticmaalaa xanuunka dhimirka iyo xanuunka laba-cirifoodka.",
+            "Quetiapin waxaa loo isticmaalaa xanuunka dhimirka sida sikisofireeniya (jahwareer maskaxeed) iyo xanuunka laba-cirifoodka.",
             "Waxay ka caawin kartaa calaamado sida maqalka ama aragga wax aan jirin, shaki badan, fikir isku dhex yaacsan, iyo niyad aad u kacda ama aad u degta.",
             "Dhakhtarku mararka qaarkood wuxuu u qori karaa xaalado kale oo gaar ah marka uu arko inay ku habboon tahay."
           ],
@@ -8446,7 +8414,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "amount", "text": "Hal jeer maalintii" },
-          { "type": "frequency", "text": "Saameynta buuxda todobaadyo ka dib" },
+          { "type": "frequency", "text": "Saameynta buuxda toddobaadyo ka dib" },
           { "type": "warn", "text": "Adigu keligaa ha joojin" }
         ],
         "ar": [
@@ -10066,7 +10034,7 @@ export const siteData = {
         ],
         "so": [
           { "type": "evening", "text": "15-30 daqiiqo ka hor seexashada" },
-          { "type": "amount", "text": "7.5 mg (3.75 mg dadka waaweyn)" },
+          { "type": "amount", "text": "7.5 mg (3.75 mg dadka waayeelka ah)" },
           { "type": "warn", "text": "Ha qaadan qiyaas dheeraad ah habeenkaas" }
         ],
         "ar": [
@@ -10154,8 +10122,8 @@ export const siteData = {
           "sideTitle": "Waxyeellooyinka",
           "sideList": [
             "Dhadhan qadhaadh ama bir u eg afka, af qallalan, madax-wareer ama hurdo badan subaxda dambe.",
-            "Qaar waxay dareemi karaan daal, wareer ama xusuus daciif ah subaxda xigta.",
-            "Mararka qaarkood dadka qaarkood waxay sameyn karaan dhaqan aan caadi ahayn iyagoo aan si buuxda u baraarugsanayn."
+            "Qaar waxay dareemi karaan wareer ama xusuus daciif ah subaxda xigta.",
+            "Dhif ahaan, dadka qaarkood waxay sameyn karaan dhaqan aan caadi ahayn iyagoo aan si buuxda u baraarugsanayn."
           ],
           "interactTitle": "Isdhexgalka daawooyinka",
           "interactList": [
@@ -10375,7 +10343,7 @@ export const siteData = {
           "drugName": "إيموزوب – الأرق",
           "drugForm": "أقراص فموية",
           "badgeText": "مختصر وسهل القراءة",
-          "introBox": "إيموزوب دواء مساعد على النوم يمكن استخدامه في حالات الأرق قصيرة المدة. قد يساعد على النوم بسرعة أكبر، لكن بعض الناس قد يشعرون بتأثيره في صباح اليوم التالي. لذلك يجب استخدامه بحذر ولمدة محدودة قدر الإمكان.",
+          "introBox": "إيموزوب دواء مساعد على النوم يمكن استخدامه في حالات الأرق قصيرة المدة. قد يسهّل عليك النوم، لكن بعض الناس قد يشعرون بتأثيره في صباح اليوم التالي. لذلك يجب استخدامه بحذر ولمدة محدودة قدر الإمكان.",
           "ibrahimTitle": "نصيحة خاصة من إبراهيم",
           "ibrahimText": "أنا أشرحها لكثير من المرضى بهذه الصورة: هذا الدواء مساعد على النوم، لكنه ليس حلا دائما لكل مشاكل النوم. إذا استعمل كثيرا أو لفترة طويلة، فقد يعتاد عليه الجسم. لذلك من المهم أن يؤخذ فقط حسب الخطة العلاجية وعندما يكون لديك وقت كاف للنوم بعده.",
           "useTitle": "الاستخدام",
@@ -10406,7 +10374,7 @@ export const siteData = {
           "warnTitle": "تحذيرات مهمة",
           "warnList": [
             "قد يسبب النعاس أو الدوخة أو قلة الانتباه في اليوم التالي.",
-            "يزداد خطر الاعتماد على الدواء مع الاستعمال الطويل.",
+            "يزداد خطر التعود على الدواء والاعتماد عليه مع الاستعمال الطويل.",
             "لا تقد السيارة ولا تستخدم الآلات الخطرة إذا كنت لا تزال تشعر بالتأثير.",
             "لا توقفه فجأة بعد الاستعمال المنتظم لفترة طويلة دون استشارة طبية."
           ],
