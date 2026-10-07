@@ -246,16 +246,16 @@ const ABOUT_ME_META = {
 
 const ABOUT_ME_BULLETS = {
   da: [
-    { icon:"education", text:"Jeg er uddannet Farmakonom og samtidig studerende i Data Science. Jeg har solid viden inden for matematik, fysik, kemi og biologi, og kan forklare disse fag enkelt og letforståeligt." },
-    { icon:"work",      text:"Jeg arbejder dels på et almindeligt apotek, dels på et vagtapotek med udvidede åbningstider. Gennem mit arbejde ser jeg tæt på, hvor stort behovet er for klar, kortfattet og letforståelig information om medicin." },
-    { icon:"school",    text:"Jeg har erfaring med at undervise elever i grundskolen, gymnasiet og på universitetet, især i svære fag. Jeg forklarer enkelt og roligt, så eleverne forstår det bedst muligt." },
-    { icon:"pills",     text:"Jeg brænder for at gøre faglig viden meningsfuld, forståelig og let at anvende. Jeg kobler gerne viden med folks faktiske behov, så informationen bliver nyttig og kan bruges i det virkelige liv." },
+    { icon:"education", text:"Jeg er uddannet farmakonom og er Data Science-studerende. Jeg har en stærk faglig interesse for matematik, fysik, kemi og biologi og er god til at forklare svære emner på en enkel og forståelig måde." },
+    { icon:"work",      text:"Jeg arbejder både på privatapotek og vagtapotek. Gennem mit arbejde møder jeg mange forskellige kunder og ser derfor tæt på, hvor essentielt det er, at information om medicin er klar, kort og nem at forstå." },
+    { icon:"school",    text:"Jeg har erfaring med at undervise elever i folkeskolen, gymnasiet og på universitetet, især i fag der kan være svære. Jeg lægger vægt på at forklare ting roligt og enkelt, så det bliver lettere at forstå." },
+    { icon:"pills",     text:"Jeg interesserer mig især for at gøre faglig viden mere forståelig og brugbar. For mig handler god formidling om at gøre det komplekse enkelt og give folk den information, de faktisk har brug for." },
   ],
   en: [
-    { icon:"education", text:"I am a trained Pharmaconomist and currently a Data Science student. I have solid knowledge of mathematics, physics, chemistry and biology, and can explain these subjects simply and clearly." },
-    { icon:"work",      text:"I work partly at a regular pharmacy and partly at an emergency pharmacy with extended opening hours. Through my work, I see up close how great the need is for clear, concise and easy-to-understand medicine information." },
-    { icon:"school",    text:"I have experience teaching primary school, secondary school and university students, especially in difficult subjects. I explain things simply and calmly so students understand as well as possible." },
-    { icon:"pills",     text:"I'm especially passionate about making professional knowledge meaningful, understandable and easy to apply. I like connecting knowledge with people's real needs, so information becomes useful and applicable in everyday life." },
+    { icon:"education", text:"I am a qualified pharmaconomist and a Data Science student. I have a strong interest in mathematics, physics, chemistry and biology, and I enjoy making difficult topics easier to understand." },
+    { icon:"work",      text:"I work both at a private pharmacy and at an on-duty pharmacy with extended opening hours. Through my work, I meet many different customers and see first-hand how essential clear, concise and easy-to-understand medication information is." },
+    { icon:"school",    text:"I have experience teaching students in primary and secondary school as well as at university, especially in subjects that can be challenging. I focus on explaining things calmly and clearly so they are easier to understand." },
+    { icon:"pills",     text:"I am particularly interested in making professional knowledge more understandable and useful. To me, good communication is about making complex information simple and giving people the information they actually need." },
   ],
   so: [
     { icon:"education", text:"Waxaan ahay farmashiiste tababaran, haddana waxaan ahay arday dhigta Cilmiga Xogta. Waxaan aqoon fiican u leeyahay xisaabta, fiisigiska, kimistariga iyo bayoolajiga, waxaana si fudud oo la fahmi karo u sharxi karaa maaddooyinkan." },
