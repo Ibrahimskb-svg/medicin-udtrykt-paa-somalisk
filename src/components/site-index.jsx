@@ -241,7 +241,7 @@ const ABOUT_ME_META = {
   da: { name:"Ibrahim Dahir Hanaf", title:"Farmakonom, Data Science-studerende & faglig formidler" },
   en: { name:"Ibrahim Dahir Hanaf", title:"Pharmaconomist, Data Science student & science communicator" },
   so: { name:"Ibraahim Dahir Xanaf", title:"Farmashiiste, Ardayga Cilmiga Xogta & Gudbiye Macluumaad Caafimaad" },
-  ar: { name:"إبراهيم ظاهر حنف", title:"فارماكونوم، طالب علم البيانات ومتخصص في التواصل العلمي" },
+  ar: { name:"إبراهيم ظاهر حنف", title:"فارماكونوم | طالب في علم البيانات | مُتخصّص في التثقيف والتواصل الصحي" },
 };
 
 const ABOUT_ME_BULLETS = {
