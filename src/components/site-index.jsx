@@ -114,7 +114,7 @@ const SEVERITY_BANNER_TEXT = {
 const READ_TESTIMONIALS_CARD_TEXT = {
   da: { label: "Læs hvad andre siger" },
   en: { label: "Read what others say" },
-  so: { label: "Akhri waxa dadka kale yiraahdeen" },
+  so: { label: "Akhri waxa dadka kale ka yiraahdeen SomaliMed" },
   ar: { label: "اقرأ ما يقوله الآخرون" },
 };
 
