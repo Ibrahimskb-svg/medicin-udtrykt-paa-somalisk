@@ -280,28 +280,28 @@ const ABOUT_SITE_TAGLINE = {
 
 const ABOUT_SITE_BULLETS = {
   da: [
-    { icon:"pills",     text:"25 nøje udvalgte lægemidler fra apotekets hverdag — dem jeg oftest møder i skranken og rådgiver om" },
-    { icon:"school",    text:"Tilgængelig på dansk, engelsk, somalisk og arabisk" },
-    { icon:"education", text:"Fagligt funderet og formidlet i et klart og trygt sprog — skrevet af en uddannet farmakonom" },
-    { icon:"work",      text:"Udvides løbende med flere lægemidler og emner fra den daglige rådgivning på apoteket" },
+    { icon:"pills",     text:"25 nøje udvalgte lægemidler – dem jeg oftest møder på apoteket og rådgiver om." },
+    { icon:"school",    text:"Tilgængelig på somalisk, engelsk, dansk og arabisk." },
+    { icon:"education", text:"Bygger på faglig og pålidelig viden og er formidlet klart, kortfattet og letforståeligt." },
+    { icon:"work",      text:"Der tilføjes løbende nye lægemidler og emner i dialog med apotekspersonale samt patienter og kunder, så indholdet afspejler de reelle behov hos dem, der bruger det." },
   ],
   en: [
-    { icon:"pills",     text:"25 carefully selected medicines from everyday pharmacy practice — the ones I most often see at the counter and advise on" },
-    { icon:"school",    text:"Available in Danish, English, Somali and Arabic" },
-    { icon:"education", text:"Professionally grounded and written in clear, reassuring language by a trained pharmaconomist" },
-    { icon:"work",      text:"Continuously expanded with more medicines and topics from everyday counselling in the pharmacy" },
+    { icon:"pills",     text:"25 carefully selected medicines – the ones I most often encounter and advise on in the pharmacy." },
+    { icon:"school",    text:"Available in Somali, English, Danish and Arabic." },
+    { icon:"education", text:"Based on reliable professional knowledge and presented in a clear, concise and easy-to-understand way." },
+    { icon:"work",      text:"New medicines and topics are added regularly in dialogue with pharmacy staff, patients and customers, so the content reflects the real needs of the people who use it." },
   ],
   so: [
-    { icon:"pills",     text:"25 daawo oo si taxaddar leh loo xulay — kuwa aan inta badan ku arko farmashiyaha oo aan talo ka bixiyo" },
-    { icon:"school",    text:"Waxaa lagu heli karaa Af-Soomaali, Af-Ingiriis, Af-Deenish iyo Af-Caraabi" },
-    { icon:"education", text:"Waxay ku dhisan tahay aqoon xirfadeed, waxaana lagu qoray si cad oo kalsooni leh" },
-    { icon:"work",      text:"Si joogto ah ayaa loogu kordhinayaa daawooyin iyo mawduucyo kale oo ka soo baxay la-talinta maalinlaha ah ee farmashiyaha" },
+    { icon:"pills",     text:"25 dawo oo si taxaddar leh loo xulay — kuwa aan inta badan kula kulmo farmashiyaha oo aan dadka kala taliyo." },
+    { icon:"school",    text:"Waxa lagu heli karaa Af-Soomaali, Af-Ingiriisi, Af-Daanish iyo Af-Carabi." },
+    { icon:"education", text:"Waxay ku dhisan tahay aqoon xirfadeed oo lagu kalsoonaan karo, waxaana loo qoray si cad, kooban oo si fudud loo fahmi karo." },
+    { icon:"work",      text:"Si joogto ah ayaa loogu daraa dawooyin iyo mawduucyo cusub, iyadoo lala tashanayo shaqaalaha farmashiyaha iyo bukaannada iyo macaamiisha, si waxa lagu darayo ay uga tarjumaan baahida dhabta ah ee dadka isticmaala." },
   ],
   ar: [
-    { icon:"pills",     text:"25 دواء تم اختيارها بعناية — من الأدوية التي أراها يوميا في الصيدلية وأقدم بشأنها المشورة" },
-    { icon:"school",    text:"متوفرة بالدنماركية والإنجليزية والصومالية والعربية" },
-    { icon:"education", text:"محتوى مهني موثوق، مكتوب بلغة واضحة ومطمئنة" },
-    { icon:"work",      text:"يتم توسيع المحتوى باستمرار ليشمل مزيدا من الأدوية والموضوعات من واقع الاستشارة اليومية في الصيدلية" },
+    { icon:"pills",     text:"٢٥ دواءً مختارًا بعناية، وهي من الأدوية التي أتعامل معها وأقدّم المشورة بشأنها بشكل متكرر في الصيدلية." },
+    { icon:"school",    text:"المحتوى متاح باللغات الصومالية والإنجليزية والدنماركية والعربية." },
+    { icon:"education", text:"يستند المحتوى إلى معرفة مهنية موثوقة، ويُقدَّم بأسلوب واضح ومختصر وسهل الفهم." },
+    { icon:"work",      text:"تُضاف أدوية وموضوعات جديدة بصورة مستمرة، بالتشاور مع العاملين في الصيدليات والمرضى والعملاء، بحيث يعكس المحتوى الاحتياجات الفعلية للأشخاص الذين يستخدمونه." },
   ],
 };
 
