@@ -258,15 +258,15 @@ const ABOUT_ME_BULLETS = {
     { icon:"pills",     text:"Passionate about making professional knowledge meaningful and practical — bringing a unique combination of in-depth expertise and lively communication to every context" },
   ],
   so: [
-    { icon:"education", text:"Farmashiiste tababaran oo hadda ah Ardayga Cilmiga Xogta — leh awood u gaar ah oo ah in xisaabta, fizikada, kimistarka iyo bayoolajiga laga dhigo mawduucyo sahlan oo xiiso leh" },
-    { icon:"work",      text:"Shaqo maalinleh oo ku saabsan farmashiyaha bulshada iyo farmashiyaha xaaladaha degdega ah — xiriirka tooska ah ee bukaanka ayaa si cad u muujiyay baahida weyn ee macluumaadka daawooyinka ee cad oo la aamin karo" },
-    { icon:"school",    text:"Macalin khibrad leh oo ku caawiyay ardayda dugsiga sare iyo ardayda jaamacadda inay si wanaagsan ugu guuleystaan mawduucyada adag — isagoo adeegsanaya dulqaad, dhiirrigelin iyo jawi barasho oo waxtar leh" },
+    { icon:"education", text:"Farmashiiste tababaran, haddana ah arday dhigta Cilmiga Xogta, isla markaana awood u leh inuu xisaabta, fiisigiska, kiimikada iyo cilmiga noolaha u sharxo si fudud, cad oo xiiso leh." },
+    { icon:"work",      text:"Khibraddayda maalinlaha ah ee farmashiyaha iyo la macaamilka dadka ayaa ii muujisay baahida weyn ee loo qabo macluumaad dawo oo cad, fudud in la fahmo, laguna kalsoonaan karo." },
+    { icon:"school",    text:"Macallin khibrad leh oo ka caawiya ardayda dugsiga sare iyo jaamacadda inay si wanaagsan u fahmaan maaddooyinka adag, isaga oo adeegsanaya dulqaad, dhiirrigelin iyo hab waxbarasho oo wax ku ool ah." },
     { icon:"pills",     text:"Wuxuu si gaar ah u xiiseeyaa in aqoonta xirfadeedka laga dhigo mid macno leh, la isticmaali karo — isagoo keena isku darka aqoon qoto dheer iyo xiriirin firfircoon oo nooceedu ka duwan yahay" },
   ],
   ar: [
-    { icon:"education", text:"فارماكونوم مؤهّل، وطالب حاليًا في علم البيانات — بقدرة نادرة على تحويل المواضيع المعقدة كالرياضيات والفيزياء والكيمياء وعلم الأحياء إلى مواد سهلة وممتعة" },
-    { icon:"work",      text:"ممارسة يومية في الصيدلية الخاصة وصيدلية المناوبة — أوضح التواصل المباشر مع المرضى مدى أهمية المعلومات الدوائية الواضحة والموثوقة" },
-    { icon:"school",    text:"معلم متمرس ساعد طلاب المرحلة الثانوية والجامعية على إتقان المجالات الدراسية الصعبة — بصبر وعزم وبيئة تعليمية ملهمة" },
+    { icon:"education", text:"فارماكونوم مؤهَّل، وطالب حاليًا في تخصّص علم البيانات، ولديه قدرة متميزة على تبسيط الرياضيات والفيزياء والكيمياء والأحياء وشرحها بأسلوب واضح وسهل وممتع." },
+    { icon:"work",      text:"أتاحت لي خبرتي اليومية في الصيدلية والتعامل المباشر مع الناس إدراك الحاجة الكبيرة إلى معلومات دوائية واضحة وسهلة الفهم وموثوقة." },
+    { icon:"school",    text:"معلّم ذو خبرة يساعد طلاب المرحلة الثانوية والجامعة على فهم المواد الصعبة بصورة أفضل، من خلال الصبر والتشجيع واستخدام أساليب تعليم فعّالة." },
     { icon:"pills",     text:"شغوف بجعل المعرفة المتخصصة ذات معنى وقابلة للتطبيق — يجمع بين العمق العلمي والتواصل الحيوي في كل سياق" },
   ],
 };
