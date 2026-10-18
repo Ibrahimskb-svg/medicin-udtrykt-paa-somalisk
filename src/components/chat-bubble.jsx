@@ -23,6 +23,7 @@ const MESSAGES = {
   ar: "هل لديك سؤال؟ تحدث مع إبراهيم.",
 };
 const NAMES = { so: "Ibraahim", da: "Ibrahim", en: "Ibrahim", ar: "إبراهيم" };
+const CLOSE_LABELS = { so: "Xir", da: "Luk", en: "Close", ar: "إغلاق" };
 const COLORS = {
   so: { bg: "linear-gradient(135deg,#0D9488,#0F766E)", tail: "#0F766E", shadow: "rgba(13,148,136,0.45)" },
   da: { bg: "linear-gradient(135deg,#2563EB,#1D4ED8)", tail: "#1D4ED8", shadow: "rgba(37,99,235,0.45)" },
@@ -262,7 +263,7 @@ export default function ChatBubble() {
         style={{ background: color.bg, boxShadow: `0 8px 28px ${color.shadow}, 0 2px 8px rgba(0,0,0,0.12)` }}
         onClick={handleBubbleClick}
       >
-        <button id="sm-bubble-close" aria-label="Luk" onClick={handleClose}>
+        <button id="sm-bubble-close" aria-label={CLOSE_LABELS[lang]} onClick={handleClose}>
           ✕
         </button>
         {avatarOk ? (
