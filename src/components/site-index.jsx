@@ -122,7 +122,7 @@ const HOYGA_AFKA_TEXT = {
   da: {
     eyebrow: "Fra samme afsender",
     heading: "Vil du lære eller blive bedre til somalisk?",
-    body: "Bag SomaliMed står en dansk farmaceut, der ved siden af også underviser i somalisk sammen med sit team, Hoyga Afka. Det er et helt separat projekt — men følger du dem, kan du øve dit somalisk, mens du bruger SomaliMed til dit helbred.",
+    body: "Bag SomaliMed står en dansk farmakonom, der ved siden af også underviser i somalisk sammen med sit team, Hoyga Afka. Det er et helt separat projekt — men følger du dem, kan du øve dit somalisk, mens du bruger SomaliMed til dit helbred.",
     follow: "Følg",
     scan: "Scan koden",
     readMore: "Læs mere",
@@ -132,7 +132,7 @@ const HOYGA_AFKA_TEXT = {
   en: {
     eyebrow: "From the same person",
     heading: "Want to learn or improve your Somali?",
-    body: "SomaliMed is built by a Danish pharmacist who also teaches Somali alongside their team, Hoyga Afka. It's a fully separate project — but if you follow them, you can practice your Somali while using SomaliMed for your health.",
+    body: "SomaliMed is built by a Danish pharmaconomist who also teaches Somali alongside their team, Hoyga Afka. It's a fully separate project — but if you follow them, you can practice your Somali while using SomaliMed for your health.",
     follow: "Follow",
     scan: "Scan the code",
     readMore: "Read more",
@@ -152,7 +152,7 @@ const HOYGA_AFKA_TEXT = {
   ar: {
     eyebrow: "من نفس الشخص",
     heading: "هل تريد تعلّم أو تحسين لغتك الصومالية؟",
-    body: "SomaliMed من إنشاء صيدلاني دنماركي يقوم أيضًا بتدريس اللغة الصومالية مع فريقه، Hoyga Afka. إنه مشروع منفصل تمامًا — لكن إن تابعته يمكنك التدرب على الصومالية بينما تستخدم SomaliMed من أجل صحتك.",
+    body: "SomaliMed من إنشاء فني صيدلي دنماركي يقوم أيضًا بتدريس اللغة الصومالية مع فريقه، Hoyga Afka. إنه مشروع منفصل تمامًا — لكن إن تابعته يمكنك التدرب على الصومالية بينما تستخدم SomaliMed من أجل صحتك.",
     follow: "تابع",
     scan: "امسح الرمز",
     readMore: "اقرأ المزيد",
