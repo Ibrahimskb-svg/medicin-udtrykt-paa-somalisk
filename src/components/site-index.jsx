@@ -142,7 +142,7 @@ const HOYGA_AFKA_TEXT = {
   so: {
     eyebrow: "Isla qofkii ayaa ka dambeeya",
     heading: "Ma rabtaa inaad barato Af-Soomaaliga ama aad sii horumariso?",
-    body: "SomaliMed iyo Hoyga Afka waxaa ka dambeeya isla qofkii — farmashiiste reer Danmark ah. Hase yeeshee, waa laba mashruuc oo kala ujeeddo ah. Hoyga Afka wuxuu diiradda saaraa barashada iyo horumarinta Af-Soomaaliga, halka SomaliMed uu kaa caawinayo fahamka erayada iyo macluumaadka caafimaadka.\n\nHaddii aad rabto inaad kobciso Af-Soomaaligaaga, Hoyga Afka waxaad ka heli kartaa casharro, erayo iyo agab waxbarasho oo kaa caawinaya inaad Af-Soomaaliga si sax ah, tartiib tartiib ah oo kalsooni leh u barato una horumariso.",
+    body: "SomaliMed iyo Hoyga Afka waxaa ka dambeeya isla qofkii — farmashiiste reer Danmark ah. Si kastaba ha ahaatee, waa laba mashruuc oo leh ujeeddooyin kala duwan. Hoyga Afka wuxuu diiradda saaraa barashada iyo kobcinta Af-Soomaaliga, halka SomaliMed uu kaa caawinayo fahamka erayada iyo macluumaadka la xiriira caafimaadka.\n\nHaddii aad rabto inaad kobciso Af-Soomaaligaaga, Hoyga Afka waxaad ka heli kartaa casharro, erayo iyo agab waxbarasho oo kaa caawinaya inaad Af-Soomaaliga si sax ah, tartiib tartiib ah oo kalsooni leh u barato, isla markaana u horumariso.",
     follow: "La soco",
     scan: "Koodhka iskaan samee",
     readMore: "Sii akhri",
