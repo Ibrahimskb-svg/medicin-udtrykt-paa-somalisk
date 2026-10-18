@@ -49,7 +49,7 @@ const FAQ_MODAL_TITLE = {
 // se shareList() i my-list-modal.jsx for hvordan linket bliver til.
 const SHARED_LIST_TEXT = {
   da: {
-    title: (n) => `En medicinliste med ${n} ${n === 1 ? "medicin" : "medicinnavne"} er delt med dig`,
+    title: (n) => `En medicinliste med ${n} ${n === 1 ? "medicinnavn" : "medicinnavne"} er delt med dig`,
     body: "Vil du tilføje den til din egen liste? Den lægges oven i det, du allerede har — intet bliver overskrevet.",
     add: "Tilføj til min liste",
     dismiss: "Nej tak",
@@ -140,7 +140,7 @@ const HOYGA_AFKA_TEXT = {
     glossaryLink: "Try our medical vocabulary flashcards",
   },
   so: {
-    eyebrow: "ISLA QOFKII AYAA KA DAMBEEYA",
+    eyebrow: "Isla qofkii ayaa ka dambeeya",
     heading: "Ma rabtaa inaad barato Af-Soomaaliga ama aad sii horumariso?",
     body: "SomaliMed iyo Hoyga Afka waxaa ka dambeeya isla qofkii. Hase yeeshee, waa laba mashruuc oo kala ujeeddo ah. Hoyga Afka wuxuu diiradda saaraa barashada iyo horumarinta Af-Soomaaliga, halka SomaliMed uu kaa caawinayo fahamka erayada iyo macluumaadka caafimaadka.\n\nHaddii aad rabto inaad kobciso Af-Soomaaligaaga, Hoyga Afka waxaad ka heli kartaa casharro, erayo iyo agab waxbarasho oo kaa caawinaya inaad Af-Soomaaliga si sax ah, tartiib tartiib ah oo kalsooni leh u barato una horumariso.",
     follow: "La soco",
@@ -408,7 +408,7 @@ const FAQ_DATA = {
     { q:"هل يمكن تناول الباراسيتامول والإيبوبروفين معا؟",
       bullets:["نعم — يعملان بطريقتين مختلفتين ويمكن الجمع بينهما","باراسيتامول: أقصى قرصان في المرة، 8 يوميا، 4–6 ساعات على الأقل بين الجرعات","إيبوبروفين: أقصى قرصان في المرة، 6 يوميا، 6–8 ساعات على الأقل بين الجرعات","تناول الإيبوبروفين دائما مع الطعام لحماية المعدة"] },
     { q:"ما الذي يجب تجنبه أثناء علاج الوارفارين؟",
-      bullets:["تجنب التغيرات المفاجئة في اللفت والسبانخ والبروكلي والبقدونس (فيتامين K)","تجنب الإيبوبروفين والديكلوفيناك — يزيدان خطر النزيف","اعتدل في الكحول","احضر فحوصات الدم بانتظام وأخبر طبيبك وطبيب الأسنان دائما"] },
+      bullets:["تجنب التغيرات المفاجئة في الكرنب الأخضر والسبانخ والبروكلي والبقدونس (فيتامين K)","تجنب الإيبوبروفين والديكلوفيناك — يزيدان خطر النزيف","اعتدل في الكحول","احضر فحوصات الدم بانتظام وأخبر طبيبك وطبيب الأسنان دائما"] },
     { q:"متى يؤخذ أتورفاستاتين وهل يمكن تناول الجريب فروت؟",
       bullets:["يمكن تناوله في أي وقت — الأهم الالتزام بنفس الوقت يوميا","مع الطعام أو بدونه — كلاهما صحيح","تجنب كميات كبيرة من الجريب فروت — يزيد خطر الآثار الجانبية لا سيما آلام العضلات"] },
     { q:"ما هو ميتفورمين ومتى يؤخذ؟",
