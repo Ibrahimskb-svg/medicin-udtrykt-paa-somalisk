@@ -13,3 +13,4 @@ build/
 # Genereres af next dev
 AGENTS.md
 CLAUDE.md
+.audit-tmp/
