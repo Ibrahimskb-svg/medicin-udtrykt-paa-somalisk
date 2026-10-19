@@ -1,8 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { LANG_THEME } from "./modal-shell";
+import { collidesWithProtectedElement } from "../lib/floating-ui-avoid";
 
 const BANNER_LANG_KEY = "cookieBannerLang";
 const LANG_NAMES = { da: "Dansk", so: "Soomaali", en: "English", ar: "العربية" };
@@ -50,6 +51,8 @@ export function ConsentManager() {
   const [lang, setLang] = useState("da");
   const [reopened, setReopened] = useState(false);
   const [isAutomatedTraffic, setIsAutomatedTraffic] = useState(false);
+  const [avoidingCollision, setAvoidingCollision] = useState(false);
+  const reopenBtnRef = useRef(null);
 
   useEffect(() => {
     // Udelukker automatiserede test-browsere (bruges til at verificere ændringer
@@ -70,6 +73,28 @@ export function ConsentManager() {
     setLang(TEXTS[l] ? l : "da");
     setChecked(true);
   }, []);
+
+  // Genåbn-knappen (🍪) er fast placeret i nederste venstre hjørne og kan
+  // derfor havne oven på den udvidede lydafspiller (<audio>) eller et banner
+  // markeret med data-sm-bubble-avoid — i modsætning til chatboblen er dette
+  // en permanent nytteknap, så den skal tjekke løbende og dukke op igen, så
+  // snart den ikke længere er i vejen, i stedet for at forblive skjult.
+  const showReopenBtn = checked && consent !== null && !reopened;
+  useEffect(() => {
+    if (!showReopenBtn) return undefined;
+    const check = () => {
+      setAvoidingCollision(collidesWithProtectedElement(reopenBtnRef.current));
+    };
+    check();
+    const interval = window.setInterval(check, 700);
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
+  }, [showReopenBtn]);
 
   function changeLang(l) {
     setLang(l);
@@ -121,14 +146,17 @@ export function ConsentManager() {
         </>
       )}
 
-      {checked && consent !== null && !reopened && (
+      {showReopenBtn && (
         <button
+          ref={reopenBtnRef}
           onClick={() => setReopened(true)}
           aria-label={t.settings}
           title={t.settings}
           className="hover-lift"
           style={{
             position: "fixed", bottom: "calc(var(--sm-bottom-nav-h, 68px) + 12px)", left: 16, zIndex: 500,
+            opacity: avoidingCollision ? 0 : 1, pointerEvents: avoidingCollision ? "none" : "auto",
+            transition: "opacity 0.15s ease",
             width: 40, height: 40, borderRadius: "50%",
             background: "#ffffff", border: "1.5px solid #e2e8f0",
             boxShadow: "0 2px 10px rgba(0,0,0,0.14)",

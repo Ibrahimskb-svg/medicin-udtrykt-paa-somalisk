@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { resolveInitialLanguage, subscribeToLanguageChange } from "../lib/language";
+import { collidesWithProtectedElement } from "../lib/floating-ui-avoid";
 
 // Tidligere version var en rå JavaScript-streng i app/layout.jsx, der selv
 // skulle gætte sig til sprogskift (ved at polle localStorage under et forkert
@@ -55,30 +56,6 @@ function cookieConsentDecided() {
   } catch (e) {
     return true;
   }
-}
-
-// Elementer markeret med data-sm-bubble-avoid="true" (bannere på forsiden) samt
-// lydafspilleren (der popper op og kan ligge lige under boblen) skal boblen
-// aldrig dække over — den er fixed-positioneret og "ved" ellers ikke hvad der
-// er under den, uanset hvor man har scrollet til, eller om lydafspilleren lige
-// er blevet åbnet.
-function collidesWithProtectedElement(bubbleEl) {
-  if (!bubbleEl) return false;
-  try {
-    const bubbleRect = bubbleEl.getBoundingClientRect();
-    const targets = document.querySelectorAll('[data-sm-bubble-avoid="true"], audio');
-    for (const el of targets) {
-      const rect = el.getBoundingClientRect();
-      if (rect.width === 0 || rect.height === 0) continue;
-      const overlaps =
-        bubbleRect.left < rect.right &&
-        bubbleRect.right > rect.left &&
-        bubbleRect.top < rect.bottom &&
-        bubbleRect.bottom > rect.top;
-      if (overlaps) return true;
-    }
-  } catch (e) {}
-  return false;
 }
 
 function crispWidgetPresent() {
