@@ -168,7 +168,7 @@ export function PharmacyFinderModal({ language, onClose }) {
                     textDecoration: "none", marginBottom: "12px", boxShadow: `0 2px 10px ${theme.primary}40`,
                   }}
                 >
-                  <PhoneIcon size={14} color="#fff" /> {t.call}: {p.phone}
+                  <PhoneIcon size={14} color="#fff" /> {t.call}: <bdi dir="ltr">{p.phone}</bdi>
                 </a>
               )}
               <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>

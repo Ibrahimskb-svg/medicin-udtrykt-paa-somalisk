@@ -140,7 +140,13 @@ export default function TextZoomControl() {
         top: place ? `${place.mode === "mobile" ? 64 : place.top}px` : "92px",
         [isRtl ? "left" : "right"]: place && place.mode !== "mobile" ? `${place.side}px` : "6px",
         opacity: place ? 1 : 0,
-        zIndex: 400,
+        // Under header'ens egen z-[110]: header'en er "sticky" og skaber
+        // dermed sin egen stacking context — en højere z-index her (fx 400)
+        // ville derfor altid ligge OVEN PÅ hele header'en, inklusive dens
+        // sprog-dropdown (z-[500] inde i den), fordi stacking contexts
+        // sammenlignes som en helhed ud fra forælderens egen z-index, ikke
+        // efterkommerens. Lavere end 110 sikrer at dropdownen altid vinder.
+        zIndex: 90,
         display: "flex",
         alignItems: "center",
         gap: "2px",
@@ -174,7 +180,7 @@ export default function TextZoomControl() {
         className="hover-lift"
         style={{
           display: "flex", alignItems: "center", justifyContent: "center",
-          width: "19px", height: "19px", borderRadius: "50%", border: "none",
+          width: "36px", height: "36px", borderRadius: "50%", border: "none",
           background: "transparent", color: zoom <= MIN_ZOOM ? "#cbd5e1" : textSafe,
           fontSize: "13px", fontWeight: 700, cursor: zoom <= MIN_ZOOM ? "default" : "pointer",
         }}
@@ -212,7 +218,7 @@ export default function TextZoomControl() {
         className="hover-lift"
         style={{
           display: "flex", alignItems: "center", justifyContent: "center",
-          width: "19px", height: "19px", borderRadius: "50%", border: "none",
+          width: "36px", height: "36px", borderRadius: "50%", border: "none",
           background: "transparent", color: zoom >= MAX_ZOOM ? "#cbd5e1" : textSafe,
           fontSize: "13px", fontWeight: 700, cursor: zoom >= MAX_ZOOM ? "default" : "pointer",
         }}

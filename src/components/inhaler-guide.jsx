@@ -715,8 +715,10 @@ export function InhalerGuide({ slug, language }) {
             />
           ))}
         </div>
-        {/* Human figure animation */}
-        <div style={{ borderRadius: 14, overflow: "hidden", border: `1.5px solid ${theme.border}`, background: "#f8fafc", padding: "8px 0" }}>
+        {/* Human figure animation — maxWidth forhindrer at illustrationen
+            (fast 280:210-billedforhold) ser tabt ud i en stor, tom boks på
+            brede desktop-skærme, hvor sektionen ellers fylder hele kolonnen. */}
+        <div style={{ maxWidth: 480, margin: "0 auto", borderRadius: 14, overflow: "hidden", border: `1.5px solid ${theme.border}`, background: "#f8fafc", padding: "8px 0" }}>
           <HumanInhalerSVG step={step} type={type} language={language} />
         </div>
       </div>

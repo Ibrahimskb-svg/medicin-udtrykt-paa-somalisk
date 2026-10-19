@@ -10,6 +10,7 @@ import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
 import { SeverityCheckModal, LevelBadge } from "./severity-check-modal";
+import { AboutModal, ContactModal, FAQModal } from "./site-index";
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
@@ -132,9 +133,9 @@ function PlayIcon() {
   );
 }
 
-function BackIcon() {
+function BackIcon({ isRtl }) {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style={{ transform: isRtl ? "scaleX(-1)" : undefined }}>
       <path d="m15 18-6-6 6-6" />
     </svg>
   );
@@ -609,6 +610,9 @@ export function MedicinePage({ medicine, initialLang }) {
 
       {modalTab === "mylist" && <MyListModal language={language} onClose={() => setModalTab(null)} />}
       {modalTab === "findPharmacy" && <PharmacyFinderModal language={language} onClose={() => setModalTab(null)} />}
+      {(modalTab === "me" || modalTab === "site") && <AboutModal tab={modalTab} language={language} onClose={() => setModalTab(null)} />}
+      {modalTab === "faq" && <FAQModal language={language} onClose={() => setModalTab(null)} />}
+      {modalTab === "contact" && <ContactModal language={language} onClose={() => setModalTab(null)} />}
       {counterCardsOpen && (
         <CounterCardsModal
           language={language}
@@ -633,7 +637,7 @@ export function MedicinePage({ medicine, initialLang }) {
             className="mb-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white/90 transition hover:bg-white/25"
             href={{ pathname: "/", query: { lang: language } }}
           >
-            <BackIcon />
+            <BackIcon isRtl={isRtl} />
             {data.backLabel}
           </Link>
 
@@ -848,7 +852,7 @@ export function MedicinePage({ medicine, initialLang }) {
         ) : null}
 
         {/* ── OVERBLIK + IBRAHIM ── */}
-        <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-[1.15fr_0.85fr]">
           <section
             className="reveal-on-scroll rounded-2xl border px-6 py-5 text-[15px] leading-7"
             style={{ background: "var(--soft)", borderColor: "var(--softBorder)", color: "var(--text)" }}
@@ -878,7 +882,7 @@ export function MedicinePage({ medicine, initialLang }) {
         )}
 
         {/* ── SEKTIONSKORT (Brug, Dosis, Bivirkninger osv.) ── */}
-        <div className="mt-5 grid gap-4 lg:grid-cols-2">
+        <div className="mt-5 grid gap-4 md:grid-cols-2">
           {medicine.sections.map((section) => {
             const list = data[section.listKey] || [];
             const iconSvg = sectionIcons[section.variant];

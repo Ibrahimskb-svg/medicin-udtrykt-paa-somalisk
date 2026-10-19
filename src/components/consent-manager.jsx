@@ -128,7 +128,7 @@ export function ConsentManager() {
           title={t.settings}
           className="hover-lift"
           style={{
-            position: "fixed", bottom: "calc(68px + env(safe-area-inset-bottom, 0px))", left: 16, zIndex: 500,
+            position: "fixed", bottom: "calc(var(--sm-bottom-nav-h, 68px) + 12px)", left: 16, zIndex: 500,
             width: 40, height: 40, borderRadius: "50%",
             background: "#ffffff", border: "1.5px solid #e2e8f0",
             boxShadow: "0 2px 10px rgba(0,0,0,0.14)",

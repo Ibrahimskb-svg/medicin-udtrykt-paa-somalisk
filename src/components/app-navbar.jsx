@@ -19,7 +19,7 @@ const NAV_LABELS = {
 const NAV_LABELS_SHORT = {
   da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin", findPharmacy:"Apotek", counterCards:"Kort" },
   en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds", findPharmacy:"Pharmacy", counterCards:"Cards" },
-  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Raadi farmashiye", counterCards:"Kaararka" },
+  so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Farmashiye", counterCards:"Kaararka" },
   ar: { me:"عني",      site:"حول",        faq:"الأسئلة",  contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية", counterCards:"البطاقات" },
 };
 
@@ -99,6 +99,24 @@ export function AppNavbar() {
   const languageMenuRef = useRef(null);
   const [mobileLanguageMenuOpen, setMobileLanguageMenuOpen] = useState(false);
   const mobileLanguageMenuRef = useRef(null);
+  const bottomNavRef = useRef(null);
+
+  // Mobil bottom-nav'ens faktiske højde varierer med sprog (labels af
+  // forskellig længde kan ombryde til 2 linjer) og enhedens safe-area — så
+  // andre fixed-positionerede elementer (chat-boblen, cookie-genåbn-knappen)
+  // skal måle den rigtige højde i stedet for at gætte på en fast pixel-værdi,
+  // ellers overlapper de bottom-nav'en når en label ombrydes.
+  useEffect(() => {
+    const nav = bottomNavRef.current;
+    if (!nav) return undefined;
+    const setHeightVar = () => {
+      document.documentElement.style.setProperty("--sm-bottom-nav-h", `${nav.offsetHeight}px`);
+    };
+    setHeightVar();
+    const observer = new ResizeObserver(setHeightVar);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, [language]);
 
   // Lyt efter om modaler lukkes udefra (så knappen i navbaren ikke lyser når modalen er lukket)
   useEffect(() => {
@@ -415,6 +433,7 @@ export function AppNavbar() {
 
       {/* Mobile Bottom Nav */}
       <nav
+        ref={bottomNavRef}
         className="block lg:hidden fixed bottom-0 inset-x-0 z-[110] bg-white/95 backdrop-blur-md border-t border-slate-100"
         style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
         dir={isRtl ? "rtl" : "ltr"}

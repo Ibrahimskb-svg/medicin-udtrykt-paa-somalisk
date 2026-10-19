@@ -99,10 +99,10 @@ const COUNTER_CARDS_LINK_TEXT = {
   ar: { label: "بطاقات الصيدلية", desc: "بطاقات كبيرة وسريعة لسؤال العميل وشرح الأمور له مباشرة." },
 };
 const PRAYER_CARD_TEXT = {
-  da: { label: "Suhoor/Iftar-påmindelse", reminderName: "Suhoor og Iftar" },
-  en: { label: "Suhoor/Iftar reminder", reminderName: "Suhoor and Iftar" },
-  so: { label: "Xasuusinta Sahuur/Iftar", reminderName: "Sahuur iyo Iftar" },
-  ar: { label: "تذكير السحور/الإفطار", reminderName: "السحور والإفطار" },
+  da: { label: "Suhoor/Iftar-påmindelse", reminderName: "Suhoor og Iftar", desc: "Få en kalenderpåmindelse om dine medicintider, tilpasset Suhoor og Iftar i din by." },
+  en: { label: "Suhoor/Iftar reminder", reminderName: "Suhoor and Iftar", desc: "Get a calendar reminder for your medicine times, matched to Suhoor and Iftar in your city." },
+  so: { label: "Xasuusinta Sahuur/Iftar", reminderName: "Sahuur iyo Iftar", desc: "Hel xasuusin kalandar ah oo ku saabsan wakhtiyada daawooyinkaaga, loo habeeyay Sahuur iyo Iftar magaaladaada." },
+  ar: { label: "تذكير السحور/الإفطار", reminderName: "السحور والإفطار", desc: "احصل على تذكير تقويمي لمواعيد أدويتك، متوافق مع السحور والإفطار في مدينتك." },
 };
 const SEVERITY_BANNER_TEXT = {
   da: { label: "Er dette alvorligt?", desc: "Skriv et symptom og se med det samme om det er en almindelig bivirkning eller en advarsel — plus hvornår du altid skal ringe 112." },
@@ -483,7 +483,7 @@ function BulletRow({text,Icon,color}){
 }
 
 // ── About Modal ────────────────────────────────────────────────────────────
-function AboutModal({tab,language,onClose}){
+export function AboutModal({tab,language,onClose}){
   const isRtl=language==="ar";
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
@@ -520,7 +520,7 @@ function AboutModal({tab,language,onClose}){
 }
 
 // ── Contact Modal ─────────────────────────────────────────────────────────
-function ContactModal({language,onClose}){
+export function ContactModal({language,onClose}){
   const isRtl=language==="ar";
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const data=CONTACT_DATA[language]??CONTACT_DATA.so;
@@ -641,7 +641,7 @@ function ContactModal({language,onClose}){
 }
 
 // ── FAQ Modal ──────────────────────────────────────────────────────────────
-function FAQModal({language,onClose}){
+export function FAQModal({language,onClose}){
   const[open,setOpen]=useState(null);
   const isRtl=language==="ar";
   const data=FAQ_DATA[language]??FAQ_DATA.so;
@@ -1208,6 +1208,38 @@ export function SiteIndex({initialLang}){
         </button>
       </div>
 
+      {/* ── Suhoor/Iftar-påmindelse-banner — samme synlighed som de andre genveje ── */}
+      <div className="mx-auto max-w-6xl px-4 lg:hidden pt-3 sm:pt-4">
+        <button
+          type="button"
+          data-sm-bubble-avoid="true"
+          onClick={() => setPrayerModalOpen(true)}
+          className="reveal-on-scroll flex w-full flex-col items-start gap-3 rounded-2xl px-5 py-5 text-start transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
+          style={{ background: "linear-gradient(120deg,#312E81,#4338CA 55%,#6366F1)", boxShadow: "0 8px 28px rgba(49,46,129,0.30)" }}
+        >
+          <span
+            aria-hidden="true"
+            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/20 sm:h-14 sm:w-14"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/></svg>
+          </span>
+          <span className="flex-1">
+            <span className="block text-base font-extrabold text-white sm:text-lg">
+              {(PRAYER_CARD_TEXT[language] ?? PRAYER_CARD_TEXT.so).label}
+            </span>
+            <span className="mt-1 block text-sm leading-6 text-white/90">
+              {(PRAYER_CARD_TEXT[language] ?? PRAYER_CARD_TEXT.so).desc}
+            </span>
+          </span>
+          <span
+            aria-hidden="true"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-lg font-bold text-white sm:h-10 sm:w-10"
+          >
+            {language === "ar" ? "←" : "→"}
+          </span>
+        </button>
+      </div>
+
       {/* ── Delt medicinliste (?list=-link, se my-list-modal.jsx) ─────────── */}
       {(sharedListSlugs.length > 0 || sharedListAdded) && (() => {
         const st = SHARED_LIST_TEXT[language] ?? SHARED_LIST_TEXT.so;
@@ -1384,7 +1416,7 @@ export function SiteIndex({initialLang}){
                           href={{pathname:`/${item.href}`,query:{lang:language}}}
                         >
                           <span className="text-sm font-medium" style={{color:"var(--text-muted)"}}>{chromeText.openDetails}</span>
-                          <span className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-white transition duration-300 group-hover:scale-110" style={{background:style.color}}>→</span>
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full text-sm text-white transition duration-300 group-hover:scale-110" style={{background:style.color}}>{isRtl ? "←" : "→"}</span>
                         </Link>
                       </div>
                     </div>

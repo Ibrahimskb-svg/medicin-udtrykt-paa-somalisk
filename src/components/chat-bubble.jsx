@@ -57,6 +57,30 @@ function cookieConsentDecided() {
   }
 }
 
+// Elementer markeret med data-sm-bubble-avoid="true" (bannere på forsiden) samt
+// lydafspilleren (der popper op og kan ligge lige under boblen) skal boblen
+// aldrig dække over — den er fixed-positioneret og "ved" ellers ikke hvad der
+// er under den, uanset hvor man har scrollet til, eller om lydafspilleren lige
+// er blevet åbnet.
+function collidesWithProtectedElement(bubbleEl) {
+  if (!bubbleEl) return false;
+  try {
+    const bubbleRect = bubbleEl.getBoundingClientRect();
+    const targets = document.querySelectorAll('[data-sm-bubble-avoid="true"], audio');
+    for (const el of targets) {
+      const rect = el.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) continue;
+      const overlaps =
+        bubbleRect.left < rect.right &&
+        bubbleRect.right > rect.left &&
+        bubbleRect.top < rect.bottom &&
+        bubbleRect.bottom > rect.top;
+      if (overlaps) return true;
+    }
+  } catch (e) {}
+  return false;
+}
+
 function crispWidgetPresent() {
   try {
     return !!document.querySelector(
@@ -83,6 +107,7 @@ export default function ChatBubble() {
   const [visible, setVisible] = useState(false);
   const [avatarOk, setAvatarOk] = useState(null);
   const timers = useRef([]);
+  const bubbleRef = useRef(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -129,6 +154,23 @@ export default function ChatBubble() {
     // Genkør hver gang sproget reelt skifter (React-prop, ikke polling) eller
     // man navigerer til en ny side.
   }, [language, pathname]);
+
+  // Tjekker løbende for overlap mens boblen er vist — ikke kun ved scroll/
+  // resize, da lydafspilleren kan udvide sig uden at nogen af dem udløses.
+  useEffect(() => {
+    if (!visible) return undefined;
+    const check = () => {
+      if (collidesWithProtectedElement(bubbleRef.current)) setVisible(false);
+    };
+    const interval = window.setInterval(check, 700);
+    window.addEventListener("scroll", check, { passive: true });
+    window.addEventListener("resize", check);
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener("scroll", check);
+      window.removeEventListener("resize", check);
+    };
+  }, [visible]);
 
   if (!visible) return null;
 
@@ -253,12 +295,16 @@ export default function ChatBubble() {
           0%,100% { transform: translateY(0); }
           50%      { transform: translateY(-5px); }
         }
-        @media (max-width: 640px) {
-          #sm-bubble { right: 12px; bottom: calc(68px + env(safe-area-inset-bottom, 0px)); max-width: 195px; font-size: 12px; padding: 10px 12px 10px 10px; }
+        @media (max-width: 1023px) {
+          /* --sm-bottom-nav-h sættes af AppNavbar fra dens egen målte højde
+             (den varierer med sprog og safe-area) — så boblen aldrig
+             overlapper bottom-nav'en, uanset om en label ombryder. */
+          #sm-bubble { right: 12px; bottom: calc(var(--sm-bottom-nav-h, 68px) + 12px); max-width: 195px; font-size: 12px; padding: 10px 12px 10px 10px; }
         }
       `}</style>
       <div
         id="sm-bubble"
+        ref={bubbleRef}
         dir={isRtl ? "rtl" : "ltr"}
         style={{ background: color.bg, boxShadow: `0 8px 28px ${color.shadow}, 0 2px 8px rgba(0,0,0,0.12)` }}
         onClick={handleBubbleClick}
