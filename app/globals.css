@@ -167,6 +167,12 @@ a {
   line-height: 1;
   pointer-events: none;
 }
+.hero-aurora-shade {
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, transparent 55%, rgba(4, 30, 28, 0.5) 100%);
+  pointer-events: none;
+}
 
 .glass-card-lite {
   background: rgba(255, 255, 255, 0.16);
@@ -187,6 +193,15 @@ a {
 }
 .glass-card-lite.strong:hover {
   background: rgba(255, 255, 255, 0.34);
+}
+/* Tailwinds focus-visible:ring-* taber til .glass-card-lite's egen faste
+   box-shadow (samme CSS-egenskab, kampen om kilde-rækkefølge/specificitet er
+   ustabil) — en tastaturbruger kan derfor ikke se hvilket af de 7 kort på
+   forsiden der har fokus. outline er en separat egenskab og kan derfor ikke
+   blive overskrevet af box-shadow-reglen ovenfor. */
+.glass-card-lite:focus-visible {
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px;
 }
 
 .stat-flag-card {

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
@@ -625,10 +625,10 @@ export function ContactModal({language,onClose}){
               <input id={cityId} value={city} onChange={(e)=>setCity(e.target.value)} style={inputStyle(cityMissing)}/>
             </div>
             <div style={{display:"flex",gap:"10px",flexWrap:"wrap"}}>
-              <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder={fb.emailLabel} type="email" style={{...inputStyle(false),flex:"1 1 160px"}}/>
-              <input value={phone} onChange={(e)=>setPhone(e.target.value)} placeholder={fb.phoneLabel} type="tel" style={{...inputStyle(false),flex:"1 1 160px"}}/>
+              <input value={email} onChange={(e)=>setEmail(e.target.value)} placeholder={fb.emailLabel} aria-label={fb.emailLabel} type="email" style={{...inputStyle(false),flex:"1 1 160px"}}/>
+              <input value={phone} onChange={(e)=>setPhone(e.target.value)} placeholder={fb.phoneLabel} aria-label={fb.phoneLabel} type="tel" style={{...inputStyle(false),flex:"1 1 160px"}}/>
             </div>
-            <textarea value={msg} onChange={(e)=>setMsg(e.target.value)} placeholder={fb.placeholder} rows={4} style={{...inputStyle(showErrors&&!msg.trim()),resize:"vertical"}}/>
+            <textarea value={msg} onChange={(e)=>setMsg(e.target.value)} placeholder={fb.placeholder} aria-label={fb.placeholder} aria-required="true" rows={4} style={{...inputStyle(showErrors&&!msg.trim()),resize:"vertical"}}/>
             {showErrors&&(nameMissing||cityMissing||!msg.trim())&&(
               <p style={{fontSize:"12.5px",color:"#cb3a3a",margin:0,textAlign:isRtl?"right":"left"}}>{fb.requiredHint}</p>
             )}
@@ -910,9 +910,24 @@ export function SiteIndex({initialLang}){
   useEffect(()=>{setActiveCategory("all");},[language]);
 
   useEffect(()=>{
-    const handler=(e)=>setModalTab(prev=>prev===e.detail?null:e.detail);
+    // AppNavbar regner selv sit toggle ud (fra sin egen activeTab-state) FØR
+    // den sender eventet — derfor skal modalTab bare sættes direkte til det
+    // den sender, ikke toggles igen her. En ekstra toggle gjorde at et
+    // modal lukket via dets eget ✕ (som kun nulstiller modalTab lokalt, uden
+    // at fortælle AppNavbar det) krævede to klik på navbar-knappen for at
+    // åbne igen, fordi AppNavbars activeTab stod fast på den gamle fane.
+    const handler=(e)=>setModalTab(e.detail);
     window.addEventListener("somalimed-tab",handler);
     return()=>window.removeEventListener("somalimed-tab",handler);
+  },[]);
+
+  // Sætter modalTab OG sender samme event videre, så AppBavbars egen
+  // activeTab-state altid holdes i sync — uanset om modalen åbnes/lukkes
+  // via navbaren, via dens eget ✕, eller via en genvej andre steder på
+  // siden (fx et af hero-kortene).
+  const changeModalTab=useCallback((tab)=>{
+    setModalTab(tab);
+    window.dispatchEvent(new CustomEvent("somalimed-tab",{detail:tab}));
   },[]);
 
   const categoryPills=useMemo(()=>buildCategoryPills(language),[language]);
@@ -975,12 +990,12 @@ export function SiteIndex({initialLang}){
     <div style={{background:"var(--bg)",color:"var(--text)"}} className="min-h-screen">
 
       {/* ── Modals ─────────────────────────────────────────────────────── */}
-      {(modalTab==="me"||modalTab==="site")&&<AboutModal tab={modalTab} language={language} onClose={()=>setModalTab(null)}/>}
-      {modalTab==="faq"      &&<FAQModal      language={language} onClose={()=>setModalTab(null)}/>}
-      {modalTab==="contact"  &&<ContactModal  language={language} onClose={()=>setModalTab(null)}/>}
-      {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>setModalTab(null)}/>}
-      {modalTab==="findPharmacy" &&<PharmacyFinderModal language={language} onClose={()=>setModalTab(null)}/>}
-      {modalTab==="counterCards" &&<CounterCardsModal language={language} onClose={()=>setModalTab(null)}/>}
+      {(modalTab==="me"||modalTab==="site")&&<AboutModal tab={modalTab} language={language} onClose={()=>changeModalTab(null)}/>}
+      {modalTab==="faq"      &&<FAQModal      language={language} onClose={()=>changeModalTab(null)}/>}
+      {modalTab==="contact"  &&<ContactModal  language={language} onClose={()=>changeModalTab(null)}/>}
+      {modalTab==="mylist"   &&<MyListModal   language={language} onClose={()=>changeModalTab(null)}/>}
+      {modalTab==="findPharmacy" &&<PharmacyFinderModal language={language} onClose={()=>changeModalTab(null)}/>}
+      {modalTab==="counterCards" &&<CounterCardsModal language={language} onClose={()=>changeModalTab(null)}/>}
       {prayerModalOpen && (
         <PrayerReminderModal
           language={language}
@@ -1009,6 +1024,10 @@ export function SiteIndex({initialLang}){
           <div className="hero-orb" aria-hidden="true" style={{width:260,height:260,background:"#0B6E63",bottom:-90,insetInlineStart:-70}} />
           <span className="hero-spark" aria-hidden="true" style={{top:"14%",insetInlineStart:"46%"}}>+</span>
           <span className="hero-spark" aria-hidden="true" style={{top:"62%",insetInlineStart:"40%",fontSize:12}}>+</span>
+          {/* hero-aurora-gradienten bliver næsten hvid i bunden — hvid tekst
+              i kortene dernede (fx "Tani ma halis ah?") har ellers alt for
+              lav kontrast. Mørkner kun den nederste del, bag kortene. */}
+          <div className="hero-aurora-shade" aria-hidden="true" />
 
           <div className="relative grid grid-cols-1 gap-8 px-5 py-10 sm:px-8 sm:py-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-start lg:gap-10 lg:py-16">
             {/* Tekst */}
@@ -1032,7 +1051,7 @@ export function SiteIndex({initialLang}){
             <div className="hidden w-full max-w-[400px] flex-col gap-3 lg:flex lg:justify-self-end">
               <button
                 type="button"
-                onClick={()=>setModalTab("findPharmacy")}
+                onClick={()=>changeModalTab("findPharmacy")}
                 className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 style={{padding:"14px 18px",cursor:"pointer"}}
               >
@@ -1044,7 +1063,7 @@ export function SiteIndex({initialLang}){
 
               <button
                 type="button"
-                onClick={()=>setModalTab("mylist")}
+                onClick={()=>changeModalTab("mylist")}
                 className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 style={{padding:"14px 18px",cursor:"pointer"}}
               >
@@ -1067,7 +1086,7 @@ export function SiteIndex({initialLang}){
 
               <button
                 type="button"
-                onClick={()=>setModalTab("counterCards")}
+                onClick={()=>changeModalTab("counterCards")}
                 className="glass-card-lite strong flex min-h-[72px] items-center gap-3 text-start focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
                 style={{padding:"14px 18px",cursor:"pointer"}}
               >
@@ -1152,7 +1171,7 @@ export function SiteIndex({initialLang}){
         <button
           type="button"
           data-sm-bubble-avoid="true"
-          onClick={() => setModalTab("counterCards")}
+          onClick={() => changeModalTab("counterCards")}
           className="reveal-on-scroll flex w-full flex-col items-start gap-3 rounded-2xl px-5 py-5 text-start transition hover:-translate-y-0.5 hover:shadow-xl sm:flex-row sm:items-center sm:gap-5 sm:px-7 sm:py-6"
           style={{ background: "linear-gradient(120deg,#9F1239,#BE123C 55%,#E11D48)", boxShadow: "0 8px 28px rgba(159,18,57,0.28)" }}
         >

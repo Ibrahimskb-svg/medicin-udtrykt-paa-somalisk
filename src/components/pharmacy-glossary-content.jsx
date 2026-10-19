@@ -177,9 +177,9 @@ export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
                       padding: "16px 18px", borderInlineStart: `4px solid ${color}`,
                     }}
                   >
-                    <h3 style={{ fontSize: "16px", fontWeight: 800, color, margin: "0 0 6px" }}>
+                    <h2 style={{ fontSize: "16px", fontWeight: 800, color, margin: "0 0 6px" }}>
                       {entry.term[language] ?? entry.term.da}
-                    </h3>
+                    </h2>
                     <p style={{ fontSize: "14px", color: "#334155", margin: 0 }}>
                       {entry.explanation[language] ?? entry.explanation.da}
                     </p>

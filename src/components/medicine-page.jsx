@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import QRCode from "qrcode";
 
 import { InhalerGuide } from "./inhaler-guide";
@@ -450,6 +450,16 @@ export function MedicinePage({ medicine, initialLang }) {
     return () => window.removeEventListener("somalimed-tab", handler);
   }, []);
 
+  // Sætter modalTab OG sender samme event videre, så AppNavbars egen
+  // activeTab-state altid holdes i sync — ellers krævede det 2 klik på
+  // navbar-knappen for at åbne et modal igen efter det var lukket via dets
+  // eget ✕ (AppNavbar vidste ikke modalen var lukket, og regnede derfor
+  // forkert ud fra sin gamle, forældede fane).
+  const changeModalTab = useCallback((tab) => {
+    setModalTab(tab);
+    window.dispatchEvent(new CustomEvent("somalimed-tab", { detail: tab }));
+  }, []);
+
   // Luk QR-modal med Escape (tastaturtilgængelighed)
   useEffect(() => {
     if (!qrOpen) return;
@@ -608,11 +618,11 @@ export function MedicinePage({ medicine, initialLang }) {
         />
       )}
 
-      {modalTab === "mylist" && <MyListModal language={language} onClose={() => setModalTab(null)} />}
-      {modalTab === "findPharmacy" && <PharmacyFinderModal language={language} onClose={() => setModalTab(null)} />}
-      {(modalTab === "me" || modalTab === "site") && <AboutModal tab={modalTab} language={language} onClose={() => setModalTab(null)} />}
-      {modalTab === "faq" && <FAQModal language={language} onClose={() => setModalTab(null)} />}
-      {modalTab === "contact" && <ContactModal language={language} onClose={() => setModalTab(null)} />}
+      {modalTab === "mylist" && <MyListModal language={language} onClose={() => changeModalTab(null)} />}
+      {modalTab === "findPharmacy" && <PharmacyFinderModal language={language} onClose={() => changeModalTab(null)} />}
+      {(modalTab === "me" || modalTab === "site") && <AboutModal tab={modalTab} language={language} onClose={() => changeModalTab(null)} />}
+      {modalTab === "faq" && <FAQModal language={language} onClose={() => changeModalTab(null)} />}
+      {modalTab === "contact" && <ContactModal language={language} onClose={() => changeModalTab(null)} />}
       {counterCardsOpen && (
         <CounterCardsModal
           language={language}
@@ -912,9 +922,9 @@ export function MedicinePage({ medicine, initialLang }) {
                       <span style={{ color: iconColor.color, fontSize: 20, fontWeight: 900 }}>{section.icon || "•"}</span>
                     )}
                   </span>
-                  <h3 className="text-lg font-bold leading-tight" style={{ color: "var(--text)" }}>
+                  <h2 className="text-lg font-bold leading-tight" style={{ color: "var(--text)" }}>
                     {data[section.titleKey]}
-                  </h3>
+                  </h2>
                 </div>
 
                 {section.variant === "dose" && medicine.dosagePictogram?.[language] && (
@@ -966,9 +976,9 @@ export function MedicinePage({ medicine, initialLang }) {
           className="reveal-on-scroll mt-6 rounded-2xl border bg-white px-6 py-5"
           style={{ borderColor: "var(--border)", borderLeft: "4px solid var(--sourceBorderAccent)" }}
         >
-          <h3 className="mb-1.5 text-base font-bold" style={{ color: "var(--text)" }}>
+          <h2 className="mb-1.5 text-base font-bold" style={{ color: "var(--text)" }}>
             {data.sourcesTitle}
-          </h3>
+          </h2>
           <p className="mb-4 text-sm leading-6" style={{ color: "var(--text-muted)" }}>
             {data.sourcesText}
           </p>

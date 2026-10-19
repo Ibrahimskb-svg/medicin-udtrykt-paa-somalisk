@@ -135,7 +135,7 @@ export function AppNavbar() {
     };
   }, []);
 
-  // Luk Kontakt/Apotek-dropdown ved klik udenfor
+  // Luk Kontakt/Apotek-dropdown ved klik udenfor eller Escape
   useEffect(() => {
     if (!contactMenuOpen) return;
     const handleClickOutside = (e) => {
@@ -143,11 +143,16 @@ export function AppNavbar() {
         setContactMenuOpen(false);
       }
     };
+    const handleEscape = (e) => { if (e.key === "Escape") setContactMenuOpen(false); };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, [contactMenuOpen]);
 
-  // Luk sprog-dropdown ved klik udenfor
+  // Luk sprog-dropdown ved klik udenfor eller Escape
   useEffect(() => {
     if (!languageMenuOpen) return;
     const handleClickOutside = (e) => {
@@ -155,8 +160,13 @@ export function AppNavbar() {
         setLanguageMenuOpen(false);
       }
     };
+    const handleEscape = (e) => { if (e.key === "Escape") setLanguageMenuOpen(false); };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, [languageMenuOpen]);
 
   // Samme, for mobilens sprog-dropdown
@@ -167,8 +177,13 @@ export function AppNavbar() {
         setMobileLanguageMenuOpen(false);
       }
     };
+    const handleEscape = (e) => { if (e.key === "Escape") setMobileLanguageMenuOpen(false); };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
   }, [mobileLanguageMenuOpen]);
 
   const isRtl = language === "ar";

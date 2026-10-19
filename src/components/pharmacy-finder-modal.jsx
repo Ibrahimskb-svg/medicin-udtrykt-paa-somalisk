@@ -106,6 +106,7 @@ export function PharmacyFinderModal({ language, onClose }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.searchPlaceholder}
+          aria-label={t.searchPlaceholder}
           style={{ flex: 1, border: "none", outline: "none", fontSize: "15px", background: "transparent", color: "#0f172a" }}
         />
       </div>

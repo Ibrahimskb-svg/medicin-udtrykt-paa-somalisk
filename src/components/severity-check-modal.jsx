@@ -224,13 +224,14 @@ export function SeverityCheckModal({ language, onClose, scopeSlug, scopeName }) 
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t.placeholder}
+          aria-label={t.placeholder}
           style={{ flex: 1, border: "none", outline: "none", fontSize: "15px", background: "transparent", color: "#0f172a" }}
           dir={isRtl ? "rtl" : "ltr"}
         />
       </div>
 
       {results !== null && (
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "8px" }}>
+        <div aria-live="polite" style={{ display: "flex", flexDirection: "column", gap: "12px", marginBottom: "8px" }}>
           {results.length === 0 ? (
             <p style={{ fontSize: "13.5px", color: "#64748b", fontWeight: 600, margin: 0, textAlign: isRtl ? "right" : "left" }}>{t.noMatch}</p>
           ) : (

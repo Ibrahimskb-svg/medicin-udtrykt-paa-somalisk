@@ -1,5 +1,7 @@
 "use client";
-import { useEffect, useId } from "react";
+import { useEffect, useId, useRef } from "react";
+
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), audio[controls], [tabindex]:not([tabindex="-1"])';
 
 export const LANG_THEME = {
   so: { primary:"#0B7A70", soft:"#F0FDFA", border:"#99f6e4", tagBg:"linear-gradient(135deg,#f0fdfa,#e0f2fe)" },
@@ -10,16 +12,39 @@ export const LANG_THEME = {
 
 export function ModalShell({title,iconEl,onClose,children,isRtl,wide,closeLabel}){
   const titleId = useId();
+  const dialogRef = useRef(null);
   useEffect(()=>{
-    const onKey=(e)=>{if(e.key==="Escape")onClose();};
+    // Fokus-fælde: tastatur-/skærmlæserbrugere må ikke kunne Tab'e ud af en
+    // åben modal og ind i siden bagved den — og fokus skal gå tilbage til
+    // den knap der åbnede modalen, når den lukkes igen, ellers mister man
+    // sin plads i siden.
+    const previouslyFocused = document.activeElement;
+    const dialog = dialogRef.current;
+    const focusables = dialog ? Array.from(dialog.querySelectorAll(FOCUSABLE_SELECTOR)) : [];
+    (focusables[0] || dialog)?.focus();
+
+    const onKey=(e)=>{
+      if(e.key==="Escape"){onClose();return;}
+      if(e.key!=="Tab" || !dialog) return;
+      const items = Array.from(dialog.querySelectorAll(FOCUSABLE_SELECTOR)).filter((el)=>el.offsetParent !== null);
+      if(items.length===0) return;
+      const first = items[0];
+      const last = items[items.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+    };
     document.addEventListener("keydown",onKey);
     document.body.style.overflow="hidden";
-    return()=>{document.removeEventListener("keydown",onKey);document.body.style.overflow="";};
+    return()=>{
+      document.removeEventListener("keydown",onKey);
+      document.body.style.overflow="";
+      if(previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
+    };
   },[onClose]);
   return(
     <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:9999,display:"flex",alignItems:"flex-end",justifyContent:"center",padding:"0",background:"rgba(0,0,0,0.52)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)"}}
       className="sm:items-center sm:p-4">
-      <div onClick={(e)=>e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby={titleId} style={{background:"#f8fafc",borderRadius:"28px 28px 0 0",width:"100%",maxWidth:wide?"660px":"560px",maxHeight:"92vh",overflowY:"auto",boxShadow:"0 -8px 40px rgba(0,0,0,0.22)",direction:isRtl?"rtl":"ltr"}}
+      <div ref={dialogRef} tabIndex={-1} onClick={(e)=>e.stopPropagation()} role="dialog" aria-modal="true" aria-labelledby={titleId} style={{background:"#f8fafc",borderRadius:"28px 28px 0 0",width:"100%",maxWidth:wide?"660px":"560px",maxHeight:"92vh",overflowY:"auto",boxShadow:"0 -8px 40px rgba(0,0,0,0.22)",direction:isRtl?"rtl":"ltr",outline:"none"}}
         className="sm:rounded-[28px] sm:shadow-[0_40px_100px_rgba(0,0,0,0.28)]">
         <div style={{background:"var(--heroBg)",borderRadius:"28px 28px 0 0",padding:"18px 20px 16px",display:"flex",alignItems:"center",justifyContent:"space-between",position:"sticky",top:0,zIndex:10}}
           className="sm:rounded-t-[28px]">

@@ -725,7 +725,7 @@ export function InhalerGuide({ slug, language }) {
 
       {/* ── Step text card ── */}
       <div style={{ padding: "6px 14px 16px" }}>
-        <div style={{ background: theme.bg, border: `1.5px solid ${theme.border}`, borderRadius: 14, padding: "13px 15px" }}>
+        <div aria-live="polite" style={{ background: theme.bg, border: `1.5px solid ${theme.border}`, borderRadius: 14, padding: "13px 15px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 7 }}>
             <span style={{
               background: theme.primary, color: "white", fontWeight: 800, fontSize: 12,

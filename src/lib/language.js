@@ -29,7 +29,7 @@ export function applyLanguageToDocument(lang, pageTitle) {
 
   document.documentElement.lang = safeLanguage;
   document.documentElement.dir = rtlLanguages.has(safeLanguage) ? "rtl" : "ltr";
-  document.title = pageTitle;
+  if (pageTitle) document.title = pageTitle;
 
   Object.entries(theme).forEach(([key, value]) => {
     document.documentElement.style.setProperty(`--${key}`, value);
