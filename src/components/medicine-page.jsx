@@ -166,7 +166,7 @@ function DosagePictogram({ chips, isRtl }) {
         return (
           <span
             key={i}
-            className="inline-flex items-center gap-2.5 rounded-full border-2 py-1.5 pl-1.5 pr-4 text-[14px] font-bold shadow-sm"
+            className="inline-flex items-center gap-2.5 rounded-full border-2 py-1.5 ps-1.5 pe-4 text-[14px] font-bold shadow-sm"
             style={{ background: style.bg, borderColor: style.border, color: style.color }}
           >
             <span

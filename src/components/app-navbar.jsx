@@ -17,7 +17,7 @@ const NAV_LABELS = {
 
 // Kortere labels til mobil bottom-nav
 const NAV_LABELS_SHORT = {
-  da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Min medicin", findPharmacy:"Apotek", counterCards:"Kort" },
+  da: { me:"Om mig",   site:"Om siden",   faq:"Spørgsmål", contact:"Kontakt",  mylist:"Medicin", findPharmacy:"Apotek", counterCards:"Kort" },
   en: { me:"About",    site:"About",      faq:"FAQ",      contact:"Contact",  mylist:"My meds", findPharmacy:"Pharmacy", counterCards:"Cards" },
   so: { me:"Aniga",    site:"Somalimed",  faq:"Su'aalo",  contact:"Xiriir",   mylist:"Daawo", findPharmacy:"Farmashiye", counterCards:"Kaararka" },
   ar: { me:"عني",      site:"حول",        faq:"الأسئلة",  contact:"تواصل",    mylist:"أدويتي", findPharmacy:"صيدلية", counterCards:"البطاقات" },

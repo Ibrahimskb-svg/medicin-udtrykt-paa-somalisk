@@ -82,6 +82,7 @@ export default function ChatBubble() {
   const pathname = usePathname();
   const [language, setLanguage] = useState("so");
   const [visible, setVisible] = useState(false);
+  const [avoidingCollision, setAvoidingCollision] = useState(false);
   const [avatarOk, setAvatarOk] = useState(null);
   const timers = useRef([]);
   const bubbleRef = useRef(null);
@@ -109,6 +110,7 @@ export default function ChatBubble() {
     timers.current.forEach(clearTimeout);
     timers.current = [];
     setVisible(false);
+    setAvoidingCollision(false);
 
     if (pathname?.startsWith("/dashboard")) return undefined;
     if (isDismissed()) return undefined;
@@ -132,13 +134,20 @@ export default function ChatBubble() {
     // man navigerer til en ny side.
   }, [language, pathname]);
 
-  // Tjekker løbende for overlap mens boblen er vist — ikke kun ved scroll/
+  // Tjekker løbende for overlap mens boblen kan vises — ikke kun ved scroll/
   // resize, da lydafspilleren kan udvide sig uden at nogen af dem udløses.
+  // I modsætning til en permanent "skjul for evigt"-tilstand bruges opacity
+  // (som cookie-genåbn-knappen): på medicin-sider er der ofte en tæt stak
+  // knapper lige dér hvor boblen vil vise sig, så hvis den forblev skjult
+  // resten af besøget ville den stort set aldrig dukke op — nu kommer den
+  // frem igen, så snart man scroller til et sted hvor den ikke er i vejen,
+  // inden for det samme visningsvindue.
   useEffect(() => {
     if (!visible) return undefined;
     const check = () => {
-      if (collidesWithProtectedElement(bubbleRef.current)) setVisible(false);
+      setAvoidingCollision(collidesWithProtectedElement(bubbleRef.current));
     };
+    check();
     const interval = window.setInterval(check, 700);
     window.addEventListener("scroll", check, { passive: true });
     window.addEventListener("resize", check);
@@ -278,9 +287,13 @@ export default function ChatBubble() {
              overlapper bottom-nav'en, uanset om en label ombryder. */
           #sm-bubble { right: 12px; bottom: calc(var(--sm-bottom-nav-h, 68px) + 12px); max-width: 195px; font-size: 12px; padding: 10px 12px 10px 10px; }
         }
+        /* !important slår smPop-animationens "forwards"-fastholdte opacity:1
+           ihjel, som ellers ville vinde over en almindelig inline-opacity. */
+        #sm-bubble.sm-bubble-avoiding { opacity: 0 !important; pointer-events: none !important; transition: opacity 0.15s ease; }
       `}</style>
       <div
         id="sm-bubble"
+        className={avoidingCollision ? "sm-bubble-avoiding" : undefined}
         ref={bubbleRef}
         dir={isRtl ? "rtl" : "ltr"}
         style={{ background: color.bg, boxShadow: `0 8px 28px ${color.shadow}, 0 2px 8px rgba(0,0,0,0.12)` }}
