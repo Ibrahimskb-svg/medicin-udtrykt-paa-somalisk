@@ -644,7 +644,7 @@ export function MedicinePage({ medicine, initialLang }) {
       <div style={{ background: "var(--heroBg)" }}>
         <div className="mx-auto max-w-6xl px-4 py-8 sm:py-10">
           <Link
-            className="mb-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white/90 transition hover:bg-white/25"
+            className="no-print mb-5 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold text-white/90 transition hover:bg-white/25"
             href={{ pathname: "/", query: { lang: language } }}
           >
             <BackIcon isRtl={isRtl} />

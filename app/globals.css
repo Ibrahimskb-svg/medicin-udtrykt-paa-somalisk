@@ -258,6 +258,7 @@ a {
   nav,
   #sm-bubble,
   [role="dialog"],
+  .sm-zoom-widget,
   .no-print {
     display: none !important;
   }
