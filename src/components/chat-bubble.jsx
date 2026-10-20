@@ -130,9 +130,14 @@ export default function ChatBubble() {
       timers.current.forEach(clearTimeout);
       timers.current = [];
     };
-    // Genkør hver gang sproget reelt skifter (React-prop, ikke polling) eller
-    // man navigerer til en ny side.
-  }, [language, pathname]);
+    // Kører kun igen ved sideskift (ny url = frisk 3s-tæller/45s-vindue).
+    // Sprogskift skal IKKE nulstille boblen — den skal bare vise den nye
+    // teksts/farve øjeblikkeligt (det styres allerede af `language` i selve
+    // renderet nedenfor). Da denne effekt tidligere også kørte ved
+    // sprogskift, forsvandt boblen i ca. 3 sekunder hver gang man skiftede
+    // sprog, før den dukkede op igen — det oplevedes som at den "ikke
+    // skiftede hurtigt" mellem sprogene.
+  }, [pathname]);
 
   // Tjekker løbende for overlap mens boblen kan vises — ikke kun ved scroll/
   // resize, da lydafspilleren kan udvide sig uden at nogen af dem udløses.
