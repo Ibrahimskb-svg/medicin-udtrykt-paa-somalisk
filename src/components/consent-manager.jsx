@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { LANG_THEME } from "./modal-shell";
-import { collidesWithProtectedElement } from "../lib/floating-ui-avoid";
+import { collidesWithProtectedElement, debounce } from "../lib/floating-ui-avoid";
 
 const BANNER_LANG_KEY = "cookieBannerLang";
 const LANG_NAMES = { da: "Dansk", so: "Soomaali", en: "English", ar: "العربية" };
@@ -85,14 +85,17 @@ export function ConsentManager() {
     const check = () => {
       setAvoidingCollision(collidesWithProtectedElement(reopenBtnRef.current));
     };
+    // Samme debounce som chatboblen — det tunge tjek må ikke køre midt i
+    // selve scroll-bevægelsen, det gav mærkbart lag på mobil.
+    const debouncedCheck = debounce(check, 150);
     check();
     const interval = window.setInterval(check, 700);
-    window.addEventListener("scroll", check, { passive: true });
-    window.addEventListener("resize", check);
+    window.addEventListener("scroll", debouncedCheck, { passive: true });
+    window.addEventListener("resize", debouncedCheck);
     return () => {
       window.clearInterval(interval);
-      window.removeEventListener("scroll", check);
-      window.removeEventListener("resize", check);
+      window.removeEventListener("scroll", debouncedCheck);
+      window.removeEventListener("resize", debouncedCheck);
     };
   }, [showReopenBtn]);
 

@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { resolveInitialLanguage, subscribeToLanguageChange } from "../lib/language";
-import { collidesWithProtectedElement } from "../lib/floating-ui-avoid";
+import { collidesWithProtectedElement, debounce } from "../lib/floating-ui-avoid";
 
 // Tidligere version var en rå JavaScript-streng i app/layout.jsx, der selv
 // skulle gætte sig til sprogskift (ved at polle localStorage under et forkert
@@ -147,14 +147,19 @@ export default function ChatBubble() {
     const check = () => {
       setAvoidingCollision(collidesWithProtectedElement(bubbleRef.current));
     };
+    // Scroll kan fyre af mange gange i sekundet under selve bevægelsen —
+    // kørte det tunge tjek direkte på hvert event gav mærkbart lag ved
+    // scroll på mobil. Debounce venter til scrollingen er stoppet, så der
+    // aldrig sker noget tungt midt i selve scroll-bevægelsen.
+    const debouncedCheck = debounce(check, 150);
     check();
     const interval = window.setInterval(check, 700);
-    window.addEventListener("scroll", check, { passive: true });
-    window.addEventListener("resize", check);
+    window.addEventListener("scroll", debouncedCheck, { passive: true });
+    window.addEventListener("resize", debouncedCheck);
     return () => {
       window.clearInterval(interval);
-      window.removeEventListener("scroll", check);
-      window.removeEventListener("resize", check);
+      window.removeEventListener("scroll", debouncedCheck);
+      window.removeEventListener("resize", debouncedCheck);
     };
   }, [visible]);
 
@@ -207,8 +212,7 @@ export default function ChatBubble() {
           max-width: 220px;
           line-height: 1.45;
           cursor: pointer;
-          animation: smPop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards,
-                     smFloat 3s ease-in-out 0.5s infinite;
+          animation: smPop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards;
           border: none;
         }
         #sm-bubble::after {
@@ -276,10 +280,6 @@ export default function ChatBubble() {
         @keyframes smPop {
           from { opacity: 0; transform: scale(0.6) translateY(12px); }
           to   { opacity: 1; transform: scale(1) translateY(0); }
-        }
-        @keyframes smFloat {
-          0%,100% { transform: translateY(0); }
-          50%      { transform: translateY(-5px); }
         }
         @media (max-width: 1023px) {
           /* --sm-bottom-nav-h sættes af AppNavbar fra dens egen målte højde

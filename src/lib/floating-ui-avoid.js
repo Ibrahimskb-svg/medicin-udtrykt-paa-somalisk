@@ -25,7 +25,7 @@ function hasOwnText(node) {
 // is on the page, which says nothing about this specific pixel. So instead
 // of trusting that, descend through whichever child's own box actually
 // covers (x, y) until we reach the real leaf rendered at that exact point.
-function descendToPoint(el, x, y, maxDepth = 10) {
+function descendToPoint(el, x, y, maxDepth = 6) {
   let node = el;
   for (let i = 0; i < maxDepth; i++) {
     if (node.getAttribute && node.getAttribute("aria-hidden") === "true") return null;
@@ -54,6 +54,24 @@ function pointHasRealContent(x, y, floatingEl) {
   if (hasOwnText(leaf)) return true;
   if (leaf.children.length === 0 && (leaf.textContent || "").trim().length > 0) return true;
   return false;
+}
+
+// Venter til ms millisekunder er gået siden SIDSTE kald, før funktionen
+// rent faktisk køres — kollisions-tjekket (elementsFromPoint + at gå ned
+// igennem DOM-træet for hvert prøvepunkt, inkl. getBoundingClientRect på
+// hvert niveau) er for tungt til at køre mens man aktivt scroller: selv
+// throttling til fx hver 200ms ville stadig udløse tjekket flere gange
+// UNDER selve scroll-bevægelsen og give mærkbare mikro-stop. Debounce kører
+// det først når scrollingen reelt er stoppet, så der aldrig sker noget
+// tungt midt i en scroll — setInterval'et i hver forbruger dækker allerede
+// den løbende baggrundskontrol, så dette skal kun give et hurtigt resultat
+// lige efter man er stoppet med at scrolle/resize'e.
+export function debounce(fn, ms) {
+  let timer = null;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), ms);
+  };
 }
 
 export function collidesWithProtectedElement(floatingEl) {
