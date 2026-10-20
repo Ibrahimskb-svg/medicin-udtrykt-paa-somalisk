@@ -68,15 +68,17 @@ export function PrayerReminderModal({ language, isRtl, onClose, onConfirm }) {
   const [cityId, setCityId] = useState(DANISH_CITIES[0].id);
 
   useEffect(() => {
-    const stored = typeof window !== "undefined" ? window.localStorage.getItem(LAST_CITY_KEY) : null;
-    if (stored && DANISH_CITIES.some((c) => c.id === stored)) setCityId(stored);
+    try {
+      const stored = typeof window !== "undefined" ? window.localStorage.getItem(LAST_CITY_KEY) : null;
+      if (stored && DANISH_CITIES.some((c) => c.id === stored)) setCityId(stored);
+    } catch (e) {}
   }, []);
 
   const city = useMemo(() => DANISH_CITIES.find((c) => c.id === cityId) || DANISH_CITIES[0], [cityId]);
   const times = useMemo(() => getPrayerTimesForDate(new Date(), city), [city]);
 
   function handleConfirm() {
-    window.localStorage.setItem(LAST_CITY_KEY, cityId);
+    try { window.localStorage.setItem(LAST_CITY_KEY, cityId); } catch (e) {}
     onConfirm({ fajr: times.fajr, maghrib: times.maghrib, cityName: city.name });
   }
 

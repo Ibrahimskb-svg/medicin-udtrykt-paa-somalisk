@@ -53,8 +53,10 @@ export default function TextZoomControl() {
     const params = new URLSearchParams(window.location.search);
     setLanguage(resolveInitialLanguage(null, params.get("lang")));
     const unsubscribe = subscribeToLanguageChange(setLanguage);
-    const stored = Number(window.localStorage.getItem(STORAGE_KEY));
-    if (stored >= MIN_ZOOM && stored <= MAX_ZOOM) setZoom(stored);
+    try {
+      const stored = Number(window.localStorage.getItem(STORAGE_KEY));
+      if (stored >= MIN_ZOOM && stored <= MAX_ZOOM) setZoom(stored);
+    } catch (e) {}
     return unsubscribe;
   }, []);
 
@@ -66,7 +68,7 @@ export default function TextZoomControl() {
     // bruger den kun omkring selve sideindholdet, så navbaren (uden for den
     // zoomede wrapper) altid forbliver i fast, uskaleret størrelse.
     document.documentElement.style.setProperty("--page-zoom", `${zoom}%`);
-    window.localStorage.setItem(STORAGE_KEY, String(zoom));
+    try { window.localStorage.setItem(STORAGE_KEY, String(zoom)); } catch (e) {}
   }, [zoom]);
 
   useEffect(() => {

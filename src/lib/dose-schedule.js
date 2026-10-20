@@ -17,7 +17,12 @@ export function getSchedule() {
 }
 
 function save(next) {
-  localStorage.setItem(KEY, JSON.stringify(next));
+  // Se samme fix i my-list.js — hvis localStorage kaster, skal togglingen
+  // stadig virke for resten af side-visningen, kun selve persisteringen
+  // til næste besøg går tabt.
+  try {
+    localStorage.setItem(KEY, JSON.stringify(next));
+  } catch (e) {}
   window.dispatchEvent(new CustomEvent(DOSE_SCHEDULE_EVENT, { detail: next }));
   return next;
 }

@@ -13,8 +13,16 @@ export function getLanguageFromSearchParams(searchParams) {
 
 export function getStoredLanguage() {
   if (typeof window === "undefined") return null;
-  const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  return isValidLanguage(storedLanguage) ? storedLanguage : null;
+  try {
+    const storedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+    return isValidLanguage(storedLanguage) ? storedLanguage : null;
+  } catch (e) {
+    // localStorage kan kaste (Safari "Bloker alle cookies", nogle
+    // administrerede browsere, fuld storage-kvote) — denne funktion kaldes
+    // fra useLanguageRouting's useEffect, som kører på HVER side, så en
+    // ufanget fejl her ville gøre hele siden hvid for den besøgende.
+    return null;
+  }
 }
 
 export function resolveInitialLanguage(initialLanguage, urlLanguage) {
@@ -35,7 +43,9 @@ export function applyLanguageToDocument(lang, pageTitle) {
     document.documentElement.style.setProperty(`--${key}`, value);
   });
 
-  window.localStorage.setItem(LANGUAGE_STORAGE_KEY, safeLanguage);
+  try {
+    window.localStorage.setItem(LANGUAGE_STORAGE_KEY, safeLanguage);
+  } catch (e) {}
 }
 
 export function notifyLanguageChange(lang) {

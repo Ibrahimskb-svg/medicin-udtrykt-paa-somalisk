@@ -8105,7 +8105,7 @@ export const siteData = {
           "doseList": [
             "Qiyaasta waxaa go'aamiya dhakhtarka, waxaana badanaa si tartiib ah loo kordhiyaa maalmaha hore.",
             "Kiniinnada caadiga ah waxaa la qaadan karaa adigoon cunto cunin ama adigoo cunto la qaadanaya.",
-            "Nooca daawada si tartiib ah u sii daaya mana aha in la jebiyo ama la calaliyo — waa in la liqaa iyadoo dhan.",
+            "Nooca daawada si tartiib ah u sii daaya badanaa waxaa lagu qaataa calool madhan, ugu yaraan hal saac ka hor cuntada, mana aha in la jebiyo ama la calaliyo — waa in la liqaa iyadoo dhan.",
             "Ha beddelin qiyaasta adigoon helin talo caafimaad."
           ],
           "sideTitle": "Waxyeellooyinka",

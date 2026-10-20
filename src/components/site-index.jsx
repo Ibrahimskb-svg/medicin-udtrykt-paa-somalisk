@@ -752,6 +752,17 @@ export function SiteIndex({initialLang}){
   const{language,updateLanguage}=useLanguageRouting({initialLanguage:initialLang});
   const router=useRouter();
   const[searchTerm,setSearchTerm]=useState("");
+  // Selve inputfeltet skal reagere instant (searchTerm/value ovenfor), men
+  // det tunge arbejde — filtrering af 25 kort, re-render af hele kort-listen,
+  // og useScrollReveal der genopbygger sin IntersectionObserver via en fuld
+  // document.querySelectorAll — må ikke køre på HVERT tastetryk, det gav
+  // målbare lange tasks (100ms+) og mærkbar skrive-forsinkelse. Afventer
+  // searchDebounced kører det kun når brugeren holder en kort pause.
+  const[searchDebounced,setSearchDebounced]=useState("");
+  useEffect(()=>{
+    const handle=setTimeout(()=>setSearchDebounced(searchTerm),200);
+    return()=>clearTimeout(handle);
+  },[searchTerm]);
   const[activeCategory,setActiveCategory]=useState("all");
   const[modalTab,setModalTab]=useState(null);
   const[expandedSlug,setExpandedSlug]=useState(null);
@@ -825,7 +836,7 @@ export function SiteIndex({initialLang}){
 
   const categoryPills=useMemo(()=>buildCategoryPills(language),[language]);
   const filteredItems=useMemo(()=>{
-    const query=searchTerm.trim().toLowerCase();
+    const query=searchDebounced.trim().toLowerCase();
     return indexData.items.filter((item)=>{
       const subtitle=indexData.subtitles[item.slug]?.[language]||indexData.subtitles[item.slug]?.so||"";
       const matchesCat=activeCategory==="all"||subtitle===activeCategory;
@@ -833,9 +844,9 @@ export function SiteIndex({initialLang}){
       const matchSearch=!query||displayName.toLowerCase().includes(query)||item.name.toLowerCase().includes(query)||subtitle.toLowerCase().includes(query);
       return matchesCat&&matchSearch;
     });
-  },[activeCategory,language,searchTerm]);
+  },[activeCategory,language,searchDebounced]);
 
-  useScrollReveal([language,activeCategory,searchTerm]);
+  useScrollReveal([language,activeCategory,searchDebounced]);
 
   // Logger ALLE søgninger (uanset resultat) til GA4, så dashboardet kan vise
   // præcis hvad folk søger på — ikke kun hullerne. Bruger samme "search_term"

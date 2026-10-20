@@ -12,7 +12,14 @@ export function getMyList() {
 }
 
 function save(next) {
-  localStorage.setItem(KEY, JSON.stringify(next));
+  // Hvis localStorage kaster (Safari "Bloker alle cookies", fuld
+  // storage-kvote osv.) skal "tilføj/fjern"-knapperne stadig virke for
+  // resten af denne side-visning — kun selve det at det gemmes til næste
+  // besøg går tabt, i stedet for at hele handlingen stille fejler uden
+  // nogen reaktion i UI'en overhovedet.
+  try {
+    localStorage.setItem(KEY, JSON.stringify(next));
+  } catch (e) {}
   window.dispatchEvent(new CustomEvent(MY_LIST_EVENT, { detail: next }));
   return next;
 }

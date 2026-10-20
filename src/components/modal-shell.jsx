@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useLayoutEffect, useRef } from "react";
 
 const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), audio[controls], [tabindex]:not([tabindex="-1"])';
 
@@ -13,6 +13,20 @@ export const LANG_THEME = {
 export function ModalShell({title,iconEl,onClose,children,isRtl,wide,closeLabel}){
   const titleId = useId();
   const dialogRef = useRef(null);
+  // Hver kalder sender onClose som en ny inline-pil ved hvert render (fx
+  // onClose={() => changeModalTab(null)}) — det er helt normalt og fint for
+  // en almindelig prop, men fokus-fælde-effekten nedenfor må IKKE køre igen
+  // bare fordi onClose skiftede reference. Den skal kun sætte/gendanne fokus
+  // ved selve åbning/lukning af modalen, ikke ved ethvert re-render af
+  // sidebagved (fx fordi en anden del af siden opdaterer sin egen state,
+  // mens modalen er åben) — ellers hopper fokus tilbage til modalens første
+  // felt hver gang noget andet på siden re-renderer, hvilket ødelægger
+  // tastatur-/skærmlæser-navigation midt i brugen af modalen. onCloseRef
+  // holder altid den nyeste onClose uden selv at udløse effekten igen.
+  const onCloseRef = useRef(onClose);
+  useLayoutEffect(()=>{
+    onCloseRef.current = onClose;
+  });
   useEffect(()=>{
     // Fokus-fælde: tastatur-/skærmlæserbrugere må ikke kunne Tab'e ud af en
     // åben modal og ind i siden bagved den — og fokus skal gå tilbage til
@@ -24,7 +38,7 @@ export function ModalShell({title,iconEl,onClose,children,isRtl,wide,closeLabel}
     (focusables[0] || dialog)?.focus();
 
     const onKey=(e)=>{
-      if(e.key==="Escape"){onClose();return;}
+      if(e.key==="Escape"){onCloseRef.current();return;}
       if(e.key!=="Tab" || !dialog) return;
       const items = Array.from(dialog.querySelectorAll(FOCUSABLE_SELECTOR)).filter((el)=>el.offsetParent !== null);
       if(items.length===0) return;
@@ -40,7 +54,7 @@ export function ModalShell({title,iconEl,onClose,children,isRtl,wide,closeLabel}
       document.body.style.overflow="";
       if(previouslyFocused instanceof HTMLElement) previouslyFocused.focus();
     };
-  },[onClose]);
+  },[]);
   return(
     <div onClick={onClose} style={{position:"fixed",inset:0,zIndex:9999,display:"flex",alignItems:"flex-end",justifyContent:"center",padding:"0",background:"rgba(0,0,0,0.52)",backdropFilter:"blur(8px)",WebkitBackdropFilter:"blur(8px)"}}
       className="sm:items-center sm:p-4">

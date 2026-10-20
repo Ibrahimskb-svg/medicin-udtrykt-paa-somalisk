@@ -64,13 +64,19 @@ export function ConsentManager() {
     const ua = navigator.userAgent || "";
     setIsAutomatedTraffic(/Claude\/|Electron\//.test(ua) || navigator.webdriver === true);
 
-    const stored = localStorage.getItem("cookieConsent");
-    if (stored) setConsent(stored);
-    // Banneret vælger bevidst sit eget sprog (default dansk) i stedet for
-    // sitets indholdssprog ("selectedLanguage") — besøgende der ikke forstår
-    // somalisk skal ikke mødes af et somalisk cookie-banner.
-    const l = localStorage.getItem(BANNER_LANG_KEY);
-    setLang(TEXTS[l] ? l : "da");
+    // localStorage kan kaste (Safari "Bloker alle cookies", nogle
+    // administrerede browsere, fuld storage-kvote) — dette kører i en
+    // useEffect uden fejlgrænse omkring sig, så en ufanget fejl her ville
+    // gøre hele siden hvid for den besøgende.
+    try {
+      const stored = localStorage.getItem("cookieConsent");
+      if (stored) setConsent(stored);
+      // Banneret vælger bevidst sit eget sprog (default dansk) i stedet for
+      // sitets indholdssprog ("selectedLanguage") — besøgende der ikke forstår
+      // somalisk skal ikke mødes af et somalisk cookie-banner.
+      const l = localStorage.getItem(BANNER_LANG_KEY);
+      setLang(TEXTS[l] ? l : "da");
+    } catch (e) {}
     setChecked(true);
   }, []);
 
@@ -89,7 +95,13 @@ export function ConsentManager() {
     // selve scroll-bevægelsen, det gav mærkbart lag på mobil.
     const debouncedCheck = debounce(check, 150);
     check();
-    const interval = window.setInterval(check, 700);
+    // showReopenBtn er sandt for stort set hele besøget for enhver
+    // tilbagevendende besøgende (ikke bare et par sekunder som chatboblen),
+    // så dette interval kører kontinuerligt på hver eneste side — 700ms gav
+    // et tungt DOM-gennemsyn ~1,4 gange i sekundet, hele tiden. 2500ms er
+    // stadig hurtigt nok til at opdage en kollision (fx lydafspilleren der
+    // udvides uden scroll/resize), men skærer den løbende belastning ned.
+    const interval = window.setInterval(check, 2500);
     window.addEventListener("scroll", debouncedCheck, { passive: true });
     window.addEventListener("resize", debouncedCheck);
     return () => {
@@ -101,17 +113,17 @@ export function ConsentManager() {
 
   function changeLang(l) {
     setLang(l);
-    localStorage.setItem(BANNER_LANG_KEY, l);
+    try { localStorage.setItem(BANNER_LANG_KEY, l); } catch (e) {}
   }
 
   function accept() {
-    localStorage.setItem("cookieConsent", "accepted");
+    try { localStorage.setItem("cookieConsent", "accepted"); } catch (e) {}
     setConsent("accepted");
     setReopened(false);
   }
 
   function reject() {
-    localStorage.setItem("cookieConsent", "rejected");
+    try { localStorage.setItem("cookieConsent", "rejected"); } catch (e) {}
     setConsent("rejected");
     setReopened(false);
   }
