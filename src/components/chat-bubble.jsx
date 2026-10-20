@@ -81,15 +81,25 @@ function openCrispChat() {
 export default function ChatBubble() {
   const pathname = usePathname();
   const [language, setLanguage] = useState("so");
+  // Det sprog, der faktisk VISES i boblen lige nu — med vilje en anelse
+  // bagud for `language`. Et rent sprogskift skal ikke bare teleportere
+  // teksten om øjeblikkeligt (det så ud som om boblen "stod helt stille" og
+  // bare sprang til ny tekst for hurtigt) — se effekten nedenfor, der lader
+  // den toner kort ud og ind igen, så skiftet er synligt og føles bevidst.
+  const [displayLanguage, setDisplayLanguage] = useState("so");
+  const [langSwitching, setLangSwitching] = useState(false);
   const [visible, setVisible] = useState(false);
   const [avoidingCollision, setAvoidingCollision] = useState(false);
   const [avatarOk, setAvatarOk] = useState(null);
   const timers = useRef([]);
   const bubbleRef = useRef(null);
+  const didMountLang = useRef(false);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    setLanguage(resolveInitialLanguage(null, params.get("lang")));
+    const initial = resolveInitialLanguage(null, params.get("lang"));
+    setLanguage(initial);
+    setDisplayLanguage(initial);
     const unsubscribe = subscribeToLanguageChange(setLanguage);
     // Nem måde at se boblen igen uden udviklerværktøjer: tilføj ?showbubble=1
     // til adressen, så glemmer browseren, at den tidligere er lukket.
@@ -98,6 +108,24 @@ export default function ChatBubble() {
     } catch (e) {}
     return unsubscribe;
   }, []);
+
+  // Korte, bevidste sprogskift: ton ud (~180ms), skift så teksten/farven,
+  // og ton ind igen (smPop-animationen kører forfra). Hverken øjeblikkeligt
+  // (føltes som ingenting skete) eller de gamle 3 sekunders forsvinden
+  // (føltes som en fejl) — bare en kort, synlig, "passende" overgang.
+  useEffect(() => {
+    if (!didMountLang.current) {
+      didMountLang.current = true;
+      return undefined;
+    }
+    if (language === displayLanguage) return undefined;
+    setLangSwitching(true);
+    const t = setTimeout(() => {
+      setDisplayLanguage(language);
+      setLangSwitching(false);
+    }, 180);
+    return () => clearTimeout(t);
+  }, [language, displayLanguage]);
 
   useEffect(() => {
     const img = new Image();
@@ -170,7 +198,7 @@ export default function ChatBubble() {
 
   if (!visible) return null;
 
-  const lang = MESSAGES[language] ? language : "so";
+  const lang = MESSAGES[displayLanguage] ? displayLanguage : "so";
   const isRtl = lang === "ar";
   const color = COLORS[lang];
 
@@ -219,6 +247,10 @@ export default function ChatBubble() {
           cursor: pointer;
           animation: smPop 0.45s cubic-bezier(0.34,1.56,0.64,1) forwards;
           border: none;
+          /* Fælles transition, så både avoid- og sprogskift-klassen tonér
+             pænt UD i begge retninger — ellers snapper den tilbage til
+             opacity:1 uden overgang, når klassen fjernes igen. */
+          transition: opacity 0.18s ease, transform 0.18s ease;
         }
         #sm-bubble::after {
           content: "";
@@ -295,10 +327,15 @@ export default function ChatBubble() {
         /* !important slår smPop-animationens "forwards"-fastholdte opacity:1
            ihjel, som ellers ville vinde over en almindelig inline-opacity. */
         #sm-bubble.sm-bubble-avoiding { opacity: 0 !important; pointer-events: none !important; transition: opacity 0.15s ease; }
+        /* Kort, synlig "ton ud / ton ind"-overgang ved sprogskift (se
+           langSwitching-effekten ovenfor) — samme !important-teknik, men
+           lidt hurtigere og med et let skaleringsdyk, så det læses som et
+           bevidst skift og ikke bare endnu en avoid-tilstand. */
+        #sm-bubble.sm-bubble-lang-switching { opacity: 0 !important; transform: scale(0.94) !important; transition: opacity 0.18s ease, transform 0.18s ease; }
       `}</style>
       <div
         id="sm-bubble"
-        className={avoidingCollision ? "sm-bubble-avoiding" : undefined}
+        className={[avoidingCollision && "sm-bubble-avoiding", langSwitching && "sm-bubble-lang-switching"].filter(Boolean).join(" ") || undefined}
         ref={bubbleRef}
         dir={isRtl ? "rtl" : "ltr"}
         style={{ background: color.bg, boxShadow: `0 8px 28px ${color.shadow}, 0 2px 8px rgba(0,0,0,0.12)` }}
