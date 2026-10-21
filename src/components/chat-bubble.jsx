@@ -14,7 +14,7 @@ import { collidesWithProtectedElement, debounce } from "../lib/floating-ui-avoid
 const DISMISS_KEY = "sm_bubble_dismissed_until";
 const DISMISS_DAYS = 14;
 const SHOW_DELAY_MS = 3000;
-const AUTO_HIDE_MS = 45000;
+const AUTO_HIDE_MS = 12000;
 const COOKIE_BANNER_RETRY_MS = 1500;
 
 const MESSAGES = {
@@ -134,11 +134,19 @@ export default function ChatBubble() {
     img.src = "/Ibrahim-avatar.jpg";
   }, []);
 
+  // Bliver først sat til true, når den indledende 3-sekunders-ventetid
+  // RENT FAKTISK er gået for den nuværende side — bruges af sprogskift-
+  // effekten nedenfor, så den ikke forveksler appens egen opstarts-
+  // sprogopløsning (som også ændrer `language` lige ved mount, før
+  // ventetiden er gået) med et ægte, brugerstyret sprogskift.
+  const initialShowDone = useRef(false);
+
   useEffect(() => {
     timers.current.forEach(clearTimeout);
     timers.current = [];
     setVisible(false);
     setAvoidingCollision(false);
+    initialShowDone.current = false;
 
     if (pathname?.startsWith("/dashboard")) return undefined;
     if (isDismissed()) return undefined;
@@ -152,20 +160,47 @@ export default function ChatBubble() {
       setVisible(true);
       timers.current.push(setTimeout(() => setVisible(false), AUTO_HIDE_MS));
     }
-    timers.current.push(setTimeout(attemptShow, SHOW_DELAY_MS));
+    timers.current.push(setTimeout(() => {
+      initialShowDone.current = true;
+      attemptShow();
+    }, SHOW_DELAY_MS));
 
     return () => {
       timers.current.forEach(clearTimeout);
       timers.current = [];
     };
-    // Kører kun igen ved sideskift (ny url = frisk 3s-tæller/45s-vindue).
-    // Sprogskift skal IKKE nulstille boblen — den skal bare vise den nye
-    // teksts/farve øjeblikkeligt (det styres allerede af `language` i selve
-    // renderet nedenfor). Da denne effekt tidligere også kørte ved
-    // sprogskift, forsvandt boblen i ca. 3 sekunder hver gang man skiftede
-    // sprog, før den dukkede op igen — det oplevedes som at den "ikke
-    // skiftede hurtigt" mellem sprogene.
+    // Kører kun igen ved sideskift (ny url = frisk 3s-tæller/auto-hide-
+    // vindue). Sprogskift skal IKKE nulstille og vente 3 sekunder igen —
+    // det håndteres af den separate effekt nedenfor i stedet. Da denne
+    // effekt tidligere også kørte ved sprogskift, forsvandt boblen i ca. 3
+    // sekunder hver gang man skiftede sprog, før den dukkede op igen — det
+    // oplevedes som at den "ikke skiftede hurtigt" mellem sprogene.
   }, [pathname]);
+
+  // Et sprogskift er en bevidst handling fra brugeren og skal kunne hente
+  // boblen tilbage, selv hvis AUTO_HIDE_MS allerede har skjult den igen —
+  // uden at vente de samme 3 sekunder som ved sideindlæsning. Men hvis
+  // boblen allerede ER synlig, skal DENNE effekt ikke blande sig —  så er
+  // det den bløde ton-ud/ton-ind-overgang ovenfor, der skal styre skiftet.
+  // Eneste undtagelse: har brugeren selv lukket den med krydset, skal det
+  // respekteres uanset sprogskift (isDismissed()).
+  useEffect(() => {
+    if (!initialShowDone.current) return undefined;
+    if (visible) return undefined;
+    if (pathname?.startsWith("/dashboard")) return undefined;
+    if (isDismissed()) return undefined;
+    if (!cookieConsentDecided()) return undefined;
+
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    setDisplayLanguage(language);
+    setLangSwitching(false);
+    setVisible(true);
+    timers.current.push(setTimeout(() => setVisible(false), AUTO_HIDE_MS));
+    // Skal KUN reagere på sprogskift, ikke på sideskift (det styres af
+    // effekten ovenfor) — pathname læses stadig korrekt via closure.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [language]);
 
   // Tjekker løbende for overlap mens boblen kan vises — ikke kun ved scroll/
   // resize, da lydafspilleren kan udvide sig uden at nogen af dem udløses.
