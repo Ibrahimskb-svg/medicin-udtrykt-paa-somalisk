@@ -6,7 +6,6 @@ import { ModalShell, LANG_THEME } from "./modal-shell";
 import { knownInteractions, pairKey, CHECKED_DATE } from "../data/interactions";
 import { BatchScanPanel } from "./batch-scan-panel";
 import { DoseSchedulePanel } from "./dose-schedule-panel";
-import { clearScheduleFor } from "../lib/dose-schedule";
 
 const indexData = getIndexData();
 
@@ -274,7 +273,6 @@ export function MyListModal({ language, onClose }) {
   function toggle(slug) {
     if (list.includes(slug)) {
       removeFromMyList(slug);
-      clearScheduleFor(slug);
     } else {
       addToMyList(slug);
     }
@@ -282,7 +280,6 @@ export function MyListModal({ language, onClose }) {
 
   function remove(slug) {
     removeFromMyList(slug);
-    clearScheduleFor(slug);
   }
 
   function escapeHtml(s) {

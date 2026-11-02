@@ -9187,9 +9187,7 @@ export const siteData = {
               "href": "https://www.sundhed.dk/sundhedsfaglig/information-til-praksis/syddanmark/almen-praksis/patientbehandling/laegemidler/basislisten/basislisten-indikationer-syddanmark/astma/"
             }
           ],
-          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي.",
-          "audioLabel": "استمع إلى التسجيل الصوتي",
-          "audioFile": "audio/Symbicort-arabisk.mp3"
+          "footerNote": "تم إعداد هذا النص من قبل فني صيدلي: إبراهيم ظاهر حنف. هذا النص للتوعية فقط ولا يغني عن نصيحة الطبيب أو الصيدلي."
         }
       }
     },

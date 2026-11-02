@@ -1,3 +1,5 @@
+import { clearScheduleFor } from "./dose-schedule";
+
 const KEY = "somalimed_my_list";
 export const MY_LIST_EVENT = "somalimed-mylist-change";
 
@@ -30,6 +32,11 @@ export function addToMyList(slug) {
 }
 
 export function removeFromMyList(slug) {
+  // Rydder altid dosisskemaet her, så ALLE steder man kan fjerne en medicin
+  // fra listen (denne liste-knap, medicin-sidens egen knap, osv.) opfører
+  // sig ens — i stedet for at hvert enkelt kaldested selv skal huske at
+  // parre det med clearScheduleFor, som nogle steder glemte før.
+  clearScheduleFor(slug);
   return save(getMyList().filter((s) => s !== slug));
 }
 
