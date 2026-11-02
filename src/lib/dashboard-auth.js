@@ -7,10 +7,13 @@ const SESSION_MAX_AGE_MS = 1000 * 60 * 60 * 24 * 30; // 30 dage, matcher cookien
 // lækket token ikke er gyldigt for evigt — det udløber reelt server-side,
 // ikke kun via cookiens klient-styrede maxAge (som en replayet request kan ignorere).
 function sign(expiresAt) {
-  return crypto
-    .createHmac("sha256", process.env.SESSION_SECRET || "")
-    .update(String(expiresAt))
-    .digest("hex");
+  const secret = process.env.SESSION_SECRET;
+  // Fejler lukket (kaster), i stedet for at underskrive med en tom streng,
+  // hvis SESSION_SECRET nogensinde skulle mangle i miljøet — en tom nøgle
+  // er offentligt kendt (HMAC-SHA256("")) og ville gøre det muligt for
+  // enhver selv at udregne et gyldigt sessions-token uden adgangskoden.
+  if (!secret) throw new Error("SESSION_SECRET er ikke sat");
+  return crypto.createHmac("sha256", secret).update(String(expiresAt)).digest("hex");
 }
 
 function sessionToken() {
