@@ -39,7 +39,10 @@ export const languageThemes = {
     // Samme kontrast-fix som so: #0ea5e9 er kun 2.77:1 mod hvid som tekstfarve
     // (bruges bl.a. direkte i AudioButton's color-egenskab, ikke kun baggrund).
     accent1: "#0b7caf",
-    accent2: "#60a5fa",
+    // #60a5fa gav kun 2.54:1 mod hvid — AudioButton (sekundær) bruger den
+    // både som kant og som baggrund bag et hvidt ikon, hvor WCAG 1.4.11
+    // (ikke-tekst-kontrast) kræver mindst 3:1. #3b82f6 giver 3.68:1.
+    accent2: "#3b82f6",
     accent: "#0b7caf",
     flash: "#e0f2fe",
     badgeBg: "#e0f2fe",
@@ -50,7 +53,7 @@ export const languageThemes = {
     drugIconBg: "#f0f9ff",
     drugIconBorder: "#bae6fd",
     langBarAccent: "#0ea5e9",
-    sourceBorderAccent: "#60a5fa",
+    sourceBorderAccent: "#3b82f6",
     heroBg: "linear-gradient(135deg, #0369a1 0%, #0ea5e9 50%, #60a5fa 100%)",
   },
   en: {
@@ -71,7 +74,10 @@ export const languageThemes = {
   },
   ar: {
     accent1: "#c2410c",
-    accent2: "#fb923c",
+    // #fb923c gav kun 2.26:1 mod hvid — AudioButton (sekundær) bruger den
+    // både som kant og som baggrund bag et hvidt ikon, hvor WCAG 1.4.11
+    // (ikke-tekst-kontrast) kræver mindst 3:1. #ea580c giver 3.56:1.
+    accent2: "#ea580c",
     accent: "#c2410c",
     flash: "#ffedd5",
     badgeBg: "#ffedd5",
@@ -82,7 +88,7 @@ export const languageThemes = {
     drugIconBg: "#fff7ed",
     drugIconBorder: "#fed7aa",
     langBarAccent: "#c2410c",
-    sourceBorderAccent: "#fb923c",
+    sourceBorderAccent: "#ea580c",
     heroBg: "linear-gradient(135deg, #431407 0%, #c2410c 50%, #fb923c 100%)",
   },
 };

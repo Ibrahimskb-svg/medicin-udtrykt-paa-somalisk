@@ -375,6 +375,22 @@ export default function ChatBubble() {
         dir={isRtl ? "rtl" : "ltr"}
         style={{ background: color.bg, boxShadow: `0 8px 28px ${color.shadow}, 0 2px 8px rgba(0,0,0,0.12)` }}
         onClick={handleBubbleClick}
+        role="button"
+        tabIndex={0}
+        aria-label={`${NAMES[lang]}: ${MESSAGES[lang]}`}
+        onKeyDown={(e) => {
+          // Kun selve krydset var et rigtigt <button> og dermed
+          // tastatur-nået — resten af boblen (den reelle "åbn chat"-knap)
+          // kunne hverken få fokus eller aktiveres uden mus.
+          // e.target === e.currentTarget udelukker keydown, der bobler op
+          // fra krydset (ellers ville Enter på krydset BÅDE lukke boblen
+          // OG åbne chatten, fordi keydown-events bobler, i modsætning til
+          // krydsets egen onClick, der har stopPropagation).
+          if ((e.key === "Enter" || e.key === " ") && e.target === e.currentTarget) {
+            e.preventDefault();
+            handleBubbleClick();
+          }
+        }}
       >
         <button id="sm-bubble-close" aria-label={CLOSE_LABELS[lang]} onClick={handleClose}>
           ✕
