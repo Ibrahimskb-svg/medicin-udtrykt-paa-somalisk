@@ -245,6 +245,16 @@ const ABOUT_ME_META = {
   ar: { name:"إبراهيم ظاهر حنف", title:"فارماكونوم | طالب في علم البيانات | مُتخصّص في التثقيف والتواصل الصحي" },
 };
 
+// LinkedIn-profilens adresse er bevidst den SAMME på alle fire sprog —
+// kun teksten ved siden af skal oversættes.
+const LINKEDIN_URL = "https://www.linkedin.com/in/ibrahim-dahir-hanaf-44137044a/";
+const LINKEDIN_TEXT = {
+  da: "Læs mere om min faglige baggrund og erfaring på LinkedIn.",
+  en: "Learn more about my professional background and experience on LinkedIn.",
+  so: "Wax badan oo ku saabsan aqoontayda xirfadeed iyo waayo-aragnimadayda ka akhri LinkedIn.",
+  ar: "تعرّف على المزيد عن خلفيتي المهنية وخبراتي عبر لينكدإن.",
+};
+
 const ABOUT_ME_BULLETS = {
   da: [
     { icon:"education", text:"Jeg er uddannet farmakonom og er Data Science-studerende. Jeg har en stærk faglig interesse for matematik, fysik, kemi og biologi og er god til at forklare svære emner på en enkel og forståelig måde." },
@@ -361,6 +371,7 @@ function CardsIcon({size=16,color="currentColor"}){return(<svg width={size} heig
 function InstagramIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><path d="M17.3 6.7h.01"/></svg>);}
 function TikTokIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16.5 3v9.8a3.7 3.7 0 1 1-3.2-3.66"/><path d="M16.5 3c.3 2.4 1.9 4 4.5 4.2"/></svg>);}
 function FacebookIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 8.5h2.5V5.2c-.44-.06-1.95-.2-3-.2-2.97 0-4.5 1.81-4.5 4.55V12H6.5v3.5H9V21h3.5v-5.5h3l.5-3.5h-3.5V9.9c0-.9.3-1.4 1.5-1.4Z"/></svg>);}
+function LinkedinIcon({size=20,color="#fff"}){return(<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="2" ry="2"/><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>);}
 
 
 // ── Bullet row ─────────────────────────────────────────────────────────────
@@ -381,6 +392,7 @@ export function AboutModal({tab,language,onClose}){
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
   const meMeta=ABOUT_ME_META[language]??ABOUT_ME_META.so;
+  const linkedinText=LINKEDIN_TEXT[language]??LINKEDIN_TEXT.so;
   const bullets=tab==="me"?(ABOUT_ME_BULLETS[language]??ABOUT_ME_BULLETS.so):(ABOUT_SITE_BULLETS[language]??ABOUT_SITE_BULLETS.so);
   const siteTagline=ABOUT_SITE_TAGLINE[language]??ABOUT_SITE_TAGLINE.so;
   const title=tab==="me"?navLabels.aboutMe:navLabels.aboutSite;
@@ -398,6 +410,21 @@ export function AboutModal({tab,language,onClose}){
             <p style={{fontWeight:800,fontSize:"17px",color:"#0f172a",margin:0}}>{meMeta.name}</p>
             <p style={{fontSize:"13px",color:theme.primary,margin:"4px 0 0",fontWeight:600}}>{meMeta.title}</p>
           </div>
+        </div>
+      )}
+      {tab==="me"&&(
+        <div style={{display:"flex",alignItems:"center",gap:"12px",flexWrap:"wrap",marginBottom:"18px",padding:"12px 16px",background:theme.tagBg,borderRadius:"16px",border:`1.5px solid ${theme.border}`}}>
+          <p style={{fontSize:"13px",color:"#475569",margin:0,flex:"1 1 180px",textAlign:isRtl?"right":"left",lineHeight:1.5}}>{linkedinText}</p>
+          <a
+            href={LINKEDIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover-lift"
+            style={{display:"inline-flex",alignItems:"center",gap:"7px",padding:"9px 16px",borderRadius:"999px",background:"#0A66C2",color:"#fff",fontWeight:700,fontSize:"13px",textDecoration:"none",flexShrink:0}}
+          >
+            <LinkedinIcon size={15} color="#fff"/>
+            LinkedIn
+          </a>
         </div>
       )}
       {tab==="site"&&(
