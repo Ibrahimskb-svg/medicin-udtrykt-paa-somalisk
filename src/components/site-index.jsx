@@ -10,7 +10,7 @@ import { applyLanguageToDocument } from "../lib/language";
 import { getIndexData, getDisplayName, uiText, languages, MEDICINE_INTRO_BOX } from "../lib/site";
 import { mergeIntoMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
-import { BadgeCheck, BookOpen, GraduationCap, HeartPulse, Languages, Pill, RefreshCw, Stethoscope, UserRound, HeartHandshake } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, BookOpen, GraduationCap, HeartPulse, Languages, Pill, RefreshCw, Stethoscope, UserRound, HeartHandshake } from "lucide-react";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
@@ -255,6 +255,13 @@ const LINKEDIN_TEXT = {
   ar: "تعرّف على المزيد عن خلفيتي المهنية وخبراتي عبر لينكدإن.",
 };
 
+const ENLARGE_PHOTO_LABEL = {
+  da: "Se billedet i fuld størrelse",
+  en: "View full-size photo",
+  so: "Eeg sawirka oo buuxa",
+  ar: "عرض الصورة بالحجم الكامل",
+};
+
 const ABOUT_ME_BULLETS = {
   da: [
     { icon:"education", text:"Jeg er uddannet farmakonom og er Data Science-studerende. Jeg har en stærk faglig interesse for matematik, fysik, kemi og biologi og er god til at forklare svære emner på en enkel og forståelig måde." },
@@ -388,42 +395,66 @@ function BulletRow({text,Icon,color}){
 
 // ── About Modal ────────────────────────────────────────────────────────────
 export function AboutModal({tab,language,onClose}){
+  const [avatarEnlarged,setAvatarEnlarged]=useState(false);
   const isRtl=language==="ar";
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
   const meMeta=ABOUT_ME_META[language]??ABOUT_ME_META.so;
   const linkedinText=LINKEDIN_TEXT[language]??LINKEDIN_TEXT.so;
+  const enlargeLabel=ENLARGE_PHOTO_LABEL[language]??ENLARGE_PHOTO_LABEL.so;
   const bullets=tab==="me"?(ABOUT_ME_BULLETS[language]??ABOUT_ME_BULLETS.so):(ABOUT_SITE_BULLETS[language]??ABOUT_SITE_BULLETS.so);
   const siteTagline=ABOUT_SITE_TAGLINE[language]??ABOUT_SITE_TAGLINE.so;
   const title=tab==="me"?navLabels.aboutMe:navLabels.aboutSite;
   const iconEl=tab==="me"?<UserRound size={24} strokeWidth={2} color="#fff" aria-hidden="true"/>:<HeartPulse size={24} strokeWidth={2} color="#fff" aria-hidden="true"/>;
   const icons=ABOUT_BULLET_ICONS[tab];
+
+  useEffect(()=>{
+    if(!avatarEnlarged) return undefined;
+    // ModalShell lytter selv efter Escape på document (bubble-fasen) for at
+    // lukke HELE "Om mig"-vinduet. Uden stopPropagation HER, i capture-
+    // fasen (som løber før document nås), ville ét Escape-tryk lukke både
+    // det forstørrede billede OG vinduet bagved på én gang.
+    const onKey=(e)=>{
+      if(e.key==="Escape"){
+        e.stopPropagation();
+        setAvatarEnlarged(false);
+      }
+    };
+    window.addEventListener("keydown",onKey,true);
+    return ()=>window.removeEventListener("keydown",onKey,true);
+  },[avatarEnlarged]);
+
   return(
+    <>
     <ModalShell title={title} iconEl={iconEl} onClose={onClose} isRtl={isRtl} closeLabel={navLabels.close}>
       {tab==="me"&&(
-        <div style={{display:"flex",alignItems:"center",gap:"14px",marginBottom:"18px",background:"#fff",borderRadius:"20px",padding:"14px 16px",border:`1.5px solid ${theme.border}`,boxShadow:`0 4px 16px ${theme.primary}15`}}>
-          <div style={{position:"relative",flexShrink:0}}>
-            <div style={{position:"absolute",inset:"-4px",borderRadius:"50%",background:"linear-gradient(135deg,#14b8a6,#38bdf8,#818cf8)",opacity:0.9,filter:"blur(2px)"}}/>
-            <img src="/Ibrahim-avatar.jpg" alt={meMeta.name} style={{position:"relative",width:68,height:68,borderRadius:"50%",objectFit:"cover",border:"4px solid white",boxShadow:"0 4px 16px rgba(0,0,0,0.15)"}}/>
+        <div style={{marginBottom:"18px",background:"#fff",borderRadius:"20px",border:`1.5px solid ${theme.border}`,boxShadow:`0 4px 16px ${theme.primary}15`,overflow:"hidden"}}>
+          <div style={{display:"flex",alignItems:"center",gap:"14px",padding:"14px 16px"}}>
+            <button
+              type="button"
+              onClick={()=>setAvatarEnlarged(true)}
+              aria-label={enlargeLabel}
+              className="hover-lift"
+              style={{position:"relative",flexShrink:0,padding:0,border:"none",background:"none",cursor:"pointer",borderRadius:"50%"}}
+            >
+              <div style={{position:"absolute",inset:"-4px",borderRadius:"50%",background:"linear-gradient(135deg,#14b8a6,#38bdf8,#818cf8)",opacity:0.9,filter:"blur(2px)"}}/>
+              <img src="/Ibrahim-avatar.jpg" alt={meMeta.name} style={{position:"relative",width:68,height:68,borderRadius:"50%",objectFit:"cover",border:"4px solid white",boxShadow:"0 4px 16px rgba(0,0,0,0.15)"}}/>
+            </button>
+            <div>
+              <p style={{fontWeight:800,fontSize:"17px",color:"#0f172a",margin:0}}>{meMeta.name}</p>
+              <p style={{fontSize:"13px",color:theme.primary,margin:"4px 0 0",fontWeight:600}}>{meMeta.title}</p>
+            </div>
           </div>
-          <div>
-            <p style={{fontWeight:800,fontSize:"17px",color:"#0f172a",margin:0}}>{meMeta.name}</p>
-            <p style={{fontSize:"13px",color:theme.primary,margin:"4px 0 0",fontWeight:600}}>{meMeta.title}</p>
-          </div>
-        </div>
-      )}
-      {tab==="me"&&(
-        <div style={{display:"flex",alignItems:"center",gap:"12px",flexWrap:"wrap",marginBottom:"18px",padding:"12px 16px",background:theme.tagBg,borderRadius:"16px",border:`1.5px solid ${theme.border}`}}>
-          <p style={{fontSize:"13px",color:"#475569",margin:0,flex:"1 1 180px",textAlign:isRtl?"right":"left",lineHeight:1.5}}>{linkedinText}</p>
           <a
             href={LINKEDIN_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="hover-lift"
-            style={{display:"inline-flex",alignItems:"center",gap:"7px",padding:"9px 16px",borderRadius:"999px",background:"#0A66C2",color:"#fff",fontWeight:700,fontSize:"13px",textDecoration:"none",flexShrink:0}}
+            style={{display:"flex",alignItems:"center",gap:"9px",padding:"13px 16px",borderTop:`1.5px solid ${theme.border}`,background:theme.tagBg,color:theme.primary,fontWeight:700,fontSize:"13.5px",textDecoration:"none",flexDirection:isRtl?"row-reverse":"row"}}
           >
-            <LinkedinIcon size={15} color="#fff"/>
-            LinkedIn
+            <LinkedinIcon size={17} color={theme.primary}/>
+            <span style={{flex:1,textAlign:isRtl?"right":"left",lineHeight:1.4}}>{linkedinText}</span>
+            <ArrowUpRight size={16} strokeWidth={2.5} style={{flexShrink:0,transform:isRtl?"scaleX(-1)":undefined}}/>
           </a>
         </div>
       )}
@@ -436,6 +467,31 @@ export function AboutModal({tab,language,onClose}){
         {bullets.map((b,i)=><BulletRow key={i} text={b.text} Icon={icons[i%icons.length]} color={theme.primary}/>)}
       </ul>
     </ModalShell>
+    {avatarEnlarged&&tab==="me"&&(
+      <div
+        onClick={()=>setAvatarEnlarged(false)}
+        role="dialog"
+        aria-modal="true"
+        aria-label={meMeta.name}
+        style={{position:"fixed",inset:0,zIndex:10000,display:"flex",alignItems:"center",justifyContent:"center",padding:"24px",background:"rgba(10,15,25,0.82)",backdropFilter:"blur(6px)",WebkitBackdropFilter:"blur(6px)",cursor:"zoom-out"}}
+      >
+        <button
+          type="button"
+          onClick={()=>setAvatarEnlarged(false)}
+          aria-label={navLabels.close}
+          style={{position:"absolute",top:"18px",insetInlineEnd:"18px",width:40,height:40,borderRadius:"50%",border:"none",background:"rgba(255,255,255,0.15)",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer"}}
+        >
+          <span aria-hidden="true" style={{fontSize:"18px",lineHeight:1}}>✕</span>
+        </button>
+        <img
+          src="/Ibrahim-avatar-large.jpg"
+          alt={meMeta.name}
+          onClick={(e)=>e.stopPropagation()}
+          style={{width:"min(78vw,420px)",height:"min(78vw,420px)",borderRadius:"50%",objectFit:"cover",border:"6px solid white",boxShadow:"0 20px 60px rgba(0,0,0,0.45)",cursor:"default"}}
+        />
+      </div>
+    )}
+    </>
   );
 }
 
