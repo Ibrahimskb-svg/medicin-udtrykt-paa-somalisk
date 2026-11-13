@@ -10,7 +10,7 @@ import { applyLanguageToDocument } from "../lib/language";
 import { getIndexData, getDisplayName, uiText, languages, MEDICINE_INTRO_BOX } from "../lib/site";
 import { mergeIntoMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
-import { ArrowUpRight, BadgeCheck, BookOpen, GraduationCap, HeartPulse, Languages, Pill, RefreshCw, Stethoscope, UserRound, HeartHandshake } from "lucide-react";
+import { BadgeCheck, BookOpen, GraduationCap, HeartPulse, Languages, Pill, RefreshCw, Stethoscope, UserRound, HeartHandshake } from "lucide-react";
 import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { CounterCardsModal } from "./counter-cards-modal";
@@ -238,10 +238,13 @@ const CONTACT_DATA = {
 };
 
 // ── About Me ───────────────────────────────────────────────────────────────
+// Titlen er bevidst delt op med "|" i alle fire sprog (arabisk havde det
+// allerede, de tre andre manglede det) — matcher opstillingen brugeren
+// efterspurgte, i stedet for komma+"og"/"&".
 const ABOUT_ME_META = {
-  da: { name:"Ibrahim Dahir Hanaf", title:"Farmakonom, Data Science-studerende & faglig formidler" },
-  en: { name:"Ibrahim Dahir Hanaf", title:"Pharmaconomist, Data Science student & science communicator" },
-  so: { name:"Ibraahim Dahir Xanaf", title:"Farmashiiste, Ardayga Cilmiga Xogta & Gudbiye Macluumaad Caafimaad" },
+  da: { name:"Ibrahim Dahir Hanaf", title:"Farmakonom | Data Science-studerende | Faglig formidler" },
+  en: { name:"Ibrahim Dahir Hanaf", title:"Pharmaconomist | Data Science student | Science communicator" },
+  so: { name:"Ibraahim Dahir Xanaf", title:"Farmashiiste | Ardayga Cilmiga Xogta | Gudbiye Macluumaad Caafimaad" },
   ar: { name:"إبراهيم ظاهر حنف", title:"فارماكونوم | طالب في علم البيانات | مُتخصّص في التثقيف والتواصل الصحي" },
 };
 
@@ -445,17 +448,19 @@ export function AboutModal({tab,language,onClose}){
               <p style={{fontSize:"13px",color:theme.primary,margin:"4px 0 0",fontWeight:600}}>{meMeta.title}</p>
             </div>
           </div>
-          <a
-            href={LINKEDIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover-lift"
-            style={{display:"flex",alignItems:"center",gap:"9px",padding:"13px 16px",borderTop:`1.5px solid ${theme.border}`,background:theme.tagBg,color:theme.primary,fontWeight:700,fontSize:"13.5px",textDecoration:"none",flexDirection:isRtl?"row-reverse":"row"}}
-          >
-            <LinkedinIcon size={17} color={theme.primary}/>
-            <span style={{flex:1,textAlign:isRtl?"right":"left",lineHeight:1.4}}>{linkedinText}</span>
-            <ArrowUpRight size={16} strokeWidth={2.5} style={{flexShrink:0,transform:isRtl?"scaleX(-1)":undefined}}/>
-          </a>
+          <div style={{display:"flex",alignItems:"center",gap:"12px",flexWrap:"wrap",padding:"13px 16px",borderTop:`1.5px solid ${theme.border}`,flexDirection:isRtl?"row-reverse":"row"}}>
+            <p style={{fontSize:"13px",color:"#64748b",margin:0,flex:"1 1 170px",textAlign:isRtl?"right":"left",lineHeight:1.5}}>{linkedinText}</p>
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-lift"
+              style={{display:"inline-flex",alignItems:"center",gap:"8px",padding:"10px 18px",borderRadius:"999px",background:"#0A66C2",color:"#fff",fontWeight:700,fontSize:"13px",textDecoration:"none",flexShrink:0,boxShadow:"0 4px 14px rgba(10,102,194,0.35)"}}
+            >
+              <LinkedinIcon size={16} color="#fff"/>
+              LinkedIn
+            </a>
+          </div>
         </div>
       )}
       {tab==="site"&&(
