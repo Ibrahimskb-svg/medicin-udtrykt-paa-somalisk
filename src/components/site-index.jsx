@@ -455,7 +455,7 @@ export function AboutModal({tab,language,onClose}){
               target="_blank"
               rel="noopener noreferrer"
               className="hover-lift"
-              style={{display:"inline-flex",alignItems:"center",gap:"8px",padding:"10px 18px",borderRadius:"999px",background:"#0A66C2",color:"#fff",fontWeight:700,fontSize:"13px",textDecoration:"none",flexShrink:0,boxShadow:"0 4px 14px rgba(10,102,194,0.35)"}}
+              style={{display:"inline-flex",alignItems:"center",gap:"8px",padding:"10px 18px",borderRadius:"999px",background:theme.primary,color:"#fff",fontWeight:700,fontSize:"13px",textDecoration:"none",flexShrink:0,boxShadow:`0 4px 14px ${theme.primary}59`}}
             >
               <LinkedinIcon size={16} color="#fff"/>
               LinkedIn
