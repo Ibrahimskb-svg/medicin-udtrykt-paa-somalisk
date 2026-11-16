@@ -204,6 +204,15 @@ a {
   outline-offset: 2px;
 }
 
+/* Profilbilledet i "Om mig" har en permanent, dekorativ farve-ring lige
+   uden for selve knappen (inset:-4px) — en almindelig fokus-ring ville
+   ligge oven i den og være stort set usynlig. outline-offset skubber
+   fokus-ringen klart udenfor den dekorative ring, så den rent faktisk ses. */
+.sm-enlarge-trigger:focus-visible {
+  outline: 3px solid #0ea5e9;
+  outline-offset: 6px;
+}
+
 .stat-flag-card {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(14px);

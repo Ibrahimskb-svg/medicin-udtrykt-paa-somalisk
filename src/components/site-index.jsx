@@ -1,22 +1,29 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";
-import { getIndexData, getDisplayName, uiText, languages, MEDICINE_INTRO_BOX } from "../lib/site";
+import { getDisplayName, uiText, languages } from "../lib/site";
+import { getIndexData, MEDICINE_INTRO_BOX } from "../lib/site-data-access";
 import { mergeIntoMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { BadgeCheck, BookOpen, GraduationCap, HeartPulse, Languages, Pill, RefreshCw, Stethoscope, UserRound, HeartHandshake } from "lucide-react";
-import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
-import { CounterCardsModal } from "./counter-cards-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
-import { SeverityCheckModal, LevelBadge } from "./severity-check-modal";
+import { LevelBadge } from "./level-badge";
 import { downloadReminderICS } from "../lib/reminder-ics";
+
+// Udskyder disse til første faktiske åbning, i stedet for at lægge deres
+// kode (ud over selve medicin-databasen, som denne fil allerede bruger til
+// søgning/forsidelisten) i forsidens oprindelige indlæsning.
+const MyListModal = dynamic(() => import("./my-list-modal").then((m) => m.MyListModal), { ssr: false });
+const CounterCardsModal = dynamic(() => import("./counter-cards-modal").then((m) => m.CounterCardsModal), { ssr: false });
+const SeverityCheckModal = dynamic(() => import("./severity-check-modal").then((m) => m.SeverityCheckModal), { ssr: false });
 import { getLastRevisedText } from "../lib/last-revised";
 import { FAQ_DATA } from "../data/faq-data";
 import { VoiceSearchButton } from "./voice-search-button";
@@ -279,7 +286,7 @@ const IBRAHIMDH_SECTION = {
   },
   ar: {
     heading: "أيضًا مؤسس موقع Ibrahimdh.dk",
-    text: "إلى جانب عملي في التوعية الصحية، أسستُ موقع Ibrahimdh.dk، وهو منصة تعليمية مستقلة تقدم دروسًا خصوصية في الرياضيات والعلوم الطبيعية لطلاب المرحلتين الابتدائية والثانوية بمستوياتها المختلفة.",
+    text: "إلى جانب عملي في التوعية الصحية، أسستُ موقع Ibrahimdh.dk، وهو منصة تعليمية مستقلة تقدم دروسًا خصوصية في الرياضيات والعلوم الطبيعية لطلاب المرحلتين الابتدائية والثانوية بمستوياتهما المختلفة.",
     button: "زيارة Ibrahimdh.dk",
   },
 };
@@ -425,6 +432,7 @@ function BulletRow({text,Icon,color}){
 // ── About Modal ────────────────────────────────────────────────────────────
 export function AboutModal({tab,language,onClose}){
   const [avatarEnlarged,setAvatarEnlarged]=useState(false);
+  const lightboxCloseBtnRef=useRef(null);
   const isRtl=language==="ar";
   const navLabels=NAV_LABELS[language]??NAV_LABELS.so;
   const theme=LANG_THEME[language]??LANG_THEME.so;
@@ -440,18 +448,33 @@ export function AboutModal({tab,language,onClose}){
 
   useEffect(()=>{
     if(!avatarEnlarged) return undefined;
+    // Gem hvad der havde fokus (knappen brugeren aktiverede billedet fra),
+    // så det kan gives tilbage, når billedet lukkes igen — ellers mister en
+    // tastaturbruger sin plads og skal starte forfra fra toppen af siden.
+    const previouslyFocused=document.activeElement;
+    lightboxCloseBtnRef.current?.focus();
     // ModalShell lytter selv efter Escape på document (bubble-fasen) for at
     // lukke HELE "Om mig"-vinduet. Uden stopPropagation HER, i capture-
     // fasen (som løber før document nås), ville ét Escape-tryk lukke både
     // det forstørrede billede OG vinduet bagved på én gang.
+    // Tab/Shift+Tab fanges og holdes på luk-knappen — krydset er det eneste
+    // fokuserbare element i billedvisningen, så uden dette ville Tab i
+    // stedet hoppe videre ud i "Om mig"-vinduet bagved, som visuelt er
+    // skjult bag den mørke baggrund.
     const onKey=(e)=>{
       if(e.key==="Escape"){
         e.stopPropagation();
         setAvatarEnlarged(false);
+      } else if(e.key==="Tab"){
+        e.preventDefault();
+        lightboxCloseBtnRef.current?.focus();
       }
     };
     window.addEventListener("keydown",onKey,true);
-    return ()=>window.removeEventListener("keydown",onKey,true);
+    return ()=>{
+      window.removeEventListener("keydown",onKey,true);
+      previouslyFocused?.focus?.();
+    };
   },[avatarEnlarged]);
 
   return(
@@ -464,7 +487,7 @@ export function AboutModal({tab,language,onClose}){
               type="button"
               onClick={()=>setAvatarEnlarged(true)}
               aria-label={enlargeLabel}
-              className="hover-lift"
+              className="hover-lift sm-enlarge-trigger"
               style={{position:"relative",flexShrink:0,padding:0,border:"none",background:"none",cursor:"pointer",borderRadius:"50%"}}
             >
               <div style={{position:"absolute",inset:"-4px",borderRadius:"50%",background:"linear-gradient(135deg,#14b8a6,#38bdf8,#818cf8)",opacity:0.9,filter:"blur(2px)"}}/>
@@ -532,6 +555,7 @@ export function AboutModal({tab,language,onClose}){
         style={{position:"fixed",inset:0,zIndex:10000,display:"flex",alignItems:"center",justifyContent:"center",padding:"24px",background:"rgba(10,15,25,0.82)",backdropFilter:"blur(6px)",WebkitBackdropFilter:"blur(6px)",cursor:"zoom-out"}}
       >
         <button
+          ref={lightboxCloseBtnRef}
           type="button"
           onClick={()=>setAvatarEnlarged(false)}
           aria-label={navLabels.close}
