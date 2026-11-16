@@ -1,17 +1,11 @@
 "use client";
 import { useMemo, useState } from "react";
-import { getIndexData, getMedicine, getDisplayName } from "../lib/site";
+import { getIndexData, getMedicine } from "../lib/site-data-access";
+import { getDisplayName } from "../lib/site";
 import { ModalShell, LANG_THEME } from "./modal-shell";
+import { LEVEL_COLORS } from "./level-badge";
 
 const indexData = getIndexData();
-
-// Samme farvesprog som isku-dar-tjekket i Min medicinliste (grøn/orange/rød),
-// genbrugt her så sitet føles ét sammenhængende system, ikke to forskellige.
-const LEVEL_COLORS = {
-  green: { bg: "#f0fdf4", border: "#bbf7d0", text: "#166534", ring: "#16a34a" },
-  orange: { bg: "#fff7ed", border: "#fed7aa", text: "#9a3412", ring: "#ea580c" },
-  red: { bg: "#fef2f2", border: "#fecaca", text: "#991b1b", ring: "#dc2626" },
-};
 
 const TEXTS = {
   da: {

@@ -1,16 +1,27 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import QRCode from "qrcode";
 
 import { InhalerGuide } from "./inhaler-guide";
-import { MyListModal } from "./my-list-modal";
 import { PharmacyFinderModal } from "./pharmacy-finder-modal";
 import { PrayerReminderModal } from "./prayer-reminder-modal";
-import { CounterCardsModal } from "./counter-cards-modal";
-import { SeverityCheckModal, LevelBadge } from "./severity-check-modal";
-import { AboutModal, ContactModal, FAQModal } from "./site-index";
+import { LevelBadge } from "./level-badge";
+
+// Disse modaler importerer (direkte eller via site-index.jsx) den tunge
+// medicin-database (../lib/site-data-access, ~490KB) — men vises kun, når
+// brugeren rent faktisk åbner dem (se modalTab/severityCheckOpen nedenfor).
+// Dynamisk import udskyder den byte-tunge kode til første klik i stedet for
+// at lægge den i sidens oprindelige indlæsning, som alle besøgende betaler
+// for uanset om de nogensinde åbner disse modaler.
+const MyListModal = dynamic(() => import("./my-list-modal").then((m) => m.MyListModal), { ssr: false });
+const CounterCardsModal = dynamic(() => import("./counter-cards-modal").then((m) => m.CounterCardsModal), { ssr: false });
+const SeverityCheckModal = dynamic(() => import("./severity-check-modal").then((m) => m.SeverityCheckModal), { ssr: false });
+const AboutModal = dynamic(() => import("./site-index").then((m) => m.AboutModal), { ssr: false });
+const ContactModal = dynamic(() => import("./site-index").then((m) => m.ContactModal), { ssr: false });
+const FAQModal = dynamic(() => import("./site-index").then((m) => m.FAQModal), { ssr: false });
 import { useLanguageRouting } from "../hooks/use-language-routing";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { applyLanguageToDocument } from "../lib/language";

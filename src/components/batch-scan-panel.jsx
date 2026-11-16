@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
-import { getIndexData, getDisplayName } from "../lib/site";
+import { getDisplayName } from "../lib/site";
+import { getIndexData } from "../lib/site-data-access";
 import { addToMyList } from "../lib/my-list";
 import { recognizeMedicineFromFile, reportNoMatch } from "../lib/medicine-ocr";
 import { LANG_THEME } from "./modal-shell";

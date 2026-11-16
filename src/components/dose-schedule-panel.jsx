@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { getSchedule, toggleScheduleSlot, subscribeSchedule, TIME_SLOTS } from "../lib/dose-schedule";
-import { getUsualDosingHint, getSuggestedDoseSlots, hasDoctorDependentDoseNote } from "../lib/site";
+import { hasDoctorDependentDoseNote } from "../lib/site";
+import { getUsualDosingHint, getSuggestedDoseSlots } from "../lib/site-data-access";
 import { LANG_THEME } from "./modal-shell";
 
 const USUAL_DOSING_LABEL = {

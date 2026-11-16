@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { getIndexData, getDisplayName, getMedicine, getAccentColor } from "../lib/site";
+import { getDisplayName, getAccentColor } from "../lib/site";
+import { getIndexData, getMedicine } from "../lib/site-data-access";
 import { getMyList, addToMyList, removeFromMyList, subscribeMyList } from "../lib/my-list";
 import { ModalShell, LANG_THEME } from "./modal-shell";
 import { knownInteractions, pairKey, CHECKED_DATE } from "../data/interactions";

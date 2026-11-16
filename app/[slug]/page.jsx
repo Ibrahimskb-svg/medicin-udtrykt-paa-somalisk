@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
 
 import { MedicinePage } from "../../src/components/medicine-page";
-import { getMedicine, getMedicineSlugs, getIndexData, languages } from "../../src/lib/site";
+import { languages } from "../../src/lib/site";
+import { getMedicine, getMedicineSlugs, getIndexData } from "../../src/lib/site-data-access";
 import { LAST_REVISED_ISO } from "../../src/data/last-revised.generated";
 
 export async function generateStaticParams() {

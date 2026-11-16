@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { COUNTER_CARD_CATEGORIES } from "../data/counter-cards";
 import { ModalShell, LANG_THEME } from "./modal-shell";
-import { getLanguageName, getUsualDosingHint, languages, languageThemes, pickerAccent } from "../lib/site";
+import { getLanguageName, languages, languageThemes, pickerAccent } from "../lib/site";
+import { getUsualDosingHint } from "../lib/site-data-access";
 
 const TEXTS = {
   da: {

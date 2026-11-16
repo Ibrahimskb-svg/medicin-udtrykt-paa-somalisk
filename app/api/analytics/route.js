@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getAnalyticsClient, getProperty } from "../../../src/lib/analytics-client";
 import { isValidSession, DASHBOARD_COOKIE } from "../../../src/lib/dashboard-auth";
-import { getIndexData } from "../../../src/lib/site";
+import { getIndexData } from "../../../src/lib/site-data-access";
 
 function rowsOf(report) {
   return report?.rows || [];

@@ -1,5 +1,9 @@
-export const siteData = {
-  "index": {
+// Opdelt i to separate exports (siteIndex/siteMedicines) i stedet for ét
+// kombineret siteData-objekt, så en fil der kun bruger det lille index
+// (6,8KB) ikke tvinges til også at bundle de tunge medicines (494KB) —
+// de var før to felter på SAMME objekt, hvilket umuliggjorde tree-shaking
+// mellem dem. siteData nedenfor er kun til bagudkompatibilitet.
+export const siteIndex = {
     "title": "Lægemiddelinformation på somalisk",
     "translations": {
       "so": {
@@ -355,8 +359,9 @@ export const siteData = {
         "icon": "➜"
       }
     ]
-  },
-  "medicines": [
+};
+
+export const siteMedicines = [
     {
       "slug": "amlodipin",
       "title": "Amlodipin – dhiig-karka",
@@ -10414,5 +10419,8 @@ export const siteData = {
         }
       }
     }
-  ]
-};
+];
+
+// Kun til ældre/stray kode, der evt. forventer den gamle, kombinerede
+// form — selve app-koden bør importere siteIndex/siteMedicines direkte.
+export const siteData = { index: siteIndex, medicines: siteMedicines };

@@ -1,5 +1,6 @@
 import { SiteIndex } from "../src/components/site-index";
-import { getIndexData, languages, uiText } from "../src/lib/site";
+import { languages, uiText } from "../src/lib/site";
+import { getIndexData } from "../src/lib/site-data-access";
 import { FAQ_DATA } from "../src/data/faq-data";
 
 // Samme fiks som på lægemiddelsiderne: canonical skal pege på sig selv per
