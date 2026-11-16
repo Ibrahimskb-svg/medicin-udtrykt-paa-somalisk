@@ -26,9 +26,16 @@ export function getStoredLanguage() {
 }
 
 export function resolveInitialLanguage(initialLanguage, urlLanguage) {
+  // Et eksplicit ?lang= i adressen vinder altid. Ellers skal et gemt
+  // sprogvalg vinde over `initialLanguage` — den er bare serverens eget
+  // gæt (typisk "so" som fast standard), når der IKKE var noget ?lang= i
+  // adressen, og må derfor ikke overtrumfe et bogmærket/delt/direkte
+  // indtastet link uden ?lang=, som ellers nulstillede sproget hver gang.
   if (isValidLanguage(urlLanguage)) return urlLanguage;
+  const stored = getStoredLanguage();
+  if (stored) return stored;
   if (isValidLanguage(initialLanguage)) return initialLanguage;
-  return getStoredLanguage() || "so";
+  return "so";
 }
 
 export function applyLanguageToDocument(lang, pageTitle) {
