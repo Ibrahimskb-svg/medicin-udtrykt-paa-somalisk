@@ -258,6 +258,32 @@ const LINKEDIN_TEXT = {
   ar: "تعرّف على المزيد عن خلفيتي المهنية وخبراتي عبر لينكدإن.",
 };
 
+// Samme adresse på alle fire sprog, ligesom LinkedIn-linket ovenfor — kun
+// overskrift/beskrivelse/knap-tekst oversættes.
+const IBRAHIMDH_URL = "https://ibrahimdh.dk/";
+const IBRAHIMDH_SECTION = {
+  da: {
+    heading: "Også stifter af Ibrahimdh.dk",
+    text: "Ved siden af mit arbejde med sundhedsformidling står jeg bag Ibrahimdh.dk, en selvstændig undervisningsplatform med fokus på matematik og naturvidenskabelige fag for folkeskoleelever og gymnasieelever.",
+    button: "Besøg Ibrahimdh.dk",
+  },
+  en: {
+    heading: "Also founder of Ibrahimdh.dk",
+    text: "Alongside my work in health communication, I founded Ibrahimdh.dk, an independent tutoring platform focused on mathematics and natural sciences for primary and lower-secondary school students, as well as upper-secondary school students.",
+    button: "Visit Ibrahimdh.dk",
+  },
+  so: {
+    heading: "Sidoo kale waxaan aasaasay Ibrahimdh.dk",
+    text: "Marka laga soo tago shaqadayda la xiriirta wacyigelinta caafimaadka, waxaan aasaasay Ibrahimdh.dk, oo ah madal waxbarasho oo madax-bannaan oo bixisa casharro gaar ah oo ku saabsan xisaabta iyo culuumta dabiiciga ah, looguna talagalay ardayda dugsiyada hoose iyo dhexe, iyo sidoo kale ardayda dugsiyada sare.",
+    button: "Booqo Ibrahimdh.dk",
+  },
+  ar: {
+    heading: "أيضًا مؤسس موقع Ibrahimdh.dk",
+    text: "إلى جانب عملي في التوعية الصحية، أسستُ موقع Ibrahimdh.dk، وهو منصة تعليمية مستقلة تقدم دروسًا خصوصية في الرياضيات والعلوم الطبيعية لطلاب المرحلتين الابتدائية والثانوية بمستوياتها المختلفة.",
+    button: "زيارة Ibrahimdh.dk",
+  },
+};
+
 const ENLARGE_PHOTO_LABEL = {
   da: "Se billedet i fuld størrelse",
   en: "View full-size photo",
@@ -405,6 +431,7 @@ export function AboutModal({tab,language,onClose}){
   const meMeta=ABOUT_ME_META[language]??ABOUT_ME_META.so;
   const linkedinText=LINKEDIN_TEXT[language]??LINKEDIN_TEXT.so;
   const enlargeLabel=ENLARGE_PHOTO_LABEL[language]??ENLARGE_PHOTO_LABEL.so;
+  const ibrahimdh=IBRAHIMDH_SECTION[language]??IBRAHIMDH_SECTION.so;
   const bullets=tab==="me"?(ABOUT_ME_BULLETS[language]??ABOUT_ME_BULLETS.so):(ABOUT_SITE_BULLETS[language]??ABOUT_SITE_BULLETS.so);
   const siteTagline=ABOUT_SITE_TAGLINE[language]??ABOUT_SITE_TAGLINE.so;
   const title=tab==="me"?navLabels.aboutMe:navLabels.aboutSite;
@@ -459,6 +486,30 @@ export function AboutModal({tab,language,onClose}){
             >
               <LinkedinIcon size={16} color="#fff"/>
               LinkedIn
+            </a>
+          </div>
+        </div>
+      )}
+      {tab==="me"&&(
+        <div style={{marginBottom:"18px",background:"#fff",borderRadius:"20px",border:"1.5px solid #e2e8f0",boxShadow:"0 2px 8px rgba(15,23,42,0.05)",padding:"16px"}}>
+          <div style={{display:"flex",alignItems:"flex-start",gap:"12px",flexDirection:isRtl?"row-reverse":"row"}}>
+            <span style={{display:"flex",alignItems:"center",justifyContent:"center",width:44,height:44,borderRadius:"13px",flexShrink:0,background:"#1E304614",color:"#1E3046"}}>
+              <BookOpen size={22} strokeWidth={1.9} aria-hidden="true"/>
+            </span>
+            <div style={{flex:1,minWidth:0}}>
+              <p style={{fontWeight:800,fontSize:"15px",color:"#0f172a",margin:0,textAlign:isRtl?"right":"left"}}>{ibrahimdh.heading}</p>
+              <p style={{fontSize:"13px",color:"#64748b",margin:"8px 0 0",lineHeight:1.6,textAlign:isRtl?"right":"left"}}>{ibrahimdh.text}</p>
+            </div>
+          </div>
+          <div style={{marginTop:"14px",textAlign:isRtl?"right":"left"}}>
+            <a
+              href={IBRAHIMDH_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover-lift"
+              style={{display:"inline-flex",alignItems:"center",gap:"8px",padding:"10px 18px",borderRadius:"999px",background:"#1E3046",color:"#fff",fontWeight:700,fontSize:"13px",textDecoration:"none",boxShadow:"0 4px 14px rgba(30,48,70,0.35)"}}
+            >
+              {ibrahimdh.button}
             </a>
           </div>
         </div>
