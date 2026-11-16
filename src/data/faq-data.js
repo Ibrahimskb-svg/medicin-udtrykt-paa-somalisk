@@ -80,7 +80,7 @@ export const FAQ_DATA = {
     { q:"Daawada xanuun-baabi'iyaha ah kee fiican?",
       bullets:["Paracetamol: waxay ku fiican tahay madax-xanuun, qandho iyo xanuun fudud — dad badan ayay ammaan u tahay.","Ibuprofen: way ka xoog badan tahay, waxayna ku fiican tahay ilko-xanuun, murqo-xanuun iyo kala-goysyo xanuunaya — ku qaado cunto.","Haddii aad leedahay dhibaato caloosha ah, aad qaadato daawo dhiig-kar ama aad uur leedahay, Paracetamol ayaa badanaa ka habboon.","Haddii aad shaki qabto, weydii farmashiyaha."] },
     { q:"Ma qaadan karaa daawo cusub oo farmashiyaha laga helo anigoo qaadanaya daawooyinkayga caadiga ah?",
-      bullets:["Mar walba ma aha — daawooyin badan oo aan warqad dhakhtar u baahnayn waxay saameyn karaan daawooyinkaaga kale.","Ibuprofen waxay daciifin kartaa daawooyinka dhiig-karka.","Daawooyinka dabiiciga ah qaarkood waxay saameyn karaan dawooyinka dhiiga cafiifiya.","Mar walba weydii farmashiyaha — waa bilaash, waana degdeg."] },
+      bullets:["Mar walba ma aha — daawooyin badan oo aan warqad dhakhtar u baahnayn waxay saameyn karaan daawooyinkaaga kale.","Ibuprofen waxay daciifin kartaa daawooyinka dhiig-karka.","Daawooyinka dabiiciga ah qaarkood waxay saameyn karaan dawooyinka dhiiga cafiifiya.","Mar walba weydii farmashiyaha — waa bilaash, waxayna qaadataa 2 daqiiqo."] },
   ]},
   ar: { items:[
     { q:"ما هو لاموتريجين وكيف يؤخذ؟",
