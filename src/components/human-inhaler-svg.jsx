@@ -192,7 +192,7 @@ export function HumanInhalerSVG({ step, type = "ventoline", language = "da" }) {
           {isHold && (
             <g transform="translate(140 30)">
               <rect x="-78" y="-14" width="156" height="26" rx="13" fill="#DCFCE7" stroke="#86EFAC" strokeWidth="1.5" />
-              <text x="0" y="4" textAnchor="middle" fontSize="11" fontWeight="800" fill="#15803D">{HOLD_LABEL[language] ?? HOLD_LABEL.da}</text>
+              <text x="0" y="4" textAnchor="middle" fontSize="11" fontWeight="800" fill="#15803D">{HOLD_LABEL[language] ?? HOLD_LABEL.so}</text>
             </g>
           )}
         </g>
@@ -327,7 +327,7 @@ function SymbPrep({ language }) {
       <rect x="-15" y="12" width="30" height="46" rx="12" fill="url(#hiSymbBody)" stroke="#EA580C" strokeWidth="1.8" />
       <text x="0" y="30" textAnchor="middle" fontSize="6.5" fontWeight="800" fill="#EA580C">Symbicort</text>
       <rect x="-15" y="46" width="30" height="14" rx="7" fill="#DC2626" />
-      <text x="0" y="57" textAnchor="middle" fontSize="6" fontWeight="800" fill="#fff">{TWIST_LABEL[language] ?? TWIST_LABEL.da}</text>
+      <text x="0" y="57" textAnchor="middle" fontSize="6" fontWeight="800" fill="#fff">{TWIST_LABEL[language] ?? TWIST_LABEL.so}</text>
     </g>
   );
 }

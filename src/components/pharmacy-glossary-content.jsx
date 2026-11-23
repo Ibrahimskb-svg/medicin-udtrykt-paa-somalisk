@@ -83,8 +83,8 @@ export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
     const q = query.trim().toLowerCase();
     if (!q) return pharmacyGlossary;
     return pharmacyGlossary.filter((entry) => {
-      const term = (entry.term[language] ?? entry.term.da).toLowerCase();
-      const explanation = (entry.explanation[language] ?? entry.explanation.da).toLowerCase();
+      const term = (entry.term[language] ?? entry.term.so).toLowerCase();
+      const explanation = (entry.explanation[language] ?? entry.explanation.so).toLowerCase();
       return term.includes(q) || explanation.includes(q);
     });
   }, [query, language]);
@@ -178,10 +178,10 @@ export function PharmacyGlossaryContent({ initialLanguage, initialView }) {
                     }}
                   >
                     <h2 style={{ fontSize: "16px", fontWeight: 800, color, margin: "0 0 6px" }}>
-                      {entry.term[language] ?? entry.term.da}
+                      {entry.term[language] ?? entry.term.so}
                     </h2>
                     <p style={{ fontSize: "14px", color: "#334155", margin: 0 }}>
-                      {entry.explanation[language] ?? entry.explanation.da}
+                      {entry.explanation[language] ?? entry.explanation.so}
                     </p>
                   </div>
                 );

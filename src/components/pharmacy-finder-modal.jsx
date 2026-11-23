@@ -68,7 +68,7 @@ function PhoneIcon({ size = 15, color = "currentColor" }) {
 }
 
 function namesFor(contact, language) {
-  return contact.names[language] ?? contact.names.en ?? [];
+  return contact.names[language] ?? contact.names.so ?? [];
 }
 
 export function PharmacyFinderModal({ language, onClose }) {

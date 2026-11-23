@@ -38,7 +38,7 @@ export const pharmacyGlossary = [
     term: { da: "Generisk substitution", en: "Generic substitution", so: "Beddelka daawo la mid ah", ar: "الاستبدال بالدواء المكافئ" },
     explanation: {
       da: "Apoteket giver dig ofte et billigere mærke med præcis samme aktive stof og virkning som det, lægen har ordineret — kun navnet og æsken ser anderledes ud.",
-      en: "The pharmacy often gives you a cheaper brand with the exact same active ingredient and effect as the one the doctor wrote — only the name and box look different.",
+      en: "The pharmacy often gives you a cheaper brand with the exact same active ingredient and effect as the one the doctor prescribed — only the name and box look different.",
       so: "Farmashiyuhu inta badan wuxuu ku siin karaa nooc qaali ka yar oo leh isla maaddada firfircoon iyo saameynta uu dhakhtarku qoray — magaca iyo baakadka oo kaliya ayaa ka duwan.",
       ar: "غالبًا ما تعطيك الصيدلية علامة تجارية أرخص تحتوي على نفس المادة الفعالة والتأثير الذي وصفه الطبيب تمامًا — فقط الاسم والعلبة يبدوان مختلفين.",
     },
@@ -79,7 +79,7 @@ export const pharmacyGlossary = [
     explanation: {
       da: "En æske eller pose, hvor apoteket fordeler din medicin i færdige poser efter tidspunkt på dagen — så du undgår at tælle piller selv. Spørg dit apotek, om du kan få det.",
       en: "A box or bag where the pharmacy sorts your medicine into ready pouches by time of day — so you don't have to count pills yourself. Ask your pharmacy if you can get this.",
-      so: "Waa sanduuq ama kiish, kaas oo farmashigu ku qaybiyo daawooyinkaaga kiishash diyaar ah sida waqtiga maalinta — si aadan u baahnayn inaad kiniinnada tirisid adiga qudhaadu. Weydii farmashiyahaaga haddii aad heli karto.",
+      so: "Waa sanduuq ama kiish, kaas oo farmashiyuhu ku qaybiyo daawooyinkaaga kiishash diyaar ah sida waqtiga maalinta — si aadan u baahnayn inaad kiniinnada tirisid adiga qudhaadu. Weydii farmashiyahaaga haddii aad heli karto.",
       ar: "علبة أو كيس تقوم فيه الصيدلية بترتيب أدويتك في أكياس جاهزة حسب وقت اليوم — حتى لا تضطر لعدّ الحبوب بنفسك. اسأل صيدليتك إن كان بإمكانك الحصول عليها.",
     },
   },
@@ -128,7 +128,7 @@ export const pharmacyGlossary = [
     term: { da: "Kronikertilskud", en: "Chronic-illness reimbursement", so: "Kaalmo dheeraad ah oo cudur joogto ah", ar: "دعم مرضى الأمراض المزمنة" },
     explanation: {
       da: "Ekstra tilskud til dig, der har et kronisk behov for meget medicin, så der kommer et loft over, hvad du selv skal betale. Spørg dit apotek, om du opfylder kravene.",
-      en: "Extra reimbursement for you if you have a chronic need for a lot of medicine, so your own payment gets a ceiling. Ask your pharmacy if you meet the requirements.",
+      en: "Extra reimbursement for you if you have a chronic need for a lot of medicine, so there's a cap on what you pay yourself. Ask your pharmacy if you meet the requirements.",
       so: "Waa kaalmo dheeraad ah oo loogu talagalay dadka si joogto ah u qaadanaya daawo badan, si lacagta aad adigu bixinayso ay gaarto xad. Weydii farmashiyahaaga haddii aad buuxinayso shuruudaha.",
       ar: "دعم مالي إضافي لك إذا كنت تحتاج بشكل مزمن إلى الكثير من الأدوية، بحيث يكون لمساهمتك المالية حد أقصى. اسأل صيدليتك إن كنت تستوفي الشروط.",
     },

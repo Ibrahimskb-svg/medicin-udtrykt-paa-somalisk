@@ -1710,7 +1710,7 @@ export function SiteIndex({initialLang}){
           direction: language === "ar" ? "rtl" : "ltr",
         }}>
           <ShieldCheckIcon size={15} color="#0f766e" />
-          <span>{QUALITY_NOTE[language] ?? QUALITY_NOTE.da}</span>
+          <span>{QUALITY_NOTE[language] ?? QUALITY_NOTE.so}</span>
         </div>
       </div>
     </div>
