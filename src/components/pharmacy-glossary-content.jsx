@@ -36,7 +36,7 @@ const BACK_LABEL = { da: "← Til forsiden", en: "← To the homepage", so: "←
 const DISCLAIMER = {
   da: "Denne ordliste er en generel forklaring, ikke en officiel juridisk tekst. Reglerne (fx tilskud) kan ændre sig — spørg altid dit eget apotek om detaljer, der gælder præcis din situation.",
   en: "This glossary is a general explanation, not an official legal text. The rules (e.g. reimbursement) can change — always ask your own pharmacy about details that apply to your exact situation.",
-  so: "Liiskani waa sharaxaad guud, mana aha qoraal sharci oo rasmi ah. Xeerarka (tusaale, kaalmada lacageed) way is bedbeddeli karaan — had iyo jeer weydii farmashiyahaaga faahfaahin ku saabsan xaaladdaada gaarka ah.",
+  so: "Liiskani waa sharaxaad guud, mana aha qoraal sharci oo rasmi ah. Xeerarka (tusaale, Kaalmada daawada) way is bedbeddeli karaan — had iyo jeer weydii farmashiyahaaga faahfaahin ku saabsan xaaladdaada gaarka ah.",
   ar: "هذه القائمة شرح عام، وليست نصًا قانونيًا رسميًا. القواعد (مثل الدعم المالي) قد تتغير — اسأل دائمًا صيدليتك عن التفاصيل التي تنطبق على حالتك بالضبط.",
 };
 
