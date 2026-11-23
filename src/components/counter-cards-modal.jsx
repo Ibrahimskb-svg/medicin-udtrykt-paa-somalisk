@@ -8,16 +8,18 @@ import { getUsualDosingHint } from "../lib/site-data-access";
 const TEXTS = {
   da: {
     title: "Skranke-kort",
-    intro: "Store, todelte kort til at spørge eller vise noget direkte til kunden — vælg en kategori, så et kort, og vend det.",
-    pdfBtn: "Gem alle kort som PDF (backup)",
+    intro: "Store, tosidede kort til at spørge eller vise noget direkte til kunden — vælg en kategori, så et kort, og vend det.",
+    pdfBtn: "Gem alle kort som PDF-backup",
     pdfFileTitle: "Skranke-kort — Somalimed.dk",
     back: "Tilbage",
     tapToReveal: "Tryk for at vise på kundens sprog",
     tapToHide: "Tryk for at vende tilbage",
     yes: "Ja",
     no: "Nej",
-    showLanguage: "Vis på:",
-    arNotice: "Arabisk er endnu ikke tjekket af en modersmålstalende.",
+    showLanguage: "Vis til kunden på:",
+    yourSide: "Dit sprog",
+    customerSide: "Kundens sprog",
+    arNotice: "Arabisk er endnu ikke gennemgået af en modersmålstalende.",
     pageOf: (i, n) => `${i} af ${n}`,
     forMedicine: "Til",
     usualDosing: "Sædvanligvis (fra medicinens egen side)",
@@ -26,18 +28,20 @@ const TEXTS = {
   en: {
     title: "Counter cards",
     intro: "Big, two-sided cards to ask or show something directly to the customer — pick a category, then a card, and flip it.",
-    pdfBtn: "Save all cards as PDF (backup)",
+    pdfBtn: "Save all cards as PDF backup",
     pdfFileTitle: "Counter cards — Somalimed.dk",
     back: "Back",
     tapToReveal: "Tap to show in the customer's language",
     tapToHide: "Tap to flip back",
     yes: "Yes",
     no: "No",
-    showLanguage: "Show in:",
+    showLanguage: "Show the customer in:",
+    yourSide: "Your language",
+    customerSide: "Customer's language",
     arNotice: "Arabic hasn't been checked by a native speaker yet.",
     pageOf: (i, n) => `${i} of ${n}`,
     forMedicine: "For",
-    usualDosing: "Usually (from the medicine's own page)",
+    usualDosing: "Typical dose (see this medicine's page)",
     close: "Close",
   },
   so: {
@@ -50,7 +54,9 @@ const TEXTS = {
     tapToHide: "Riix si dib loogu laabto",
     yes: "Haa",
     no: "Maya",
-    showLanguage: "Ku tus:",
+    showLanguage: "Macmiilka ku tus luuqadda:",
+    yourSide: "Luuqaddaada",
+    customerSide: "Luuqadda macmiilka",
     arNotice: "Af-Carabiga weli lama hubin qof ku hadla afkiisa hooyo.",
     pageOf: (i, n) => `${i} ee ${n}`,
     forMedicine: "Waxaa loogu talagalay",
@@ -67,7 +73,9 @@ const TEXTS = {
     tapToHide: "اضغط للعودة",
     yes: "نعم",
     no: "لا",
-    showLanguage: "اعرض بـ:",
+    showLanguage: "اعرض للعميل بـ:",
+    yourSide: "لغتك",
+    customerSide: "لغة العميل",
     arNotice: "لم تتم مراجعة اللغة العربية بعد من قبل متحدث أصلي.",
     pageOf: (i, n) => `${i} من ${n}`,
     forMedicine: "لدواء",
@@ -399,6 +407,12 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                   background: categoryStyle.bg, border: `2px solid ${categoryStyle.ring}`,
                 }}
               >
+                {/* Kortets to sider havde intet, der forklarede hvorfor den
+                    ene viser dit eget sprog og den anden kundens — kun en
+                    kodekommentar forklarede det, usynligt for brugeren.
+                    Disse to små labels gør det tydeligt uden at skulle
+                    kende designet på forhånd. */}
+                <span style={{ display: "block", marginBottom: "10px", fontSize: "11px", fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", color: categoryStyle.color, opacity: 0.7 }}>{t.yourSide}</span>
                 <span dir={isRtl ? "rtl" : "ltr"} style={{ fontSize: "20px", fontWeight: 800, color: categoryStyle.color, lineHeight: 1.4 }}>
                   {phrase[language] ?? phrase.so}
                 </span>
@@ -411,6 +425,7 @@ export function CounterCardsModal({ language, onClose, medicineSlug, medicineNam
                   background: theme.primary, border: `2px solid ${theme.primary}`,
                 }}
               >
+                <span style={{ display: "block", marginBottom: "10px", fontSize: "11px", fontWeight: 800, letterSpacing: "0.04em", textTransform: "uppercase", color: "rgba(255,255,255,0.75)" }}>{t.customerSide}</span>
                 <span dir={revealLang === "ar" ? "rtl" : "ltr"} style={{ fontSize: "30px", fontWeight: 700, color: "#fff", lineHeight: 1.4 }}>
                   {phrase[revealLang] ?? phrase.so}
                 </span>
