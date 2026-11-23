@@ -300,8 +300,8 @@ const ENLARGE_PHOTO_LABEL = {
 
 const ABOUT_ME_BULLETS = {
   da: [
-    { icon:"education", text:"Jeg er uddannet farmakonom og er Data Science-studerende. Jeg har en stærk faglig interesse for matematik, fysik, kemi og biologi og er god til at forklare svære emner på en enkel og forståelig måde." },
-    { icon:"work",      text:"Jeg arbejder både på privatapotek og vagtapotek. Gennem mit arbejde møder jeg mange forskellige kunder og ser derfor tæt på, hvor essentielt det er, at information om medicin er klar, kort og nem at forstå." },
+    { icon:"education", text:"Jeg er uddannet farmakonom og læser desuden Data Science. Jeg har en stærk faglig interesse for matematik, fysik, kemi og biologi og er god til at forklare svære emner på en enkel og forståelig måde." },
+    { icon:"work",      text:"Jeg arbejder både på privatapotek og vagtapotek. Gennem mit arbejde møder jeg mange forskellige kunder og oplever derfor på nært hold, hvor vigtigt det er, at information om medicin er klar, kort og nem at forstå." },
     { icon:"school",    text:"Jeg har erfaring med at undervise elever i folkeskolen, gymnasiet og på universitetet, især i fag der kan være svære. Jeg lægger vægt på at forklare ting roligt og enkelt, så det bliver lettere at forstå." },
     { icon:"pills",     text:"Jeg interesserer mig især for at gøre faglig viden mere forståelig og brugbar. For mig handler god formidling om at gøre det komplekse enkelt og give folk den information, de faktisk har brug for." },
   ],
