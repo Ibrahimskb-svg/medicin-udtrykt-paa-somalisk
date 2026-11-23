@@ -97,7 +97,7 @@ export const pharmacyGlossary = [
     id: "bivirkning",
     term: { da: "Bivirkning", en: "Side effect", so: "Waxyeello", ar: "عرض جانبي" },
     explanation: {
-      da: "En uønsket virkning af medicinen, ud over den, den er tiltænkt. De fleste bivirkninger er milde og forsvinder — men fortæl altid apoteket eller lægen, hvis noget føles forkert.",
+      da: "En uønsket virkning af medicinen, ud over den tiltænkte virkning. De fleste bivirkninger er milde og forsvinder — men fortæl altid apoteket eller lægen, hvis noget føles forkert.",
       en: "An unwanted effect of the medicine, beyond what it's intended for. Most side effects are mild and go away — but always tell the pharmacy or doctor if something feels wrong.",
       so: "Waa saameyn aan la doonayn oo daawadu keento, oo ka baxsan ujeeddadeeda. Inta badan waxyeelooyinku waa kuwo fudud oo baaba'a — laakiin had iyo jeer u sheeg farmashiyaha ama dhakhtarka haddii wax khaldan dareemayso.",
       ar: "هو تأثير غير مرغوب فيه للدواء، بخلاف الغرض المقصود منه. معظم الأعراض الجانبية خفيفة وتزول — لكن أخبر دائمًا الصيدلية أو الطبيب إذا شعرت بشيء غير طبيعي.",
