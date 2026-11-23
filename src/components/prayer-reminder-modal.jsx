@@ -64,7 +64,7 @@ const LABELS = {
 const LAST_CITY_KEY = "somalimed-prayer-city";
 
 export function PrayerReminderModal({ language, isRtl, onClose, onConfirm }) {
-  const t = LABELS[language] || LABELS.da;
+  const t = LABELS[language] || LABELS.so;
   const [cityId, setCityId] = useState(DANISH_CITIES[0].id);
 
   useEffect(() => {

@@ -213,7 +213,7 @@ const SPEED_LABELS = {
 
 function PlaybackSpeedControl({ audioRef, language, accentColor }) {
   const [rate, setRate] = useState(1);
-  const t = SPEED_LABELS[language] ?? SPEED_LABELS.da;
+  const t = SPEED_LABELS[language] ?? SPEED_LABELS.so;
   const isRtl = language === "ar";
 
   function applyRate(value) {
@@ -287,8 +287,8 @@ export function MedicinePage({ medicine, initialLang }) {
     () => (medicine.dosagePictogram?.[language] || []).some((chip) => chip.type === "food"),
     [medicine, language]
   );
-  const qrText = QR_LABELS[language] ?? QR_LABELS.da;
-  const shareText = SHARE_LABELS[language] ?? SHARE_LABELS.da;
+  const qrText = QR_LABELS[language] ?? QR_LABELS.so;
+  const shareText = SHARE_LABELS[language] ?? SHARE_LABELS.so;
   const pageUrl = `https://www.somalimed.dk/${medicine.slug}?lang=${language}`;
 
   useEffect(() => {
@@ -402,7 +402,7 @@ export function MedicinePage({ medicine, initialLang }) {
       .map((item) => `<li style="margin-bottom:4px;">${escapeHtml(item.text)}</li>`)
       .join("");
 
-    const emergency = EMERGENCY[language] ?? EMERGENCY.da;
+    const emergency = EMERGENCY[language] ?? EMERGENCY.so;
 
     const html = `
       <div dir="${dir}" style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;text-align:${align};color:#0f172a;">
@@ -413,7 +413,7 @@ export function MedicinePage({ medicine, initialLang }) {
         <div style="padding:28px 36px 36px;">
           <div class="pdf-block" style="display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:16px;">
             <div style="padding:16px 20px;border-radius:14px;background:var(--soft, #ecfdf5);border:1.5px solid var(--softBorder, #6ee7b7);">
-              <p style="font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted, #64748b);margin:0 0 6px;">${escapeHtml(overviewLabel[language] || overviewLabel.da)}</p>
+              <p style="font-size:11px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-muted, #64748b);margin:0 0 6px;">${escapeHtml(overviewLabel[language] || overviewLabel.so)}</p>
               <p style="font-size:14px;line-height:1.6;margin:0;color:var(--text, #0f172a);">${data.introBox || ""}</p>
             </div>
             <div style="padding:16px 20px;border-radius:14px;background:#FFFBF0;border:1.5px solid #E8C96A;">
@@ -715,7 +715,7 @@ export function MedicinePage({ medicine, initialLang }) {
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
               <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.528 5.855L.057 23.886a.75.75 0 0 0 .918.919l6.086-1.453A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.944 9.944 0 0 1-5.116-1.41l-.367-.217-3.793.906.924-3.7-.239-.381A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
             </svg>
-            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).whatsapp}
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.so).whatsapp}
           </a>
           <button
             onClick={() => window.print()}
@@ -731,7 +731,7 @@ export function MedicinePage({ medicine, initialLang }) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/>
             </svg>
-            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).print}
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.so).print}
           </button>
           <button
             onClick={saveMedicinePagePdf}
@@ -747,7 +747,7 @@ export function MedicinePage({ medicine, initialLang }) {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
             </svg>
-            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).pdf}
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.so).pdf}
           </button>
           <button
             onClick={openQr}
@@ -764,7 +764,7 @@ export function MedicinePage({ medicine, initialLang }) {
               <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
               <line x1="14" y1="14" x2="14" y2="17"/><line x1="14" y1="20" x2="14" y2="21"/><line x1="17" y1="14" x2="21" y2="14"/><line x1="17" y1="17" x2="21" y2="17"/><line x1="17" y1="20" x2="21" y2="20"/><line x1="20" y1="17" x2="20" y2="21"/>
             </svg>
-            {(SHARE_LABELS[language] ?? SHARE_LABELS.da).qr}
+            {(SHARE_LABELS[language] ?? SHARE_LABELS.so).qr}
           </button>
           <button
             onClick={() => toggleMyList(medicine.slug)}
@@ -879,7 +879,7 @@ export function MedicinePage({ medicine, initialLang }) {
             style={{ background: "var(--soft)", borderColor: "var(--softBorder)", color: "var(--text)" }}
           >
             <p className="mb-2 text-xs font-semibold uppercase tracking-widest" style={{ color: "var(--text-muted)" }}>
-              {overviewLabel[language] || overviewLabel.da}
+              {overviewLabel[language] || overviewLabel.so}
             </p>
             {data.introBox}
           </section>
@@ -1028,13 +1028,13 @@ export function MedicinePage({ medicine, initialLang }) {
             <span style={{ fontSize: "20px", flexShrink: 0 }}>🚨</span>
             <div>
               <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: "13px", color: "#991b1b" }}>
-                {(EMERGENCY[language] ?? EMERGENCY.da).label}
+                {(EMERGENCY[language] ?? EMERGENCY.so).label}
               </p>
               <p style={{ margin: 0, fontSize: "13px", color: "#7f1d1d", lineHeight: 1.7 }}>
-                {(EMERGENCY[language] ?? EMERGENCY.da).poison}:{" "}
+                {(EMERGENCY[language] ?? EMERGENCY.so).poison}:{" "}
                 <a href="tel:82121212" style={{ fontWeight: 700, color: "#dc2626", textDecoration: "none" }}>82 12 12 12</a>
                 {"  ·  "}
-                {(EMERGENCY[language] ?? EMERGENCY.da).emergency}:{" "}
+                {(EMERGENCY[language] ?? EMERGENCY.so).emergency}:{" "}
                 <a href="tel:112" style={{ fontWeight: 700, color: "#dc2626", textDecoration: "none" }}>112</a>
               </p>
             </div>
@@ -1069,7 +1069,7 @@ export function MedicinePage({ medicine, initialLang }) {
               direction: language === "ar" ? "rtl" : "ltr",
             }}>
               <ShieldCheckIcon size={15} color="#94a3b8" />
-              <span>{QUALITY_NOTE[language] ?? QUALITY_NOTE.da}</span>
+              <span>{QUALITY_NOTE[language] ?? QUALITY_NOTE.so}</span>
             </div>
           </div>
         </footer>

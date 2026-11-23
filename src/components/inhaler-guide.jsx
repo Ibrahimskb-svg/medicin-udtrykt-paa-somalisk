@@ -657,10 +657,10 @@ function SS5({ language }) {
 export function InhalerGuide({ slug, language }) {
   const [step, setStep] = useState(0);
 
-  const steps   = STEPS[slug]?.[language] ?? STEPS[slug]?.da ?? [];
+  const steps   = STEPS[slug]?.[language] ?? STEPS[slug]?.so ?? [];
   const isRtl   = language === "ar";
   const isVent  = slug === "ventoline";
-  const warning = WARNING[slug]?.[language] ?? WARNING[slug]?.da;
+  const warning = WARNING[slug]?.[language] ?? WARNING[slug]?.so;
   const type    = isVent ? "ventoline" : "symbicort";
 
   const theme = isVent
@@ -681,10 +681,10 @@ export function InhalerGuide({ slug, language }) {
           <span style={{ fontSize: 24 }}>{isVent ? "💨" : "🌀"}</span>
           <div>
             <h2 style={{ margin: 0, fontSize: 17, fontWeight: 800, color: theme.primary, lineHeight: 1.2 }}>
-              {TITLE[language] ?? TITLE.da}
+              {TITLE[language] ?? TITLE.so}
             </h2>
             <p style={{ margin: "3px 0 0", fontSize: 12, color: "#556173", fontWeight: 600 }}>
-              {SUBTITLE[slug]?.[language] ?? SUBTITLE[slug]?.en}
+              {SUBTITLE[slug]?.[language] ?? SUBTITLE[slug]?.so}
             </p>
           </div>
         </div>
